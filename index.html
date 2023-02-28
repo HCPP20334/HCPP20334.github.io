@@ -1,12 +1,12 @@
-<html>
+html>
 <script src="Engine/site.js"></script>
 <body>
 <style>
  @font-face {
     font-family: hack; /* Гарнитура шрифта */
-    src: url(Hacked.ttf); /* Путь к файлу со шрифтом */
+    src: url(https://hcpp20334.github.io/Hacked.ttf); /* Путь к файлу со шрифтом */
    }
-html{background-color:#483D8B;}
+html{background-color:MidnightBlue;}
 #valueg
 {
  display: block;
@@ -19,8 +19,18 @@ html{background-color:#483D8B;}
 	background-color:Black;
 	 font-family:'hack';
 	}
-	#value{display:block;background-color:Red;color:white;text-align: center;font-size:30px;height:70px;width: 150px;border-radius:15px;border: 2px solid black;font-family:'hack'; padding: 14px 28px;margin:auto;}
-	#value:hover{display:block;background-color:SlateBlue;color:white;text-align: center;font-size:30px;height:70px;width: 150px;border-radius:15px;border: 2px solid black;font-family:'hack'; padding: 14px 28px;margin:auto;}
+	#value{display:block;background-color:#00FF00;color:white;text-align: center;font-size:20px;height:50px;width: 200px;border-radius:15px;border: 2px solid black;font-family:'hack'; padding: 14px 28px;margin:auto;}
+	
+	#value:hover{display:block;background-color:SlateBlue;color:white;text-align: center;font-size:20px;height:50px;width: 200px;border-radius:15px;border: 2px solid black;font-family:'hack'; padding: 14px 28px;margin:auto;box-shadow: 0 4px 8px 0 rgb(0,0,205),0 6px 20px 0 rgb(0,0,255);}
+	
+	#value1{display:block;background-color:#00FF00;color:white;text-align: center;font-size:20px;height:50px;width: 200px;border-radius:15px;border: 2px solid black;font-family:'hack'; padding: 14px 28px;margin:auto;}
+	
+	#value1:hover{display:block;background-color:SlateBlue;color:white;text-align: center;font-size:20px;height:50px;width: 200px;border-radius:15px;border: 2px solid black;font-family:'hack'; padding: 14px 28px;margin:auto;box-shadow: 0 4px 8px 0 rgb(0,0,205),0 6px 20px 0 rgb(0,0,255);}
+	
+    #value2{display:block;background-color:#00FF00;color:white;text-align: center;font-size:20px;height:50px;width: 200px;border-radius:15px;border: 2px solid black;font-family:'hack'; padding: 14px 28px;margin:auto;}
+	
+	#value2:hover{display:block;background-color:SlateBlue;color:white;text-align: center;font-size:20px;height:50px;width: 200px;border-radius:15px;border: 2px solid black;font-family:'hack'; padding: 14px 28px;margin:auto;box-shadow: 0 4px 8px 0 rgb(0,0,205),0 6px 20px 0 rgb(0,0,255);}
+	
 	#value0{background-color:Black;color:white;text-align: center;font-size:30px;border-radius:3px;border: 2px solid black;}
 #fb,#fd
 {
@@ -90,11 +100,13 @@ html{background-color:#483D8B;}
   #fb:hover{background-color:Silver;color:black;border: 2px gray; height:60px;width:60px;}
    #fd:hover{background-color:Silver;color:black;border: 2px gray; height:60px;width:100px;}
   </style>
-  <p id="title">FTools by HCPP </p>
+  <p id="title">Contacts</p>
   <div id="valueg">
 <button id="fb" onclick="javascript:fDebug();">Debug Mode</button><button id="fd" onclick="javascript:fSizePount++;fFullScreen(){">FullScreen</button><button id="fd" onclick="javascript:fFontSize++;fValue.style.fontSize =  10+fFontSize;fFont.innerHTML=fFontSize;">+Font</button><p id="fontsize"/>
 <p id="value0">HCPP - C++ and JS Programmer</p>
-<button onclick="javascript:fWindowMain.style.display = 'none';fVideoPlayer.style.display='block';fSizePount=2;fPlayer();fExit.style.display='block';" id="value">Play</button>
+<button onclick="javascript:fWindowMain.style.display = 'none';fVideoPlayer.style.display='block';fSizePount=2;fPlayer();fExit.style.display='block';" id="value">Play intro</button>
+<button onclick="javascript:document.location.href='https://github.com/HCPP20334';" id="value1">GITHUB</button>
+<button onclick="javascript:document.location.href='tg://resolve?domain=HCPPSTUDIO';" id="value2">TELEGRAM</button>
   </div>
   <button onclick="javascript:id=fWindowMain.style.display = 'block';fVideoPlayer.style.display='none';fExit.style.display='none';"id="exit">X</button>
   <embed id="video-yt"/>
