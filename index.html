@@ -2,9 +2,33 @@
 <script src="Engine/site.js"></script>
 <body>
 <style>
+@keyframes fAnimColors 
+{
+0%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,204);}
+5%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
+10%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,204);}
+15%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
+20%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,204);}
+25%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
+30%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,204);}
+35%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
+40%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,204);}
+45%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
+50%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,150);}
+55%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
+60%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
+65%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,204);}
+70%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
+75%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(163,217,191);}
+80%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
+85%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,204);}
+90%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
+95%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,204);}
+100%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(12,204,111);}
+}
  @font-face {
     font-family: hack; /* Гарнитура шрифта */
-    src: url(HACKED.ttf); /* Путь к файлу со шрифтом */
+    src: url(https://hcpp20334.github.io/HACKED.ttf); /* Путь к файлу со шрифтом */
    }
 html{background-color:MidnightBlue;}
 #valueg
@@ -19,50 +43,16 @@ html{background-color:MidnightBlue;}
 	background-color:Black;
 	 font-family:'hack';
 	}
-	#value{display:block;background-color:#00FF00;color:white;text-align: center;font-size:20px;height:50px;width: 200px;border-radius:15px;border: 2px solid black;font-family:'hack'; padding: 14px 28px;margin:auto;}
-	
-	#value:hover{display:block;background-color:SlateBlue;color:white;text-align: center;font-size:20px;height:50px;width: 200px;border-radius:15px;border: 2px solid black;font-family:'hack'; padding: 14px 28px;margin:auto;box-shadow: 0 4px 8px 0 rgb(0,0,205),0 6px 20px 0 rgb(0,0,255);}
-	
-	#value1{display:block;background-color:#00FF00;color:white;text-align: center;font-size:20px;height:50px;width: 200px;border-radius:15px;border: 2px solid black;font-family:'hack'; padding: 14px 28px;margin:auto;}
-	
-	#value1:hover{display:block;background-color:SlateBlue;color:white;text-align: center;font-size:20px;height:50px;width: 200px;border-radius:15px;border: 2px solid black;font-family:'hack'; padding: 14px 28px;margin:auto;box-shadow: 0 4px 8px 0 rgb(0,0,205),0 6px 20px 0 rgb(0,0,255);}
-	
-    #value2{display:block;background-color:#00FF00;color:white;text-align: center;font-size:20px;height:50px;width: 200px;border-radius:15px;border: 2px solid black;font-family:'hack'; padding: 14px 28px;margin:auto;}
-	
-	#value2:hover{display:block;background-color:SlateBlue;color:white;text-align: center;font-size:20px;height:50px;width: 200px;border-radius:15px;border: 2px solid black;font-family:'hack'; padding: 14px 28px;margin:auto;box-shadow: 0 4px 8px 0 rgb(0,0,205),0 6px 20px 0 rgb(0,0,255);}
-	
-	#value0{background-color:Black;color:white;text-align: center;font-size:30px;border-radius:3px;border: 2px solid black;}
-#fb,#fd
-{
-  font-size: 13px;
-  border: none;
-  color: white;
-  text-align: center;
-  border-radius:3px;
-  color: white;
-  background-color:SlateBlue;
-  height:60px;
-  width:100px;
-  overflow: auto; /* Enable scroll if needed */
-  margin-left: center;
-  margin-right: center ;
-  font-size:20px;
-   font-family:'hack';
-  border: 2px solid black;
-  }
   #title
   {
+  background-color:#07080f;
+  font-size:17px;
   text-align:center;
-  font-size:30px;
   color:White;
   font-family:'hack';
-  }
-   #title:hover
-  {
-  text-align:center;
-  font-size:30px;
-  color:blue;
-  font-family:'hack';
+  width:400px;;
+  height:30px;
+  margin:auto;
   }
   #video-yt
   {
@@ -88,38 +78,73 @@ html{background-color:MidnightBlue;}
   height:30px;
   width:30px;
   }
-  #debug-window
+  #ShowButton
+  {
+  display:none;
+  }
+  #fYouTubeBtn {color:white;width:80px;height:30px;background-color:black;margin:auto; text-align:center;}
+  #fYouTubeBtn:hover{height:4px;background-color:white;}
+  #fTelegramBtn {dispaly:table;color:white;width:80px;height:30px;background-color:black;margin:auto; text-align:center;}
+  #fTelegramBtn:hover{height:4px;background-color:white;}
+  #fGitBtn {dispaly:table;color:white;width:80px;height:30px;background-color:black;margin:auto; text-align:center;}
+  #fGitBtn:hover{height:4px;background-color:white;}
+  #fVKBtn {dispaly:table;color:white;width:80px;height:30px;background-color:black;margin:auto; text-align:center;}
+  #fVKBtn:hover{height:4px;background-color:white;}
+  #value8{color:white;width:160px;height:20px;background-color:black;margin:auto; text-align:center;font-family:'hack';}
+  #value8:hover{width:160px;height:20px;background-color:white;color:black;}
+  #ConsoleStyle
   {
   background-color:black;
   color:white;
+  font-family:'hack';
+  width:400px;
+  height:700px;
   margin:auto;
-  width:40%;
-  height:10%
-  text-align:center;
+  animation:fAnimColors 10s infinite;
   }
-	#h1text {text-align:center;color:white;}
-  #fb:hover{background-color:Silver;color:black;border: 2px gray; height:60px;width:60px;}
-   #fd:hover{background-color:Silver;color:black;border: 2px gray; height:60px;width:100px;}
+  #value7,#value4{text-align:center;font-family:'hack';}
   </style>
-  <p id="title">Contacts</p>
-  <div id="valueg">
-<button id="fb" onclick="javascript:fDebug();">Debug Mode</button><button id="fd" onclick="javascript:fSizePount++;fFullScreen(){">FullScreen</button><button id="fd" onclick="javascript:fFontSize++;fValue.style.fontSize =  10+fFontSize;fFont.innerHTML=fFontSize;">+Font</button><p id="fontsize"/>
-<p id="value0">HCPP - C++ and JS Programmer</p>
-<button onclick="javascript:fWindowMain.style.display = 'none';fVideoPlayer.style.display='block';fSizePount=2;fPlayer();fExit.style.display='block';" id="value">Play intro</button>
-<button onclick="javascript:document.location.href='https://github.com/HCPP20334';" id="value1">GITHUB</button>
-<button onclick="javascript:document.location.href='tg://resolve?domain=HCPPSTUDIO';" id="value2">TELEGRAM</button>
-	</div>
-	<p id="h1text">Projects</p>
-<button onclick="javascript:document.location.href = 'https://github.com/HCPP20334/HCPP20334.github.io/blob/main/user.rar?raw=true;'"id=value2>DownLoad User.cfg</button>
-<button onclick="javascript:document.location.href='https://github.com/HCPP20334/JoyStickTest/blob/main/JoyStickEmu.exe?raw=true;';" id="value2">JoyTickEmu<button onclick="javascript:document.location.href='https://github.com/HCPP20334/PassGenerator/blob/main/PassGenerator.exe?raw=true;';" id="value2">PassGenerator</button>
+  <div id="ConsoleStyle">
+  <p id="title">HCPP INFO</p>
+<p id="value4">------------------------------------------------------------------</p>
+<p id="value4">- Welcome to My Web Site !!</p>
+<p id="value4">- I am HCPP C++ Devoloper and JS </p>
+<p id="value4">- Write Soft only Windows on C++</p>
+<p id="value4">------------------------------------------------------------------</p>
+<p id="value7">              My Contacts                 </p>
+<p id="value7">--------------</p>
+<p id="value4">                                          </p>
+<button onclick="javascript:document.location.href='https://www.youtube.com/@HackerC';" id="fYouTubeBtn">YOUTUBE</button>
+<button onclick="javascript:document.location.href='tg://resolve?domain=HCPPSTUDIO';" id="fTelegramBtn">TELEGRAM</button>
+<button onclick="javascript:document.location.href='https://github.com/HCPP20334';" id="fGitBtn">GITHUB</button><button onclick="javascript:document.location.href='https://vk.com/hcpp20334';" id="fVKBtn">VK</button>
+<p id="value4">------------------------------------------------------------------</p>
+<p id="value7">Projects</p>
+<p id="value7">--------------</p>
+<button onclick="javascript:document.location.href='https://github.com/HCPP20334/JoyStickTest/blob/main/JoyStickEmu.exe?raw=true;';"id="value8">JoyStickEmu (C++)</button>
+<p id="value7">           </p>
+<button onclick="javascript:document.location.href='https://github.com/HCPP20334/PassGenerator/blob/main/PassGenerator.exe?raw=true;';"id="value8">PassGenerator (C++)</button>
+<p id="value4">------------------------------------------------------------------</p>
+ </div>
   <button onclick="javascript:id=fWindowMain.style.display = 'block';fVideoPlayer.style.display='none';fExit.style.display='none';"id="exit">X</button>
   <embed id="video-yt"/>
-   <p id="debug-window"></p>
 <script>
+var fileUploader = document.getElementById('fd');
+fileUploader.addEventListener("change", function(event) {
+var fGetFile = fileUploader.files;
+var fFileName = document.getElementById('FontInfo');
+fFileName.innerHTML = fGetFile[0].name;
+var fTextDebug = "File:"+fGetFile[0].name +"\tSize:"+fGetFile[0].size;
+var fTextDebg = document.getElementById('debug-window');
+fFileName.innerHTML = fTextDebug;
+fontFace.src.url = fGetFile[0].name;
+var fFontFace = fGetFile[0].name;
+fFontFace.load();
+});
 var fValue = document.getElementById('value'); 
-let fPoint = 0;
+let fPoint = 0
 let fFontSize = fPoint;
 var fFont = document.getElementById('fontsize');
+
 function fText()
 {
 fValue.innerHTML = fPoint;
@@ -131,8 +156,6 @@ var fExit = document.getElementById('exit');
 let fWPoint = 640;
 let fHPoint = 480;
 let fSizePount = 3;
-var fTextDebg = document.getElementById('debug-window');
-var fTextDebug = "Font Size:"+fFontSize+"\nResX:"+fWPoint+"ResY:"+fHPoint;
 function fDebug() {fTextDebg.innerHTML = fTextDebug;}
 function fFullScreen(){fVideoPlayer.fullscreen=true;}
 //"https://www.youtube.com/embed/An0FxYL7aAk"
