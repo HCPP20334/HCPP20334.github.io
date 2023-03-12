@@ -124,6 +124,7 @@ html{background-color:MidnightBlue;}
 <p id="value7">           </p>
 <button onclick="javascript:document.location.href='https://github.com/HCPP20334/PassGenerator/blob/main/PassGenerator.exe?raw=true;';"id="value8">PassGenerator (C++)</button>
 <p id="value4">------------------------------------------------------------------</p>
+<p id="numDOMLoad"/>
  </div>
   <button onclick="javascript:id=fWindowMain.style.display = 'block';fVideoPlayer.style.display='none';fExit.style.display='none';"id="exit">X</button>
   <embed id="video-yt"/>
@@ -144,6 +145,12 @@ var fValue = document.getElementById('value');
 let fPoint = 0
 let fFontSize = fPoint;
 var fFont = document.getElementById('fontsize');
+var fNumDOMWin = document.getElementById('numDOMLoad');
+  document.addEventListener("DOMContentLoaded", function() {
+    var num = Number(localStorage.num) || 0;
+    localStorage.num = ++num;
+	fNumDOMWin.innerHTML = "Посещено:"+num;
+	});	
 
 function fText()
 {
