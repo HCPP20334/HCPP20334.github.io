@@ -129,18 +129,6 @@ html{background-color:MidnightBlue;}
   <button onclick="javascript:id=fWindowMain.style.display = 'block';fVideoPlayer.style.display='none';fExit.style.display='none';"id="exit">X</button>
   <embed id="video-yt"/>
 <script>
-var fileUploader = document.getElementById('fd');
-fileUploader.addEventListener("change", function(event) {
-var fGetFile = fileUploader.files;
-var fFileName = document.getElementById('FontInfo');
-fFileName.innerHTML = fGetFile[0].name;
-var fTextDebug = "File:"+fGetFile[0].name +"\tSize:"+fGetFile[0].size;
-var fTextDebg = document.getElementById('debug-window');
-fFileName.innerHTML = fTextDebug;
-fontFace.src.url = fGetFile[0].name;
-var fFontFace = fGetFile[0].name;
-fFontFace.load();
-});
 var fValue = document.getElementById('value'); 
 let fPoint = 0
 let fFontSize = fPoint;
