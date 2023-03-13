@@ -92,6 +92,8 @@ html{background-color:MidnightBlue;}
   #fVKBtn:hover{height:4px;background-color:white;}
   #value8{color:white;width:160px;height:20px;background-color:black;margin:auto; text-align:center;font-family:'hack';}
   #value8:hover{width:160px;height:20px;background-color:white;color:black;}
+    #LightBtn{color:white;width:160px;height:20px;background-color:black;margin:auto; text-align:center;font-family:'hack';}
+  #LightBtn:hover{width:160px;height:20px;background-color:white;color:black;}
   #ConsoleStyle
   {
   background-color:black;
@@ -124,22 +126,34 @@ html{background-color:MidnightBlue;}
 <p id="value7">           </p>
 <button onclick="javascript:document.location.href='https://github.com/HCPP20334/PassGenerator/blob/main/PassGenerator.exe?raw=true;';"id="value8">PassGenerator (C++)</button>
 <p id="value4">------------------------------------------------------------------</p>
+<p id="value7">Settings</p>
+<p id="value7">--------------</p>
+<p onclick="javascript:fLight();"id="LightBtn">Light:True</p>
 <p id="numDOMLoad"/>
  </div>
   <button onclick="javascript:id=fWindowMain.style.display = 'block';fVideoPlayer.style.display='none';fExit.style.display='none';"id="exit">X</button>
   <embed id="video-yt"/>
 <script>
 var fValue = document.getElementById('value'); 
-let fPoint = 0
+let fPoint = 0;
+let fPointL = 0;
 let fFontSize = fPoint;
 var fFont = document.getElementById('fontsize');
 var fNumDOMWin = document.getElementById('numDOMLoad');
+var fLtStyle = document.getElementById('LightBtn');
+var fMainWindow = document.getElementById('ConsoleStyle');
   document.addEventListener("DOMContentLoaded", function() {
     var num = Number(localStorage.num) || 0;
     localStorage.num = ++num;
 	fNumDOMWin.innerHTML = "Посещено:"+num;
 	});	
-
+function fLight()
+{
+  fPointL++;
+  if(fPointL > 1){fPointL = 0;}
+  if(fPointL == 0){fMainWindow.style.animation = 'none';fLtStyle.innerHTML= 'Light:False';}
+  if(fPointL == 1){fMainWindow.style.animation = 'fAnimColors 10s infinite';fLtStyle.innerHTML= 'Light:True';}
+  }
 function fText()
 {
 fValue.innerHTML = fPoint;
