@@ -146,6 +146,7 @@ html{background-color:MidnightBlue;}
   #value7,#value4,#get-system,#Text-Buffer{text-align:center;font-family:'hack';animation:fXBounds 2s;}
   #Text00,#Text01,#Text02,#Text1,#Text2,#Text3{color:white;font-family:'hack';text-align:center;animation:fXBounds 2s;}
   </style>
+	<title id="Main-title">HCPP Web Site</title>
   <div id="ConsoleStyle">
   <p id="title">HCPP INFO</p>
 <p id="value4">------------------------------------------------------------------</p>
@@ -168,7 +169,7 @@ html{background-color:MidnightBlue;}
 <p id="value4">------------------------------------------------------------------</p>
 <p id="Text3">Settings</p>
 <p id="value7">--------------</p>
-<p onclick="javascript:fLight();"id="LightBtn">Light:False</p>
+<p onclick="javascript:fLight();"id="LightBtn">Light:True</p>
 <p onclick="javascript:fLangSel();" id="LangBtn">Language:English</p>
 <p id="fDbAbout"/>
  </div>
@@ -235,6 +236,7 @@ function getPlatform() {
     var num = Number(localStorage.num) || 0;
     localStorage.num = ++num;
 	fOSName.innerHTML = "OS:"+getPlatform();
+	  fLight();
 	});	
 function fLangSel()
 {
