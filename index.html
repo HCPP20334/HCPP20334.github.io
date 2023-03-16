@@ -26,9 +26,37 @@
 95%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,204);}
 100%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(12,204,111);}
 }
+@keyframes fYBounds
+{
+0%{transform: translateY(-800px)};
+10%{transform: translateY(-700px)};
+20%{transform: translateY(-600px)};
+30%{transform: translateY(-500px)};
+40%{transform: translateY(-400px)};
+50%{transform: translateY(-300px)};
+60%{transform: translateY(-200px)};
+70%{transform: translateY(-100px)};
+80%{transform: translateY( 300px)};
+90%{transform: translateY(640px)};
+100%{transform: translateY(640px)};
+}
+@keyframes fXBounds
+{
+0%{transform: translateX(-800px)};
+10%{transform: translateX(-700px)};
+20%{transform: translateX(-600px)};
+30%{transform: translateX(-500px)};
+40%{transform: translateX(-400px)};
+50%{transform: translateX(-300px)};
+60%{transform: translateX(-200px)};
+70%{transform: translateX(-100px)};
+80%{transform: translateX( 300px)};
+90%{transform: translateX(480px)};
+100%{transform: translateX(480px)};
+}
  @font-face {
     font-family: hack; /* Гарнитура шрифта */
-    src: url(https://hcpp20334.github.io/HACKED.ttf); /* Путь к файлу со шрифтом */
+    src: url(Hacked.ttf); /* Путь к файлу со шрифтом */
    }
 html{background-color:MidnightBlue;}
 #valueg
@@ -53,6 +81,7 @@ html{background-color:MidnightBlue;}
   width:400px;;
   height:30px;
   margin:auto;
+  animation:fYBounds 2s;
   }
   #video-yt
   {
@@ -82,18 +111,26 @@ html{background-color:MidnightBlue;}
   {
   display:none;
   }
-  #fYouTubeBtn {color:white;width:80px;height:30px;background-color:black;margin:auto; text-align:center;}
+  #fYouTubeBtn {color:white;width:80px;height:30px;background-color:black;margin:auto; text-align:center;animation:fYBounds 2s;}
   #fYouTubeBtn:hover{height:4px;background-color:white;}
-  #fTelegramBtn {dispaly:table;color:white;width:80px;height:30px;background-color:black;margin:auto; text-align:center;}
+  #fTelegramBtn {dispaly:table;color:white;width:80px;height:30px;background-color:black;margin:auto; text-align:center;animation:fYBounds 2s;}
   #fTelegramBtn:hover{height:4px;background-color:white;}
-  #fGitBtn {dispaly:table;color:white;width:80px;height:30px;background-color:black;margin:auto; text-align:center;}
+  #fGitBtn {dispaly:table;color:white;width:80px;height:30px;background-color:black;margin:auto; text-align:center;animation:fYBounds 2s;}
   #fGitBtn:hover{height:4px;background-color:white;}
-  #fVKBtn {dispaly:table;color:white;width:80px;height:30px;background-color:black;margin:auto; text-align:center;}
+  #fVKBtn {dispaly:table;color:white;width:80px;height:30px;background-color:black;margin:auto; text-align:center;animation:fYBounds 2s;}
   #fVKBtn:hover{height:4px;background-color:white;}
-  #value8{color:white;width:160px;height:20px;background-color:black;margin:auto; text-align:center;font-family:'hack';}
+  #value8{color:white;width:160px;height:20px;background-color:black;margin:auto; text-align:center;font-family:'hack';animation:fYBounds 2s;}
   #value8:hover{width:160px;height:20px;background-color:white;color:black;}
-    #LightBtn{color:white;width:160px;height:20px;background-color:black;margin:auto; text-align:center;font-family:'hack';}
+  #LightBtn{color:white;width:160px;height:20px;background-color:black;margin:auto; text-align:center;font-family:'hack';animation:fYBounds 2s;}
   #LightBtn:hover{width:160px;height:20px;background-color:white;color:black;}
+  #btnSource{background-color:darkblue;text-align:center;font-family:'hack';width:160px;height:30px;color:white;}
+  #btnSource:hover{background-color:darkcyan;}
+  #btnX{color:white;width:40px;height:20px;background-color:black;margin:auto; text-align:center;font-family:'hack';animation:fXBounds 2s;}
+  #btnY{color:white;width:40px;height:20px;background-color:black;margin:auto; text-align:center;font-family:'hack';animation:fXBounds 2s;}
+  #btnX:hover{width:40px;height:20px;background-color:white;color:black;}
+  #btnY:hover{width:40px;height:20px;background-color:white;color:black;}
+  #LangBtn{color:white;width:120px;height:20px;background-color:black;margin:auto; text-align:center;font-family:'hack';animation:fXBounds 2s;}
+  #LangBtn:hover{width:120px;height:20px;background-color:white;color:black;}
   #ConsoleStyle
   {
   background-color:black;
@@ -103,57 +140,146 @@ html{background-color:MidnightBlue;}
   height:700px;
   margin:auto;
   animation:fAnimColors 10s infinite;
+  animation:fYBounds 2s;
   }
-  #value7,#numDOMLoad,#value4{text-align:center;font-family:'hack';}
+  #fAbout {background-color:#07080f; width:200px;height:170px;color:white;font-family:'hack';text-align:center;transform: translateY(-640px);animation:fYBounds 2s;}
+  #value7,#value4,#get-system,#Text-Buffer{text-align:center;font-family:'hack';animation:fXBounds 2s;}
+  #Text00,#Text01,#Text02,#Text1,#Text2,#Text3{color:white;font-family:'hack';text-align:center;animation:fXBounds 2s;}
   </style>
   <div id="ConsoleStyle">
   <p id="title">HCPP INFO</p>
 <p id="value4">------------------------------------------------------------------</p>
-<p id="value4">- Welcome to My Web Site !!</p>
-<p id="value4">- I am HCPP C++ Devoloper and JS </p>
-<p id="value4">- Write Soft only Windows on C++</p>
+<p id="Text00">- Welcome to My Web Site !!</p>
+<p id="Text01">- I am HCPP C++ Devoloper and JS </p>
+<p id="Text02">- Write Soft only Windows on C++</p>
 <p id="value4">------------------------------------------------------------------</p>
-<p id="value7">              My Contacts                 </p>
+<p id="Text1">              My Contacts                 </p>
 <p id="value7">--------------</p>
 <p id="value4">                                          </p>
 <button onclick="javascript:document.location.href='https://www.youtube.com/@HackerC';" id="fYouTubeBtn">YOUTUBE</button>
 <button onclick="javascript:document.location.href='tg://resolve?domain=HCPPSTUDIO';" id="fTelegramBtn">TELEGRAM</button>
 <button onclick="javascript:document.location.href='https://github.com/HCPP20334';" id="fGitBtn">GITHUB</button><button onclick="javascript:document.location.href='https://vk.com/hcpp20334';" id="fVKBtn">VK</button>
 <p id="value4">------------------------------------------------------------------</p>
-<p id="value7">Projects</p>
+<p id="Text2">Projects</p>
 <p id="value7">--------------</p>
 <button onclick="javascript:document.location.href='https://github.com/HCPP20334/JoyStickTest/blob/main/JoyStickEmu.exe?raw=true;';"id="value8">JoyStickEmu (C++)</button>
 <p id="value7">           </p>
 <button onclick="javascript:document.location.href='https://github.com/HCPP20334/PassGenerator/blob/main/PassGenerator.exe?raw=true;';"id="value8">PassGenerator (C++)</button>
 <p id="value4">------------------------------------------------------------------</p>
-<p id="value7">Settings</p>
+<p id="Text3">Settings</p>
 <p id="value7">--------------</p>
 <p onclick="javascript:fLight();"id="LightBtn">Light:True</p>
-<p id="numDOMLoad"/>
+<p onclick="javascript:fLangSel();" id="LangBtn">Language:English</p>
+<p id="fDbAbout"/>
  </div>
   <button onclick="javascript:id=fWindowMain.style.display = 'block';fVideoPlayer.style.display='none';fExit.style.display='none';"id="exit">X</button>
   <embed id="video-yt"/>
+  <p id="Text-Buffer"/>
+   <div id="fAbout">
+  <p>Statistics</p>
+  <p>last update:14.03.23</p>
+  <p>Running:11.03.23</p>
+  <button onclick="javascript:document.location.href='https://github.com/HCPP20334/HCPP20334.github.io/blob/main/index.html';fBtnSource.innerHTML = 'Loading...';" id="btnSource">Source Web Site</button>
+  <p id="OSName">OS:None</p>
+  </div>
 <script>
+let fPi = 0;
+var fSysInfo = document.getElementById('get-system');
+var user = navigator.userAgent[fPi];
 var fValue = document.getElementById('value'); 
-let fPoint = 0;
-let fPointL = 0;
+let fPoint = 0
 let fFontSize = fPoint;
-var fFont = document.getElementById('fontsize');
-var fNumDOMWin = document.getElementById('numDOMLoad');
+let fPosX = 480;
+let fPosY = -640;
+let fPointL = 0;
+let fPointLang = 0;
+var fTextBuffer = document.getElementById('Text-Buffer');
 var fLtStyle = document.getElementById('LightBtn');
+var fLgBtn = document.getElementById('LangBtn');
+var fBtnSource = document.getElementById('btnSource');
 var fMainWindow = document.getElementById('ConsoleStyle');
+var fAboutW =  document.getElementById('fAbout');
+var fDbTextAb = document.getElementById('fDbAbout');
+var fText0D0 = document.getElementById('Text00');
+var fText0D1 = document.getElementById('Text01');
+var fText0D2 = document.getElementById('Text02');
+var fText1D = document.getElementById('Text1');
+var fText2D = document.getElementById('Text2');
+var fText3D = document.getElementById('Text3');
+var fOSName = document.getElementById('OSName');
+var fPos ;
+var userDeviceArray = [
+    {device: 'Android', platform: /Android/},
+    {device: 'iPhone', platform: /iPhone/},
+    {device: 'iPad', platform: /iPad/},
+    {device: 'Symbian', platform: /Symbian/},
+    {device: 'Windows Phone', platform: /Windows Phone/},
+    {device: 'Tablet OS', platform: /Tablet OS/},
+    {device: 'Linux', platform: /Linux/},
+    {device: 'Windows', platform: /Windows NT/},
+    {device: 'Macintosh', platform: /Macintosh/}
+];
+var platform = navigator.userAgent;
+function getPlatform() {
+    for (var i in userDeviceArray) {
+        if (userDeviceArray[i].platform.test(platform)) {
+            return userDeviceArray[i].device;
+			fOSName.innerHTML = 'OS:'+userDeviceArray[i].device;
+			if(userDeviceArray[i].device == 'Android'){fOSName.innerHTML = 'Android Version not Stable!!'}
+        }
+    }
+    return 'Неизвестная платформа!' + platform;
+	userDeviceArray[i].device  = 'Неизвестная платформа!' + platform;;
+}
   document.addEventListener("DOMContentLoaded", function() {
     var num = Number(localStorage.num) || 0;
     localStorage.num = ++num;
-	fNumDOMWin.innerHTML = "Посещено:"+num;
+	fOSName.innerHTML = "OS:"+getPlatform();
 	});	
+function fLangSel()
+{
+  fPointLang++;
+  if(fPointLang > 1){fPointLang = 0;}
+  if(fPointLang == 0)
+  {
+  fLgBtn.innerHTML= 'Language:English';
+  fText0D0.innerHTML = '- Welcome to My Web Site !!';
+  fText0D1.innerHTML = '- I am HCPP C++ Devoloper and JS';
+  fText0D2.innerHTML = '- Write Soft only Windows on C++';
+  fText1D.innerHTML = 'My Contacts';
+  fText2D.innerHTML = 'Projects';
+  fText3D.innerHTML = 'Settings';
+   fLtStyle.innerHTML= 'Light:False';
+  }
+  if(fPointLang == 1)
+  {
+  fLgBtn.innerHTML= 'Язык:Русский';
+  fText0D0.innerHTML = '- Добро пожаловать на мой сайт!!';
+  fText0D1.innerHTML = '- Я HCPP C++ Разработчик и немного JS';
+  fText0D2.innerHTML = '- Пишу софт под Windows только на  C++';
+  fText1D.innerHTML = 'Мой контакты';
+  fText2D.innerHTML = 'Мои проекты';
+  fText3D.innerHTML = 'Настроики';
+  fLtStyle.innerHTML= 'Свечение:откл';
+  }
+}
+
 function fLight()
 {
   fPointL++;
   if(fPointL > 1){fPointL = 0;}
-  if(fPointL == 0){fMainWindow.style.animation = 'none';fLtStyle.innerHTML= 'Light:False';}
-  if(fPointL == 1){fMainWindow.style.animation = 'fAnimColors 10s infinite';fLtStyle.innerHTML= 'Light:True';}
+  if(fPointLang == 0)
+  {
+   if(fPointL == 0){fMainWindow.style.animation = 'none';fLtStyle.innerHTML= 'Light:False';}
+   if(fPointL == 1){fMainWindow.style.animation = 'fAnimColors 10s infinite';fLtStyle.innerHTML= 'Light:True';}
   }
+  if(fPointLang == 1)
+  {
+   if(fPointL == 0){fMainWindow.style.animation = 'none';fLtStyle.innerHTML= 'Свечение:откл';}
+   if(fPointL == 1){fMainWindow.style.animation = 'fAnimColors 10s infinite';fLtStyle.innerHTML= 'Свечение:Вкл';}
+  }
+  }
+  
 function fText()
 {
 fValue.innerHTML = fPoint;
