@@ -54,11 +54,53 @@
 90%{transform: translateX(480px)};
 100%{transform: translateX(480px)};
 }
+@keyframes fReSize
+{
+0%{height:1px;}
+5%{height:2px;}
+10%{height:3px;}
+15%{height:4px;}
+20%{height:5px;}
+25%{height:6px;}
+30%{height:7px;}
+35%{height:8px;}
+40%{height:9px;}
+45%{height:10px;}
+50%{height:11px;}
+55%{height:12px;}
+60%{height:13px;}
+65%{height:14px;}
+70%{height:15px;}
+75%{height:16px;}
+80%{height:17px;}
+85%{height:18px;}
+90%{height:19px;}
+95%{height:20px;}
+100%{height:21px;color:black;}
+}
  @font-face {
     font-family: hack; /* Гарнитура шрифта */
-    src: url(https://hcpp20334.github.io/HACKED.ttf); /* Путь к файлу со шрифтом */
+    src: url(hcpp20334.github.io/HACKED.ttf); /* Путь к файлу со шрифтом */
    }
-html{background-color:MidnightBlue;}
+html
+{
+background-image: url(pictures/22033.jpg);
+
+background-repeat: no-repeat;
+
+background-position: center center;
+
+background-attachment: fixed;
+
+-webkit-background-size: cover;
+
+-moz-background-size: cover;
+
+-o-background-size: cover;
+
+background-size: cover;
+}
+body {transform: translateY(100px)}
 #valueg
 {
  display: block;
@@ -73,12 +115,12 @@ html{background-color:MidnightBlue;}
 	}
   #title
   {
-  background-color:#07080f;
+  background-color:black;
   font-size:17px;
-  text-align:center;
+  text-align:center-left;
   color:White;
   font-family:'hack';
-  width:400px;;
+  width:700px;;
   height:30px;
   margin:auto;
   animation:fYBounds 2s;
@@ -111,61 +153,74 @@ html{background-color:MidnightBlue;}
   {
   display:none;
   }
-  #fYouTubeBtn {color:white;width:80px;height:30px;background-color:black;margin:auto; text-align:center;animation:fYBounds 2s; border: none;}
-  #fYouTubeBtn:hover{height:4px;background-color:white;}
-  #fTelegramBtn {dispaly:table;color:white;width:80px;height:30px;background-color:black;margin:auto; text-align:center;animation:fYBounds 2s; border: none;}
-  #fTelegramBtn:hover{height:4px;background-color:white;}
-  #fGitBtn {dispaly:table;color:white;width:80px;height:30px;background-color:black;margin:auto; text-align:center;animation:fYBounds 2s; border: none;}
-  #fGitBtn:hover{height:4px;background-color:white;}
-  #fVKBtn {dispaly:table;color:white;width:80px;height:30px;background-color:black;margin:auto; text-align:center;animation:fYBounds 2s; border: none;}
-  #fVKBtn:hover{height:4px;background-color:white;}
-  #value8{color:white;width:160px;height:20px;background-color:black;margin:auto; text-align:center;font-family:'hack';animation:fYBounds 2s; border: none;}
+  #fYouTubeBtn {color:white;width:80px;height:30px;background-color:#07080f;margin:auto; text-align:center; border: none;}
+  #fYouTubeBtn:hover{height:30px;background-color:red;}
+  #fTelegramBtn {dispaly:table;color:white;width:80px;height:30px;background-color:#5DADE2;margin:auto; text-align:center; border: none;}
+  #fTelegramBtn:hover{height:30px;background-color:#07080f;}
+  #fGitBtn {dispaly:table;color:white;width:80px;height:30px;background-color:#07080f;margin:auto; text-align:center; border: none;}
+  #fGitBtn:hover{height:30px;background-color:black;border: 2px white;}
+  #fVKBtn {dispaly:table;color:white;width:80px;height:30px;background-color:#07080f;margin:auto; text-align:center; border: none;}
+  #fVKBtn:hover{height:30px;background-color:darkblue;}
+  #value8{color:white;width:160px;height:20px;background-color:#07080f;margin:auto; text-align:center;font-family:'hack'; border: none;}
   #value8:hover{width:160px;height:20px;background-color:white;color:black;}
-  #LightBtn{color:white;width:160px;height:20px;background-color:black;margin:auto; text-align:center;font-family:'hack';animation:fYBounds 2s; border: none;}
+  #LightBtn{color:white;width:160px;height:20px;background-color:#07080f;margin:auto; text-align:center;font-family:'hack'; border: none;}
   #LightBtn:hover{width:160px;height:20px;background-color:white;color:black;}
   #btnSource{background-color:darkblue;text-align:center;font-family:'hack';width:160px;height:30px;color:white; border: none;}
   #btnSource:hover{background-color:darkcyan;}
-  #btnX{color:white;width:40px;height:20px;background-color:black;margin:auto; text-align:center;font-family:'hack';animation:fXBounds 2s; border: none;}
-  #btnY{color:white;width:40px;height:20px;background-color:black;margin:auto; text-align:center;font-family:'hack';animation:fXBounds 2s;}
-  #btnX:hover{width:40px;height:20px;background-color:white;color:black;}
-  #btnY:hover{width:40px;height:20px;background-color:white;color:black;}
-  #LangBtn{color:white;width:120px;height:20px;background-color:black;margin:auto; text-align:center;font-family:'hack';animation:fXBounds 2s; border: none;}
+  #LangBtn{color:white;width:120px;height:20px;background-color:#07080f;margin:auto; text-align:center;font-family:'hack';animation:fXBounds 2s; border: none;}
   #LangBtn:hover{width:120px;height:20px;background-color:white;color:black;}
   #ConsoleStyle
   {
-  background-color:black;
+  background-color:#07080f;
   color:white;
   font-family:'hack';
-  width:400px;
+  width:700px;
   height:700px;
   margin:auto;
   animation:fAnimColors 10s infinite;
   animation:fYBounds 2s;
+  transform: translateY(-660px);
   }
-  #fAbout {background-color:#07080f; width:200px;height:170px;color:white;font-family:'hack';text-align:center;transform: translateY(-640px);animation:fYBounds 2s;}
-  #value7,#value4,#get-system,#Text-Buffer{text-align:center;font-family:'hack';animation:fXBounds 2s;}
-  #Text00,#Text01,#Text02,#Text1,#Text2,#Text3{color:white;font-family:'hack';text-align:center;animation:fXBounds 2s;}
+  #donate{border:none;opacity:none;width:300px;height:70px;}
+  #donatebtn{border:none;width:160px;height:40px;background-color:#F5B041;font-family:'hack';}
+  #donatebtn:hover{border:none;width:160px;height:40px;background-color:#D68910;color:white;font-family:'hack';}
+  #image-main{transform: translateY(-200px);}
+  #fAbout {background-color:#07080f; width:200px;height:170px;color:white;font-family:'hack';text-align:center;transform: translateY(-500px);animation:fYBounds 2s;}
+  #value7,#value4,#get-system,#Text-Buffer{text-align:center;font-family:'hack';animation:fXBounds 2s;color:white;}
+   #PayMe {background-color:#07080f; width:300px;height:600px;color:white;font-family:'hack';text-align:center;margin:auto;transform: translateX(-700px);}
+  #Text00,#Text01,#Text02,#Text1,#Text2,#Text3{color:white;font-family:'hack';text-align:center;animation:fXBounds 2s;color:cyan;}
   </style>
-	<title id="Main-title">HCPP Web Site</title>
+  <title id="Main-title">HCPP Web Site</title>
+  <div id="PayMe">
+  <p>help with money</p>
+  <p>DonationAlerts</p>
+  <button onclick="javascript:document.location.href='https://www.donationalerts.com/r/hackercplusplus';"id="donatebtn">Donate</button>
+  <p>SPB QR code</p>
+  <img src="pictures/qr-code.png"/>
+  <p>Statistics</p>
+  <p>last update:14.03.23</p>
+  <p>Running:11.03.23</p>
+  <button onclick="javascript:document.location.href='https://github.com/HCPP20334/HCPP20334.github.io/blob/main/index.html';fBtnSource.innerHTML = 'Loading...';" id="btnSource">Source Web Site</button>
+  <p id="OSName">OS:None</p>
+  </div>
+  </div>
   <div id="ConsoleStyle">
   <p id="title">HCPP INFO</p>
-<p id="value4">------------------------------------------------------------------</p>
 <p id="Text00">- Welcome to My Web Site !!</p>
 <p id="Text01">- I am HCPP C++ Devoloper and JS </p>
 <p id="Text02">- Write Soft only Windows on C++</p>
-<p id="value4">------------------------------------------------------------------</p>
 <p id="Text1">              My Contacts                 </p>
 <p id="value7">--------------</p>
 <p id="value4">                                          </p>
-<button onclick="javascript:document.location.href='https://www.youtube.com/@HackerC';" id="fYouTubeBtn">YOUTUBE</button>
+<button onclick="javascript:document.location.href='https://www.youtube.com/@HackerC';" id="fYouTubeBtn">▶</button>
 <button onclick="javascript:document.location.href='tg://resolve?domain=HCPPSTUDIO';" id="fTelegramBtn">TELEGRAM</button>
 <button onclick="javascript:document.location.href='https://github.com/HCPP20334';" id="fGitBtn">GITHUB</button><button onclick="javascript:document.location.href='https://vk.com/hcpp20334';" id="fVKBtn">VK</button>
 <p id="value4">------------------------------------------------------------------</p>
 <p id="Text2">Projects</p>
 <p id="value7">--------------</p>
-<button onclick="javascript:document.location.href='https://github.com/HCPP20334/JoyStickTest/blob/main/JoyStickEmu.exe?raw=true;';"id="value8">JoyStickEmu (C++)</button>
+<button onclick="javascript:document.location.href='https://github.com/HCPP20334/JoyStickTest/blob/main/JoyStickEmu.exe?raw=true;';"id="btnSource">JoyStickEmu (C++)</button>
 <p id="value7">           </p>
-<button onclick="javascript:document.location.href='https://github.com/HCPP20334/PassGenerator/blob/main/PassGenerator.exe?raw=true;';"id="value8">PassGenerator (C++)</button>
+<button onclick="javascript:document.location.href='https://github.com/HCPP20334/PassGenerator/blob/main/PassGenerator.exe?raw=true;';"id="btnSource">PassGenerator (C++)</button>
 <p id="value4">------------------------------------------------------------------</p>
 <p id="Text3">Settings</p>
 <p id="value7">--------------</p>
@@ -176,13 +231,6 @@ html{background-color:MidnightBlue;}
   <button onclick="javascript:id=fWindowMain.style.display = 'block';fVideoPlayer.style.display='none';fExit.style.display='none';"id="exit">X</button>
   <embed id="video-yt"/>
   <p id="Text-Buffer"/>
-   <div id="fAbout">
-  <p>Statistics</p>
-  <p>last update:17.03.23</p>
-  <p>Running:11.03.23</p>
-  <button onclick="javascript:document.location.href='https://github.com/HCPP20334/HCPP20334.github.io/blob/main/index.html';fBtnSource.innerHTML = 'Loading...';" id="btnSource">Source Web Site</button>
-  <p id="OSName">OS:None</p>
-  </div>
 <script>
 let fPi = 0;
 var fSysInfo = document.getElementById('get-system');
@@ -236,7 +284,7 @@ function getPlatform() {
     var num = Number(localStorage.num) || 0;
     localStorage.num = ++num;
 	fOSName.innerHTML = "OS:"+getPlatform();
-	  fLight();
+	fLight();
 	});	
 function fLangSel()
 {
