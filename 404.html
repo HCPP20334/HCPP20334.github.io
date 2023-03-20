@@ -1,0 +1,50 @@
+<html>
+<body>
+<style>
+ @font-face {
+    font-family: hack; /* Гарнитура шрифта */
+    src: url(Hacked.ttf); /* Путь к файлу со шрифтом */
+   }
+   @keyframes fYBoundsD
+{
+0%{transform: translateY(-800px)};
+10%{transform: translateY(-700px)};
+20%{transform: translateY(-600px)};
+30%{transform: translateY(-500px)};
+40%{transform: translateY(-400px)};
+50%{transform: translateY(-300px)};
+60%{transform: translateY(-200px)};
+70%{transform: translateY(-100px)};
+80%{transform: translateY( 300px)};
+90%{transform: translateY(640px)};
+100%{transform: translateY(640px)};
+}
+html
+{
+background-image: url(pictures/22034.jpg);
+
+background-repeat: no-repeat;
+
+background-position: center center;
+
+background-attachment: fixed;
+
+-webkit-background-size: cover;
+
+-moz-background-size: cover;
+
+-o-background-size: cover;
+
+background-size: cover;
+}
+#Error-content{width:500px;height:200px;background-color:#07080f;animation: fYBounds 1000ms;color:red;margin:auto;text-align:center;font-family:'hack';padding:20px;}
+ #back {display:table;color:white;background-color:#E74C3C ;width:160px;height:40px;border:none;font-family:'hack';border-radius:4px;margin:auto;padding:10px;}
+  #back:hover{background-color:#F1948A;}
+</style>
+<div id="Error-content">
+<p>Ooops!!Content Error!</p>
+<p> Error code: 404</p>
+<button onclick="javascript:document.location.href='https://hcpp20334.github.io';"id="back"> Back</button>
+</div>
+</body>
+</html>
