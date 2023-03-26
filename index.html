@@ -98,6 +98,7 @@ var fdonatebtn = document.getElementById('donate-Btn');
 var ferrorJS =  document.getElementById('errorJS');
 var fVal4 = document.getElementById('value4');
 var fVideoPlayer = document.getElementById('video-yt');
+var fButtonS = document.getElementById('ButtonsM');
 var fPos ;
 var fSrc;
 function fLoadLinkks()
@@ -148,7 +149,7 @@ function getPlatform() {
     var num = Number(localStorage.num) || 0;
     localStorage.num = ++num;
 	fOSName.innerHTML = 'OS:'+getPlatform();
-	if(getPlatform() == 'Android'){alert("Mobile Version Some Bugs!!");fMainWindow.style.fontSize = '10';fMainWindow.style.width =  window.screen.width;}
+	if(getPlatform() == 'Android'){alert("Mobile Version it's Beta !!!");fMainWindow.style.fontSize = '10';fMainWindow.style.width =  window.screen.width;fButtonS.style.transform = 'translateY(40px)';}
 	fLight();
 	fDonateShow();
 	});	
