@@ -1,241 +1,27 @@
 <html>
-<script src="Engine/site.js"></script>
-<body>
-<style>
-@keyframes fAnimColors 
-{
-0%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,204);}
-5%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
-10%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,204);}
-15%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
-20%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,204);}
-25%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
-30%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,204);}
-35%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
-40%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,204);}
-45%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
-50%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,150);}
-55%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
-60%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
-65%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,204);}
-70%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
-75%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(163,217,191);}
-80%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
-85%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,204);}
-90%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(80,250,145);}
-95%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(15,12,204);}
-100%{box-shadow: 0 4px 8px 0 rgb(7,15,9),0 6px 20px 0 rgb(12,204,111);}
-}
-@keyframes fYBounds
-{
-0%{transform: translateY(-800px)};
-10%{transform: translateY(-700px)};
-20%{transform: translateY(-600px)};
-30%{transform: translateY(-500px)};
-40%{transform: translateY(-400px)};
-50%{transform: translateY(-300px)};
-60%{transform: translateY(-200px)};
-70%{transform: translateY(-100px)};
-80%{transform: translateY( 300px)};
-90%{transform: translateY(640px)};
-100%{transform: translateY(640px)};
-}
-@keyframes fYBoundsD
-{
-0%{transform: translateY(-800px)};
-10%{transform: translateY(-700px)};
-20%{transform: translateY(-600px)};
-30%{transform: translateY(-500px)};
-40%{transform: translateY(-400px)};
-50%{transform: translateY(-300px)};
-60%{transform: translateY(-200px)};
-70%{transform: translateY(-100px)};
-80%{transform: translateY( 300px)};
-90%{transform: translateY(640px)};
-100%{transform: translateY(640px)};
-}
-@keyframes fXBounds
-{
-0%{transform: translateX(-800px)};
-10%{transform: translateX(-700px)};
-20%{transform: translateX(-600px)};
-30%{transform: translateX(-500px)};
-40%{transform: translateX(-400px)};
-50%{transform: translateX(-300px)};
-60%{transform: translateX(-200px)};
-70%{transform: translateX(-100px)};
-80%{transform: translateX( 300px)};
-90%{transform: translateX(480px)};
-100%{transform: translateX(480px)};
-}
-
-@keyframes fReSize
-{
-0%{height:1px;}
-5%{height:2px;}
-10%{height:3px;}
-15%{height:4px;}
-20%{height:5px;}
-25%{height:6px;}
-30%{height:7px;}
-35%{height:8px;}
-40%{height:9px;}
-45%{height:10px;}
-50%{height:11px;}
-55%{height:12px;}
-60%{height:13px;}
-65%{height:14px;}
-70%{height:15px;}
-75%{height:16px;}
-80%{height:17px;}
-85%{height:18px;}
-90%{height:19px;}
-95%{height:20px;}
-100%{height:21px;color:black;}
-}
- @font-face {
-    font-family: hack; /* Гарнитура шрифта */
-    src: url(https://hcpp20334.github.io/HACKED.ttf); /* Путь к файлу со шрифтом */
-   }
-html
-{
-background-image: url(https://hcpp20334.github.io/Pictures/22034.jpg);
-
-background-repeat: no-repeat;
-
-background-position: center center;
-
-background-attachment: fixed;
-
--webkit-background-size: cover;
-
--moz-background-size: cover;
-
--o-background-size: cover;
-
-background-size: cover;
-}
-body {transform: translateY(100px)}
-#valueg
-{
- display: block;
-	margin:auto;
-	width: 50%;
-    height:50%;
-	border: 2px solid black;
-	margin-left: center;
-    margin-right: center ;
-	background-color:Black;
-	 font-family:'hack';
-	}
-  #title
-  {
-  background-color:black;
-  font-size:17px;
-  text-align:center;
-  color:White;
-  font-family:'hack';
-  width:500px;;
-  height:30px;
-  margin:auto;
-  animation:fYBounds 2s;
-  }
-  #video-yt
-  {
-  display:none;
-  margin:auto;
-  }
-  #exit
-  {
-  display:none;
-  color: black;
-  background-color:SlateBlue;
-  font-size:30px;
-   font-family:'hack';
-  height:30px;
-  width:30px;
-  }
-  #exit:hover
-  {
-  display:none;
-  color: white;
-  background-color:SlateBlue;
-  font-size:30px;
-  height:30px;
-  width:30px;
-  }
-  #ShowButton
-  {
-  display:none;
-  }
-  #fYouTubeBtn {display:table;color:white;background-color:#E74C3C ;width:160px;height:40px;border:none;font-family:'hack';border-radius:4px;margin:auto;padding:10px;}
-  #fYouTubeBtn:hover{background-color:#F1948A;}
-  #fTelegramBtn {display:table;color:white;background-color:#3498DB;width:160px;height:40px;border:none;font-family:'hack';border-radius:4px;margin:auto;padding:10px;}
-  #fTelegramBtn:hover{background-color:#AED6F1;}
-  #fGitBtn{display:table;color:white;background-color:#273746 ;width:160px;height:40px;border:none;font-family:'hack';border-radius:4px;margin:auto;padding:10px;}
-  #fGitBtn:hover{background-color:#566573;border: 2px white;}
-  #fVKBtn {display:table;color:white;background-color:#5DADE2;width:160px;height:40px;border:none;font-family:'hack';border-radius:4px;margin:auto;padding:10px;}
-  #fVKBtn:hover{background-color:#85C1E9;}
-  #value8{color:white;background-color:#1B1C1E;width:100px;height:30px;border:none;font-family:'hack';border-radius:4px;}
-  #value8:hover{width:100px;height:20px;background-color:white;color:black;}
-  #LightBtn{color:white;background-color:#1B1C1E;width:100px;height:30px;border:none;font-family:'hack';border-radius:4px;margin:auto;}
-  #LightBtn:hover{width:100px;height:30px;background-color:white;color:black;}
-  #btnSource{background-color:darkblue;text-align:center;font-family:'hack';width:160px;height:30px;color:white; border: none;margin:auto;padding:20px;}
-  #btnSource:hover{background-color:darkcyan;}
-  #btnSourceE{background-color:darkblue;text-align:center;font-family:'hack';width:160px;height:30px;color:white; border: none;margin:auto;padding:20px;}
-  #btnSourceE:hover{background-color:darkcyan;}
-  #LangBtn{color:white;background-color:#1B1C1E;width:100px;height:30px;border:none;font-family:'hack';border-radius:4px;margin:auto;}
-  #LangBtn:hover{width:100px;height:30px;background-color:white;color:black;}
-  #ConsoleStyle
-  {
-  display:none;
-  background-color:#07080f;
-  color:white;
-  font-family:'hack';
-  width:500px;
-  height:700px;
-  margin:auto;
-  animation:fAnimColors 10s infinite;
-  animation:fYBounds 500ms;
-  }
-  #donate{border:none;opacity:none;width:300px;height:70px;}
-  #donatebtn{border:none;width:160px;height:40px;background-color:#F5B041;font-family:'hack';border-radius:4px;}
-  #donatebtn:hover{border:none;width:160px;height:40px;background-color:#D68910;color:white;font-family:'hack';}
-  #donate-Btn{border:none;width:60px;height:40px;background-color:#07080f;font-family:'hack';border-radius:4px;margin:center-right;}
-  #donate-Btn:hover{border:none;width:60px;height:40px;background-color:#7C8085;color:white;font-family:'hack';margin:center-right;border-radius:10px;}
-  #image-main{transform: translateY(-200px);}
-  #fAbout {background-color:#07080f; width:200px;height:170px;color:white;font-family:'hack';text-align:center;transform: translateY(-500px);animation:fYBounds 2s;}
-  #value7,#value4,#get-system,#Text-Buffer{text-align:center;font-family:'hack';animation:fXBounds 2s;color:white;}
-  #PayMe {display:block;background-color:#07080f; width:300px;height:600px;color:white;font-family:'hack';text-align:center;margin:auto;}
-  #Text00,#Text01,#Text02,#Text1,#Text2,#Text3{color:white;font-family:'hack';text-align:center;animation:fXBounds 2s;color:cyan;}
-  #linksbtn{color:white;background-color:#1B1C1E;width:125px;height:30px;border:none;font-family:'hack';border-radius:16px;}
-  #linksbtn:hover{color:white;background-color:#3F4044;width:125px;height:30px;border:none;font-family:'hack';}
-  #settingsb{color:white;background-color:#1B1C1E;width:125px;height:30px;border:none;font-family:'hack';border-radius:16px;}
-  #settingsb:hover{color:white;background-color:#3F4044;width:125px;height:30px;border:none;font-family:'hack';}
-  #fItemDn{color:white;background-color:#1B1C1E;width:125px;height:30px;border:none;font-family:'hack';border-radius:16px;}
-  #fItemDn:hover{color:white;background-color:#3F4044;width:125px;height:30px;border:none;font-family:'hack';}
-  #fprojectsB{color:white;background-color:#1B1C1E;width:125px;height:30px;border:none;font-family:'hack';border-radius:16px;}
-  #fprojectsB:hover{color:white;background-color:#3F4044;width:125px;height:30px;border:none;font-family:'hack';}
-  #space{color:#07080f;background-color:#07080f;width:160px;height:30px;bolder: 2px gray;}
-  #links {display:none;background-color:#07080f; width:300px;height:600px;color:white;font-family:'hack';text-align:center;margin:auto;}
-  #settings{display:none;background-color:#07080f; width:300px;height:600px;color:white;font-family:'hack';text-align:center;margin:auto;}
-  #fProjects{display:none;background-color:#07080f; width:300px;height:600px;color:white;font-family:'hack';text-align:center;margin:auto;}
-  #fLinkText{padding:20px;}
-  #fSettText{padding:20px;}
-  #fProjText{padding:20px;}
-  #fCloseLinks{border:none;width:30px;height:10px;background-color:#07080f;font-family:'hack';transform:translateX(100px);padding:10px;font-size:30px;color:white;}
-  #fCloseLinks:hover{border-radius:30px;border:none;width:60px;height:60px;background-color:#5D6D7E;font-family:'hack';color:white;}
-  #fCloseSett{border:none;width:30px;height:10px;background-color:#07080f;font-family:'hack';transform:translateX(100px);padding:10px;font-size:30px;color:white;}
-  #fCloseSett:hover{border-radius:30px;border:none;width:60px;height:60px;background-color:#5D6D7E;font-family:'hack';color:white;}
-  #fCloseProject{border:none;width:30px;height:10px;background-color:#07080f;font-family:'hack';transform:translateX(100px);padding:10px;font-size:30px;color:white;}
-  #fCloseProject:hover{border-radius:30px;border:none;width:60px;height:60px;background-color:#5D6D7E;font-family:'hack';color:white;}
-  </style>
-  <title id="Main-title">HCPP Web Site</title>
+ <title id="Main-title">HCPP Web Site</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link href="MySite.css" rel="stylesheet">
+  <noscript>
+  <div id="errorJS">
+  <p id="errorJSMsg">Error!!JS Not Supported and Turn Off!!</p>
+  <p id="errorJSMsg">Ошибка!!JS Не Поддерживается или Выключен!!</p>
+  <style>#ConsoleStyle{display:none;}
+   </noscript>
+   <div id="bar-top">
+    <p id="text-tt">HCPP Studio</p>
+   <img id="imgIcon"src="https://hcpp20334.github.io/pictures/images.jfif" width='100';height='100';/> 
+   <div id="ButtonsM">
+    <button onclick="javascript:fLoadLinkks();"id="linksbtn">Links</button><button onclick="javascript:fLoadProjects();"id="fprojectsB">Projects</button><button onclick="javascript:fLoadSet();"id="settingsb">Settings</button><button onclick="javascript:fDShow++;fDonateShow();"id="fItemDn">Help</button><button id="TBtn">Tools</button>
+	</div>
+  </div>
    <div id="fProjects">
      <button onclick="javascript:fLoadProjects()"id="fCloseProject">X</button>
      <p id="fProjText">Projects</p>
-<p onclick="javascript:document.location.href='https://github.com/HCPP20334/JoyStickTest/blob/main/JoyStickEmu.exe?raw=true;';"id="btnSource">JoyStickEmu (C++) Build 1.0.6</p>
-<p onclick="javascript:document.location.href='https://github.com/HCPP20334/PassGenerator/blob/main/PassGenerator.exe?raw=true;';"id="btnSourceE">PassGenerator (C++)Build 1.0.2</p>
+<p onclick="javascript:document.location.href='https://github.com/HCPP20334/JoyStickTest/blob/main/JoyStickEmu.exe?raw=true;';"id="btnSource">JoyStickEmu (C++) Build 1.0.6 22.03.23</p>
+<p onclick="javascript:document.location.href='https://github.com/HCPP20334/PassGenerator/blob/main/PassGenerator.exe?raw=true;';"id="btnSourceE">PassGenerator (C++)Build 1.0.6 24.03.23</p>
+<p onclick="javascript:document.location.href='https://github.com/HCPP20334/DOOM2_DS/archive/refs/heads/main.zip';"id="btnSourceE">DOOMII (C++)Build 1.0.0 24.03.23</p>
+<p font-family="hack">Copiled MinGW-gcc C++11</p>
 </div>
   <div id="settings">
   <button onclick="javascript:fLoadSet();"id="fCloseSett">X</button>
@@ -257,23 +43,23 @@ body {transform: translateY(100px)}
   <p>DonationAlerts</p>
   <button onclick="javascript:document.location.href='https://www.donationalerts.com/r/hackercplusplus';"id="donatebtn">Donate</button>
   <p>SPB QR code</p>
-  <img src="https://hcpp20334.github.io/pictures/qr-code.png"/>
+  <img src="pictures/qr-code.png"/>
   <p>Statistics</p>
-  <p>last update:20.03.23</p>
+  <p>last update:14.03.23</p>
   <p>Running:11.03.23</p>
   <button onclick="javascript:document.location.href='https://github.com/HCPP20334/HCPP20334.github.io/blob/main/index.html';fBtnSource.innerHTML = 'Loading...';" id="btnSource">Source Web Site</button>
   <p id="OSName">OS:None</p>
   <button onclick="javascript:fDonateShow();"id="donatebtn">No Thanks!</button>
   </div>
   <div id="ConsoleStyle">
-  <button id="title">HCPP INFO</button>
-  <button onclick="javascript:fLoadLinkks();"id="linksbtn">Links</button><button onclick="javascript:fLoadProjects();"id="fprojectsB">Projects</button><button onclick="javascript:fLoadSet();"id="settingsb">Settings</button><button onclick="javascript:fDShow++;fDonateShow();"id="fItemDn">Help</button><p id="space">&block;</p>
+  <div id="textIntro">
 <p id="Text00">- Welcome to My Web Site !!</p>
 <p id="Text01">- I am HCPP C++ Devoloper and JS </p>
 <p id="Text02">- Write Soft only Windows on C++</p>
-<p id="value4">                                          </p>
-<script>
-let fPi = 0;
+ </div>
+ </div>
+ <script>
+ let fPi = 0;
 var fSysInfo = document.getElementById('get-system');
 var user = navigator.userAgent[fPi];
 var fValue = document.getElementById('value'); 
@@ -288,6 +74,7 @@ let fId = 0;
 let fLinkP = 0;
 let fSetP = 0;
 let fProjectsP = 0;
+let fError = 0;
 var fTextBuffer = document.getElementById('Text-Buffer');
 var fLtStyle = document.getElementById('LightBtn');
 var fLgBtn = document.getElementById('LangBtn');
@@ -307,29 +94,30 @@ var flinks = document.getElementById('links');
 var fSetW = document.getElementById('settings');
 var fProjectsW = document.getElementById('fProjects')
 var fdonatebtn = document.getElementById('donate-Btn');
+var ferrorJS =  document.getElementById('errorJS');
+var fVal4 = document.getElementById('value4');
 var fPos ;
 var fSrc;
-function fSelbkgd(){fId++;fSrc = "Pictures/2203"+fId+".jpg";if(fId > 2){fId = 0}}
 function fLoadLinkks()
 {
    fLinkP++;
    if(fLinkP > 1){fLinkP = 0}
-   if(fLinkP == 0){flinks.style.display = 'none';fMainWindow.style.display = 'block';}
-   if(fLinkP == 1){flinks.style.display = 'block';fMainWindow.style.display = 'none';flinks.style.animation= 'fYBounds 1000ms';}
+   if(fLinkP == 0){flinks.style.display = 'none';fMainWindow.style.display = 'block';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';}
+   if(fLinkP == 1){flinks.style.display = 'block';fMainWindow.style.display = 'none';fSetW.style.display = 'none';fProjectsW.style.display = 'none';fPayMe.style.display = 'none';flinks.style.animation= 'fYBounds 1000ms';fSetP = 0;fProjectsP = 0;fDShow = 0;}
 }
 function fLoadSet()
 {
    fSetP++;
    if(fSetP > 1){fSetP = 0}
-   if(fSetP == 0){fSetW.style.display = 'none';fMainWindow.style.display = 'block';}
-   if(fSetP == 1){fSetW.style.display = 'block';fMainWindow.style.display = 'none';fSetW.style.animation= 'fYBounds 1000ms';}
+   if(fSetP == 0){fSetW.style.display = 'none';fMainWindow.style.display = 'block';flinks.style.display = 'none';fProjectsW.style.display = 'none';fPayMe.style.display = 'none';}
+   if(fSetP == 1){fSetW.style.display = 'block';flinks.style.display = 'none';fMainWindow.style.display = 'none';fProjectsW.style.display = 'none';fPayMe.style.display = 'none';fSetW.style.animation= 'fYBounds 1000ms';fLinkP = 0;fProjectsP = 0;fDShow = 0;}
 }
 function fLoadProjects()
 {
    fProjectsP++;
    if(fProjectsP > 1){fProjectsP = 0}
-   if(fProjectsP == 0){fProjectsW.style.display = 'none';fMainWindow.style.display = 'block';}
-   if(fProjectsP == 1){fProjectsW.style.display = 'block';fMainWindow.style.display = 'none';fProjectsW.style.animation= 'fYBounds 1000ms';}
+   if(fProjectsP == 0){fProjectsW.style.display = 'none';fMainWindow.style.display = 'block';fSetW.style.display = 'none';flinks.style.display = 'none';fPayMe.style.display = 'none';}
+   if(fProjectsP == 1){fProjectsW.style.display = 'block';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'none';fPayMe.style.display = 'none';fProjectsW.style.animation= 'fYBounds 1000ms';fLinkP = 0;fSetP = 0;fDShow = 0;}
 }
 var userDeviceArray = [
     {device: 'Android', platform: /Android/},
@@ -357,7 +145,7 @@ function getPlatform() {
   document.addEventListener("DOMContentLoaded", function() {
     var num = Number(localStorage.num) || 0;
     localStorage.num = ++num;
-	fOSName.innerHTML = "OS:"+getPlatform();
+	fOSName.innerHTML = 'OS:'+getPlatform();
 	fLight();
 	fDonateShow();
 	});	
@@ -393,8 +181,8 @@ function fLangSel()
 	{
 	fDShow++;
 	 if(fDShow > 1){fDShow = 0;}
-	 if(fDShow == 0){fPayMe.style.display = 'block';fMainWindow.style.display = 'none';fLtStyle.style,display = 'none';fPayMe.style.animation = 'fYBounds 1000ms';}
-	 if(fDShow == 1){fPayMe.style.display = 'none';fMainWindow.style.display = 'block';fLtStyle.style,display = 'block';}
+	 if(fDShow == 0){fPayMe.style.display = 'block';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'none';fLtStyle.style,display = 'none';fPayMe.style.animation = 'fYBounds 1000ms';}
+	 if(fDShow == 1){fPayMe.style.display = 'none';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'block';fLtStyle.style,display = 'block';}
 	}
 function fLight()
 {
