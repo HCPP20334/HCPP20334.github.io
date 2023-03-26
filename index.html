@@ -12,7 +12,7 @@
     <p id="text-tt">HCPP Studio</p>
    <img id="imgIcon"src="https://hcpp20334.github.io/Pictures/images.jfif" width='100';height='100';/> 
    <div id="ButtonsM">
-    <button onclick="javascript:fLoadLinkks();"id="linksbtn">Links</button><button onclick="javascript:fLoadProjects();"id="fprojectsB">Projects</button><button onclick="javascript:fLoadSet();"id="settingsb">Settings</button><button onclick="javascript:fDShow++;fDonateShow();"id="fItemDn">Help</button><button id="TBtn">Tools</button>
+    <button onclick="javascript:fLoadLinkks();"id="linksbtn">Links</button><button onclick="javascript:fLoadProjects();"id="fprojectsB">Projects</button><button onclick="javascript:fLoadSet();"id="settingsb">Settings</button><button onclick="javascript:fDShow++;fDonateShow();"id="fItemDn">Help</button><button onlick="javascript:fPlayer();"id="TBtn">Tools</button>
 	</div>
   </div>
    <div id="fProjects">
@@ -45,7 +45,7 @@
   <p>SPB QR code</p>
   <img src="pictures/qr-code.png"/>
   <p>Statistics</p>
-  <p>last update:27.03.23</p>
+  <p>last update:14.03.23</p>
   <p>Running:11.03.23</p>
   <button onclick="javascript:document.location.href='https://github.com/HCPP20334/HCPP20334.github.io/blob/main/index.html';fBtnSource.innerHTML = 'Loading...';" id="btnSource">Source Web Site</button>
   <p id="OSName">OS:None</p>
@@ -58,6 +58,7 @@
 <p id="Text02">- Write Soft only Windows on C++</p>
  </div>
  </div>
+ <div id="video-yt"/>
  <script>
  let fPi = 0;
 var fSysInfo = document.getElementById('get-system');
@@ -96,6 +97,7 @@ var fProjectsW = document.getElementById('fProjects')
 var fdonatebtn = document.getElementById('donate-Btn');
 var ferrorJS =  document.getElementById('errorJS');
 var fVal4 = document.getElementById('value4');
+var fVideoPlayer = document.getElementById('video-yt');
 var fPos ;
 var fSrc;
 function fLoadLinkks()
@@ -146,6 +148,7 @@ function getPlatform() {
     var num = Number(localStorage.num) || 0;
     localStorage.num = ++num;
 	fOSName.innerHTML = 'OS:'+getPlatform();
+	if(getPlatform() == 'Android'){alert("Mobile Version Some Bugs!!");fMainWindow.style.fontSize = '10';fMainWindow.style.width =  window.screen.width;}
 	fLight();
 	fDonateShow();
 	});	
@@ -190,7 +193,7 @@ function fLight()
   if(fPointL > 1){fPointL = 0;}
   if(fPointLang == 0)
   {
-   if(fPointL == 0){fMainWindow.style.animation = 'none';fLtStyle.innerHTML= 'Light:False';}
+   if(fPointL == 0){fMainWindow.style.animation = 'none';fLtStyle.innerHTML= 'Light:False';fText0D0.style.animation = 'none';}
    if(fPointL == 1){fMainWindow.style.animation = 'fAnimColors 10s infinite';fLtStyle.innerHTML= 'Light:True';}
   }
   if(fPointLang == 1)
@@ -224,6 +227,7 @@ if(fSizePount == 4){fWPoint = 1366;fHPoint = 768;}
 if(fSizePount == 5){fWPoint = 1920;fHPoint = 1080;}
 if(fSizePount > 5){fSizePount = 5;}
 if(fSizePount < 0){fSizePount = 0;}
+fMainWindow.style.display = 'none';
 fVideoPlayer.style.display="block";
 fVideoPlayer.src ="https://www.youtube.com/embed/An0FxYL7aAk";
 fVideoPlayer.width= fWPoint;fVideoPlayer.height= fHPoint;
