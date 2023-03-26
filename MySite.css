@@ -219,7 +219,7 @@ body {transform: translateY(100px)}
   #fAbout {background-color:#07080f; width:200px;height:170px;color:white;font-family:'hack';text-align:center;transform: translateY(-500px);animation:fYBounds 2s;}
   #value7,#value4,#get-system,#Text-Buffer{text-align:center;font-family:'hack';animation:fXBounds 2s;color:white;}
   #PayMe {display:none;background-color:#07080f; width:300px;height:600px;color:white;font-family:'hack';text-align:center;margin:auto;}
-  #Text00,#Text01,#Text02,#Text1,#Text2,#Text3{font-family:'hack';text-align:center;animation:fXBounds 2s;color:#14FA05;font-size:30px;}
+  #Text00,#Text01,#Text02,#Text1,#Text2,#Text3{font-family:'hack';text-align:center;animation:fXBounds 2s;color:#14FA05;font-size:20px;}
   #linksbtn{color:white;background-color:#1B1C1E;width:125px;height:30px;border:none;font-family:'hack';border-radius:16px;}
   #linksbtn:hover{color:white;background-color:#3F4044;width:125px;height:30px;border:none;font-family:'hack';}
   #settingsb{color:white;background-color:#1B1C1E;width:125px;height:30px;border:none;font-family:'hack';border-radius:16px;}
