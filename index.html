@@ -1,4 +1,5 @@
 <html>
+<body>
  <title id="Main-title">HCPP Web Site</title>
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link href="MySite.css" rel="stylesheet">
@@ -12,23 +13,27 @@
     <p id="text-tt">HCPP Studio</p>
    <img id="imgIcon"src="https://hcpp20334.github.io/Pictures/images.jfif" width='100';height='100';/> 
    <div id="ButtonsM">
-    <button onclick="javascript:fLoadLinkks();"id="linksbtn">Links</button><button onclick="javascript:fLoadProjects();"id="fprojectsB">Projects</button><button onclick="javascript:fLoadSet();"id="settingsb">Settings</button><button onclick="javascript:fDShow++;fDonateShow();"id="fItemDn">Help</button><button onlick="javascript:fPlayer();"id="TBtn">Tools</button>
+    <button onclick="javascript:fLoadLinkks();"id="linksbtn">Links</button><button onclick="javascript:fLoadProjects();"id="fprojectsB">Projects</button><button onclick="javascript:fLoadSet();"id="settingsb">Settings</button><button onclick="javascript:fDShow++;fDonateShow();"id="fItemDn">Help</button><button onclick="javascript:fTools();"id="ToolsBtn">Tools</button>
 	</div>
+	<p id="MessageBox"/>
   </div>
    <div id="fProjects">
      <button onclick="javascript:fLoadProjects()"id="fCloseProject">X</button>
      <p id="fProjText">Projects</p>
+	 <p >--</p>
 <p onclick="javascript:document.location.href='https://github.com/HCPP20334/JoyStickTest/blob/main/JoyStickEmu.exe?raw=true;';"id="btnSource">JoyStickEmu (C++) Build 1.0.6 22.03.23</p>
 <p onclick="javascript:document.location.href='https://github.com/HCPP20334/PassGenerator/blob/main/PassGenerator.exe?raw=true;';"id="btnSourceE">PassGenerator (C++)Build 1.0.6 24.03.23</p>
 <p onclick="javascript:document.location.href='https://github.com/HCPP20334/DOOM2_DS/archive/refs/heads/main.zip';"id="btnSourceE">DOOMII (C++)Build 1.0.0 24.03.23</p>
-<p font-family="hack">Copiled MinGW-gcc C++11</p>
+<p onclick="javascript:fText('Copiled MinGW-gcc C++11');"font-family="hack">Copiled MinGW-gcc C++11</p>
 </div>
   <div id="settings">
-  <button onclick="javascript:fLoadSet();"id="fCloseSett">X</button>
+  <button onclick="javascript:fLoadSet();fMsgSt.style.display = 'none';"id="fCloseSett">X</button>
 <p id="fSettText">Settings</p>
-<p onclick="javascript:fLight();"id="LightBtn">Light:True</p>
-<p onclick="javascript:fLangSel();" id="LangBtn">Language:English</p>
-<p onclick="javascript:fSelbkgd();"id="btnSource">select background</p>
+<p id="savef"font-family="hack">Light</p><div onclick="javascript:fTestSwitch();fLight();"id="SwitchTurn"><div id="ball"></div></div>
+<button onclick="javascript:fLangSel();" id="LangBtn">Language:English</button>
+<button onclick="javascript:fSetBackg();"id="LangBtn">select background</button>
+<p id="OSName">OS:None</p>
+<p id="fScreeen">Screen:none</p>
 </div>
     <div id="links">
 	<button onclick="javascript:fLoadLinkks();"id="fCloseLinks">X</button>
@@ -48,7 +53,6 @@
   <p>last update:14.03.23</p>
   <p>Running:11.03.23</p>
   <button onclick="javascript:document.location.href='https://github.com/HCPP20334/HCPP20334.github.io/blob/main/index.html';fBtnSource.innerHTML = 'Loading...';" id="btnSource">Source Web Site</button>
-  <p id="OSName">OS:None</p>
   <button onclick="javascript:fDonateShow();"id="donatebtn">No Thanks!</button>
   </div>
   <div id="ConsoleStyle">
@@ -59,6 +63,7 @@
  </div>
  </div>
  <div id="video-yt"/>
+ </body>
  <script>
  let fPi = 0;
 var fSysInfo = document.getElementById('get-system');
@@ -76,6 +81,7 @@ let fLinkP = 0;
 let fSetP = 0;
 let fProjectsP = 0;
 let fError = 0;
+let fSWPoint = 0;
 var fTextBuffer = document.getElementById('Text-Buffer');
 var fLtStyle = document.getElementById('LightBtn');
 var fLgBtn = document.getElementById('LangBtn');
@@ -100,7 +106,53 @@ var fVal4 = document.getElementById('value4');
 var fVideoPlayer = document.getElementById('video-yt');
 var fButtonS = document.getElementById('ButtonsM');
 var fPos ;
-var fSrc;
+let fSrc = 0;;
+var fSrcF;
+var fsource;
+var fMsgSt = document.getElementById('MessageBox');
+var fcntM = document.getElementById('fLinkText');
+var fsetM = document.getElementById('fSettText');
+var fprjM = document.getElementById('fProjText');
+function fTestSwitch()
+{
+  fSWPoint++;
+  if(fSWPoint > 1){fSWPoint = 0}
+  if(fSWPoint == 1){document.getElementById('ball').style.transform = 'translateX(50px)';}
+  if(fSWPoint == 0){document.getElementById('ball').style.transform = 'translateX(0px)';}
+  }
+function fText(fText)
+{
+fMsgSt.style.display = 'block';
+fMsgSt.style.animation = 'fXBounds 1s';
+fMsgSt.innerHTML = fText;
+fMsgSt.style.font = 'hackRus';
+setTimeout("fMsgSt.style.animation = 'fMXBounds 1s';fMsgSt.style.display = 'none';", 2000);
+}
+function fTools()
+{
+fMsgSt.style.display = 'block';
+fMsgSt.style.animation = 'fXBounds 1s';
+fMsgSt.innerHTML = 'Tools Not Work!!';
+fMsgSt.style.font = 'hackRus';
+setTimeout("fMsgSt.style.animation = 'fMXBounds 1s';fMsgSt.style.display = 'none';", 2000);
+}
+function fSetBackg()
+{
+fSrc++;
+if(fSrc > 2){fSrc = 0;}
+if(fSrc == 0)
+{
+document.body.style.backgroundImage = 'url(http://hcpp20334.github.io/Pictures/22033.jpg)';
+document.body.style.backgroundSize = 'cover';
+fText('Picture 22033.jpg OK!!');
+}
+if(fSrc == 1)
+{
+document.body.style.backgroundImage = 'url(http://hcpp20334.github.io/Pictures/22034.jpg)';
+document.body.style.backgroundSize = 'cover';
+fText('Picture 22034.jpg OK!!');
+}
+}
 function fLoadLinkks()
 {
    fLinkP++;
@@ -150,7 +202,9 @@ function getPlatform() {
     localStorage.num = ++num;
 	fOSName.innerHTML = 'OS:'+getPlatform();
 	if(getPlatform() == 'Android'){alert("Mobile Version it's Beta !!!");fMainWindow.style.fontSize = '10';fMainWindow.style.width =  window.screen.width;fButtonS.style.transform = 'translateY(5px)';}
+	document.getElementById('fScreeen').innerHTML = 'Screen:'+window.screen.width+'x'+window.screen.height;
 	fLight();
+	fTestSwitch();
 	fDonateShow();
 	});	
 	
@@ -164,10 +218,10 @@ function fLangSel()
   fText0D0.innerHTML = '- Welcome to My Web Site !!';
   fText0D1.innerHTML = '- I am HCPP C++ Devoloper and JS';
   fText0D2.innerHTML = '- Write Soft only Windows on C++';
-  fText1D.innerHTML = 'My Contacts';
-  fText2D.innerHTML = 'Projects';
-  fText3D.innerHTML = 'Settings';
-   fLtStyle.innerHTML= 'Light:False';
+  fLtStyle.innerHTML = 'Light:False';
+  fcntM.innerHTML = 'My Contacts';
+  fsetM.innerHTML = 'Settings';
+  fprjM.innerHTML = 'Projects';
   }
   if(fPointLang == 1)
   {
@@ -175,10 +229,11 @@ function fLangSel()
   fText0D0.innerHTML = '- Добро пожаловать на мой сайт!!';
   fText0D1.innerHTML = '- Я HCPP C++ Разработчик и немного JS';
   fText0D2.innerHTML = '- Пишу софт под Windows только на  C++';
-  fText1D.innerHTML = 'Мой контакты';
-  fText2D.innerHTML = 'Мои проекты';
-  fText3D.innerHTML = 'Настроики';
-  fLtStyle.innerHTML= 'Свечение:откл';
+  fLtStyle.innerHTML = 'Свечение:откл';
+  fcntM.innerHTML = 'Ссылки';
+  fsetM.innerHTML = 'Настроики';
+  fprjM.innerHTML = 'Проекты';
+   //fMainWindow.style.fontFamily = 'Rus';
   }
 }
     function fDonateShow()
@@ -194,44 +249,15 @@ function fLight()
   if(fPointL > 1){fPointL = 0;}
   if(fPointLang == 0)
   {
-   if(fPointL == 0){fMainWindow.style.animation = 'none';fLtStyle.innerHTML= 'Light:False';fText0D0.style.animation = 'none';}
-   if(fPointL == 1){fMainWindow.style.animation = 'fAnimColors 10s infinite';fLtStyle.innerHTML= 'Light:True';}
+   if(fPointL == 0){fMainWindow.style.animation = 'none';fText('Light:False');fText0D0.style.animation = 'none';}
+   if(fPointL == 1){fMainWindow.style.animation = 'fAnimColors 10s infinite';fText('Light:True');}
   }
   if(fPointLang == 1)
   {
-   if(fPointL == 0){fMainWindow.style.animation = 'none';fLtStyle.innerHTML= 'Свечение:откл';}
-   if(fPointL == 1){fMainWindow.style.animation = 'fAnimColors 10s infinite';fLtStyle.innerHTML= 'Свечение:Вкл';}
+   if(fPointL == 0){fMainWindow.style.animation = 'none';fText('Свечение:выкл');}
+   if(fPointL == 1){fMainWindow.style.animation = 'fAnimColors 10s infinite';fText('Свечение:вкл');}
   }
-  }
-  
-function fText()
-{
-fValue.innerHTML = fPoint;
 }
-var fVideoPlayer = document.getElementById('video-yt');
-var fButton1 = document.getElementById('value');
-var fWindowMain =document.getElementById('valueg');
-var fExit = document.getElementById('exit');
-let fWPoint = 640;
-let fHPoint = 480;
-let fSizePount = 3;
-function fDebug() {fTextDebg.innerHTML = fTextDebug;}
-function fFullScreen(){fVideoPlayer.fullscreen=true;}
-//"https://www.youtube.com/embed/An0FxYL7aAk"
-function fPlayer()
-{
-if(fSizePount == 0){fWPoint = 320;fHPoint = 240;}
-if(fSizePount == 1){fWPoint = 640;fHPoint = 480;}
-if(fSizePount == 2){fWPoint = 800;fHPoint = 600;}
-if(fSizePount == 3){fWPoint = 1280;fHPoint = 720;}
-if(fSizePount == 4){fWPoint = 1366;fHPoint = 768;}
-if(fSizePount == 5){fWPoint = 1920;fHPoint = 1080;}
-if(fSizePount > 5){fSizePount = 5;}
-if(fSizePount < 0){fSizePount = 0;}
-fMainWindow.style.display = 'none';
-fVideoPlayer.style.display="block";
-fVideoPlayer.src ="https://www.youtube.com/embed/An0FxYL7aAk";
-fVideoPlayer.width= fWPoint;fVideoPlayer.height= fHPoint;
-}
+
 </script>
 </html>

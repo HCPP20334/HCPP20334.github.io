@@ -64,6 +64,20 @@
 90%{transform: translateX(480px)};
 100%{transform: translateX(480px)};
 }
+@keyframes fMXBounds
+{
+0%{transform: translateX(-800px)};
+10%{transform: translateX(-700px)};
+20%{transform: translateX(-600px)};
+30%{transform: translateX(-500px)};
+40%{transform: translateX(-400px)};
+50%{transform: translateX(-300px)};
+60%{transform: translateX(-200px)};
+70%{transform: translateX(-100px)};
+80%{transform: translateX( 300px)};
+90%{transform: translateX(480px)};
+100%{transform: translateX(480px)};
+}
 @keyframes fMsgShow
 {
 0%{transform: translateX(-800px);}
@@ -104,8 +118,13 @@
 }
  @font-face {
     font-family: hack; /* Гарнитура шрифта */
+    src: url(https://hcpp20334.github.io/fRusFont.ttf); /* Путь к файлу со шрифтом */
+   }
+    @font-face {
+    font-family: hackRus; /* Гарнитура шрифта */
     src: url(https://hcpp20334.github.io/HACKED.ttf); /* Путь к файлу со шрифтом */
    }
+
 html
 {
  background-image: url(https://hcpp20334.github.io/Pictures/22033.jpg);
@@ -187,20 +206,19 @@ body {transform: translateY(100px)}
   #fVKBtn:hover{background-color:#85C1E9;}
   #value8{color:white;background-color:#1B1C1E;width:100px;height:30px;border:none;font-family:'hack';border-radius:4px;}
   #value8:hover{width:100px;height:20px;background-color:white;color:black;}
-  #LightBtn{color:white;background-color:#1B1C1E;width:100px;height:30px;border:none;font-family:'hack';border-radius:4px;margin:auto;}
-  #LightBtn:hover{width:100px;height:30px;background-color:white;color:black;}
-  #btnSource{background-color:darkblue;text-align:center;font-family:'hack';width:160px;height:30px;color:white; border: none;margin:auto;padding:20px;border-radius:10px;}
+  #LightBtn{display:table;color:white;background-color:#1B1C1E;width:130px;height:40px;border:none;font-family:'hack';border-radius:4px;margin:auto;}
+  #LightBtn:hover{width:130px;height:40px;background-color:white;color:black;}
+  #btnSource{background-color:darkblue;text-align:center;font-family:'hackRus';width:160px;height:30px;color:white; border: none;margin:auto;padding:20px;border-radius:10px;}
   #btnSource:hover{background-color:darkcyan;}
-  #btnSourceE{background-color:darkblue;text-align:center;font-family:'hack';width:160px;height:30px;color:white; border: none;margin:auto;padding:20px;border-radius:10px;}
+  #btnSourceE{background-color:darkblue;text-align:center;font-family:'hackRus';width:160px;height:30px;color:white; border: none;margin:auto;padding:20px;border-radius:10px;}
   #btnSourceE:hover{background-color:darkcyan;}
-  #LangBtn{color:white;background-color:#1B1C1E;width:100px;height:30px;border:none;font-family:'hack';border-radius:4px;margin:auto;}
-  #LangBtn:hover{width:100px;height:30px;background-color:white;color:black;}
+  #LangBtn{display:table;color:white;background-color:#1B1C1E;width:130px;height:40px;border:none;font-family:'hack';border-radius:4px;margin:auto;}
+  #LangBtn:hover{width:130px;height:40px;background-color:white;color:black;}
   #ConsoleStyle
   {
-  display:none;
+  display:block;
   background-color: rgba(39,47,51, 0.5);
   color:white;
-  font-family:'hack';
   margin:auto;
   height:30%;
   width:30%;
@@ -247,7 +265,37 @@ body {transform: translateY(100px)}
   #errorJSMsg{font-family:'hack';color:red;font-size:20px;}
   #status{display:none;color:white;font-family:'hack';}
   #textIntro{animation: fYBounds 1000ms;padding:30px;}
-  #TBtn{color:white;background-color:#1B1C1E;width:125px;height:30px;border:none;font-family:'hack';border-radius:16px;}
-  #TBth:hover{color:white;background-color:#3F4044;width:125px;height:30px;border:none;font-family:'hack';}
+  #ToolsBtn{color:white;background-color:#1B1C1E;width:125px;height:30px;border:none;font-family:'hack';border-radius:16px;}
+  #ToolsBtn:hover{color:white;background-color:#3F4044;width:125px;height:30px;border:none;font-family:'hack';}
   #imgIcon{transform: translateX(20px) translateY(-60px);border-radius:16px;}
   #buttonsM{transform: translateX(120px) translateY(-80px);}
+  #MessageBox{display:none;width:150px;height:60px;color:#14FA05;font-family:'hack';border-radius:16px;background-color:#07080f;text-align:center;}
+  #SwitchTurn
+  {
+	  width:60px;
+	  height:20px;
+	  background-color:#3F4044;
+	  border: 2px #14FA05;
+	  margin:auto;
+	  border-radius:4px;
+  }
+  #ball
+  {
+	  background-color:#14FA05;
+	  width:20px;
+	  height:20px;
+	  border-radius:8px;
+  }
+  #ball:hover
+  {
+	  background-color:white;
+	  width:20px;
+	  height:20px;
+	  border-radius:8px;
+  }
+  #savef
+  {
+	  transform: translateX(-50px) translateY(35px);
+	  
+  }
+	  
