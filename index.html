@@ -19,13 +19,13 @@
   </div>
   <div id="Tools">
   <h1 id="TLtext">Tools</h1>
-   <button onclick="javascript:fTools();"id="fCloseProject">X</button>
+   <button onclick="javascript:fTLMenu.style.display = 'none';flinks.style.display = 'none';fMainWindow.style.display = 'block';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';"id="fCloseProject">X</button>
   <button id="TLBtnA" onclick="javascript:fPlayerJS();">PlayerJS</button>
    <button id="TLBtnB" onclick="javascript:fPassGenJS();">PassGeneratorJS</button>
    <button id="TLBtnC" onclick="javascript:fGitDWJS();">GitDownLoaderJS</button>
    </div>
    <div id="TLPlayer">
-	 <button onclick="javascript:fMainWindow.style.display = 'block';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';fTLMenu.style.display = 'none';"id="fCloseProject">X</button>   
+	 <button onclick="fTLPlayer.style.display = 'none';javascript:fMainWindow.style.display = 'block';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';fTLMenu.style.display = 'none';"id="fCloseProject">X</button>   
     <h1 id="TLPLtext">Test Player JS</h1>
 	<p id="textSearch"> Введите URL Файла и сайта</p>
 	<input type="comment" id="FileLoader">
