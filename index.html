@@ -29,8 +29,8 @@
 	<input type="comment" id="FileLoader">
 	<embed id="audioPlayer" loop="true"></embed>
 	<p id="TrackName">NaN</p>
-	<button id="BtnNext" onclick="fGPlay.height='1';files++;fGPlay.src= 'http://hcpp20334.github.io/music/'+files+'.mp3';document.getElementById('TrackName').innerHTML = 'music/'+files+'.mp3'">Next</button>
-    <button id="BtnPrev" onclick="files--;fGPlay.src= 'http://hcpp20334.github.io/music/'+files+'.mp3';document.getElementById('TrackName').innerHTML = 'music/'+files+'.mp3'">Prev</button>
+	<button id="BtnNext" onclick="fGPlay.height='1';files++;fGPlay.src= '/music/'+files+'.mp3';document.getElementById('TrackName').innerHTML = 'music/'+files+'.mp3'">Next</button>
+    <button id="BtnPrev" onclick="files--;fGPlay.src= '/music/'+files+'.mp3';document.getElementById('TrackName').innerHTML = 'music/'+files+'.mp3'">Prev</button>
 	<p font-family:'hack' id="ScreenXText">Screen X</p>
 <input type="range" min="1" max="1920" value="0"  id="ScreenPX">
 <p font-family:'hack' id="ScreenYText">Screen Y</p>
