@@ -7,7 +7,7 @@
   <div id="errorJS">
   <p id="errorJSMsg">Error!!JS Not Supported and Turn Off!!</p>
   <p id="errorJSMsg">Ошибка!!JS Не Поддерживается или Выключен!!</p>
-  <style>#ConsoleStyle{display:none;}
+  <style>#ConsoleStyle{display:none;}</style>
    </noscript>
    <div id="bar-top">
     <p id="text-tt">HCPP Studio</p>
@@ -17,6 +17,25 @@
 	</div>
 	<p id="MessageBox"/>
   </div>
+  <div id="Tools">
+  <h1 id="TLtext">Tools</h1>
+  <button id="TLBtnA" onclick="javascript:fPlayerJS();">PlayerJS</button>
+   <button id="TLBtnB" onclick="javascript:fPassGenJS();">PassGeneratorJS</button>
+   <button id="TLBtnC" onclick="javascript:fGitDWJS();">GitDownLoaderJS</button>
+   </div>
+   <div id="TLPlayer">
+    <h1 id="TLPLtext">Test Player JS</h1>
+	<p id="textSearch"> Введите URL Файла и сайта</p>
+	<input type="comment" id="FileLoader">
+	<embed id="audioPlayer" loop="true"></embed>
+	<p id="TrackName">NaN</p>
+	<button id="BtnNext" onclick="fGPlay.height='1';files++;fGPlay.src= 'http://hcpp20334.github.io/music/'+files+'.mp3';document.getElementById('TrackName').innerHTML = 'music/'+files+'.mp3'">Next</button>
+    <button id="BtnPrev" onclick="files--;fGPlay.src= 'http://hcpp20334.github.io/music/'+files+'.mp3';document.getElementById('TrackName').innerHTML = 'music/'+files+'.mp3'">Prev</button>
+	<p font-family:'hack' id="ScreenXText">Screen X</p>
+<input type="range" min="1" max="1920" value="0"  id="ScreenPX">
+<p font-family:'hack' id="ScreenYText">Screen Y</p>
+<input type="range" min="1" max="1080" value="0"  id="ScreenPY">
+	</div>
    <div id="fProjects">
      <button onclick="javascript:fLoadProjects()"id="fCloseProject">X</button>
      <p id="fProjText">Projects</p>
@@ -48,9 +67,9 @@
   <p>DonationAlerts</p>
   <button onclick="javascript:document.location.href='https://www.donationalerts.com/r/hackercplusplus';"id="donatebtn">Donate</button>
   <p>SPB QR code</p>
-  <img src="pictures/qr-code.png"/>
+  <img src="http://hcpp20334.github.io/pictures/qr-code.png"/>
   <p>Statistics</p>
-  <p>last update:29.03.23</p>
+  <p>last update:02.04.23</p>
   <p>Running:11.03.23</p>
   <button onclick="javascript:document.location.href='https://github.com/HCPP20334/HCPP20334.github.io/blob/main/index.html';fBtnSource.innerHTML = 'Loading...';" id="btnSource">Source Web Site</button>
   <button onclick="javascript:fDonateShow();"id="donatebtn">No Thanks!</button>
@@ -65,11 +84,17 @@
  <div id="video-yt"/>
  </body>
  <script>
+ var fScreenX = document.getElementById("ScreenPX");
+var fScreenY = document.getElementById("ScreenPY");
+var fPosXValue = document.getElementById('ScreenXText');
+var fPosYValue = document.getElementById('ScreenYText');
+ var fGPlay = document.getElementById("audioPlayer");
  let fPi = 0;
 var fSysInfo = document.getElementById('get-system');
 var user = navigator.userAgent[fPi];
 var fValue = document.getElementById('value'); 
 let fPoint = 0
+let files = 0;
 let fFontSize = fPoint;
 let fPosX = 480;
 let fPosY = -640;
@@ -113,6 +138,22 @@ var fMsgSt = document.getElementById('MessageBox');
 var fcntM = document.getElementById('fLinkText');
 var fsetM = document.getElementById('fSettText');
 var fprjM = document.getElementById('fProjText');
+var fTLMenu = document.getElementById('Tools');
+let fLBPoint = 0;
+var fTLPlayer = document.getElementById('TLPlayer');
+ fGPlay.src =document.getElementById('FileLoader').value; 
+  document.getElementById('FileLoader').oninput = function() 
+  {
+  fGPlay.src = this.value;
+  }
+ fScreenX.oninput = function() {fXPos = this.value;fGPlay.width= fXPos;fPosXValue.innerHTML = "Screen X:"+fXPos;}
+  fScreenY.oninput = function() {fYPos = this.value;fGPlay.height= fYPos;fPosYValue.innerHTML = "Screen Y:"+fYPos;}
+function fPlayerJS()
+{
+fTLPlayer.style.display = 'block';
+fTLPlayer.style.animation = 'fYBounds 1000ms';
+fMainWindow.style.display = 'none';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';fTLMenu.style.display = 'none';
+}
 function fTestSwitch()
 {
   fSWPoint++;
@@ -130,11 +171,9 @@ setTimeout("fMsgSt.style.animation = 'fMXBounds 1s';fMsgSt.style.display = 'none
 }
 function fTools()
 {
-fMsgSt.style.display = 'block';
-fMsgSt.style.animation = 'fXBounds 1s';
-fMsgSt.innerHTML = 'Tools Not Work!!';
-fMsgSt.style.font = 'hackRus';
-setTimeout("fMsgSt.style.animation = 'fMXBounds 1s';fMsgSt.style.display = 'none';", 2000);
+fTLMenu.style.display = 'block';
+fTLMenu.style.animation = 'fYBounds 1000ms';
+flinks.style.display = 'none';fMainWindow.style.display = 'none';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';
 }
 function fSetBackg()
 {
@@ -157,22 +196,22 @@ function fLoadLinkks()
 {
    fLinkP++;
    if(fLinkP > 1){fLinkP = 0}
-   if(fLinkP == 0){flinks.style.display = 'none';fMainWindow.style.display = 'block';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';}
-   if(fLinkP == 1){flinks.style.display = 'block';fMainWindow.style.display = 'none';fSetW.style.display = 'none';fProjectsW.style.display = 'none';fPayMe.style.display = 'none';flinks.style.animation= 'fYBounds 1000ms';fSetP = 0;fProjectsP = 0;fDShow = 0;}
+   if(fLinkP == 0){flinks.style.display = 'none';fMainWindow.style.display = 'block';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';fTLMenu.style.display = 'none';fTLPlayer.style.display = 'none'}
+   if(fLinkP == 1){flinks.style.display = 'block';fMainWindow.style.display = 'none';fSetW.style.display = 'none';fProjectsW.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';flinks.style.animation= 'fYBounds 1000ms';fSetP = 0;fProjectsP = 0;fDShow = 0;fTLMenu.style.display = 'none';}
 }
 function fLoadSet()
 {
    fSetP++;
    if(fSetP > 1){fSetP = 0}
-   if(fSetP == 0){fSetW.style.display = 'none';fMainWindow.style.display = 'block';flinks.style.display = 'none';fProjectsW.style.display = 'none';fPayMe.style.display = 'none';}
-   if(fSetP == 1){fSetW.style.display = 'block';flinks.style.display = 'none';fMainWindow.style.display = 'none';fProjectsW.style.display = 'none';fPayMe.style.display = 'none';fSetW.style.animation= 'fYBounds 1000ms';fLinkP = 0;fProjectsP = 0;fDShow = 0;}
+   if(fSetP == 0){fSetW.style.display = 'none';fMainWindow.style.display = 'block';flinks.style.display = 'none';fProjectsW.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';fTLMenu.style.display = 'none';}
+   if(fSetP == 1){fSetW.style.display = 'block';flinks.style.display = 'none';fMainWindow.style.display = 'none';fProjectsW.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';fSetW.style.animation= 'fYBounds 1000ms';fLinkP = 0;fProjectsP = 0;fDShow = 0;fTLMenu.style.display = 'none';}
 }
 function fLoadProjects()
 {
    fProjectsP++;
    if(fProjectsP > 1){fProjectsP = 0}
-   if(fProjectsP == 0){fProjectsW.style.display = 'none';fMainWindow.style.display = 'block';fSetW.style.display = 'none';flinks.style.display = 'none';fPayMe.style.display = 'none';}
-   if(fProjectsP == 1){fProjectsW.style.display = 'block';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'none';fPayMe.style.display = 'none';fProjectsW.style.animation= 'fYBounds 1000ms';fLinkP = 0;fSetP = 0;fDShow = 0;}
+   if(fProjectsP == 0){fProjectsW.style.display = 'none';fMainWindow.style.display = 'block';fSetW.style.display = 'none';flinks.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none'}
+   if(fProjectsP == 1){fProjectsW.style.display = 'block';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';fProjectsW.style.animation= 'fYBounds 1000ms';fLinkP = 0;fSetP = 0;fDShow = 0;}
 }
 var userDeviceArray = [
     {device: 'Android', platform: /Android/},
@@ -205,9 +244,15 @@ function getPlatform() {
 	document.getElementById('fScreeen').innerHTML = 'Screen:'+window.screen.width+'x'+window.screen.height;
 	fLight();
 	fTestSwitch();
-	fDonateShow();
+	fLangSel();
 	});	
-	
+	function fLoading()
+	{
+	 fLBPoint++;
+	 if(fLBPoint > 1){fLBPoint = 0;}
+	 if(fLBPoint == 1){document.getElementById('LoadingB').style.display = 'block';document.getElementById('bar-top').style.display = 'none';fPayMe.style.display = 'none';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'none';fLtStyle.style.display = 'none';}
+	 if(fLBPoint == 0){fMainWindow.style.display = 'block';document.getElementById('bar-top').style.display = 'block';}
+	 }
 function fLangSel()
 {
   fPointLang++;
@@ -238,8 +283,8 @@ function fLangSel()
 	{
 	fDShow++;
 	 if(fDShow > 1){fDShow = 0;}
-	 if(fDShow == 0){fPayMe.style.display = 'block';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'none';fLtStyle.style,display = 'none';fPayMe.style.animation = 'fYBounds 1000ms';}
-	 if(fDShow == 1){fPayMe.style.display = 'none';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'block';fLtStyle.style,display = 'block';}
+	 if(fDShow == 0){fPayMe.style.animation = 'fYBounds 1000ms';fPayMe.style.display = 'block';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fTLMenu.style.display = 'none';fMainWindow.style.display = 'none';fTLPlayer.style.display = 'none';fLtStyle.style.display = 'none';}
+	 if(fDShow == 1){fPayMe.style.display = 'none';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'block';fTLMenu.style.display = 'none';fLtStyle.style.display = 'block';fTLPlayer.style.display = 'none'}
 	}
 function fLight()
 {
