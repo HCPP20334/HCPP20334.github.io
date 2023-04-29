@@ -263,7 +263,7 @@ body {transform: translateY(100px)}
   #space{color:#07080f;background-color:#07080f;width:160px;height:30px;bolder: 2px gray;}
   #links {display:none;background-color:#07080f; width:300px;height:600px;color:white;font-family:'hack';text-align:center;margin:auto;border-radius:10px; transform:translateY(-110px); animation:fAnimColors 10s infinite}
   #settings{display:none;background-color:#07080f; width:300px;height:600px;color:white;font-family:'hack';text-align:center;margin:auto;border-radius:10px; transform:translateY(-110px); animation:fAnimColors 10s infinite}
-  #fProjects{display:none;background-color:#07080f; width:300px;height:600px;color:white;font-family:'hack';text-align:center;margin:auto;border-radius:10px; transform:translateY(-110px); animation:fAnimColors 10s infinite}
+  #fProjects{display:none;background-color:#07080f; width:400px;height:800px;color:white;font-family:'hack';text-align:center;margin:auto;border-radius:10px; transform:translateY(-110px); animation:fAnimColors 10s infinite}
   #fLinkText{padding:20px;}
   #fSettText{padding:20px;}
   #fProjText{padding:20px;}
