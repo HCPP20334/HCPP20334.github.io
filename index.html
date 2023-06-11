@@ -1,5 +1,5 @@
 <html>
-<body>
+<body onclick="javascript:fGetsClicks(f0++,fAvg);">
  <title id="Main-title">HCPP Web Site</title>
  <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
@@ -13,73 +13,34 @@
    </noscript>
    <div id="bar-top">
     <p id="text-tt">HCPP Studio</p>
-   <img id="imgIcon"src="https://hcpp20334.github.io/Pictures/images.jfif" width='100';height='100';/> 
-   <div id="ButtonsM">
+   <img id="imgIcon"src="https://hcpp20334.github.io/Pictures/images.jfif" width='100';height='100';/>  
     <button onclick="javascript:fLoadLinkks();"id="linksbtn">Links</button><button onclick="javascript:fLoadProjects();"id="fprojectsB">Projects</button><button onclick="javascript:fLoadSet();"id="settingsb">Settings</button><button onclick="javascript:fDShow++;fDonateShow();"id="fItemDn">Help</button><button onclick="javascript:fTools();"id="ToolsBtn">Tools</button>
-     <button onclick="javascript:num = 1;"id="ToolsBtn">Сброс
+     <button onclick="javascript:location.replace('debug.html');"id="ToolsBtn">DebugMenu</button>
 	</div>
 	<p id="MessageBox"/>
-  </div>
-  <!-- <div id="GetStarted">
-    <style>
-        #GetStarted {
-            text-align: center;
-            margin: auto;
-            color:white;
-       background-color: rgba(39,47,51, 0.5);
-       animation:fColorA 1s infinite;
-       height:40%;
-       width:30%;
-       font-family: sans-serif;
-   }
-      #accptTxt
-   {
-    transform: translateY(-40px);
-   }
-   #Accept
-   {
-       height:40px;
-       width:120px;
-       border-radius: 10px;
-       transform: translateX(-110px);
-   }
-   #Accept:hover
-   {
-       height:40px;
-       width:120px;
-       border-radius: 10px;
-       background-color: rgba(39,47,51, 0.5);
-   }
-   </style>
-    <p>Начните Пользоваться</p>
-    <p id="savef"font-family="hack">Light</p><div onclick="javascript:fTestSwitch();fLight();"id="SwitchTurn"><div id="ball"></div></div>
-<button onclick="javascript:fLangSel();" id="LangBtn">Language:English</button>
-<button onclick="javascript:fSetBackg();"id="LangBtn">Сменить фон</button>
-<button onclick="javascript:fSelectorStyles();"id="LangBtn">Выбор темы</button>
-<p>Продолжить</p>
-<button onclick="javascript:fNoShowAccepts();"id="LangBtn">Больше не показывать</button>
-</div> -->
+</div>
   <div id="Tools">
   <h1 id="TLtext">Tools</h1>
   <button id="TLBtnA" onclick="javascript:fPlayerJS();">PlayerJS</button>
    <button id="TLBtnB">GPT-3.5</button>
-   <button id="TLBtnC" onclick="javascript:fGitDWJS();">GitDownLoaderJS</button>
-   <script src="GPT.js"></script>
+   <div id="PassGenerator">
+    <p id="ps_3">Длина пароля</p>
+    <p id="ps_5">0</p>
+    <button onclick ="javascript:fLen++;document.getElementById('ps_5').innerHTML = fLen;"id="ps_0">+</button> <button onclick ="javascript:fLen--;document.getElementById('ps_5').innerHTML = fLen;" id="ps_1">-</button>
+    <p id="ps_4_result">Пусто</p>
+    <button onclick ="javascript:fGeneratePassWord(fLen);fSTp.innerHTML = fPass;"id="ps_6_gen">Сгенеровать</button>
+    <button onclick ="javascript:fSTp.innerHTML = 'None';"id="ps_6_gen">Clear</button>
+</div>
    </div>
    <div id="TLPlayer">
-    <h1 id="TLPLtext">Test Player JS</h1>
+    <h1 id="TLPLtext">HCPPPlayer v1.0</h1><input type="comment" id="FileLoader">
 	<p id="textSearch"> Введите URL Файла и сайта</p>
-	<input type="comment" id="FileLoader">
 	<embed id="audioPlayer" loop="true"></embed>
 	<p id="TrackName">NaN</p>
 	<button id="BtnNext" onclick="fGPlay.height='1';files++;fGPlay.src= 'music/'+files+'.mp3';document.getElementById('TrackName').innerHTML = 'music/'+files+'.mp3'">Next</button>
     <button id="BtnPrev" onclick="files--;fGPlay.src= 'music/'+files+'.mp3';document.getElementById('TrackName').innerHTML = 'music/'+files+'.mp3'">Prev</button>
 	<button id="BtnPrev" onclick="javascript:fGPlay.src = '0';">Pause</button>
 	<button id="BtnPrev" onclick="javascript:fGPlay.src= 'music/'+files+'.mp3';document.getElementById('TrackName').innerHTML = 'music/'+files+'.mp3'">Play</button>
-	<p font-family:'hack' id="ScreenXText">Screen X</p>
-<input type="range" min="1" max="1920" value="0"  id="ScreenPX">
-<p font-family:'hack' id="ScreenYText">Screen Y</p>
-<input type="range" min="1" max="1080" value="0"  id="ScreenPY">
 	</div>
    <div id="fProjects">
      <button onclick="javascript:fLoadProjects()"id="fCloseProject">X</button>
@@ -98,12 +59,18 @@
 <p id="savef"font-family="hack">Light</p><div onclick="javascript:fTestSwitch();fLight();"id="SwitchTurn"><div id="ball"></div></div>
 <button onclick="javascript:fLangSel();" id="LangBtn">Language:English</button>
 <button onclick="javascript:fSetBackg();"id="LangBtn">Сменить фон</button>
-<button onclick="javascript:fSelectorStyles();"id="LangBtn">Выбор темы</button>
+<div id="themeSel">
+<p id="testtheme" onclick="javascript:fText('Легкая');"> 
+    Легкий Режим - Версия для слабых пк</p>
+   <p id="testtheme" onclick="javascript:fText('Требовательная');">  Требовательный Режим- Версия для более мощных пк
+</p>
+<button onclick="javascript:fSelectorStyles(1);fVer.innerHTML =fWebSiteMode;"id="LangBtn">Легкий Режим</button><button onclick="javascript:fSelectorStyles(0);fVer.innerHTML =fWebSiteMode;"id="LangBtn">Требовательный Режим</button>
+</div>
 <p id="OSName">OS:None</p>
 <p id="fScreeen">Screen:none</p>
-  <p>Статистика</p>
-  <p>Последние обновление:17.05.23</p>
-  <p>Запушен:11.03.23</p>
+  <p>Statistics</p>
+  <p>last update:02.04.23</p>
+  <p>Running:11.03.23</p>
   <button onclick="javascript:document.location.href='https://github.com/HCPP20334/HCPP20334.github.io/blob/main/index.html';fBtnSource.innerHTML = 'Loading...';" id="btnSource">Source Web Site</button>
 </div>
     <div id="links">
@@ -117,16 +84,16 @@
   <div id="PayMe">
   <p>help with money</p>
   <p>DonationAlerts</p>
-  <button onclick="javascript:document.location.href='https://www.donationalerts.com/r/hackercplusplus';"id="donatebtn">Donate</button>
-  <p>SPB QR code</p>
-  <img src="Pictures/qr0.png"/>
+  <button onclick="javascript:document.location.href='https://www.donationalerts.com/r/hackercplusplus';"id="donatebtn">DonationAlerts</button>
+<iframe src="https://widget.donatepay.ru/widgets/page/126ff182f09a5c380890cb8d3f2867a5c706015ad2e28d5759af011142d44189?widget_id=5007106&sum=200" width="510" height="220" frameBorder="0"></iframe>
   <button onclick="javascript:fDonateShow();"id="donatebtn">No Thanks!</button>
   </div>
   <div id="ConsoleStyle">
-  <div id="textIntro">
+  <div onclick="javascript:fGetsClicks(f1++,fAvg);"id="textIntro">
 <p id="Text00">- Welcome to My Web Site !!</p>
 <p id="Text01">- I am HCPP C++ Devoloper and JS </p>
 <p id="Text02">- Write Soft only Windows on C++</p>
+<p id="avg-debug">NaN</p>
  </div>
  </div>
  <script type="text/javascript">
@@ -155,6 +122,8 @@ let fError = 0;
 let fSWPoint = 0;
 let fSL_Point = 0;
 let fSession = 0;
+let f1 = 0;
+let f0 = 0;
 var fTextBuffer = document.getElementById('Text-Buffer');
 var fLtStyle = document.getElementById('LightBtn');
 var fLgBtn = document.getElementById('LangBtn');
@@ -203,6 +172,38 @@ var fSettingsText = document.getElementById('settingsb');
 var fItemText = document.getElementById('fItemDn');
 var fGetStarted = document.getElementById('GetStarted');
 var fAccptBtn = document.getElementById('Accept');
+let fClick = 0;
+var fBuffer = 'qwertyuiopasdfghjklzxcvbnm1234567890';
+var  fWebSiteMode;
+var fAvg = document.getElementById('avg-debug');
+var fVer = document.getElementById('web-mode');
+var fPass;
+let fTimer = 0;
+var fSTp = document.getElementById('ps_4_result');
+var fIntro = document.getElementById('FirstIntro');
+let fLen = 0;
+let i = 0;
+let fData0 = 0;
+function fGeneratePassWord(Length)
+{
+    fData0 = 30;
+    for(i = 1; i <= fData0 ;i++)
+    {
+        fPass = fPass + fBuffer*[(Math.random() * Length)];
+        fSTp.innerHTML = fPass;
+    }
+}
+function fGetsClicks(fClick,fOutValue) {
+    // body...
+   // return fClick;
+     fOutValue.innerHTML = fClick;
+    if(fClick  >= 10)
+    {
+       fOutValue.innerHTML = 'Error: Fluding!!';
+       fClick = 10;
+        location.replace("Error.html");
+    }
+}
 function fGT()
 {
     document.clock.full.value=date.toLocaleString();
@@ -215,8 +216,7 @@ setTimeout('fGT()',500)
   {
   fGPlay.src = this.value;
   }
- fScreenX.oninput = function() {fXPos = this.value;fGPlay.width= fXPos;fPosXValue.innerHTML = "Screen X:"+fXPos;}
-  fScreenY.oninput = function() {fYPos = this.value;fGPlay.height= fYPos;fPosYValue.innerHTML = "Screen Y:"+fYPos;}
+  fAvg.innerHTML = 'HCPPWBEngine v1.0';
 function fPlayerJS()
 {
 fTLPlayer.style.display = 'block';
@@ -305,13 +305,43 @@ function getPlatform() {
     return 'Неизвестная платформа!' + platform;
     userDeviceArray[i].device  = 'Неизвестная платформа!' + platform;;
 }
-
-function fSelectorStyles()
+function fResetNumber()
 {
-    fSL_Point++;
+    localStorage.num = 0;
+}
+function fSelectorStyles(fSL_Point)
+{
     if(fSL_Point > 1){fSL_Point = 0;}
-    if(fSL_Point == 0){document.getElementById('styleJS').href= "MySite0.css";document.getElementById('styleJS').rel="stylesheet";}
-    if(fSL_Point == 1){document.getElementById('styleJS').href= "MySite1.css";document.getElementById('styleJS').rel="stylesheet";}
+    if(fSL_Point == 0){document.getElementById('styleJS').href= "MySite0.css";document.getElementById('styleJS').rel="stylesheet";fWebSiteMode = 'Lite';}
+    if(fSL_Point == 1){document.getElementById('styleJS').href= "MySite1.css";document.getElementById('styleJS').rel="stylesheet";fWebSiteMode = 'Pro';}
+}
+function fLoadSite()
+{
+        document.getElementById('ConsoleStyle').style.display = 'none';
+        document.getElementById('bar-top').style.display = 'none';
+        setTimeout("fMain();", 2000);
+      location.replace('intro.html');
+}
+function fMain() {
+         fLight();
+        fTestSwitch();
+        fLangSel();
+        fSetBackg();
+        document.getElementById('styleJS').href= "MySite0.css";
+        document.getElementById('styleJS').rel="stylesheet";
+        fLoading(0);
+            document.getElementById('ConsoleStyle').style.display = 'block';
+        document.getElementById('bar-top').style.display = 'block';
+        fVer.innerHTML =fWebSiteMode;
+        fNoShowAccepts(num);
+     if(num == 0)
+     {
+        document.getElementById('themeSel0').style.display = 'block';
+     }
+      if(num == 1)
+     {
+        document.getElementById('themeSel0').style.display = 'none';
+     }
 }
   document.addEventListener("DOMContentLoaded", function() {
     var num = Number(localStorage.num) || 0;
@@ -319,18 +349,24 @@ function fSelectorStyles()
     fOSName.innerHTML = 'OS:'+getPlatform();
     if(getPlatform() == 'Android'){alert("Mobile Version it's Beta !!!");fMainWindow.style.fontSize = '10';fMainWindow.style.width =  window.screen.width;fButtonS.style.transform = 'translateY(5px)';}
     document.getElementById('fScreeen').innerHTML = 'Screen:'+window.screen.width+'x'+window.screen.height;
-    fLight();
-    fTestSwitch();
-    fLangSel();
-    fSetBackg();
-     document.getElementById('styleJS').href= "MySite0.css";
-     document.getElementById('styleJS').rel="stylesheet";
-    // fNoShowAccepts();
-    
-    }); 
-    function fLoading()
+    if(localStorage.num > 1)
     {
-     fLBPoint++;
+        localStorage.num = 0;
+    }
+    if(localStorage.num == 0)
+    {
+        fLoadSite();
+    }
+    if(localStorage.num == 1)
+    {
+        fMain();
+    }
+
+    // fNoShowAccepts();
+    }); 
+    function fLoading(fG)
+    {
+     fG = fLBPoint;
      if(fLBPoint > 1){fLBPoint = 0;}
      if(fLBPoint == 1){document.getElementById('LoadingB').style.display = 'block';document.getElementById('bar-top').style.display = 'none';fPayMe.style.display = 'none';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'none';fLtStyle.style.display = 'none';}
      if(fLBPoint == 0){fMainWindow.style.display = 'block';document.getElementById('bar-top').style.display = 'block';}
@@ -391,12 +427,12 @@ function fLight()
    if(fPointL == 1){fMainWindow.style.animation = 'fColorA 1s infinite';fText('Свечение:вкл');}
   }
 }
-function fNoShowAccepts()
+function fNoShowAccepts(fSession)
 {
     fSession++;
     if(fSession > 1)
     {
-        fSession = 0;
+        fSession = 1;
     }
     if(fSession == 0)
     {
