@@ -1,12 +1,20 @@
 <html>
 <p id="intro-text">DEBUG MENU </p>
-<style type="text/css">html{background-image: url(Pictures/Logo0.png);}#intro-text{color: #35d555;text-shadow: 0 0 4px #35d555;border-bottom: 2px solid #35d555;font-size:30px;text-align: center;transform: translateY(550px);}
-	#button-back{display:block;transform: translateY(600px);margin:auto;background-color: rgb(17,17,22);color: white;width: 170px;height: 40px;border-radius:2px;font-size: 20px;font-family: Space Mono, sans-serif;border:none;}
-  #button-back:hover{text-shadow: 0 0 8px #35d555;border: 2px solid #35d555;color: #35d555;}</style>
-<button onclick="javascript:location.replace('intro.html');"id="button-back">intro</button>
-<button onclick="javascript:location.replace('404.html');"id="button-back">404</button>
-<button onclick="javascript:location.replace('index.html');"id="button-back">index</button>
-<button onclick="javascript:location.replace('Error.html');"id="button-back">Error</button>
+<style type="text/css">html{background-color: rgb(17,17,22);}#intro-text{color: red;text-shadow: 0 0 4px red;border-bottom: 2px solid #35d555;font-size:30px;text-align: center;transform: translateY(600px);}
+#button-back{display:block;transform: translateY(30px);margin:auto;background-color: rgb(17,17,22);color: white;width: 170px;height: 40px;border-radius:2px;font-size: 20px;font-family: Space Mono, sans-serif;border:none;}
+  #button-back:hover{text-shadow: 0 0 8px #35d555;border: 2px solid #35d555;color: #35d555;} #test_bot{border: 2px solid #35d555;background-color: rgb(17,17,22);color:white;transform: translateX(770px) translateY(30px);width: 230px;margin:auto;}#test-bot{color:white;text-align:center; transform :translateY(20px);text-shadow: 0 0 8px white;}#name{color: white;text-shadow: 0 0 8px white;text-align: center;transform: translateY(-60px);font-size: 50px;}#img_01{transform: translateX(755px); translateY(-100px);margin:auto;}#intro-text0{text-shadow: 0 0 4px red;border-bottom: 2px solid #35d555;transform: translateY(-850px);}</style>
+  <img id="img_01" src="Pictures/homyak.png" width="400" height="375">
+  <p id="name">HCPP STUDIO</p>
+<button title="debug_00" onclick="javascript:location.replace('intro.html');"id="button-back">intro</button>
+<button title="debug_00" onclick="javascript:location.replace('intro720.html');"id="button-back">intro720</button>
+<button title="debug_01"onclick="javascript:location.replace('404.html');"id="button-back">404</button>
+<button title="debug_02" onclick="javascript:location.replace('index.html');"id="button-back">index</button>
+<button title="debug_03" onclick="javascript:location.replace('Error.html');"id="button-back">Error</button>
+<input type="comment" id="colorTest">
+<button id="ts_c_1">TestText</button>
+<div id="intro-text0"></div>
 <script type="text/javascript">
+	let fCrSsgTest = document.getElementById('ColorTest').value;
+	document.getElementById('ColorTest').oninput = function(){fCrSsgTest = this.value;document.getElementById('ts_c_1').style.backgroundColor = fCrSsgTest};
 </script>
 </html>

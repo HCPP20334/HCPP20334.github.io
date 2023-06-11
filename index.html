@@ -41,17 +41,23 @@
     <button id="BtnPrev" onclick="files--;fGPlay.src= 'music/'+files+'.mp3';document.getElementById('TrackName').innerHTML = 'music/'+files+'.mp3'">Prev</button>
 	<button id="BtnPrev" onclick="javascript:fGPlay.src = '0';">Pause</button>
 	<button id="BtnPrev" onclick="javascript:fGPlay.src= 'music/'+files+'.mp3';document.getElementById('TrackName').innerHTML = 'music/'+files+'.mp3'">Play</button>
+    <p>HCPPWBEngine Console</p>
+    <input type="comment" id="console">
 	</div>
    <div id="fProjects">
      <button onclick="javascript:fLoadProjects()"id="fCloseProject">X</button>
      <p id="fProjText">Projects</p>
 	 <p >--</p>
-<p onclick="javascript:document.location.href='https://github.com/HCPP20334/JoyStickTest/blob/main/JoyStickEmu.exe?raw=true;';"id="btnSource">JoyStickEmu (C++) Build 1.0.6 22.03.23</p>
-<p onclick="javascript:document.location.href='https://github.com/HCPP20334/PassGenerator/blob/main/PassGenerator.exe?raw=true;';"id="btnSourceE">PassGenerator (C++)Build 1.0.6 24.03.23</p>
-<p onclick="javascript:document.location.href='https://github.com/HCPP20334/DOOM2_DS/archive/refs/heads/main.zip';"id="btnSourceE">DOOMII (C++)Build 1.0.0 24.03.23</p>
-<p onclick="javascript:document.location.href='https://github.com/HCPP20334/GPUBench/archive/refs/heads/main.zip';"id="btnSourceE">GPUBenchMark (C++)Build 1.0.1 15.04.23</p>
-<p onclick="javascript:document.location.href='https://github.com/HCPP20334/VectorEngine/archive/refs/heads/main.zip';"id="btnSourceE">VectorEngine (C++)Build 1.0.1 15.04.23</p>
-<p onclick="javascript:fText('Copiled MinGW-gcc C++11');"font-family="hack">Copiled MinGW-gcc C++11</p>
+   <script type="text/javascript">
+   setInterval("document.getElementById('btnSource').onmouseover = function () { document.getElementById('btnSource').title = fTestText;};",1);
+</script>
+<p title="d" onclick="javascript:document.location.href='https://github.com/HCPP20334/JoyStickTest/blob/main/JoyStickEmu.exe?raw=true;';"id="btnSource">JoyStickEmu (C++) Build 1.0.6 22.03.23</p>
+<p title="d"onclick="javascript:document.location.href='https://github.com/HCPP20334/PassGenerator/blob/main/PassGenerator.exe?raw=true;';"id="btnSourceE">PassGenerator (C++)Build 1.0.6 24.03.23</p>
+<p title="d"onclick="javascript:document.location.href='https://github.com/HCPP20334/DOOM2_DS/archive/refs/heads/main.zip';"id="btnSourceE">DOOMII (C++)Build 1.0.0 24.03.23</p>
+<p title="d"onclick="javascript:document.location.href='https://github.com/HCPP20334/GPUBench/archive/refs/heads/main.zip';"id="btnSourceE">GPUBenchMark (C++)Build 1.0.1 15.04.23</p>
+<p title="d"onclick="javascript:document.location.href='https://github.com/HCPP20334/VectorEngine/archive/refs/heads/main.zip';"id="btnSourceE">VectorEngine (C++)Build 1.0.1 15.04.23</p>
+<p title="d"onclick="javascript:fText('Copiled MinGW-gcc C++11');"font-family="hack">Copiled MinGW-gcc C++11</p>
+<input type="comment" id="console">
 </div>
   <div id="settings">
   <button onclick="javascript:fLoadSet();fMsgSt.style.display = 'none';"id="fCloseSett">X</button>
@@ -66,26 +72,30 @@
 </p>
 <button onclick="javascript:fSelectorStyles(1);fVer.innerHTML =fWebSiteMode;"id="LangBtn">Легкий Режим</button><button onclick="javascript:fSelectorStyles(0);fVer.innerHTML =fWebSiteMode;"id="LangBtn">Требовательный Режим</button>
 </div>
+<script type="text/javascript">
+
+</script>
 <p id="OSName">OS:None</p>
 <p id="fScreeen">Screen:none</p>
   <p>Statistics</p>
   <p>last update:02.04.23</p>
   <p>Running:11.03.23</p>
+  <p id="site-timer">0:0:0</p>
   <button onclick="javascript:document.location.href='https://github.com/HCPP20334/HCPP20334.github.io/blob/main/index.html';fBtnSource.innerHTML = 'Loading...';" id="btnSource">Source Web Site</button>
 </div>
     <div id="links">
 	<button onclick="javascript:fLoadLinkks();"id="fCloseLinks">X</button>
 	<p id="fLinkText"> My Links!!</p>
-<img onclick="javascript:document.location.href='https://www.youtube.com/@HackerC';" id="fYouTubeBtn" src="Pictures/YouTube.ico">YouTube</img>
-<img onclick="javascript:document.location.href='tg://resolve?domain=HCPPSTUDIO';" id="fTelegramBtn" src="Pictures/TG.webp">TELEGRAM</img>
-<img onclick="javascript:document.location.href='https://github.com/HCPP20334';" id="fGitBtn" src="Pictures/git.svg">GITHUB</img>
-<img onclick="javascript:document.location.href='https://vk.com/hcpp20334';" id="fVKBtn" src="Pictures/VK.webp">VK</img>
+<img title="Мой Ютуб канал" onclick="javascript:document.location.href='https://www.youtube.com/@HackerC';" id="fYouTubeBtn" src="Pictures/YouTube.ico">YouTube</img>
+<img title="Мой Телеграм "onclick="javascript:document.location.href='tg://resolve?domain=HCPPSTUDIO';" id="fTelegramBtn" src="Pictures/TG.webp">TELEGRAM</img>
+<img title="Мой Гитхаб резопозиторий"onclick="javascript:document.location.href='https://github.com/HCPP20334';" id="fGitBtn" src="Pictures/git.svg">GITHUB</img>
+<img title="Моя Страница в ВК"onclick="javascript:document.location.href='https://vk.com/hcpp20334';" id="fVKBtn" src="Pictures/VK.webp">VK</img>
  </div>
   <div id="PayMe">
   <p>help with money</p>
   <p>DonationAlerts</p>
   <button onclick="javascript:document.location.href='https://www.donationalerts.com/r/hackercplusplus';"id="donatebtn">DonationAlerts</button>
-<iframe src="https://widget.donatepay.ru/widgets/page/126ff182f09a5c380890cb8d3f2867a5c706015ad2e28d5759af011142d44189?widget_id=5007106&sum=200" width="510" height="220" frameBorder="0"></iframe>
+<iframe src="https://widget.donatepay.ru/widgets/page/126ff182f09a5c380890cb8d3f2867a5c706015ad2e28d5759af011142d44189?widget_id=5007106&sum=200" width="400" height="220" frameBorder="0"></iframe>
   <button onclick="javascript:fDonateShow();"id="donatebtn">No Thanks!</button>
   </div>
   <div id="ConsoleStyle">
@@ -161,10 +171,9 @@ let fLBPoint = 0;
 var fTLPlayer = document.getElementById('TLPlayer');
 var fGetDate  = document.getElementById('GetDate');
 var fDateTime;
-    var date = new Date();
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var seconds = date.getSeconds();
+let fMin = 0;
+let fHour = 0;
+let fSecond = 0;
     var fGetStyle = document.head;
 var fLinksText = document.getElementById('linksbtn');
 var fProjectsText = document.getElementById('fprojectsB');
@@ -178,12 +187,31 @@ var  fWebSiteMode;
 var fAvg = document.getElementById('avg-debug');
 var fVer = document.getElementById('web-mode');
 var fPass;
-let fTimer = 0;
 var fSTp = document.getElementById('ps_4_result');
 var fIntro = document.getElementById('FirstIntro');
 let fLen = 0;
 let i = 0;
 let fData0 = 0;
+var fTimer = document.getElementById('site-timer');
+var fDebug_console;
+var fTestText = 'JoyStickEmu Build 1.0.9'+'\r\n'+'Compiler TDM-3.9.2 (MinGW-gcc) Writtein C++ (C++11)'+'\r\n'+'Supported (Xiput Gamepad (driver :1.4.0),D-Pad (Not Supported!)'+'\r\n'+'Install DS4Windows for Work DualShock4';
+fDebug_console =document.getElementById('console').value; 
+  document.getElementById('console').oninput = function() 
+  {
+  fDebug_console = this.value;
+  if(fDebug_console == '/sl0')
+  {
+     fSelectorStyles(0);
+  }
+  if(fDebug_console == '/sl1')
+  {
+     fSelectorStyles(1);
+  }
+  if(fDebug_console == '/restart')
+  {
+    fMain();
+  }
+  }       
 function fGeneratePassWord(Length)
 {
     fData0 = 30;
@@ -197,20 +225,20 @@ function fGetsClicks(fClick,fOutValue) {
     // body...
    // return fClick;
      fOutValue.innerHTML = fClick;
-    if(fClick  >= 10)
+    if(fClick  >= 50)
     {
        fOutValue.innerHTML = 'Error: Fluding!!';
-       fClick = 10;
-        location.replace("Error.html");
+       fClick = 50;
+          if(window.screen.height > 720)
+      {
+        location.replace('Error.html');
+      }
+       if(window.screen.height <= 720)
+      {
+        location.replace('Error720.html');
+      }
     }
 }
-function fGT()
-{
-    document.clock.full.value=date.toLocaleString();
-    
-setTimeout('fGT()',500)
-}
-
  fGPlay.src =document.getElementById('FileLoader').value; 
   document.getElementById('FileLoader').oninput = function() 
   {
@@ -320,7 +348,14 @@ function fLoadSite()
         document.getElementById('ConsoleStyle').style.display = 'none';
         document.getElementById('bar-top').style.display = 'none';
         setTimeout("fMain();", 2000);
-      location.replace('intro.html');
+      if(window.screen.height > 720)
+      {
+        location.replace('intro.html');
+      }
+       if(window.screen.height <= 720)
+      {
+        location.replace('intro720.html');
+      }
 }
 function fMain() {
          fLight();
@@ -332,6 +367,8 @@ function fMain() {
         fLoading(0);
             document.getElementById('ConsoleStyle').style.display = 'block';
         document.getElementById('bar-top').style.display = 'block';
+        document.body.style.width = window.screen.width;
+         document.body.style.height = window.screen.height;
         fVer.innerHTML =fWebSiteMode;
         fNoShowAccepts(num);
      if(num == 0)
