@@ -265,7 +265,7 @@ body {width: 100%;height: 100%;}
   #donate-Btn{border:none;width:60px;height:40px;background-color:#07080f;font-family:'hack';border-radius:4px;margin:center-right;}
   #donate-Btn:hover{border:none;width:60px;height:40px;background-color:#7C8085;color:white;font-family:'hack';margin:center-right;border-radius:10px;}
   #image-main{transform: translateY(-200px);}
-  #fAbout {background-color:#07080f; width:200px;height:170px;color:white;font-family:'hack';text-align:center;transform: translateY(-500px);animation:fYBounds 2s;}
+  #fAbout {display:none;background-color:#1B1C1E; width:400px;height:600px;color:white;font-family:'hack';text-align:center;margin:auto;border: 2px solid #35d555;}
   #value7,#value4,#get-system,#Text-Buffer{text-align:center;font-family:'hack';animation:fXBounds 2s;color:white;}
   #PayMe {display:none;background-color:#1B1C1E; width:400px;height:600px;color:white;font-family:'hack';text-align:center;margin:auto;border: 2px solid #35d555;}
   #Text00,#Text01,#Text02,#Text1,#Text2,#Text3{font-family:'hack';text-align:center;animation:fXBounds 2s;color:#14FA05;font-size:20px;}
@@ -370,7 +370,7 @@ body {width: 100%;height: 100%;}
   #imgIcon:hover {width: 102px;height: 102px;}
   #buttonsM{transform: translateX(120px) translateY(-80px);}
   #MessageBox{display:none;width:150px;height:60px;color:#14FA05;font-family:'hack';border-radius:16px;background-color:#07080f;text-align:center;}
-  #Tools{display:none;background-color:#2C3E50; width:300px;height:600px;color:white;font-family:'hack';text-align:center;margin:auto;border-radius:10px; transform:translateY(-110px);animation:fColorA 1s infinite; }
+  #Tools{display:none;background-color:#1B1C1E; width:400px;height:600px;color:white;font-family:'hack';text-align:center;margin:auto;border: 2px solid #35d555; }
   #TLPlayer{display:none;background-color:#07080f; width:50%;height:50%;color:white;font-family:'hack';text-align:center;margin:auto;border-radius:10px; transform:translateY(-110px);animation:fColorA 1s infinite; }
   #BtnNext
 {
