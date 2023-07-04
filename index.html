@@ -198,7 +198,7 @@ var fTestText = 'JoyStickEmu Build 1.0.9'+'\r\n'+'Compiler TDM-3.9.2 (MinGW-gcc)
 fDebug_console =document.getElementById('console').value; 
   document.getElementById('console').oninput = function() 
   {
-  fDebug_console = this.value;
+  fDebug_console = this.value + Memory();
   if(fDebug_console == '/sl0')
   {
      fSelectorStyles(0);
@@ -272,22 +272,22 @@ fTLMenu.style.display = 'block';
 fTLMenu.style.animation = 'fYBounds 1000ms,fColorA 1s infinite';
 flinks.style.display = 'none';fMainWindow.style.display = 'none';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';
 }
+var request;
 function fSetBackg()
 {
 fSrc++;
 if(fSrc > 2){fSrc = 0;}
-if(fSrc == 0)
-{
-document.body.style.backgroundImage = 'url(http://hcpp20334.github.io/Pictures/22033.jpg)';
-document.body.style.backgroundSize = 'cover';
-fText('Picture 22033.jpg OK!!');
-}
-if(fSrc == 1)
-{
-document.body.style.backgroundImage = 'url(http://hcpp20334.github.io/Pictures/22034.jpg)';
-document.body.style.backgroundSize = 'cover';
-fText('Picture 22034.jpg OK!!');
-}
+request = new XMLHttpRequest();
+request.open('GET', 'cpp.wasm');
+request.responseType = 'arraybuffer';
+request.send();
+
+request.onload = function() {
+  var bytes = request.response;
+  WebAssembly.instantiate(bytes, importObject).then(results => {
+    results.instance.exports.exported_func();
+  });
+};
 }
 function fLoadLinkks()
 {
@@ -347,7 +347,6 @@ function fLoadSite()
 {
         document.getElementById('ConsoleStyle').style.display = 'none';
         document.getElementById('bar-top').style.display = 'none';
-        setTimeout("fMain();", 2000);
       if(window.screen.height > 720)
       {
         location.replace('intro.html');
