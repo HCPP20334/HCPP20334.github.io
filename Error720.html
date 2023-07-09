@@ -1,12 +1,21 @@
 <html>
-<p id="intro-text">Loading..</p>
-<style type="text/css">html{background-color: rgb(17,17,22);}#intro-text{color: red;text-shadow: 0 0 4px red;border-bottom: 2px solid #35d555;font-size:30px;text-align: center;transform: translateY(600px);}
-#button-back{display:none;transform: translateY(700px);margin:auto;background-color: rgb(17,17,22);color: white;width: 170px;height: 40px;border-radius:2px;font-size: 20px;font-family: Space Mono, sans-serif;border:none;}
-  #button-back:hover{text-shadow: 0 0 8px #35d555;border: 2px solid #35d555;color: #35d555;} #test_bot{border: 2px solid #35d555;background-color: rgb(17,17,22);color:white;transform: translateX(430px) translateY(30px);width: 230px;margin:auto;}#test-bot{color:white;text-align:center; transform :translateY(20px);text-shadow: 0 0 8px white;}#name{color: white;text-shadow: 0 0 8px white;text-align: center;transform: translateY(-60px);font-size: 50px;}#img_01{transform: translateX(365px); translateY(-100px);margin:auto;}#intro-text0{text-shadow: 0 0 4px red;border-bottom: 2px solid #35d555;transform: translateY(-650px);}</style>
-  <img id="img_01" src="Pictures/homyak.png" width="400" height="375">
-  <p id="name">HCPP STUDIO</p>
+<p id="intro-text">Error: spam attack's!!</p>
+<style type="text/css">html{background-color:rgb(20,23,38);}#name{color:White; text-shadow: 0 0 4px rgb(54,61,255);font-size: 40px;font-family: 'Consolas';text-align:center;}
+#test-bot{color:White; text-shadow: 0 0 4px rgb(54,61,255);font-size: 20px;font-family: 'Consolas';text-align:center;}#test_bot{display:block;margin: auto;background: #1B1C1E;border-radius:4px;transition: opacity .2s;appearance: none;color:white;font-family:'consolas';}
+	#main-window
+{
+	background-color:rgb(20,23,38);
+	width: 100%;
+	height:80%;
+	border: 2px solid rgb(54,61,255);
+}
+</style>
+  <div id="main-window">
+  	<p id="name">HCPP STUDIO</p>
+  	<p title="400" id="test-bot">Вы слишком много сделали кликов на сайте</p>
+  	<p title="400" id="test-bot">Мы должны убедится что вы не бот!!</p>
 	<p title="400" id="test-bot">Сколько будет 4*5(30-10)?Наведите на Задание там ответ</p><input type="comment" id="test_bot" ></input>
-	<div id="intro-text0"></div>
+</div>
 <script type="text/javascript">
 	let fTmR = 0;
 	let TestBot = 0;
@@ -14,7 +23,9 @@
 	var fBtn_0 = document.getElementById('button-back');
 	var fBtn_2 = document.getElementById('test_bot');
 	var fBtn_02 = document.getElementById('test-bot');
-setInterval("document.getElementById('intro-text').innerHTML = 'Error: Fluding!!..';",10);
+	var ftm = document.getElementById('tm_0');
+	let fValS = 0;
+setInterval("fValS++;ftm.innerHTML = 'Timer:'+ fValS;if(fValS < 1000){document.getElementById('intro-text').innerHTML = 'Error: Fluding!!..';}if(fValS > 1000){document.getElementById('intro-text').innerHTML = 'Error: Время истекло!..';}if(fValS > 1200){location.replace('404.html');}",10);
 fRD134c =document.getElementById('test_bot').value; 
   document.getElementById('test_bot').oninput = function() 
   {
@@ -25,6 +36,7 @@ fRD134c =document.getElementById('test_bot').value;
   }
   if(TestBot == 4352)
 {
+	location.replace('404.html');
 	location.replace('index.html');
 	fBtn_0.style.display = 'none';
 	fBtn_0.style.display = 'none';
