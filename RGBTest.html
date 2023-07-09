@@ -1,0 +1,75 @@
+<html>
+<div id="rgb-test">
+<h1 id="main-text">HCPP RGB Tool v1.0</h1>
+<p id="red_text">Red  <input id="red_color" type="range" min="0" max="255" step="1" value="1"><p id="value_r"></p>
+<p id="Green_text">Green<input id="green_color" type="range" min="0" max="255" step="1" value="1"><p id="value_g"></p>
+<p id="blue_text">Blue <input id="blue_color" type="range" min="0" max="255" step="1" value="1"><p id="value_b"></p>
+<p id="value_rbg"></p>
+<div id="block_color_text">
+</div>
+<button onclick="javascript:location.replace('index.html');"id="Exit-main">Back</button>
+</div>
+<style>
+	html
+	{
+		background-color:rgb(20,23,38);
+	}
+#block_color_text
+{
+	backgrouund-color: #35d555;
+	width: 100px;
+	height:100px;
+	display:block;margin:auto;
+}
+#rgb-test
+{
+	background-color:rgb(20,23,38);
+	width: 100%;
+	height:80%;
+	border: 2px solid rgb(54,61,255);
+}
+#Exit-main{display:block;margin:auto;border: 2px solid rgb(54,61,255);background-color:rgb(20,23,38);width: 30%;height:10%;color:White; text-shadow: 0 0 1px white;font-family: 'Consolas';font-size:20px; }
+#Exit-main:hover{background-color:#1B1C1E;}
+#red_color::-webkit-slider-thumb {-webkit-appearance: none; appearance: none;width: 25px;height: 25px;background:rgb(54,61,255);cursor: pointer;border-radius:12px;}
+#green_color::-webkit-slider-thumb {-webkit-appearance: none; appearance: none;width: 25px;height: 25px;background:rgb(54,61,255);cursor: pointer;border-radius:12px;}
+#blue_color::-webkit-slider-thumb {-webkit-appearance: none; appearance: none;width: 25px;height: 25px;background: rgb(54,61,255);cursor: pointer;border-radius:12px;}
+#red_color{-webkit-appearance: none;width: 30%;height: 15px; background: #1B1C1E;-webkit-transition: .2s; transition: opacity .2s;border-radius:4px;display:block;margin:auto;}
+#green_color{-webkit-appearance: none;width: 30%;height: 15px; background: #1B1C1E;-webkit-transition: .2s; transition: opacity .2s;border-radius:4px;display:block;margin:auto;}
+#blue_color{-webkit-appearance: none;width: 30%;height: 15px; background: #1B1C1E;-webkit-transition: .2s; transition: opacity .2s;border-radius:4px;display:block;margin:auto;}
+#red_text{color:White;text-shadow: 0 0 4px rgb(54,61,255);font-size: 20px;font-family: 'Consolas';text-align:center;}
+#green_text{color:White; text-shadow: 0 0 4px rgb(54,61,255);font-size: 20px;font-family: 'Consolas';text-align:center;}
+#blue_text{color:White; text-shadow: 0 0 4px rgb(54,61,255);font-size: 20px;font-family: 'Consolas';text-align:center;}
+#main-text,#value_rbg{color:White; text-shadow: 0 0 1px white;font-family: 'Consolas';text-align:center;}
+</style>
+<script>
+var fBar_0 = document.getElementById('red_color');
+var fBar_1 = document.getElementById('green_color');
+var fBar_2 = document.getElementById('blue_color');
+var fblock_color_text = document.getElementById('block_color_text');
+var fvalue_rbg = document.getElementById('value_rbg');
+let fR = 0;
+let fG = 0;
+let fB = 0;
+fR = fBar_0.value;
+fBar_0.oninput = function() {
+	fR = this.value;
+	fblock_color_text.style.backgroundColor = 'rgb('+fR+','+fG+','+fB+')';
+	fblock_color_text.style.backgroundColor = 'rgb('+fR+','+fG+','+fB+')';
+	fvalue_rbg.innerHTML = 'rgb('+fR+','+fG+','+fB+')';
+}
+fG = fBar_1.value;
+fblock_color_text.style.backgroundColor = 'rgb('+fR+','+fG+','+fB+')';
+fBar_1.oninput = function() {
+	fG = this.value;
+	fblock_color_text.style.backgroundColor = 'rgb('+fR+','+fG+','+fB+')';
+	fvalue_rbg.innerHTML = 'rgb('+fR+','+fG+','+fB+')';
+}
+fB = fBar_2.value;
+fblock_color_text.style.backgroundColor = 'rgb('+fR+','+fG+','+fB+')';
+fBar_2.oninput = function() {
+	fB = this.value;
+	fblock_color_text.style.backgroundColor = 'rgb('+fR+','+fG+','+fB+')';
+	fvalue_rbg.innerHTML = 'rgb('+fR+','+fG+','+fB+')';
+}
+</script>
+</html>
