@@ -328,7 +328,7 @@ function getPlatform() {
         if (userDeviceArray[i].platform.test(platform)) {
             return userDeviceArray[i].device;
             fOSName.innerHTML = 'OS:'+userDeviceArray[i].device;
-            if(userDeviceArray[i].device == 'Android'){fOSName.innerHTML = 'Android Version not Stable!!'}
+            if(userDeviceArray[i].device == 'Android'){fOSName.innerHTML = 'Android Version not Stable!!';document.getElementById('styleJS').href= "MySite0.css";}
         }
     }
     return 'Неизвестная платформа!' + platform;
@@ -355,6 +355,11 @@ function fLoadSite()
        if(window.screen.height <= 720)
       {
         location.replace('intro720.html');
+      }
+      if(window.screen.width == 0)
+      {
+         location.replace('intro.html');
+        document.getElementById('styleJS').href= "MySite0.css";
       }
 }
 function fMain() {
@@ -384,7 +389,6 @@ function fMain() {
     var num = Number(localStorage.num) || 0;
     localStorage.num = ++num;
     fOSName.innerHTML = 'OS:'+getPlatform();
-    if(getPlatform() == 'Android'){alert("Mobile Version it's Beta !!!");fMainWindow.style.fontSize = '10';fMainWindow.style.width =  window.screen.width;fButtonS.style.transform = 'translateY(5px)';}
     document.getElementById('fScreeen').innerHTML = 'Screen:'+window.screen.width+'x'+window.screen.height;
     if(localStorage.num > 1)
     {
@@ -397,6 +401,7 @@ function fMain() {
     if(localStorage.num == 1)
     {
         fMain();
+        localStorage.num = 0;
     }
 
     // fNoShowAccepts();
@@ -476,7 +481,6 @@ function fNoShowAccepts(fSession)
          fText("Сайт обновлен!! ");
          fGetStarted.style.display = 'block';
          fMainWindow.style.display = 'none';
-         document.getElementById('styleJS').href= "MySite0.css";
     }
     if(fSession == 1)
     {
