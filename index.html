@@ -14,8 +14,8 @@
    <div id="bar-top">
     <p id="text-tt">HCPP Studio</p>
    <img id="imgIcon"src="https://hcpp20334.github.io/Pictures/images.jfif" width='100';height='100';/>  
-    <button onclick="javascript:fLoadLinkks();"id="linksbtn">Links</button><button onclick="javascript:fLoadProjects();"id="fprojectsB">Projects</button><button onclick="javascript:fLoadSet();"id="settingsb">Settings</button><button onclick="javascript:fDShow++;fDonateShow();"id="fItemDn">Help</button><button onclick="javascript:fTools();"id="ToolsBtn">Tools</button>
-     <button onclick="javascript:location.replace('debug.html');"id="ToolsBtn">DebugMenu</button>
+    <button onclick="javascript:fLoadLinkks();"id="linksbtn">Links</button><button onclick="javascript:fLoadProjects();"id="fprojectsB">Projects</button><button onclick="javascript:fLoadSet();"id="settingsb">Settings</button><button onclick="javascript:fDonateShow();"id="fItemDn">Help</button><button onclick="javascript:fTools();"id="ToolsBtn">Tools</button>
+     <button onclick="javascript:dfDebugMenu();"id="ToolsBtn">DebugMenu</button>
 	</div>
 	<p id="MessageBox"/>
 </div>
@@ -48,15 +48,14 @@
    <div id="fProjects">
      <button onclick="javascript:fLoadProjects()"id="fCloseProject">X</button>
      <p id="fProjText">Projects</p>
-	 <p >--</p>
    <script type="text/javascript">
    setInterval("document.getElementById('btnSource').onmouseover = function () { document.getElementById('btnSource').title = fTestText;};",1);
 </script>
-<p title="d" onclick="javascript:document.location.href='https://github.com/HCPP20334/JoyStickTest/blob/main/JoyStickEmu.exe?raw=true;';"id="btnSource">JoyStickEmu (C++) Build 1.1.3 09.07.23</p>
-<p title="d"onclick="javascript:document.location.href='https://github.com/HCPP20334/PassGenerator/blob/main/PassGenerator.exe?raw=true;';"id="btnSourceE">PassGenerator (C++)Build 1.0.6 24.03.23</p>
-<p title="d"onclick="javascript:document.location.href='https://github.com/HCPP20334/DOOM2_DS/archive/refs/heads/main.zip';"id="btnSourceE">DOOMII (C++)Build 1.0.0 24.03.23</p>
-<p title="d"onclick="javascript:document.location.href='https://github.com/HCPP20334/GPUBench/archive/refs/heads/main.zip';"id="btnSourceE">GPUBenchMark (C++)Build 1.0.1 15.04.23</p>
-<p title="d"onclick="javascript:document.location.href='https://github.com/HCPP20334/VectorEngine/archive/refs/heads/main.zip';"id="btnSourceE">VectorEngine (C++)Build 1.0.1 15.04.23</p>
+<p title="d" onclick="javascript:document.location.href='https://github.com/HCPP20334/JoyStickTest/blob/main/JoyStickEmu.exe?raw=true;';"id="btnSource">JoyStickEmu (C++) Build 1.1.3</p>
+<p title="d"onclick="javascript:document.location.href='https://github.com/HCPP20334/PassGenerator/blob/main/PassGenerator.exe?raw=true;';"id="btnSourceE">PassGenerator (C++)Build 1.0.6</p>
+<p title="d"onclick="javascript:document.location.href='https://github.com/HCPP20334/DOOM2_DS/archive/refs/heads/main.zip';"id="btnSourceE">DOOMII (C++)Build 1.0.0</p>
+<p title="d"onclick="javascript:document.location.href='https://github.com/HCPP20334/GPUBench/archive/refs/heads/main.zip';"id="btnSourceE">GPUBenchMark (C++)Build 1.0.1 </p>
+<p title="d"onclick="javascript:document.location.href='https://github.com/HCPP20334/VectorEngine/archive/refs/heads/main.zip';"id="btnSourceE">VectorEngine (C++)Build 1.0.1 </p>
 <p title="d"onclick="javascript:fText('Copiled MinGW-gcc C++11');"font-family="hack">Copiled MinGW-gcc C++11</p>
 <input type="comment" id="console">
 </div>
@@ -82,6 +81,7 @@
   <p>last update:02.04.23</p>
   <p>Running:11.03.23</p>
   <p id="site-timer">0:0:0</p>
+  <button onclick="javascript:fMain();">Reset</button>
   <button onclick="javascript:document.location.href='https://github.com/HCPP20334/HCPP20334.github.io/blob/main/index.html';fBtnSource.innerHTML = 'Loading...';" id="btnSource">Source Web Site</button>
 </div>
     <div id="links">
@@ -92,6 +92,18 @@
 <img title="Мой Гитхаб резопозиторий"onclick="javascript:document.location.href='https://github.com/HCPP20334';" id="fGitBtn" src="Pictures/git.svg">GITHUB</img>
 <img title="Моя Страница в ВК"onclick="javascript:document.location.href='https://vk.com/hcpp20334';" id="fVKBtn" src="Pictures/VK.webp">VK</img>
  </div>
+ <div id="debug-window">
+ <p id="db_text">Меню отладки</p>
+ <button id="db_btn_reset">Reset</button>
+ <button onclick="javascript:fSelectorStyles(0);" id="db_btn_rs_style">Переподключить CSS</button>
+ <p id="db_command_line">Консоль</p>
+ <p id="db_command_line"> -index - перейти на index.html</p>
+ <p id="db_command_line"> -Error - перейти на Error.html</p>
+ <p id="db_command_line"> -404 - перейти на 404.html</p>
+ <p id="db_command_line"> -intro - перейти на intro.html</p>
+ <input type="comment" id="db_command_line_in">
+ <button onclick="javascript:dfDebugMenuCrashed();"id="db_btn_destroy">Закрыть окно</button>
+</div>
   <div id="PayMe">
   <p>help with money</p>
   <p>DonationAlerts</p>
@@ -135,6 +147,7 @@ let fSL_Point = 0;
 let fSession = 0;
 let f1 = 0;
 let f0 = 0;
+var fSend_btn;
 var fTextBuffer = document.getElementById('Text-Buffer');
 var fLtStyle = document.getElementById('LightBtn');
 var fLgBtn = document.getElementById('LangBtn');
@@ -195,24 +208,42 @@ let i = 0;
 let fData0 = 0;
 var fTimer = document.getElementById('site-timer');
 var fDebug_console;
+var fBufferCdg = document.getElementById('db_command_line_in');
+var fDb_window = document.getElementById('debug-window');
 var fTestText = 'JoyStickEmu Build 1.0.9'+'\r\n'+'Compiler TDM-3.9.2 (MinGW-gcc) Writtein C++ (C++11)'+'\r\n'+'Supported (Xiput Gamepad (driver :1.4.0),D-Pad (Not Supported!)'+'\r\n'+'Install DS4Windows for Work DualShock4';
-fDebug_console =document.getElementById('console').value; 
-  document.getElementById('console').oninput = function() 
-  {
-  fDebug_console = this.value + Memory();
-  if(fDebug_console == '/sl0')
-  {
-     fSelectorStyles(0);
-  }
-  if(fDebug_console == '/sl1')
-  {
-     fSelectorStyles(1);
-  }
-  if(fDebug_console == '/restart')
-  {
-    fMain();
-  }
-  }       
+fBufferCdg.oninput = function()
+{
+
+        if(this.value == '-index')
+        {
+            location.replace("index.html");
+        }
+        if(this.value == '-intro')
+        {
+            location.replace("intro.html");
+        }
+        if(this.value == '-Error')
+        {
+            location.replace("Error.html");
+        }
+        if(this.value == '-404')
+        {
+            location.replace("404.html");
+        }
+        if(this.value == '--set1')
+        {
+            fSetW.style.display = 'block';
+        }
+        if(this.value == '--set0')
+        {
+            fSetW.style.display = 'none';
+        }
+        if(this.value == '-gs0')
+        {
+            fGetStarted.style.display = 'block';
+            fMainWindow.style.display = 'none';
+        }
+}
 function fGeneratePassWord(Length)
 {
     fData0 = 30;
@@ -239,6 +270,18 @@ function fGetsClicks(fClick,fOutValue) {
         location.replace('Error720.html');
       }
     }
+}
+function dfDebugMenuCrashed()
+{
+    fDb_window.style.display = "none";
+    fMainWindow.style.display = 'block';
+}
+function dfDebugMenu()
+{
+    fMainWindow.style.display = 'none';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';fTLMenu.style.display = 'none';
+    fTLPlayer.style.display = 'none';
+    fDb_window.style.display = "block";
+
 }
  fGPlay.src =document.getElementById('FileLoader').value; 
   document.getElementById('FileLoader').oninput = function() 
@@ -270,8 +313,7 @@ setTimeout("fMsgSt.style.animation = 'fMXBounds 1s,fColorA 1s infinite';fMsgSt.s
 function fTools()
 {
 fTLMenu.style.display = 'block';
-fTLMenu.style.animation = 'fYBounds 1000ms,fColorA 1s infinite';
-flinks.style.display = 'none';fMainWindow.style.display = 'none';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';
+flinks.style.display = 'none';fMainWindow.style.display = 'none';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';document.getElementById('fProjects').style.display = 'none';
 }
 var request;
 function fSetBackg()
@@ -308,8 +350,8 @@ function fLoadProjects()
 {
    fProjectsP++;
    if(fProjectsP > 1){fProjectsP = 0}
-   if(fProjectsP == 0){fProjectsW.style.display = 'none';fMainWindow.style.display = 'block';fSetW.style.display = 'none';flinks.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none'}
-   if(fProjectsP == 1){fProjectsW.style.display = 'block';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';fProjectsW.style.animation= 'fYBounds 1000ms,fColorA 1s infinite';fLinkP = 0;fSetP = 0;fDShow = 0;}
+   if(fProjectsP == 0){fProjectsW.style.display = 'none';fMainWindow.style.display = 'block';fSetW.style.display = 'none';flinks.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';fTLMenu.style.display = 'none';}
+   if(fProjectsP == 1){fProjectsW.style.display = 'block';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';fLinkP = 0;fSetP = 0;fDShow = 0;fProjectsW.style.animation= 'fYBounds 1000ms';fTLMenu.style.display = 'none';}
 }
 var userDeviceArray = [
     {device: 'Android', platform: /Android/},
@@ -328,7 +370,7 @@ function getPlatform() {
         if (userDeviceArray[i].platform.test(platform)) {
             return userDeviceArray[i].device;
             fOSName.innerHTML = 'OS:'+userDeviceArray[i].device;
-            if(userDeviceArray[i].device == 'Android'){fOSName.innerHTML = 'Android Version not Stable!!';document.getElementById('styleJS').href= "MySite0.css";}
+            if(userDeviceArray[i].device == 'Android'){alert("Android Version not Stable!!");document.getElementById('styleJS').href= "MySite0.css";}
         }
     }
     return 'Неизвестная платформа!' + platform;
@@ -356,10 +398,12 @@ function fLoadSite()
       {
         location.replace('intro720.html');
       }
-      if(window.screen.width == 0)
+      if(window.screen.width < 720 || window.screen.width == 0)
       {
          location.replace('intro.html');
-        document.getElementById('styleJS').href= "MySite0.css";
+        document.getElementById('ConsoleStyle').style.transform = 'translateY(-130px)';
+        document.getElementById('ConsoleStyle').style.width = 400;
+        document.getElementById('ConsoleStyle').style.height = 300;
       }
 }
 function fMain() {
@@ -369,7 +413,8 @@ function fMain() {
         fSetBackg();
         document.getElementById('styleJS').href= "MySite0.css";
         document.getElementById('styleJS').rel="stylesheet";
-        fLoading(0);
+        fLoading(1);
+        getPlatform();
             document.getElementById('ConsoleStyle').style.display = 'block';
         document.getElementById('bar-top').style.display = 'block';
         document.body.style.width = window.screen.width;
@@ -401,7 +446,6 @@ function fMain() {
     if(localStorage.num == 1)
     {
         fMain();
-        localStorage.num = 0;
     }
 
     // fNoShowAccepts();
@@ -410,7 +454,7 @@ function fMain() {
     {
      fG = fLBPoint;
      if(fLBPoint > 1){fLBPoint = 0;}
-     if(fLBPoint == 1){document.getElementById('LoadingB').style.display = 'block';document.getElementById('bar-top').style.display = 'none';fPayMe.style.display = 'none';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'none';fLtStyle.style.display = 'none';}
+     if(fLBPoint == 1){document.getElementById('LoadingB').style.display = 'block';document.getElementById('bar-top').style.display = 'none';fPayMe.style.display = 'none';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'none';fLtStyle.style.display = 'none';fTLMenu.style.display = 'block';}
      if(fLBPoint == 0){fMainWindow.style.display = 'block';document.getElementById('bar-top').style.display = 'block';}
      }
 function fLangSel()
@@ -451,23 +495,12 @@ function fLangSel()
     {
     fDShow++;
      if(fDShow > 1){fDShow = 0;}
-     if(fDShow == 0){fPayMe.style.animation = 'fYBounds 1000ms';fPayMe.style.display = 'block';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fTLMenu.style.display = 'none';fMainWindow.style.display = 'none';fTLPlayer.style.display = 'none';fLtStyle.style.display = 'none';}
-     if(fDShow == 1){fPayMe.style.display = 'none';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'block';fTLMenu.style.display = 'none';fLtStyle.style.display = 'block';fTLPlayer.style.display = 'none'}
+     if(fDShow == 1){document.getElementById('fProjects').style.display = 'none';fPayMe.style.display = 'block';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fTLMenu.style.display = 'none';fMainWindow.style.display = 'none';fTLPlayer.style.display = 'none';fLtStyle.style.display = 'none';fProjectsW.style.display = 'none';}
+     if(fDShow == 0){document.getElementById('fProjects').style.display = 'none';fPayMe.style.display = 'none';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'block';fTLMenu.style.display = 'none';fLtStyle.style.display = 'none';fTLPlayer.style.display = 'none';fProjectsW.style.display = 'none';document.getElementById('fProjects').style.display = 'none';}
     }
 function fLight()
 {
-  fPointL++;
-  if(fPointL > 1){fPointL = 0;}
-  if(fPointLang == 0)
-  {
-   if(fPointL == 0){fMainWindow.style.animation = 'none';fText('Light:False');fText0D0.style.animation = 'none';}
-   if(fPointL == 1){fMainWindow.style.animation = 'fColorA 1s infinite';fText('Light:True');}
-  }
-  if(fPointLang == 1)
-  {
-   if(fPointL == 0){fMainWindow.style.animation = 'none';fText('Свечение:выкл');}
-   if(fPointL == 1){fMainWindow.style.animation = 'fColorA 1s infinite';fText('Свечение:вкл');}
-  }
+  fMainWindow.style.border = '2px rgb(0,255,132);';
 }
 function fNoShowAccepts(fSession)
 {

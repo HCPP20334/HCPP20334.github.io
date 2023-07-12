@@ -170,7 +170,7 @@ body {width: 100%;height: 100%;}
 	margin-left: center;
     margin-right: center ;
 	background-color:Black;
-	 font-family:'hack';
+	 font-family:'Consolas';
      animation:fColorA 1s infinite
 	}
   #title
@@ -179,7 +179,7 @@ body {width: 100%;height: 100%;}
   font-size:17px;
   text-align:center;
   color:White;
-  font-family:'hack';
+  font-family:'Consolas';
   width:500px;;
   height:30px;
   margin:auto;
@@ -196,7 +196,7 @@ body {width: 100%;height: 100%;}
   color: black;
   background-color:SlateBlue;
   font-size:30px;
-   font-family:'hack';
+   font-family:'Consolas';
   height:30px;
   width:30px;
   }
@@ -211,39 +211,46 @@ body {width: 100%;height: 100%;}
   }
   #ShowButton
   {
-  display:none;
+  display:block;
   }
-  #fYouTubeBtn {display:table;color:white;background-color:#1B1C1E ;width:68px;height:64px;border:none;font-family:'hack';border-radius:4px;margin:auto;padding:10px; }
+  #fYouTubeBtn {display:table;color:white;background-color:rgb(20,23,38);width:68px;height:64px;border:none;font-family:'Consolas';border-radius:4px;margin:auto;padding:10px; }
   #fYouTubeBtn:hover{animation: fColorA 1s infinite;border-radius:40px; }
-  #fTelegramBtn {display:table;color:white;background-color:#1B1C1E;width:68px;height:64px;border:none;font-family:'hack';border-radius:4px;margin:auto;padding:10px;}
+  #fTelegramBtn {display:table;color:white;background-color:rgb(20,23,38);width:68px;height:64px;border:none;font-family:'Consolas';border-radius:4px;margin:auto;padding:10px;}
   #fTelegramBtn:hover{ animation: fColorA 1s infinite;border-radius:40px; }
-  #fGitBtn{display:table;color:white;background-color:#1B1C1E ;width:68px;height:64px;border:none;font-family:'hack';border-radius:4px;margin:auto;padding:10px; }
+  #fGitBtn{display:table;color:white;background-color:rgb(20,23,38);width:68px;height:64px;border:none;font-family:'Consolas';border-radius:4px;margin:auto;padding:10px; }
   #fGitBtn:hover{animation: fColorA 1s infinite;border-radius:40px; }
-  #fVKBtn {display:table;color:white;background-color:#1B1C1E;width:68px;height:64px;border:none;font-family:'hack';border-radius:4px;margin:auto;padding:10px;}
+  #fVKBtn {display:table;color:white;background-color:rgb(20,23,38);width:68px;height:64px;border:none;font-family:'Consolas';border-radius:4px;margin:auto;padding:10px;}
   #fVKBtn:hover{animation: fColorA 1s infinite;border-radius:40px; }
-  #value8{color:white;background-color:#1B1C1E;width:100px;height:30px;border:none;font-family:'hack';border-radius:4px;}
-  #value8:hover{width:100px;height:20px;background-color:white;color:black;}
-  #LightBtn{display:table;color:white;background-color:#1B1C1E;width:130px;height:40px;border:none;font-family:'hack';border-radius:4px;margin:auto; animation: fColorA 1s infinite;}
-  #LightBtn:hover{width:130px;height:40px;background-color:white;color:black;}
-  #btnSource{background-color:#07080f;text-align:center;font-family:'hackRus';width:160px;height:30px;color:white; border: none;margin:auto;padding:20px;border-radius:10px; animation: fColorA 1s infinite;}
-  #btnSource:hover{background-color:darkcyan;}
-  #btnSourceE{background-color:#07080f;text-align:center;font-family:'hackRus';width:160px;height:30px;color:white; border: none;margin:auto;padding:20px;border-radius:10px; animation: fColorA 1s infinite;}
-  #btnSourceE:hover{background-color:darkcyan;}
-  #LangBtn{display:table;color:white;background-color:#07080f;width:130px;height:40px;border:none;font-family:'hack';border-radius:4px;margin:auto; animation: fColorA 1s infinite;}
-  #LangBtn:hover{width:130px;height:40px;background-color:white;color:black;}
+  #value8{color:white;background-color:rgb(20,23,38);width:100px;height:30px;border:none;font-family:'Consolas';border-radius:4px;}
+  #value8:hover{width:10%;height:5%;background-color:white;color:black;}
+  #LightBtn{display:table;color:white;background-color:rgb(20,23,38)width:10%;height:5%;border:none;font-family:'Consolas';border-radius:4px;margin:auto; animation: fColorA 1s infinite;}
+  #LightBtn:hover{width:30%;height:10%;background-color:white;color:black;}
+  #btnSourceE
+   {
+    background-color:rgb(20,23,38);color: white;
+    width: 30%;
+    height:10%;
+    display:table;margin:auto;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 30px;
+  }
+  #btnSource
+  {
+    background-color:rgb(20,23,38);color: white;
+    width: 30%;
+    height:10%;
+    display:table;margin:auto;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 30px;
+  }
+  #btnSourceE:hover{border: 2px solid rgb(0,255,132);}
+  #btnSource:hover{border: 2px solid rgb(0,255,132);}
+  #LangBtn{display:table;color:white;background-color:rgb(20,23,38);width:10%;height:5%;border:none;font-family:'Consolas';border-radius:4px;margin:auto; animation: fColorA 1s infinite;}
+  #LangBtn:hover{width:10%;height:5%;background-color:white;color:black;}
   #ConsoleStyle
   {
-  display:block;
-  color:white;
-  margin:auto;
-  height:30%;
-  width:30%;
-  animation:fYBounds 1000ms;
-  border: 2px solid #35d555;
-  background-color:#1B1C1E;
-  transform:translateY(-10px);
-  margin:auto;
-  border-radius:4px;
+    display: block;margin: auto;
+         background-color: rgb(20,23,38);
+         border: 2px solid rgb(54,61,255);
+         width: 80%;
+         height: 50%;
+         transition: all .8s;
   }
   @keyframes fAColors
    {
@@ -259,126 +266,175 @@ body {width: 100%;height: 100%;}
 	   90%{color:#14FA05;}
 	   100%{color:#3F4044;}
    }
-  #donate{border:none;opacity:none;width:300px;height:70px;animation:fColorA 1s infinite}
-  #donatebtn{border:none;width:160px;height:40px;background-color:#F5B041;font-family:'hack';border-radius:4px;}
-  #donatebtn:hover{border:none;width:160px;height:40px;background-color:#D68910;color:white;font-family:'hack';}
-  #donate-Btn{border:none;width:60px;height:40px;background-color:#07080f;font-family:'hack';border-radius:4px;margin:center-right;}
-  #donate-Btn:hover{border:none;width:60px;height:40px;background-color:#7C8085;color:white;font-family:'hack';margin:center-right;border-radius:10px;}
+  #donate{ display: none;margin: auto;
+         background-color: rgb(20,23,38);
+         border: 2px solid rgb(54,61,255);
+         width: 40%;
+         height: 30%;
+         transition: all .8s;.8s;color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px;}
+  #donatebtn{ background-color:rgb(20,23,38);color: white;
+  width: 31%;
+  height:10%;
+  display:table;margin:auto;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 25px;}
+  #donatebtn:hover{border: 2px solid rgb(0,255,132);}
+  #donate-Btn{background-color:rgb(20,23,38);color: white;
+  width: 31%;
+  height:10%;
+  display:table;margin:auto;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 25px}
+  #donate-Btn:hover{border: 2px solid rgb(0,255,132);}
   #image-main{transform: translateY(-200px);}
-  #fAbout {background-color:#07080f; width:200px;height:170px;color:white;font-family:'hack';text-align:center;transform: translateY(-500px);animation:fYBounds 2s;}
-  #value7,#value4,#get-system,#Text-Buffer{text-align:center;font-family:'hack';animation:fXBounds 2s;color:white;}
-  #PayMe {display:none;background-color:#1B1C1E; width:400px;height:600px;color:white;font-family:'hack';text-align:center;margin:auto;border: 2px solid #35d555;}
-  #Text00,#Text01,#Text02,#Text1,#Text2,#Text3{font-family:'hack';text-align:center;animation:fXBounds 2s;color:#14FA05;font-size:20px;}
-   #linksbtn{color:white;background-color:#1B1C1E; width:125px;height:60px;border:none;font-family: Space Mono, sans-serif;font-size: 20px;border-radius:2px;transition: all .4s;}
+  #fAbout {background-color:#07080f; width:200px;height:170px;color:white;font-family:'Consolas';text-align:center;transform: translateY(-500px);animation:fYBounds 2s;}
+  #value7,#value4,#get-system,#Text-Buffer{text-align:center;font-family:'Consolas';animation:fXBounds 2s;color:white;}
+  #PayMe {display: none;margin: auto;
+         background-color: rgb(20,23,38);
+         border: 2px solid rgb(54,61,255);
+         width: 40%;
+         height: 50%;
+         transition: all .8s;.8s;color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px;text-align: center;}
+  #Text00,#Text01,#Text02,#Text1,#Text2,#Text3{font-family:'Consolas';text-align:center;  color:rgb(0,255,132);;font-size:20px;}
+   #linksbtn{color:white;background-color: rgb(20,23,38);width:125px;height:60px;border: 2px rgb(20,23,38);font-family: 'Consolas';font-size: 20px;border-radius:2px;transition: all .4s;}
   #linksbtn:hover
   {
      color: #35d555;
    text-shadow: 0 0 4px #35d555;border-bottom: 2px solid #414141;
    width:125px;height:60px;
     border:none;
-    font-family:'hack';
+    font-family:'Consolas';
     border-radius: 2px;
     margin-top: 10px;
    margin-bottom: 10px;
-   font-family: Space Mono, sans-serif;
    font-size: 20px;
    font-weight: 400;
    transition: all .4s;
    border-bottom: 2px solid #35d555;
 }
- #settingsB{color:white;background-color:#1B1C1E; width:125px;height:60px;border:none;font-family: Space Mono, sans-serif;font-size: 20px;border-radius:2px;transition: all .4s;}
+ #settingsB{display:none;color:white;background-color: rgb(20,23,38);width:125px;height:60px;border: 2px rgb(20,23,38);font-family: 'Consolas';font-size: 20px;border-radius:2px;transition: all .4s;}
   #settingsB:hover
   {
     color: #35d555;
    text-shadow: 0 0 4px #35d555;border-bottom: 2px solid #414141;
      width:125px;height:60px;
     border:none;
-    font-family:'hack';
+    font-family:'Consolas';
     border-radius: 2px;
     margin-top: 10px;
    margin-bottom: 10px;
-   font-family: Space Mono, sans-serif;
    font-size: 20px;
    font-weight: 400;
    transition: all .4s;
   border-bottom: 2px solid #35d555;
 }
-  #fItemDn{color:white;background-color:#1B1C1E; width:125px;height:60px;border:none;font-family: Space Mono, sans-serif;font-size: 20px;border-radius:2px;transition: all .4s;}
+  #fItemDn{color:white;background-color: rgb(20,23,38);width:125px;height:60px;border: 2px rgb(20,23,38);font-family: 'Consolas';font-size: 20px;border-radius:2px;transition: all .4s;}
   #fItemDn:hover
   {
     color: #35d555;
    text-shadow: 0 0 4px #35d555;border-bottom: 2px solid #414141;
     width:125px;height:60px;
     border:none;
-    font-family:'hack';
+   font-family:'Consolas';
     border-radius: 2px;
     margin-top: 10px;
    margin-bottom: 10px;
-   font-family: Space Mono, sans-serif;
    font-size: 20px;
-   font-weight: 400;
    transition: all .4s;
    border-bottom: 2px solid #35d555;
 }
-  #fprojectsB{color:white;background-color:#1B1C1E; width:125px;height:60px;border:none;font-family: Space Mono, sans-serif;font-size: 20px;border-radius:2px;transition: all .4s;}
+  #fprojectsB{color:white;background-color: rgb(20,23,38); width:125px;height:60px;border: 2px solid rgb(20,23,38);font-family:'Consolas';font-size: 20px;border-radius:2px;transition: all .4s;}
   #fprojectsB:hover
   {
     color: #35d555;
    text-shadow: 0 0 4px #35d555;border-bottom: 2px solid #414141;
     width:125px;height:60px;
     border:none;
-    font-family:'hack';
+    font-family:'Consolas';
     border-radius: 2px;
     margin-top: 10px;
    margin-bottom: 10px;
-   font-family: 'Space Mono, sans-serif';
    font-size: 20px;
-   font-weight: 400;
    transition: all .4s;
    border-bottom: 2px solid #35d555;
 }
   #space{color:#07080f;background-color:#1B1C1E;width:160px;height:30px;bolder: 2px gray;}
-  #links {display:none;background-color:#1B1C1E; width:300px;height:600px;color:white;font-family:'hack';text-align:center;margin:auto;border-radius:10px; transform:translateY(-110px); border: 2px solid #35d555}
-  #settings{display:none;background-color:#1B1C1E; width:300px;height:600px;color:white;font-family:'hack';text-align:center;margin:auto;border-radius:10px; transform:translateY(-110px); border: 2px solid #35d555}
-  #fProjects{display:none;background-color:#1B1C1E; width:300px;height:600px;color:white;font-family:'hack';text-align:center;margin:auto;border-radius:10px; transform:translateY(-110px); border: 2px solid #35d555}
-  #fLinkText{padding:20px;}
-  #fSettText{padding:20px;}
-  #fProjText{padding:20px;}
-  #fCloseLinks{background-color:#1B1C1E;border:none;font-family:'hack';transform:translateX(100px);padding:0px;font-size:30px;color:white;}
-  #fCloseLinks:hover{background-color:#1B1C1E;border:none;font-family:'hack';color:#35d555;text-shadow: 0 0 4px #35d555;}
-  #fCloseSett{background-color:#1B1C1E;border:none;font-family:'hack';transform:translateX(100px);padding:0px;font-size:30px;color:white;}
-  #fCloseSett:hover{background-color:#1B1C1E;border:none;font-family:'hack';color:#35d555;text-shadow: 0 0 4px #35d555;}
-  #fCloseProject{background-color:#1B1C1E;border:none;font-family:'hack';transform:translateX(100px);padding:0px;font-size:30px;color:white;}
-  #fCloseProject:hover{background-color:#1B1C1E;border:none;font-family:'hack';color:#35d555;text-shadow: 0 0 4px #35d555;}
-  #bar-top{width:100%;height:225px;background-color:#1B1C1E;transform:translateY(-30px);border-radius:6px;border: 2px solid #35d555;text-shadow: 0 0 4px #35d555;}
-  #text-tt{font-family:'hack';color:white;font-size:30px;padding:20px;margin:10px;transform :translateX(120px) translateY(10px);}
-  #errorJS{display:block;background-color:#07080f; color:red;font-family:'hack';text-align:center;margin:auto;border-radius:10px;  transform:translateY(-10px); width:30%; height:30%;margin:auto;}
-  #errorJSMsg{font-family:'hack';color:red;font-size:20px;}
-  #status{display:none;color:white;font-family:'hack';}
+  #links {  display: none;margin: auto;
+         background-color: rgb(20,23,38);
+         border: 2px solid rgb(54,61,255);
+         width: 50%;
+         height: 50%;
+         transition: all .8s;.8s;color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px;text-align: center;}
+  #settings{  display: none;margin: auto;
+         background-color: rgb(20,23,38);
+         border: 2px solid rgb(54,61,255);
+         width: 50%;
+         height: 50%;
+         transition: all .8s;.8s;color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px;text-align: center;}
+  #fProjects{  display: none;margin: auto;
+         background-color: rgb(20,23,38);
+         border: 2px solid rgb(54,61,255);
+         width: 50%;
+         height: 51%;
+         transition: all .8s;.8s;color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px;text-align: center;}
+  #fLinkText{padding:4px;}
+  #fSettText{padding:4px;}
+  #fProjText{padding:4px;}
+  #fCloseLinks{background-color:#1B1C1E;border:none;font-family:'Consolas';transform:translateX(100px);padding:0px;font-size:30px;color:white;}
+  #fCloseLinks:hover{background-color:#1B1C1E;border:none;font-family:'Consolas';color:#35d555;text-shadow: 0 0 4px #35d555;}
+  #fCloseSett{background-color:#1B1C1E;border:none;font-family:'Consolas';transform:translateX(100px);padding:0px;font-size:30px;color:white;}
+  #fCloseSett:hover{background-color:#1B1C1E;border:none;font-family:'Consolas';color:#35d555;text-shadow: 0 0 4px #35d555;}
+  #fCloseProject{background-color:#1B1C1E;border:none;font-family:'Consolas';transform:translateX(100px);font-size:30px;color:white;}
+  #fCloseProject:hover{background-color:#1B1C1E;border:none;font-family:'Consolas';color:#35d555;text-shadow: 0 0 4px #35d555;}
+  #bar-top{width:100%;height:21%;transform:translateY(-30px); background-color: rgb(20,23,38);border: 2px solid rgb(54,61,255); font-family: 'Consolas';}
+  #text-tt{ font-family: 'Consolas';color:rgb(0,255,132);font-size:30px;font-weight: 800;padding:20px;margin:10px;transform :translateX(120px) translateY(10px);}
+  #errorJS{display:block;background-color:#07080f; color:red;font-family:'Consolas';text-align:center;margin:auto;border-radius:10px;  transform:translateY(-10px); width:30%; height:30%;margin:auto;}
+  #errorJSMsg{font-family:'Consolas';color:red;font-size:20px;}
+  #status{display:none;color:white;font-family:'Consolas';}
   #textIntro{animation: fYBounds 1000ms;padding:30px;}
-  #ToolsBtn{color:white;background-color:#1B1C1E; width:125px;height:60px;border:none;font-family: Space Mono, sans-serif;border-radius:2px;font-size: 20px;transition: all .4s;}
+  #ToolsBtn{color:white;background-color: rgb(20,23,38);width:125px;height:60px;border: 2px rgb(20,23,38);font-family:'Consolas';border-radius:2px;font-size: 20px;transition: all .4s;}
   #ToolsBtn:hover{ color: #35d555;
   text-shadow: 0 0 4px #35d555;border-bottom: 2px solid #414141;
   border-radius: 2px;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-family: Space Mono, sans-serif;
+  font-family:'Consolas';
   font-size: 20px;
   font-weight: 400;
   transition: all .4s;}
   #imgIcon{transform: translateX(20px) translateY(-60px);border-radius:16px;animation:fColorA 1s infinite;background-color:#1B1C1E;}
   #imgIcon:hover {width: 102px;height: 102px;}
   #buttonsM{transform: translateX(120px) translateY(-80px);}
-  #MessageBox{display:none;width:150px;height:60px;color:#14FA05;font-family:'hack';border-radius:16px;background-color:#07080f;text-align:center;}
-  #Tools{display:none;background-color:#1B1C1E ;width:300px;height:300px;color:white;font-family:'hack';text-align:center;margin:auto;border-radius:10px; transform:translateY(-110px);border: 2px solid #35d555; }
-  #TLPlayer{display:none;background-color:#1B1C1E; width:50%;height:50%;color:white;font-family:'hack';text-align:center;margin:auto;border-radius:10px; transform:translateY(-110px);border: 2px solid #35d555; }
+  #MessageBox{display:none;width:150px;height:60px;color:#14FA05;font-family:'Consolas';border-radius:16px;background-color:#07080f;text-align:center;}
+  #Tools{  display: none;margin: auto;
+         background-color: rgb(20,23,38);
+         border: 2px solid rgb(54,61,255);
+         width: 50%;
+         height: 50%;
+         transition: all .8s;color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px; }
+  #TLPlayer{ display: none;margin: auto;
+         background-color: rgb(20,23,38);
+         border: 2px solid rgb(54,61,255);
+         width: 50%;
+         height: 50%;
+         transition: all .8s;color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px;  }
   #BtnNext
 {
 	 width:60px;
 	 height:40px;
 	 border-radius:20px;
 	background-color:#07080f;
-	font-family:'hack';
+	font-family:'Consolas';
 	color:#14FA05;
 	font-size:20px;
     animation:fColorA 1s infinite;
@@ -410,13 +466,22 @@ body {width: 100%;height: 100%;}
     animation: fAColors 2000ms infinite;
 	padding: 10px;
   }
-  #TLBtnA {display:table;color:white;background-color:#3F4044;width:130px;height:40px;border:none;font-family:'hack';border-radius:8px;margin:auto;}
-  #TLBtnB {display:table;color:white;background-color:#3F4044;width:130px;height:40px;border:none;font-family:'hack';border-radius:8px;margin:auto;}
-  #TLBtnC {display:table;color:white;background-color:#3F4044;width:130px;height:40px;border:none;font-family:'hack';border-radius:8px;margin:auto;}
-  #TLBtnA:hover {box-shadow: 0 4px 8px 0 #14FA05;background-color:#17202A;}
-  #TLBtnB:hover {box-shadow: 0 4px 8px 0 #14FA05;background-color:#17202A;}
-  #TLBtnC:hover {box-shadow: 0 4px 8px 0 #14FA05;background-color:#17202A;}
-  #audioPlayer {width: 100px;height:300px;margin:auto;}
+  #TLBtnA { background-color:rgb(20,23,38);color: white;
+  width: 30%;
+  height:10%;
+  display:table;margin:auto;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 30px;}
+  #TLBtnB {background-color:rgb(20,23,38);color: white;
+  width: 30%;
+  height:10%;
+  display:table;margin:auto;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 30px;}
+  #TLBtnC {background-color:rgb(20,23,38);color: white;
+  width: 30%;
+  height:10%;
+  display:table;margin:auto;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 30px;}
+  #TLBtnA:hover {border: 2px solid rgb(0,255,132);}
+  #TLBtnB:hover {border: 2px solid rgb(0,255,132);}
+  #TLBtnC:hover {border: 2px solid rgb(0,255,132);}
+  #audioPlayer {width: 800px;height:576px;margin:auto;}
   #testtheme{font-family:'hack';}
   #themeSel{display:none;width: 300px;height: 200px;border: 2px solid lightskyblue }
    #themeSel0{display:none;width: 300px;height: 200px;border: 2px solid lightskyblue }
@@ -533,3 +598,64 @@ body {width: 100%;height: 100%;}
 	text-align:center;
 	transform:  translateX(-25px) translateY(90px);
 }
+   #debug-window
+    {
+      display: none;margin: auto;
+         background-color: rgb(20,23,38);
+         border: 2px solid rgb(54,61,255);
+         width: 80%;
+         height: 50%;
+         transition: all .8s;
+    }
+    #db_text
+    {
+        text-align: center;
+        color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px;
+    }
+    #db_command_line
+    {
+      text-align: center;
+         color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px;
+    }
+    #db_btn_reset
+    {
+        color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px; 
+        border: 2px solid rgb(54,61,255);
+        background-color: rgb(20,23,38);
+        display: table;margin: auto;
+    }
+    #db_btn_destroy
+    {
+        color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px; 
+        border: 2px solid rgb(54,61,255);
+        background-color: rgb(20,23,38);
+        display: block;margin: auto;
+         margin-bottom: 30px;
+    }
+    #db_btn_rs_style
+    {
+         color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px; 
+        border: 2px solid rgb(54,61,255);
+        background-color: rgb(20,23,38);
+        display: block;margin: auto;
+    }
+    #db_command_line_in
+    {
+      background-color: rgb(20,23,38);
+      border: 2px solid rgb(54,61,255);
+       color:rgb(0,255,132);
+        font-family: 'Consolas';
+            display: block;margin: auto;
+      font-size: 20px;
+      border-radius: 4px;
+    }
