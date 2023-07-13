@@ -77,6 +77,7 @@
 </script>
 <p id="OSName">OS:None</p>
 <p id="fScreeen">Screen:none</p>
+  <p id="dStyle_file_name">Error:File not Found!!</p><style>#dStyle_file_name{color:white;font-family: 'Consolas';font-size:20px;}</style>
   <p>Statistics</p>
   <p>last update:02.04.23</p>
   <p>Running:11.03.23</p>
@@ -210,6 +211,7 @@ var fTimer = document.getElementById('site-timer');
 var fDebug_console;
 var fBufferCdg = document.getElementById('db_command_line_in');
 var fDb_window = document.getElementById('debug-window');
+var dGetStyleFile = document.getElementById('dStyle_file_name')
 var fTestText = 'JoyStickEmu Build 1.0.9'+'\r\n'+'Compiler TDM-3.9.2 (MinGW-gcc) Writtein C++ (C++11)'+'\r\n'+'Supported (Xiput Gamepad (driver :1.4.0),D-Pad (Not Supported!)'+'\r\n'+'Install DS4Windows for Work DualShock4';
 fBufferCdg.oninput = function()
 {
@@ -390,21 +392,7 @@ function fLoadSite()
 {
         document.getElementById('ConsoleStyle').style.display = 'none';
         document.getElementById('bar-top').style.display = 'none';
-      if(window.screen.height > 720)
-      {
         location.replace('intro.html');
-      }
-       if(window.screen.height <= 720)
-      {
-        location.replace('intro720.html');
-      }
-      if(window.screen.width < 720 || window.screen.width == 0)
-      {
-         location.replace('intro.html');
-        document.getElementById('ConsoleStyle').style.transform = 'translateY(-130px)';
-        document.getElementById('ConsoleStyle').style.width = 400;
-        document.getElementById('ConsoleStyle').style.height = 300;
-      }
 }
 function fMain() {
          fLight();
@@ -420,6 +408,7 @@ function fMain() {
         document.body.style.width = window.screen.width;
          document.body.style.height = window.screen.height;
         fVer.innerHTML =fWebSiteMode;
+          dGetStyleFile.innerHTML = 'FileCSS:'+document.getElementById('styleJS').href.value;
         fNoShowAccepts(num);
      if(num == 0)
      {
@@ -446,8 +435,7 @@ function fMain() {
     if(localStorage.num == 1)
     {
         fMain();
-    }
-
+    } 
     // fNoShowAccepts();
     }); 
     function fLoading(fG)
@@ -455,7 +443,16 @@ function fMain() {
      fG = fLBPoint;
      if(fLBPoint > 1){fLBPoint = 0;}
      if(fLBPoint == 1){document.getElementById('LoadingB').style.display = 'block';document.getElementById('bar-top').style.display = 'none';fPayMe.style.display = 'none';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'none';fLtStyle.style.display = 'none';fTLMenu.style.display = 'block';}
-     if(fLBPoint == 0){fMainWindow.style.display = 'block';document.getElementById('bar-top').style.display = 'block';}
+     if(fLBPoint == 0){fMainWindow.style.display = 'block';document.getElementById('bar-top').style.display = 'block';if(window.screen.height > 720)
+      {
+       document.getElementById('styleJS').href= "MySite0.css";
+        document.getElementById('styleJS').rel="stylesheet";
+      }
+       if(window.screen.height <= 720)
+      {
+        document.getElementById('styleJS').href= "MySite0_720.css";
+        document.getElementById('styleJS').rel="stylesheet";
+      }}
      }
 function fLangSel()
 {
