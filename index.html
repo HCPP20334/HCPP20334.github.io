@@ -59,6 +59,46 @@
 <p title="d"onclick="javascript:fText('Copiled MinGW-gcc C++11');"font-family="hack">Copiled MinGW-gcc C++11</p>
 <input type="comment" id="console">
 </div>
+<div id="Android_error_window">
+<h1 id="ad_text_error">Ошибка!!</h1>
+<p id="ad_text_0">Пожалуйста включите настольный режим</p>
+<p id="ad_text_0">и перезагрузите сайт</p>
+<p id="ad_text_0">Сайт допиливается и пока не адаптирован</p>
+<button onclick="javascript:fMain();"id="reset_wsite">Перезагрузить</button>
+<style>
+    #Android_error_window
+    {
+           display: none;margin: auto;
+         background-color: rgb(20,23,38);
+         border: 2px solid rgb(54,61,255);
+         width: 80%;
+         height: 50%;
+         transition: all .8s;
+    }
+    #ad_text_error
+    {
+        text-align: center;
+        color:rgb(255,1,55);
+        font-family: 'Consolas';
+        font-size: 20px;
+    }
+    #ad_text_0
+    {
+        text-align: center;
+        color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px;
+    }
+    #reset_wsite
+    {
+         background-color:rgb(20,23,38);color: white;
+    width: 60%;
+    height:10%;
+    display:table;margin:auto;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 20px;
+    }
+    #reset_wsite:hover{border: 2px solid rgb(0,255,132);}
+</style>
+</div>
   <div id="settings">
   <button onclick="javascript:fLoadSet();fMsgSt.style.display = 'none';"id="fCloseSett">X</button>
 <p id="fSettText">Settings</p>
@@ -72,9 +112,6 @@
 </p>
 <button onclick="javascript:fSelectorStyles(1);fVer.innerHTML =fWebSiteMode;"id="LangBtn">Легкий Режим</button><button onclick="javascript:fSelectorStyles(0);fVer.innerHTML =fWebSiteMode;"id="LangBtn">Требовательный Режим</button>
 </div>
-<script type="text/javascript">
-
-</script>
 <p id="OSName">OS:None</p>
 <p id="fScreeen">Screen:none</p>
   <p id="dStyle_file_name">Error:File not Found!!</p><style>#dStyle_file_name{color:white;font-family: 'Consolas';font-size:20px;}</style>
@@ -211,7 +248,8 @@ var fTimer = document.getElementById('site-timer');
 var fDebug_console;
 var fBufferCdg = document.getElementById('db_command_line_in');
 var fDb_window = document.getElementById('debug-window');
-var dGetStyleFile = document.getElementById('dStyle_file_name')
+var dGetStyleFile = document.getElementById('dStyle_file_name');
+var fErrorWindow = document.getElementById('Android_error_window');
 var fTestText = 'JoyStickEmu Build 1.0.9'+'\r\n'+'Compiler TDM-3.9.2 (MinGW-gcc) Writtein C++ (C++11)'+'\r\n'+'Supported (Xiput Gamepad (driver :1.4.0),D-Pad (Not Supported!)'+'\r\n'+'Install DS4Windows for Work DualShock4';
 fBufferCdg.oninput = function()
 {
@@ -407,17 +445,15 @@ function fMain() {
         document.getElementById('bar-top').style.display = 'block';
         document.body.style.width = window.screen.width;
          document.body.style.height = window.screen.height;
-        fVer.innerHTML =fWebSiteMode;
           dGetStyleFile.innerHTML = 'FileCSS:'+document.getElementById('styleJS').href.value;
-        fNoShowAccepts(num);
-     if(num == 0)
-     {
-        document.getElementById('themeSel0').style.display = 'block';
-     }
-      if(num == 1)
-     {
-        document.getElementById('themeSel0').style.display = 'none';
-     }
+            if(getPlatform() == 'Android')
+      {
+        fSetBackg();
+        document.getElementById('styleJS').href= "MySite0.css";
+        document.getElementById('ConsoleStyle').style.display = 'none';
+        document.getElementById('bar-top').style.display = 'none';
+        fErrorWindow.style.display = 'block';
+      }
 }
   document.addEventListener("DOMContentLoaded", function() {
     var num = Number(localStorage.num) || 0;
@@ -434,16 +470,18 @@ function fMain() {
     }
     if(localStorage.num == 1)
     {
+
         fMain();
     } 
+
     // fNoShowAccepts();
     }); 
     function fLoading(fG)
     {
-     fG = fLBPoint;
      if(fLBPoint > 1){fLBPoint = 0;}
      if(fLBPoint == 1){document.getElementById('LoadingB').style.display = 'block';document.getElementById('bar-top').style.display = 'none';fPayMe.style.display = 'none';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'none';fLtStyle.style.display = 'none';fTLMenu.style.display = 'block';}
-     if(fLBPoint == 0){fMainWindow.style.display = 'block';document.getElementById('bar-top').style.display = 'block';if(window.screen.height > 720)
+     if(fLBPoint == 0){fMainWindow.style.display = 'block';document.getElementById('bar-top').style.display = 'block';
+     if(window.screen.height > 720)
       {
        document.getElementById('styleJS').href= "MySite0.css";
         document.getElementById('styleJS').rel="stylesheet";
@@ -452,7 +490,8 @@ function fMain() {
       {
         document.getElementById('styleJS').href= "MySite0_720.css";
         document.getElementById('styleJS').rel="stylesheet";
-      }}
+      }
+       }
      }
 function fLangSel()
 {
