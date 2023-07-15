@@ -228,14 +228,14 @@ body {width: 100%;height: 100%;}
   #btnSourceE
    {
     background-color:rgb(20,23,38);color: white;
-    width: 30%;
+    width: 35%;
     height:10%;
     display:table;margin:auto;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 30px;
   }
   #btnSource
   {
     background-color:rgb(20,23,38);color: white;
-    width: 30%;
+    width: 35%;
     height:10%;
     display:table;margin:auto;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 30px;
   }
@@ -275,13 +275,13 @@ body {width: 100%;height: 100%;}
         font-family: 'Consolas';
         font-size: 20px;}
   #donatebtn{ background-color:rgb(20,23,38);color: white;
-  width: 31%;
-  height:10%;
+  width: 38%;
+  height:8%;
   display:table;margin:auto;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 25px;}
   #donatebtn:hover{border: 2px solid rgb(0,255,132);}
   #donate-Btn{background-color:rgb(20,23,38);color: white;
-  width: 31%;
-  height:10%;
+  width: 38%;
+  height:8%;
   display:table;margin:auto;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 25px}
   #donate-Btn:hover{border: 2px solid rgb(0,255,132);}
   #image-main{transform: translateY(-200px);}
@@ -291,7 +291,6 @@ body {width: 100%;height: 100%;}
          background-color: rgb(20,23,38);
          border: 2px solid rgb(54,61,255);
          width: 40%;
-         height: 50%;
          transition: all .8s;.8s;color:rgb(0,255,132);
         font-family: 'Consolas';
         font-size: 20px;text-align: center;}
@@ -363,7 +362,6 @@ body {width: 100%;height: 100%;}
          background-color: rgb(20,23,38);
          border: 2px solid rgb(54,61,255);
          width: 50%;
-         height: 50%;
          transition: all .8s;.8s;color:rgb(0,255,132);
         font-family: 'Consolas';
         font-size: 20px;text-align: center;}
@@ -371,7 +369,6 @@ body {width: 100%;height: 100%;}
          background-color: rgb(20,23,38);
          border: 2px solid rgb(54,61,255);
          width: 50%;
-         height: 50%;
          transition: all .8s;.8s;color:rgb(0,255,132);
         font-family: 'Consolas';
         font-size: 20px;text-align: center;}
@@ -379,10 +376,14 @@ body {width: 100%;height: 100%;}
          background-color: rgb(20,23,38);
          border: 2px solid rgb(54,61,255);
          width: 50%;
-         height: 51%;
          transition: all .8s;.8s;color:rgb(0,255,132);
         font-family: 'Consolas';
         font-size: 20px;text-align: center;}
+        #fFrame-text
+{
+  width:100%;
+  height: 100%;
+}
   #fLinkText{padding:4px;}
   #fSettText{padding:4px;}
   #fProjText{padding:4px;}

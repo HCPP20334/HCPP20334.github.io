@@ -5,14 +5,47 @@
 <p id="Green_text">Green<input id="green_color" type="range" min="0" max="255" step="1" value="1"><p id="value_g"></p>
 <p id="blue_text">Blue <input id="blue_color" type="range" min="0" max="255" step="1" value="1"><p id="value_b"></p>
 <p id="value_rbg"></p>
+<p id="value_hex"></p>
 <div id="block_color_text">
 </div>
 <button onclick="javascript:location.replace('index.html');"id="Exit-main">Back</button>
+<div></div>
+<div></div>
+<div></div>
+<div id="input_panel">
+	<p id="name_window">HEX Value</p>
+	<input type="comment" id="input_val_form">
+</div>
 </div>
 <style>
 	html
 	{
 		background-color:rgb(20,23,38);
+	}
+	#name_window
+	{
+		color:rgb(0,255,132);
+		font-family:'Consolas';
+		font-size:30px;
+		text-align:center;
+	}
+	#input_val_form
+	{
+		display:block;margin:auto;
+		background-color:rgb(20,23,38);
+		border: 2px solid rgb(255,1,55);;
+		color:rgb(0,255,132);
+		font-family:'Consolas';
+		font-size:30px;
+	}
+	#input_panel
+	{
+		float: left;
+		width: 30%;
+	height:30%;
+	display:block;margin:auto;
+	background-color:rgb(20,23,38);
+	border: 2px solid rgb(54,61,255);
 	}
 #block_color_text
 {
@@ -25,7 +58,7 @@
 {
 	background-color:rgb(20,23,38);
 	width: 100%;
-	height:80%;
+	height:84.6%;
 	border: 2px solid rgb(54,61,255);
 }
 #Exit-main{display:block;margin:auto;border: 2px solid rgb(54,61,255);background-color:rgb(20,23,38);width: 30%;height:10%;color:White; text-shadow: 0 0 1px white;font-family: 'Consolas';font-size:20px; }
@@ -39,7 +72,7 @@
 #red_text{color:White;text-shadow: 0 0 4px rgb(54,61,255);font-size: 20px;font-family: 'Consolas';text-align:center;}
 #green_text{color:White; text-shadow: 0 0 4px rgb(54,61,255);font-size: 20px;font-family: 'Consolas';text-align:center;}
 #blue_text{color:White; text-shadow: 0 0 4px rgb(54,61,255);font-size: 20px;font-family: 'Consolas';text-align:center;}
-#main-text,#value_rbg{color:White; text-shadow: 0 0 1px white;font-family: 'Consolas';text-align:center;}
+#main-text,#value_rbg,#value_hex{color:White; text-shadow: 0 0 1px white;font-family: 'Consolas';text-align:center;}
 </style>
 <script>
 var fBar_0 = document.getElementById('red_color');
@@ -47,15 +80,30 @@ var fBar_1 = document.getElementById('green_color');
 var fBar_2 = document.getElementById('blue_color');
 var fblock_color_text = document.getElementById('block_color_text');
 var fvalue_rbg = document.getElementById('value_rbg');
+var fvalue_hex = document.getElementById('value_hex');
 let fR = 0;
 let fG = 0;
 let fB = 0;
 fR = fBar_0.value;
+var fInputOKBtn = document.getElementById('input_val_btn');
+var fInputForm = document.getElementById('input_val_form');
+const rgbToHex = (r, g, b) => '#' + [r, g, b].map(x => {
+  const hex = x.toString(16)
+  return hex.length === 1 ? '0' + hex : hex
+}).join('')
+
+
+	fInputForm.oninput = function()
+    {
+	    fblock_color_text.style.backgroundColor = this.value;
+	    console.log("Value:"+this.value);
+    }
 fBar_0.oninput = function() {
 	fR = this.value;
 	fblock_color_text.style.backgroundColor = 'rgb('+fR+','+fG+','+fB+')';
 	fblock_color_text.style.backgroundColor = 'rgb('+fR+','+fG+','+fB+')';
 	fvalue_rbg.innerHTML = 'rgb('+fR+','+fG+','+fB+')';
+	fvalue_hex.innerHTML = "Hex: #" + rgbToHex(fR,fG,fB);
 }
 fG = fBar_1.value;
 fblock_color_text.style.backgroundColor = 'rgb('+fR+','+fG+','+fB+')';
@@ -63,6 +111,7 @@ fBar_1.oninput = function() {
 	fG = this.value;
 	fblock_color_text.style.backgroundColor = 'rgb('+fR+','+fG+','+fB+')';
 	fvalue_rbg.innerHTML = 'rgb('+fR+','+fG+','+fB+')';
+	fvalue_hex.innerHTML = "Hex: #" + rgbToHex(fR,fG,fB);
 }
 fB = fBar_2.value;
 fblock_color_text.style.backgroundColor = 'rgb('+fR+','+fG+','+fB+')';
@@ -70,6 +119,7 @@ fBar_2.oninput = function() {
 	fB = this.value;
 	fblock_color_text.style.backgroundColor = 'rgb('+fR+','+fG+','+fB+')';
 	fvalue_rbg.innerHTML = 'rgb('+fR+','+fG+','+fB+')';
+fvalue_hex.innerHTML = "Hex: #" + rgbToHex(fR,fG,fB);
 }
 </script>
 </html>

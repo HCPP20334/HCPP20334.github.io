@@ -1,5 +1,5 @@
 <html>
-<body onclick="javascript:fGetsClicks(f0++,fAvg);">
+<body>
  <title id="Main-title">HCPP Web Site</title>
  <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
@@ -13,7 +13,7 @@
    </noscript>
    <div id="bar-top">
     <p id="text-tt">HCPP Studio</p>
-   <img id="imgIcon"src="https://hcpp20334.github.io/Pictures/images.jfif" width='100';height='100';/>  
+   <img id="imgIcon"src="https://avatars.githubusercontent.com/u/76736848?v=4" width='100';height='100';/>  
     <button onclick="javascript:fLoadLinkks();"id="linksbtn">Links</button><button onclick="javascript:fLoadProjects();"id="fprojectsB">Projects</button><button onclick="javascript:fLoadSet();"id="settingsb">Settings</button><button onclick="javascript:fDonateShow();"id="fItemDn">Help</button><button onclick="javascript:fTools();"id="ToolsBtn">Tools</button>
      <button onclick="javascript:dfDebugMenu();"id="ToolsBtn">DebugMenu</button>
 	</div>
@@ -60,11 +60,13 @@
 <input type="comment" id="console">
 </div>
 <div id="Android_error_window">
+    <script type="text/javascript">console.log("[MAIN] Error:Android device not supported!");</script>
 <h1 id="ad_text_error">Ошибка!!</h1>
 <p id="ad_text_0">Пожалуйста включите настольный режим</p>
 <p id="ad_text_0">и перезагрузите сайт</p>
 <p id="ad_text_0">Сайт допиливается и пока не адаптирован</p>
 <button onclick="javascript:fMain();"id="reset_wsite">Перезагрузить</button>
+<button onclick="javascript:location.replace('https://youtu.be/dQw4w9WgXcQ');"id="reset_wsite">Похуй</button>
 <style>
     #Android_error_window
     {
@@ -132,8 +134,11 @@
  </div>
  <div id="debug-window">
  <p id="db_text">Меню отладки</p>
- <button id="db_btn_reset">Reset</button>
- <button onclick="javascript:fSelectorStyles(0);" id="db_btn_rs_style">Переподключить CSS</button>
+ <button onclick="javascript:document.location.reload();"id="db_btn_reset">Reset</button>
+ <button onclick="javascript:fSelectorStyles(0);" id="db_btn_rs_style">Переподключить CSS0</button>
+  <button onclick="javascript:fSelectorStyles(1);" id="db_btn_rs_style">Переподключить CSS1</button>
+   <button onclick="javascript:console.log('[MAIN] Style:'+document.getElementById('styleJS').href);" id="db_btn_rs_style">getStyle</button>
+ <button id="err_and">Er_android</button>
  <p id="db_command_line">Консоль</p>
  <p id="db_command_line"> -index - перейти на index.html</p>
  <p id="db_command_line"> -Error - перейти на Error.html</p>
@@ -141,6 +146,69 @@
  <p id="db_command_line"> -intro - перейти на intro.html</p>
  <input type="comment" id="db_command_line_in">
  <button onclick="javascript:dfDebugMenuCrashed();"id="db_btn_destroy">Закрыть окно</button>
+ <style>
+    #debug-window
+    {
+      display: none;margin: auto;
+         background-color: rgb(20,23,38);
+         border: 2px solid rgb(54,61,255);
+         width: 80%;
+         height: 50%;
+         transition: all .8s;
+    }
+    #db_text
+    {
+        text-align: center;
+        color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px;
+    }
+    #db_command_line
+    {
+      text-align: center;
+         color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px;
+    }
+    #db_btn_reset
+    {
+        color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px; 
+        border: 2px solid rgb(54,61,255);
+        background-color: rgb(20,23,38);
+        display: table;margin: auto;
+    }
+    #db_btn_destroy
+    {
+        color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px; 
+        border: 2px solid rgb(54,61,255);
+        background-color: rgb(20,23,38);
+        display: block;margin: auto;
+         margin-bottom: 30px;
+    }
+    #db_btn_rs_style
+    {
+         color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px; 
+        border: 2px solid rgb(54,61,255);
+        background-color: rgb(20,23,38);
+        display: block;margin: auto;
+    }
+    #db_command_line_in
+    {
+      background-color: rgb(20,23,38);
+      border: 2px solid rgb(54,61,255);
+       color:rgb(0,255,132);
+        font-family: 'Consolas';
+            display: block;margin: auto;
+      font-size: 20px;
+      border-radius: 4px;
+    }
+</style>
 </div>
   <div id="PayMe">
   <p>help with money</p>
@@ -150,13 +218,26 @@
   <button onclick="javascript:fDonateShow();"id="donatebtn">No Thanks!</button>
   </div>
   <div id="ConsoleStyle">
-  <div onclick="javascript:fGetsClicks(f1++,fAvg);"id="textIntro">
-<p id="Text00">- Welcome to My Web Site !!</p>
-<p id="Text01">- I am HCPP C++ Devoloper and JS </p>
-<p id="Text02">- Write Soft only Windows on C++</p>
-<p id="avg-debug">NaN</p>
+  <div onclick="javascript:fGetsClicks(f1++,document.title);"id="textIntro">
+<p id="Text00">Загрузка текста..</p>
+ <style>
+    #Text00
+    {
+    color: white;
+    font-family: 'Consolas';font-size: 30px;text-align:center;
+    }
+</style>
+<script type="text/javascript">
+let fChangeLang = 0;
+var dText00 = document.getElementById('Text00');
+var fTextEn = '- Welcome to My Web Site !!'+'\r\n'+'- I am HCPP C++ Devoloper and JS'+'\r\n'+'- Write Soft only Windows on C++';
+var fTextRus = '- Добро пожаловать на мой сайт!!'+'\r\n'+'- Я HCPP C++ Разработчик и немного JS'+'\r\n'+'- Пишу софт под Windows только на  C++';
+var fTestText = 'JoyStickEmu Build 1.0.9'+'\r\n'+'Compiler TDM-3.9.2 (MinGW-gcc) Writtein C++ (C++11)'+'\r\n'+'Supported (Xiput Gamepad (driver :1.4.0),D-Pad (Not Supported!)'+'\r\n'+'Install DS4Windows for Work DualShock4';
+
+setInterval("fChangeLang++;if(fChangeLang > 1){fChangeLang = 0;}if(fChangeLang == 0){dText00.innerHTML = fTextEn;}if(fChangeLang == 1){dText00.innerHTML = fTextRus;}",800);
+</script>
  </div>
- </div>
+</div>
  <script type="text/javascript">
      var fScreenX = document.getElementById("ScreenPX");
 var fScreenY = document.getElementById("ScreenPY");
@@ -236,7 +317,6 @@ var fAccptBtn = document.getElementById('Accept');
 let fClick = 0;
 var fBuffer = 'qwertyuiopasdfghjklzxcvbnm1234567890';
 var  fWebSiteMode;
-var fAvg = document.getElementById('avg-debug');
 var fVer = document.getElementById('web-mode');
 var fPass;
 var fSTp = document.getElementById('ps_4_result');
@@ -293,6 +373,13 @@ function fGeneratePassWord(Length)
         fSTp.innerHTML = fPass;
     }
 }
+var fErrAnd = document.getElementById('err_and');
+fErrAnd.onclick = function()
+{
+     fErrorWindow.style.display = 'block';
+        document.getElementById('bar-top').style.display = 'none';
+        fMainWindow.style.display = 'none';
+}
 function fGetsClicks(fClick,fOutValue) {
     // body...
    // return fClick;
@@ -328,7 +415,6 @@ function dfDebugMenu()
   {
   fGPlay.src = this.value;
   }
-  fAvg.innerHTML = 'HCPPWBEngine v1.0';
 function fPlayerJS()
 {
 fTLPlayer.style.display = 'block';
@@ -432,28 +518,46 @@ function fLoadSite()
         document.getElementById('bar-top').style.display = 'none';
         location.replace('intro.html');
 }
-function fMain() {
-         fLight();
-        fTestSwitch();
-        fLangSel();
-        fSetBackg();
-        document.getElementById('styleJS').href= "MySite0.css";
+function func_checkRes()
+{
+    if(window.screen.height > 720)
+      {
+       document.getElementById('styleJS').href= "MySite0.css";
         document.getElementById('styleJS').rel="stylesheet";
-        fLoading(1);
+        console.log("[MAIN] 'WBEngine ["+window.screen.width+":"+window.screen.height+"] > 720");
+      }
+       if(window.screen.height <= 720)
+      {
+        document.getElementById('styleJS').href= "MySite0_720.css";
+        document.getElementById('styleJS').rel="stylesheet";
+          console.log("[MAIN] 'WBEngine ["+window.screen.width+":"+window.screen.height+"] <= 720");
+      }
+}
+//setInterval("func_checkRes();",10);
+function fMain() {
+         fLight();console.log("[MAIN] fLight() Loaded");
+        fTestSwitch();console.log("[MAIN] fTestSwitch() Loaded");
+        fLangSel();console.log("[MAIN] fLangSel() Loaded");
+        fSetBackg();console.log("[MAIN] fSetBackg() Loaded");
+        document.getElementById('styleJS').href= "MySite0.css";console.log("[MAIN] 'CSSLoader' File:MySite0.css Loaded");
+        document.getElementById('styleJS').rel="stylesheet";
+        fLoading(1);console.log("[MAIN] WBEngine v1.0 Loaded");
         getPlatform();
             document.getElementById('ConsoleStyle').style.display = 'block';
         document.getElementById('bar-top').style.display = 'block';
         document.body.style.width = window.screen.width;
          document.body.style.height = window.screen.height;
+        //fVer.innerHTML =fWebSiteMode;
           dGetStyleFile.innerHTML = 'FileCSS:'+document.getElementById('styleJS').href.value;
-            if(getPlatform() == 'Android')
-      {
-        fSetBackg();
-        document.getElementById('styleJS').href= "MySite0.css";
-        document.getElementById('ConsoleStyle').style.display = 'none';
-        document.getElementById('bar-top').style.display = 'none';
-        fErrorWindow.style.display = 'block';
-      }
+        fNoShowAccepts(num);
+     if(num == 0)
+     {
+        document.getElementById('themeSel0').style.display = 'block';
+     }
+      if(num == 1)
+     {
+        document.getElementById('themeSel0').style.display = 'none';
+     }
 }
   document.addEventListener("DOMContentLoaded", function() {
     var num = Number(localStorage.num) || 0;
@@ -470,7 +574,6 @@ function fMain() {
     }
     if(localStorage.num == 1)
     {
-
         fMain();
     } 
 
@@ -478,6 +581,19 @@ function fMain() {
     }); 
     function fLoading(fG)
     {
+        console.log('[MAIN] Style:'+document.getElementById('styleJS').href);
+     if(getPlatform() != 'Android')
+     {
+        fG = fLBPoint;
+     }
+     if(getPlatform() == 'Android')
+     {
+        console.log("[MAIN] 'Device' Android");
+        fErrorWindow.style.display = 'block';
+        document.getElementById('bar-top').style.display = 'none';
+       fMainWindow.style.display = 'none';
+        document.getElementById('fFrame-text').style.display = 'none';
+      }
      if(fLBPoint > 1){fLBPoint = 0;}
      if(fLBPoint == 1){document.getElementById('LoadingB').style.display = 'block';document.getElementById('bar-top').style.display = 'none';fPayMe.style.display = 'none';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'none';fLtStyle.style.display = 'none';fTLMenu.style.display = 'block';}
      if(fLBPoint == 0){fMainWindow.style.display = 'block';document.getElementById('bar-top').style.display = 'block';
@@ -485,11 +601,13 @@ function fMain() {
       {
        document.getElementById('styleJS').href= "MySite0.css";
         document.getElementById('styleJS').rel="stylesheet";
+        console.log("[MAIN] 'WBEngine ["+window.screen.width+":"+window.screen.height+"] > 720");
       }
        if(window.screen.height <= 720)
       {
         document.getElementById('styleJS').href= "MySite0_720.css";
         document.getElementById('styleJS').rel="stylesheet";
+          console.log("[MAIN] 'WBEngine ["+window.screen.width+":"+window.screen.height+"] <= 720");
       }
        }
      }
@@ -499,10 +617,10 @@ function fLangSel()
   if(fPointLang > 1){fPointLang = 0;}
   if(fPointLang == 0)
   {
-  fLgBtn.innerHTML= 'Language:English';
-  fText0D0.innerHTML = '- Welcome to My Web Site !!';
-  fText0D1.innerHTML = '- I am HCPP C++ Devoloper and JS';
-  fText0D2.innerHTML = '- Write Soft only Windows on C++';
+  // fLgBtn.innerHTML= 'Language:English';
+  // fText0D0.innerHTML = '- Welcome to My Web Site !!';
+  // fText0D1.innerHTML = '- I am HCPP C++ Devoloper and JS';
+  // fText0D2.innerHTML = '- Write Soft only Windows on C++';
   fcntM.innerHTML = 'My Contacts';
   fsetM.innerHTML = 'Settings';
   fprjM.innerHTML = 'Projects';
@@ -513,10 +631,10 @@ function fLangSel()
   }
   if(fPointLang == 1)
   {
-  fLgBtn.innerHTML= 'Язык:Русский';
-  fText0D0.innerHTML = '- Добро пожаловать на мой сайт!!';
-  fText0D1.innerHTML = '- Я HCPP C++ Разработчик и немного JS';
-  fText0D2.innerHTML = '- Пишу софт под Windows только на  C++';
+  // fLgBtn.innerHTML= 'Язык:Русский';
+  // fText0D0.innerHTML = '- Добро пожаловать на мой сайт!!';
+  // fText0D1.innerHTML = '- Я HCPP C++ Разработчик и немного JS';
+  // fText0D2.innerHTML = '- Пишу софт под Windows только на  C++';
   fcntM.innerHTML = 'Ссылки';
   fsetM.innerHTML = 'Настроики';
   fprjM.innerHTML = 'Проекты';
