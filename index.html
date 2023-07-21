@@ -77,7 +77,6 @@
     var fTextEnErr_0  = 'Please turn on deskop mode '+'\r\n'+'and restart WebSite'+'\r\n'+ 'Web Site its not full working';
     var fTextRusErr_0 = 'Пожалуйста включите настольный режим'+'\r\n'+'и перезагрузите сайт'+'\r\n'+ 'Сайт допиливается и пока не адаптирован';
     let fq0 = 0;
-    flng_0();
    function flng_0()
    {
      fq0++;
@@ -716,10 +715,9 @@ function fMain() {
     if(localStorage.num == 1)
     {
         fMain();
-    
-
-    // fNoShowAccepts();
-    }); 
+    }
+}
+    ); 
     function fLoading(fG)
     {
         console.log('[MAIN] Style:'+document.getElementById('styleJS').href);
