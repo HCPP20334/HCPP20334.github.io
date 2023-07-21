@@ -25,14 +25,18 @@
    </noscript>
    <div id="bar-top">
     <p id="text-tt">HCPP Studio</p>
-   <img id="imgIcon"src="https://avatars.githubusercontent.com/u/76736848?v=4" width='100';height='100';/>  
-      <img id="lng_sel" width='100';height='100';/>  
-    <button onclick="javascript:fLoadLinkks();"id="linksbtn">Links</button><button onclick="javascript:fLoadProjects();"id="fprojectsB">Projects</button><button onclick="javascript:fLoadSet();"id="settingsb">Settings</button><button onclick="javascript:fDonateShow();"id="fItemDn">Help</button><button onclick="javascript:fTools();"id="ToolsBtn">Tools</button>
+   <img id="imgIcon"src="https://avatars.githubusercontent.com/u/76736848?v=4" width='30';height='30';/>  
+      <!-- <img id="lng_sel" width='100';height='100';/>   -->
+    <div id="buttons_mobile">
+        <button id="close_nav">Close</button>
+        <button onclick="javascript:fLoadLinkks();"id="linksbtn">Links</button><button onclick="javascript:fLoadProjects();"id="fprojectsB">Projects</button><button onclick="javascript:fLoadSet();"id="settingsb">Settings</button><button onclick="javascript:fDonateShow();"id="fItemDn">Help</button><button onclick="javascript:fTools();"id="ToolsBtn">Tools</button>
      <button onclick="javascript:dfDebugMenu();"id="ToolsBtn">DebugMenu</button>
+ </div>
 	</div>
 	<p id="MessageBox"/>
 </div>
   <div id="Tools">
+    <button id="tools_close">X</button>
   <h1 id="TLtext">Tools</h1>
   <button id="TLBtnA" onclick="javascript:fPlayerJS();">PlayerJS</button>
    <button id="TLBtnB">GPT-3.5</button>
@@ -77,7 +81,6 @@
     var fTextEnErr_0  = 'Please turn on deskop mode '+'\r\n'+'and restart WebSite'+'\r\n'+ 'Web Site its not full working';
     var fTextRusErr_0 = 'Пожалуйста включите настольный режим'+'\r\n'+'и перезагрузите сайт'+'\r\n'+ 'Сайт допиливается и пока не адаптирован';
     let fq0 = 0;
-    flng_0();
    function flng_0()
    {
      fq0++;
@@ -194,6 +197,7 @@
   <button onclick="javascript:fSelectorStyles(1);" id="db_btn_rs_style">Переподключить CSS1</button>
   <button onclick="javascript:fShclog(document.getElementById('db_btn_con'));"  id="db_btn_con">Open Console</button>
   <button onclick="javascript:document.getElementById('styleJS').href = 'MySite0_720.css';" id="db_btn_rs_style">Переподключить CSS0_720</button>
+    <button onclick="javascript:document.getElementById('styleJS').href = 'mobile.css';" id="db_btn_rs_style">Переподключить Mobile</button>
    <button onclick="javascript:console.log('[MAIN] Style:'+document.getElementById('styleJS').href);fText(document.getElementById('styleJS').href);" id="db_btn_rs_style">getStyle</button>
    <button onclick="javascript:func_checkRes();"id="db_btn_rs_style">Fix Resolution</button>
  <button id="err_and">Er_android</button>
@@ -237,8 +241,8 @@
       display: none;margin: auto;
          background-color: rgb(20,23,38);
          border: 2px solid rgb(54,61,255);
-         width: 40%;
-         height: 50%;
+         width: 90%;
+         height: 70%;
          transition: all .8s;
     }
     #err_and
@@ -317,13 +321,26 @@
   <p>help with money</p>
   <p>DonationAlerts</p>
   <button onclick="javascript:document.location.href='https://www.donationalerts.com/r/hackercplusplus';"id="donatebtn">DonationAlerts</button>
-<iframe src="https://widget.donatepay.ru/widgets/page/126ff182f09a5c380890cb8d3f2867a5c706015ad2e28d5759af011142d44189?widget_id=5007106&sum=200" width="400" height="220" frameBorder="0"></iframe>
+<!-- <iframe src="https://widget.donatepay.ru/widgets/page/126ff182f09a5c380890cb8d3f2867a5c706015ad2e28d5759af011142d44189?widget_id=5007106&sum=200" width="400" height="220" frameBorder="0"></iframe> -->
   <button onclick="javascript:fDonateShow();"id="donatebtn">No Thanks!</button>
   </div>
   <div id="ConsoleStyle">
+    <button id="show_buttons">Навигация</button>
   <div onclick="javascript:fGetsClicks(f1++,document.title);"id="textIntro">
 <p id="Text00">Загрузка текста..</p>
  <style>
+    #show_buttons
+    {
+        color:rgb(0,255,132);
+        font-family: 'Consolas';
+        font-size: 20px; 
+        border: 2px solid rgb(54,61,255);
+        background-color: rgb(20,23,38);
+        display: block;margin: auto;
+        width: 60%;
+        height:10%;
+    }
+    #show_buttons:hover{border: 2px solid rgb(0,255,132);}
     #Text00
     {
     color: white;
@@ -336,7 +353,6 @@ var dText00 = document.getElementById('Text00');
 var fTextEn = '- Welcome to My Web Site !!'+'\r\n'+'- I am HCPP C++ Devoloper and JS'+'\r\n'+'- Write Soft only Windows on C++';
 var fTextRus = '- Добро пожаловать на мой сайт!!'+'\r\n'+'- Я HCPP C++ Разработчик и немного JS'+'\r\n'+'- Пишу софт под Windows только на  C++';
 var fTestText = 'JoyStickEmu Build 1.0.9'+'\r\n'+'Compiler TDM-3.9.2 (MinGW-gcc) Writtein C++ (C++11)'+'\r\n'+'Supported (Xiput Gamepad (driver :1.4.0),D-Pad (Not Supported!)'+'\r\n'+'Install DS4Windows for Work DualShock4';
-
 setInterval("fChangeLang++;if(fChangeLang > 1){fChangeLang = 0;}if(fChangeLang == 0){dText00.innerHTML = fTextEn;}if(fChangeLang == 1){dText00.innerHTML = fTextRus;}",800);
 </script>
  </div>
@@ -438,6 +454,20 @@ var fLogWindow = document.getElementById('Logs_WB');
 var fTestText = 'JoyStickEmu Build 1.0.9'+'\r\n'+'Compiler TDM-3.9.2 (MinGW-gcc) Writtein C++ (C++11)'+'\r\n'+'Supported (Xiput Gamepad (driver :1.4.0),D-Pad (Not Supported!)'+'\r\n'+'Install DS4Windows for Work DualShock4';
 var fLgRus = document.getElementById('lng_sel');
 let fId_post = 0;
+var fNavBtn = document.getElementById('show_buttons');
+var fNavExitBtn = document.getElementById('close_nav');
+var fButtons = document.getElementById('buttons_mobile');
+let fBtn_point = 0;
+fNavBtn.onclick = function(){
+    fBtn_point = 1;
+    if(fBtn_point == 0){fButtons.style.display = 'none';fMainWindow.style.display = 'block';}
+    if(fBtn_point == 1){fButtons.style.display = 'table';fMainWindow.style.display = 'none';}
+    if(fBtn_point > 1){fBtn_point = 0;}
+}
+fNavExitBtn.onclick = function()
+{
+    fButtons.style.display = 'none';fMainWindow.style.display = 'block';
+}
  function fSendLog(text)
 {   
     flog_data.innerHTML = text;
@@ -501,10 +531,10 @@ fBufferCdg.oninput = function()
 //   }
 // });
 // }
-fLgRus.onclick = function()
-{
-    fLangSel();
-}
+// fLgRus.onclick = function()
+// {
+//     fLangSel();
+// }
 function fGeneratePassWord(Length)
 {
     fData0 = 30;
@@ -549,6 +579,7 @@ function dfDebugMenu()
     fMainWindow.style.display = 'none';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';fTLMenu.style.display = 'none';
     fTLPlayer.style.display = 'none';
     fDb_window.style.display = "block";
+    fButtons.style.display = 'none';
 
 }
  fGPlay.src =document.getElementById('FileLoader').value; 
@@ -561,6 +592,7 @@ function fPlayerJS()
 fTLPlayer.style.display = 'block';
 fTLPlayer.style.animation = 'fYBounds 1000ms,fColorA 1s infinite';
 fMainWindow.style.display = 'none';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';fTLMenu.style.display = 'none';
+fButtons.style.display = 'none';
 }
 function fTestSwitch()
 {
@@ -577,10 +609,16 @@ fMsgSt.innerHTML = fText;
 fMsgSt.style.font = 'Consolas';
 setTimeout("fMsgSt.style.display = 'none';",1000);
 }
+document.getElementById('tools_close').onclick = function()
+{
+    fTLMenu.style.display = 'none';fButtons.style.display = 'none';flinks.style.display = 'none';fMainWindow.style.display = 'block';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';document.getElementById('fProjects').style.display = 'none';
+fButtons.style.display = 'none';
+}
 function fTools()
 {
 fTLMenu.style.display = 'block';
 flinks.style.display = 'none';fMainWindow.style.display = 'none';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';document.getElementById('fProjects').style.display = 'none';
+fButtons.style.display = 'none';
 }
 var request;
 function fSetBackg()
@@ -603,22 +641,22 @@ function fLoadLinkks()
 {
    fLinkP++;
    if(fLinkP > 1){fLinkP = 0}
-   if(fLinkP == 0){flinks.style.display = 'none';fMainWindow.style.display = 'block';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';fTLMenu.style.display = 'none';fTLPlayer.style.display = 'none'}
-   if(fLinkP == 1){flinks.style.display = 'block';fMainWindow.style.display = 'none';fSetW.style.display = 'none';fProjectsW.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';flinks.style.animation= 'fYBounds 1000ms,fColorA 1s infinite';fSetP = 0;fProjectsP = 0;fDShow = 0;fTLMenu.style.display = 'none';}
+   if(fLinkP == 0){flinks.style.display = 'none';fMainWindow.style.display = 'block';fProjectsW.style.display = 'none';fSetW.style.display = 'none';fPayMe.style.display = 'none';fTLMenu.style.display = 'none';fTLPlayer.style.display = 'none';fButtons.style.display = 'none';}
+   if(fLinkP == 1){flinks.style.display = 'block';fMainWindow.style.display = 'none';fSetW.style.display = 'none';fProjectsW.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';flinks.style.animation= 'fYBounds 1000ms,fColorA 1s infinite';fSetP = 0;fProjectsP = 0;fDShow = 0;fTLMenu.style.display = 'none';fButtons.style.display = 'none';}
 }
 function fLoadSet()
 {
    fSetP++;
    if(fSetP > 1){fSetP = 0}
-   if(fSetP == 0){fSetW.style.display = 'none';fMainWindow.style.display = 'block';flinks.style.display = 'none';fProjectsW.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';fTLMenu.style.display = 'none';}
-   if(fSetP == 1){fSetW.style.display = 'block';flinks.style.display = 'none';fMainWindow.style.display = 'none';fProjectsW.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';fSetW.style.animation= 'fYBounds 1000ms,fColorA 1s infinite';fLinkP = 0;fProjectsP = 0;fDShow = 0;fTLMenu.style.display = 'none';}
+   if(fSetP == 0){fSetW.style.display = 'none';fMainWindow.style.display = 'block';flinks.style.display = 'none';fProjectsW.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';fTLMenu.style.display = 'none';fButtons.style.display = 'none';}
+   if(fSetP == 1){fSetW.style.display = 'block';flinks.style.display = 'none';fMainWindow.style.display = 'none';fProjectsW.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';fSetW.style.animation= 'fYBounds 1000ms,fColorA 1s infinite';fLinkP = 0;fProjectsP = 0;fDShow = 0;fTLMenu.style.display = 'none';fButtons.style.display = 'none';}
 }
 function fLoadProjects()
 {
    fProjectsP++;
    if(fProjectsP > 1){fProjectsP = 0}
-   if(fProjectsP == 0){fProjectsW.style.display = 'none';fMainWindow.style.display = 'block';fSetW.style.display = 'none';flinks.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';fTLMenu.style.display = 'none';}
-   if(fProjectsP == 1){fProjectsW.style.display = 'block';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';fLinkP = 0;fSetP = 0;fDShow = 0;fProjectsW.style.animation= 'fYBounds 1000ms';fTLMenu.style.display = 'none';}
+   if(fProjectsP == 0){fProjectsW.style.display = 'none';fMainWindow.style.display = 'block';fSetW.style.display = 'none';flinks.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';fTLMenu.style.display = 'none';fButtons.style.display = 'none';}
+   if(fProjectsP == 1){fProjectsW.style.display = 'block';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'none';fPayMe.style.display = 'none';fTLPlayer.style.display = 'none';fLinkP = 0;fSetP = 0;fDShow = 0;fProjectsW.style.animation= 'fYBounds 1000ms';fTLMenu.style.display = 'none';fButtons.style.display = 'none';}
 }
 var userDeviceArray = [
     {device: 'Android', platform: /Android/},
@@ -663,7 +701,7 @@ function func_checkRes()
 {
     if(window.screen.height > 720)
       {
-       document.getElementById('styleJS').href= "MySite0.css";
+       document.getElementById('styleJS').href= "mobile.css";
         document.getElementById('styleJS').rel="stylesheet";
         console.log("[MAIN] 'WBEngine ["+window.screen.width+":"+window.screen.height+"] > 720");
       }
@@ -680,10 +718,8 @@ function fMain() {
         fTestSwitch();fSendLog("[MAIN] fTestSwitch() Loaded");fText("[MAIN] fTestSwitch() Loaded"+"\r\n");
         fLangSel();fSendLog("[MAIN] fLangSel() Loaded");fText("[MAIN] fLangSel() Loaded"+"\r\n");
         fSetBackg();fSendLog("[MAIN] fSetBackg() Loaded");fText("[MAIN] fSetBackg() Loaded"+"\r\n");
-        document.getElementById('styleJS').href= "MySite0.css";fSendLog("[MAIN] 'CSSLoader' File:MySite0.css Loaded"+"\r\n");fText("[MAIN] 'CSSLoader' File:MySite0.css Loaded"+"\r\n");
-        document.getElementById('styleJS').rel="stylesheet";
         fLoading(1);console.log("[MAIN] WBEngine v1.0 Loaded");fText("[MAIN] fSetBackg() Loaded"+"\r\n"+"[MAIN] fLangSel() Loaded"+"\r\n"+"[MAIN] fLight() Loaded"+"\r\n"+"[MAIN] 'CSSLoader' File:MySite0.css Loaded"+"\r\n"+"[MAIN] WBEngine v1.0 Loaded"+"\r\n");
-        // getPlatform();
+        getPlatform();
             document.getElementById('ConsoleStyle').style.display = 'block';
         document.getElementById('bar-top').style.display = 'block';
         document.body.style.width = window.screen.width;
@@ -705,19 +741,8 @@ function fMain() {
     localStorage.num = ++num;
     fOSName.innerHTML = 'OS:'+getPlatform();
     document.getElementById('fScreeen').innerHTML = 'Screen:'+window.screen.width+'x'+window.screen.height;
-    if(localStorage.num > 1)
-    {
-        localStorage.num = 0;
-    }
-    if(localStorage.num == 0)
-    {
-        fLoadSite();
-    }
-    if(localStorage.num == 1)
-    {
-        fMain();
-    
 
+        fMain();
     // fNoShowAccepts();
     }); 
     function fLoading(fG)
@@ -727,31 +752,10 @@ function fMain() {
      {
         fG = fLBPoint;
      }
-     if(getPlatform() == 'Android')
-     {
-        console.log("[MAIN] 'Device' Android");
-        // fErrorWindow.style.display = 'block';
-        location.replace('mobile.html');
-        document.getElementById('bar-top').style.display = 'none';
-       fMainWindow.style.display = 'none';
-        document.getElementById('fFrame-text').style.display = 'none';
-      }
      if(fLBPoint > 1){fLBPoint = 0;}
      if(fLBPoint == 1){document.getElementById('LoadingB').style.display = 'block';document.getElementById('bar-top').style.display = 'none';fPayMe.style.display = 'none';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'none';fLtStyle.style.display = 'none';fTLMenu.style.display = 'block';}
      if(fLBPoint == 0){fMainWindow.style.display = 'block';document.getElementById('bar-top').style.display = 'block';
-     if(window.screen.height > 720)
-      {
-       document.getElementById('styleJS').href= "MySite0.css";
-        document.getElementById('styleJS').rel="stylesheet";
-        console.log("[MAIN] 'WBEngine ["+window.screen.width+":"+window.screen.height+"] > 720");
-      }
-       if(window.screen.height <= 720)
-      {
-        document.getElementById('styleJS').href= "MySite0_720.css";
-        document.getElementById('styleJS').rel="stylesheet";
-          console.log("[MAIN] 'WBEngine ["+window.screen.width+":"+window.screen.height+"] <= 720");
-      }
-       }
+       document.getElementById('styleJS').href= "mobile.css";}
    }
 function fLangSel()
 {
@@ -770,7 +774,7 @@ function fLangSel()
   fProjectsText.innerHTML = 'Projects';
   fSettingsText.innerHTML = 'Settings';
   fItemText.innerHTML = 'Help';
-  fLgRus.src = 'Pictures/en.webp';
+  // fLgRus.src = 'Pictures/en.webp';
   }
   if(fPointLang == 1)
   {
@@ -786,15 +790,16 @@ function fLangSel()
   fSettingsText.innerHTML = 'Настроики';
   fItemText.innerHTML = 'Помощь';
    //fMainWindow.style.fontFamily = 'Rus';
-  fLgRus.src = 'Pictures/rus.png';
+  // fLgRus.src = 'Pictures/rus.png';
   }
 }
     function fDonateShow()
     {
+        fButtons.style.display = 'none';
     fDShow++;
      if(fDShow > 1){fDShow = 0;}
-     if(fDShow == 1){document.getElementById('fProjects').style.display = 'none';fPayMe.style.display = 'block';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fTLMenu.style.display = 'none';fMainWindow.style.display = 'none';fTLPlayer.style.display = 'none';fLtStyle.style.display = 'none';fProjectsW.style.display = 'none';}
-     if(fDShow == 0){document.getElementById('fProjects').style.display = 'none';fPayMe.style.display = 'none';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'block';fTLMenu.style.display = 'none';fLtStyle.style.display = 'none';fTLPlayer.style.display = 'none';fProjectsW.style.display = 'none';document.getElementById('fProjects').style.display = 'none';}
+     if(fDShow == 1){document.getElementById('fProjects').style.display = 'none';fPayMe.style.display = 'block';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fTLMenu.style.display = 'none';fMainWindow.style.display = 'none';fTLPlayer.style.display = 'none';fLtStyle.style.display = 'none';fProjectsW.style.display = 'none';fButtons.style.display = 'none';}
+     if(fDShow == 0){document.getElementById('fProjects').style.display = 'none';fPayMe.style.display = 'none';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';fMainWindow.style.display = 'block';fTLMenu.style.display = 'none';fLtStyle.style.display = 'none';fTLPlayer.style.display = 'none';fProjectsW.style.display = 'none';document.getElementById('fProjects').style.display = 'none';fButtons.style.display = 'none';}
     }
 function fLight()
 {
