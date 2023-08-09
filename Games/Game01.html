@@ -19,8 +19,11 @@
 <img id="arena1" src="./res/arena2.png">
 </div>
 <div id="buttons_f">
-<p id="info_but"> A,D - Left/Right , W- Jump Build 0.8</p>
-<span tabindex="-1" onkeydown="return handleKeyDown();"></span>
+<p id="info_but"> A,D - Left/Right , SPACE- Jump Build 0.8</p>
+<button id="but_a">L</button>
+<button id="but_d">R</button>
+<button id="btn_jump">JUMP</button>
+<button id="but_ESC">BACK</button>
 </div>
 <script>
 	var fBstart_engine = document.getElementById('start_engine');
@@ -36,6 +39,7 @@
 	var fButD = document.getElementById('but_d');
 	var fButA = document.getElementById('but_a');
 	var fButJump = document.getElementById('btn_jump');
+	var fButESC = document.getElementById('but_ESC');
 
 	//
 	let fAPoint = 0;
@@ -43,8 +47,38 @@
 	let fSc = 0;
 	let fP = 0;
 	let fDelayKb = 0;
-
-
+    //
+  document.addEventListener("DOMContentLoaded", function() {
+	if( getPlatform() == 'Android')
+	{
+		fWrender.style.width = '90%';
+		fbuttons_f.style.width = '90%';
+		fWGame_window.style.width = '90%';
+	}
+});
+var userDeviceArray = [
+    {device: 'Android', platform: /Android/},
+    {device: 'iPhone', platform: /iPhone/},
+    {device: 'iPad', platform: /iPad/},
+    {device: 'Symbian', platform: /Symbian/},
+    {device: 'Windows Phone', platform: /Windows Phone/},
+    {device: 'Tablet OS', platform: /Tablet OS/},
+    {device: 'Linux', platform: /Linux/},
+    {device: 'Windows', platform: /Windows NT/},
+    {device: 'Macintosh', platform: /Macintosh/}
+];
+var platform = navigator.userAgent;
+function getPlatform() {
+    for (var i in userDeviceArray) {
+        if (userDeviceArray[i].platform.test(platform)) {
+            return userDeviceArray[i].device;
+            fOSName.innerHTML = 'OS:'+userDeviceArray[i].device;
+            if(userDeviceArray[i].device == 'Android'){alert("Android Version not Stable!!");document.getElementById('styleJS').href= "MySite0.css";}
+        }
+    }
+    return 'Неизвестная платформа!' + platform;
+    userDeviceArray[i].device  = 'Неизвестная платформа!' + platform;;
+}
 fBstart_engine.onclick = function()
 {
 	Game(300,300,true);
@@ -65,9 +99,12 @@ function Game(fEn_X,fEn_Y,EnState)
 }
 document.addEventListener('keydown', function(event) {
 message(event.code);
-  if (event.code == 'KeyW'){
-    document.getElementById('man').style.top = '-30px';
+if(event.code == 'Space')
+{
+	document.getElementById('man').style.top = '-30px';
 	setTimeout("document.getElementById('man').style.top = '0px';",100);
+}
+  if (event.code == 'KeyW'){
 	fP--;
   	if(fP < 0)
   	{
@@ -114,15 +151,31 @@ message(event.code);
 	{
 		fPosX = 1;
 	}
-	if(fPosX > -850)
+	if(window.screen.height == 1080)
+	{
+		if(fPosX > -850)
 	{
 		fIMGBuffer1.src= "./res/arena.png";
 	}
 	if(fPosX < -850)
 	{
-		fPosX = -840
+		fPosX = -840;
 		fIMGBuffer1.src= "./res/arena2.png";
 	}
+	}
+	if(window.screen.height == 720)
+	{
+		if(fPosX > -580)
+	{
+		fIMGBuffer1.src= "./res/arena.png";
+	}
+	if(fPosX < -580)
+	{
+		fPosX = -580;
+		fIMGBuffer1.src= "./res/arena2.png";
+	}
+	}
+
   }
   if(event.code == 'KeyA')
   {
@@ -135,7 +188,9 @@ message(event.code);
 	{
 		fPosX = 1;
 	}
-	if(fPosX > -850)
+	if(window.screen.width == 1080)
+	{
+		if(fPosX > -850)
 	{
 		fIMGBuffer1.src= "./res/arena.png";
 	}
@@ -143,6 +198,19 @@ message(event.code);
 	{
 		fPosX = -840;
 		fIMGBuffer1.src= "./res/arena2.png";
+	}
+	}
+	if(window.screen.width == 720)
+	{
+		if(fPosX > -850)
+	{
+		fIMGBuffer1.src= "./res/arena.png";
+	}
+	if(fPosX < -850)
+	{
+		fPosX = -840;
+		fIMGBuffer1.src= "./res/arena2.png";
+	}
 	}
   }
 });
@@ -166,7 +234,7 @@ function fGoAnim()
 		{
 			fAPoint = 0;
 		}
-	fInfoGame.innerHTML = "Score:"+fSc+" PosX:"+fPosX+" AnimState:"+fAPoint + "KbDelay:"+fDelayKb+"File Loaded:"+fIMGBuffer0;
+	fInfoGame.innerHTML = "Score:"+fSc+" PosX:"+fPosX+" AnimState:"+fAPoint + "KbDelay:"+fDelayKb;
 }
 fButJump.onclick = function()
 {
@@ -176,6 +244,7 @@ fButJump.onclick = function()
 fButA.onclick = function()
 {
 	fPosX = fPosX + 10;
+	document.getElementById('man').style.transform = 'scale(-1, 1)';
 	document.getElementById('man').style.right = fPosX+'px';
 	message("Left..");
 	fGoAnim();
@@ -192,6 +261,7 @@ fButA.onclick = function()
 fButD.onclick = function()
 {
 	fPosX = fPosX - 10;
+	document.getElementById('man').style.transform = 'scale(1, 1)';
 	document.getElementById('man').style.right = fPosX+'px';
 	message("Right..");
 	fGoAnim();
@@ -203,6 +273,12 @@ fButD.onclick = function()
 	{
 		fPosX = -850;
 	}
+}
+fButESC.onclick = function()
+{
+	fWrender.style.display = 'none';
+	fWGame_window.style.display = 'block';
+	fbuttons_f.style.display = 'none';
 }
 function message(text)
 {

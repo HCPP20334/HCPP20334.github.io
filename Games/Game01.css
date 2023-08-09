@@ -34,17 +34,20 @@ html
 	width: 20%;
 		height: 10%;
 }
-#but_a,#but_d,#btn_jump
+#but_a,#but_d,#btn_jump,#but_ESC
 {
-		width: 30%;
-		height: 50%;
+		width: 10%;
+		height: 20%;
 		background-color: #1B1C1E;
 		margin: auto;
 		font-family: 'Consolas';
 		font-size: 20px;
 		color: white;
-		display: block;
+		display: inline;
 		position: relative;
+        margin: auto;
+		 border: 2px solid rgb(0,132,255);
+		 border-radius: 10px ;
 }
 #start_engine
 {
@@ -102,7 +105,7 @@ html
 	text-align: left-center;
 	border: 2px solid rgb(0,255,132);
 	width: 10%;
-		height: 4%;
+		height: 10%;
 }
 #buttons_f
 {
