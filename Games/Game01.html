@@ -1,0 +1,214 @@
+<html>
+<head>
+<!-- <script src="./Engine2d.js"></script> -->
+<link rel="stylesheet" href="./Game01.css">
+</head>
+<h1 id="game_title">2D Runner by HCPP</h1>
+<div id="Game_window">
+<img id="intro" src= "./res/title.png">
+<p id="text_0"></p>
+<button id="start_engine">Играть</button>
+<button id="start_engine0">Настроики</button>
+<p id="info_but">W,S - Выбор , ENTER -  OK Build 0.8</p>
+<h1 id="msg_show">...</h1>
+</div>
+<div id="render_window">
+<p id="info">..</p>
+<img id="man" src= "./res/man0.png"/>
+<img id="arena">
+<img id="arena1" src="./res/arena2.png">
+</div>
+<div id="buttons_f">
+<p id="info_but"> A,D - Left/Right , W- Jump Build 0.8</p>
+<span tabindex="-1" onkeydown="return handleKeyDown();"></span>
+</div>
+<script>
+	var fBstart_engine = document.getElementById('start_engine');
+	var fBstart_engine0 = document.getElementById('start_engine0');
+	var fTmsg_show = document.getElementById('msg_show');
+	var fWrender = document.getElementById('render_window');
+	var fWGame_window = document.getElementById('Game_window')
+	var fIMGBuffer0 = document.getElementById('man');
+	var fIMGBuffer1 = document.getElementById('arena');
+	var fbuttons_f = document.getElementById('buttons_f');
+	var fInfoGame = document.getElementById('info');
+	//
+	var fButD = document.getElementById('but_d');
+	var fButA = document.getElementById('but_a');
+	var fButJump = document.getElementById('btn_jump');
+
+	//
+	let fAPoint = 0;
+	let fPosX = 0;
+	let fSc = 0;
+	let fP = 0;
+	let fDelayKb = 0;
+
+
+fBstart_engine.onclick = function()
+{
+	Game(300,300,true);
+
+}
+function Game(fEn_X,fEn_Y,EnState)
+{
+	console.log("Engine Starting ..");
+	console.log("XY:"+fEn_X+":"+fEn_Y);
+	message("Загрузка Уровня 1"+"\r\n"+"X="+fEn_X+"\r\n"+"Y="+fEn_Y);
+	fWrender.style.display = 'block';
+	fWGame_window.style.display = 'none';
+	fIMGBuffer1.src= "./res/arena.png";
+	fIMGBuffer1.style.width = '100%';
+	fIMGBuffer1.style.height = '30%';
+	fbuttons_f.style.display = 'block';
+	fInfoGame.innerHTML = "Score:"+fSc+" PosX:"+fPosX+" AnimState:"+fAPoint + "KbDelay:"+fDelayKb+"File Loaded:"+fIMGBuffer0;
+}
+document.addEventListener('keydown', function(event) {
+message(event.code);
+  if (event.code == 'KeyW'){
+    document.getElementById('man').style.top = '-30px';
+	setTimeout("document.getElementById('man').style.top = '0px';",100);
+	fP--;
+  	if(fP < 0)
+  	{
+  		fP = 1;
+  	}
+  	if(fP == 0){fBstart_engine.style.border = '2px solid rgb(0,255,132)'; fBstart_engine0.style.border = '2px solid rgb(255,0,132)';}
+  	if(fP == 1){fBstart_engine0.style.border = '2px solid rgb(0,255,132)'; fBstart_engine.style.border = '2px solid rgb(255,0,132)';}
+  }
+  if(event.code == 'KeyS')
+  {
+  	fP++;
+  	if(fP > 1)
+  	{
+  		fP = 0;
+  	}
+  	if(fP == 0){fBstart_engine.style.border = '2px solid rgb(0,255,132)'; fBstart_engine0.style.border = '2px solid rgb(255,0,132)';}
+  	if(fP == 1){fBstart_engine0.style.border = '2px solid rgb(0,255,132)'; fBstart_engine.style.border = '2px solid rgb(255,0,132)';}
+  }
+  if(event.code == 'Enter')
+  {
+  	if(fP == 0)
+  	{
+  		Game(300,300,true);
+  	}
+  	if(fP == 1)
+  	{
+  		message("Beta");
+  	}
+  }
+  if(event.code == 'Escape')
+  {
+  	fWrender.style.display = 'none';
+	fWGame_window.style.display = 'block';
+	fbuttons_f.style.display = 'none';
+  }
+  if(event.code == 'KeyD')
+  {
+  	document.getElementById('man').style.transform = 'scale(1, 1)';
+  	fPosX = fPosX - 5;
+	document.getElementById('man').style.right = fPosX+'px';
+	message("Right..");
+	fGoAnim();
+	if(fPosX >  30)
+	{
+		fPosX = 1;
+	}
+	if(fPosX > -850)
+	{
+		fIMGBuffer1.src= "./res/arena.png";
+	}
+	if(fPosX < -850)
+	{
+		fPosX = -840
+		fIMGBuffer1.src= "./res/arena2.png";
+	}
+  }
+  if(event.code == 'KeyA')
+  {
+  	document.getElementById('man').style.transform = 'scale(-1, 1)';
+  	fPosX = fPosX + 5;
+	document.getElementById('man').style.right = fPosX+'px';
+	message("Left..");
+	fGoAnim();
+	if(fPosX >  30)
+	{
+		fPosX = 1;
+	}
+	if(fPosX > -850)
+	{
+		fIMGBuffer1.src= "./res/arena.png";
+	}
+	if(fPosX < -850)
+	{
+		fPosX = -840;
+		fIMGBuffer1.src= "./res/arena2.png";
+	}
+  }
+});
+function fGoAnim()
+{
+	fDelayKb++;
+	if(fDelayKb == 6)
+	{
+		fAPoint++;
+		fDelayKb = 0;
+	}
+		if(fAPoint == 0)
+		{
+			fIMGBuffer0.src= "./res/man0.png";
+		}
+		if(fAPoint == 1)
+		{
+			fIMGBuffer0.src= "./res/man1.png";
+		}
+		if(fAPoint > 1)
+		{
+			fAPoint = 0;
+		}
+	fInfoGame.innerHTML = "Score:"+fSc+" PosX:"+fPosX+" AnimState:"+fAPoint + "KbDelay:"+fDelayKb+"File Loaded:"+fIMGBuffer0;
+}
+fButJump.onclick = function()
+{
+	document.getElementById('man').style.top = '-30px';
+	setTimeout("document.getElementById('man').style.top = '0px';",100);
+}
+fButA.onclick = function()
+{
+	fPosX = fPosX + 10;
+	document.getElementById('man').style.right = fPosX+'px';
+	message("Left..");
+	fGoAnim();
+	if(fPosX >  30)
+	{
+		fPosX = 1;
+	}
+	if(fPosX < -840)
+	{
+		fPosX = -840;
+	}
+
+}
+fButD.onclick = function()
+{
+	fPosX = fPosX - 10;
+	document.getElementById('man').style.right = fPosX+'px';
+	message("Right..");
+	fGoAnim();
+	if(fPosX >  30)
+	{
+		fPosX = 1;
+	}
+	if(fPosX < -850)
+	{
+		fPosX = -850;
+	}
+}
+function message(text)
+{
+	fTmsg_show.style.display = 'block';
+	fTmsg_show.innerHTML = text;
+	setTimeout("fTmsg_show.style.display = 'none';",3000);
+}
+</script>
+</html>
