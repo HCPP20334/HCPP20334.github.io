@@ -12,6 +12,23 @@
 <p id="info_but">W,S - Выбор , ENTER -  OK Build 0.8</p>
 <h1 id="msg_show">...</h1>
 </div>
+<div id="SetMenu">
+<button id="Dest_win">X(ESC)</button>
+<button id="p_0T">Разрешение</button>
+<button id="p_1T">Тема</button>
+<button id="p_2T">Загрузить спрайты Человечка</button>
+<button id="p_3T">Загрузить спрайты Арены</button>
+<p id="Logs">Параметры</p>
+<p id="res">0x0</p>
+<p id="thr">Black</p>
+<p id="sr_name">Num_0</p>
+<p id="sr_name1">Num_01</p>
+<p id="bar"> W/S Вверх вниз Enter - OK</p>
+</div>
+<div id="LoadBar">
+<p>Проверка файлов..</p>
+<input id="bar_loading" type="range" min="0" max="255" step="1" value="1">
+</div>
 <div id="render_window">
 <p id="info">..</p>
 <img id="man" src= "./res/man0.png"/>
@@ -19,11 +36,12 @@
 <img id="arena1" src="./res/arena2.png">
 </div>
 <div id="buttons_f">
-<p id="info_but"> A,D - Left/Right , SPACE- Jump , ESC - Back Build 0.8</p>
+<p id="info_but"> A,D - Left/Right , SPACE- Jump Build 0.8</p>
 <button id="but_a">L</button>
 <button id="but_d">R</button>
 <button id="btn_jump">JUMP</button>
 <button id="but_ESC">BACK</button>
+<button id="but_a" onclick="javascript:Save();localStorage.save_0 = fPosX;">Сохранить</button>
 </div>
 <script>
 	var fBstart_engine = document.getElementById('start_engine');
@@ -35,6 +53,7 @@
 	var fIMGBuffer1 = document.getElementById('arena');
 	var fbuttons_f = document.getElementById('buttons_f');
 	var fInfoGame = document.getElementById('info');
+	var fSetMenu = document.getElementById('SetMenu');
 	//
 	var fButD = document.getElementById('but_d');
 	var fButA = document.getElementById('but_a');
@@ -47,6 +66,10 @@
 	let fSc = 0;
 	let fP = 0;
 	let fDelayKb = 0;
+	let fTh_id = 0;
+	let fL_state = 0;
+	let s_ck = 0;
+	let save_0 = 0;
     //
   document.addEventListener("DOMContentLoaded", function() {
 	if( getPlatform() == 'Android')
@@ -81,11 +104,33 @@ function getPlatform() {
 }
 fBstart_engine.onclick = function()
 {
-	Game(300,300,true);
+	fCheckFiles();
+
+}
+fBstart_engine0.onclick = function()
+{
+	SetMenu();
+}
+document.getElementById('p_1T').onclick = function()
+{
+	fTheme();
+}
+function Save()
+{
+	localStorage.save_0 = fPosX;
+	console.log("Saving.. -> Cookies");
+}
+function fCheckFiles()
+{
+
+		document.getElementById('LoadBar').style.display = 'block';
+	    setInterval("fL_state++;document.getElementById('bar_loading').value = fL_state;if(fL_state > 255){fL_state = 0;document.getElementById('LoadBar').style.display = 'none';}",5);
+	    setTimeout("Game(300,300,true);",1275);
 
 }
 function Game(fEn_X,fEn_Y,EnState)
 {
+	    setInterval("fL_state++;document.getElementById('bar_loading').value = fL_state;if(fL_state > 255){fL_state = 0;document.getElementById('LoadBar').style.display = 'none';fWrender.style.display = 'block';}",5);
 	console.log("Engine Starting ..");
 	console.log("XY:"+fEn_X+":"+fEn_Y);
 	message("Загрузка Уровня 1"+"\r\n"+"X="+fEn_X+"\r\n"+"Y="+fEn_Y);
@@ -98,11 +143,14 @@ function Game(fEn_X,fEn_Y,EnState)
 	fInfoGame.innerHTML = "Score:"+fSc+" PosX:"+fPosX+" AnimState:"+fAPoint + "KbDelay:"+fDelayKb+"File Loaded:"+fIMGBuffer0;
 }
 document.addEventListener('keydown', function(event) {
-message(event.code);
+message("Key:"+event.code + " PointIem:"+fP+"  Current Posintion :"+fPosX);
 if(event.code == 'Space')
 {
-	document.getElementById('man').style.top = '-30px';
+	document.getElementById('man').style.top = '-60px';
 	setTimeout("document.getElementById('man').style.top = '0px';",100);
+	fPosX = fPosX - 6;
+	document.getElementById('man').style.right = (fPosX) +'px';
+	fInfoGame.innerHTML = "Score:"+fSc+" PosX:"+fPosX+" AnimState:"+fAPoint + "KbDelay:"+fDelayKb;
 }
   if (event.code == 'KeyW'){
 	fP--;
@@ -110,8 +158,8 @@ if(event.code == 'Space')
   	{
   		fP = 1;
   	}
-  	if(fP == 0){fBstart_engine.style.border = '2px solid rgb(0,255,132)'; fBstart_engine0.style.border = '2px solid rgb(255,0,132)';}
-  	if(fP == 1){fBstart_engine0.style.border = '2px solid rgb(0,255,132)'; fBstart_engine.style.border = '2px solid rgb(255,0,132)';}
+  	if(fP == 0){fBstart_engine.style.border = '2px solid rgb(0,255,132)'; fBstart_engine0.style.border = '2px solid rgb(0,132,255)';}
+  	if(fP == 1){fBstart_engine0.style.border = '2px solid rgb(0,255,132)'; fBstart_engine.style.border = '2px solid rgb(0,132,255)';}
   }
   if(event.code == 'KeyS')
   {
@@ -120,8 +168,8 @@ if(event.code == 'Space')
   	{
   		fP = 0;
   	}
-  	if(fP == 0){fBstart_engine.style.border = '2px solid rgb(0,255,132)'; fBstart_engine0.style.border = '2px solid rgb(255,0,132)';}
-  	if(fP == 1){fBstart_engine0.style.border = '2px solid rgb(0,255,132)'; fBstart_engine.style.border = '2px solid rgb(255,0,132)';}
+  	if(fP == 0){fBstart_engine.style.border = '2px solid rgb(0,255,132)'; fBstart_engine0.style.border = '2px solid rgb(0,132,255)';}
+  	if(fP == 1){fBstart_engine0.style.border = '2px solid rgb(0,255,132)'; fBstart_engine.style.border = '2px solid rgb(0,132,255)';}
   }
   if(event.code == 'Enter')
   {
@@ -131,7 +179,8 @@ if(event.code == 'Space')
   	}
   	if(fP == 1)
   	{
-  		message("Beta");
+  		message("Loading...");
+  		SetMenu();
   	}
   }
   if(event.code == 'Escape')
@@ -139,6 +188,13 @@ if(event.code == 'Space')
   	fWrender.style.display = 'none';
 	fWGame_window.style.display = 'block';
 	fbuttons_f.style.display = 'none';
+	fSetMenu.style.display = 'none';
+	fSetMenu.style.animation = 'blur_slow 100ms';
+	fbuttons_f.style.animation = 'blur_slow 100ms';
+	fWGame_window.style.animation = 'blur_slow 100ms';
+	fWrender.style.animation = 'blur_slow 100ms';
+	document.getElementById('game_title').style.width = '50%';
+
   }
   if(event.code == 'KeyD')
   {
@@ -214,6 +270,76 @@ if(event.code == 'Space')
 	}
   }
 });
+function SetMenu()
+{
+	fWrender.style.display = 'none';
+	fWGame_window.style.display = 'none';
+	fbuttons_f.style.display = 'none';
+	fSetMenu.style.display = 'block';
+	fSetMenu.style.transition = '.4s';
+	document.getElementById('game_title').style.width = '30%';
+	fCheckFiles();
+
+}
+setInterval("fCheckPos();",10);
+function fCheckPos()
+{
+	if(fPosX < -850)
+	{
+		aleft("Error!!Out of Level!!");
+	}
+}
+function fTheme()
+{
+	fTh_id++;
+	if(fTh_id > 1){fTh_id = 0;}
+	if(fTh_id)
+	{
+		fWrender.style.background = 'White';
+		fWGame_window.style.background = 'White';
+		fSetMenu.style.background = 'White';
+		fSetMenu.style.color = '#1B1B1E';
+		fWGame_window.style.color = '#1B1B1E';
+		fWrender.style.color = '#1B1B1E';
+	    document.getElementById('game_title').style.background = 'White';
+	    document.getElementById('p_0T').style.background = 'White';
+	    document.getElementById('p_1T').style.background = 'White';
+	    document.getElementById('p_2T').style.background = 'White';
+	    document.getElementById('p_3T').style.background = 'White';
+	    document.getElementById('p_0T').style.color = '#1B1B1E';
+	    document.getElementById('p_1T').style.color = '#1B1B1E';
+	    document.getElementById('p_2T').style.color = '#1B1B1E';
+	    document.getElementById('p_3T').style.color = '#1B1B1E';
+	    document.getElementById('game_title').style.color = '#1B1B1E';
+	    fBstart_engine0.style.background = 'White';
+	    fBstart_engine.style.background = 'White';
+	    fBstart_engine.style.color = '#1B1B1E';
+	    fBstart_engine0.style.color = '#1B1B1E';
+	}
+	if(!fTh_id)
+	{
+		fWrender.style.background = '#1B1B1E';
+		fWGame_window.style.background = '#1B1B1E';
+		fSetMenu.style.background = '#1B1B1E';
+		fSetMenu.style.color = 'White';
+		fWGame_window.style.color = 'White';
+		fWrender.style.color = 'White';
+		document.getElementById('p_0T').style.background = '#1B1B1E';
+	    document.getElementById('p_1T').style.background = '#1B1B1E';
+	    document.getElementById('p_2T').style.background = '#1B1B1E';
+	    document.getElementById('p_3T').style.background = '#1B1B1E';
+	    document.getElementById('p_0T').style.color = 'White';
+	    document.getElementById('p_1T').style.color = 'White';
+	    document.getElementById('p_2T').style.color = 'White';
+	    document.getElementById('p_3T').style.color = 'White';
+	    document.getElementById('game_title').style.background = '#1B1B1E';
+	    document.getElementById('game_title').style.color = 'White';
+	    fBstart_engine0.style.background = '#1B1B1E';
+	    fBstart_engine.style.background = '#1B1B1E';
+	    fBstart_engine.style.color = 'White';
+	    fBstart_engine0.style.color = 'White';
+	}
+}
 function fGoAnim()
 {
 	fDelayKb++;
@@ -282,6 +408,7 @@ fButESC.onclick = function()
 }
 function message(text)
 {
+	fTmsg_show.style.transition = '.4s';
 	fTmsg_show.style.display = 'block';
 	fTmsg_show.innerHTML = text;
 	setTimeout("fTmsg_show.style.display = 'none';",3000);

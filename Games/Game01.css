@@ -1,15 +1,56 @@
 html
 {
-	background-color:rgb(20,23,38);
+	background: linear-gradient(to right bottom,rgb(20,23,38),#1B1C1E);
+}
+@keyframes blur_slow
+  {
+
+    0%{transition: .4s;filter: blur(6px);}
+    25%{transition: .4s;filter: blur(4px);}
+    50%{transition: .4s;filter: blur(2px);}
+    75%{transition: .4s;filter: blur(0px);}
+    100%{transition: .4s;filter:none;}
+  }
+@keyframes gr_anim
+{
+	0%{background: linear-gradient(to right bottom,rgb(0,255,132), #1B1C1E);transition: .4s;}
+	50%{background: linear-gradient(to right bottom, #1B1C1E, rgb(0,255,132));transition: .4s;}
+	75%{background: linear-gradient(to right bottom, rgb(0,255,132)), #1B1C1E);transition: .4s;}
+	100%{background: linear-gradient(to right bottom, #1B1C1E, rgb(0,255,132));transition: .4s;}
+}
+#LoadBar
+{
+    font-family:'Consolas';
+	font-size: 20px;
+	color:white;
+	width: 30%;
+	height: 20%;
+	background: linear-gradient(to right bottom,rgb(255,0,132),rgb(0,255,132),rgb(132,0,255));
+	margin:auto;
+	display: none;
+	padding: 10px;
+	transition: .8s;
+	position: relative;
+	transform: translateY(-400px);
 }
 #Game_window
 {
 	   background-color: #1B1C1E;
 		margin: auto;
 		display: block;
-		border-top: 6px solid rgb(255,0,132);
+		border-top: 6px solid rgb(0,132,255);
 
-		width: 50%;height: 50%;
+		width: 50%;height: 50%;border-radius: 4px;
+}
+#bar
+{
+	border-top: 6px solid rgb(0,132,255);font-family:'Consolas';
+	font-size: 20px;padding: -5px;text-align:center;
+}
+#bar_loading
+{
+	width: 100%;background: linear-gradient(to right bottom,rgb(20,23,38),#1B1C1E);
+	height:10%; border-radius: 10px ;
 }
 #text_0
 {
@@ -49,21 +90,44 @@ html
 		 border: 2px solid rgb(0,132,255);
 		 border-radius: 10px ;
 }
+#SetMenu
+{
+	  border-top: 6px solid rgb(0,132,255));
+		width: 30%;
+		height: 70%;
+		animation: gr_anim 3s infinite;
+		margin: auto;
+		font-family: 'Consolas';
+		font-size: 20px;
+		color: white;border-radius: 4px;
+		display: none;
+		transition: .8s;
+}
+#Logs{border-bottom: 6px solid rgb(0,132,255);padding: 6px; }#res,#thr,#sr_name,#sr_name1{padding: 6px;}
+#p_0T,#p_1T,#p_2T,#p_3T{border: 2px solid rgb(0,132,255);background-color: #1B1C1E;display: table;font-family: 'Consolas';
+		font-size: 20px;width: 90%;
+		height: 10%;margin: auto;
+		color: white;border-radius: 4px;}
+		#Dest_win{border: 2px solid rgb(0,132,255);background-color: #1B1C1E;font-family: 'Consolas';border-radius: 4px;
+		font-size: 20px;color: white;}
+		#Dest_win:hover{box-shadow: 0px 1px 2px rgb(0,132,255);}
+		#p_0T:hover{box-shadow: 0px 1px 10px rgb(0,132,255);}#p_1T:hover{box-shadow: 0px 1px 10px rgb(0,132,255);}#p_2T:hover{box-shadow: 0px 1px 10px rgb(0,132,255);}
+		#p_3T:hover{box-shadow: 0px 1px 10px rgb(0,132,255);}
 #start_engine
 {
-	     border: 2px solid rgb(255,0,132);
+	     border: 2px solid rgb(0,132,255);
 		width: 30%;
 		height: 10%;
 		background-color: #1B1C1E;
 		margin: auto;
 		font-family: 'Consolas';
 		font-size: 20px;
-		color: white;
+		color: white;border-radius: 4px;
 		display: block;
 }
 #start_engine0
 {
-	    border: 2px solid rgb(255,0,132);
+	    border: 2px solid rgb(0,132,255);
 		width: 30%;
 		height: 10%;
 		background-color: #1B1C1E;
@@ -71,7 +135,7 @@ html
 		font-family: 'Consolas';
 		font-size: 20px;
 		color: white;
-		display: block;
+		display: block;border-radius: 4px;
 }
 #start_engine0:hover
 {
@@ -102,10 +166,14 @@ html
 	font-family:'Consolas';
 	font-size: 20px;
 	color:white;
-	text-align: left-center;
-	border: 2px solid rgb(0,255,132);
-	width: 10%;
-		height: 10%;
+	text-align: center;
+	border: 2px solid rgb(0,132,255);
+	background-color: #1B1C1E;
+	border-radius: 4px;
+	width: 50%;
+		height: 5%;
+		display: block;
+		margin:auto;
 }
 #buttons_f
 {
@@ -113,13 +181,13 @@ html
 	    background-color: #1B1C1E;
 		margin: auto;
 		display: none;
-		border-top: 6px solid rgb(255,0,132);
-		border-bottom: 6px solid rgb(255,0,132);
-		width: 50%;height: 20%;
+		border-top: 6px solid rgb(0,132,255);
+		border-bottom: 6px solid rgb(0,132,255);
+		width: 50%;height: 20%;border-radius: 4px;
 }
 #render_window
 {
-	    border: 2px solid rgb(255,0,132);
+	    border: 2px solid rgb(0,132,255);
 		width: 50%;
 		height: 50%;
 		background-color: #1B1C1E;
@@ -127,5 +195,20 @@ html
 		font-family: 'Consolas';
 		font-size: 20px;
 		color: white;
-		display: none;
+		display: none;border-radius: 4px;
+		 background: linear-gradient(to right bottom, 
+      #e18728, rgb(0,255,132));
+}
+#bar_loading::-webkit-slider-thumb 
+{
+	width: 30%;
+	height: 10%;
+	background:rgb(0,255,132);
+background-color: #1B1C1E;
+   -webkit-appearance: none;
+ appearance: none;
+ cursor: pointer;
+ border: 1px solid rgb(11,10,16);}
+
+
 }

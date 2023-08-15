@@ -25,21 +25,166 @@
 
 html
 {
- background-image: url(Pictures/22033.jpg);
-
-background-repeat: no-repeat;
-
-background-position: center center;
-
--webkit-background-size: cover;
-
--moz-background-size: cover;
-
--o-background-size: cover;
-
+background: linear-gradient(to right bottom,rgb(60,55,128),#1B1B1E,rgb(132,0,255));
 background-size: cover;
+animation: blur_slow 2s;
 }
+@keyframes gr_anim
+{
+  0%{transition: .8s;background: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
+  25%{transition: .8s;background: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
+  50%{transition: .8s;background: linear-gradient(to left top,rgb(60,55,128),rgb(60,55,239));}
+  75%{transition: .8s;background: linear-gradient(to left top,rgb(60,55,128),rgb(60,55,239));}
+  100%{transition: .8s;background: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
+}
+@keyframes gr_anim_f
+{
+  0%{transition: .8s;background: linear-gradient(to left bottom,rgb(128,75,195),rgb(10,30,239));}
+  25%{transition: .8s;background: linear-gradient(to right bottom,rgb(128,75,195),rgb(10,30,239));}
+  50%{transition: .8s;background: linear-gradient(to left top,rgb(128,75,195),rgb(10,30,239));}
+  75%{transition: .8s;background: linear-gradient(to right top,rgb(128,75,195),rgb(10,30,239));}
+  100%{transition: .8s;background: linear-gradient(to left bottom,rgb(128,75,195),rgb(10,30,239));}
+}
+@keyframes gr_anim_btn
+{
+  0%{transition: .8s;background-color: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
+  25%{transition: .8s;background-color: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
+  50%{transition: .8s;background-color: linear-gradient(to left top,rgb(60,55,128),rgb(60,55,239));}
+  75%{transition: .8s;background-color: linear-gradient(to left top,rgb(60,55,128),rgb(60,55,239));}
+  100%{transition: .8s;background-color: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
+}
+@keyframes opacity_slow
+  {
+    100%{opacity:100%;}0%{opacity:0%;}
+  }
+@keyframes blur_slow
+  {
+
+    0%{transition: .4s;filter: blur(6px);}
+    25%{transition: .4s;filter: blur(4px);}
+    50%{transition: .4s;filter: blur(2px);}
+    75%{transition: .4s;filter: blur(0px);}
+    100%{transition: .4s;filter:none;}
+  }
 body {width: 100%;height: 100%;}
+ #prjpr
+{
+  animation: gr_anim 8s infinite;
+  width: 60%;
+  height: 60%;
+  margin:auto;
+  position: absolute-center;transition: .10s;
+}
+#prjInfo
+{
+  font-family: 'Consolas';
+    font-size: 60px;
+    color: white;padding: 10px;
+    text-shadow: 0 0 4px white;transition: .10s;
+}
+#textPrjInfo
+{
+  font-family: 'Consolas';
+    font-size: 40px;
+    color: white;padding: 10px;transition: .10s;
+}
+#infoprjid
+{
+  font-family: 'Consolas';
+    font-size: 60px;
+    color: white;padding: 10px;
+    text-shadow: 0 0 4px white;transition: .10s;
+    text-align: center;
+}
+#infoprjc
+{
+   font-family: 'Consolas';
+    font-size: 30px;
+    color: white;padding: 10px;
+    text-shadow: 0 0 4px white;transition: .10s;
+    text-align: center;
+}
+#infoprjcj
+{
+    font-family: 'Consolas';
+    font-size: 30px;
+    color: white;padding: 10px;
+    text-shadow: 0 0 4px white;transition: .10s;
+    text-align: center;
+}
+#next_prj
+{
+  animation: gr_anim 8s infinite;font-family: 'Consolas';
+    font-size: 60px;
+    color: white;width: 0%;
+    height: 0%;
+    float: right;
+}
+#prev_prj
+{
+  animation: gr_anim 8s infinite;font-family: 'Consolas';
+    font-size: 60px;
+    color: white;width: 0%;
+    height: 0%;
+    float: left;
+    transform: translateX(-40px);
+}
+#wellcome_window
+  {
+    width: 50%;
+    height: 50%;
+    animation: gr_anim 2s infinite;    margin: auto;
+    display: none;
+    border-top: 6px solid rgb(0,255,132);
+    transition: .4s;
+
+  }
+  #wl_text_accept
+  {
+    font-family: 'Consolas';
+    font-size: 8px;
+    color: white;
+  }
+  #author
+  {
+    font-family: 'Consolas';
+    font-size: 30px;
+    color: white;
+    text-align:right;
+    padding: 10px;
+  }
+  #wl_0text
+  {
+    font-family: 'Consolas';
+    font-size: 30px;
+    color: white;
+  }
+  #wl_1text
+  {
+    font-family: 'Consolas';
+    font-size: 20px;
+    color: white;
+  }
+  #wl_btn
+  {
+    border: 2px solid rgb(0,255,132);
+    width: 30%;
+    height: 10%;
+    background-color: #1B1C1E;
+    margin: center-left;
+    font-family: 'Consolas';
+    font-size: 20px;color: white;
+  }
+
+        #blur_bkg
+        {
+        }
+        #start-wng
+        {
+          display: none;
+          width: 100%;height: 100%;-webkit-filter: blur(10px);
+          filter: blur(10px);
+        }
 #valueg
 {
  display: block;
@@ -49,7 +194,7 @@ body {width: 100%;height: 100%;}
 	border: 2px solid black;
 	margin-left: center;
     margin-right: center ;
-	background-color:Black;
+	animation: gr_anim 2s infinite;
 	 font-family:'Consolas';
      animation:fColorA 1s infinite
 	}
@@ -131,15 +276,6 @@ body {width: 100%;height: 100%;}
   #btnSource:hover{border: 2px solid rgb(0,255,132);}
   #LangBtn{display:table;color:white;background-color:rgb(20,23,38);width:10%;height:5%;border:none;font-family:'Consolas';border-radius:4px;margin:auto; animation: fColorA 1s infinite;}
   #LangBtn:hover{width:10%;height:5%;background-color:white;color:black;}
-  #ConsoleStyle
-  {
-    display: inline;margin: auto;
-         background-color: rgb(20,23,38);
-         border: 2px solid rgb(54,61,255);
-         width: 30%;
-         height: 50%;
-         transition: all .8s;
-  }
   @keyframes fAColors
    {
 	   0%{color:#3F4044;}
@@ -162,10 +298,10 @@ body {width: 100%;height: 100%;}
          transition: all .8s;.8s;color:rgb(0,255,132);
         font-family: 'Consolas';
         font-size: 20px;}
-  #donatebtn{ background-color:rgb(20,23,38);color: white;
-  width: 31%;
+  #donatebtn{color: white;font-size: 40px;
+  width: 10%;
   height:10%;
-  display:table;margin:auto;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 25px;}
+  display:inline;margin:auto;border: 2px solid rgb(54,61,255);text-shadow: 0 0 4px white;transition: .10s;font-family: 'Consolas';font-size: 25px;}
   #donatebtn:hover{border: 2px solid rgb(0,255,132);}
   #donate-Btn{background-color:rgb(20,23,38);color: white;
   width: 31%;
@@ -176,7 +312,7 @@ body {width: 100%;height: 100%;}
   #fAbout {background-color:#07080f; width:200px;height:170px;color:white;font-family:'Consolas';text-align:center;transform: translateY(-500px);animation:fYBounds 2s;}
   #value7,#value4,#get-system,#Text-Buffer{text-align:center;font-family:'Consolas';animation:fXBounds 2s;color:white;}
   #PayMe {display: none;margin: auto;
-         background-color: rgb(20,23,38);
+         animation: gr_anim_f 2s infinite;
          border: 2px solid rgb(54,61,255);
          width: 40%;
          height: 50%;
@@ -184,28 +320,17 @@ body {width: 100%;height: 100%;}
         font-family: 'Consolas';
         font-size: 20px;text-align: center;}
   #Text00,#Text01,#Text02,#Text1,#Text2,#Text3{font-family:'Consolas';text-align:center;  color:rgb(0,255,132);;font-size:20px;}
-   #linksbtn{color:white;background-color: rgb(20,23,38);width:125px;height:60px;border: 2px rgb(20,23,38);font-family: 'Consolas';font-size: 20px;border-radius:2px;transition: all .4s;}
+   #linksbtn{color:white;font-family: 'Consolas';font-size: 40px;text-shadow: 0 0 4px white;transition: .10s;border-radius:2px;transition: all .4s;width:10%;height:10%;display: inline;text-align: center;margin: 30px;}
   #linksbtn:hover
   {
-     color: #35d555;
-   text-shadow: 0 0 4px #35d555;border-bottom: 2px solid #414141;
-   width:125px;height:60px;
-    border:none;
-    font-family:'Consolas';
-    border-radius: 2px;
-    margin-top: 10px;
-   margin-bottom: 10px;
-   font-size: 20px;
-   font-weight: 400;
-   transition: all .4s;
    border-bottom: 2px solid #35d555;
-}
- #settingsB{display:none;color:white;background-color: rgb(20,23,38);width:125px;height:60px;border: 2px rgb(20,23,38);font-family: 'Consolas';font-size: 20px;border-radius:2px;transition: all .4s;}
+  }
+ #settingsB{display:none;color:white;border: 2px rgb(20,23,38);font-family: 'Consolas';font-size: 40px;border-radius:2px;transition: all .4s;width:10%;height:10%;}
   #settingsB:hover
   {
     color: #35d555;
    text-shadow: 0 0 4px #35d555;border-bottom: 2px solid #414141;
-     width:125px;height:60px;
+    width:0%;height:0%;
     border:none;
     font-family:'Consolas';
     border-radius: 2px;
@@ -216,47 +341,28 @@ body {width: 100%;height: 100%;}
    transition: all .4s;
   border-bottom: 2px solid #35d555;
 }
-  #fItemDn{color:white;background-color: rgb(20,23,38);width:125px;height:60px;border: 2px rgb(20,23,38);font-family: 'Consolas';font-size: 20px;border-radius:2px;transition: all .4s;}
+  #fItemDn{color:white;font-family: 'Consolas';font-size: 40px;border-radius:2px;text-shadow: 0 0 4px white;transition: .10s;transition: all .4s;width:10%;height:10%;display: inline;margin: 30px;}
   #fItemDn:hover
   {
-    color: #35d555;
-   text-shadow: 0 0 4px #35d555;border-bottom: 2px solid #414141;
-    width:125px;height:60px;
-    border:none;
-   font-family:'Consolas';
-    border-radius: 2px;
-    margin-top: 10px;
-   margin-bottom: 10px;
-   font-size: 20px;
    transition: all .4s;
    border-bottom: 2px solid #35d555;
 }
-  #fprojectsB{color:white;background-color: rgb(20,23,38); width:125px;height:60px;border: 2px solid rgb(20,23,38);font-family:'Consolas';font-size: 20px;border-radius:2px;transition: all .4s;}
+  #fprojectsB{color:white;display: inline;font-family:'Consolas';font-size: 40px;text-shadow: 0 0 4px white;transition: .10s;border-radius:2px;transition: all .4s;width:10%;height:10%;margin: 30px;}
   #fprojectsB:hover
   {
-    color: #35d555;
-   text-shadow: 0 0 4px #35d555;border-bottom: 2px solid #414141;
-    width:125px;height:60px;
-    border:none;
-    font-family:'Consolas';
-    border-radius: 2px;
-    margin-top: 10px;
-   margin-bottom: 10px;
-   font-size: 20px;
    transition: all .4s;
    border-bottom: 2px solid #35d555;
 }
-  #space{color:#07080f;background-color:#1B1C1E;width:160px;height:30px;bolder: 2px gray;}
+  #space{color:#07080f; animation: gr_anim_f 2s infinite;width:160px;height:30px;bolder: 2px gray;}
   #links {  display: none;margin: auto;
-         background-color: rgb(20,23,38);
-         border: 2px solid rgb(54,61,255);
+          animation: gr_anim_f 2s infinite;
          width: 50%;
          height: 50%;
          transition: all .8s;.8s;color:rgb(0,255,132);
         font-family: 'Consolas';
         font-size: 20px;text-align: center;}
   #settings{  display: none;margin: auto;
-         background-color: rgb(20,23,38);
+         animation: gr_anim_f 2s infinite;
          border: 2px solid rgb(54,61,255);
          width: 50%;
          height: 50%;
@@ -264,13 +370,33 @@ body {width: 100%;height: 100%;}
         font-family: 'Consolas';
         font-size: 20px;text-align: center;}
   #fProjects{  display: none;margin: auto;
-         background-color: rgb(20,23,38);
+        animation: gr_anim_f 2s infinite;
          border: 2px solid rgb(54,61,255);
          width: 50%;
          height: 51%;
          transition: all .8s;.8s;color:rgb(0,255,132);
         font-family: 'Consolas';
         font-size: 20px;text-align: center;}
+        #buttons_panel
+        {
+          width: 50%;
+          height: 100%
+          animation: gr_anim_f 4s infinite;
+          display: block;
+        }
+        #open_panel
+        {
+          color:white;
+          font-size: 60px;
+          font-family: 'Consolas';
+          margin: 1%;
+          transform: translateY(500px);
+          background: linear-gradient(to right bottom,rgb(255,0,132),rgb(0,255,132),rgb(132,0,255));
+          width: 10%;
+          height: 90%;
+          border-radius: 10px;
+          display: none;
+        }
   #fLinkText{padding:4px;}
   #fSettText{padding:4px;}
   #fProjText{padding:4px;}
@@ -280,28 +406,21 @@ body {width: 100%;height: 100%;}
   #fCloseSett:hover{background-color:#1B1C1E;border:none;font-family:'Consolas';color:#35d555;text-shadow: 0 0 4px #35d555;}
   #fCloseProject{background-color:#1B1C1E;border:none;font-family:'Consolas';transform:translateX(100px);font-size:30px;color:white;}
   #fCloseProject:hover{background-color:#1B1C1E;border:none;font-family:'Consolas';color:#35d555;text-shadow: 0 0 4px #35d555;}
-  #bar-top{width:80%;height:21%;transform:translateY(-30px); background-color: rgb(20,23,38);border: 2px solid rgb(54,61,255); font-family: 'Consolas';}
-  #text-tt{ font-family: 'Consolas';color:rgb(0,255,132);font-size:30px;font-weight: 800;padding:20px;margin:10px;transform :translateX(120px) translateY(10px);}
+  #bar-top{width:80%;height:21%;transform:translateY(-30px);background: linear-gradient(to left top,rgb(128,75,195),#1B1B1E);font-family: 'Consolas';}
+  #text-tt{ font-family: 'Consolas';color:white;font-size:60px;padding:20px;margin:10px;border-bottom: 2px gray;}
   #errorJS{display:block;background-color:#07080f; color:red;font-family:'Consolas';text-align:center;margin:auto;border-radius:10px;  transform:translateY(-10px); width:30%; height:30%;margin:auto;}
   #errorJSMsg{font-family:'Consolas';color:red;font-size:20px;}
   #status{display:none;color:white;font-family:'Consolas';}
   #textIntro{animation: fYBounds 1000ms;padding:30px;}
-  #ToolsBtn{color:white;background-color: rgb(20,23,38);width:125px;height:60px;border: 2px rgb(20,23,38);font-family:'Consolas';border-radius:2px;font-size: 20px;transition: all .4s;}
-  #ToolsBtn:hover{ color: #35d555;
-  text-shadow: 0 0 4px #35d555;border-bottom: 2px solid #414141;
-  border-radius: 2px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-family:'Consolas';
-  font-size: 20px;
-  font-weight: 400;
+  #ToolsBtn{color:white;width:10%;height:10%;font-family:'Consolas';text-shadow: 0 0 4px white;transition: .10s;border-radius:2px;font-size: 40px;transition: all .4s;display: inline;margin: 30px;}
+  #ToolsBtn:hover{
   transition: all .4s;}
-  #imgIcon{transform: translateX(20px) translateY(-60px);border-radius:16px;animation:fColorA 1s infinite;background-color:#1B1C1E;background-color: rgb(20,23,38);}
+  #imgIcon{transform: translateX(20px) translateY(-60px);border-radius:16px;animation:fColorA 1s infinite;background-color:#1B1C1E;background-color: rgb(20,23,38);display:none;}
   #imgIcon:hover {width: 102px;height: 102px;}
   #buttonsM{transform: translateX(120px) translateY(-80px);}
   #MessageBox{display:none;background-color: rgb(20,23,38);font-family:'Consolas';font-size: 20px;border-left: 4px solid rgb(255,1,55);}
   #Tools{  display: none;margin: auto;
-         background-color: rgb(20,23,38);
+         animation: gr_anim_f 2s infinite;
          border: 2px solid rgb(54,61,255);
          width: 50%;
          height: 50%;
@@ -309,7 +428,7 @@ body {width: 100%;height: 100%;}
         font-family: 'Consolas';
         font-size: 20px; }
   #TLPlayer{ display: none;margin: auto;
-         background-color: rgb(20,23,38);
+         animation: gr_anim 2s infinite;
          border: 2px solid rgb(54,61,255);
          width: 30%;
          height: 50%;
@@ -368,7 +487,7 @@ body {width: 100%;height: 100%;}
   #TLBtnA:hover {border: 2px solid rgb(0,255,132);}
   #TLBtnB:hover {border: 2px solid rgb(0,255,132);}
   #TLBtnC:hover {border: 2px solid rgb(0,255,132);}
-  #audioPlayer {display:table;width: 30%;height:30%;margin:auto;margin:auto;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 30px;background-color: rgb(20,23,38); }
+  #audioPlayer {display:table;width: 30%;height:30%;margin:auto;margin:auto;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 30px; animation: gr_anim_f 2s infinite; }
   #testtheme{font-family:'hack';}
   #themeSel{display:none;width: 300px;height: 200px;border: 2px solid lightskyblue }
    #themeSel0{display:none;width: 300px;height: 200px;border: 2px solid lightskyblue }
