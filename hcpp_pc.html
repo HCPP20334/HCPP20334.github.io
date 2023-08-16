@@ -1,0 +1,145 @@
+<html>
+<style>
+	@keyframes gr_anim
+{
+  0%{transition: .8s;background: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
+  25%{transition: .8s;background: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
+  50%{transition: .8s;background: linear-gradient(to left top,rgb(60,55,128),rgb(60,55,239));}
+  75%{transition: .8s;background: linear-gradient(to left top,rgb(60,55,128),rgb(60,55,239));}
+  100%{transition: .8s;background: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
+}
+	html
+	{
+		background: linear-gradient(to right bottom,rgb(60,55,128),#1B1B1E,rgb(132,0,255));
+	}
+	#maib
+	{
+		animation: gr_anim 2s infinite;
+		width:  30%;height: 80%;
+		display: block;
+		margin:left;border-radius: 20px;
+	}
+	#contacts
+	{
+		animation: gr_anim 2s infinite;
+		width:  30%;height: 80%;
+		display: block;
+		margin:auto;border-radius: 20px;
+		transform: translateY(-42em);
+	}
+	#maintetx
+	{
+		font-family: 'Consolas';
+		font-size: 60px;
+		text-shadow: 0 0 4px white;
+		color:white;padding: 10px;
+		display: block
+	}
+	#text,#text0
+	{
+		font-family: 'Consolas';
+		font-size: 40px;padding: 10px;
+		color:white;
+		display: block;
+	}
+	#price
+	{
+		font-family: 'Consolas';
+		font-size: 40px;
+		color:white;
+		display: block;
+		border: 2px solid white;
+		animation: gr_anim 2s infinite;
+		width:  50%;height: 10%;margin:auto;
+		border-radius: 40px;position: static;
+	}
+</style>
+<div id="maib">
+	<h1 id="maintetx">HCPP PC</h1>
+	<p id="text">Null JS Error</p>
+	<button id="price">Прайс лист</button>
+</div>
+<div id="contacts">
+	<h1 id="maintetx">HCPP PC</h1>
+	<p id="text0">Контакты</p>
+	<button id="price" onclick="javascript:document.location.href = 'https://vk.com/im?sel=-222066875';">Группа ВК</button>
+</div>
+<script type="text/javascript">
+	var fInfo = document.getElementById('maintetx');
+	var fCurWindow = document.getElementById('maib');
+	var fcontacts   = document.getElementById('contacts');
+	var fText = document.getElementById('text');
+	var fPriceBtn = document.getElementById('price');
+	var fTextStr = "Это частная компаня которая специализмруется на  сборке пк" + "\r\n"+"Настроике вашего пк(Установка виндовс, установка драйверов, перепрошивка биос..т.д)";
+	let f_st = 0;
+	let x_pos = 0
+	let y_pos = 0;
+	//
+	var userDeviceArray = [
+    {device: 'Android', platform: /Android/},
+    {device: 'iPhone', platform: /iPhone/},
+    {device: 'iPad', platform: /iPad/},
+    {device: 'Symbian', platform: /Symbian/},
+    {device: 'Windows Phone', platform: /Windows Phone/},
+    {device: 'Tablet OS', platform: /Tablet OS/},
+    {device: 'Linux', platform: /Linux/},
+    {device: 'Windows', platform: /Windows NT/},
+    {device: 'Macintosh', platform: /Macintosh/}
+];
+var platform = navigator.userAgent;
+function getPlatform() {
+    for (var i in userDeviceArray) {
+        if (userDeviceArray[i].platform.test(platform))
+         {
+            return userDeviceArray[i].device;
+          }
+        }
+}
+//
+	function GetScreenXY()
+	{
+		y_pos = window.screen.height;
+		x_pos = window.screen.width;
+		if(y_pos <= 720)
+		{
+           fCurWindow.style.height = "90%";
+           fcontacts.style.height = "90%";
+           fText.style.fontSize = '30px';
+           fPriceBtn.style.fontSize = '25px';
+		}
+		if(y_pos >= 1080)
+		{
+           fCurWindow.style.height = "60%";
+           fcontacts.style.height = "90%";
+           fText.style.fontSize = '40px';
+           fPriceBtn.style.fontSize = '40px';
+		}
+		if(getPlatform() == 'Android' || getPlatform() == 'iPhone')
+		{
+           fCurWindow.style.height = "30%";
+           fCurWindow.style.width = "80%";
+           fcontacts.style.height = "30%";
+           fcontacts.style.width = "80%";
+           fText.style.fontSize = '40px';
+           fPriceBtn.style.fontSize = '40px';
+           fcontacts.style.margin = 'left';
+           fcontacts.style.display = 'block';
+           fcontacts.style.transform = 'translateY(0em)';
+		}
+	}
+	setInterval("GetScreenXY();",1);
+	setTimeout("fText.innerHTML = fTextStr;",1);
+
+	fPriceBtn.onclick = function()
+	{
+		f_st++;
+		if(f_st > 1){f_st = 0;}
+		fPrice(f_st);
+	}
+	function fPrice(s_state)
+	{
+		if(s_state){fText.innerHTML = "Установка Windows - 500руб"+"\r\n"+"Установка Драйверов - 50руб 1 драйвер"+"\r\n"+"перепрошивка BIOS - 500руб";fPriceBtn.innerHTML = "Назад в меню"+"\r\n"+"\r\n"+"\r\n";}
+		if(!s_state){fText.innerHTML = fTextStr;fPriceBtn.innerHTML = "Прайс лист";}
+	}
+</script>
+</html>
