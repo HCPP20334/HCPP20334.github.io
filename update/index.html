@@ -1,7 +1,58 @@
 <html>
 <style>
-html{background-color:#1B1B1E;font-family: 'Consolas';font-size:60px;text-align:center;border: 4px rgb(10,255,155);}
+html
+{
+	background-color: #1b1b1e;
+}
+@keyframes TxSlideRight
+{
+	0%{transition: .8s;transform: translateX(-200px);border:none;}
+	100%{transition: .8s;transform: translateX(0px);border-bottom: 4px solid rgb(0,100,255);}
+}
+@keyframes TxSlideRightBorderOn
+{
+	0%{transition: .8s;transform: translateX(-200px);}
+	100%{transition: .8s;transform: translateX(0px);border-bottom: 4px solid rgb(0,100,255);}
+}
+@keyframes GrSlide
+{
+	0%{transition: .8s;background: linear-gradient(to top bottom,#1B1B1E,rgb(60,55,239));}
+	0%{transition: .8s;background: linear-gradient(to top bottom,rgb(60,55,239),#1B1B1E);}
+}
+#buttons_a,#buttons_b,#buttons_c,#buttons_d,#buttons_e
+{
+	@media max-width: 1920px;
+	@media max-height: 1080px;
+	background-color: #1b1b1e;
+	width:40%;height:10%;
+	border: 2px solid rgb(100,0,255);color:white;font-family: 'Consolas';font-size:20px;border-radius:10px;animation: TxSlideRightBorderOn 1s ;
+}
+#buttons_a:hover {border: 2px solid rgb(0,255,255);background: linear-gradient(to left bottom,#1B1B1E,rgb(60,55,239));}
+#buttons_b:hover {border: 2px solid rgb(0,255,255);background: linear-gradient(to left bottom,#1B1B1E,rgb(60,55,239));}
+#buttons_c:hover {border: 2px solid rgb(0,255,255);background: linear-gradient(to left bottom,#1B1B1E,rgb(60,55,239));}
+#buttons_d:hover {border: 2px solid rgb(0,255,255);background: linear-gradient(to left bottom,#1B1B1E,rgb(60,55,239));}
+#buttons_e:hover {border: 2px solid rgb(0,255,255);background: linear-gradient(to left bottom,#1B1B1E,rgb(60,55,239));}
+#m-title
+{
+	color:white;font-family: 'Consolas';font-size:40px;padding: 10px;border-bottom: 4px solid rgb(0,100,255);border-radius:2px;
+	animation: TxSlideRight 1s;background: linear-gradient(to top bottom,#1B1B1E,rgb(60,55,239));
+}
 </style>
- <a href="https://raw.githubusercontent.com/HCPP20334/HCPP20334.github.io/19629a0b996bddf8576ceb448aa9f55752e22519/update/1639946810_2-abrakadabra-fun-p-neon-oboi-dlya-pk-2-1.png ">Скачать</a>
+<h1 id="m-title">Поддержка</h1>
+<button id="buttons_a">Скачать активатор</button>
+<button id="buttons_b">Скачать PDANet PC Client</button>
+<button id="buttons_c">Скачать PDANet Android</button>
+<button id="buttons_d">Скачать фон</button>
+<button id="buttons_e">Обновить JoyStickEmu</button>
+<script>
+var fbtn_a = document.getElementById('buttons_a');
+var fbtn_b = document.getElementById('buttons_b');
+var fbtn_c = document.getElementById('buttons_c');
+var fbtn_d = document.getElementById('buttons_d');
+var fbtn_e = document.getElementById('buttons_e');
+fbtn_a.onclick = function(){document.location.href = './ActiveWindows.bat';}
+fbtn_b.onclick = function(){document.location.href = './PdaNetA5232b.exe';}
+fbtn_c.onclick = function(){document.location.href = './PdaNet5232.apk';}
+fbtn_d.onclick = function(){document.location.href = './1639946810_2-abrakadabra-fun-p-neon-oboi-dlya-pk-2-1.png';}
+fbtn_e.onclick = function(){document.location.href = './JoyStickEmu.exe';}
 </html>
-
