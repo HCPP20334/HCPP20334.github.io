@@ -28,6 +28,8 @@ html
 background: linear-gradient(to right bottom,rgb(60,55,128),#1B1B1E,rgb(132,0,255));
 background-size: cover;
 animation: blur_slow 2s;
+  @media max-width: 1920px;
+  @media max-height: 1080px;
 }
 @keyframes gr_anim
 {
@@ -71,7 +73,7 @@ body {width: 100%;height: 100%;}
 {
   animation: gr_anim 8s infinite;
   width: 60%;
-  height: 60%;
+  height: 70%;
   margin:auto;
   position: absolute-center;transition: .10s;
 }
@@ -171,9 +173,10 @@ body {width: 100%;height: 100%;}
     width: 30%;
     height: 10%;
     background-color: #1B1C1E;
-    margin: center-left;
+    margin:left;
     font-family: 'Consolas';
     font-size: 20px;color: white;
+    display: block;
   }
 
         #blur_bkg
@@ -272,6 +275,18 @@ body {width: 100%;height: 100%;}
     margin: 10px;
 
   }
+  #btnDonate
+  {
+     background-color:rgb(20,23,38);
+    color: white;
+    width: 20%;
+    height:5%;
+    display:table;
+    margin:auto;
+    border: 2px solid rgb(0,255,255);
+    font-family: 'Consolas';
+    font-size: 30px;background: linear-gradient(to top bottom,rgb(60,55,239),#1B1B1E);
+  }
   #btnSourceE:hover{border: 2px solid rgb(0,255,132);}
   #btnSource:hover{border: 2px solid rgb(0,255,132);}
   #LangBtn{display:table;color:white;background-color:rgb(20,23,38);width:10%;height:5%;border:none;font-family:'Consolas';border-radius:4px;margin:auto; animation: fColorA 1s infinite;}
@@ -298,11 +313,15 @@ body {width: 100%;height: 100%;}
          transition: all .8s;.8s;color:rgb(0,255,132);
         font-family: 'Consolas';
         font-size: 20px;}
-  #donatebtn{color: white;font-size: 40px;
-  width: 10%;
-  height:10%;
-  display:inline;margin:auto;border: 2px solid rgb(54,61,255);text-shadow: 0 0 4px white;transition: .10s;font-family: 'Consolas';font-size: 25px;}
-  #donatebtn:hover{border: 2px solid rgb(0,255,132);}
+  #donatebtn
+  {
+    border: 2px solid rgb(100,0,255);
+    font-family: 'Consolas';
+    font-size:20px;width:20%;
+    height:5%;
+    background: linear-gradient(to top bottom,#1B1B1E,rgb(60,55,239));
+    display: block;
+  }
   #donate-Btn{background-color:rgb(20,23,38);color: white;
   width: 31%;
   height:10%;
@@ -341,7 +360,7 @@ body {width: 100%;height: 100%;}
    transition: all .4s;
   border-bottom: 2px solid #35d555;
 }
-  #fItemDn{color:white;font-family: 'Consolas';font-size: 40px;border-radius:2px;text-shadow: 0 0 4px white;transition: .10s;transition: all .4s;width:10%;height:10%;display: inline;margin: 30px;}
+  #fItemDn{color:white;font-family: 'Consolas';font-size: 40px;border-radius:2px;text-shadow: 0 0 4px white;transition: .10s;transition: all .4s;width:10%;height:10%;display: inline;margin: 30px;display: none;}
   #fItemDn:hover
   {
    transition: all .4s;
@@ -365,15 +384,15 @@ body {width: 100%;height: 100%;}
          animation: gr_anim_f 2s infinite;
          border: 2px solid rgb(54,61,255);
          width: 50%;
-         height: 50%;
+         height: 80%;
          transition: all .8s;.8s;color:rgb(0,255,132);
         font-family: 'Consolas';
         font-size: 20px;text-align: center;}
-  #fProjects{  display: none;margin: auto;
-        animation: gr_anim_f 2s infinite;
+  #fProjects{  display: none;margin: auto;@media:max-width:1920px;
+        animation: gr_anim_f 2s infinite;@media:max-height:1080px;
          border: 2px solid rgb(54,61,255);
          width: 50%;
-         height: 51%;
+         height: 80%;
          transition: all .8s;.8s;color:rgb(0,255,132);
         font-family: 'Consolas';
         font-size: 20px;text-align: center;}
