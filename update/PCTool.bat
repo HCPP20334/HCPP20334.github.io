@@ -50,7 +50,7 @@ cls
 echo ----------------------------------------------
 echo .
 echo . 
-echo . (1) Install MSC++
+echo . (1) Install MSC++ (needed Internet)
 echo .
 echo . 
 echo ----------------------------------------------
