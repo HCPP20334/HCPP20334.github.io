@@ -4,6 +4,7 @@ color 0f
 mode con cols=47 lines=10
 :main
 cls
+echo rev 1.0.1
 echo ----------------------------------------------
 echo .
 echo . (1) - Activator 
