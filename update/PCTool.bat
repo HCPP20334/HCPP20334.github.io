@@ -23,12 +23,24 @@ echo .
 echo . (1) - LTSC
 echo . (2) - PRO
 echo . (3) - HOME
+echo . (4) - Windows 8(PRO)
+echo . (5) - Windows 8(embeded)
 echo ----------------------------------------------
 set /p ver_a=
 if %ver_a%==1 goto LTSC ,  else color b1
 if %ver_a%==2 goto PRO  ,  else color b1
 if %ver_a%==3 goto HOME ,  else color b1
+if %ver_a%==4 goto win8_pro
+if %ver_a%==5 goto win8_emd
 goto main
+:win8_emd
+slmgr /ipk NG4HW-VH26C-733KW-K6F98-J8CK4
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win8_pro
+slmgr /ipk MHF9N-XY6XB-WVXMC-BTDCT-MKKG7
+slmgr /skms kms.digiboy.ir
+slmgr /ato 
 :LTSC
 echo Win10 LTSC->activation..
 slmgr /ipk M7XTQ-FN8P6-TTKYV-9D4CC-J462D
