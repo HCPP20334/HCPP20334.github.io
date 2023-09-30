@@ -2,7 +2,7 @@
 <style>
 	@keyframes gr_anim
 {
-  0%{transition: .8s;background: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
+  0%{transition: .8s;background: linear-gradient(to left bottom,rgb(98, 88, 233),rgb(60,55,239));}
   25%{transition: .8s;background: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
   50%{transition: .8s;background: linear-gradient(to left top,rgb(60,55,128),rgb(60,55,239));}
   75%{transition: .8s;background: linear-gradient(to left top,rgb(60,55,128),rgb(60,55,239));}
@@ -15,17 +15,16 @@
 	#maib
 	{
 		animation: gr_anim 2s infinite;
-		width:  30%;height: 80%;
-		display: block;
-		margin:left;border-radius: 20px;
+		width:  60%;height: 70%;
+		display: table;
+		margin:auto;border-radius: 20px;
 	}
 	#contacts
 	{
 		animation: gr_anim 2s infinite;
-		width:  30%;height: 80%;
-		display: block;
+		width:  60%;height: 70%;
+		display: none;
 		margin:auto;border-radius: 20px;
-		transform: translateY(-42em);
 	}
 	#maintetx
 	{
@@ -58,19 +57,20 @@
 	<h1 id="maintetx">HCPP PC</h1>
 	<p id="text">Null JS Error</p>
 	<button id="price">Прайс лист</button>
+	<button id="price" onclick="javascript:document.location.href = 'vk.com/hcpp_pc">Группа ВК</button>
 </div>
 <div id="contacts">
 	<h1 id="maintetx">HCPP PC</h1>
 	<p id="text0">Контакты</p>
-	<button id="price" onclick="javascript:document.location.href = 'https://vk.com/im?sel=-222066875';">Группа ВК</button>
+	<button id="price" onclick="javascript:document.location.href = 'vk.com/hcpp_pc">Группа ВК</button>
 </div>
 <script type="text/javascript">
-	var fInfo = document.getElementById('maintetx');
-	var fCurWindow = document.getElementById('maib');
-	var fcontacts   = document.getElementById('contacts');
-	var fText = document.getElementById('text');
-	var fPriceBtn = document.getElementById('price');
-	var fTextStr = "Это частная компания которая специализируется на  сборке пк" + "\r\n"+"Настроика вашего пк(Установка виндовс, установка драйверов, перепрошивка биос..т.д)";
+	var fInfo       = document.getElementById('maintetx');
+	var fCurWindow  = document.getElementById('maib');
+	var X   = document.getElementById('contacts');
+	var fText       = document.getElementById('text');
+	var fPriceBtn   = document.getElementById('price');
+	var fTextStr    = "Это частная компания которая специализируется на  сборке пк" + "\r\n"+"Настроике вашего пк(Установка виндовс, установка драйверов, перепрошивка биос..т.д)";
 	let f_st = 0;
 	let x_pos = 0
 	let y_pos = 0;
@@ -102,28 +102,19 @@ function getPlatform() {
 		x_pos = window.screen.width;
 		if(y_pos <= 720)
 		{
-           fCurWindow.style.height = "90%";
-           fcontacts.style.height = "90%";
-           fText.style.fontSize = '30px';
-           fPriceBtn.style.fontSize = '25px';
+           fText.style.fontSize = '40px';
+           fPriceBtn.style.fontSize = '20px';
 		}
 		if(y_pos >= 1080)
 		{
-           fCurWindow.style.height = "60%";
-           fcontacts.style.height = "90%";
            fText.style.fontSize = '40px';
            fPriceBtn.style.fontSize = '40px';
 		}
 		if(getPlatform() == 'Android' || getPlatform() == 'iPhone')
 		{
-           fCurWindow.style.height = "30%";
-           fCurWindow.style.width = "80%";
-           fcontacts.style.height = "30%";
-           fcontacts.style.width = "80%";
            fText.style.fontSize = '40px';
            fPriceBtn.style.fontSize = '40px';
-           fcontacts.style.margin = 'left';
-           fcontacts.style.display = 'block';
+           fcontacts.style.display = 'table';
            fcontacts.style.transform = 'translateY(0em)';
 		}
 	}
