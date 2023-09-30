@@ -15,7 +15,7 @@
 	#maib
 	{
 		animation: gr_anim 2s infinite;
-		width:  60%;height: 70%;
+		width:  60%;height: 80%;
 		display: table;
 		margin:auto;border-radius: 20px;
 	}
@@ -52,11 +52,22 @@
 		width:  50%;height: 10%;margin:auto;
 		border-radius: 40px;position: static;
 	}
+	#textObj
+	{
+		background-color: #1B1B1E;
+		width: 90%;
+		height: 50%;
+		margin: auto;
+		display: block;
+		border-radius: 10px;
+	}
 </style>
 <div id="maib">
 	<h1 id="maintetx">HCPP PC</h1>
-	<p id="text">Null JS Error</p>
-	<button id="price">Прайс лист</button>
+<div id="textObj">
+<p id="text">f_null</p>
+</div>
+<button id="price">Прайс лист</button>
 	<button id="price" onclick="javascript:document.location.href = 'vk.com/hcpp_pc">Группа ВК</button>
 </div>
 <div id="contacts">
@@ -102,8 +113,9 @@ function getPlatform() {
 		x_pos = window.screen.width;
 		if(y_pos <= 720)
 		{
+		   fCurWindow.style.height = '90%';
            fText.style.fontSize = '40px';
-           fPriceBtn.style.fontSize = '20px';
+           fPriceBtn.style.fontSize = '40px';
 		}
 		if(y_pos >= 1080)
 		{
