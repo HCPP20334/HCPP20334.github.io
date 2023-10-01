@@ -2,26 +2,35 @@
 <style>
 	@keyframes gr_anim
 {
-  0%{transition: .8s;background: linear-gradient(to left bottom,rgb(98, 88, 233),rgb(60,55,239));}
-  25%{transition: .8s;background: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
-  50%{transition: .8s;background: linear-gradient(to left top,rgb(60,55,128),rgb(60,55,239));}
-  75%{transition: .8s;background: linear-gradient(to left top,rgb(60,55,128),rgb(60,55,239));}
-  100%{transition: .8s;background: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
+  0%{transition: .8s;background: linear-gradient(to top bottom,rgb(98, 88, 233),rgb(60,55,239));}
+  25%{transition: .8s;background: linear-gradient(to top bottom,rgb(60,55,128),rgb(60,55,239));}
+  50%{transition: .8s;background: linear-gradient(to top bottom,rgb(60,55,128),rgb(60,55,239));}
+  75%{transition: .8s;background: linear-gradient(to top bottom,rgb(60,55,128),rgb(60,55,239));}
+  100%{transition: .8s;background: linear-gradient(to top bottom,rgb(60,55,128),rgb(60,55,239));}
+}
+@keyframes XReSize
+{
+	0%{width:10px;}
+	100%{width:100%;}
+}
+@keyframes aBlur
+{
+	100%{filter:none;}
+	0%{filter:blur(10px);}
 }
 	html
 	{
-		background: linear-gradient(to right bottom,rgb(60,55,128),#1B1B1E,rgb(132,0,255));
+		background: linear-gradient(to right bottom,rgb(55, 239, 199),rgb(0, 206, 221),rgb(97, 25, 212));
 	}
 	#maib
 	{
-		animation: gr_anim 2s infinite;
 		width:  60%;height: 80%;
-		display: table;
+		display: block;
 		margin:auto;border-radius: 20px;
+		transition: .4s;background: linear-gradient(to left bottom,rgb(87, 75, 255),rgb(60,55,239));animation: aBlur 1s;
 	}
 	#contacts
 	{
-		animation: gr_anim 2s infinite;
 		width:  60%;height: 70%;
 		display: none;
 		margin:auto;border-radius: 20px;
@@ -40,6 +49,8 @@
 		font-size: 40px;padding: 10px;
 		color:white;
 		display: block;
+		
+		
 	}
 	#price
 	{
@@ -47,10 +58,11 @@
 		font-size: 40px;
 		color:white;
 		display: block;
-		border: 2px solid white;
-		animation: gr_anim 2s infinite;
+		border: 2px solid rgb(55, 239, 199);
+		transition: .4s;
+		background-color: #010409;
 		width:  50%;height: 10%;margin:auto;
-		border-radius: 40px;position: static;
+		border-radius: 20px;position: static;
 	}
 	#textObj
 	{
@@ -58,33 +70,213 @@
 		width: 90%;
 		height: 50%;
 		margin: auto;
-		display: block;
-		border-radius: 10px;
+		display: none;
+		border-radius: 10px;border-left: 5px solid rgb(55, 239, 199);
+		animation: XReSize 1s;
 	}
+	#RenderURLWnd
+	{
+		width: 95%;
+		height: 95%;
+		margin: 30px auto;
+		display: block;
+		border:none;
+	}
+	#close
+	{
+		background-color: #1B1B1E;
+		border: 1px solid rgb(144, 41, 240);
+		border-radius: 2px;
+		color:aliceblue;
+		font-family: 'Consolas';
+		font-size: 20px;display: inline;
+
+	}
+	#resetBtn
+	{
+		background-color: #1B1B1E;
+		border: 1px solid rgb(144, 41, 240);
+		border-radius: 2px;
+		color:aliceblue;
+		font-family: 'Consolas';
+		font-size: 20px;display: inline;
+	}
+	#window_0
+	{
+		animation: aBlur 100ms;
+		background-color: #1B1B1E;
+		display: none;
+		width: 80%;
+		height: 85%;
+		margin: auto;
+		border-radius: 10px;
+		transform: translateY(4px),rotateZ(30em);
+		
+	}
+	#p_text
+	{
+		font-family: 'Consolas';
+		font-size: 20px;
+		color:aliceblue;
+		text-align: center;display: none;
+	}
+	@keyframes re_spin
+	{
+		0%{
+			transform: rotate(0deg);
+			border-left: 5px solid rgb(55, 239, 199);
+		    border-right: 5px solid #1B1B1E;
+		    border-bottom: 5px solid #1B1B1E;
+		    border-top:5px solid #1B1B1E;
+		}
+		25%
+		{
+			transform: rotate(90deg);
+			border-left: 5px solid #010409;
+		    border-right: 5px solid rgb(55, 239, 199);
+		    border-bottom: 5px solid #010409;
+		    border-top:5px solid #010409;
+		}
+		75%
+		{
+			transform: rotate(180deg);
+			border-left: 5px solid #010409;
+		    border-right: 5px solid #010409;
+		    border-bottom: 5px solid rgb(55, 239, 199);
+		    border-top:5px solid #010409;
+
+		}
+		100%{
+			
+			border-left: 5px solid #010409;
+		    border-right: 5px solid #010409;
+		    border-bottom: 5px solid #010409;
+		    border-top:5px solid rgb(55, 239, 199);transform: rotate(360deg);
+		}
+	}	
+	@keyframes UpdateAnim
+	{
+		0%{background: radial-gradient(to top bottom,#1B1B1E,rgb(52, 42, 189),rgb(60,55,239));}
+		50%{background: radial-gradient(to top bottom,rgb(52, 42, 189),#1B1B1E,rgb(60,55,239));}
+		100%{background: radial-gradient(to top bottom,rgb(52, 42, 189),rgb(97, 25, 212),#1B1B1E);}
+	}
+	#load_sp
+	{
+   width: 60px;
+    height: 60px; 
+	 /* border-radius: 50px 50px 50px 50px; */
+   transition: .4s ;
+   background:#010409;
+   animation: re_spin 2s infinite;
+   margin: auto;
+	}
+	#load_wnd,#blank_0
+	{
+     background-color: #010409;
+	 width: 100%;height: 100%;
+	 display: block;
+	}
+	#tx_0
+	{
+		color:aliceblue;
+		font-family: 'consolas';
+		font-size: 40px;
+		text-align: center;
+		padding: 10%;
+	}
+	 #ErrorMessage
+	 {
+	   background-color: #010409;
+	   border: 2px solid rgb(55, 239, 199);
+	   position: absolute;
+	   display: none;
+	   border-radius: 8px;
+	 }
+	 #er_0
+	 {
+		font-family:'Comic Sans MS';
+		font-size: 30px;
+		color: white;
+	 }
+	 #logs
+	 {
+		display: none;
+		font-family: 'consolas';
+		font-size: 20px;
+		color: rgb(0, 255, 200);
+		background-color: #1B1B1E;
+	   border: 1px solid rgb(55, 239, 199);width: 13%;
+	 }
 </style>
-<div id="maib">
-	<h1 id="maintetx">HCPP PC</h1>
-<div id="textObj">
-<p id="text">f_null</p>
+<div id = "ErrorMessage">
+	<p id="er_0"></p>
 </div>
-<button id="price">Прайс лист</button>
-	<button id="price" onclick="javascript:window.open('https://vk.com/hcpp_pc' , '_blank' );">Группа ВК</button>
+<div id="load_wnd">
+	<h1 id="tx_0" onclick="javascript:fDebugMessage = true;">HCPP PC</h1>
+	<div id="load_sp"></div>
 </div>
-<div id="contacts">
-	<h1 id="maintetx">HCPP PC</h1>
-	<p id="text0">Контакты</p>
-	<button id="price" onclick="javascript:document.href = 'vk.com/hcpp_pc'">Группа ВК</button>
+<div id="blank_0">
+	<div id="maib">
+		<h1 id="maintetx">HCPP PC</h1>
+	<div id="textObj">
+	<p id="text">f_null</p>
+	</div>
+	<button id="price">Прайс лист</button>
+		<button id="price" onclick="javascript:window.open('https://vk.com/hcpp_pc');">Группа ВК</button>
+	</div>
+	</div>
+<div id="window_1">
+	<style>
+		#window_1
+		{
+			width: 30%;height: 30%;
+			background-color: #010409;
+			color: white;
+			border:3px solid rgb(0, 206, 221);
+			display: none;
+			position: relative;
+			margin: auto;
+		}
+		#data_dbmsg
+		{
+			background-color: #010409;
+			color: white;
+			border:2px solid rgb(0, 206, 221);margin: auto;display: inline-block;
+			width: 50%;height: 10%;
+		}
+		#send_msg
+		{
+			background-color: #010409;
+			color: white;
+			border:2px solid rgb(0, 206, 221);margin: auto;display: inline-block;
+			width: 30%;height: 10%;
+		}
+	</style>
+	<button id="close" onclick="javascript:fDebugMessage = false;">X</button>
+	<p id="text0">Введите текст </p>
+	<input id="data_dbmsg"><button id="send_msg">Отправить</button>
 </div>
+<p onclick="javascript:fDebugMessage = true;" id="logs"></p>
 <script type="text/javascript">
 	var fInfo       = document.getElementById('maintetx');
-	var fCurWindow  = document.getElementById('maib');
+	var fCurWindow  = document.getElementById('blank_0');
 	var X   = document.getElementById('contacts');
 	var fText       = document.getElementById('text');
 	var fPriceBtn   = document.getElementById('price');
 	var fTextStr    = "Это частная компания которая специализируется на  сборке пк" + "\r\n"+"Настроике вашего пк(Установка виндовс, установка драйверов, перепрошивка биос..т.д)";
+	var WindowURL   = document.getElementById('RenderURLWnd');
+	var Wnd0   = document.getElementById('window_0');
+	var fUpdateFrame = true;
+	var fMBar = document.getElementById('window_1');
+	var fDebugMessage = false;
+	var fStrData;
+	var fMsg;
 	let f_st = 0;
 	let x_pos = 0
 	let y_pos = 0;
+	let fCheckRq;
+	let Ypos;
+	let msg = new XMLHttpRequest();
 	//
 	var userDeviceArray = [
     {device: 'Android', platform: /Android/},
@@ -107,8 +299,74 @@ function getPlatform() {
         }
 }
 //
+document.addEventListener("DOMContentLoaded", function() {
+	document.getElementById('load_wnd').style.display = 'block';fCurWindow.style.display = 'none';
+	Message('Чтобы вызвать Отладку на экране нагрузки кликнуть на HCPP PC');
+        setTimeout("StartEngine(1);",4000);
+		fText.innerHTML = "";
+	});
+function Message(text)
+{
+	document.getElementById('ErrorMessage').style.display = 'block';
+	document.getElementById('er_0').innerHTML = text;
+	setTimeout("document.getElementById('ErrorMessage').style.display = 'none';",2000);
+
+}
+function renderIfM(URL)
+{
+	fUpdateFrame = false;
+	document.getElementById('blank_0').style.display = 'none';
+	Wnd0.style.display = 'block';
+	Wnd0.width = 1280;
+	Wnd0.height = 720;
+	WindowURL.src= URL;
+	fCheckRq = 0;
+}
+function renderIfMDestroy()
+{
+	fUpdateFrame = true;
+	Wnd0.style.display = 'none';
+	Wnd0.width = 1280;
+	Wnd0.height = 720;
+	WindowURL.src= "";
+	document.getElementById('blank_0').style.display = 'block';
+}
+function fReloadTxFrame()
+{
+	document.getElementById('textObj').style.display = 'none';
+	setTimeout("document.getElementById('textObj').style.display = 'block';",500);
+
+}
+function renderIfMReset()
+{
+    WindowURL.src= "";
+	setTimeout("WindowURL.src= './update/index.html';",10);
+
+}
+   document.getElementById('send_msg').onclick = function()
+   {
+	document.getElementById('ErrorMessage').style.display = 'block';
+	document.getElementById('er_0').innerHTML = fStrData;
+	setTimeout("document.getElementById('ErrorMessage').style.display = 'none';",2000);
+   }
+   document.getElementById('data_dbmsg').oninput = function()
+        {
+	      fStrData = this.value;
+        }
 	function GetScreenXY()
 	{
+		if(fDebugMessage)
+		{
+			Ypos = ((window.screen.height / 2) * -1);
+			fMBar.style.display = 'block';
+			fMBar.style.transform = 'translateY('+Ypos+'px)';
+		}else
+		{
+			fMBar.style.display = 'none';
+		}
+		fUpdateFrame = true;
+		if(!fUpdateFrame){fMsg = "Проверка отключена!!";}
+		if(fUpdateFrame){fMsg = "Проверка включена!!";}
 		y_pos = window.screen.height;
 		x_pos = window.screen.width;
 		if(y_pos <= 720)
@@ -129,12 +387,33 @@ function getPlatform() {
            fcontacts.style.display = 'table';
            fcontacts.style.transform = 'translateY(0em)';
 		}
-	}
-	setInterval("GetScreenXY();",1);
-	setTimeout("fText.innerHTML = fTextStr;",1);
 
+	}
+
+	function StartEngine(val)
+{
+	
+		if(val == 1)
+	    {
+		  document.getElementById('textObj').style.display = 'block';
+		  document.getElementById('blank_0').style.display = 'block';
+		  document.getElementById('load_wnd').style.display = 'none';
+		  GetScreenXY();
+	    }
+	    if(val == 0)
+	    {
+		 document.getElementById('blank_0').style.display = 'none';
+		 document.getElementById('load_wnd').style.display = 'block';
+	    }
+//   document.getElementById('logs').innerHTML = fMsg;
+//   if(fMsg.length += fMsg.length){document.getElementById('logs').style.display = 'block';}
+//   setTimeout("document.getElementById('logs').style.display = 'none';",100);
+}
+		setInterval("GetScreenXY();",1);
+	setTimeout("fText.innerHTML = fTextStr;",1000);
 	fPriceBtn.onclick = function()
 	{
+		fReloadTxFrame();
 		f_st++;
 		if(f_st > 1){f_st = 0;}
 		fPrice(f_st);
