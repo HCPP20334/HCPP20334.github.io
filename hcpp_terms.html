@@ -1,0 +1,136 @@
+<html>
+<style>
+    @keyframes re_spin
+	{
+		0%{
+			border-left: 2px solid rgb(55, 239, 199);
+		    border-right: 2px solid #1B1B1E;
+		    border-bottom: 2px solid #1B1B1E;
+		    border-top:2px solid #1B1B1E;
+		}
+        14%{
+			border-left: 2px solid rgb(55, 239, 199);
+		    border-right: 2px solid #1B1B1E;
+		    border-bottom: 2px solid #1B1B1E;
+		    border-top:2px solid #1B1B1E;
+		}
+		28%
+		{
+			border-left: 2px solid #010409;
+		    border-right: 2px solid rgb(55, 239, 199);
+		    border-bottom: 2px solid #010409;
+		    border-top:2px solid #010409;
+		}
+        42%
+		{
+			border-left: 2px solid #010409;
+		    border-right: 2px solid rgb(55, 239, 199);
+		    border-bottom: 2px solid #010409;
+		    border-top:2px solid #010409;
+		}
+		56%
+		{
+			border-left: 2px solid #010409;
+		    border-right: 2px solid #010409;
+		    border-bottom: 2px solid rgb(55, 239, 199);
+		    border-top:2px solid #010409;
+
+		}
+        70%
+		{
+			border-left: 2px solid #010409;
+		    border-right: 2px solid #010409;
+		    border-bottom: 2px solid rgb(55, 239, 199);
+		    border-top:2px solid #010409;
+
+		}
+        84%{
+			
+			border-left: 2px solid #010409;
+		    border-right: 2px solid #010409;
+		    border-bottom: 2px solid #010409;
+		    border-top:2px solid rgb(55, 239, 199);
+		}
+        100%{
+			
+			border-left: 2px solid #010409;
+		    border-right: 2px solid #010409;
+		    border-bottom: 2px solid #010409;
+		    border-top:2px solid rgb(55, 239, 199);
+		}
+	}	
+    html
+    {
+        background-color: #010409;
+    }
+    #terms
+    {
+        display: block;
+        background-color: #010409;
+        border: 1px solid #3df87b;
+        width: 80%;
+        height: 80%;
+        margin: auto;
+        border-left: 2px solid #8244e6;
+		border-right: 2px solid #2b6ac9;
+		border-bottom: 2px solid #6e36f1;
+		border-top:2px solid rgb(55, 129, 239);
+        transition: .4s;
+        border-radius: 10px;
+    }
+    #TermsText
+    {
+        color:aliceblue;
+        font-size: 20px;
+        font-family: 'Comic Sans MS';
+        padding: 4px;
+        text-align: center;
+    }
+    #TermsText1
+    {
+        color:aliceblue;
+        font-size: 30px;
+        font-family: 'Consolas';
+        padding: 4px;
+        text-align: center;
+    }
+    #btns
+    {
+        display: block;
+        background-color: #1B1B1E;
+        border-left: 2px solid #44e695;
+		border-right: 2px solid #0ee7dc;
+		border-bottom: 2px solid #6e36f1;
+		border-top:2px solid rgb(55, 239, 199);
+        width: 30%;
+        height: 10%;
+        margin: auto;
+        transition: .4s;
+        border-radius: 4px;
+        color:aliceblue;
+        font-size: 20px;
+        font-family: 'Comic Sans MS';
+        padding: 4px;
+        text-align: center;
+    }
+    #btns:hover
+    { 
+        border-right: 2px solid #44e695;
+		border-left: 2px solid #0ee7dc;
+		border-top: 2px solid #6e36f1;
+		border-bottom:2px solid rgb(55, 239, 199);
+        transition: .4s;
+    }
+   </style>
+   <div id="terms">
+    <p id="TermsText1">УСЛОВИЕ И СОГЛАШЕНИЕ</p>
+    <p id="TermsText">Цена формируется по формуле </p>
+    <p id="TermsText">Цена комплектующих + Цена сборки </p>
+    <p id="TermsText">цена сборки формируется </p>
+    <p id="TermsText">с каждой комплектующей высчитывается по 3% </p>
+    <p id="TermsText">и суммируется </p>
+    <p id="TermsText">______________________________________</p>
+    <button id="btns">Перейти на сайт</button>
+   </div>
+   <script>var fBtn_0a = document.getElementById('btns');fBtn_0a.onclick = function(){window.open('./hcpp_pc.html');}</script>
+</html>
