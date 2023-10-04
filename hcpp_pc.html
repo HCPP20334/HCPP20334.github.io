@@ -81,7 +81,11 @@
 		margin: auto;
 		display: none;
 		border-radius: 10px;border-left: 5px solid rgb(55, 239, 199);
-		animation: XReSize 500ms,re_color 1s infinite;
+		animation: XReSize 500ms;
+		border-left: 2px solid #44e695;
+		border-right: 2px solid #0ee7dc;
+		border-bottom: 2px solid #6e36f1;
+		border-top:2px solid rgb(55, 239, 199);
 	}
 	#RenderURLWnd
 	{
@@ -163,6 +167,40 @@
 		    border-top:5px solid #010409;transform: rotate(360deg);
 		}
 	}	
+	@keyframes re_spin_v2
+	{
+		0%{
+			transform: rotate(0deg);
+			border-left: 5px solid rgb(55, 239, 199);
+		    border-right: 5px solid #1B1B1E;
+		    border-bottom: 5px solid rgb(55, 239, 199);
+		    border-top:5px solid #1B1B1E;
+		}
+		25%
+		{
+			transform: rotate(90deg);
+			border-left: 5px solid #010409;
+		    border-right: 5px solid rgb(55, 239, 199);
+		    border-bottom: 5px solid #010409;
+		    border-top:5px solid rgb(55, 239, 199);
+		}
+		75%
+		{
+			transform: rotate(180deg);
+			border-left: 5px solid rgb(55, 239, 199);
+		    border-right: 5px solid #010409;
+		    border-bottom: 5px solid rgb(55, 239, 199);
+		    border-top:5px solid #010409;
+
+		}
+		100%{
+			
+			border-left: 5px solid rgb(55, 239, 199);
+		    border-right: 5px solid #010409;
+		    border-bottom: 5px solid rgb(55, 239, 199);
+		    border-top:5px solid #010409; rotate(360deg);
+		}
+	}	
 	@keyframes re_color
 	{
 		0%{
@@ -202,6 +240,23 @@
 		0%{background: linear-gradient(to right bottom,#1B1B1E,rgb(52, 42, 189),rgb(60,55,239));}
 		50%{background: linear-gradient(to right bottom,rgb(52, 42, 189),#1B1B1E,rgb(60,55,239));}
 		100%{background: linear-gradient(to right bottom,rgb(52, 42, 189),rgb(97, 25, 212),#1B1B1E);}
+	}
+	@keyframes re_an0
+	{
+		0%
+		{
+			border-right: 2px solid #44e695;
+		border-left: 2px solid #0ee7dc;
+		border-top: 2px solid #6e36f1;
+		border-bottom:2px solid rgb(55, 239, 199);
+		}
+		100%
+		{
+			border-left: 2px solid #44e695;
+		border-right: 2px solid #0ee7dc;
+		border-bottom: 2px solid #6e36f1;
+		border-top:2px solid rgb(55, 239, 199);
+		}
 	}
 	#load_sp
 	{
@@ -262,9 +317,9 @@
 		display: block;
         background-image:linear-gradient(to bottom,rgb(89, 79, 226),rgb(60,55,239));
         border-left: 2px solid #44e695;
-		border-right: 2px solid #0ee7dc;
-		border-bottom: 2px solid #6e36f1;
-		border-top:2px solid rgb(55, 239, 199);
+		border-right: 2px solid #e70ed5;
+		border-bottom: 2px solid #4e0de6;
+		border-top:2px solid rgb(55, 239, 138);
         width: 50%;
         height: 10%;
         margin: auto;
@@ -278,7 +333,10 @@
 	 }
 	 #btna_0:hover,#price:hover
 	 {
-		animation: re_color 500ms infinite;
+		border-right: 2px solid #44e695;
+		border-left: 2px solid #ff0062cb;
+		border-top: 2px solid #6e36f1;
+		border-bottom:2px solid rgb(208, 55, 239);
 		cursor: pointer;
         transition: .4s;
 	 }
