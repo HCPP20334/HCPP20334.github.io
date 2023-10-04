@@ -10,26 +10,33 @@
 }
 @keyframes XReSize
 {
-	0%{width:10px;height: 50%;}
-	100%{width:100%;height: 50%;}
+	0%{width:10px;height: 40%;}
+	100%{width:100%;height: 40%;}
 }
 @keyframes aBlur
 {
 	100%{filter:none;}
 	0%{filter:blur(10px);}
 }
+@keyframes st_e
+{
+	0%{transform: scale(0);}
+	6%{transform: scale(.990);}
+	15%{transform: scale(1);}
+}
 	html
 	{
-		background: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));
+		background-image: linear-gradient(to bottom,rgb(84, 76, 192),rgb(60,55,239));
 		transition:  .4s;
 	}
 	#maib
 	{
-		width:  60%;height: 80%;
+		width:  60%;height: 100%;
 		display: block;
 		margin:auto;border-radius: 20px;
-		transition: .4s;background: linear-gradient(to left bottom,rgb(64, 51, 255),rgb(49, 44, 219));animation: aBlur 1s;
-		border:1px solid #26e9a8;
+		transition: .4s;background-image:linear-gradient(to bottom,#2d39e5,#8955dd);animation: aBlur 1s;
+		border-image:  linear-gradient(to bottom,rgb(84, 76, 192),rgb(60,55,239));
+		border: 2px solid #010409;
 	}
 	#contacts
 	{
@@ -54,7 +61,7 @@
 		
 		
 	}
-	#price
+	/* #price
 	{
 		font-family: 'Consolas';
 		font-size: 40px;
@@ -65,16 +72,16 @@
 		background: linear-gradient(to left bottom,rgb(64, 51, 255),rgb(49, 44, 219));
 		width:  50%;height: 10%;margin:auto;
 		border-radius: 20px;position: static;
-	}
+	} */
 	#textObj
 	{
-		background-color: #1B1B1E;
+		background:linear-gradient(to bottom,rgb(38, 38, 41),#010409);
 		width: 90%;
-		height: 50%;
+		height: 40%;
 		margin: auto;
 		display: none;
 		border-radius: 10px;border-left: 5px solid rgb(55, 239, 199);
-		animation: XReSize 1s;
+		animation: XReSize 500ms,re_color 1s infinite;
 	}
 	#RenderURLWnd
 	{
@@ -135,16 +142,16 @@
 		{
 			transform: rotate(90deg);
 			border-left: 5px solid #010409;
-		    border-right: 5px solid rgb(55, 239, 199);
+		    border-right: 5px solid #010409;
 		    border-bottom: 5px solid #010409;
-		    border-top:5px solid #010409;
+		    border-top:5px solid rgb(55, 239, 199);
 		}
 		75%
 		{
 			transform: rotate(180deg);
 			border-left: 5px solid #010409;
-		    border-right: 5px solid #010409;
-		    border-bottom: 5px solid rgb(55, 239, 199);
+		    border-right: 5px solid rgb(55, 239, 199);
+		    border-bottom: 5px solid #010409;
 		    border-top:5px solid #010409;
 
 		}
@@ -152,8 +159,42 @@
 			
 			border-left: 5px solid #010409;
 		    border-right: 5px solid #010409;
+		    border-bottom: 5px solid rgb(55, 239, 199);
+		    border-top:5px solid #010409;transform: rotate(360deg);
+		}
+	}	
+	@keyframes re_color
+	{
+		0%{
+			
+			border-left: 5px solid rgb(55, 239, 199);
+		    border-right: 5px solid #1B1B1E;
+		    border-bottom: 5px solid #1B1B1E;
+		    border-top:5px solid #1B1B1E;
+		}
+		25%
+		{
+			
+			border-left: 5px solid #010409;
+		    border-right: 5px solid #010409;
 		    border-bottom: 5px solid #010409;
-		    border-top:5px solid rgb(55, 239, 199);transform: rotate(360deg);
+		    border-top:5px solid rgb(55, 239, 199);
+		}
+		75%
+		{
+			
+			border-left: 5px solid #010409;
+		    border-right: 5px solid rgb(55, 239, 199);
+		    border-bottom: 5px solid #010409;
+		    border-top:5px solid #010409;
+
+		}
+		100%{
+			
+			border-left: 5px solid #010409;
+		    border-right: 5px solid #010409;
+		    border-bottom: 5px solid rgb(55, 239, 199);
+		    border-top:5px solid #010409;
 		}
 	}	
 	@keyframes UpdateAnim
@@ -175,7 +216,7 @@
 	}
 	#blank_0
 	{
-		background:linear-gradient(to left bottom,rgb(87, 75, 255),rgb(60,55,239));
+		background:linear-gradient(to bottom,rgb(89, 79, 226),rgb(60,55,239));
 		width: 100%;height: 100%;
 		display: block;
 	}
@@ -216,6 +257,31 @@
 		background-color: #1B1B1E;
 	   border: 1px solid rgb(55, 239, 199);width: 13%;
 	 }
+	 #btna_0,#price
+	 {
+		display: block;
+        background-image:linear-gradient(to bottom,rgb(89, 79, 226),rgb(60,55,239));
+        border-left: 2px solid #44e695;
+		border-right: 2px solid #0ee7dc;
+		border-bottom: 2px solid #6e36f1;
+		border-top:2px solid rgb(55, 239, 199);
+        width: 50%;
+        height: 10%;
+        margin: auto;
+        transition: .4s;
+        border-radius: 8px;
+        color:aliceblue;
+        font-size: 30px;
+        font-family: 'Comic Sans MS';
+        padding: 4px;
+        text-align: center;
+	 }
+	 #btna_0:hover,#price:hover
+	 {
+		animation: re_color 500ms infinite;
+		cursor: pointer;
+        transition: .4s;
+	 }
 </style>
 <div id = "ErrorMessage">
 	<p id="er_0"></p>
@@ -232,6 +298,7 @@
 	</div>
 	<button id="price">Прайс лист</button>
 		<button id="price" onclick="javascript:window.open('https://vk.com/hcpp_pc');">Группа ВК</button>
+		<button id="btna_0" onclick="javascript:window.open('./hcpp_terms.html');">Условия соглашения</button>
 	</div>
 	</div>
 <div id="window_1">
@@ -277,6 +344,7 @@
 	var Wnd0   = document.getElementById('window_0');
 	var fUpdateFrame = true;
 	var fMBar = document.getElementById('window_1');
+	var fbtna_0     = document.getElementById('btna_0');
 	var fDebugMessage = false;
 	var fStrData;
 	var fMsg;
@@ -309,8 +377,10 @@ function getPlatform() {
 }
 //
 document.addEventListener("DOMContentLoaded", function() {
+	fUpdateFrame = false;
 	document.getElementById('load_wnd').style.display = 'block';fCurWindow.style.display = 'none';
 	Message('Чтобы вызвать Отладку на экране нагрузки кликнуть на HCPP PC');
+	setTimeout("Message('Твоя система '+getPlatform()+' Разрешение:'+ x_pos + ':'+y_pos);",1000);
         setTimeout("StartEngine(1);",3000);
 		fText.innerHTML = "";
 	});
@@ -373,16 +443,17 @@ function renderIfMReset()
 		{
 			fMBar.style.display = 'none';
 		}
-		fUpdateFrame = true;
-		if(!fUpdateFrame){fMsg = "Проверка отключена!!";}
-		if(fUpdateFrame){fMsg = "Проверка включена!!";}
 		y_pos = window.screen.height;
 		x_pos = window.screen.width;
 		if(y_pos <= 720)
 		{
-		   fCurWindow.style.height = '90%';
+		   fCurWindow.style.height = '100%';
            fText.style.fontSize = '40px';
-           fPriceBtn.style.fontSize = '40px';
+           fPriceBtn.style.fontSize = '20px';
+		   fbtna_0.style.height = '9%';
+		   fPriceBtn.style.height = '9%';
+		   fbtna_0.style.fontSize = '20px';
+		   fText.style.height = '20%';
 		}
 		if(y_pos >= 1080)
 		{
@@ -392,9 +463,13 @@ function renderIfMReset()
 		if(getPlatform() == 'Android' || getPlatform() == 'iPhone')
 		{
            fText.style.fontSize = '40px';
-           fPriceBtn.style.fontSize = '40px';
+           fPriceBtn.style.fontSize = '20px';
+		   fbtna_0.style.fontSize = '20px';
+		   fbtna_0.style.height = '9%';
+		   fText.style.height = '20%';
+		   fPriceBtn.style.height = '9%';
 		}
-
+		setTimeout("fUpdateFrame = false;",1000);
 	}
 
 	function StartEngine(val)
@@ -405,7 +480,11 @@ function renderIfMReset()
 		  document.getElementById('textObj').style.display = 'block';
 		  document.getElementById('blank_0').style.display = 'block';
 		  document.getElementById('load_wnd').style.display = 'none';
-		  GetScreenXY();
+		  if(fCurWindow.style.display == 'block')
+		  {
+			fUpdateFrame = true;
+		  }
+		  setTimeout("GetScreenXY();",1000);
 	    }
 	    if(val == 0)
 	    {
