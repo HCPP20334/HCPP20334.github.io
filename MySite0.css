@@ -1,4 +1,19 @@
-
+@font-face
+ {
+  font-family: 'WR';
+  src: url('./WhiteRabbit.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face
+ {
+  font-family: 'WRrus';
+  src: url('./WhiteRabbit.ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 @keyframes fXBounds
 {
 0%{transform: translateX(-800px);}
@@ -10,10 +25,48 @@
 60%{transform: translateX(-200px);}
 70%{transform: translateX(-100px);}
 80%{transform: translateX( 300px);}
-90%{transform: translateX(480px)};
+90%{transform: translateX(480px);}
 100%{transform: translateX(480px);}
 }
+@keyframes re_spin
+	{
+		0%{
+			transform: rotate(0deg);
+			border-left: 5px solid rgb(55, 239, 199);
+		    border-right: 5px solid #1B1B1E;
+		    border-bottom: 5px solid #1B1B1E;
+		    border-top:5px solid #1B1B1E;
+		}
+		25%
+		{
+			transform: rotate(90deg);
+			border-left: 5px solid #010409;
+		    border-right: 5px solid #010409;
+		    border-bottom: 5px solid #010409;
+		    border-top:5px solid rgb(55, 239, 199);
+		}
+		75%
+		{
+			transform: rotate(180deg);
+			border-left: 5px solid #010409;
+		    border-right: 5px solid rgb(55, 239, 199);
+		    border-bottom: 5px solid #010409;
+		    border-top:5px solid #010409;
 
+		}
+		100%{
+			
+			border-left: 5px solid #010409;
+		    border-right: 5px solid #010409;
+		    border-bottom: 5px solid rgb(55, 239, 199);
+		    border-top:5px solid #010409;transform: rotate(360deg);
+		}
+	}
+@keyframes fReLight
+{
+  0%{text-shadow: 0 0 8px white;}
+  100%{text-shadow: 0 0 0 white;}
+}
  @font-face {
     font-family: hack; /* Гарнитура шрифта */
     src: url(https://hcpp20334.github.io/fRusFont.ttf); /* Путь к файлу со шрифтом */
@@ -25,11 +78,8 @@
 
 html
 {
-background: linear-gradient(to right bottom,rgb(60,55,128),#1B1B1E,rgb(132,0,255));
+background-color: #1B1C1E;
 background-size: cover;
-animation: blur_slow 2s;
-  @media max-width: 1920px;
-  @media max-height: 1080px;
 }
 @keyframes gr_anim
 {
@@ -71,62 +121,64 @@ animation: blur_slow 2s;
 body {width: 100%;height: 100%;}
  #prjpr
 {
-  animation: gr_anim 8s infinite;
+  background:#1b1b1e;
   width: 60%;
   height: 70%;
   margin:auto;
   position: absolute-center;transition: .10s;
+  border: 2px solid #636974;
 }
 #prjInfo
 {
-  font-family: 'Consolas';
+  font-family: 'WR';
     font-size: 60px;
-    color: white;padding: 10px;
+    color:rgb(55, 239, 199);padding: 5px;padding: 10px;
     text-shadow: 0 0 4px white;transition: .10s;
+    animation: fReLight 2s infinite;
 }
 #textPrjInfo
 {
-  font-family: 'Consolas';
+  font-family: 'WRrus';
     font-size: 40px;
-    color: white;padding: 10px;transition: .10s;
+    color:rgb(55, 239, 199);padding: 5px;padding: 10px;transition: .10s;
 }
 #infoprjid
 {
-  font-family: 'Consolas';
+  font-family: 'WR';
     font-size: 60px;
-    color: white;padding: 10px;
-    text-shadow: 0 0 4px white;transition: .10s;
+    color:rgb(55, 239, 199);padding: 5px;padding: 10px;
+    transition: .10s;
     text-align: center;
 }
 #infoprjc
 {
-   font-family: 'Consolas';
+   font-family: 'WRrus';
     font-size: 30px;
-    color: white;padding: 10px;
-    text-shadow: 0 0 4px white;transition: .10s;
+    color:rgb(55, 239, 199);padding: 5px;padding: 10px;
+    transition: .10s;
     text-align: center;
 }
 #infoprjcj
 {
-    font-family: 'Consolas';
+    font-family: 'WR';
     font-size: 30px;
-    color: white;padding: 10px;
-    text-shadow: 0 0 4px white;transition: .10s;
+    color:rgb(55, 239, 199);padding: 5px;
+    transition: .10s;
     text-align: center;
 }
 #next_prj
 {
-  animation: gr_anim 8s infinite;font-family: 'Consolas';
+  font-family: 'WR';
     font-size: 60px;
-    color: white;width: 0%;
+    color:rgb(55, 239, 199);padding: 5px;width: 0%;
     height: 0%;
     float: right;
 }
 #prev_prj
 {
-  animation: gr_anim 8s infinite;font-family: 'Consolas';
+font-family: 'WR';
     font-size: 60px;
-    color: white;width: 0%;
+    color:rgb(55, 239, 199);padding: 5px;width: 0%;
     height: 0%;
     float: left;
     transform: translateX(-40px);
@@ -135,47 +187,47 @@ body {width: 100%;height: 100%;}
   {
     width: 50%;
     height: 50%;
-    animation: gr_anim 2s infinite;    margin: auto;
+      margin: auto;
     display: none;
-    border-top: 6px solid rgb(0,255,132);
-    transition: .4s;
+     border: 2px solid #636974;
+    transition: .4s;background:#1b1b1e;
 
   }
   #wl_text_accept
   {
-    font-family: 'Consolas';
+    font-family: 'WRrus';
     font-size: 8px;
-    color: white;
+    color:rgb(55, 239, 199);padding: 5px;
   }
   #author
   {
-    font-family: 'Consolas';
+    font-family: 'WRrus';
     font-size: 30px;
-    color: white;
+    color:rgb(55, 239, 199);padding: 5px;
     text-align:right;
     padding: 10px;
   }
   #wl_0text
   {
-    font-family: 'Consolas';
+    font-family: 'WRrus';
     font-size: 30px;
-    color: white;
+    color:rgb(55, 239, 199);padding: 5px;
   }
   #wl_1text
   {
-    font-family: 'Consolas';
+    font-family: 'WRrus';
     font-size: 20px;
-    color: white;
+    color:rgb(55, 239, 199);padding: 5px;
   }
   #wl_btn
   {
-    border: 2px solid rgb(0,255,132);
+    border: 2px solid #636974;
     width: 30%;
     height: 10%;
     background-color: #1B1C1E;
     margin:left;
-    font-family: 'Consolas';
-    font-size: 20px;color: white;
+    font-family: 'WRrus';
+    font-size: 20px;color:rgb(55, 239, 199);
     display: block;
   }
 
@@ -194,11 +246,11 @@ body {width: 100%;height: 100%;}
 	margin:auto;
 	width: 50%;
     height:50%;
-	border: 2px solid black;
+	  border: 2px solid #636974;
 	margin-left: center;
     margin-right: center ;
 	animation: gr_anim 2s infinite;
-	 font-family:'Consolas';
+	 font-family:'WRrus';
      animation:fColorA 1s infinite
 	}
   #title
@@ -251,23 +303,23 @@ body {width: 100%;height: 100%;}
   #fVKBtn:hover{animation: fColorA 1s infinite;border-radius:40px; }
   #value8{color:white;background-color:rgb(20,23,38);width:100px;height:30px;border:none;font-family:'Consolas';border-radius:4px;}
   #value8:hover{width:10%;height:5%;background-color:white;color:black;}
-  #LightBtn{display:table;color:white;background-color:rgb(20,23,38)width:10%;height:5%;border:none;font-family:'Consolas';border-radius:4px;margin:auto; animation: fColorA 1s infinite;}
+  #LightBtn{display:table;color:white;background-color:rgb(20,23,38)width:10%;height:5%;border:none;font-family:'WR';border-radius:4px;margin:auto; animation: fColorA 1s infinite;}
   #LightBtn:hover{width:30%;height:10%;background-color:white;color:black;}
   #avg-debug{ background-color:rgb(20,23,38);color: white;
    display:table;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 30px;border-radius: 6px;}
   #btnSourceE
    {
-    background-color:rgb(20,23,38);color: white;
+    background-color:rgb(20,23,38);color:rgb(55, 239, 199);padding: 5px;border: 2px solid #636974;
     width: 30%;
     height:10%;
-    display:table;margin:auto;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 30px;
+    display:table;margin:auto;font-family: 'WR';font-size: 30px;
   }
   #btnSource
   {
-    background-color:rgb(20,23,38);color: white;
+    background-color:rgb(20,23,38);color:rgb(55, 239, 199);padding: 5px; border:2px solid #636974;
     width: 30%;
     height:10%;
-    display:table;margin:auto;border: 2px solid rgb(54,61,255);font-family: 'Consolas';font-size: 30px;
+    display:table;margin:auto;font-family: 'WR';font-size: 30px;
   }
   #lng_sel
   {
@@ -278,7 +330,7 @@ body {width: 100%;height: 100%;}
   #btnDonate
   {
      background-color:rgb(20,23,38);
-    color: white;
+     color:rgb(55, 239, 199);padding: 5px;
     width: 20%;
     height:5%;
     display:table;
@@ -306,17 +358,17 @@ body {width: 100%;height: 100%;}
 	   100%{color:#3F4044;}
    }
   #donate{ display: none;margin: auto;
-         background-color: rgb(20,23,38);
+         background-color: #1B1B1E
          border: 2px solid rgb(54,61,255);
          width: 40%;
          height: 30%;
-         transition: all .8s;.8s;color:rgb(0,255,132);
+         transition: all .8s;color:rgb(0,255,132);
         font-family: 'Consolas';
         font-size: 20px;}
   #donatebtn
   {
-    border: 2px solid rgb(100,0,255);
-    font-family: 'Consolas';
+    border:2px solid #636974;
+    font-family: 'WR';
     font-size:20px;width:20%;
     height:5%;
     background: linear-gradient(to top bottom,#1B1B1E,rgb(60,55,239));
@@ -335,11 +387,11 @@ body {width: 100%;height: 100%;}
          border: 2px solid rgb(54,61,255);
          width: 40%;
          height: 50%;
-         transition: all .8s;.8s;color:rgb(0,255,132);
+         transition: all .8s;color:rgb(0,255,132);
         font-family: 'Consolas';
         font-size: 20px;text-align: center;}
   #Text00,#Text01,#Text02,#Text1,#Text2,#Text3{font-family:'Consolas';text-align:center;  color:rgb(0,255,132);;font-size:20px;}
-   #linksbtn{color:white;font-family: 'Consolas';font-size: 40px;text-shadow: 0 0 4px white;transition: .10s;border-radius:2px;transition: all .4s;width:10%;height:10%;display: inline;text-align: center;margin: 30px;}
+   #linksbtn{color:rgb(55, 239, 199);font-family: 'WRrus';font-size: 40px;transition: .10s;border-radius:2px;transition: all .4s;width:10%;height:10%;display: inline;text-align: center;margin: 30px;}
   #linksbtn:hover
   {
    border-bottom: 2px solid #35d555;
@@ -351,7 +403,7 @@ body {width: 100%;height: 100%;}
    text-shadow: 0 0 4px #35d555;border-bottom: 2px solid #414141;
     width:0%;height:0%;
     border:none;
-    font-family:'Consolas';
+    font-family:'WRrus';
     border-radius: 2px;
     margin-top: 10px;
    margin-bottom: 10px;
@@ -360,41 +412,39 @@ body {width: 100%;height: 100%;}
    transition: all .4s;
   border-bottom: 2px solid #35d555;
 }
-  #fItemDn{color:white;font-family: 'Consolas';font-size: 40px;border-radius:2px;text-shadow: 0 0 4px white;transition: .10s;transition: all .4s;width:10%;height:10%;display: inline;margin: 30px;display: none;}
+  #fItemDn{color:rgb(55, 239, 199);font-family: 'WRrus';font-size: 40px;border-radius:2px;text-shadow: 0 0 4px white;transition: .10s;transition: all .4s;width:10%;height:10%;display: inline;margin: 30px;display: none;}
   #fItemDn:hover
   {
    transition: all .4s;
    border-bottom: 2px solid #35d555;
 }
-  #fprojectsB{color:white;display: inline;font-family:'Consolas';font-size: 40px;text-shadow: 0 0 4px white;transition: .10s;border-radius:2px;transition: all .4s;width:10%;height:10%;margin: 30px;}
+  #fprojectsB{color:rgb(55, 239, 199);font-family: 'WRrus';display: inline;font-size: 40px;text-shadow: 0 0 4px white;transition: .10s;border-radius:2px;transition: all .4s;width:10%;height:10%;margin: 30px;}
   #fprojectsB:hover
   {
    transition: all .4s;
    border-bottom: 2px solid #35d555;
 }
-  #space{color:#07080f; animation: gr_anim_f 2s infinite;width:160px;height:30px;bolder: 2px gray;}
+  #space{color:#1B1B1E;width:160px;height:30px;border:2px solid #636974;}
   #links {  display: none;margin: auto;
-          animation: gr_anim_f 2s infinite;
          width: 50%;
          height: 50%;
-         transition: all .8s;.8s;color:rgb(0,255,132);
-        font-family: 'Consolas';
+         transition: all .8s;color:rgb(0,255,132);
+        font-family: 'WRrus';
         font-size: 20px;text-align: center;}
   #settings{  display: none;margin: auto;
          animation: gr_anim_f 2s infinite;
          border: 2px solid rgb(54,61,255);
          width: 50%;
          height: 80%;
-         transition: all .8s;.8s;color:rgb(0,255,132);
+         transition: all .8s;color:rgb(0,255,132);
         font-family: 'Consolas';
         font-size: 20px;text-align: center;}
-  #fProjects{  display: none;margin: auto;@media:max-width:1920px;
-        animation: gr_anim_f 2s infinite;@media:max-height:1080px;
-         border: 2px solid rgb(54,61,255);
+  #fProjects{  display: none;margin: auto;
+         border: 2px solid #636974;
          width: 50%;
          height: 80%;
-         transition: all .8s;.8s;color:rgb(0,255,132);
-        font-family: 'Consolas';
+         transition: all .8s;
+        font-family: 'WRrus';
         font-size: 20px;text-align: center;}
         #buttons_panel
         {
@@ -425,13 +475,13 @@ body {width: 100%;height: 100%;}
   #fCloseSett:hover{background-color:#1B1C1E;border:none;font-family:'Consolas';color:#35d555;text-shadow: 0 0 4px #35d555;}
   #fCloseProject{background-color:#1B1C1E;border:none;font-family:'Consolas';transform:translateX(100px);font-size:30px;color:white;}
   #fCloseProject:hover{background-color:#1B1C1E;border:none;font-family:'Consolas';color:#35d555;text-shadow: 0 0 4px #35d555;}
-  #bar-top{width:80%;height:21%;transform:translateY(-30px);background: linear-gradient(to left top,rgb(128,75,195),#1B1B1E);font-family: 'Consolas';}
-  #text-tt{ font-family: 'Consolas';color:white;font-size:60px;padding:20px;margin:10px;border-bottom: 2px gray;}
+  #bar-top{width:80%;height:21%;background:#1B1B1E;font-family: 'WR';border: 2px solid #636974;}
+  #text-tt{ font-family: 'WR';color:rgb(55, 239, 199);;font-size:60px;padding:20px;margin:10px;}
   #errorJS{display:block;background-color:#07080f; color:red;font-family:'Consolas';text-align:center;margin:auto;border-radius:10px;  transform:translateY(-10px); width:30%; height:30%;margin:auto;}
   #errorJSMsg{font-family:'Consolas';color:red;font-size:20px;}
   #status{display:none;color:white;font-family:'Consolas';}
   #textIntro{animation: fYBounds 1000ms;padding:30px;}
-  #ToolsBtn{color:white;width:10%;height:10%;font-family:'Consolas';text-shadow: 0 0 4px white;transition: .10s;border-radius:2px;font-size: 40px;transition: all .4s;display: inline;margin: 30px;}
+  #ToolsBtn{color:rgb(55, 239, 199);;width:10%;height:10%;font-family:'WR';transition: .10s;border-radius:2px;font-size: 40px;transition: all .4s;display: inline;margin: 30px;}
   #ToolsBtn:hover{
   transition: all .4s;}
   #imgIcon{transform: translateX(20px) translateY(-60px);border-radius:16px;animation:fColorA 1s infinite;background-color:#1B1C1E;background-color: rgb(20,23,38);display:none;}
@@ -465,6 +515,40 @@ body {width: 100%;height: 100%;}
 	font-size:20px;
     animation:fColorA 1s infinite;
 	
+}
+#load_sp
+	{
+   width: 60px;
+    height: 60px; 
+	 /* border-radius: 50px 50px 50px 50px; */
+   transition: .4s ;
+   background:#010409;
+   animation: re_spin 2s infinite;
+   margin: auto;
+   border-radius: 50px;
+	}
+	#load_wnd
+	{
+     background-color: #010409;
+	 width: 100%;height: 100%;
+	 display: block;
+	}
+	#tx_0
+	{
+		color:rgb(55, 239, 199);
+		font-family: 'WR';
+		font-size: 40px;
+		text-align: center;
+		padding: 10%;
+	}
+#er_0
+{
+     position: absolute;
+   display: none;
+     font-family: 'WRrus';
+ font-size: 40px;
+ color:rgb(55, 239, 199);padding: 5px;
+ background-color: #1b1b1e;width:  80%;margin:auto;border: 2px solid #636974;
 }
 #BtnPrev
 {

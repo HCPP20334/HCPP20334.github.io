@@ -23,6 +23,11 @@
 }
  </style>
    </noscript>
+   <div id="load_wnd">
+    <h1 id="tx_0" onclick="javascript:fDebugMessage = true;">Starting</h1>
+    <div id="load_sp"></div>
+  </div>
+   <p id="er_0"></p>
 <div id="wellcome_window">
         <p id ="wl_0text">Добро пожаловать!</p>
         <p id ="wl_1text">       Это сайт  HCPP      </p>
@@ -469,10 +474,19 @@ function fPrjCh(id)
   if(id == 0){fPrjName.innerHTML = "JoyStickAPI ";fPrjText.innerHTML = "JoyStickAPI - Это библиотека для работы с Гейпадами Xinput." + "\r\n"+"Написана на C++11 работает на Xinput 1.4";fPrjFileDoc = "JoyStickAPI.txt";document.getElementById('infoprjcj').style.display = 'block';}
   if(id == 1){fPrjName.innerHTML = "PassGenerator ";fPrjText.innerHTML = "PassGenerator - Это приложение для генерации сложных паролей." + "\r\n"+"Написана на C++11 сборка 1.0.8";fPrjFileDoc = "";document.getElementById('infoprjcj').style.display = 'none';}
   if(id == 2){fPrjName.innerHTML = "DOOM 2 ";fPrjText.innerHTML = "DOOM 2 - Это приложение для Запуска DOOM 2" + "\r\n"+"Написана на C++11 ";fPrjFileDoc = "";}
-  if(id == 3){fPrjName.innerHTML = "JoyStickEmu ";fPrjText.innerHTML = "JoyStickEmu - Это приложение для теста с Гейпадов с поддержкой Xinput." + "\r\n"+"Написана на C++11 работает JoyStickAPI";fPrjFileDoc = "";document.getElementById('infoprjcj').style.display = 'none';}
+  if(id == 3){fPrjName.innerHTML = "JE ";fPrjText.innerHTML = "JE - Это приложение для теста с Гейпадов с поддержкой Xinput." + "\r\n"+"Написана на C++11 работает JoyStickAPI";fPrjFileDoc = "";document.getElementById('infoprjcj').style.display = 'none';}
   if(id == 4){fPrjName.innerHTML = "VectorEngine ";fPrjText.innerHTML = "VectorEngine - Это приложение для теста с Процессора на скорость отрисовки частиц." + "\r\n"+"Написана на C++11 работает на VectorEngine.h";fPrjFileDoc = "";document.getElementById('infoprjcj').style.display = 'none';}
   if(id == 5){fPrjName.innerHTML = "GPUBenchMark ";fPrjText.innerHTML = "GPUBenchMark - Это приложение для теста с Видеокарты на скорость отрисовки частиц." + "\r\n"+"Написана на C++11 работает на VectorEngine.h";fPrjFileDoc = "";document.getElementById('infoprjcj').style.display = 'none';}
 }
+function Message(text)
+    {
+	  document.getElementById('er_0').style.display = 'block';
+	  document.getElementById('er_0').innerHTML = text;
+    document.getElementById('er_0').style.width = text.lenght;
+	  setTimeout("document.getElementById('er_0').style.display = 'none';",1000);
+    console.log("Message: send!!");
+
+    }
  function fSendLog(text)
 {   
     flog_data.innerHTML = text;
@@ -716,9 +730,10 @@ function fStartSite(s_state)
     }
     if(s_state)
     {
+      document.getElementById('load_wnd').style.display = 'block';
+      setTimeout("fWLWindow.style.display = 'block';document.getElementById('load_wnd').style.display = 'none';",2000);
         document.getElementById('styleJS').href= "MySite0.css";document.getElementById('styleJS').rel="stylesheet";
-        fWLWindow.style.display = 'block';
-        fWLWindow.style.filter ='blur(0px)';
+        fWLWindow.style.display = 'none';
         document.getElementById('prjpr').style.display = 'none';
         document.getElementById('bar-top').style.display = 'none';
     }
@@ -740,13 +755,13 @@ function func_checkRes()
 }
 //setInterval("func_checkRes();",10);
 function fMain() {
-         fLight();fSendLog("[MAIN] fLight() Loaded"+"\r\n");
-        fTestSwitch();fSendLog("[MAIN] fTestSwitch() Loaded");fText("[MAIN] fTestSwitch() Loaded"+"\r\n");
-        fLangSel();fSendLog("[MAIN] fLangSel() Loaded");fText("[MAIN] fLangSel() Loaded"+"\r\n");
-        fSetBackg();fSendLog("[MAIN] fSetBackg() Loaded");fText("[MAIN] fSetBackg() Loaded"+"\r\n");
-        document.getElementById('styleJS').href= "MySite0.css";fSendLog("[MAIN] 'CSSLoader' File:MySite0.css Loaded"+"\r\n");fText("[MAIN] 'CSSLoader' File:MySite0.css Loaded"+"\r\n");
+         fLight();
+        fTestSwitch();
+        fLangSel();
+        fSetBackg();
+        document.getElementById('styleJS').href= "MySite0.css";
         document.getElementById('styleJS').rel="stylesheet";
-        fLoading(1);console.log("[MAIN] WBEngine v1.0 Loaded");fText("[MAIN] fSetBackg() Loaded"+"\r\n"+"[MAIN] fLangSel() Loaded"+"\r\n"+"[MAIN] fLight() Loaded"+"\r\n"+"[MAIN] 'CSSLoader' File:MySite0.css Loaded"+"\r\n"+"[MAIN] WBEngine v1.0 Loaded"+"\r\n");
+        fLoading(1);console.log("[MAIN] WBEngine v1.0 Loaded");Message("[MAIN] fSetBackg() Loaded"+"\r\n"+"[MAIN] fLangSel() Loaded"+"\r\n"+"[MAIN] fLight() Loaded"+"\r\n"+"[MAIN] 'CSSLoader' File:MySite0.css Loaded"+"\r\n"+"[MAIN] WBEngine v1.0 Loaded"+"\r\n");
         // getPlatform();
             // document.getElementById('ConsoleStyle').style.display = 'block';
         document.getElementById('bar-top').style.display = 'block';
