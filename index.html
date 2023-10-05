@@ -514,6 +514,10 @@ fBufferCdg.oninput = function()
         {
             location.replace("index.html");
         }
+        if(this.value == '-mobile_css')
+        {
+          document.getElementById('styleJS').href = './mobile.css';
+        }
         if(this.value == '-intro')
         {
             location.replace("intro.html");
@@ -792,28 +796,42 @@ function fMain() {
         console.log('[MAIN] Style:'+document.getElementById('styleJS').href);
      if(getPlatform() != 'Android')
      {
-        fG = fLBPoint;
+        fG = fLBPoint;document.getElementById('linksbtn').style.display = 'inline';document.getElementById('fprojectsB').style.display = 'inline';document.getElementById('ToolsBtn').style.display = 'inline';
      }
-     if(getPlatform() == 'Android')
-     {
-        console.log("[MAIN] 'Device' Android");
-        // fErrorWindow.style.display = 'block';
-        location.replace('mobile.html');
-        document.getElementById('bar-top').style.display = 'none';
-       document.getElementById('prjpr').style.display = 'none';
-        document.getElementById('fFrame-text').style.display = 'none';
-      }
      if(fLBPoint > 1){fLBPoint = 0;}
      if(fLBPoint == 1){document.getElementById('LoadingB').style.display = 'block';document.getElementById('bar-top').style.display = 'none';fPayMe.style.display = 'none';fSetW.style.display = 'none';flinks.style.display = 'none';fSetW.style.display = 'none';document.getElementById('prjpr').style.display = 'none';fLtStyle.style.display = 'none';fTLMenu.style.display = 'block';}
      if(fLBPoint == 0){document.getElementById('prjpr').style.display = 'block';document.getElementById('bar-top').style.display = 'block';
      if(window.screen.height > 720)
       {
+        if(getPlatform() == 'Android')
+     {
+        console.log("[MAIN] 'Device' Android");
+        // fErrorWindow.style.display = 'block';
+        document.getElementById('bar-top').style.width = '100%';
+        document.getElementById('bar-top').style.height = '50%';
+        document.getElementById('prjpr').style.height = '100%';
+        document.getElementById('prjpr').style.width = '90%';
+        document.getElementById('prjInfo').style.fontSize = '50px';
+        document.getElementById('textPrjInfo').style.fontSize = '30px';
+      }
        document.getElementById('styleJS').href= "MySite0.css";
         document.getElementById('styleJS').rel="stylesheet";
         console.log("[MAIN] 'WBEngine ["+window.screen.width+":"+window.screen.height+"] > 720");
       }
        if(window.screen.height <= 720)
       {
+        if(getPlatform() == 'Android')
+     {
+        console.log("[MAIN] 'Device' Android");
+        // fErrorWindow.style.display = 'block';
+        document.getElementById('bar-top').style.width = '100%';
+        document.getElementById('bar-top').style.height = '50%';
+        document.getElementById('bar-top').style.display = 'block';
+       document.getElementById('prjpr').style.display = 'block';
+        document.getElementById('fFrame-text').style.display = 'block';
+        document.getElementById('prjpr').style.height = '80%';
+        document.getElementById('prjpr').style.width = '80%';
+      }
         document.getElementById('styleJS').href= "MySite0.css";
         document.getElementById('styleJS').rel="stylesheet";
         document.getElementById('bar-top').style.width = '90%';

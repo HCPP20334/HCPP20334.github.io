@@ -165,7 +165,6 @@ body {width: 100%;height: 100%;}
     color:rgb(55, 239, 199);padding: 5px;
     transition: .10s;
     text-align: center;
-    font-family:'WRrus';
 }
 #next_prj
 {
@@ -419,7 +418,7 @@ font-family: 'WR';
    transition: all .4s;
    border-bottom: 2px solid #35d555;
 }
-  #fprojectsB{color:rgb(55, 239, 199);font-family: 'WRrus';display: inline;font-size: 40px;text-shadow: 0 0 4px white;transition: .10s;border-radius:2px;transition: all .4s;width:10%;height:10%;margin: 30px;}
+  #fprojectsB{color:rgb(55, 239, 199);font-family: 'WRrus';display: table;font-size: 40px;text-shadow: 0 0 4px white;transition: .10s;border-radius:2px;transition: all .4s;width:10%;height:10%;margin: 30px;}
   #fprojectsB:hover
   {
    transition: all .4s;
@@ -427,11 +426,11 @@ font-family: 'WR';
 }
   #space{color:#1B1B1E;width:160px;height:30px;border:2px solid #636974;}
   #links {  display: none;margin: auto;
-         width: 50%;
-         height: 50%;
+         width: 70%;
+         height: 70%;
          transition: all .8s;color:rgb(0,255,132);
-        font-family: 'WRrus';
-        font-size: 20px;text-align: center;}
+        font-family: 'WRrus';color: rgb(55, 239, 199);
+        font-size: 20px;text-align: center;border: 2px solid #636974;}
   #settings{  display: none;margin: auto;
          animation: gr_anim_f 2s infinite;
          border: 2px solid rgb(54,61,255);
@@ -442,9 +441,9 @@ font-family: 'WR';
         font-size: 20px;text-align: center;}
   #fProjects{  display: none;margin: auto;
          border: 2px solid #636974;
-         width: 50%;
+         width: 70%;
          height: 80%;
-         transition: all .8s;
+         transition: all .8s;rgb(55, 239, 199);
         font-family: 'WRrus';
         font-size: 20px;text-align: center;}
         #buttons_panel
@@ -456,9 +455,9 @@ font-family: 'WR';
         }
         #open_panel
         {
-          color:white;
+          color:rgb(55, 239, 199);
           font-size: 60px;
-          font-family: 'Consolas';
+          font-family: 'WR';
           margin: 1%;
           transform: translateY(500px);
           background: linear-gradient(to right bottom,rgb(255,0,132),rgb(0,255,132),rgb(132,0,255));
