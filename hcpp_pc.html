@@ -8,6 +8,22 @@
   75%{transition: .8s;background: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
   100%{transition: .8s;background: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
 }
+@font-face
+ {
+  font-family: 'White Rabbit';
+  src: url('./WhiteRabbit.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face
+ {
+  font-family: 'WRrus';
+  src: url('./WhiteRabbit.ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 @keyframes XReSize
 {
 	0%{width:10px;height: 40%;}
@@ -26,17 +42,17 @@
 }
 	html
 	{
-		background-image: linear-gradient(to bottom,rgb(84, 76, 192),rgb(60,55,239));
+		background:#1b1b1e;
 		transition:  .4s;
 	}
 	#maib
 	{
 		width:  60%;height: 100%;
 		display: block;
-		margin:auto;border-radius: 20px;
-		transition: .4s;background-image:linear-gradient(to bottom,#2d39e5,#8955dd);animation: aBlur 1s;
+		margin:auto;
+		transition: .4s;background-color: #1b1b1e;animation: aBlur 1s;
 		border-image:  linear-gradient(to bottom,rgb(84, 76, 192),rgb(60,55,239));
-		border: 2px solid #010409;
+		border: 2px solid #636974;
 	}
 	#contacts
 	{
@@ -44,19 +60,19 @@
 		display: none;
 		margin:auto;border-radius: 20px;
 	}
-	#maintetx
+	#maintetx,#fr_data
 	{
-		font-family: 'Consolas';
-		font-size: 60px;
-		text-shadow: 0 0 4px white;
-		color:white;padding: 10px;
-		display: block
+		font-family: 'White Rabbit';
+		font-size: 40px;
+		color:rgb(55, 239, 199);padding: 5px;
+		display: block;
+		background-color: #1b1b1e;width:  60%;margin:auto;border: 2px solid #636974;
 	}
 	#text,#text0
 	{
-		font-family: 'Consolas';
+		font-family: 'WRrus';
 		font-size: 40px;padding: 10px;
-		color:white;
+		color:rgb(55, 239, 199);
 		display: block;
 		
 		
@@ -75,17 +91,13 @@
 	} */
 	#textObj
 	{
-		background:linear-gradient(to bottom,rgb(38, 38, 41),#010409);
+		background-color: #1b1b1e;
 		width: 90%;
 		height: 40%;
 		margin: auto;
 		display: none;
-		border-radius: 10px;border-left: 5px solid rgb(55, 239, 199);
+		border-radius: 10px;border: 2px solid #636974;
 		animation: XReSize 500ms;
-		border-left: 2px solid #44e695;
-		border-right: 2px solid #0ee7dc;
-		border-bottom: 2px solid #6e36f1;
-		border-top:2px solid rgb(55, 239, 199);
 	}
 	#RenderURLWnd
 	{
@@ -101,7 +113,7 @@
 		border: 1px solid rgb(144, 41, 240);
 		border-radius: 2px;
 		color:aliceblue;
-		font-family: 'Consolas';
+		font-family: 'WRrus';
 		font-size: 20px;display: inline;
 
 	}
@@ -111,7 +123,7 @@
 		border: 1px solid rgb(144, 41, 240);
 		border-radius: 2px;
 		color:aliceblue;
-		font-family: 'Consolas';
+		font-family: 'WRrus';
 		font-size: 20px;display: inline;
 	}
 	#window_0
@@ -128,7 +140,7 @@
 	}
 	#p_text
 	{
-		font-family: 'Consolas';
+		font-family: 'WRrus';
 		font-size: 20px;
 		color:aliceblue;
 		text-align: center;display: none;
@@ -171,33 +183,33 @@
 	{
 		0%{
 			transform: rotate(0deg);
-			border-left: 5px solid rgb(55, 239, 199);
-		    border-right: 5px solid #1B1B1E;
-		    border-bottom: 5px solid rgb(55, 239, 199);
-		    border-top:5px solid #1B1B1E;
+			border-right: 2px solid #44e695;
+		border-left: 2px solid #ff0062cb;
+		border-top: 2px solid #6e36f1;
+		border-bottom:2px solid rgb(208, 55, 239);
 		}
 		25%
 		{
 			transform: rotate(90deg);
-			border-left: 5px solid #010409;
-		    border-right: 5px solid rgb(55, 239, 199);
-		    border-bottom: 5px solid #010409;
-		    border-top:5px solid rgb(55, 239, 199);
+			border-right: 2px solid #44e695;
+		border-left: 2px solid #ff0062cb;
+		border-top: 2px solid #6e36f1;
+		border-bottom:2px solid rgb(208, 55, 239);
 		}
 		75%
 		{
 			transform: rotate(180deg);
-			border-left: 5px solid rgb(55, 239, 199);
-		    border-right: 5px solid #010409;
-		    border-bottom: 5px solid rgb(55, 239, 199);
-		    border-top:5px solid #010409;
+			border-right: 2px solid #44e695;
+		border-left: 2px solid #ff0062cb;
+		border-top: 2px solid #6e36f1;
+		border-bottom:2px solid rgb(208, 55, 239);
 
 		}
 		100%{
-			
-			border-left: 5px solid rgb(55, 239, 199);
-		    border-right: 5px solid #010409;
-		    border-bottom: 5px solid rgb(55, 239, 199);
+			border-right: 2px solid #44e695;
+		border-left: 2px solid #ff0062cb;
+		border-top: 2px solid #6e36f1;
+		border-bottom:2px solid rgb(208, 55, 239);
 		    border-top:5px solid #010409; rotate(360deg);
 		}
 	}	
@@ -269,12 +281,6 @@
    margin: auto;
    border-radius: 50px;
 	}
-	#blank_0
-	{
-		background:linear-gradient(to bottom,rgb(89, 79, 226),rgb(60,55,239));
-		width: 100%;height: 100%;
-		display: block;
-	}
 	#load_wnd
 	{
      background-color: #010409;
@@ -284,24 +290,19 @@
 	#tx_0
 	{
 		color:aliceblue;
-		font-family: 'consolas';
+		font-family: 'White Rabbit';
 		font-size: 40px;
 		text-align: center;
 		padding: 10%;
 	}
-	 #ErrorMessage
-	 {
-	   background-color: #010409;
-	   border: 2px solid rgb(55, 239, 199);
-	   position: absolute;
-	   display: none;
-	   border-radius: 8px;
-	 }
 	 #er_0
 	 {
-		font-family:'Comic Sans MS';
-		font-size: 30px;
-		color: white;
+		position: absolute;
+	   display: none;
+		font-family: 'White Rabbit';
+		font-size: 40px;
+		color:rgb(55, 239, 199);
+		background-color: #1b1b1e;width:  60%;border: 2px solid #636974;
 	 }
 	 #logs
 	 {
@@ -315,7 +316,7 @@
 	 #btna_0,#price
 	 {
 		display: block;
-        background-image:linear-gradient(to bottom,rgb(89, 79, 226),rgb(60,55,239));
+        background:#010409;
         border-left: 2px solid #44e695;
 		border-right: 2px solid #e70ed5;
 		border-bottom: 2px solid #4e0de6;
@@ -325,9 +326,9 @@
         margin: auto;
         transition: .4s;
         border-radius: 8px;
-        color:aliceblue;
+        color:#54ffda;
         font-size: 30px;
-        font-family: 'Comic Sans MS';
+        font-family: 'WRrus';
         padding: 4px;
         text-align: center;
 	 }
@@ -348,17 +349,16 @@
 	<h1 id="tx_0" onclick="javascript:fDebugMessage = true;">HCPP PC</h1>
 	<div id="load_sp"></div>
 </div>
-<div id="blank_0">
+	<h1 id="maintetx">HCPP PC</h1>
 	<div id="maib">
-		<h1 id="maintetx">HCPP PC</h1>
 	<div id="textObj">
 	<p id="text">f_null</p>
 	</div>
 	<button id="price">Прайс лист</button>
 		<button id="price" onclick="javascript:window.open('https://vk.com/hcpp_pc');">Группа ВК</button>
-		<button id="btna_0" onclick="javascript:window.open('./hcpp_terms.html');">Условия соглашения</button>
+		<button id="btna_0" onclick="javascript:OpenURL('./hcpp_terms.html');">Условия соглашения</button>
 	</div>
-	</div>
+	<p id="fr_data">Version 1.0.0.3 </p>
 <div id="window_1">
 	<style>
 		#window_1
@@ -393,7 +393,7 @@
 <p onclick="javascript:fDebugMessage = true;" id="logs"></p>
 <script type="text/javascript">
 	var fInfo       = document.getElementById('maintetx');
-	var fCurWindow  = document.getElementById('blank_0');
+	var fCurWindow  = document.getElementById('maib');
 	var X   = document.getElementById('contacts');
 	var fText       = document.getElementById('text');
 	var fPriceBtn   = document.getElementById('price');
@@ -436,17 +436,22 @@ function getPlatform() {
 //
 document.addEventListener("DOMContentLoaded", function() {
 	fUpdateFrame = false;
-	document.getElementById('load_wnd').style.display = 'block';fCurWindow.style.display = 'none';
-	Message('Чтобы вызвать Отладку на экране нагрузки кликнуть на HCPP PC');
-	setTimeout("Message('Твоя система '+getPlatform()+' Разрешение:'+ x_pos + ':'+y_pos);",1000);
+	document.getElementById('load_wnd').style.display = 'block';fCurWindow.style.display = 'none';document.getElementById('maintetx').style.display = 'none';
+	Message('Press to HCPP PC to Turn Debug');
+	setTimeout("Message('OS:'+getPlatform()+ ' ScrXY:'+ x_pos + ':'+y_pos);",1000);
         setTimeout("StartEngine(1);",3000);
 		fText.innerHTML = "";
 	});
+function OpenURL(URLString)
+{
+	Message("Открываю..")
+	document.location.href = URLString;
+}
 function Message(text)
 {
-	document.getElementById('ErrorMessage').style.display = 'block';
+	document.getElementById('er_0').style.display = 'block';
 	document.getElementById('er_0').innerHTML = text;
-	setTimeout("document.getElementById('ErrorMessage').style.display = 'none';",1000);
+	setTimeout("document.getElementById('er_0').style.display = 'none';",1000);
 
 }
 function renderIfM(URL)
@@ -505,8 +510,18 @@ function renderIfMReset()
 		x_pos = window.screen.width;
 		if(y_pos <= 720)
 		{
-		   fCurWindow.style.height = '100%';
-           fText.style.fontSize = '40px';
+		   fCurWindow.style.height = '90%';
+           fText.style.fontSize = '20px';
+           fPriceBtn.style.fontSize = '20px';
+		   fbtna_0.style.height = '9%';
+		   fPriceBtn.style.height = '9%';
+		   fbtna_0.style.fontSize = '20px';
+		   fText.style.height = '20%';
+		}
+		if(y_pos >= 800)
+		{
+		   fCurWindow.style.height = '90%';
+           fText.style.fontSize = '30px';
            fPriceBtn.style.fontSize = '20px';
 		   fbtna_0.style.height = '9%';
 		   fPriceBtn.style.height = '9%';
@@ -515,12 +530,12 @@ function renderIfMReset()
 		}
 		if(y_pos >= 1080)
 		{
-           fText.style.fontSize = '40px';
+           fText.style.fontSize = '30px';
            fPriceBtn.style.fontSize = '40px';
 		}
 		if(getPlatform() == 'Android' || getPlatform() == 'iPhone')
 		{
-           fText.style.fontSize = '40px';
+           fText.style.fontSize = '20px';
            fPriceBtn.style.fontSize = '20px';
 		   fbtna_0.style.fontSize = '20px';
 		   fbtna_0.style.height = '9%';
@@ -532,12 +547,12 @@ function renderIfMReset()
 
 	function StartEngine(val)
 {
-	
 		if(val == 1)
 	    {
 		  document.getElementById('textObj').style.display = 'block';
-		  document.getElementById('blank_0').style.display = 'block';
+		  document.getElementById('maib').style.display = 'block';
 		  document.getElementById('load_wnd').style.display = 'none';
+		  document.getElementById('maintetx').style.display = 'block';
 		  if(fCurWindow.style.display == 'block')
 		  {
 			fUpdateFrame = true;
@@ -546,7 +561,7 @@ function renderIfMReset()
 	    }
 	    if(val == 0)
 	    {
-		 document.getElementById('blank_0').style.display = 'none';
+		 document.getElementById('maib').style.display = 'none';
 		 document.getElementById('load_wnd').style.display = 'block';
 	    }
 //   document.getElementById('logs').innerHTML = fMsg;
