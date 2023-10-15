@@ -1,0 +1,368 @@
+<html>
+<meta charset="utf-8">
+<style>
+html
+{
+	background:linear-gradient(to left bottom,rgb(39,39,39),#010409);
+}
+@font-face
+     {
+      font-family: 'White Rabbit';
+      src: url('./../fonts/WhiteRabbit.woff ') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+#Win_0
+{
+	background:linear-gradient(to left bottom,rgb(39,39,39),rgb(42,42,42));
+	color:white;
+	width: 60%;
+	height: 10%;
+	border: 1px solid gray;display: none;
+    border-radius: 4px ;
+}
+#win_1,#win_2,#win_3,#win_4,#win_5,#Editor
+{
+	background:linear-gradient(to left bottom,rgb(39,39,39),rgb(42,42,42));
+	color:white;
+	width: 60%;
+	height: 10%;
+	border: 1px solid gray;
+    border-radius: 4px ;
+    display: none;
+	cursor: move;
+}
+#name_editor,#folder_editor
+{
+	background: #1b1b1e;
+	color:white;
+	border: 1px solid gray;
+    border-radius: 10px ;
+    font-family:'White Rabbit';
+	font-size: 15px;
+	height: 30%;width: 20%;
+}
+#controls,#prj_info
+{
+	background:rgb(42,42,42);
+	color:white;
+	width: 60%;
+	height: 5%;
+	border: 1px solid gray;
+    border-radius: 4px ;
+}
+#pName
+{
+    font-family:'White Rabbit';
+	font-size: 20px;	
+	color:white;
+	text-shadow: 0 0 4px black;display: inline;margin: 12px;
+}
+#TxPrjInfo
+{
+    font-family:'White Rabbit';
+	background:linear-gradient(to left bottom,rgb(39,39,39),rgb(42,42,42));
+	color:white;
+	width: 60%;
+	height: 5%;
+	border: 1px solid gray;
+    border-radius: 4px ;font-size: 20px;	
+}
+#win_0Tx0,#ItemsCount,#win_0Tx1,#win_0Tx2,#win_0Tx3,#win_0Tx4,#win_0Tx5,#EditorItemName
+{
+	font-family:'White Rabbit';
+	font-size: 20px;
+	display: inline;
+	margin: 10px;
+	padding: 2px;
+}
+#btn_0ts:hover{background:gray;}#btn_1ts:hover{background:gray;}
+#btn_0ts,#btn_1ts,#close_editor
+{
+	width: 150px;
+	height: 30px;
+	background:rgb(0,100,255);
+	font-family:'White Rabbit';
+	font-size: 15px;
+	color:white;text-shadow: 0 0 4px black;
+	border: none;
+	border-radius: 4px;
+	border: 2px rgb(0,255,150);
+	display: inline;
+
+}
+#nd{display: table;padding: 10px;}
+#btnPlus:hover{background: rgb(0,255,150);}#btnMinus:hover{background: rgb(0,255,150);}
+#btnPlus,#btnMinus
+{
+	width: 30px;
+	height: 30px;
+	background:rgb(39,39,39);
+	font-family:'White Rabbit';
+	font-size: 20px;
+	color:white;text-shadow: 0 0 4px black;
+	border: 1px solid rgb(0,255,150);
+	border-radius: 10px ;display: inline;
+	margin: 4px;
+}
+#HelpWd
+{
+	font-family: 'White Rabbit';
+    font-size: 20px;
+    color:white;padding: 5px;
+    display: none;
+    position: absolute;
+    background-color: #1b1b1e;margin:auto;border: 2px solid #636974;
+	width: 30%;
+	height: 10%; 
+}
+#er_0
+{
+    font-family: 'White Rabbit';
+    font-size: 20px;
+    color:white;padding: 5px;
+    display: block;
+    position: absolute;
+    background-color: #1b1b1e;margin:auto;border: 2px solid #636974; 
+}
+#HelpBtn:hover
+{
+	border: 2px solid #636974; 
+}
+#HelpBtn
+{
+	background-color: #1b1b1e;margin:auto;border: 2px solid #636974; 
+	font-family: 'White Rabbit';
+    font-size: 20px;
+    color:white;padding: 5px;
+	display: inline;
+	width: 60px;
+	height: 30px;
+	border: 2px solid rgb(0,255,150);
+}
+#c
+{
+	color:rgb(42,42,42);
+	display: inline;
+}
+</style>
+<p id="er_0"></p>
+<div id="HelpWd">
+	<p id="pName">Controls: Press '+' - to add URL</p>
+	<p id="pName">Controls: Press '-' - to del URL</p>
+	<p id="pName">Controls: Press 'Edit' - to Edit Current Item</p>
+	<p id="pName"> Open Site to Press 'Name Item'</p>
+</div>
+<div id="controls">
+<p id="pName">Add URL</p>
+<p id="c">ddddddddddddddddd</p>
+<button id="btnPlus">+</button><button id="btnMinus">-</button><p id="ItemsCount"></p><button id="HelpBtn" onclick="javascript:CreateHelpWindow();">Help</button>
+</div>
+<div id="Editor">
+<p id="EditorItemName">Emply</p><input type="commment" id="name_editor"><p id="pName">URL:</p><input type="commment" id="folder_editor"><button id="close_editor">OK</button>
+</div>
+<div id="win_0">
+<div id="nd"></div>
+<p id="win_0Tx0">Emply</p><button id="btn_0ts" onclick="javascript:CreateItem(0);">Edit</button>
+</div>
+<div id="win_1">
+<div id="nd"></div>
+<p id="win_0Tx1">Emply</p><button id="btn_0ts" onclick="javascript:CreateItem(1);">Edit</button>
+</div>
+<div id="win_2">
+<div id="nd"></div>
+<p id="win_0Tx2">Emply</p><button id="btn_0ts" onclick="javascript:CreateItem(2);">Edit</button>
+</div>
+<div id="win_3">
+<div id="nd"></div>
+<p id="win_0Tx3">Emply</p><button id="btn_0ts" onclick="javascript:CreateItem(3);">Edit</button>
+</div>
+<div id="win_4">
+<div id="nd"></div>
+<p id="win_0Tx4">Emply</p><button id="btn_0ts" onclick="javascript:CreateItem(4);">Edit</button>
+</div>
+<div id="win_5">
+<div id="nd"></div>
+<p id="win_0Tx5">Emply</p><button id="btn_0ts" onclick="javascript:CreateItem(5);">Edit</button>
+</div>
+<p id="TxPrjInfo">WebManager to Web!! ver 0.4</p>
+<script>
+	var fItem1 = 0;
+	var fItemName0 = document.getElementById('win_0Tx0');
+	var fItemName1 = document.getElementById('win_0Tx1');
+	var fItemName2 = document.getElementById('win_0Tx2');
+	var fItemName3 = document.getElementById('win_0Tx3');
+	var fItemName4 = document.getElementById('win_0Tx4');
+	var fItemName5 = document.getElementById('win_0Tx5');
+	var EditorName = document.getElementById('name_editor');
+	var bEdState;
+	var html = document.documentElement;
+	var fStrText;
+	var mouse;
+	var fStrURL0;
+	var fStrURL1;
+	var fStrURL2;
+	var fStrURL3;
+	var fStrURL4;
+	var fStrURL5;
+	//
+	let fm_x = 0;
+	let fm_y = 0;
+	var fHelpBox =  document.getElementById('win_0');
+    function MouseT(){document.getElementById('er_0').style.display = 'block';
+	document.getElementById('er_0').innerHTML = 'Pos'+mouse.clientX+':'+mouse.clientY;}
+	document.addEventListener("DOMContentLoaded", function() {
+		Message('Project WebManager v 0.4 js');
+		setTimeout("CreateHelpWindow();",1000);
+	});
+	document.getElementById('HelpBtn').onmouseover = function(){CreateHelpWindow();}
+	document.getElementById('HelpWd').onmouseover = function(){
+		document.getElementById('HelpWd').onmousemove = function()
+		{
+			Message(this.value);
+		}
+	}
+	fItemName0.onclick = function(){
+         window.open(fStrURL0);
+	}
+	fItemName1.onclick = function(){
+         window.open(fStrURL1);
+	}
+	fItemName2.onclick = function(){
+         window.open(fStrURL2);
+	}
+	fItemName3.onclick = function(){
+         window.open(fStrURL3);
+	}
+	fItemName4.onclick = function(){
+         window.open(fStrURL4);
+	}
+	fItemName5.onclick = function(){
+         window.open(fStrURL5);
+	}
+	function CreateAboutText(fdiv_id,fSText)
+	{
+		document.getElementById(fdiv_id).onmouseover = function(){Message(fSText);}
+	}
+	function CreateHelpWindow()
+	{
+        document.getElementById('HelpWd').style.display = 'block';
+		setTimeout("document.getElementById('HelpWd').style.display = 'none';",2000);
+	}
+	function Message(text)
+    {
+	document.getElementById('er_0').style.display = 'block';
+	document.getElementById('er_0').innerHTML = text;
+	setTimeout("document.getElementById('er_0').style.display = 'none';",1000);
+     }
+	function CreateItem(ItemsCount)
+    {
+		fItem1 = ItemsCount;
+	   document.getElementById('Editor').style.display = 'block';
+	}
+	document.getElementById('close_editor').onclick = function()
+	{
+		document.getElementById('Editor').style.display = 'none';
+		if(fItem1 == 0){CreateAboutText('win_0',fStrText);fItemName0.innerHTML = fStrText;}
+	    if(fItem1 == 1){CreateAboutText('win_1',fStrText);fItemName1.innerHTML = fStrText;}
+	    if(fItem1 == 2){CreateAboutText('win_2',fStrText);fItemName2.innerHTML = fStrText;}
+	    if(fItem1 == 3){CreateAboutText('win_3',fStrText);fItemName3.innerHTML = fStrText;}
+	    if(fItem1 == 4){CreateAboutText('win_4',fStrText);fItemName4.innerHTML = fStrText;}
+	    if(fItem1 == 5){CreateAboutText('win_5',fStrText);fItemName5.innerHTML = fStrText;}
+	}
+	EditorName.oninput = function(){
+		fStrText = this.value;
+	}
+	document.getElementById('folder_editor').oninput = function(){
+		fStrURL = this.value;
+		if(fItem1 == 0){
+			fStrURL0 = this.value;
+		}
+		if(fItem1 == 1){
+			fStrURL1 = this.value;
+		}
+		if(fItem1 == 2){
+			fStrURL2 = this.value;
+		}
+		if(fItem1 == 3){
+			fStrURL3 = this.value;
+		}
+		if(fItem1 == 4){
+			fStrURL4 = this.value;
+		}
+		if(fItem1 == 5){
+			fStrURL5 = this.value;
+		}
+	}
+function CheckStMn(Medit,fItem)
+{
+if(Medit)
+{
+if(fItem == 0)
+{
+	document.getElementById('win_5').style.display = 'none';fItemName0.innerHTML = 'Emply';
+}
+if(fItem == 1)
+{
+	document.getElementById('win_4').style.display = 'none';fItemName1.innerHTML = 'Emply';
+}
+if(fItem == 2)
+{
+	document.getElementById('win_3').style.display = 'none';fItemName2.innerHTML = 'Emply';
+}
+if(fItem == 3)
+{
+	document.getElementById('win_2').style.display = 'none';fItemName3.innerHTML = 'Emply';
+}
+if(fItem == 4)
+{
+	document.getElementById('win_1').style.display = 'none';fItemName4.innerHTML = 'Emply';
+}
+if(fItem == 5)
+{
+	document.getElementById('win_0').style.display = 'none';fItemName5.innerHTML = 'Emply';
+}
+bEdState = true;
+}
+if(!Medit)
+{
+if(fItem == 0){document.getElementById('win_0').style.display = 'block';}
+if(fItem == 1){document.getElementById('win_1').style.display = 'block';}
+if(fItem == 2){document.getElementById('win_2').style.display = 'block';}
+if(fItem == 3){document.getElementById('win_3').style.display = 'block';}
+if(fItem == 4){document.getElementById('win_4').style.display = 'block';}
+if(fItem == 5){document.getElementById('win_5').style.display = 'block';}
+bEdState = false;
+}
+console.log("Items:"+fItem1);
+console.log("State:"+Medit);
+}
+function fDebugger()
+{
+
+		console.log("Номер Пункта:"+fItem1);
+		console.log("bEdState:"+bEdState);
+		console.log("fStrText:"+fStrText);
+		setTimeout("console.clear();",1000);
+}
+
+document.getElementById('btnPlus').onclick = function()
+{
+	bEdState = false;
+	CheckStMn(bEdState,fItem1);
+fItem1++;
+document.getElementById('ItemsCount').innerHTML = "Items:"+fItem1;
+if(fItem1 > 5){fItem1 = 5;Message('Error: Items not > 5!:'+fItem1);}
+}
+document.getElementById('btnMinus').onclick = function()
+{
+	bEdState = true;
+	Message('DeleteItem:'+fItem1);
+	CheckStMn(bEdState,fItem1);
+fItem1--;
+document.getElementById('ItemsCount').innerHTML = "Items:"+fItem1;
+if(fItem1 <= 0){fItem1 = 0;Message('Error: Items not < 0!:'+fItem1);}
+}
+</script>
+</html>
