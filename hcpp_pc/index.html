@@ -1,0 +1,592 @@
+<html>
+<style>
+	@keyframes gr_anim
+{
+  0%{transition: .8s;background: linear-gradient(to left bottom,rgb(98, 88, 233),rgb(60,55,239));}
+  25%{transition: .8s;background: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
+  50%{transition: .8s;background: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
+  75%{transition: .8s;background: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
+  100%{transition: .8s;background: linear-gradient(to left bottom,rgb(60,55,128),rgb(60,55,239));}
+}
+@font-face
+ {
+  font-family: 'White Rabbit';
+  src: url('./../fonts/WhiteRabbit.woff ')  format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face
+ {
+  font-family: 'WRrus';
+  src: url('./../fonts/WhiteRabbit.ttf ') ;
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@keyframes XReSize
+{
+	0%{width:10px;height: 40%;}
+	100%{width:100%;height: 40%;}
+}
+@keyframes aBlur
+{
+	100%{filter:none;}
+	0%{filter:blur(10px);}
+}
+@keyframes st_e
+{
+	0%{transform: scale(0);}
+	6%{transform: scale(.990);}
+	15%{transform: scale(1);}
+}
+	html
+	{
+		background:#1b1b1e;
+		transition:  .4s;
+	}
+	#maib
+	{
+		width:  60%;height: 100%;
+		display: block;
+		margin:auto;
+		transition: .4s;background: transparent;
+		border: 2px solid #636974;
+	}
+	#contacts
+	{
+		width:  60%;height: 70%;
+		display: none;
+		margin:auto;border-radius: 20px;
+	}
+	#maintetx,#fr_data
+	{
+		font-family: 'White Rabbit';
+		font-size: 40px;
+		color:rgb(55, 239, 199);padding: 5px;
+		display: block;
+		background-color: #1b1b1e;width:  60%;margin:auto;border: 2px solid #636974;
+	}
+	#text,#text0
+	{
+		font-family: 'WRrus';
+		font-size: 40px;padding: 10px;
+		color:rgb(55, 239, 199);
+		display: block;
+		
+		
+	}
+	/* #price
+	{
+		font-family: 'Consolas';
+		font-size: 40px;
+		color:white;
+		display: block;
+		border: 2px solid rgb(55, 239, 199);
+		transition: .4s;
+		background: linear-gradient(to left bottom,rgb(64, 51, 255),rgb(49, 44, 219));
+		width:  50%;height: 10%;margin:auto;
+		border-radius: 20px;position: static;
+	} */
+	#textObj
+	{
+		background-color: #1b1b1e;
+		width: 90%;
+		height: 40%;
+		margin: auto;
+		display: none;
+		border-radius: 10px;border: 2px solid #636974;
+		animation: XReSize 500ms;
+	}
+	#RenderURLWnd
+	{
+		width: 95%;
+		height: 95%;
+		margin: 30px auto;
+		display: block;
+		border:none;
+	}
+	#close
+	{
+		background-color: #1B1B1E;
+		border: 1px solid rgb(144, 41, 240);
+		border-radius: 2px;
+		color:aliceblue;
+		font-family: 'WRrus';
+		font-size: 20px;display: inline;
+
+	}
+	#resetBtn
+	{
+		background-color: #1B1B1E;
+		border: 1px solid rgb(144, 41, 240);
+		border-radius: 2px;
+		color:aliceblue;
+		font-family: 'WRrus';
+		font-size: 20px;display: inline;
+	}
+	#window_0
+	{
+		animation: aBlur 100ms;
+		background-color: #1B1B1E;
+		display: none;
+		width: 80%;
+		height: 85%;
+		margin: auto;
+		border-radius: 10px;
+		transform: translateY(4px),rotateZ(30em);
+		
+	}
+	#p_text
+	{
+		font-family: 'WRrus';
+		font-size: 20px;
+		color:aliceblue;
+		text-align: center;display: none;
+	}
+	@keyframes re_spin
+	{
+		0%{
+			transform: rotate(0deg);
+			border-left: 5px solid rgb(55, 239, 199);
+		    border-right: 5px solid #1B1B1E;
+		    border-bottom: 5px solid #1B1B1E;
+		    border-top:5px solid #1B1B1E;
+		}
+		25%
+		{
+			transform: rotate(90deg);
+			border-left: 5px solid #010409;
+		    border-right: 5px solid #010409;
+		    border-bottom: 5px solid #010409;
+		    border-top:5px solid rgb(55, 239, 199);
+		}
+		75%
+		{
+			transform: rotate(180deg);
+			border-left: 5px solid #010409;
+		    border-right: 5px solid rgb(55, 239, 199);
+		    border-bottom: 5px solid #010409;
+		    border-top:5px solid #010409;
+
+		}
+		100%{
+			
+			border-left: 5px solid #010409;
+		    border-right: 5px solid #010409;
+		    border-bottom: 5px solid rgb(55, 239, 199);
+		    border-top:5px solid #010409;transform: rotate(360deg);
+		}
+	}	
+	@keyframes re_spin_v2
+	{
+		0%{
+			transform: rotate(0deg);
+			border-right: 2px solid #44e695;
+		border-left: 2px solid #ff0062cb;
+		border-top: 2px solid #6e36f1;
+		border-bottom:2px solid rgb(208, 55, 239);
+		}
+		25%
+		{
+			transform: rotate(90deg);
+			border-right: 2px solid #44e695;
+		border-left: 2px solid #ff0062cb;
+		border-top: 2px solid #6e36f1;
+		border-bottom:2px solid rgb(208, 55, 239);
+		}
+		75%
+		{
+			transform: rotate(180deg);
+			border-right: 2px solid #44e695;
+		border-left: 2px solid #ff0062cb;
+		border-top: 2px solid #6e36f1;
+		border-bottom:2px solid rgb(208, 55, 239);
+
+		}
+		100%{
+			border-right: 2px solid #44e695;
+		border-left: 2px solid #ff0062cb;
+		border-top: 2px solid #6e36f1;
+		border-bottom:2px solid rgb(208, 55, 239);
+		    border-top:5px solid #010409; rotate(360deg);
+		}
+	}	
+	@keyframes re_color
+	{
+		0%{
+			
+			border-left: 5px solid rgb(55, 239, 199);
+		    border-right: 5px solid #1B1B1E;
+		    border-bottom: 5px solid #1B1B1E;
+		    border-top:5px solid #1B1B1E;
+		}
+		25%
+		{
+			
+			border-left: 5px solid #010409;
+		    border-right: 5px solid #010409;
+		    border-bottom: 5px solid #010409;
+		    border-top:5px solid rgb(55, 239, 199);
+		}
+		75%
+		{
+			
+			border-left: 5px solid #010409;
+		    border-right: 5px solid rgb(55, 239, 199);
+		    border-bottom: 5px solid #010409;
+		    border-top:5px solid #010409;
+
+		}
+		100%{
+			
+			border-left: 5px solid #010409;
+		    border-right: 5px solid #010409;
+		    border-bottom: 5px solid rgb(55, 239, 199);
+		    border-top:5px solid #010409;
+		}
+	}	
+	@keyframes UpdateAnim
+	{
+		0%{background: linear-gradient(to right bottom,#1B1B1E,rgb(52, 42, 189),rgb(60,55,239));}
+		50%{background: linear-gradient(to right bottom,rgb(52, 42, 189),#1B1B1E,rgb(60,55,239));}
+		100%{background: linear-gradient(to right bottom,rgb(52, 42, 189),rgb(97, 25, 212),#1B1B1E);}
+	}
+	@keyframes re_an0
+	{
+		0%
+		{
+			border-right: 2px solid #44e695;
+		border-left: 2px solid #0ee7dc;
+		border-top: 2px solid #6e36f1;
+		border-bottom:2px solid rgb(55, 239, 199);
+		}
+		100%
+		{
+			border-left: 2px solid #44e695;
+		border-right: 2px solid #0ee7dc;
+		border-bottom: 2px solid #6e36f1;
+		border-top:2px solid rgb(55, 239, 199);
+		}
+	}
+	#load_sp
+	{
+   width: 60px;
+    height: 60px; 
+	 /* border-radius: 50px 50px 50px 50px; */
+   transition: .4s ;
+   background:#010409;
+   animation: re_spin 2s infinite;
+   margin: auto;
+   border-radius: 50px;
+	}
+	#load_wnd
+	{
+     background-color: #010409;
+	 width: 100%;height: 100%;
+	 display: block;
+	}
+	#tx_0
+	{
+		color:aliceblue;
+		font-family: 'White Rabbit';
+		font-size: 40px;
+		text-align: center;
+		padding: 10%;
+	}
+	 #er_0
+	 {
+		position: absolute;
+	   display: none;
+		font-family: 'White Rabbit';
+		font-size: 40px;
+		color:rgb(55, 239, 199);
+		background-color: #1b1b1e;width:  60%;border: 2px solid #636974;
+	 }
+	 #logs
+	 {
+		display: none;
+		font-family: 'consolas';
+		font-size: 20px;
+		color: rgb(0, 255, 200);
+		background-color: #1B1B1E;
+	   border: 1px solid rgb(55, 239, 199);width: 13%;
+	 }
+	 #btna_0,#price
+	 {
+		display: block;
+        background:#010409;
+        border-left: 2px solid #44e695;
+		border-right: 2px solid #e70ed5;
+		border-bottom: 2px solid #4e0de6;
+		border-top:2px solid rgb(55, 239, 138);
+        width: 50%;
+        height: 10%;
+        margin: auto;
+        transition: .4s;
+        border-radius: 8px;
+        color:#54ffda;
+        font-size: 30px;
+        font-family: 'WRrus';
+        padding: 4px;
+        text-align: center;
+	 }
+	 #btna_0:hover,#price:hover
+	 {
+		border-right: 2px solid #44e695;
+		border-left: 2px solid #ff0062cb;
+		border-top: 2px solid #6e36f1;
+		border-bottom:2px solid rgb(208, 55, 239);
+		cursor: pointer;
+        transition: .4s;
+	 }
+	 #defaultCanvas0
+	 {
+		position: absolute;
+	 }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+<script src="./Engine/djs.js"></script>
+<div id = "ErrorMessage">
+	<p id="er_0"></p>
+</div>
+<div id="load_wnd">
+	<h1 id="tx_0" onclick="javascript:fDebugMessage = true;">HCPP PC</h1>
+	<div id="load_sp"></div>
+</div>
+	<h1 id="maintetx">HCPP PC</h1>
+	<div id="maib">
+		<canvas id="defaultCanvas0"></canvas>
+	<div id="textObj">
+	<p id="text">f_null</p>
+	</div>
+	<button id="price">Прайс лист</button>
+		<button id="price" onclick="javascript:window.open('https://vk.com/hcpp_pc');">Группа ВК</button>
+		<button id="btna_0" onclick="javascript:OpenURL('./../terms/index.html');">Условия соглашения</button>
+	</div>
+	<p id="fr_data">Version 1.0.0.3 </p>
+<div id="window_1">
+	<style>
+		#window_1
+		{
+			width: 30%;height: 30%;
+			background-color: #010409;
+			color: white;
+			border:3px solid rgb(0, 206, 221);
+			display: none;
+			position: relative;
+			margin: auto;
+		}
+		#data_dbmsg
+		{
+			background-color: #010409;
+			color: white;
+			border:2px solid rgb(0, 206, 221);margin: auto;display: inline-block;
+			width: 50%;height: 10%;
+		}
+		#send_msg
+		{
+			background-color: #010409;
+			color: white;
+			border:2px solid rgb(0, 206, 221);margin: auto;display: inline-block;
+			width: 30%;height: 10%;
+		}
+	</style>
+	<button id="close" onclick="javascript:fDebugMessage = false;">X</button>
+	<p id="text0">Введите текст </p>
+	<input id="data_dbmsg"><button id="send_msg">Отправить</button>
+</div>
+<p onclick="javascript:fDebugMessage = true;" id="logs"></p>
+<script type="text/javascript">
+	var fInfo       = document.getElementById('maintetx');
+	var fCurWindow  = document.getElementById('maib');
+	var X   = document.getElementById('contacts');
+	var fText       = document.getElementById('text');
+	var fPriceBtn   = document.getElementById('price');
+	var fTextStr    = "Это частная компания которая специализируется на  сборке пк" + "\r\n"+"Настроике вашего пк(Установка виндовс, установка драйверов, перепрошивка биос..т.д)";
+	var WindowURL   = document.getElementById('RenderURLWnd');
+	var Wnd0   = document.getElementById('window_0');
+	var fUpdateFrame = true;
+	var fMBar = document.getElementById('window_1');
+	var fbtna_0     = document.getElementById('btna_0');
+	var fDebugMessage = false;
+	var fStrData;
+	var fMsg;
+	let f_st = 0;
+	let x_pos = 0
+	let y_pos = 0;
+	let fCheckRq;
+	let Ypos;
+	let msg = new XMLHttpRequest();
+	//
+	var userDeviceArray = [
+    {device: 'Android', platform: /Android/},
+    {device: 'iPhone', platform: /iPhone/},
+    {device: 'iPad', platform: /iPad/},
+    {device: 'Symbian', platform: /Symbian/},
+    {device: 'Windows Phone', platform: /Windows Phone/},
+    {device: 'Tablet OS', platform: /Tablet OS/},
+    {device: 'Linux', platform: /Linux/},
+    {device: 'Windows', platform: /Windows NT/},
+    {device: 'Macintosh', platform: /Macintosh/}
+];
+var platform = navigator.userAgent;
+function getPlatform() {
+    for (var i in userDeviceArray) {
+        if (userDeviceArray[i].platform.test(platform))
+         {
+            return userDeviceArray[i].device;
+          }
+        }
+}
+//
+document.addEventListener("DOMContentLoaded", function() {
+	fUpdateFrame = false;
+	document.getElementById('load_wnd').style.display = 'block';fCurWindow.style.display = 'none';document.getElementById('maintetx').style.display = 'none';
+	Message('Press to HCPP PC to Turn Debug');
+	setTimeout("Message('OS:'+getPlatform()+ ' ScrXY:'+ x_pos + ':'+y_pos);",1000);
+        setTimeout("StartEngine(1);",3000);
+		fText.innerHTML = "";
+	});
+function OpenURL(URLString)
+{
+	Message("Открываю..")
+	document.location.href = URLString;
+}
+function Message(text)
+{
+	document.getElementById('er_0').style.display = 'block';
+	document.getElementById('er_0').innerHTML = text;
+	setTimeout("document.getElementById('er_0').style.display = 'none';",1000);
+
+}
+function renderIfM(URL)
+{
+	fUpdateFrame = false;
+	document.getElementById('blank_0').style.display = 'none';
+	Wnd0.style.display = 'block';
+	Wnd0.width = 1280;
+	Wnd0.height = 720;
+	WindowURL.src= URL;
+	fCheckRq = 0;
+}
+function renderIfMDestroy()
+{
+	fUpdateFrame = true;
+	Wnd0.style.display = 'none';
+	Wnd0.width = 1280;
+	Wnd0.height = 720;
+	WindowURL.src= "";
+	document.getElementById('blank_0').style.display = 'block';
+}
+function fReloadTxFrame()
+{
+	document.getElementById('textObj').style.display = 'none';
+	setTimeout("document.getElementById('textObj').style.display = 'block';",500);
+
+}
+function renderIfMReset()
+{
+    WindowURL.src= "";
+	setTimeout("WindowURL.src= './update/index.html';",10);
+
+}
+   document.getElementById('send_msg').onclick = function()
+   {
+	document.getElementById('ErrorMessage').style.display = 'block';
+	document.getElementById('er_0').innerHTML = fStrData;
+	setTimeout("document.getElementById('ErrorMessage').style.display = 'none';",2000);
+   }
+   document.getElementById('data_dbmsg').oninput = function()
+        {
+	      fStrData = this.value;
+        }
+	function GetScreenXY()
+	{
+		if(fDebugMessage)
+		{
+			Ypos = ((window.screen.height / 2) * -1);
+			fMBar.style.display = 'block';
+			fMBar.style.transform = 'translateY('+Ypos+'px)';
+		}else
+		{
+			fMBar.style.display = 'none';
+		}
+		y_pos = window.screen.height;
+		x_pos = window.screen.width;
+		if(y_pos <= 720)
+		{
+		   fCurWindow.style.height = '90%';
+           fText.style.fontSize = '20px';
+           fPriceBtn.style.fontSize = '20px';
+		   fbtna_0.style.height = '9%';
+		   fPriceBtn.style.height = '9%';
+		   fbtna_0.style.fontSize = '20px';
+		   fText.style.height = '20%';
+		}
+		if(y_pos >= 800)
+		{
+		   fCurWindow.style.height = '90%';
+           fText.style.fontSize = '30px';
+           fPriceBtn.style.fontSize = '20px';
+		   fbtna_0.style.height = '9%';
+		   fPriceBtn.style.height = '9%';
+		   fbtna_0.style.fontSize = '20px';
+		   fText.style.height = '20%';
+		}
+		if(y_pos >= 1080)
+		{
+           fText.style.fontSize = '30px';
+           fPriceBtn.style.fontSize = '40px';
+		}
+		if(getPlatform() == 'Android' || getPlatform() == 'iPhone')
+		{
+           fText.style.fontSize = '20px';
+           fPriceBtn.style.fontSize = '20px';
+		   fbtna_0.style.fontSize = '20px';
+		   fbtna_0.style.height = '9%';
+		   fText.style.height = '20%';
+		   fPriceBtn.style.height = '9%';
+		}
+		setTimeout("fUpdateFrame = false;",1000);
+	}
+
+	function StartEngine(val)
+{
+		if(val == 1)
+	    {
+		  document.getElementById('textObj').style.display = 'block';
+		  document.getElementById('maib').style.display = 'block';
+		  document.getElementById('load_wnd').style.display = 'none';
+		  document.getElementById('maintetx').style.display = 'block';
+		  if(fCurWindow.style.display == 'block')
+		  {
+			fUpdateFrame = true;
+		  }
+		  setTimeout("GetScreenXY();",1000);
+	    }
+	    if(val == 0)
+	    {
+		 document.getElementById('maib').style.display = 'none';
+		 document.getElementById('load_wnd').style.display = 'block';
+	    }
+//   document.getElementById('logs').innerHTML = fMsg;
+//   if(fMsg.length += fMsg.length){document.getElementById('logs').style.display = 'block';}
+//   setTimeout("document.getElementById('logs').style.display = 'none';",100);
+}
+		setInterval("GetScreenXY();",1);
+	setTimeout("fText.innerHTML = fTextStr;",1000);
+	fPriceBtn.onclick = function()
+	{
+		fReloadTxFrame();
+		f_st++;
+		if(f_st > 1){f_st = 0;}
+		fPrice(f_st);
+	}
+	function fPrice(s_state)
+	{
+		if(s_state){fText.innerHTML = "Установка Windows - 500руб"+"\r\n"+"Установка Драйверов - 50руб 1 драйвер"+"\r\n"+"перепрошивка BIOS - 500руб";fPriceBtn.innerHTML = "Назад в меню"+"\r\n"+"\r\n"+"\r\n";}
+		if(!s_state){fText.innerHTML = fTextStr;fPriceBtn.innerHTML = "Прайс лист";}
+	}
+</script>
+</html>

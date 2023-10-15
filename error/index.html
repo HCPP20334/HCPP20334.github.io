@@ -1,0 +1,82 @@
+<html>
+    <style>
+        html{
+            background-color: #1b1b1e;
+        }
+        @keyframes re_shw
+	{
+		0%{
+			border-left: 1px solid rgb(55, 239, 199);
+		    border-right: 1px solid #1B1B1E;
+		    border-bottom: 1px solid #1B1B1E;
+		    border-top:1px solid #1B1B1E;
+		}
+		25%
+		{
+			border-left: 1px solid #010409;
+		    border-right: 1px solid #010409;
+		    border-bottom: 1px solid #010409;
+		    border-top:1px solid rgb(55, 239, 199);
+		}
+		75%
+		{
+			border-left: 1px solid #010409;
+		    border-right: 1px solid rgb(55, 239, 199);
+		    border-bottom: 1px solid #010409;
+		    border-top:1px solid #010409;
+
+		}
+		100%{
+			
+			border-left: 1px solid #010409;
+		    border-right: 1px solid #010409;
+		    border-bottom: 1px solid rgb(55, 239, 199);
+		    border-top:1px solid #010409;
+		}
+	}
+        #text_0
+        {
+            font-size: 100px;
+            font-family: 'WR';
+            color:#ffffff;
+              padding: 5px;
+              margin: 5%;
+        }
+        #text_1
+        {
+          
+          font-size: 30px;
+            font-family: 'WR';
+            color:#ffffff;
+              padding: 2px;
+              margin: 5%;
+        }
+        @font-face
+     {
+      font-family: 'WR';
+      src: url('./../fonts/WhiteRabbit.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    #bck_btn
+    {
+      background-color: #1b1b1e;
+      font-family: 'WR';
+      font-size: 30px;
+      margin: 5%;
+            font-family: 'WR';
+            color:#ffffff;
+      animation: re_shw 1s infinite;
+    }
+        </style>
+        <br>
+        <br>
+        <br>
+        <h1 id="text_0">404 Error</h1>
+        <br>
+        <p id="text_1">Your URL not Found!!</p>
+        <p id="text_1">Please press button back to return main site folder!</p>
+        <p id="text_1">@HCPP</p>
+        <button id="bck_btn">Back to main</button>
+</html>

@@ -1,0 +1,79 @@
+<html>
+<style>
+    html
+    {
+        background: #1b1b1e;
+    }
+    #text0
+    {
+        font-size: 30px;
+        font-family: 'White Rabbit';
+        color: #49fdb8;
+        padding: 10px;
+    }
+    @font-face
+ {
+  font-family: 'glitch';
+  src: url('./HACKED.ttf');
+ }
+    @font-face
+ {
+  font-family: 'White Rabbit';
+  src: url('../../fonts/WhiteRabbit.woff ') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+#TestStyle
+{
+  background-color: #1b1b1e;
+  border: 2px solid #636973;
+  color:#49fdb8;
+  font-family: 'White Rabbit';font-size: 20px;
+
+}
+  </style>
+  <p id="text0">JoyStickAPI Documentation</p>
+  <p id="text0">__________________________________________</p>
+  <p id="text0">Join Header #include 'JoyStick.h</p>
+  <p id="text0">Join Lib to  Project (DevC++ libxinput_1.4.a)</p>
+  <p id="text0">Visual Studio #pragma comment('xinput_1.4.lib'');</p>
+  <p id="text0">JoyStickAPI* xController1; - add to Controller  1</p>
+  <p id="text0">JoyStickAPI* xController2; - add to Controller  2</p>
+  <p id="text0">xController1 = new JoyStickAPI(1); - call to Controller  1 </p>
+  <p id="text0">xController2 = new JoyStickAPI(2); - call to Controller  2 </p>
+  <p id="text0">if(xController1->GetState().Gamepad.wButtons & XINPUT_GAMEPAD_A) - Check btn </p>
+  <p id="text0">{</p>
+  <p id="text0">return 1;</p>
+  <p id="text0">}</p>
+  <p id="text0">xController1->GetState().Gamepad.sThumbLX // return axis LeftX </p>
+  <p id="text0">xController1->GetState().Gamepad.sThumbLY // return axis LeftY  </p>
+  <p id="text0">xController1->GetState().Gamepad.sThumbRX //   return axis RightX </p>
+  <p id="text0">xController1->GetState().Gamepad.sThumbRY // return axis RightY </p>
+  <p id="text0">xController1->GetState().Gamepad.bLeftTrigger // return LT range or 0 to 255 </p>
+  <p id="text0">xController1->GetState().Gamepad.bRightTrigger //return RT range or 0 to 255</p>
+  <p id="text0">if(xController1->IsConnected()) - check connection controller   if connected to return true else false</p>
+  <p id="text0">Please Check My Site </p>
+  <p id="text0">by HCPP </p>
+  <button id="TestStyle">Open Site</button>
+  <script>
+    let fFontCount = 0;
+    document.getElementById('TestStyle').onclick = function()
+    {
+      fFontCount++;
+      if(fFontCount > 1)
+      {
+        fFontCount = 0;
+      }
+      if(!fFontCount)
+      {
+        document.getElementById('text0').style.fontFamily = 'White Rabbit';
+      }
+      if(fFontCount)
+      {
+        document.getElementById('text0').style.fontFamily = 'glitch';
+      }
+    }
+
+  </script>
+</html>

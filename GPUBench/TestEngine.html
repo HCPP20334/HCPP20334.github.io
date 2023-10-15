@@ -1,0 +1,180 @@
+<html>
+  <head>
+    <script async="" src="./../Engine/tag.js"></script><script src="./../Engine/p5.js"></script>
+    <script src="./../Engine/djs.js"></script>>
+  </head>
+  <body>
+    <p id="er_0"></p>
+   <div id="render_frame">
+    <canvas id="defaultCanvas0" class="p5Canvas" width="600" height="600" style="width: 600px; height: 600px;"></canvas>
+    <p id="ColorId">..............................</p><button id="ColorIdBtn">Start Benchmark</button><button id="ColorIdBack">Main</button><p id="p1">Start [ENTER] [ESC] - Back</p>
+    </div>
+    <div id="main_frame">
+        <h1 id="txIntro">PEngine v 1.0(Beta)</h1>
+        <button id="ColorIdBtn1">Start Benchmark</button>
+        <p id="p0">MaxLoopCount:<input type="comment"id="Mloop"></p>
+        <p id="p0">MaxSizeCount:<input type="comment" id="Msize"></p>
+        <p id="p1">Powerful GPU Benchmark to JS</p>
+    </div>
+  <script>
+    var fTx = document.getElementById('ColorId');
+    var fBtnPl = document.getElementById('ColorIdBtn');
+    let fJSCount  = 0;
+    var Bench;
+    let fMaxLoopIn = 0;
+    let fMaxSizeIn = 0;
+    document.addEventListener("DOMContentLoaded", function() {setTimeout("clear();",100);Message('Writtein by HCPP to JS +p5.js')});
+    fBtnPl.onclick = function()
+    {
+        frameCount = 0;
+        Message('PEngine:'+fScrX+':'+fScrY);
+    if(fMaxLoopIn  == 0)
+    {
+  Message('Error!!MaxLoopLimit = 0!');
+    }
+    if(fMaxSizeIn  == 0)
+    {
+  Message('Error!!MaxSizeLimit = 0!');
+    }
+        fBtnPl.innerHTML = "Benchmarking..";
+       loop();fBtnPl.style.animation = 'Re_ColorText 200ms infinite';
+       setTimeout("noLoop();fBtnPl.innerHTML = 'Start Benchmark'; fBtnPl.style.animation = 'none';clear(); ",1000);
+    }
+    function Message(text)
+{
+	document.getElementById('er_0').style.display = 'block';
+	document.getElementById('er_0').innerHTML = text;
+	setTimeout("document.getElementById('er_0').style.display = 'none';",1000);
+
+}
+    document.getElementById('Mloop').oninput = function()
+    {
+        fMaxLoopIn = this.value;
+    }
+    document.getElementById('Msize').oninput = function()
+    {
+        fMaxSizeIn = this.value;
+    }
+    document.getElementById('ColorIdBtn1').onclick = function()
+    {
+        frameCount = 0;
+        fMaxLoop = fMaxLoopIn;
+        fMaxSize = fMaxSizeIn;
+       document.getElementById('main_frame').style.display = 'none';
+       document.getElementById('render_frame').style.display = 'block';
+       fBtnPl.style.animation = 'Re_ColorText 200ms infinite';
+       loop();setTimeout("noLoop();fBtnPl.innerHTML = 'Start Benchmark';clear(); fBtnPl.style.animation = 'none';",1000);
+    }
+    document.addEventListener('keydown', function(event) {
+ if(event.code == 'Escape')
+ {
+    clear();noLoop();
+       document.getElementById('main_frame').style.display = 'block';
+       document.getElementById('render_frame').style.display = 'none';
+ }
+});
+    document.getElementById('ColorIdBack').onclick = function()
+    {
+        clear();noLoop();
+       document.getElementById('main_frame').style.display = 'block';
+       document.getElementById('render_frame').style.display = 'none';
+    }
+    </script>
+     <style>
+        @keyframes Re_ColorText
+        {
+            0%{color:rgb(55, 239, 199);}
+            100%{color:rgb(255, 0, 98);}
+        }
+        @keyframes rShadow
+        {
+            100%
+            {
+                color:rgb(255, 9, 111);
+                text-shadow: 3px 2px 10px rgb(0, 102, 255);
+            }
+            0%
+            {
+                color:rgb(55, 239, 199);
+            }
+        }
+        @font-face
+     {
+      font-family: 'White Rabbit';
+      src: url('./../fonts/WhiteRabbit.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+        #defaultCanvas0
+        {
+            position: absolute;
+        }
+        html,body{background-color: #1b1b1e;}
+        #ColorIdBtn,#ColorId,#ColorIdBtn1,#ColorIdBack,#p1{
+            font-family: 'White Rabbit';
+            font-size: 40px;
+            color:rgb(55, 239, 199);padding: 5px;
+            display: inline;
+            background-color: #1b1b1e;margin:auto;border: 2px solid #636974;
+            transition: .4s;
+            }
+            #ColorIdBack
+            {
+                font-family: 'White Rabbit';
+            font-size: 40px;
+            color:rgb(55, 239, 199);
+            display: inline;
+            background-color: #1b1b1e;border: 2px solid #636974;
+            transition: .4s;
+            }
+            #ColorIdBtn:hover,#ColorIdBtn1:hover,#ColorIdBack:hover{
+                color:rgb(255, 9, 111);
+                text-shadow: 3px 2px 10px rgb(0, 102, 255);
+            }
+            #render_frame
+            {
+                display: none;
+            }
+            #er_0
+            {
+                font-family: 'White Rabbit';
+            font-size: 40px;
+            color:rgb(55, 239, 199);padding: 5px;
+            display: block;
+            position: absolute;
+            background-color: #1b1b1e;margin:auto;border: 2px solid #636974; 
+            }
+            #er_0:hover,#p0:hover
+            {
+                color:rgb(255, 9, 111);
+                text-shadow: 3px 2px 10px rgb(0, 102, 255);
+            }
+            #main_frame
+            {
+                font-family: 'White Rabbit';
+            font-size: 40px;
+            color:rgb(55, 239, 199);padding: 5px;
+            display: block;
+            width: 70%;height: 70%;
+            background-color: #1b1b1e;margin:auto;border: 2px solid #636974;
+            }
+            #Mloop,#Msize
+            {
+                color:rgb(55, 239, 199);padding: 5px;
+            display: block;
+            width: 10%;height: 5%;
+            background-color: #1b1b1e;border: 2px solid #636974;   font-family: 'White Rabbit';
+            font-size: 20px;
+            }
+            #p0
+            {
+                font-family: 'White Rabbit';font-size: 20px;color:rgb(55, 239, 199); display: block;
+            }
+            #p1
+            {
+                font-family: 'White Rabbit';font-size: 20px;color:rgb(55, 239, 199); display: inline;animation: rShadow 1s infinite;
+            }
+            </style>
+            </body>
+</html>
