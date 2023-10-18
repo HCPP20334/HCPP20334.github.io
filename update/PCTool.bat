@@ -8,7 +8,7 @@ echo rev 1.0.1>>rgDumper.log
 echo ----------------------------------------------
 echo .
 echo . (1) - Activator 
-echo . (2) - Setup VSC++ (2005...2022)(not Work!!)
+echo . (2) - Setup VSC++ (2005...2022)
 echo . (3) - Dump Regedit
 echo . (4) - Exit
 echo ----------------------------------------------
