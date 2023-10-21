@@ -1,42 +1,101 @@
 @echo off
-title PCTool by HCPP>>rgDumper.log
+ chcp 65001
+title PCTool by HCPP
+echo PCTool v 1.0.1 by HCPP >>rgDumper.log
+echo ------------------------------->>rgDumper.log
 :main
-color 0f
+color 09
 mode con cols=47 lines=10
 cls
-echo rev 1.0.1>>rgDumper.log
+echo ----------------------------------------------
+echo   PCTool v 1.0.2
 echo ----------------------------------------------
 echo .
-echo . (1) - Activator 
-echo . (2) - Setup VSC++ (2005...2022)
-echo . (3) - Dump Regedit
-echo . (4) - Exit
+echo . (1) - Активатор Windows 
+echo . (2) - Центр Загрузки
+echo . (3) - Реестр дампер
+echo . (4) - Выход
 echo ----------------------------------------------
 set /p menu_sel=
 if  %menu_sel%==1 goto WinAc
 if  %menu_sel%==2 goto sp_a
 if  %menu_sel%==3 goto rg_dump
-if %menu_sel%==4 exit
+if  %menu_sel%==4 exit
 :WinAc
+mode con cols=60 lines=38
 cls
-echo Please turn Internet!!
-echo Please run to admin!!
 echo ----------------------------------------------
-echo .
-echo . (1) - Windows 10 LTSC
-echo . (2) - Windows 10 PRO
-echo . (3) - Windows 10 HOME
-echo . (4) - Windows 8(PRO)
-echo . (5) - Windows 8(embeded)
-echo . (6) - Back to menu
+echo   Windows Активатор (Требуется интернет) 
+echo ----------------------------------------------
+echo . *******************************************
+echo . Пожалуйста запустите PCTool.bat от админа
+echo . *******************************************
+echo . (0)  - Назад
+echo . (1)  - Windows 10 LTSC
+echo . (2)  - Windows 10 PRO
+echo . (3)  - Windows 10 HOME
+echo . (4)  - Windows 8(PRO)
+echo . (5)  - Windows 8(embeded)
+echo . (6)  - Windows Server 2022 Datacenter
+echo . (7)  - Windows Server 2022 Standard
+echo . (8)  - Windows Server 2019 Datacenter
+echo . (9)  - Windows Server 2019 Standard
+echo . (10) - Windows Server 2019 Essentials
+echo . (11) - Windows Server 2016 Datacenter
+echo . (12) - Windows Server 2016 Standard
+echo . (13) - Windows Server 2016 Essentials
+echo . (14) - Windows Server Datacenter(Semi-Annual Channel)
+echo . (15) - Windows Server Standard(Semi-Annual Channel)
+echo . (16) - Windows 11 pro and Windows 10 pro
+echo . (17) - Windows 11 Pro N and Windows 10 Pro N
+echo . (18) - Windows 11 Pro,Windows 10 Pro work station
+echo . (19) - Windows 11 Pro,Windows 10 Pro work station N
+echo . (20) - Windows 11,10 corparation edition N
+echo . (21) - Windows 10 corparation N LTSB 2016
+echo . (22) - Windows 10 corparation  LTSB 2016
+echo . (23) - Windows 8.1 pro
+echo . (24) - Windows 8.1 Pro N
+echo . (25) - Windows 8.1 corparation
+echo . (26) - Windows 8.1 corparation N
+echo . (27) - Windows 7 pro
+echo . (28) - Windows 7 corparation
+echo . (29) - Windows Vista Business
+echo . (30) - Windows Vista Enterprise
 echo ----------------------------------------------
 set /p ver_a=
+echo Please wait..
+if %ver_a%==0 goto main 
 if %ver_a%==1 goto LTSC ,  else color b1
 if %ver_a%==2 goto PRO  ,  else color b1
 if %ver_a%==3 goto HOME ,  else color b1
 if %ver_a%==4 goto win8_pro
 if %ver_a%==5 goto win8_emd
-if %ver_a%==6 goto main
+if %ver_a%==6 goto win_ser_Datacenter_2022
+if %ver_a%==7 goto win_ser_standard_2022
+if %ver_a%==8 goto win_ser_Datacenter_2019
+if %ver_a%==9 goto win_ser_standard_2019
+if %ver_a%==10 goto win_ser_Essentials_2019
+if %ver_a%==11 goto win_ser_Datacenter_2016
+if %ver_a%==12 goto win_ser_std_2016
+if %ver_a%==13 goto win_ser_Essentials_2016
+if %ver_a%==14 goto win_ser_data_sac
+if %ver_a%==15 goto win_ser_std_sac
+if %ver_a%==16 goto win11_10_pro
+if %ver_a%==17 goto win11_10_proN
+if %ver_a%==18 goto win11_10_pro_wStation
+if %ver_a%==19 goto win11_10_pro_wStationN
+if %ver_a%==20 goto win11_10_corpN
+if %ver_a%==21 goto win11_10_corpN_2016
+if %ver_a%==22 goto win11_10_corp_2016
+if %ver_a%==23 goto win8_1_pro
+if %ver_a%==24 goto win8_1_proN
+if %ver_a%==25 goto win8_1_corp
+if %ver_a%==26 goto win8_1_corpN
+if %ver_a%==27 goto win7_pro
+if %ver_a%==28 goto win7_corp
+if %ver_a%==29 goto win_vistaB
+if %ver_a%==30 goto win_vistaE
+if %ver_a%==31 color 0f
 goto main
 :win8_emd
 slmgr /ipk NG4HW-VH26C-733KW-K6F98-J8CK4
@@ -61,30 +120,182 @@ echo Win10 HOME>activation..>>rgDumper.log
 slmgr /ipk M7XTQ-FN8P6-TTKYV-9D4CC-J462D
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+:win_ser_Datacenter_2022
+slmgr /ipk WX4NM-KYWYW-QJJR4-XV3QB-6VM33
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win_ser_standard_2022
+slmgr /ipk VDYBN-27WPP-V4HQT-9VMD4-VMK7H
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win_ser_Datacenter_2019
+slmgr /ipk WMDGN-G9PQG-XVVXX-R3X43-63DFG
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win_ser_standard_2019
+slmgr /ipk 	N69G4-B89J2-4G8F4-WWYCC-J464C
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win_ser_std_2016
+slmgr /ipk WC2BQ-8NRM3-FDDYY-2BFGV-KHKQY
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win_ser_Essentials_2016
+slmgr /ipk 	JCKRF-N37P4-C2D82-9YXRT-4M63B
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win_ser_data_sac
+slmgr /ipk 	6NMRW-2C8FM-D24W7-TQWMY-CWH2D
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win_ser_std_sac
+slmgr /ipk N2KJX-J94YW-TQVFB-DG9YT-724CC
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win11_10_pro
+slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win11_10_proN
+slmgr /ipk MH37W-N47XK-V7XM9-C7227-GCQG9
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win11_10_pro_wStation
+slmgr /ipk NRG8B-VKK3Q-CXVCJ-9G2XF-6Q84J
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win11_10_corpN
+slmgr /ipk DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win11_10_corpN_2016
+slmgr /ipk QFFDN-GRT3P-VKWWX-X7T3R-8B639
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win11_10_corp_2016
+slmgr /ipk DCPHK-NFMTC-H88MJ-PFHPY-QJ4BJ
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win8_1_pro
+slmgr /ipk GCRJD-8NW9H-F2CDX-CCM8D-9D6T9
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win8_1_proN
+slmgr /ipk HMCNV-VVBFX-7HMBH-CTY9B-B4FXY
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win8_1_corp
+slmgr /ipk MHF9N-XY6XB-WVXMC-BTDCT-MKKG7
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win8_1_corpN
+slmgr /ipk MHF9N-XY6XB-WVXMC-BTDCT-MKKG7
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win7_pro
+slmgr /ipk FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win7_corp
+slmgr /ipk 33PXH-7Y6KF-2VJC9-XBBR8-HVTHH
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win_vistaB
+slmgr /ipk YFKBB-PQJJV-G996G-VWGXY-2V3X8
+slmgr /skms kms.digiboy.ir
+slmgr /ato
+:win_vistaE
+slmgr /ipk VKK3X-68KWM-X2YGT-QR4M6-4BWMV
+slmgr /skms kms.digiboy.ir
+slmgr /ato
 goto main
 :sp_a
+mode con cols=47 lines=20
+color 0a
 cls
+echo ----------------------------------------------
+echo  Центр Загрузки (Требуется интернет)
 echo ----------------------------------------------
 echo .
 echo . 
-echo . (1) Install MSC++  to Console (needed Internet)
-echo . (2) Redirect TechPower  (needed Internet)
-echo . (3) Back to Menu
-echo .
-echo . 
+echo . (1) Скачать MSC++ из под консоли
+echo . (2) Скачать MSC++ с TechPower самому
+echo . (3) Скачать DirectX 
+echo . (4) Скачать NET Framework 4.5
 echo ----------------------------------------------
 set /p ff=
-if %ff%==1 goto vs_rt
+if %ff%==1 goto 7z_ab
 if %ff%==2 start https://www.techpowerup.com/download/visual-c-redistributable-runtime-package-all-in-one/
-if %ff%==3 goto main
+if %ff%==3 goto DX_0a
+if %ff%==4 goto NetFr_0a
 goto main
-:vs_rt
-md "./MSC"
+:DX_0a
 cls
+echo ----------------------------------------------
+echo  Скачивание DirectX .. microsoft
 echo ----------------------------------------------
 echo .
 echo . 
-echo . Downloading VSC++ Runtime..>>rgDumper.log
+echo . Скачивание..
+echo . 
+echo . 
+echo ----------------------------------------------
+powershell Invoke-WebRequest 'https://download.microsoft.com/download/1/7/1/1718CCC4-6315-4D8E-9543-8E28A4E18C4C/dxwebsetup.exe' -outfile 'dxs.exe'
+start ./dxs.exe
+goto main
+:NetFr_0a
+cls
+echo ----------------------------------------------
+echo  Скачивание NET Framework 4.5.. microsoft
+echo ----------------------------------------------
+echo .
+echo . 
+echo . Скачивание..
+echo . 
+echo . 
+echo ----------------------------------------------
+powershell Invoke-WebRequest 'https://download.microsoft.com/download/B/A/4/BA4A7E71-2906-4B2D-A0E1-80CF16844F5F/dotNetFx45_Full_setup.exe' -outfile 'nt45.exe'
+start ./nt45.exe
+goto main
+:7z_ab
+cls
+echo Для распаковки нужен 7zip!!
+echo -----------------------------------------------
+echo .                                              
+echo .     У вас установлен 7zip?                                         
+echo .                                              
+echo .    (1) - да        (2) - нет                                          
+echo .       
+echo -----------------------------------------------     
+set /p e0a=
+if %e0a%==1 goto vs_rt
+if %e0a%==2 goto 7z_s 
+goto main   
+:7z_s
+cls
+echo ----------------------------------------------
+echo  Скачивание 7zip.. 7zip.org 
+echo ----------------------------------------------
+echo .
+echo . 
+echo . Скачивание..
+echo . 
+echo . 
+echo ----------------------------------------------
+powershell Invoke-WebRequest 'https://www.7-zip.org/a/7z2301-x64.exe' -outfile '7zS.exe'
+start /wait ./7zS.exe
+goto vs_rt
+goto main                           
+:vs_rt
+md "./MSC"
+mode con cols=47 lines=20
+cls
+echo ----------------------------------------------
+echo  Скачивание VSC++ Runtime.. archive.org
+echo ----------------------------------------------
+echo .
+echo . 
+echo . Скачивание..
 echo . 
 echo . 
 echo ----------------------------------------------
@@ -92,16 +303,18 @@ powershell Invoke-WebRequest 'https://ia902302.us.archive.org/31/items/vsrc.-7z/
 start ./MSC/VSC++.7z
 goto main
 :rg_dump
+color 0f
 mode con cols=47 lines=20
 cls
 md "./RgDumper/"
+echo RgDumper - дампер реестра
+echo ----------------------------------------------
+echo :::  RgDumper v 1.0.1
 echo ----------------------------------------------
 echo .
-echo . RgDumper v 1.0.1
-echo . ------------------
-echo . (1) import
-echo . (2) export(not work)
-echo . (3) Back to main
+echo . (1) импорт
+echo . (2) экспорт(not work)
+echo . (3) Назад в меню
 echo ----------------------------------------------
 set /p cmd_a=
 if %cmd_a%==1 goto import
