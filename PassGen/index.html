@@ -8,6 +8,14 @@
       font-style: normal;
       font-display: swap;
     }
+    @font-face
+    {
+        font-family: 'RetroscapeIiiRegular';
+      src: url('./../fonts/RetroscapeIiiRegular.tff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
     html
     {
         background-color: #010409;
@@ -16,7 +24,7 @@
     {
         background-color: #1b1b1e;
         width: 40%;
-        height: 70%;
+        height: 100%;
         margin: auto;
         display: block;
         border: 2px solid #636973;
@@ -26,8 +34,8 @@
     {
         background-color: #1b1b1e;
         width: 100%;
-        border-radius: 4px;border: 2px solid #636973;
-        height: 10%;
+        border-radius: 4px;border-bottom: 2px solid #636973;
+        height: 6%;
     }
     #Tx_0
     {
@@ -55,6 +63,17 @@
         display: inline;
         
     }
+    #p_1
+    {
+        color: white;
+        font-family: 'White Rabbit';
+        font-size: 30px;
+        display: table;
+        border-left: 6px solid #ffffff;
+        border-right: 2px solid  #636973;
+        border-top: 2px solid  #636973;
+        border-bottom: 2px solid  #636973;
+    }
     #Ps_out
     {
         color:aquamarine;
@@ -64,7 +83,7 @@
     #Gen
     {
         background-color: #1b1b1e; border-radius: 4px; border: 2px solid #636973;
-        color:rgb(15, 235, 161);font-family: 'White Rabbit';  font-size: 30px;margin: auto; display: block;
+        color:rgb(10, 194, 133);font-family: 'White Rabbit';  font-size: 30px;margin: auto; display: block;
         
     }
     #lg_data
@@ -76,26 +95,18 @@
     }
 </style>
 <div id="main_window">
-<div id="title_bar"><h1 id="Tx_0">PassGen v 0.6</h1></div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<div id="title_bar"><h1 id="Tx_0">PassGen v 1.0.1</h1></div>
 <br>
 <p id="Ps_out"></p>
 <br>
-<br>
-<br>
-<br>
-<p id="p_0">Length:<input id="length_bar" type="range" min="0" max="63" value="0"></p><p id="lg_data"></p>
+<p id="p_0">Length:<input id="length_bar" type="range" min="0" max="1000" value="0"></p><p id="lg_data"></p>
+<p id="p_1">POWERFUL TOOLS!!!!!</p>
 <br>
 <button id="Gen">Generate</button>
 <h1 id="Tx_0">Created by HCPP</h1>
 <h1 id="Tx_0">Port PassGen With C++
 </h1>
+<h1 onclick="window.open('../../JE.exe')">Fr</h1>
 </div>
 <script>
 var  bStrSymbols = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_123456789";
@@ -106,14 +117,25 @@ var fPstr = document.getElementById('Ps_out');
 var fGenbtn = document.getElementById('Gen');
 var dSize_0 = bStrSymbols.length;
 var fIndex_0;
+var fch_count = 0;
 document.addEventListener('DOMContentLoaded',function(){fPstr.style.width = document.getElementById('lg_data').style.width + 'px';});
 function PassGen(limit_str)
 {
     for(var Chunk_0 = 1;Chunk_0 <=limit_str; Chunk_0++)
     {
+        fch_count++;
         fPassOut += bStrSymbols.charAt(Math.floor(Math.random() * 63));
+        if(fch_count > 43)
+        {
+            fPassOut += '\n';
+            fch_count = 0;
+        }
     }
     fPstr.innerHTML = fPassOut;
+    if(limit_str <= 0)
+         {
+        fPstr.innerHTML = 'Error: Buffer Size not 0!!';
+         }
 }
 document.getElementById('length_bar').oninput = function(){
     document.getElementById('lg_data').innerHTML = this.value;
