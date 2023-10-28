@@ -22,8 +22,13 @@
     }
     #main_window
     {
+        @media screen {
+            max-width: 800px;
+            max-height: fit-content;
+            
+        }
         background-color: #1b1b1e;
-        width: 40%;
+        width: 70%;
         height: 100%;
         margin: auto;
         display: block;
@@ -74,17 +79,29 @@
         border-top: 2px solid  #636973;
         border-bottom: 2px solid  #636973;
     }
-    #Ps_out
+    #Ps_out,#pass_size
     {
         color:aquamarine;
         font-family: 'White Rabbit';
         font-size: 30px; border-radius: 4px;border: 2px solid #636973;background-color: #010409;
     }
+    #fix_scr
+    {
+         background-color: #1b1b1e;border: 2px solid #636973;border-radius: 4px;margin: auto;
+        display: inline; color: white;
+        font-family: 'White Rabbit';font-size: 30px;
+    }
     #Gen
     {
         background-color: #1b1b1e; border-radius: 4px; border: 2px solid #636973;
-        color:rgb(10, 194, 133);font-family: 'White Rabbit';  font-size: 30px;margin: auto; display: block;
+        color:rgb(10, 194, 133);font-family: 'White Rabbit';  font-size: 30px;margin: auto; display: inline;
         
+    }
+    #ab_btn
+    {
+        background-color: #1b1b1e;border: 2px solid #636973;border-radius: 4px;margin: auto;
+        display: inline; color: white;
+        font-family: 'White Rabbit';font-size: 30px;
     }
     #lg_data
     {
@@ -93,21 +110,24 @@
         font-size: 30px;
         display: inline;
     }
+    #sv_file
+    {
+        background-color: #1b1b1e; border-radius: 4px; border: 2px solid #636973;
+        color:rgb(10, 194, 133);font-family: 'White Rabbit';  font-size: 30px;margin: auto; display: none;
+    }
 </style>
 <div id="main_window">
-<div id="title_bar"><h1 id="Tx_0">PassGen v 1.0.1</h1></div>
-<br>
+<div id="title_bar"><h1 id="Tx_0">PassGen v 1.0.1</h1><button id="fix_scr">FIX SCREEN</button><button id="ab_btn" onclick="javascript:fPstr.innerHTML = text_about;">ABOUT</button><button id="ab_btn" onclick="javascript:fPstr.innerHTML = pc_about;">PCTool</button></div>
 <p id="Ps_out"></p>
+<p id="pass_size"></p>
 <br>
 <p id="p_0">Length:<input id="length_bar" type="range" min="0" max="1000" value="0"></p><p id="lg_data"></p>
-<p id="p_1">POWERFUL TOOLS!!!!!</p>
 <br>
-<button id="Gen">Generate</button>
-<h1 id="Tx_0">Created by HCPP</h1>
-<h1 id="Tx_0">Port PassGen With C++
-</h1>
+<button id="Gen">Generate</button><button id="sv_file">Save to File</button>
 <h1 onclick="window.open('../../JE.exe')">Fr</h1>
 </div>
+<h1 id="Tx_0">Created by HCPP ::Version to JS::My Site</h1>
+</h1>
 <script>
 var  bStrSymbols = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_123456789";
 var m_charOut;
@@ -118,13 +138,70 @@ var fGenbtn = document.getElementById('Gen');
 var dSize_0 = bStrSymbols.length;
 var fIndex_0;
 var fch_count = 0;
-document.addEventListener('DOMContentLoaded',function(){fPstr.style.width = document.getElementById('lg_data').style.width + 'px';});
+var fMainFrame = document.getElementById('main_window');
+var fFixScrBtn = document.getElementById('fix_scr');
+var fPsSizeInfo = document.getElementById('pass_size');
+var fScr_x = window.screen.width;
+var fScr_y = window.screen.height;
+var text_about = "Created a HCPP port of my PassGen with C++";
+var pc_about = "PCTool - Мощный инструмент для сисадминов и Эникейщиков";
+var sv_btn = document.getElementById('sv_file');
+var fDw_count;
+var userDeviceArray = [
+    {device: 'Android', platform: /Android/},
+    {device: 'iPhone', platform: /iPhone/},
+    {device: 'iPad', platform: /iPad/},
+    {device: 'Symbian', platform: /Symbian/},
+    {device: 'Windows Phone', platform: /Windows Phone/},
+    {device: 'Tablet OS', platform: /Tablet OS/},
+    {device: 'Linux', platform: /Linux/},
+    {device: 'Windows', platform: /Windows NT/},
+    {device: 'Macintosh', platform: /Macintosh/}
+];
+var platform = navigator.userAgent;
+sv_btn.onclick = function(){
+    fDw_count++;
+    writeFile("pass_data_hcpp_pass_gen.txt",fPassOut);
+}
+function writeFile(name, value) {
+var val = value;
+if (value === undefined) {
+val = "";
+}
+var download = document.createElement("a");
+download.href = "data:text/plain;content-disposition=attachment;filename=file," + val;
+download.download = name;
+download.style.display = "none";
+download.id = "download"; document.body.appendChild(download);
+document.getElementById("download").click();
+document.body.removeChild(download);
+}
+function GDevice() {
+    for (var i in userDeviceArray) {
+        if (userDeviceArray[i].platform.test(platform))
+         {
+            return userDeviceArray[i].device;
+          }
+        }
+}
+document.addEventListener('DOMContentLoaded',function(){fPstr.style.width = document.getElementById('lg_data').style.width + 'px';Dmode();});
+fFixScrBtn.onclick = function(){
+    Dmode();
+}
+function Dmode()
+{
+    if(GDevice() == 'Android'){
+        fMainFrame.style.width = '90%';
+        fMainFrame.style.height = '60%';
+    }
+}
 function PassGen(limit_str)
 {
     for(var Chunk_0 = 1;Chunk_0 <=limit_str; Chunk_0++)
     {
         fch_count++;
         fPassOut += bStrSymbols.charAt(Math.floor(Math.random() * 63));
+        fPsSizeInfo.innerHTML = fPassOut.length + ' chars';
         if(fch_count > 43)
         {
             fPassOut += '\n';
@@ -144,6 +221,7 @@ document.getElementById('length_bar').oninput = function(){
 fGenbtn.onclick = function(){
     fPassOut = '';
     setTimeout("PassGen(fLimitPass);",100);
+    sv_btn.style.display = 'inline';
 }
 </script>
 </html>
