@@ -1,5 +1,4 @@
 <html>
-	<!-- Google tag (gtag.js) -->
 <body>
  <title id="Main-title">HCPP Web Site</title>
  <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,17 +6,7 @@
      <link id="styleJS" rel="stylesheet" src="../style/MySite0.css">
      <link rel="icon" href="favicon.ico" type="image/x-icon">
      <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4NMTQL4GQ"></script>
-	<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-Z4NMTQL4GQ');
-</script>
 </head>
-	
-
   <noscript>
   <div id="errorJS">
   <p id="errorJSMsg">Error!!JS Not Supported and Turn Off!!</p>
@@ -65,6 +54,7 @@
    <button onclick="javascript:location.replace('././RGBTool/index.html');" id="TLBtnB">RGB Tools</button>
    <button onclick="javascript:location.replace('././PassGen/index.html');" id="TLBtnB">PassGen</button>
    <button onclick="javascript:location.replace('././GPUBench/index.html');" id="TLBtnB">p5 GPU Bench</button>
+   <button onclick="javascript:location.replace('././Notepad/index.html');" id="TLBtnB">Writter</button>
    <div id="PassGenerator">
     <p id="ps_3">Длина пароля</p>
     <p id="ps_5">0</p>
@@ -724,8 +714,8 @@ function fResetNumber()
 function fSelectorStyles(fSL_Point)
 {
     if(fSL_Point > 1){fSL_Point = 0;}
-    if(fSL_Point == 0){document.getElementById('styleJS').href= "MySite0.css";document.getElementById('styleJS').rel="stylesheet";fWebSiteMode = 'Lite';}
-    if(fSL_Point == 1){document.getElementById('styleJS').href= "MySite1.css";document.getElementById('styleJS').rel="stylesheet";fWebSiteMode = 'Pro';}
+    if(fSL_Point == 0){document.getElementById('styleJS').href= "./style/MySite0.css";document.getElementById('styleJS').rel="stylesheet";fWebSiteMode = 'Lite';}
+    if(fSL_Point == 1){document.getElementById('styleJS').href= "./style/MySite1.css";document.getElementById('styleJS').rel="stylesheet";fWebSiteMode = 'Pro';}
 }
 function fLoadSite()
 {
