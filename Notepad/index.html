@@ -1,0 +1,154 @@
+<html>
+
+<style>
+html{
+    background-color: #010409;
+}
+#tx_aread
+{
+    background-color: #1b1b1e;
+    color: white;
+    font-size: 20px;
+    font-family: 'Consolas';
+    width: 100%;
+    height: 80%;border:2px solid  #636973;
+}
+
+#notepad
+{
+    background-color: #1b1b1e;
+    width: 100%;display: block;
+    height:70%;
+}
+#p01
+{
+    color: white;
+    font-size:20px;
+    font-weight: lighter;
+    font-family: 'Consolas';
+    background-color:#1b1b1e
+    padding: 4px;
+}
+#h00,#p00
+{
+    color: white;
+    font-size:20px;
+    font-weight: lighter;
+    font-family: 'Consolas';
+    background-color: royalblue;
+    padding: 4px;
+}
+#f_name
+{
+    background-color: #1b1b1e;
+    font-size: 15px;
+    font-family: 'Consolas';
+    border:2px solid  #636973; color: white;
+    height: 30px;
+}
+#sv_file
+{
+    display: none;
+    position: absolute;
+    border: 2px solid #636973;
+    background-color: #1b1b1e;
+}
+#sv_vtn,#dw_vth,#dw_vth4
+{
+    border: 2px solid #1b1b1e;
+    background-color: #4f4fff;
+    color: white;
+    width: 160px;height:60px;
+    font-family: 'Consolas';font-size: 20px;
+}
+#sv_vtn1
+{
+    
+    border: 2px solid #1b1b1e;
+    background-color: #4f4fff;
+    color: white;width: 190px;height:60px;
+    font-family: 'Consolas';font-size: 20px;display: inline;
+}
+#sv_vtn2
+{
+      
+    border: 2px solid #1b1b1e;
+    background-color: #4f4fff;
+    color: white; width: 220px;height:60px;
+    font-family: 'Consolas';font-size: 20px;display: inline;
+}
+</style>
+<div id="sv_file">
+    <p id="p01">Name:<input id="f_name" type="comment"></p>
+    <button id="dw_vth">Скачать файл</button> <button id="dw_vth4" onclick="javascript:cl_svFile();">Закрыть</button>
+    </div>
+<div id="Notepad">
+    <h1 id="h00">Writer to Web!! ver 1.0</h1>
+    <button id="sv_vtn">Сохранить как</button><button id="sv_vtn1" onclick="javascript:Wr_About();">О проекте</button><button id="sv_vtn2" onclick="javascript:SvToCache();">Сохранить в кеш</button>
+<textarea id="tx_aread"></textarea>
+<p id="p00"></p>
+</div>
+<script>
+    setTimeout("RdCache()",1000);
+    var p_data = document.getElementById('p00');
+    var fOutTxBuf;
+    let TxBuffer_0 = document.getElementById('tx_aread');
+    let sv_window = document.getElementById('sv_file');
+    let save_text = document.getElementById('sv_vtn');
+    let dw_file = document.getElementById('dw_vth');
+    let sv_name = document.getElementById('f_name');
+    var fFile_name;
+    function writeFile(name, value) {
+var val = value;
+if (value === undefined) {
+val = "";
+}
+var download = document.createElement("a");
+download.href = "data:text/plain;content-disposition=attachment;filename=file," + val;
+download.download = name;
+download.style.display = "none";
+download.id = "download"; document.body.appendChild(download);
+document.getElementById("download").click();
+document.body.removeChild(download);
+}
+function RdCache()
+{
+    document.getElementById('tx_aread').value = localStorage.text;
+}
+function Wr_About()
+{
+    alert("Writter - это простой проект для написания текста \n by HCPP 2023","Writter");
+}
+function SvToCache()
+{
+    localStorage.text = fOutTxBuf;
+}
+save_text.onclick = function()
+{
+    sv_window.style.display = 'block';
+}
+sv_name.oninput = function(){
+        fFile_name = this.value;
+    }
+dw_file.onclick = function(){
+    writeFile(fFile_name,fOutTxBuf);
+}
+dw_file.onclick = function(){
+    SvToCache(fFile_name);
+}
+setInterval("Pread();",10);
+    function Pread()
+    {
+        fOutTxBuf = document.getElementById('tx_aread').value;
+        p_data.innerHTML = 'Символов:'+fOutTxBuf.length+'\tСимв в Кеше:'+localStorage.text.length;
+    }
+function cl_svFile()
+{
+    sv_window.style.display = 'none';
+}
+function TxPrint()
+{
+    TxBuffer_0.print();
+}
+</script>
+</html>
