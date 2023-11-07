@@ -1,6 +1,11 @@
 <html>
 
 <style>
+@keyframes XSlide
+{
+    0%{transform: translateX(-100px);}
+    100%{transform: translateX(0px);}
+}
 html{
     background-color: #010409;
 }
@@ -18,7 +23,7 @@ html{
 {
     background-color: #1b1b1e;
     width: 100%;display: block;
-    height:70%;
+    height:90%;
 }
 #p01
 {
@@ -26,7 +31,7 @@ html{
     font-size:20px;
     font-weight: lighter;
     font-family: 'Consolas';
-    background-color:#1b1b1e
+    background-color:#1b1b1e;
     padding: 4px;
 }
 #h00,#p00
@@ -77,19 +82,24 @@ html{
     color: white; width: 220px;height:60px;
     font-family: 'Consolas';font-size: 20px;display: inline;
 }
+#msg_text
+{
+    display: none;
+}
 </style>
 <div id="sv_file">
     <p id="p01">Name:<input id="f_name" type="comment"></p>
     <button id="dw_vth">Скачать файл</button> <button id="dw_vth4" onclick="javascript:cl_svFile();">Закрыть</button>
     </div>
-<div id="Notepad">
+    <h1 id="msg_text"></h1>
+<div id="Notepad" onload="javascript:msg('Добро пожаловать!!');">
     <h1 id="h00">Writer to Web!! ver 1.0</h1>
     <button id="sv_vtn">Сохранить как</button><button id="sv_vtn1" onclick="javascript:Wr_About();">О проекте</button><button id="sv_vtn2" onclick="javascript:SvToCache();">Сохранить в кеш</button>
 <textarea id="tx_aread"></textarea>
 <p id="p00"></p>
 </div>
 <script>
-    setTimeout("RdCache()",1000);
+    setTimeout("RdCache();",1000);
     var p_data = document.getElementById('p00');
     var fOutTxBuf;
     let TxBuffer_0 = document.getElementById('tx_aread');
@@ -98,18 +108,32 @@ html{
     let dw_file = document.getElementById('dw_vth');
     let sv_name = document.getElementById('f_name');
     var fFile_name;
-    function writeFile(name, value) {
-var val = value;
-if (value === undefined) {
-val = "";
+    var fMsg = document.getElementById("msg_text");
+function msg(text)
+{
+    fMsg.style.display = "block";
+    fMsg.style.position = "absolute";
+    fMsg.style.border = "2px solid #636973";
+    fMsg.style.backgroundColor = "#010409";
+    fMsg.style.color = "rgb(0,200,130)";
+    fMsg.style.fontFamily = "Consolas";
+    fMsg.style.animation = "XSlide 1s";
+    fMsg.innerHTML = text;
+    setTimeout("fMsg.style.display = 'none';",2000);
 }
-var download = document.createElement("a");
-download.href = "data:text/plain;content-disposition=attachment;filename=file," + val;
-download.download = name;
-download.style.display = "none";
-download.id = "download"; document.body.appendChild(download);
-document.getElementById("download").click();
-document.body.removeChild(download);
+function writeFile(name, value)
+{
+       var val = value;
+      if (value === undefined) {
+      val = "";
+       }
+      var download = document.createElement("a");
+      download.href = "data:text/plain;content-disposition=attachment;filename=file," + val;
+      download.download = name;
+      download.style.display = "none";
+      download.id = "download"; document.body.appendChild(download);
+      document.getElementById("download").click();
+      document.body.removeChild(download);
 }
 function RdCache()
 {
@@ -117,11 +141,12 @@ function RdCache()
 }
 function Wr_About()
 {
-    alert("Writter - это простой проект для написания текста \n by HCPP 2023","Writter");
+    document.getElementById('tx_aread').value = "Writter - это простой проект для написания текста \n by HCPP 2023","Writter";
 }
 function SvToCache()
 {
     localStorage.text = fOutTxBuf;
+    msg("Сохранено!!");
 }
 save_text.onclick = function()
 {
@@ -132,6 +157,7 @@ sv_name.oninput = function(){
     }
 dw_file.onclick = function(){
     writeFile(fFile_name,fOutTxBuf);
+    msg("Сохранено в "+fFile_name);
 }
 setInterval("Pread();",10);
     function Pread()
