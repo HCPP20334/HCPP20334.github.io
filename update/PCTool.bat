@@ -5,22 +5,83 @@ echo PCTool v 1.0.1 by HCPP >>rgDumper.log
 echo ------------------------------->>rgDumper.log
 :main
 color 09
-mode con cols=47 lines=10
+mode con cols=47 lines=18
 cls
 echo ----------------------------------------------
-echo   PCTool v 1.0.2
+echo   PCTool v 1.0.3
 echo ----------------------------------------------
+echo Лучший помощник Сисадмина и Эникейщика!!
 echo .
 echo . (1) - Активатор Windows 
 echo . (2) - Центр Загрузки
 echo . (3) - Реестр дампер
-echo . (4) - Выход
+echo . (4) - Удалятор говна
+echo . (5) - Профиль Администратора 
+echo . (6) - Тестовый режим
+echo . (7) - Выход
+echo .
 echo ----------------------------------------------
 set /p menu_sel=
 if  %menu_sel%==1 goto WinAc
 if  %menu_sel%==2 goto sp_a
 if  %menu_sel%==3 goto rg_dump
-if  %menu_sel%==4 exit
+if  %menu_sel%==4 goto dl_edge
+if  %menu_sel%==5 goto ad_tls
+if  %menu_sel%==6 goto ts_mode
+if  %menu_sel%==7 exit
+:ts_mode
+cls
+echo ----------------------------------------------
+echo   Тестовый режим с отключением проверки подписи драйвера
+echo ----------------------------------------------
+echo .
+echo . (1) - вкл
+echo . (2) - Выкл
+echo . (3) - Назад
+echo .
+echo ----------------------------------------------
+set /p ts_state=
+if %ts_state%==1 bcdedit /set TESTSIGNING on
+if %ts_state%==2 bcdedit /set TESTSIGNING off
+if %ts_state%==3 goto main
+:ad_tls
+cls
+echo ----------------------------------------------
+echo   Профиль Администратора
+echo ----------------------------------------------
+echo .
+echo . (1) - вкл
+echo . (2) - Выкл
+echo . (3) - Назад
+echo .
+echo ----------------------------------------------
+set /p admin_state=
+if %admin_state%==1 net user Администратор /active:on
+if %admin_state%==2 net user Администратор /active:off
+if %admin_state%==3 goto main
+:dl_edge
+cls
+echo ----------------------------------------------
+echo   Удалятор Говна 
+echo ----------------------------------------------
+echo . (1) - microsoft edge
+echo . (2) - Exit
+set /p dl_menu=
+if  %dl_menu%==1 goto dlE
+if  %dl_menu%==2 goto sp_a
+:dlE
+echo Удаляние Говна...
+rd /S /Q C:\Windows\SystemApps\Microsoft.MicrosoftEdge_8wekyb3d8bbwe
+rd /s /q C:\Windows\SystemApps\Microsoft.MicrosoftEdgeDevToolsClient_8wekyb3d8bbwe
+rd /s /q %ProgramFiles(x86)%/Microsoft/Edge/Application
+cd %ProgramFiles(x86)%
+cd Microsoft
+cd Edge
+cd Application
+taskkill /f /im msedge.exe
+del /f msedge.exe
+echo Удалено!!
+goto main
 :WinAc
 mode con cols=60 lines=38
 cls
@@ -222,12 +283,14 @@ echo . (1) Скачать MSC++ из под консоли
 echo . (2) Скачать MSC++ с TechPower самому
 echo . (3) Скачать DirectX 
 echo . (4) Скачать NET Framework 4.5
+echo . (5) Скачать MS Edge 
 echo ----------------------------------------------
 set /p ff=
 if %ff%==1 goto 7z_ab
 if %ff%==2 start https://www.techpowerup.com/download/visual-c-redistributable-runtime-package-all-in-one/
 if %ff%==3 goto DX_0a
 if %ff%==4 goto NetFr_0a
+if %ff%==5 powershell Invoke-WebRequest 'https://edgeupdates.microsoft.com/api/products?view=enterprise' -outfile './downloads/ist_msedge.msi'
 goto main
 :DX_0a
 cls
