@@ -1,0 +1,158 @@
+<html>
+<style>
+     @font-face {
+        font-family: Rt_3;
+        src: url("./fonts/Font0.ttf");
+    }
+    @font-face {
+        font-family: WR;
+        src: url("./fonts/WhiteRabbit.woff");
+    }
+html
+{
+    background-color: #1b1b1e;
+
+}
+#player_frame
+{
+    background-color: #010107;
+    border: 2px solid #42454b;;
+    width: 350px;
+    height: 600px;
+    margin: auto;
+    display: block;
+}
+#btn_prev_track,#btn_next_track,#btn_state
+{
+    background-color: #2f2fff;
+    font-size: 40px;
+    font-family: 'WR';
+    color: #ffffff; 
+    width: 100px;
+    height: 60px;
+    border: 2px solid #010107;
+}
+#btn_prev_track:hover{
+    transition: .2s;
+    background-color: #42454b;
+}
+#btn_next_track:hover{
+    transition: .2s;
+    background-color: #42454b;
+}
+#btn_state:hover{
+    transition: .2s;
+    background-color: #42454b;
+}
+#name_tl
+{
+    width: 350px;
+    background-color: #2f2fff;
+    height: 45px;margin: auto;border: 2px solid #42454b;
+    display: block;
+}
+#Tx_Name
+{
+ 
+ font-size: 40px;
+ font-family: 'WR';color: #fbfaff; padding: -4px;text-align: center;
+ transform: translateY(-33px);
+}
+#Tx_info_Sound
+{
+    font-size: 12px;
+   font-family: 'WR';
+   color: #ffffff; 
+  
+}
+#P_github
+{
+    font-size: 30px;
+   font-family: 'WR';display: inline;
+   color: #1ceb5a; border: 4px solid #010107;
+}
+#sound_device
+{
+    width: 100%;
+    height: 100px;
+}
+</style>
+<div id="name_tl"><p id="Tx_Name">PlayerJS</p></div>
+<div id="player_frame">
+<p id="Tx_info_Sound">null info</p>
+<audio id="sound_device" controls >
+    <a id="sound_device1"> Download audio </a>
+  </audio>
+<button id="btn_prev_track"><<</button><button id="btn_next_track">>></button><button id="btn_state">Play</button>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p id="P_github">Github</p><p id="P_github">Web Site</p>
+</div>
+<script>
+var fPLFrame =  document.getElementById('player_frame');
+var fPLPrev = document.getElementById('btn_prev_track');
+var fPLNext = document.getElementById('btn_next_track');
+var fPLSndDv = document.getElementById('sound_device');
+var fPLSndDv1 = document.getElementById('sound_device1');
+//
+var fPLMaxSoundCount = 21;
+var fPLCurrentSoundId = 0;
+//
+var fPLSoundInfo = document.getElementById('Tx_info_Sound');
+var fPLSoundName = document.getElementById('Tx_Name');
+//
+var fPLstate = document.getElementById('btn_state');
+//
+var snd_st = 0;
+fPLstate.onclick = function()
+{
+    snd_st++;
+    if(snd_st > 1){
+        snd_st = 0;
+    }
+    if(snd_st == 0){
+        SndState(snd_st,fPLSndDv);
+        fPLstate.innerHTML = "Play";
+    }
+    if(snd_st == 1){
+        SndState(snd_st,fPLSndDv);
+        fPLstate.innerHTML = "Stop";
+    }
+}
+fPLPrev.onclick = function()
+{
+    fPLCurrentSoundId--;
+    if(fPLCurrentSoundId < 1)
+    {
+        fPLCurrentSoundId = fPLMaxSoundCount;
+    }
+    PlaySoundJS('../music/'+fPLCurrentSoundId+'.wav',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+}
+fPLNext.onclick = function()
+{
+    fPLCurrentSoundId++;
+    
+    if(fPLCurrentSoundId > fPLMaxSoundCount)
+    {
+        fPLCurrentSoundId = 1;
+    }
+    PlaySoundJS('../music/'+fPLCurrentSoundId+'.wav',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+}
+function PlaySoundJS(name,out,fAref,fAudio)
+{
+    fAref.href = name;
+    fAudio.src = name;
+    out.innerHTML = "Load"+name;
+    
+}
+function SndState(state,fAudio)
+{
+    if(state){fAudio.play();}
+    if(!state){fAudio.pause();}
+}
+</script>
+</html>
