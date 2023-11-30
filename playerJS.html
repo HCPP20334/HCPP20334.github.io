@@ -198,7 +198,7 @@ setInterval("fPLaudioInfo()",1);
 function fPLaudioInfo()
 {
     fPLaudioSndState = fPLSndDv.readyState;
-    fPLaudioDuration = Number((fPLSndDv.duration / 60))+':Min';
+    fPLaudioDuration = parseInt((fPLSndDv.duration / 60))+':Min';
     fPLaudioState = fPLSndDv.networkState;
     fPLaudioSndSrc = fPLSndDv.currentSrc;
     if(fPLaudioState == 0)
