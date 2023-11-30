@@ -193,24 +193,26 @@ var fPLaudioState;
 var fPLaudioDuration;
 var fPLaudioSndState;
 var fPLaudioSndSrc;
-
 //
+setInterval("fPLaudioInfo()",1);
 function fPLaudioInfo()
 {
     fPLaudioSndState = fPLSndDv.readyState;
-    fPLaudioDuration = (fPLSndDv.duration / 60)+':Min';
+    fPLaudioDuration = Number((fPLSndDv.duration / 60))+':Min';
     fPLaudioState = fPLSndDv.networkState;
     fPLaudioSndSrc = fPLSndDv.currentSrc;
-    if(fPLaudioState)
+    if(fPLaudioState == 0)
     {
-        fPLaudioMsg("Loaded!!"+fPLaudioSndSrc);
-        setTimeout("fPLaudioText.style.display = 'none';",1000);
+        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration +"\nAudioReady:"+fPLaudioSndState+" Status: no audio!");
     }
-    if(!fPLaudioState)
+    if(fPLaudioState == 1)
     {
-        fPLaudioMsg("Loading..."+fPLaudioSndSrc);
+        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration+"\nAudioReady:"+fPLaudioSndState+" Status: OK");
     }
-    fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration+"\nAudioReady:"+fPLaudioSndState);
+    if(fPLaudioState == 2)
+    {
+        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration+"\nAudioReady:"+fPLaudioSndState+" Status:Loading..");
+    }
 }
 function fPLaudioMsg(text)
 {
@@ -224,6 +226,7 @@ function fPLaudioMsg(text)
     fPLaudioText.style.width = text.length + '%';
     fPLaudioText.style.height = '30px';
 }
+fPLSndDv.volume = 0.4;
 fPLvolCount.oninput = function()
 {
     fVaudioVol = this.value;
@@ -244,6 +247,7 @@ function VlBar(get_vol)
 }
 fPLstate.onclick = function()
 {
+    fPLaudioInfo();
     snd_st++;
     if(snd_st > 1){
         snd_st = 0;
@@ -264,7 +268,7 @@ fPLPrev.onclick = function()
     }
     SndState(0,fPLSndDv);
     snd_st = 0;
-    PlaySoundJS('../music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
 }
 fPLNext.onclick = function()
 {
@@ -275,7 +279,7 @@ fPLNext.onclick = function()
     }
     SndState(0,fPLSndDv);
     snd_st = 0;
-    PlaySoundJS('../music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
 }
 function PlaySoundJS(name,out,fAref,fAudio)
 {
