@@ -47,7 +47,7 @@ html
 #name_tl
 {
     width: 350px;
-    background-color: #2f2fff;
+    background-color: #1b1b1e;
     height: 45px;margin: auto;border: 2px solid #42454b;
     display: block;
 }
@@ -60,7 +60,7 @@ html
 }
 #Tx_info_Sound
 {
-    font-size: 12px;
+    font-size: 20px;
    font-family: 'WR';
    color: #ffffff; 
   
@@ -71,19 +71,93 @@ html
    font-family: 'WR';display: inline;
    color: #1ceb5a; border: 4px solid #010107;
 }
+#v_text
+{
+    font-size: 30px;
+   font-family: 'WR';display: inline;
+   color: #2538e0;
+}
 #sound_device
 {
     width: 100%;
     height: 100px;
+    opacity: 0%;
+}
+#aControls
+{
+    width: 100%;
+    height: 50%;
+    background-color: #1b1b1e;
+    border-bottom: 2px solid #42454b;
+    border-top: 2px solid #42454b;
+}
+#vl_count
+{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: inline;
+}
+#vl_count::-webkit-slider-runnable-track
+{
+    background-color: #1b1c1e;border: 2px solid #42454b;
+}
+#vl_count::-webkit-slider-thumb
+{
+    background: #f00050;
+      cursor: pointer;
+      width: 8px;
+      height: 20px;
+      -webkit-appearance: none;
+      border-radius: 2px;
+ 
+}
+#b_volT
+{
+    font-size: 30px;
+   font-family: 'WR';
+   color: #e0e0e0;
+}
+#b_volT1
+{
+    background-color: #1b1b1e;
+    height: 10px;display: none;border: 2px solid #ff044f;
+}
+#b_vol
+{
+    display: none;
+    position: absolute;
+    background-color: #1b1b1e;
+    border: 2px solid #42454b;
+    width: 250px;
+    height: 90px;
+}
+#PLmsg
+{
+    display: none;
+    position: absolute;
 }
 </style>
+<div id="b_vol">
+    <h1 id="b_volT">VOL:</h1>
+    <div id="b_volT1"></div>
+    </div>
+    <h1 id="PLmsg"></h1>
 <div id="name_tl"><p id="Tx_Name">PlayerJS</p></div>
 <div id="player_frame">
-<p id="Tx_info_Sound">null info</p>
-<audio id="sound_device" controls >
+<p id="Tx_info_Sound">Нет файла</p>
+<audio id="sound_device"  >
     <a id="sound_device1"> Download audio </a>
   </audio>
-<button id="btn_prev_track"><<</button><button id="btn_next_track">>></button><button id="btn_state">Play</button>
+<div id="aControls">
+    <br>
+    <br>
+    <br>
+    <button id="btn_prev_track"><<</button><button id="btn_next_track">>></button><button id="btn_state">Play</button>
+    <br>
+    <br>
+    <p id="v_text">volume:</p><input type="range" min="0.0" max="1.0" step="0.1" value="0.3" id="vl_count"></p>
+</div>
 <br>
 <br>
 <br>
@@ -98,6 +172,11 @@ var fPLPrev = document.getElementById('btn_prev_track');
 var fPLNext = document.getElementById('btn_next_track');
 var fPLSndDv = document.getElementById('sound_device');
 var fPLSndDv1 = document.getElementById('sound_device1');
+var fPLvolCount = document.getElementById('vl_count');
+var fPaudioX = document.getElementById('b_volT1');
+var fPaudioD = document.getElementById('b_volT');
+var fPaudioF = document.getElementById('b_vol');
+var fPLaudioText = document.getElementById('PLmsg');
 //
 var fPLMaxSoundCount = 21;
 var fPLCurrentSoundId = 0;
@@ -108,6 +187,61 @@ var fPLSoundName = document.getElementById('Tx_Name');
 var fPLstate = document.getElementById('btn_state');
 //
 var snd_st = 0;
+var fVaudioVol = 0;
+//
+var fPLaudioState;
+var fPLaudioDuration;
+var fPLaudioSndState;
+var fPLaudioSndSrc;
+
+//
+function fPLaudioInfo()
+{
+    fPLaudioSndState = fPLSndDv.readyState;
+    fPLaudioDuration = (fPLSndDv.duration / 60)+':Min';
+    fPLaudioState = fPLSndDv.networkState;
+    fPLaudioSndSrc = fPLSndDv.currentSrc;
+    if(fPLaudioState)
+    {
+        fPLaudioMsg("Loaded!!"+fPLaudioSndSrc);
+        setTimeout("fPLaudioText.style.display = 'none';",1000);
+    }
+    if(!fPLaudioState)
+    {
+        fPLaudioMsg("Loading..."+fPLaudioSndSrc);
+    }
+    fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration+"\nAudioReady:"+fPLaudioSndState);
+}
+function fPLaudioMsg(text)
+{
+    fPLaudioText.style.display = 'block';
+    fPLaudioText.innerHTML = text;
+    fPLaudioText.style.backgroundColor = '#1b1b1e';
+    fPLaudioText.style.color = '#ffffff';
+    fPLaudioText.style.fontSize = '20px';
+    fPLaudioText.style.fontFamily = 'WR';
+    fPLaudioText.style.border = '2px solid #42454b';
+    fPLaudioText.style.width = text.length + '%';
+    fPLaudioText.style.height = '30px';
+}
+fPLvolCount.oninput = function()
+{
+    fVaudioVol = this.value;
+    if(fVaudioVol > 1)
+    {
+        fVaudioVol = 1;
+    }
+    fPLSndDv.volume = fVaudioVol;
+    VlBar(fVaudioVol);
+}
+function VlBar(get_vol)
+{
+    fPaudioD.innerHTML = "VOL:"+ (get_vol * 100)+'%';
+    fPaudioF.style.display = 'block';
+    fPaudioX.style.display = 'block';
+    fPaudioX.style.width = (get_vol * 100)+'%';
+    setTimeout("fPaudioF.style.display = 'none';",3000);
+}
 fPLstate.onclick = function()
 {
     snd_st++;
@@ -116,11 +250,9 @@ fPLstate.onclick = function()
     }
     if(snd_st == 0){
         SndState(snd_st,fPLSndDv);
-        fPLstate.innerHTML = "Play";
     }
     if(snd_st == 1){
         SndState(snd_st,fPLSndDv);
-        fPLstate.innerHTML = "Stop";
     }
 }
 fPLPrev.onclick = function()
@@ -130,29 +262,43 @@ fPLPrev.onclick = function()
     {
         fPLCurrentSoundId = fPLMaxSoundCount;
     }
+    SndState(0,fPLSndDv);
+    snd_st = 0;
     PlaySoundJS('../music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
 }
 fPLNext.onclick = function()
 {
     fPLCurrentSoundId++;
-    
     if(fPLCurrentSoundId > fPLMaxSoundCount)
     {
         fPLCurrentSoundId = 1;
     }
+    SndState(0,fPLSndDv);
+    snd_st = 0;
     PlaySoundJS('../music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
 }
 function PlaySoundJS(name,out,fAref,fAudio)
 {
     fAref.href = name;
     fAudio.src = name;
-    out.innerHTML = "Load"+name;
-    
+    fPLaudioInfo();
+}
+function fPl_debugMsg(text)
+{
+    fPLSoundInfo.innerHTML = text;
 }
 function SndState(state,fAudio)
 {
-    if(state){fAudio.play();}
-    if(!state){fAudio.pause();}
+    if(state)
+    {
+        fAudio.play();
+        fPLstate.innerHTML = "Stop";
+    }
+    if(!state)
+    {
+        fAudio.pause();
+        fPLstate.innerHTML = "Play";
+    }
 }
 </script>
 </html>
