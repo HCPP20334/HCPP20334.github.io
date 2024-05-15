@@ -196,6 +196,7 @@ var fPLaudioState;
 var fPLaudioDuration;
 var fPLaudioSndState;
 var fPLaudioSndSrc;
+var fPLbtn_enb;
 //
 setInterval("fPLaudioInfo()",1);
 function fPLaudioInfo()
@@ -207,15 +208,26 @@ function fPLaudioInfo()
     if(fPLaudioState == 0)
     {
         fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration +"\nAudioReady:"+fPLaudioSndState+" Status: no audio!");
+         if(fPLbtn_enb)
+         {
+              SndState(0,fPLSndDv)
+         }
     }
     if(fPLaudioState == 1)
     {
         fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration+"\nAudioReady:"+fPLaudioSndState+" Status: OK");
-         fPLstate.click();
+         if(fPLbtn_enb)
+         {
+              SndState(1,fPLSndDv)
+         }
     }
     if(fPLaudioState == 2)
     {
         fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration+"\nAudioReady:"+fPLaudioSndState+" Status:Loading..");
+         if(fPLbtn_enb)
+         {
+              SndState(0,fPLSndDv)
+         }
     }
 }
 function fPLaudioMsg(text)
@@ -258,9 +270,11 @@ fPLstate.onclick = function()
     }
     if(snd_st == 0){
         SndState(snd_st,fPLSndDv);
+         fPLbtn_enb = false;
     }
     if(snd_st == 1){
         SndState(snd_st,fPLSndDv);
+         fPLbtn_enb = true;
     }
 }
 fPLPrev.onclick = function()
