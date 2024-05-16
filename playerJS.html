@@ -112,7 +112,7 @@ html
       border-radius: 2px;
  
 }
-#b_volT
+#b_volT,#PLsndInfo
 {
     font-size: 30px;
    font-family: 'WR';
@@ -155,6 +155,7 @@ html
     <br>
     <button id="btn_prev_track"><<</button><button id="btn_next_track">>></button><button id="btn_state">Play</button>
     <br>
+     <p id="PLsndInfo"></p>
     <br>
     <p id="v_text">volume:</p><input type="range" min="0.0" max="1.0" step="0.1" value="0.3" id="vl_count"></p>
 </div>
@@ -182,7 +183,7 @@ var fPaudioF = document.getElementById('b_vol');
 var fPLaudioText = document.getElementById('PLmsg');
 //
 var fPLMaxSoundCount = 27;
-var fPLCurrentSoundId = 0;
+var fPLCurrentSoundId = 1;
 //
 var fPLSoundInfo = document.getElementById('Tx_info_Sound');
 var fPLSoundName = document.getElementById('Tx_Name');
@@ -197,7 +198,38 @@ var fPLaudioDuration;
 var fPLaudioSndState;
 var fPLaudioSndSrc;
 var fPLbtn_enb;
+var fPLtrackName = document.getElementById("PLsndInfo");
 //
+var fPLAudiosName = [
+' 1.Mempis Cult - 9mm',
+' 2.Kordhell - Munder in My Mind',
+' 3.INTERWORLD - METAMORPHOSIS',
+' 4.VJ,Narvent - Memory Reboot',
+' 5.Orquesta Maldita',
+' 6.xxteria - BAIXO',
+' 7.CURSEDEVIL - TUCA DONKA',
+' 8.Dxrk - RAVE',
+' 9.TRXVELER - TREINAMENTO',
+' 10.ONIMXRU - SHADOW',
+' 11.phonkme,KIISHI - Ghost',
+' 12.RAIZHELL - KRUSH BANDICOOT',
+' 13.Moondeily - NEON BLADE',
+' 14.INTERWORLD - RAPTURE',
+' 15.Scxr Soul - DEMONS IN MY SOUL',
+' 16.MUPP - Vendetta',
+' 17.PLAYAMANE - MIDNIGHT',
+' 18.werve - krushed',
+' 19.DVRST - Close eyes',
+' 20.glichery - Sea of Problems',
+' 21.crystal - isolate.exe',
+' 22.RUSSIAN KRUSHFUNK',
+' 23.SKWLKR',
+' 24.Wels - NXSTY BLOOD',
+' 25.KIL KROOK - INTERITUS',
+' 26.NUEKI - TIRED OF PROBLEMS',
+' 27.NUEKI - SO TIRED'
+
+];
 setInterval("fPLaudioInfo()",1);
 function fPLaudioInfo()
 {
@@ -280,6 +312,7 @@ fPLstate.onclick = function()
 fPLPrev.onclick = function()
 {
     fPLCurrentSoundId--;
+    fPLtrackName.innerHTML = fPLAudiosName[fPLCurrentSoundId - 1];
     if(fPLCurrentSoundId < 1)
     {
         fPLCurrentSoundId = fPLMaxSoundCount;
@@ -291,6 +324,7 @@ fPLPrev.onclick = function()
 fPLNext.onclick = function()
 {
     fPLCurrentSoundId++;
+    fPLtrackName.innerHTML = fPLAudiosName[fPLCurrentSoundId];
     if(fPLCurrentSoundId > fPLMaxSoundCount)
     {
         fPLCurrentSoundId = 1;
