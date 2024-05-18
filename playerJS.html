@@ -183,7 +183,7 @@ var fPaudioF = document.getElementById('b_vol');
 var fPLaudioText = document.getElementById('PLmsg');
 //
 var fPLMaxSoundCount = 27;
-var fPLCurrentSoundId = 1;
+var fPLCurrentSoundId = 0;
 //
 var fPLSoundInfo = document.getElementById('Tx_info_Sound');
 var fPLSoundName = document.getElementById('Tx_Name');
@@ -201,6 +201,7 @@ var fPLbtn_enb;
 var fPLtrackName = document.getElementById("PLsndInfo");
 //
 var fPLAudiosName = [
+' Press >> and Play!',
 ' 1.Mempis Cult - 9mm',
 ' 2.Kordhell - Munder in My Mind',
 ' 3.INTERWORLD - METAMORPHOSIS',
@@ -230,6 +231,7 @@ var fPLAudiosName = [
 ' 27.NUEKI - SO TIRED'
 
 ];
+setTimeout("autoplay();",10);
 setInterval("fPLaudioInfo()",1);
 function fPLaudioInfo()
 {
@@ -239,7 +241,7 @@ function fPLaudioInfo()
     fPLaudioSndSrc = fPLSndDv.currentSrc;
     if(fPLaudioState == 0)
     {
-        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration +"\nAudioReady:"+fPLaudioSndState+" Status: no audio!");
+        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration +"\nAudioReady:"+fPLaudioSndState+" Status: no audio! id:"+fPLCurrentSoundId);
          if(fPLbtn_enb)
          {
               SndState(0,fPLSndDv)
@@ -247,7 +249,7 @@ function fPLaudioInfo()
     }
     if(fPLaudioState == 1)
     {
-        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration+"\nAudioReady:"+fPLaudioSndState+" Status: OK");
+        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration +"\nAudioReady:"+fPLaudioSndState+" Status: OK id:"+fPLCurrentSoundId);
          if(fPLbtn_enb)
          {
               SndState(1,fPLSndDv)
@@ -293,6 +295,18 @@ function VlBar(get_vol)
     fPaudioX.style.width = (get_vol * 100)+'%';
     setTimeout("fPaudioF.style.display = 'none';",3000);
 }
+function autoplay()
+{
+    fPLCurrentSoundId++;
+    if(fPLCurrentSoundId > fPLMaxSoundCount)
+    {
+        fPLCurrentSoundId = 1;
+    }
+    //SndState(0,fPLSndDv);
+    snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+         
+}
 fPLstate.onclick = function()
 {
     fPLaudioInfo();
@@ -312,24 +326,22 @@ fPLstate.onclick = function()
 fPLPrev.onclick = function()
 {
     fPLCurrentSoundId--;
-    fPLtrackName.innerHTML = fPLAudiosName[fPLCurrentSoundId - 1];
     if(fPLCurrentSoundId < 1)
     {
-        fPLCurrentSoundId = fPLMaxSoundCount;
+        fPLCurrentSoundId = fPLMaxSoundCount;//
     }
-    SndState(0,fPLSndDv);
+   // SndState(0,fPLSndDv);
     snd_st = 0;
     PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
 }
 fPLNext.onclick = function()
 {
     fPLCurrentSoundId++;
-    fPLtrackName.innerHTML = fPLAudiosName[fPLCurrentSoundId];
     if(fPLCurrentSoundId > fPLMaxSoundCount)
     {
         fPLCurrentSoundId = 1;
     }
-    SndState(0,fPLSndDv);
+    //SndState(0,fPLSndDv);
     snd_st = 0;
     PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
 }
@@ -338,6 +350,7 @@ function PlaySoundJS(name,out,fAref,fAudio)
     fAref.href = name;
     fAudio.src = name;
     fPLaudioInfo();
+    fPLtrackName.innerHTML = fPLAudiosName[fPLCurrentSoundId];
 }
 function fPl_debugMsg(text)
 {
