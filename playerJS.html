@@ -202,7 +202,7 @@ html
     <a id="sound_device1"> Download audio </a>
   </audio>
  <p id="pl_dur"></p>
-<input id="PLsndTimeline" type="range" min="0.0" max="100" step="1" value="0.1">
+<input id="PLsndTimeline" type="range" min="0.0" max="100" step="0.1" value="0">
 <div id="aControls">
     <br>
     <br>
@@ -287,8 +287,8 @@ var fPLAudiosName = [
 ];
 var fPLCurTime;
 setTimeout("autoplay();",10);
-setInterval("fPLaudioInfo()",1);
-fPLSndDv.addEventListener("timeupdate",function(){ fPLCurTime = this.currentTime});
+setInterval("fPLtrackSel()",0.1);
+fPLSndDv.addEventListener("timeupdate",function(){ fPLCurTime = this.currentTime;fPLaudioInfo()});
 function fPLAudioDuration(pl_adur){
   var fPLAudioMin = Math.floor(pl_adur / 60);
   var fPLAudioSec = Math.floor(pl_adur % 60);
@@ -298,32 +298,59 @@ fPLtrackSlider.oninput = function()
 {
     fPLCurTime = this.value;
 fPLSndDv.currentTime = fPLCurTime;
-  if(fPLCurTime += fPLCurTime)
-  {
-      fPLSndDv.pause();
       fPLtrackSlider.value = fPLCurTime / 10;
-  }
-  else
-  {
-      fPLSndDv.play();
-  }
 }
-function fPLaudioInfo()
+function fPLtrackSel()
 {
-    if(fPLCurTime == fPLSndDv.duration )
+    if(fPLCurTime === fPLSndDv.duration )
     {
         fPLNext.click();
     }
-    fPLtrackSlider.value = fPLCurTime / 10;
-    fPLtrackSlider.max = parseInt(fPLSndDv.duration);
-    console.log(parseInt(fPLSndDv.duration));
+    console.log("d:"+fPLSndDv.duration + "\nv:"+fPLtrackSlider.value+"\nc:"+fPLCurTime);
     fPLaudioSndState = fPLSndDv.readyState;
    fPLaudioDuration = fPLAudioDuration(fPLCurTime) + "/"+fPLAudioDuration(fPLSndDv.duration);
     fPLaudioState = fPLSndDv.networkState;
     fPLaudioSndSrc = fPLSndDv.currentSrc;
     if(fPLaudioState == 0)
     {
-        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration +fPLaudioSndState+" Status: no audio! id:"+fPLCurrentSoundId);
+        fPl_debugMsg("NS:"+fPLaudioState+" AD:"+fPLaudioDuration +fPLaudioSndState+" Status: no audio! id:"+fPLCurrentSoundId);
+         if(fPLbtn_enb)
+         {
+              SndState(0,fPLSndDv)
+         }
+         
+    }
+    if(fPLaudioState == 1)
+    {
+        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration+"\nAudioReady:"+fPLaudioSndState+" Status: OK id:"+fPLCurrentSoundId);
+         if(fPLbtn_enb)
+         {
+              SndState(1,fPLSndDv)
+         }
+         fPLdurText.innerHTML = fPLaudioDuration;
+    }
+    if(fPLaudioState == 2)
+    {
+        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration+"\nAudioReady:"+fPLaudioSndState+" Status:Loading..");
+         if(fPLbtn_enb)
+         {
+              SndState(0,fPLSndDv)
+         }
+    }
+}
+function fPLaudioInfo()
+{
+    fPLtrackSlider.value = fPLCurTime;
+    fPLtrackSlider.max = fPLSndDv.duration
+    ;
+    console.log("d:"+fPLSndDv.duration + "\nv:"+fPLtrackSlider.value+"\nc:"+fPLCurTime);
+    fPLaudioSndState = fPLSndDv.readyState;
+   fPLaudioDuration = fPLAudioDuration(fPLCurTime) + "/"+fPLAudioDuration(fPLSndDv.duration);
+    fPLaudioState = fPLSndDv.networkState;
+    fPLaudioSndSrc = fPLSndDv.currentSrc;
+    if(fPLaudioState == 0)
+    {
+        fPl_debugMsg("NS:"+fPLaudioState+" AD:"+fPLaudioDuration +fPLaudioSndState+" Status: no audio! id:"+fPLCurrentSoundId);
          if(fPLbtn_enb)
          {
               SndState(0,fPLSndDv)
@@ -390,6 +417,7 @@ function autoplay()
     snd_st = 0;
     PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
 fPLaudioDuration = "0:0/"+fPLAudioDuration(fPLSndDv.duration);
+fPLaudioInfo();
 }
 fPLstate.onclick = function()
 {
