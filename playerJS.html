@@ -2,11 +2,11 @@
 <style>
      @font-face {
         font-family: Rt_3;
-        src: url("./fonts/Font0.ttf");
+        src: url("https://hcpp20334.github.io/fonts/Font0.ttf");
     }
     @font-face {
         font-family: WR;
-        src: url("./fonts/WhiteRabbit.woff");
+        src: url("https://hcpp20334.github.io/fonts/WhiteRabbit.woff");
     }
 html
 {
@@ -17,20 +17,21 @@ html
 {
     background-color: #010107;
     border: 2px solid #42454b;;
-    width: 350px;
-    height: 600px;
+    width: 90%;
+    height: 800px;
     margin: auto;
     display: block;
 }
 #btn_prev_track,#btn_next_track,#btn_state
 {
-    background-color: #2f2fff;
-    font-size: 40px;
+    background-color: #1b1b18;
+    font-size: 30px;
     font-family: 'WR';
     color: #ffffff; 
-    width: 100px;
-    height: 60px;
-    border: 2px solid #010107;
+    width: 96px;
+    height: 96px;
+    border: 1px solid #010107;
+    border-radius: 48px;
 }
 #btn_prev_track:hover{
     transition: .2s;
@@ -46,11 +47,12 @@ html
 }
 #name_tl
 {
-    width: 350px;
+    width: 90%;
     background-color: #1b1b1e;
     height: 45px;margin: auto;border: 2px solid #42454b;
     display: block;
 }
+
 #Tx_Name
 {
  
@@ -68,8 +70,12 @@ html
 #P_github
 {
     font-size: 30px;
-   font-family: 'WR';display: inline;
-   color: #FFFFFF;
+   font-family: 'WR';
+   display: block;
+   color: #f0f0f0;
+   text-shadow: -1px -1px 0px #1010f0;
+   text-align: center;
+   
 }
 #v_text
 {
@@ -82,6 +88,31 @@ html
     width: 100%;
     height: 100px;
     opacity: 0%;
+    webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+#PLsndTimeline
+{
+    webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display:inline;
+    width: 80%;
+}
+#PLsndTimeline::-webkit-slider-runnable-track
+{
+    background-color: #1b1c1e;border: 2px solid #42454b;
+    width: 80%;
+ 
+}
+#PLsndTimeline::-webkit-slider-thumb{
+    background: #f00050;
+      cursor: pointer;
+      width: 2px;
+      height: 10px;
+      -webkit-appearance: none;
+      border-radius: 2px;
 }
 #aControls
 {
@@ -114,9 +145,16 @@ html
 }
 #b_volT,#PLsndInfo
 {
-    font-size: 30px;
+    font-size: 20px;
    font-family: 'WR';
    color: #e0e0e0;
+}
+#pl_dur
+{
+    font-size: 20px;
+   font-family: 'WR';
+   color: #e0e0e0;
+   display: inline;
 }
 #b_volT1
 {
@@ -137,7 +175,21 @@ html
     display: none;
     position: absolute;
 }
+        #err
+        {
+            background-color: #ff044f;
+            color:#f0f0f0;
+            font-family: 'WR';
+            border: 2px solid #42454b;
+            display: none;
+            position: relative;
+        }
 </style>
+    <div id="err">
+        <p>
+            OOPS!!JS CRASHED!!
+        </p>
+    </div>
 <div id="b_vol">
     <h1 id="b_volT">VOL:</h1>
     <div id="b_volT1"></div>
@@ -146,22 +198,23 @@ html
 <div id="name_tl"><p id="Tx_Name">PlayerJS</p></div>
 <div id="player_frame">
 <p id="Tx_info_Sound">Нет файла</p>
-<audio id="sound_device"  >
+<audio id="sound_device" preload="metadata" >
     <a id="sound_device1"> Download audio </a>
   </audio>
+ <p id="pl_dur"></p>
+<input id="PLsndTimeline" type="range" min="0.0" max="100" step="1" value="0.1">
 <div id="aControls">
     <br>
     <br>
     <br>
-    <button id="btn_prev_track"><<</button><button id="btn_next_track">>></button><button id="btn_state">Play</button>
+    <button id="btn_prev_track"><</button><button id="btn_next_track">></button><button id="btn_state"> &#9658;</button>
     <br>
      <p id="PLsndInfo"></p>
     <br>
     <p id="v_text">volume:</p><input type="range" min="0.0" max="1.0" step="0.1" value="0.3" id="vl_count"></p>
 </div>
-     <p id="P_github">coded by HCPP</p>
-         <br>
-     <p id="P_github">Add Music by rpmaster2</p>    
+     <p id="P_github">CODED BY HCPP</p>
+     <p id="P_github">ADD MUSIC BY rpmaster2</p>    
 <br>
 <br>
 <br>
@@ -181,6 +234,7 @@ var fPaudioX = document.getElementById('b_volT1');
 var fPaudioD = document.getElementById('b_volT');
 var fPaudioF = document.getElementById('b_vol');
 var fPLaudioText = document.getElementById('PLmsg');
+var fPLdurText = document.getElementById('pl_dur');
 //
 var fPLMaxSoundCount = 27;
 var fPLCurrentSoundId = 0;
@@ -199,7 +253,7 @@ var fPLaudioSndState;
 var fPLaudioSndSrc;
 var fPLbtn_enb;
 var fPLtrackName = document.getElementById("PLsndInfo");
-//
+var fPLtrackSlider = document.getElementById('PLsndTimeline');
 var fPLAudiosName = [
 ' Press >> and Play!',
 ' 1.Mempis Cult - 9mm',
@@ -231,29 +285,59 @@ var fPLAudiosName = [
 ' 27.NUEKI - SO TIRED'
 
 ];
+var fPLCurTime;
 setTimeout("autoplay();",10);
 setInterval("fPLaudioInfo()",1);
+fPLSndDv.addEventListener("timeupdate",function(){ fPLCurTime = this.currentTime});
+function fPLAudioDuration(pl_adur){
+  var fPLAudioMin = Math.floor(pl_adur / 60);
+  var fPLAudioSec = Math.floor(pl_adur % 60);
+  return `${fPLAudioMin}:${fPLAudioSec}`;
+}
+fPLtrackSlider.oninput = function()
+{
+    fPLCurTime = this.value;
+fPLSndDv.currentTime = fPLCurTime;
+  if(fPLCurTime += fPLCurTime)
+  {
+      fPLSndDv.pause();
+      fPLtrackSlider.value = fPLCurTime / 10;
+  }
+  else
+  {
+      fPLSndDv.play();
+  }
+}
 function fPLaudioInfo()
 {
+    if(fPLCurTime == fPLSndDv.duration )
+    {
+        fPLNext.click();
+    }
+    fPLtrackSlider.value = fPLCurTime / 10;
+    fPLtrackSlider.max = parseInt(fPLSndDv.duration);
+    console.log(parseInt(fPLSndDv.duration));
     fPLaudioSndState = fPLSndDv.readyState;
-    fPLaudioDuration = parseInt((fPLSndDv.duration / 60))+':Min';
+   fPLaudioDuration = fPLAudioDuration(fPLCurTime) + "/"+fPLAudioDuration(fPLSndDv.duration);
     fPLaudioState = fPLSndDv.networkState;
     fPLaudioSndSrc = fPLSndDv.currentSrc;
     if(fPLaudioState == 0)
     {
-        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration +"\nAudioReady:"+fPLaudioSndState+" Status: no audio! id:"+fPLCurrentSoundId);
+        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration +fPLaudioSndState+" Status: no audio! id:"+fPLCurrentSoundId);
          if(fPLbtn_enb)
          {
               SndState(0,fPLSndDv)
          }
+         
     }
     if(fPLaudioState == 1)
     {
-        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration +"\nAudioReady:"+fPLaudioSndState+" Status: OK id:"+fPLCurrentSoundId);
+        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration+"\nAudioReady:"+fPLaudioSndState+" Status: OK id:"+fPLCurrentSoundId);
          if(fPLbtn_enb)
          {
               SndState(1,fPLSndDv)
          }
+         fPLdurText.innerHTML = fPLaudioDuration;
     }
     if(fPLaudioState == 2)
     {
@@ -305,7 +389,7 @@ function autoplay()
     //SndState(0,fPLSndDv);
     snd_st = 0;
     PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
-         
+fPLaudioDuration = "0:0/"+fPLAudioDuration(fPLSndDv.duration);
 }
 fPLstate.onclick = function()
 {
@@ -351,6 +435,7 @@ function PlaySoundJS(name,out,fAref,fAudio)
     fAudio.src = name;
     fPLaudioInfo();
     fPLtrackName.innerHTML = fPLAudiosName[fPLCurrentSoundId];
+    
 }
 function fPl_debugMsg(text)
 {
@@ -361,12 +446,12 @@ function SndState(state,fAudio)
     if(state)
     {
         fAudio.play();
-        fPLstate.innerHTML = "Stop";
+        fPLstate.innerHTML = "&#10072;&#10072;";
     }
     if(!state)
     {
         fAudio.pause();
-        fPLstate.innerHTML = "Play";
+        fPLstate.innerHTML = "&#9658;";
     }
 }
 </script>
