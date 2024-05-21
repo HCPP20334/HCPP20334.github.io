@@ -18,7 +18,7 @@ html
     background-color: #010107;
     border: 2px solid #42454b;;
     width: 90%;
-    height: 800px;
+    height: 90%;
     margin: auto;
     display: none;
 }
@@ -128,7 +128,7 @@ html
 #aControls
 {
     width: 100%;
-    height: 100%;
+    height: 1000px;
     background-color: #1b1b1e;
     border-bottom: 2px solid #42454b;
     border-top: 2px solid #42454b;
@@ -219,12 +219,20 @@ button
     font-size: 20px;
     
 }
-.text_list
+.text_list,.build_tx
 {
     color:#fff;
     text-shadow: 1px 1px 0px f00050;
     font-family: 'WR';
     font-size: 20px;
+}
+#blist,#blist1 
+{
+    display: inline;
+    color:#fff;
+    text-shadow: 1px 1px 0px f00050;
+    font-family: 'WR';
+    font-size: 60px;
 }
 </style>
     <div id="err">
@@ -264,6 +272,8 @@ button
     <br>
      <p id="PLsndInfo"></p>
     <p id="v_text">volume:</p><input type="range" min="0.0" max="1.0" step="0.1" value="0.3" id="vl_count"></p>
+    <p id="blist1">&#10094;---</p>
+    <p id="blist"> &#10095;</p>
      <p id="track_list1" class="text_list">1</p>
      <p id="track_list2" class="text_list">2</p>
      <p id="track_list3"class="text_list">3</p>
@@ -273,10 +283,19 @@ button
      <p id="track_list7"class="text_list">7</p>
      <p id="track_list8"class="text_list">8</p>
      <p id="track_list9"class="text_list">9</p>
+     
     
 </div>
      <p id="P_github">CODED BY HCPP</p>
      <p id="P_github">ADD MUSIC BY rpmaster2</p>    
+     <p class="build_tx" id="ab">
+     Build: 2.0.1 21.05.24 
+     playerJS API by HCPP HTML5 
+     github.com/hcpp20334
+     HCPP - C++20 Devoloper and JS 
+     JE x64 OpenGL3 App C++20_SSE4.2
+     github.com/hcpp20334/JoyStickTest
+     </p>
 <br>
 <br>
 <br>
@@ -297,6 +316,8 @@ var fPaudioD = document.getElementById('b_volT');
 var fPaudioF = document.getElementById('b_vol');
 var fPLaudioText = document.getElementById('PLmsg');
 var fPLdurText = document.getElementById('pl_dur');
+var fPLListB1 = document.getElementById("blist");
+var fPLListB2 = document.getElementById("blist1");
 //
 var fPLMaxSoundCount = 27;
 var fPLCurrentSoundId = 0;
@@ -356,12 +377,38 @@ var fPLAudiosName = [
 ' 27.NUEKI - SO TIRED'
 
 ];
+var fPLtextAbout = "Build: 2.0.1 21.05.24" 
+    +"\nplayerJS API by HCPP HTML5" +
+    "\ngithub.com/hcpp20334"+
+     "\nHCPP - C++20 Devoloper and JS"+ 
+     "\nJE x64 OpenGL3 App C++20_SSE4.2"+
+     "\ngithub.com/hcpp20334/JoyStickTest";
+var fPLAboutBuf = document.getElementById("ab");
 function PlayerJS()
 {
+    fPLAboutBuf.innerHTML = fPLtextAbout + "\nDisplay:"+ window.screen.width + "x" + window.screen.height+"\n";
     fPLFrame.style.display = 'block';
     document.getElementById('wellcome_frame').style.display = 'none';
 }
-
+var fPLList = 1;
+fPLListB1.onclick = function()
+{
+    fPLList++;
+    if(fPLList > 3)
+    {
+        fPLList = 0;
+    }
+    loadlist(fPLList);
+}
+fPLListB2.onclick = function()
+{
+    fPLList--;
+    if(fPLList < 1)
+    {
+        fPLList = 3;
+    }
+    loadlist(fPLList);
+}
 var log_str;
 var log_data;
 function CreateLog(out_val)
@@ -724,54 +771,65 @@ function loadlist(fPLList)
         fPLCurrentSoundId = 1;
         snd_st = 0;
     PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    tr = 1;
     }
     fPLBtnList2.onclick = function()
     {
         fPLCurrentSoundId = 2;
         snd_st = 0;
     PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    tr = 2;
+    loadanim_list(2);
     }
     fPLBtnList3.onclick = function()
     {
         fPLCurrentSoundId = 3;
         snd_st = 0;
     PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    tr = 3;
     }
     fPLBtnList4.onclick = function()
     {
         fPLCurrentSoundId = 4;
         snd_st = 0;
     PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    tr = 4;
     }
     fPLBtnList5.onclick = function()
     {
         fPLCurrentSoundId = 5;
         snd_st = 0;
     PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    tr = 5;
     }
     fPLBtnList6.onclick = function()
     {
         fPLCurrentSoundId = 6;
         snd_st = 0;
     PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    tr = 6;
     }
     fPLBtnList7.onclick = function()
     {
         fPLCurrentSoundId = 7;
         snd_st = 0;
     PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    tr = 7;
     }
     fPLBtnList8.onclick = function()
     {
         fPLCurrentSoundId = 8;
         snd_st = 0;
     PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    tr = 8;
     }
     fPLBtnList9.onclick = function()
     {
         fPLCurrentSoundId = 9;
         snd_st = 0;
     PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    
+    tr = 9;
     }
     }
     if(fPLList === 2)
