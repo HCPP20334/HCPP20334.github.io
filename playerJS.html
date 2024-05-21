@@ -20,7 +20,7 @@ html
     width: 90%;
     height: 800px;
     margin: auto;
-    display: block;
+    display: none;
 }
 #btn_prev_track,#btn_next_track,#btn_state
 {
@@ -44,6 +44,17 @@ html
 #btn_state:hover{
     transition: .2s;
     background-color: #42454b;
+}
+#bt_ok
+{
+    background-color: #1b1b18;
+    font-size: 30px;
+    font-family: 'WR';
+    color: #ffffff; 
+    width: 96px;
+    height: 32px;
+    border: 1px solid #010107;
+    left: 30;
 }
 #name_tl
 {
@@ -117,7 +128,7 @@ html
 #aControls
 {
     width: 100%;
-    height: 50%;
+    height: 100%;
     background-color: #1b1b1e;
     border-bottom: 2px solid #42454b;
     border-top: 2px solid #42454b;
@@ -148,6 +159,14 @@ html
     font-size: 20px;
    font-family: 'WR';
    color: #e0e0e0;
+}
+p
+{
+padding: 8px;
+}
+button
+{
+    padding: 8px;
 }
 #pl_dur
 {
@@ -184,6 +203,29 @@ html
             display: none;
             position: relative;
         }
+#wellcome_frame
+{
+    width: 90%
+    height: 300px;
+    background-color: #1b1b1e;
+    border: 2px solid #42454b;
+    display:block;
+}
+#wl_tx
+{
+    color:#fff;
+    text-shadow: 1px 1px 0px f00050;
+    font-family: 'WR';
+    font-size: 20px;
+    
+}
+.text_list
+{
+    color:#fff;
+    text-shadow: 1px 1px 0px f00050;
+    font-family: 'WR';
+    font-size: 20px;
+}
 </style>
     <div id="err">
         <p>
@@ -196,8 +238,19 @@ html
     </div>
     <h1 id="PLmsg"></h1>
 <div id="name_tl"><p id="Tx_Name">PlayerJS</p></div>
+<div id="wellcome_frame">
+    <p id="wl_tx">
+    WELLCONE TO playerJS v2.0!!    </p>
+        <p id="wl_tx">---------------------------    </p>
+       <p id="wl_tx"> "<" - PREV TRACK     </p>
+        <p id="wl_tx">">" - NEXT TRACK    </p>
+        <p id="wl_tx">"&#9658;" - PLAY TRACK 
+    </p>
+    <button id="bt_ok" onclick="javascript:PlayerJS();">OK</button>
+    <script>document.getElementById("name_tl").style.display= 'none';</script>
+</div>
 <div id="player_frame">
-<p id="Tx_info_Sound">Нет файла</p>
+<p id="Tx_info_Sound">NO DATA</p>
 <audio id="sound_device" preload="metadata" >
     <a id="sound_device1"> Download audio </a>
   </audio>
@@ -210,8 +263,17 @@ html
     <button id="btn_prev_track"><</button><button id="btn_next_track">></button><button id="btn_state"> &#9658;</button>
     <br>
      <p id="PLsndInfo"></p>
-    <br>
     <p id="v_text">volume:</p><input type="range" min="0.0" max="1.0" step="0.1" value="0.3" id="vl_count"></p>
+     <p id="track_list1" class="text_list">1</p>
+     <p id="track_list2" class="text_list">2</p>
+     <p id="track_list3"class="text_list">3</p>
+     <p id="track_list4"class="text_list">4</p> 
+     <p id="track_list5"class="text_list">5</p>
+     <p id="track_list6"class="text_list">6</p>
+     <p id="track_list7"class="text_list">7</p>
+     <p id="track_list8"class="text_list">8</p>
+     <p id="track_list9"class="text_list">9</p>
+    
 </div>
      <p id="P_github">CODED BY HCPP</p>
      <p id="P_github">ADD MUSIC BY rpmaster2</p>    
@@ -254,6 +316,15 @@ var fPLaudioSndSrc;
 var fPLbtn_enb;
 var fPLtrackName = document.getElementById("PLsndInfo");
 var fPLtrackSlider = document.getElementById('PLsndTimeline');
+var fPLBtnList1 = document.getElementById("track_list1");
+var fPLBtnList2 = document.getElementById("track_list2");
+var fPLBtnList3 = document.getElementById("track_list3");
+var fPLBtnList4 = document.getElementById("track_list4");
+var fPLBtnList5 = document.getElementById("track_list5");
+var fPLBtnList6 = document.getElementById("track_list6");
+var fPLBtnList7 = document.getElementById("track_list7");
+var fPLBtnList8 = document.getElementById("track_list8");
+var fPLBtnList9 = document.getElementById("track_list9");
 var fPLAudiosName = [
 ' Press >> and Play!',
 ' 1.Mempis Cult - 9mm',
@@ -285,6 +356,18 @@ var fPLAudiosName = [
 ' 27.NUEKI - SO TIRED'
 
 ];
+function PlayerJS()
+{
+    fPLFrame.style.display = 'block';
+    document.getElementById('wellcome_frame').style.display = 'none';
+}
+
+var log_str;
+var log_data;
+function CreateLog(out_val)
+{
+    log_str += out_val + "\n";
+}
 var fPLCurTime;
 setTimeout("autoplay();",10);
 setInterval("fPLtrackSel()",0.1);
@@ -306,7 +389,7 @@ function fPLtrackSel()
     {
         fPLNext.click();
     }
-    console.log("d:"+fPLSndDv.duration + "\nv:"+fPLtrackSlider.value+"\nc:"+fPLCurTime);
+    console.log("playerJS v2.0 api log data\n--------------\nd:"+fPLSndDv.duration + "\nv:"+fPLtrackSlider.value+"\nc:"+fPLCurTime);
     fPLaudioSndState = fPLSndDv.readyState;
    fPLaudioDuration = fPLAudioDuration(fPLCurTime) + "/"+fPLAudioDuration(fPLSndDv.duration);
     fPLaudioState = fPLSndDv.networkState;
@@ -338,8 +421,134 @@ function fPLtrackSel()
          }
     }
 }
+var audio_id_in;
+function loadanim_list(audio_id_in)
+{
+
+            if(audio_id_in > 9)
+            {
+                audio_id_in = 1;
+            }
+    if(audio_id_in === 1)
+    {
+         fPLBtnList1.style.borderLeft = "4px solid #ff044f";
+         fPLBtnList2.style.borderLeft = "none";
+         fPLBtnList3.style.borderLeft = "none";
+         fPLBtnList4.style.borderLeft = "none";
+         fPLBtnList5.style.borderLeft = "none";
+         fPLBtnList6.style.borderLeft = "none";
+         fPLBtnList7.style.borderLeft = "none";
+         fPLBtnList8.style.borderLeft = "none";
+         fPLBtnList9.style.borderLeft = "none";
+        
+    }
+         if(audio_id_in === 2)
+         {
+         fPLBtnList2.style.borderLeft = "4px solid #ff044f";
+         fPLBtnList1.style.borderLeft = "none";
+         fPLBtnList3.style.borderLeft = "none";
+         fPLBtnList4.style.borderLeft = "none";
+         fPLBtnList5.style.borderLeft = "none";
+         fPLBtnList6.style.borderLeft = "none";
+         fPLBtnList7.style.borderLeft = "none";
+         fPLBtnList8.style.borderLeft = "none";
+         fPLBtnList9.style.borderLeft = "none";}
+         
+    if(audio_id_in === 3)
+    {
+         fPLBtnList3.style.borderLeft = "4px solid #ff044f";
+         fPLBtnList2.style.borderLeft = "none";
+         fPLBtnList1.style.borderLeft = "none";
+         fPLBtnList4.style.borderLeft = "none";
+         fPLBtnList5.style.borderLeft = "none";
+         fPLBtnList6.style.borderLeft = "none";
+         fPLBtnList7.style.borderLeft = "none";
+         fPLBtnList8.style.borderLeft = "none";
+         fPLBtnList9.style.borderLeft = "none";}
+    if(audio_id_in === 4){
+         fPLBtnList4.style.borderLeft = "4px solid #ff044f";
+         fPLBtnList2.style.borderLeft = "none";
+         fPLBtnList3.style.borderLeft = "none";
+         fPLBtnList1.style.borderLeft = "none";
+         fPLBtnList5.style.borderLeft = "none";
+         fPLBtnList6.style.borderLeft = "none";
+         fPLBtnList7.style.borderLeft = "none";
+         fPLBtnList8.style.borderLeft = "none";
+         fPLBtnList9.style.borderLeft = "none";
+    }
+    if(audio_id_in === 5){
+         fPLBtnList5.style.borderLeft = "4px solid #ff044f";
+         fPLBtnList2.style.borderLeft = "none";
+         fPLBtnList3.style.borderLeft = "none";
+         fPLBtnList4.style.borderLeft = "none";
+         fPLBtnList1.style.borderLeft = "none";
+         fPLBtnList6.style.borderLeft = "none";
+         fPLBtnList7.style.borderLeft = "none";
+         fPLBtnList8.style.borderLeft = "none";
+         fPLBtnList9.style.borderLeft = "none";}
+    if(audio_id_in === 6){
+         fPLBtnList6.style.borderLeft = "4px solid #ff044f";
+         fPLBtnList2.style.borderLeft = "none";
+         fPLBtnList3.style.borderLeft = "none";
+         fPLBtnList4.style.borderLeft = "none";
+         fPLBtnList5.style.borderLeft = "none";
+         fPLBtnList1.style.borderLeft = "none";
+         fPLBtnList7.style.borderLeft = "none";
+         fPLBtnList8.style.borderLeft = "none";
+         fPLBtnList9.style.borderLeft = "none";}
+        
+    
+    
+    if(audio_id_in === 7){
+         fPLBtnList7.style.borderLeft = "4px solid #ff044f";
+         fPLBtnList2.style.borderLeft = "none";
+         fPLBtnList3.style.borderLeft = "none";
+         fPLBtnList4.style.borderLeft = "none";
+         fPLBtnList5.style.borderLeft = "none";
+         fPLBtnList6.style.borderLeft = "none";
+         fPLBtnList1.style.borderLeft = "none";
+         fPLBtnList8.style.borderLeft = "none";
+         fPLBtnList9.style.borderLeft = "none";}
+    
+    if(audio_id_in === 8){
+         fPLBtnList8.style.borderLeft = "4px solid #ff044f";
+         fPLBtnList2.style.borderLeft = "none";
+         fPLBtnList3.style.borderLeft = "none";
+         fPLBtnList4.style.borderLeft = "none";
+         fPLBtnList5.style.borderLeft = "none";
+         fPLBtnList6.style.borderLeft = "none";
+         fPLBtnList7.style.borderLeft = "none";
+         fPLBtnList1.style.borderLeft = "none";
+         fPLBtnList9.style.borderLeft = "none";}
+    
+    if(audio_id_in === 9){
+         fPLBtnList9.style.borderLeft = "4px solid #ff044f";
+         fPLBtnList2.style.borderLeft = "none";
+         fPLBtnList3.style.borderLeft = "none";
+         fPLBtnList4.style.borderLeft = "none";
+         fPLBtnList5.style.borderLeft = "none";
+         fPLBtnList6.style.borderLeft = "none";
+         fPLBtnList7.style.borderLeft = "none";
+         fPLBtnList8.style.borderLeft = "none";
+         fPLBtnList1.style.borderLeft = "none";}
+}
 function fPLaudioInfo()
 {
+    loadanim_list(tr);
+    if(fPLCurrentSoundId === 10)
+    {
+    loadlist(2);
+    }
+    if(fPLCurrentSoundId < 9)
+    {
+        loadlist(1);
+    }
+    if(fPLCurrentSoundId === 19)
+    {
+        loadlist(3);
+    }
+    //CreateLog(log_data);
+    console.clear();
     fPLtrackSlider.value = fPLCurTime;
     fPLtrackSlider.max = fPLSndDv.duration
     ;
@@ -375,6 +584,7 @@ function fPLaudioInfo()
          }
     }
 }
+
 function fPLaudioMsg(text)
 {
     fPLaudioText.style.display = 'block';
@@ -435,8 +645,15 @@ fPLstate.onclick = function()
          fPLbtn_enb = true;
     }
 }
+var tr = 1;
 fPLPrev.onclick = function()
 {
+    tr--;
+    if(tr < 0)
+    {
+        tr = 9;
+    }
+loadanim_list(tr);
     fPLCurrentSoundId--;
     if(fPLCurrentSoundId < 1)
     {
@@ -448,6 +665,12 @@ fPLPrev.onclick = function()
 }
 fPLNext.onclick = function()
 {
+    tr++;
+    if(tr > 9)
+    {
+        tr = 1;
+    }
+loadanim_list(tr);
     fPLCurrentSoundId++;
     if(fPLCurrentSoundId > fPLMaxSoundCount)
     {
@@ -480,6 +703,210 @@ function SndState(state,fAudio)
     {
         fAudio.pause();
         fPLstate.innerHTML = "&#9658;";
+    }
+}
+function loadlist(fPLList)
+{
+    //loadanim_list(fPLCurrentSoundId);
+    if(fPLList === 1)
+    {
+    fPLBtnList1.innerHTML = fPLAudiosName[1];
+    fPLBtnList2.innerHTML = fPLAudiosName[2];
+    fPLBtnList3.innerHTML = fPLAudiosName[3];
+    fPLBtnList4.innerHTML = fPLAudiosName[4];
+    fPLBtnList5.innerHTML = fPLAudiosName[5];
+    fPLBtnList6.innerHTML = fPLAudiosName[6];
+    fPLBtnList7.innerHTML = fPLAudiosName[7];
+    fPLBtnList8.innerHTML = fPLAudiosName[8];
+    fPLBtnList9.innerHTML = fPLAudiosName[9];
+    fPLBtnList1.onclick = function()
+    {
+        fPLCurrentSoundId = 1;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList2.onclick = function()
+    {
+        fPLCurrentSoundId = 2;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList3.onclick = function()
+    {
+        fPLCurrentSoundId = 3;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList4.onclick = function()
+    {
+        fPLCurrentSoundId = 4;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList5.onclick = function()
+    {
+        fPLCurrentSoundId = 5;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList6.onclick = function()
+    {
+        fPLCurrentSoundId = 6;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList7.onclick = function()
+    {
+        fPLCurrentSoundId = 7;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList8.onclick = function()
+    {
+        fPLCurrentSoundId = 8;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList9.onclick = function()
+    {
+        fPLCurrentSoundId = 9;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    }
+    if(fPLList === 2)
+    {
+    fPLBtnList1.innerHTML = fPLAudiosName[10];
+    fPLBtnList2.innerHTML = fPLAudiosName[11];
+    fPLBtnList3.innerHTML = fPLAudiosName[12];
+    fPLBtnList4.innerHTML = fPLAudiosName[13];
+    fPLBtnList5.innerHTML = fPLAudiosName[14];
+    fPLBtnList6.innerHTML = fPLAudiosName[15];
+    fPLBtnList7.innerHTML = fPLAudiosName[16];
+    fPLBtnList8.innerHTML = fPLAudiosName[17];
+    fPLBtnList9.innerHTML = fPLAudiosName[18];
+      fPLBtnList1.onclick = function()
+    {
+        fPLCurrentSoundId = 10;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList2.onclick = function()
+    {
+        fPLCurrentSoundId = 11;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList3.onclick = function()
+    {
+        fPLCurrentSoundId = 12;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList4.onclick = function()
+    {
+        fPLCurrentSoundId = 13;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList5.onclick = function()
+    {
+        fPLCurrentSoundId = 14;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList6.onclick = function()
+    {
+        fPLCurrentSoundId = 15;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList7.onclick = function()
+    {
+        fPLCurrentSoundId = 16;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList8.onclick = function()
+    {
+        fPLCurrentSoundId = 17;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList9.onclick = function()
+    {
+        fPLCurrentSoundId = 18;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+ 
+    }
+    if(fPLList === 3)
+    {
+    fPLBtnList1.innerHTML = fPLAudiosName[19];
+    fPLBtnList2.innerHTML = fPLAudiosName[20];
+    fPLBtnList3.innerHTML = fPLAudiosName[21];
+    fPLBtnList4.innerHTML = fPLAudiosName[22];
+    fPLBtnList5.innerHTML = fPLAudiosName[23];
+    fPLBtnList6.innerHTML = fPLAudiosName[24];
+    fPLBtnList7.innerHTML = fPLAudiosName[25];
+    fPLBtnList8.innerHTML = fPLAudiosName[26];
+    fPLBtnList9.innerHTML = fPLAudiosName[27];
+      fPLBtnList1.onclick = function()
+    {
+        fPLCurrentSoundId = 19;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList2.onclick = function()
+    {
+        fPLCurrentSoundId = 20;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList3.onclick = function()
+    {
+        fPLCurrentSoundId = 21;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList4.onclick = function()
+    {
+        fPLCurrentSoundId = 22;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList5.onclick = function()
+    {
+        fPLCurrentSoundId = 23;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList6.onclick = function()
+    {
+        fPLCurrentSoundId = 24;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList7.onclick = function()
+    {
+        fPLCurrentSoundId = 25;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList8.onclick = function()
+    {
+        fPLCurrentSoundId = 26;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+    fPLBtnList9.onclick = function()
+    {
+        fPLCurrentSoundId = 27;
+        snd_st = 0;
+    PlaySoundJS('https://hcpp20334.github.io/music/'+fPLCurrentSoundId+'.mp3',fPLSoundInfo,fPLSndDv1,fPLSndDv);
+    }
+ 
     }
 }
 </script>
