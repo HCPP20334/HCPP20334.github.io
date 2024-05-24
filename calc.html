@@ -1,0 +1,272 @@
+<html>
+<title>Калькулятор электроника</title>
+<style>
+     @font-face {
+        font-family: Rt_3;
+        src: url("https://hcpp20334.github.io/fonts/Font0.ttf");
+    }
+    @font-face {
+        font-family: WR;
+        src: url("https://hcpp20334.github.io/fonts/WhiteRabbit.ttf");
+    }
+    @keyframes blur_a
+    {
+        0%{filter: blur(10px);translation:.4s;}
+        100%{filter: blur(0);translation:.4s;}
+    }
+    
+    html
+    {
+    background-color: #010409;
+    animation: blur_a 1s;
+    }
+    #calc,#calc2,#calc3,#calc4
+    {
+    text-align: center;
+color: #ffffff;
+font-size: 20px;
+font-family: 'WR';
+background-color: #f00050;border: 2px solid #f00050;
+width: 150px;height:30px;
+display: inline;
+margin: auto;
+transform: translateX(20px);
+border-radius: 4px;
+
+}
+.text,#amper,#volt,#watt
+{
+color: #ffffff;
+font-size: 20px;
+font-family: 'WR';
+border-radius: 4px;
+text-align: center;
+}
+.title_frame
+{
+text-align: center;
+color: #ffffff;
+font-size: 20px;
+
+font-family: 'WR';
+}
+.in_bar
+{
+background-color: #1b1c1e;border: 2px solid #f00050;
+width: 300px;
+display: block;
+margin: auto;
+      }
+#menu
+{
+display:block;
+background-color: #1b1b1e;
+height: 500px;
+border: 2px solid #636369;
+border-radius: 4px;
+animation: blur_a 1s;
+}
+#calc_frameW,#calc_frameA,#sec2dia
+{
+display:none;
+background-color: #1b1b1e;
+height: 500px;
+border-radius: 4px;
+border: 2px solid #636369;;
+animation: blur_a 1s;
+}
+#watt2amp,#amp2watt,#sec2diaBtn,.btndw
+{
+font-family:'WR';
+font-size: 20px;
+background-color: #1b1b1e;
+height: 60px;
+width: 250px;
+border: 2px solid #f00050;;
+display: table;
+margin: auto;
+border-radius: 4px;
+}
+#download_panel
+{
+    display:block;
+background-color: #1b1b1e;
+height: 300px;
+border: 2px solid #636369;
+border-radius: 4px;
+animation: blur_a 1s;
+}
+#watt2amp:hover,#amp2watt:hover
+{
+border: 2px solid #00ff10;
+}
+</style>
+<div id="calc_frameW">
+<h1 class="title_frame">Амперы в Ватты</h1>
+<p class="text" id="out_value">0</p>
+<p id="amper">Амперы</p>
+<input type="comment" id="a_value" class="in_bar">
+<p id="volt">Вольж</p>
+<input type="comment" id="v_value" class="in_bar">
+<br>
+<br>
+<br>
+<button id="calc">Расчитать</button>
+<button id="calc" onclick="javascript:loadMframe();">Назад</button>
+</div>
+<div id="calc_frameA">
+<h1 class="title_frame"> Ватты в Амперы</h1>
+<p class="text" id="out_value2">0</p>
+<p id="volt">Вольж</p>
+<input type="comment" id="v_value2" class="in_bar">
+<p id="watt">Ватты</p>
+<input type="comment" id="w_value2" class="in_bar">
+
+<br>
+<br>
+<br>
+<button id="calc3">Расчитать</button>
+<button id="calc2" onclick="javascript:loadMframe();">Назад</button>
+</div>
+<div id="sec2dia">
+<h1 class="title_frame">Расчет сечения</h1>
+<p class="text" id="out_value3">0</p>
+<p id="volt">Диаметр</p>
+<input type="comment" id="dia_value2" class="in_bar">
+<br>
+<br>
+<br>
+<button id="calc4">Расчитать</button>
+<button id="calc2" onclick="javascript:loadMframe();">Назад</button>
+</div>
+<div id="menu">
+<h1 class="title_frame">Калькулятор Электроника</h1>
+<button id="watt2amp">Ватт в Амперы</button>
+<br>
+<button id="amp2watt">Амперы в Ватты</button>
+<br>
+<button id="sec2diaBtn">Расчет сечения</button>
+</div>
+<div id="download_panel">
+<p class="text">Скачай ПК Версию!!</p>
+<p class="text">Современный Калькулятор!!</p>
+<button class="btndw" onclick="javascript:window.open('https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Electik.Calc_C++20_last_build-1.zip');">Electrik Calc C++20_OpenGL3.0 By HCPP</button>
+<p class="text">для слабых ПК</p>
+<button class="btndw" onclick="javascript:window.open('https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Setup.Calc.DIMA.XP.V2.0.ex5');">Калькулятор Электроника от DIMA XP</button>
+</div>
+<script>
+var fC_wattIn = document.getElementById("w_value2");
+var fC_amperIn = document.getElementById("a_value");
+var fC_voltIn = document.getElementById("v_value");
+var fC_voltIn2 = document.getElementById("v_value2");
+var fC_buttonCalc = document.getElementById("calc");
+var fC_buttonCalc2 = document.getElementById("calc3");
+var fC_watt2amp = document.getElementById("watt2amp");
+var fC_amp2watt = document.getElementById("amp2watt");
+var fC_sec2dia = document.getElementById("sec2diaBtn");
+var fC_Wframe = document.getElementById("calc_frameW");
+var fC_Aframe = document.getElementById("calc_frameA");
+var fC_menu  = document.getElementById("menu");
+var fC_buf2   = document.getElementById("out_value2");
+var fC_buf3   = document.getElementById("out_value3");
+var fC_buf   = document.getElementById("out_value");
+var fC_Sframe = document.getElementById("sec2dia");
+var fC_buttonCalc3 = document.getElementById("calc3");
+var fC_buttonCalc4 = document.getElementById("calc4");
+
+
+var fCb_1;
+var fCdata1 = 0;;
+var fCdata2 = 0;
+var fCalc = false;
+var fV;
+var fA;
+var fW;
+var fR_mm2 = 0;
+var fDia_value = 0;
+var fDiaIn = document.getElementById("dia_value2");
+var fPi = 3.14;
+fDiaIn.oninput = function()
+{
+    fDia_value =  this.value;
+}
+fC_voltIn2.oninput = function()
+{
+fV =this.value;
+}
+fC_wattIn.oninput = function()
+{
+fW = Math.trunc(this.value);
+}
+fC_amperIn.oninput = function()
+{
+fA = Math.trunc(this.value);
+}
+
+fC_buttonCalc4.onclick = function()
+{
+    fR_mm2 = ((fDia_value / 2) * (fDia_value / 2) * fPi);
+    fC_buf3.innerHTML = fR_mm2;
+}
+fC_buttonCalc.onclick = function()
+{
+    fCdata1 = Math.floor(fA * fV);
+fC_buf.innerHTML = fCdata1;
+
+}
+fC_buttonCalc2.onclick = function()
+{
+    
+fC_buf2.innerHTML = fCdata2;
+fCdata2= fW / fV;
+//alert("unit:"+fCdata2 + "\nd0:"+fW+"\nd1:"+fV);
+}
+fC_sec2dia.onclick = function()
+{
+    loadSframe();
+}
+fC_watt2amp.onclick = function()
+{
+loadWframe();
+}
+fC_amp2watt.onclick = function()
+{
+loadAframe();
+}
+function loadWframe()
+{
+fC_Wframe.style.display = "block";
+fC_Aframe.style.display = "none";
+fC_menu.style.display = "none";
+fC_Sframe.style.display = "none";
+fCalc = true;
+}
+function loadAframe()
+{
+fC_Aframe.style.display = "block";
+fC_Wframe.style.display = "none";
+fC_menu.style.display = "none";
+fC_Sframe.style.display = "none";
+fCalc = false;
+fW = 0;
+fV = 0;
+}
+function loadSframe()
+{
+fC_Aframe.style.display = "none";
+fC_Wframe.style.display = "none";
+fC_menu.style.display = "none";
+fC_Sframe.style.display = "block";
+fCalc = false;
+fW = 0;
+fV = 0;
+}
+function loadMframe()
+{
+fC_menu.style.display = "block";
+fC_Aframe.style.display = "none";
+fC_Wframe.style.display = "none";
+fC_Sframe.style.display = "none";
+}
+</script>
+</html>
