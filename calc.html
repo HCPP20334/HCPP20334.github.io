@@ -82,11 +82,11 @@ font-size: 20px;
 background-color: #1b1b1e;
 height: 60px;
 width: 250px;
-border: 2px solid #f00050;;
+border: 2px solid #ffffff;
 display: table;
 margin: auto;
 border-radius: 4px;
-     color:#ffffff;
+color:#ffffff;
 }
 #download_panel
 {
@@ -191,6 +191,10 @@ fDiaIn.oninput = function()
 {
     fDia_value =  this.value;
 }
+fC_voltIn.oninput = function()
+{
+fV =this.value;
+}
 fC_voltIn2.oninput = function()
 {
 fV =this.value;
@@ -211,7 +215,8 @@ fC_buttonCalc4.onclick = function()
 }
 fC_buttonCalc.onclick = function()
 {
-    fCdata1 = Math.floor(fA * fV);
+    fCdata1 = fA * fV;
+    alert(fA+"\n"+fV);
 fC_buf.innerHTML = fCdata1;
 
 }
