@@ -29,7 +29,7 @@
     background-color: #010409;
     animation: blur_a 1s;
     }
-    #calc,#calc2,#calc3,#calc4
+    #calc,#calc2,#calc3,#calc4,#reverb
     {
     text-align: center;
 color: #ffffff;
@@ -43,7 +43,7 @@ transform: translateX(20px);
 border-radius: 4px;
 
 }
-.text,#amper,#volt,#watt
+.text,#amper,#volt,#watt,#rub_text
 {
 color: #ffffff;
 font-size: 20px;
@@ -74,9 +74,9 @@ background-color: #1b1c1e;border: 2px solid #f00050;
 width: 300px;
 display: block;
 margin: auto;
-     color: #ffffff;
+font-family:'WR';
 font-size: 20px;
-font-family: 'WR';
+color: #ffffff;
       }
 #menu
 {
@@ -87,7 +87,7 @@ border: 2px solid #636369;
 border-radius: 4px;
 animation: blur_a 1s;
 }
-#calc_frameW,#calc_frameA,#sec2dia
+#calc_frameW,#calc_frameA,#sec2dia,#calc_rub
 {
 display:none;
 background-color: #1b1b1e;
@@ -96,7 +96,7 @@ border-radius: 4px;
 border: 2px solid #636369;;
 animation: Yslide 1s;
 }
-#watt2amp,#amp2watt,#sec2diaBtn,.btndw,#download
+#watt2amp,#amp2watt,#sec2diaBtn,.btndw,#download,#srub2rrub
 {
 font-family:'WR';
 font-size: 20px;
@@ -152,7 +152,7 @@ img
 <br>
 <div id="download_panel">
 <button class="Close" onclick="javascript:loadMframe();">&#10006</button>
-<p class="text" font-size="60"><img src="amd.png" width="64"height="64">HCPP STUDIO</p>
+<p class="text" font-size="60"><img src="./Pictures/amd.png" width="64"height="64">HCPP STUDIO</p>
 <br>
 <p class="text">СКАЧАЙ ПК ВЕРСИЮ</p>
 <p class="text">СОВРЕМЕННЫЙ КАЛЬКУЛЯТОР С КРАСИВЫМ ДИЗАЙНОМ <br> ОЦЕНКА:&#9733;&#9733;&#9733;&#9733;&#9733;</p>
@@ -198,6 +198,17 @@ img
 <button id="calc4">Расчитать</button>
 <button id="calc2" onclick="javascript:loadMframe();">Назад</button>
 </div>
+<div id="calc_rub">
+  <h1 class="title_frame">Перевод рублей</h1>
+<p class="text" id="out_rub">0</p>
+<p id="rub_text">Сов.руб в рос.руб</p>
+<input type="comment" id="data_rub" class="in_bar">
+<button id="reverb">Наоборот</button>
+<br>
+<br>
+<br>
+<button id="calc2" onclick="javascript:loadMframe();">Назад</button>  
+</div>
 <div id="tle">
     <h1 class="title_frame">Калькулятор Электроника</h1>
 </div>
@@ -207,6 +218,7 @@ img
 <button id="amp2watt">Амперы в Ватты</button>
 <br>
 <button id="sec2diaBtn">Расчет сечения</button>
+<button id="srub2rrub">Калькулятор рублей</button>
 <button id="download">СКАЧАТЬ ПК ВЕРСИЮ</button>
 </div>
 
@@ -220,6 +232,7 @@ var fC_buttonCalc2 = document.getElementById("calc3");
 var fC_watt2amp = document.getElementById("watt2amp");
 var fC_amp2watt = document.getElementById("amp2watt");
 var fC_sec2dia = document.getElementById("sec2diaBtn");
+var fC_Srub2Rrub = document.getElementById("srub2rrub");
 var fC_Wframe = document.getElementById("calc_frameW");
 var fC_Aframe = document.getElementById("calc_frameA");
 var fC_menu  = document.getElementById("menu");
@@ -229,7 +242,8 @@ var fC_buf   = document.getElementById("out_value");
 var fC_Sframe = document.getElementById("sec2dia");
 var fC_buttonCalc3 = document.getElementById("calc3");
 var fC_buttonCalc4 = document.getElementById("calc4");
-
+var fC_buttonCalc5 = document.getElementById("calc5");
+var ftext_rub = document.getElementById("rub_text");
 
 var fCb_1;
 var fCdata1 = 0;;
@@ -242,6 +256,37 @@ var fR_mm2 = 0;
 var fDia_value = 0;
 var fDiaIn = document.getElementById("dia_value2");
 var fPi = 3.14;
+var fCalcSovRub = true;
+var fSovietRub = 0;
+var fRusRub = 0;
+var fReverbBtn = document.getElementById("reverb");
+var fOutRubBuf = document.getElementById("data_rub");
+var fCalcRubFrame = document.getElementById("calc_rub");
+var fC_buttonCalc5 = document.getElementById("calc5");
+var fOutRubResult = document.getElementById("out_rub");
+var fStateCrub= 0;
+setTimeout("fReverbBtn.click();",1);
+fReverbBtn.onclick = function()
+{
+    fStateCrub++;
+    if(fStateCrub > 1)
+    {
+        fStateCrub = 0;
+    }
+    if(fStateCrub)
+    {
+        fCalcSovRub = false;
+        ftext_rub.innerHTML = "Сов.руб в рос.руб";
+        fSovietRub = 0;
+    }
+    if(!fStateCrub)
+    {
+        fCalcSovRub = true;
+        ftext_rub.innerHTML = "рос.руб в Сов.руб";
+        fRusRub = 0;
+    }
+    
+}
 fDiaIn.oninput = function()
 {
     fDia_value =  this.value;
@@ -262,7 +307,18 @@ fC_amperIn.oninput = function()
 {
 fA = Math.trunc(this.value);
 }
-
+fOutRubBuf.oninput = function()
+{
+    if(!fCalcSovRub)
+    {
+        fOutRubResult.innerHTML =(this.value * 275);
+    }
+    if(fCalcSovRub)
+{
+        fOutRubResult.innerHTML = (this.value / 275);
+    }
+    
+}
 fC_buttonCalc4.onclick = function()
 {
     fR_mm2 = ((fDia_value / 2) * (fDia_value / 2) * fPi);
@@ -297,12 +353,17 @@ fC_amp2watt.onclick = function()
 {
 loadAframe();
 }
+fC_Srub2Rrub.onclick = function()
+{
+    loadRframe();
+}
 function loadWframe()
 {
 fC_Wframe.style.display = "block";
 fC_Aframe.style.display = "none";
 fC_menu.style.display = "none";
 fC_Sframe.style.display = "none";
+fCalcRubFrame.style.display = "none";
 fCalc = true;
 }
 function loadAframe()
@@ -311,6 +372,7 @@ fC_Aframe.style.display = "block";
 fC_Wframe.style.display = "none";
 fC_menu.style.display = "none";
 fC_Sframe.style.display = "none";
+fCalcRubFrame.style.display = "none";
 fCalc = false;
 fW = 0;
 fV = 0;
@@ -321,9 +383,19 @@ fC_Aframe.style.display = "none";
 fC_Wframe.style.display = "none";
 fC_menu.style.display = "none";
 fC_Sframe.style.display = "block";
+fCalcRubFrame.style.display = "none";
 fCalc = false;
 fW = 0;
 fV = 0;
+}
+function loadRframe()
+{
+fC_menu.style.display = "none";
+fC_Aframe.style.display = "none";
+fC_Wframe.style.display = "none";
+fC_Sframe.style.display = "none";
+document.getElementById("download_panel").style.display= "none";
+fCalcRubFrame.style.display = "block";
 }
 function loadMframe()
 {
@@ -332,6 +404,7 @@ fC_Aframe.style.display = "none";
 fC_Wframe.style.display = "none";
 fC_Sframe.style.display = "none";
 document.getElementById("download_panel").style.display= "none";
+fCalcRubFrame.style.display = "none";
 }
 </script>
 </html>
