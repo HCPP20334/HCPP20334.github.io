@@ -26,20 +26,19 @@
     }
     html
     {
-    background-color: #010409;
+    background: linear-gradient(45deg,#010409,#1b1b1e);
     animation: blur_a 1s;
     }
     #calc,#calc2,#calc3,#calc4,#reverb
     {
-    text-align: center;
 color: #ffffff;
 font-size: 20px;
 font-family: 'WR';
-background-color: #f00050;border: 2px solid #f00050;
+background-color: #1b1b1e;border: 2px solid #ffffff;
 width: 150px;height:30px;
-display: inline;
+display: inline-block;
 margin: auto;
-transform: translateX(20px);
+transform: translateX(10px);
 border-radius: 4px;
 
 }
@@ -61,16 +60,19 @@ font-family: 'WR';
 #tle
 {
 
-border-top: 2px solid #636369;
 border-left: 2px solid #636369;
 border-right: 2px solid #636369;
+border-top:2px solid #636369;
 height: 30px;
 background-color: #010500;
+position: static;width: 320px;
+display:block;
+margin: auto;
 
 }
 .in_bar
 {
-background-color: #1b1c1e;border: 2px solid #f00050;
+background-color: #1b1c1e;border: 2px solid #ffffcc;
 width: 300px;
 display: block;
 margin: auto;
@@ -81,20 +83,25 @@ color: #ffffff;
 #menu
 {
 display:block;
-background-color: #1b1b1e;
+margin: auto;
+background: linear-gradient(120deg,#0fff00,#ff0f00,#00f0ff);
 height: 500px;
 border: 2px solid #636369;
-border-radius: 4px;
-animation: blur_a 1s;
+border-radius: 2px;
+animation: blur_a 1s;width: 320px;
+transition:.4s;
+
 }
 #calc_frameW,#calc_frameA,#sec2dia,#calc_rub
 {
 display:none;
-background-color: #1b1b1e;
+background: linear-gradient(120deg,#0fff00,#ff0f00,#00f0ff);
 height: 500px;
 border-radius: 4px;
 border: 2px solid #636369;;
-animation: Yslide 1s;
+animation: blur_a 1s;
+margin: auto;
+width: 320px;
 }
 #watt2amp,#amp2watt,#sec2diaBtn,.btndw,#download,#srub2rrub
 {
@@ -104,10 +111,11 @@ background-color: #1b1b1e;
 height: 60px;
 width: 250px;
 border: 2px solid #ffffff;
-display: table;
+display: block;
 margin: auto;
 border-radius: 4px;
 color:#ffffff;
+
 
 }
 .Close
@@ -138,7 +146,7 @@ position: absolute;
 margin: auto;
 width: 320px;
 transform: translateY(30px);
-animation: Yslide 1s;
+animation: blur_a 1s;
 }
 #watt2amp:hover,#amp2watt:hover
 {
@@ -150,6 +158,9 @@ img
 }
 </style>
 <br>
+<div id="tle">
+    <h1 class="title_frame">::КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА::</h1>
+</div>
 <div id="download_panel">
 <button class="Close" onclick="javascript:loadMframe();">&#10006</button>
 <p class="text" font-size="60"><img src="./Pictures/amd.png" width="64"height="64">HCPP STUDIO</p>
@@ -209,9 +220,6 @@ img
 <br>
 <button id="calc2" onclick="javascript:loadMframe();">Назад</button>  
 </div>
-<div id="tle">
-    <h1 class="title_frame">Калькулятор Электроника</h1>
-</div>
 <div id="menu">
 <button id="watt2amp">Ватт в Амперы</button>
 <br>
@@ -244,7 +252,20 @@ var fC_buttonCalc3 = document.getElementById("calc3");
 var fC_buttonCalc4 = document.getElementById("calc4");
 var fC_buttonCalc5 = document.getElementById("calc5");
 var ftext_rub = document.getElementById("rub_text");
-
+var rand = 0 ;
+var r,g,b;
+function bkg()
+{
+    console.clear();
+        rand = Math.random() * 360;
+        r = Math.random() * 320;
+        g = Math.random() * 500;
+        fC_Sframe.style.width= r+"px;";
+        fC_Sframe.style.height= g+"px;"
+     console.log(rand+"\n"+fC_Sframe.style.background);
+     console.log("red_c:"+r+"\n"+"green_c:"+g+"\n"+"blue_c:"+b);
+    
+}
 var fCb_1;
 var fCdata1 = 0;;
 var fCdata2 = 0;
