@@ -6,7 +6,23 @@
     }
     @font-face {
         font-family: WR;
-        src: url("https://hcpp20334.github.io/fonts/WhiteRabbit.woff");
+        src: url("https://hcpp20334.github.io/fonts/WhiteRabbit.ttf");
+    }
+    @keyframes re_color_gl
+    {
+        
+        0%{
+            background:linear-gradient(120deg,#ff00f0,#00fff0,#00f0ff);
+            transition: .4s;
+        }
+        50%{
+            background: linear-gradient(120deg,#00f0ff,#ff00f0,#00f0ff);
+            transition: .4s;
+        }
+        100%{
+            background: linear-gradient(120deg,#00fff0,#00f0ff,#ff00f0);
+            transition: .4s;
+        }
     }
 html
 {
@@ -15,7 +31,9 @@ html
 }
 #player_frame
 {
-    background-color: #010107;
+    background: linear-gradient(120deg,#00f0ff,#ff00f0,#00f0ff);
+            transition: .4s;
+            text-shadow: 1px 1px 0px f00050;
     border: 2px solid #42454b;;
     width: 90%;
     height: 90%;
@@ -86,7 +104,7 @@ html
    color: #f0f0f0;
    text-shadow: -1px -1px 0px #1010f0;
    text-align: center;
-   
+   border: 4px solid linear-gradient(120deg,#ff00f0,#00fff0,#00f0ff);
 }
 #v_text
 {
@@ -102,6 +120,7 @@ html
     webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    
 }
 #PLsndTimeline
 {
@@ -129,9 +148,11 @@ html
 {
     width: 100%;
     height: 1000px;
-    background-color: #1b1b1e;
     border-bottom: 2px solid #42454b;
     border-top: 2px solid #42454b;
+    background: linear-gradient(120deg,#00f0ff,#ff00f0,#00f0ff);
+            transition: .4s;
+            text-shadow: 1px 1px 0px f00050;
 }
 #vl_count
 {
@@ -199,7 +220,7 @@ button
             background-color: #ff044f;
             color:#f0f0f0;
             font-family: 'WR';
-            border: 2px solid #42454b;
+            border: 4px solid linear-gradient(120deg,#ff00f0,#00fff0,#00f0ff);
             display: none;
             position: relative;
         }
@@ -207,9 +228,13 @@ button
 {
     width: 90%
     height: 300px;
-    background-color: #1b1b1e;
     border: 2px solid #42454b;
     display:block;
+    transition: .8s;
+    background: linear-gradient(120deg,#00f0ff,#ff00f0,#00f0ff);
+            transition: .4s;
+            text-shadow: 1px 1px 0px f00050;
+    
 }
 #wl_tx
 {
@@ -225,6 +250,7 @@ button
     text-shadow: 1px 1px 0px f00050;
     font-family: 'WR';
     font-size: 20px;
+    border: 4px solid linear-gradient(120deg,#ff00f0,#00fff0,#00f0ff);
 }
 #blist,#blist1 
 {
@@ -233,6 +259,17 @@ button
     text-shadow: 1px 1px 0px f00050;
     font-family: 'WR';
     font-size: 60px;
+}
+.text
+{
+    color: #ffffff;
+font-size: 20px;
+font-family: 'WR';
+border-radius: 4px;
+text-align: center;
+}
+img{
+    transform: translateY(25px);
 }
 </style>
     <div id="err">
@@ -248,11 +285,11 @@ button
 <div id="name_tl"><p id="Tx_Name">PlayerJS</p></div>
 <div id="wellcome_frame">
     <p id="wl_tx">
-    WELLCONE TO playerJS v2.0!!    </p>
+    ДОБРО ПОЖАЛОВАТЬ В  playerJS v2.0!!    </p>
         <p id="wl_tx">---------------------------    </p>
-       <p id="wl_tx"> "<" - PREV TRACK     </p>
-        <p id="wl_tx">">" - NEXT TRACK    </p>
-        <p id="wl_tx">"&#9658;" - PLAY TRACK 
+       <p id="wl_tx"> "<" - ПРЕД ТРЕК     </p>
+        <p id="wl_tx">">" - СЛЕД ТРЕК    </p>
+        <p id="wl_tx">"&#9658;" - ЗАПУСТИТЬ ТРЕК 
     </p>
     <button id="bt_ok" onclick="javascript:PlayerJS();">OK</button>
     <script>document.getElementById("name_tl").style.display= 'none';</script>
@@ -271,7 +308,7 @@ button
     <button id="btn_prev_track"><</button><button id="btn_next_track">></button><button id="btn_state"> &#9658;</button>
     <br>
      <p id="PLsndInfo"></p>
-    <p id="v_text">volume:</p><input type="range" min="0.0" max="1.0" step="0.1" value="0.3" id="vl_count"></p>
+    <p id="v_text">ГРОМКОСТЬ:</p><input type="range" min="0.0" max="1.0" step="0.1" value="0.3" id="vl_count"></p>
     <p id="blist1">&#10094;---</p>
     <p id="blist"> &#10095;</p>
      <p id="track_list1" class="text_list">1</p>
@@ -286,10 +323,11 @@ button
      
     
 </div>
+    <p class="text" font-size="60"><img src="https://hcpp20334.github.io/Pictures/amd.png" width="64"height="64">HCPP STUDIO</p>
      <p id="P_github">CODED BY HCPP</p>
      <p id="P_github">ADD MUSIC BY rpmaster2</p>    
      <p class="build_tx" id="ab">
-     Build: 2.0.1 21.05.24 
+     Build: 2.0.2 21.05.24 
      playerJS API by HCPP HTML5 
      github.com/hcpp20334
      HCPP - C++20 Devoloper and JS 
@@ -377,7 +415,7 @@ var fPLAudiosName = [
 ' 27.NUEKI - SO TIRED'
 
 ];
-var fPLtextAbout = "Build: 2.0.1 21.05.24" 
+var fPLtextAbout = "Build: 2.0.2 31.05.24" 
     +"\nplayerJS API by HCPP HTML5" +
     "\ngithub.com/hcpp20334"+
      "\nHCPP - C++20 Devoloper and JS"+ 
