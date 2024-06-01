@@ -29,7 +29,7 @@
     background: linear-gradient(45deg,#010409,#1b1b1e);
     animation: blur_a 1s;
     }
-    #calc,#calc2,#calc3,#calc4,#reverb,#calc_amp
+    #calc,#calc2,#calc3,#calc4,#reverb,#calc_amp,#calcR
     {
 color: #ffffff;
 font-size: 20px;
@@ -92,7 +92,7 @@ animation: blur_a 1s;width: 320px;
 transition:.4s;
 
 }
-#calc_frameW,#calc_frameA,#sec2dia,#calc_rub,#watt_sec
+#calc_frameW,#calc_frameA,#sec2dia,#calc_rub,#watt_sec,#calc_Rwire
 {
 display:none;
 background: linear-gradient(120deg,#0fff00,#ff0f00,#00f0ff);
@@ -103,7 +103,7 @@ animation: blur_a 1s;
 margin: auto;
 width: 320px;
 }
-#watt2amp,#amp2watt,#sec2diaBtn,.btndw,#download,#srub2rrub,#sec2amp
+#watt2amp,#amp2watt,#sec2diaBtn,.btndw,#download,#srub2rrub,#sec2amp,#calcRbtn
 {
 font-family:'WR';
 font-size: 20px;
@@ -170,6 +170,21 @@ img
 <button class="btndw" onclick="javascript:window.open('https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Electik.Calc_C++20_last_build-1.zip');">Electrik Calc C++20_OpenGL3.0 By HCPP</button>
 <p class="text">ДЛЯ СЛАБЫХ ПК <br>ОЦЕНКА:&#9733;&#9733;&#9733;&#9733;</p>
 <button class="btndw" onclick="javascript:window.open('https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Setup.Calc.DIMA.XP.V2.0.ex5');">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА ОТ DIMA XP</button>
+</div>
+<div id="calc_Rwire">
+<h1 class="title_frame">Расчет сопротивления проводника</h1>
+<p class="text" id="Rvalue">0</p>
+<p id="amper">Удельное сопротивление</p>
+<input type="comment" id="p_val" class="in_bar">
+<p id="volt">Длина проводника</p>
+<input type="comment" id="l_val" class="in_bar">
+<p id="volt">Площадь поперечного сечения (мм2)</p>
+<input type="comment" id="S_val" class="in_bar">
+<br>
+<br>
+<br>
+<button id="calcR">Расчитать</button>
+<button id="calc2" onclick="javascript:loadMframe();">Назад</button>
 </div>
 <div id="calc_frameW">
 <h1 class="title_frame">Амперы в Ватты</h1>
@@ -240,6 +255,7 @@ img
 <button id="sec2diaBtn">Расчет сечения</button>
 <button id="srub2rrub">Калькулятор рублей</button>
 <button id="sec2amp">Расчет тока из сечения</button>
+<button id="calcRbtn">Расчет Удельного сопротивления проводника</button>
 <button id="download">СКАЧАТЬ ПК ВЕРСИЮ</button>
 </div>
 <p id="tx">Создал HCPP | создано для сайта<br>
@@ -333,6 +349,40 @@ var fCalcRubFrame = document.getElementById("calc_rub");
 var fC_buttonCalc5 = document.getElementById("calc5");
 var fOutRubResult = document.getElementById("out_rub");
 var fStateCrub= 0;
+//R calc
+var fPvalue =  document.getElementById("p_val");
+var fIvalue =  document.getElementById("l_val");
+var fSvalue =  document.getElementById("S_val");
+var fCalcRframe =  document.getElementById("calc_Rwire");
+var fRcalcButton =  document.getElementById("calcR");
+var fRbuf =  document.getElementById("Rvalue");
+var fCalcRbtn =   document.getElementById("calcRbtn");
+var fWp_data = 0;
+var fWi_data = 0;
+var fWs_data = 0;
+
+fPvalue.oninput = function()
+{
+    fWp_data = this.value;
+}
+fIvalue.oninput = function()
+{
+    fWi_data = this.value;
+}
+fSvalue.oninput = function()
+{
+    fWs_data = this.value;
+}
+fRcalcButton.onclick = function()
+{
+    fRbuf.innerHTML = (fWp_data * fWi_data) / fWs_data;
+}
+fCalcRbtn.onclick = function()
+{
+    loadPwireFrame();
+}
+
+//
 setTimeout("fReverbBtn.click();",1);
 fReverbBtn.onclick = function()
 {
@@ -488,7 +538,19 @@ fC_Sframe.style.display = "none";
 document.getElementById("download_panel").style.display= "none";
 fCalcRubFrame.style.display = "none";
 fCalcSecFrame.style.display = "none";
+fCalcRframe.style.display = "none";
 
+}
+function loadPwireFrame()
+{
+ fC_menu.style.display = "none";
+ fC_Aframe.style.display = "none";
+ fC_Wframe.style.display = "none";
+ fC_Sframe.style.display = "none";
+ document.getElementById("download_panel").style.display= "none";
+ fCalcRubFrame.style.display = "none";
+ fCalcSecFrame.style.display = "none";
+ fCalcRframe.style.display = "block";
 }
 </script>
 </html>
