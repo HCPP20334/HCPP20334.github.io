@@ -29,7 +29,7 @@
     background: linear-gradient(45deg,#010409,#1b1b1e);
     animation: blur_a 1s;
     }
-    #calc,#calc2,#calc3,#calc4,#reverb
+    #calc,#calc2,#calc3,#calc4,#reverb,#calc_amp
     {
 color: #ffffff;
 font-size: 20px;
@@ -50,7 +50,7 @@ font-family: 'WR';
 border-radius: 4px;
 text-align: center;
 }
-.title_frame
+.title_frame,#tx
 {
     text-align: center;
 color: #ffffff;
@@ -92,7 +92,7 @@ animation: blur_a 1s;width: 320px;
 transition:.4s;
 
 }
-#calc_frameW,#calc_frameA,#sec2dia,#calc_rub
+#calc_frameW,#calc_frameA,#sec2dia,#calc_rub,#watt_sec
 {
 display:none;
 background: linear-gradient(120deg,#0fff00,#ff0f00,#00f0ff);
@@ -103,7 +103,7 @@ animation: blur_a 1s;
 margin: auto;
 width: 320px;
 }
-#watt2amp,#amp2watt,#sec2diaBtn,.btndw,#download,#srub2rrub
+#watt2amp,#amp2watt,#sec2diaBtn,.btndw,#download,#srub2rrub,#sec2amp
 {
 font-family:'WR';
 font-size: 20px;
@@ -198,6 +198,18 @@ img
 <button id="calc3">Расчитать</button>
 <button id="calc2" onclick="javascript:loadMframe();">Назад</button>
 </div>
+<div id="watt_sec">
+<p class="text" id="out_amp">0</p>
+<br>
+<p class="text">Ватт:<input id="inwatt"class="in_bar" type="comment"></p>
+<p class="text">Сечение:<input id="insec"class="in_bar" type="comment"></p>
+<p class="text">Напряжение:<input id="involt"class="in_bar" type="comment"></p>
+<br>
+<br>
+<br>
+<button id="calc_amp">Расчитать</button>
+<button id="calc2" onclick="javascript:loadMframe();">Назад</button>
+</div>
 <div id="sec2dia">
 <h1 class="title_frame">Расчет сечения</h1>
 <p class="text" id="out_value3">0</p>
@@ -227,9 +239,12 @@ img
 <br>
 <button id="sec2diaBtn">Расчет сечения</button>
 <button id="srub2rrub">Калькулятор рублей</button>
+<button id="sec2amp">Расчет тока из сечения</button>
 <button id="download">СКАЧАТЬ ПК ВЕРСИЮ</button>
 </div>
-
+<p id="tx">Создал HCPP | создано для сайта<br>
+  dimaxp.sytes.net
+</p>
 <script>
 var fC_wattIn = document.getElementById("w_value2");
 var fC_amperIn = document.getElementById("a_value");
@@ -252,8 +267,40 @@ var fC_buttonCalc3 = document.getElementById("calc3");
 var fC_buttonCalc4 = document.getElementById("calc4");
 var fC_buttonCalc5 = document.getElementById("calc5");
 var ftext_rub = document.getElementById("rub_text");
+var fCalcSecWatt = document.getElementById("calc_amp");
+var fCalcSecFrame = document.getElementById("watt_sec");
+var btn_w2s = document.getElementById("watt2sec");
+var in_watt = document.getElementById("inwatt");
+var in_sec = document.getElementById("insec");
+var in_volt = document.getElementById("involt");
+var fSecBuf = document.getElementById("out_amp");
+var fsecamp = document.getElementById("sec2amp");
+var fDataWatt = 0;
+var fDataVolt = 0;
+var fDataSec = 0;
 var rand = 0 ;
 var r,g,b;
+fsecamp.onclick = function()
+{
+    loadSAframe();
+}
+in_watt.oninput=function()
+{
+fDataWatt = this.value;
+}
+in_sec.oninput=function()
+{
+fDataSec = this.value;
+}
+in_volt.oninput=function()
+{
+fDataVolt = this.value;
+}
+fCalcSecWatt.onclick = function()
+{
+    fSecBuf.innerHTML = parseInt( (fDataWatt * fDataSec) / (fDataVolt * 1)) + "А";
+}
+
 function bkg()
 {
     console.clear();
@@ -386,6 +433,7 @@ fC_menu.style.display = "none";
 fC_Sframe.style.display = "none";
 fCalcRubFrame.style.display = "none";
 fCalc = true;
+fCalcSecFrame.style.display = "none";
 }
 function loadAframe()
 {
@@ -397,6 +445,7 @@ fCalcRubFrame.style.display = "none";
 fCalc = false;
 fW = 0;
 fV = 0;
+fCalcSecFrame.style.display = "none";
 }
 function loadSframe()
 {
@@ -408,6 +457,17 @@ fCalcRubFrame.style.display = "none";
 fCalc = false;
 fW = 0;
 fV = 0;
+fCalcSecFrame.style.display = "none";
+}
+function loadSAframe()
+{
+    fC_menu.style.display = "none";
+fC_Aframe.style.display = "none";
+fC_Wframe.style.display = "none";
+fC_Sframe.style.display = "none";
+document.getElementById("download_panel").style.display= "none";
+fCalcRubFrame.style.display = "none";
+fCalcSecFrame.style.display = "block";
 }
 function loadRframe()
 {
@@ -417,6 +477,7 @@ fC_Wframe.style.display = "none";
 fC_Sframe.style.display = "none";
 document.getElementById("download_panel").style.display= "none";
 fCalcRubFrame.style.display = "block";
+fCalcSecFrame.style.display = "none";
 }
 function loadMframe()
 {
@@ -426,6 +487,8 @@ fC_Wframe.style.display = "none";
 fC_Sframe.style.display = "none";
 document.getElementById("download_panel").style.display= "none";
 fCalcRubFrame.style.display = "none";
+fCalcSecFrame.style.display = "none";
+
 }
 </script>
 </html>
