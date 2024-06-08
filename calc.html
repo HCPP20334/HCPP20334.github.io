@@ -49,6 +49,14 @@ font-family: 'WR';
 border-radius: 4px;
 text-align: center;
 }
+.abAn
+{
+    color: #ffffff;
+font-size: 14px;
+font-family: 'WR';
+text-align: center;
+width: 200px;
+}
 .title_frame,#tx
 {
     text-align: center;
@@ -91,11 +99,22 @@ animation: blur_a 1s;width: 320px;
 transition:.4s;
 
 }
-#calc_frameW,#calc_frameA,#sec2dia,#calc_rub,#watt_sec,#calc_Rwire,#calc_Automat
+#calc_frameW,#calc_frameA,#sec2dia,#calc_rub,#watt_sec,#calc_Rwire
 {
 display:none;
 background-color: #1b1b1e;
 height: 500px;
+border-radius: 4px;
+border: 2px solid #10ff30;;
+animation: blur_a 1s;
+margin: auto;
+width: 320px;
+}
+#calc_Automat
+{
+    display:none;
+background-color: #1b1b1e;
+height: 700px;
 border-radius: 4px;
 border: 2px solid #10ff30;;
 animation: blur_a 1s;
@@ -202,7 +221,13 @@ border: 2px solid #10ff30;
 <button id="155_p" class="buttonProcents">2.55</button>
 <button id="400_p" class="buttonProcents">5</button>
 <button id="900_p" class="buttonProcents">10</button>
-<br>
+<p class="abAn">
+    1.13 - это ток кратко временного расцепления цепи<br>
+       1.45 - ток расцепления при котором автомат не должен выключится<br>
+ 2.55- ток при котором автомат должен выключится в течении 1 минуты.<br>
+ 5 - аварийный ток перекрузки при котором автомат должен отключится до 10 сек<br>
+ 10 - аварийный ток перегрузки при котором автомат должен выключится моментально.
+</p>
 <p class="text">идея DIMA XP</p>
 <button id="calcA">Расчитать</button>
 <button id="tableBtn">Показать таблицу</button>
@@ -285,14 +310,14 @@ border: 2px solid #10ff30;
 <button id="calc2" onclick="javascript:loadMframe();">Назад</button>  
 </div>
 <div id="menu">
-<button id="watt2amp">ВАТТЫ В АМПЕРЫ</button>
 <button id="amp2watt">АМПЕРЫ В ВАТТЫ</button>
+<button id="watt2amp">ВАТТЫ В АМПЕРЫ</button>
 <button id="sec2amp">РАСЧЕТ ТОКА ИЗ СЕЧЕНИЯ</button>
 <button id="srub2rrub">КАЛЬКУЛЯТОР РУБЛЕЙ</button>
 <button id="sec2diaBtn">РАСЧЕТ СЕЧЕНИЯ</button>
 <button id="calcRbtn">РАСЧЕТ УДЕЛЬНОГО СОПРОТИВЛЕНИЯ ПРОВОДНИКА</button>
-<button id="download">СКАЧАТЬ ПК ВЕРСИЮ</button>
 <button id="calcAutomatN">РАСЧЕТ НОМИНАЛА АВТОМАТ</button>
+<button id="download">СКАЧАТЬ ПК ВЕРСИЮ</button>
 <p id="tx">build 1.0.2 7 calc's</p>
 </div>
 <p id="tx">Создал HCPP | создано для сайта<br>
@@ -467,7 +492,6 @@ fCANcalc.onclick = function()
 {
     fCout =  parseInt(fNdata) + (parseInt(fNdata) * (fProcentArray[fCPoint] / 100));
     fCbuf3.innerHTML = fCout;
-    alert("procent:"+fProcentArray[fCPoint]+"\npoint:"+fCPoint+"\nNdata:"+fNdata);
 }
 
 fC_AutoNominal.onclick = function()
