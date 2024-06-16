@@ -5,6 +5,8 @@
 html
 {
 background-color:#010409;
+flex-shrink: 0;
+
 }
  @font-face {
         font-family: WR;
@@ -39,6 +41,7 @@ border:2px solid #9090ff;
 border-radius:4px;
 display: block;
 margin:auto;
+touch-action: unset;
 }
 .ClickButton
 {
@@ -67,7 +70,7 @@ margin:auto;
     font-size: 30px;
 }
 </style>
-
+<meta name="viewport" content="width=device-width, user-scalable=no">
 <div class="GovnoCombatFrame">
 <div id="Ginfo"><h1 class="c_val4" id="c_val4Id">5</h1></div>
 <p class="texts">
@@ -83,7 +86,7 @@ GOVNO KOMBAT!! BUILD 0.2 BY HCPP!
 <script>
 const f_GButton = document.getElementById("ClickButtonId");
 const f_Gbuffer = document.getElementById("c_val4Id");
-var f_GcoinCount = 0;
+var f_GcoinCount = 1;
 var f_Gboost = 1;
 setTimeout("f_Gbuffer.innerHTML = '&#8383;Gcoins:'+localStorage.coins;f_GcoinCount = localStorage.coins;",10);
 f_GButton.onclick = function()
@@ -92,6 +95,7 @@ f_GButton.onclick = function()
     f_Gbuffer.innerHTML = "&#8383;Gcoins: " + f_GcoinCount;
     localStorage.coins = f_GcoinCount;
     checkCoins(f_GcoinCount);
+    f_GcoinCount = localStorage.coins;
     
 }
 function checkCoins(count)
