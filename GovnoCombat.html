@@ -32,6 +32,27 @@ flex-shrink: 0;
     color:#90FFff;
     text-align: center;
 }
+#loaddata:not(:disabled) {
+&:active,
+&:active {
+background-color: #9090ff;
+}
+} 
+#loaddata
+{
+    background-color: transparent;
+width:150px;
+height: 30px;
+border:2px solid #9090ff;
+border-radius:4px;
+display: block;
+margin:auto;
+font-family: 'WR';
+    font-size: 14px;
+    color:#90FFff;
+        transition: .4s;
+}
+
 .GovnoCombatFrame
 {
 background-color: transparent;
@@ -43,6 +64,7 @@ display: block;
 margin:auto;
 touch-action: unset;
 }
+
 .ClickButton
 {
     width: 240px;
@@ -79,6 +101,8 @@ touch-action: unset;
 ЕСЛИ ВЫ НЕ СОХРАНИЛИ ИХ!!
 </p>
     <button class="ClickButton" id="ClickButtonId">&#128169;</button>
+    <br>
+    <button id="loaddata">ЗАГРУЗИТЬ ДАННЫЕ</button>
     <h1 class="texts">
 GOVNO KOMBAT!! BUILD 0.2 BY HCPP!
 </h1>
@@ -86,9 +110,14 @@ GOVNO KOMBAT!! BUILD 0.2 BY HCPP!
 <script>
 const f_GButton = document.getElementById("ClickButtonId");
 const f_Gbuffer = document.getElementById("c_val4Id");
+const f_LoadData = document.getElementById("loaddata");
 var f_GcoinCount = 1;
 var f_Gboost = 1;
-setTimeout("f_Gbuffer.innerHTML = '&#8383;Gcoins:'+localStorage.coins;f_GcoinCount = localStorage.coins;",10);
+f_LoadData.onclick = function()
+{
+    f_GcoinCount = 1;
+    f_Gbuffer.innerHTML = '&#8383;Gcoins:'+localStorage.coins;f_GcoinCount = localStorage.coins;
+}
 f_GButton.onclick = function()
 {
     f_GcoinCount= parseInt(f_GcoinCount)+ parseInt(f_Gboost);
@@ -97,7 +126,6 @@ f_GButton.onclick = function()
     {
         localStorage.coins = f_GcoinCount;
     checkCoins(f_GcoinCount);
-    f_GcoinCount = localStorage.coins;
     }
     
 }
