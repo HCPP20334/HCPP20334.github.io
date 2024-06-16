@@ -26,42 +26,46 @@
     }
 html
 {
-    background-color: #1b1b1e;
+    background-color:#010409;
 
 }
 #player_frame
 {
-    background: linear-gradient(120deg,#00f0ff,#ff00f0,#00f0ff);
             transition: .4s;
-            text-shadow: 1px 1px 0px f00050;
-    border: 2px solid #42454b;;
+    border:2px solid #9090ff;
+    background: #010409;
+    border-radius: 4px;
     width: 90%;
-    height: 90%;
     margin: auto;
     display: none;
+    opacity: 0px;
 }
 #btn_prev_track,#btn_next_track,#btn_state
 {
-    background-color: #1b1b18;
-    font-size: 30px;
+    background-color: #010409;
+    font-size: 18px;
     font-family: 'WR';
     color: #ffffff; 
-    width: 96px;
-    height: 96px;
-    border: 1px solid #010107;
-    border-radius: 48px;
+    width: 64px;
+    height: 64px;
+    border: 1px solid #9090ff;
+    border-radius: 36px;
+    margin-left: 5px;
 }
 #btn_prev_track:hover{
     transition: .2s;
-    background-color: #42454b;
+    background-color: #9090ff;
+        border: 2px solid #9090ff;
 }
 #btn_next_track:hover{
     transition: .2s;
-    background-color: #42454b;
+    background-color: #9090ff;
+        border: 2px solid #9090ff;
 }
 #btn_state:hover{
     transition: .2s;
-    background-color: #42454b;
+    background-color: #9090ff;
+        border: 2px solid #9090ff;
 }
 #bt_ok
 {
@@ -72,7 +76,8 @@ html
     width: 96px;
     height: 32px;
     border: 1px solid #010107;
-    left: 30;
+    margin-left: 30px;
+    margin-bottom:30px;
 }
 #name_tl
 {
@@ -146,11 +151,12 @@ html
 }
 #aControls
 {
-    width: 100%;
-    height: 1000px;
-    border-bottom: 2px solid #42454b;
-    border-top: 2px solid #42454b;
-    background: linear-gradient(120deg,#00f0ff,#ff00f0,#00f0ff);
+    width: 90%;
+    border:2px solid #9090ff;
+    background: #010409;
+    border-radius: 4px;
+    display: block;
+    margin: auto;
             transition: .4s;
             text-shadow: 1px 1px 0px f00050;
 }
@@ -160,10 +166,12 @@ html
     -moz-appearance: none;
     appearance: none;
     display: inline;
+    border-radius: 4px;
 }
 #vl_count::-webkit-slider-runnable-track
 {
-    background-color: #1b1c1e;border: 2px solid #42454b;
+    background-color: #010409;border: 2px solid #9090ff;
+    border-radius: 4px;
 }
 #vl_count::-webkit-slider-thumb
 {
@@ -172,12 +180,12 @@ html
       width: 8px;
       height: 20px;
       -webkit-appearance: none;
-      border-radius: 2px;
+      border-radius: 4px;
  
 }
 #b_volT,#PLsndInfo
 {
-    font-size: 20px;
+    font-size: 14px;
    font-family: 'WR';
    color: #e0e0e0;
 }
@@ -191,7 +199,7 @@ button
 }
 #pl_dur
 {
-    font-size: 20px;
+    font-size: 18px;
    font-family: 'WR';
    color: #e0e0e0;
    display: inline;
@@ -228,12 +236,16 @@ button
 {
     width: 90%
     height: 300px;
-    border: 2px solid #42454b;
     display:block;
     transition: .8s;
-    background: linear-gradient(120deg,#00f0ff,#ff00f0,#00f0ff);
+        background: #010409;
+        border: 2px solid #9090ff;
             transition: .4s;
             text-shadow: 1px 1px 0px f00050;
+            position: absolute;
+            margin-top: 50%;
+            margin-left: 25%;
+            border-radius: 4px;
     
 }
 #wl_tx
@@ -250,7 +262,15 @@ button
     text-shadow: 1px 1px 0px f00050;
     font-family: 'WR';
     font-size: 20px;
-    border: 4px solid linear-gradient(120deg,#ff00f0,#00fff0,#00f0ff);
+    
+}
+#ab
+{
+    border: 2px solid #9090ff;
+    border-radius: 4px;
+    width: 90%;
+    display: block;
+    margin: auto;
 }
 #blist,#blist1 
 {
@@ -259,6 +279,23 @@ button
     text-shadow: 1px 1px 0px f00050;
     font-family: 'WR';
     font-size: 60px;
+    
+}
+#dur_frame
+{
+    width: 90%;
+    border:2px solid #9090ff;
+    border-radius:4px;
+    display: block;
+    margin: auto;
+}
+#playlist
+{
+    width: 90%;
+    border:2px solid #9090ff;
+    border-radius:4px;
+    display: block;
+    margin: auto;
 }
 .text
 {
@@ -294,21 +331,20 @@ img{
     <button id="bt_ok" onclick="javascript:PlayerJS();">OK</button>
     <script>document.getElementById("name_tl").style.display= 'none';</script>
 </div>
-<div id="player_frame">
-<p id="Tx_info_Sound">NO DATA</p>
-<audio id="sound_device" preload="metadata" >
-    <a id="sound_device1"> Download audio </a>
-  </audio>
+    <div id="dur_frame">
+ <p id="PLsndInfo"></p>
  <p id="pl_dur"></p>
 <input id="PLsndTimeline" type="range" min="0.0" max="100" step="0.1" value="0">
+</div>
 <div id="aControls">
     <br>
     <br>
     <br>
     <button id="btn_prev_track"><</button><button id="btn_next_track">></button><button id="btn_state"> &#9658;</button>
     <br>
-     <p id="PLsndInfo"></p>
     <p id="v_text">ГРОМКОСТЬ:</p><input type="range" min="0.0" max="1.0" step="0.1" value="0.3" id="vl_count"></p>
+    </div>
+    <div id="playlist">
     <p id="blist1">&#10094;---</p>
     <p id="blist"> &#10095;</p>
      <p id="track_list1" class="text_list">1</p>
@@ -323,14 +359,22 @@ img{
      
     
 </div>
+<div id="player_frame">
+<p id="Tx_info_Sound">NO DATA</p>
+<audio id="sound_device" preload="metadata" >
+    <a id="sound_device1"> Download audio </a>
+  </audio>
+  </div>
     <p class="text" font-size="60"><img src="https://hcpp20334.github.io/Pictures/amd.png" width="64"height="64">HCPP STUDIO</p>
      <p id="P_github">CODED BY HCPP</p>
      <p id="P_github">ADD MUSIC BY rpmaster2</p>    
      <p class="build_tx" id="ab">
-     Build: 2.0.2 21.05.24 
+     Build: 2.0.5 16.06.24 
      playerJS API by HCPP HTML5 
+     <br>
      github.com/hcpp20334
      HCPP - C++20 Devoloper and JS 
+          <br>
      JE x64 OpenGL3 App C++20_SSE4.2
      github.com/hcpp20334/JoyStickTest
      </p>
@@ -340,8 +384,6 @@ img{
 <br>
 <br>
 <br>
-
-</div>
 <script>
 var fPLFrame =  document.getElementById('player_frame');
 var fPLPrev = document.getElementById('btn_prev_track');
@@ -415,7 +457,7 @@ var fPLAudiosName = [
 ' 27.NUEKI - SO TIRED'
 
 ];
-var fPLtextAbout = "Build: 2.0.2 31.05.24" 
+var fPLtextAbout = "Build: 2.0.5 16.06.24" 
     +"\nplayerJS API by HCPP HTML5" +
     "\ngithub.com/hcpp20334"+
      "\nHCPP - C++20 Devoloper and JS"+ 
@@ -490,7 +532,7 @@ function fPLtrackSel()
     }
     if(fPLaudioState == 1)
     {
-        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration+"\nAudioReady:"+fPLaudioSndState+" Status: OK id:"+fPLCurrentSoundId);
+        fPl_debugMsg("NS:"+fPLaudioState+" AD:"+fPLaudioDuration+"\nAR:"+fPLaudioSndState+" ST: OK id:"+fPLCurrentSoundId);
          if(fPLbtn_enb)
          {
               SndState(1,fPLSndDv)
@@ -499,7 +541,7 @@ function fPLtrackSel()
     }
     if(fPLaudioState == 2)
     {
-        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration+"\nAudioReady:"+fPLaudioSndState+" Status:Loading..");
+        fPl_debugMsg("NS:"+fPLaudioState+" AD:"+fPLaudioDuration+"\nAR:"+fPLaudioSndState+" ST:Loading..");
          if(fPLbtn_enb)
          {
               SndState(0,fPLSndDv)
@@ -619,6 +661,7 @@ function loadanim_list(audio_id_in)
 }
 function fPLaudioInfo()
 {
+   Loading(document.getElementById("player_frame"));
     loadanim_list(tr);
     if(fPLCurrentSoundId === 10)
     {
@@ -653,7 +696,7 @@ function fPLaudioInfo()
     }
     if(fPLaudioState == 1)
     {
-        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration+"\nAudioReady:"+fPLaudioSndState+" Status: OK id:"+fPLCurrentSoundId);
+        fPl_debugMsg("NS:"+fPLaudioState+" AD:"+fPLaudioDuration+"\nAR:"+fPLaudioSndState+" ST: OK id:"+fPLCurrentSoundId);
          if(fPLbtn_enb)
          {
               SndState(1,fPLSndDv)
@@ -662,7 +705,7 @@ function fPLaudioInfo()
     }
     if(fPLaudioState == 2)
     {
-        fPl_debugMsg("NetworkState:"+fPLaudioState+" AudioDuration:"+fPLaudioDuration+"\nAudioReady:"+fPLaudioSndState+" Status:Loading..");
+        fPl_debugMsg("NT:"+fPLaudioState+" AD:"+fPLaudioDuration+"\nAR:"+fPLaudioSndState+" ST:Loading..");
          if(fPLbtn_enb)
          {
               SndState(0,fPLSndDv)
@@ -700,6 +743,100 @@ function VlBar(get_vol)
     fPaudioX.style.display = 'block';
     fPaudioX.style.width = (get_vol * 100)+'%';
     setTimeout("fPaudioF.style.display = 'none';",3000);
+}
+var c1,c2,c3,c4,c5,c6,c7,c8,c9;
+var rd_0 = 0;
+function Loading(id)
+{
+    console.log(rd_0);
+    rd_0++;
+    if(rd_0 > 9)
+    {
+        rd_0 = 0;
+    }
+    if(rd_0 == 0)
+    {
+        c1 = "#9090ff";c2 = "#010409";
+        c3 = "#010409";c4 = "#010409";
+        c5 = "#010409";c6 = "#010409";
+        c7 = "#010409";c8 = "#010409";
+        c9 = "#010409";
+    }
+    if(rd_0 == 1)
+    {
+        c1 = "#f00050";c2 = "#010409";
+        c3 = "#010409";c4 = "#010409";
+        c5 = "#010409";c6 = "#010409";
+        c7 = "#010409";c8 = "#010409";
+        c9 = "#010409";
+    }
+    if(rd_0 == 2)
+    {
+        c1 = "#f00050";c2 = "#f00050";
+        c3 = "#010409";c4 = "#010409";
+        c5 = "#010409";c6 = "#010409";
+        c7 = "#010409";c8 = "#010409";
+        c9 = "#010409";
+    }
+    if(rd_0 == 3)
+    {
+        c1 = "#f00050";c2 = "#f00050";
+        c3 = "#f00050";c4 = "#010409";
+        c5 = "#010409";c6 = "#010409";
+        c7 = "#010409";c8 = "#010409";
+        c9 = "#010409";
+    }
+    if(rd_0 == 4)
+    {
+        c1 = "#f00050";c2 = "#f00050";
+        c3 = "#f00050";c4 = "#f00050";
+        c5 = "#010409";c6 = "#010409";
+        c7 = "#010409";c8 = "#010409";
+        c9 = "#010409";
+    }
+    if(rd_0 == 5)
+    {
+        c1 = "#f00050";c2 = "#f00050";
+        c3 = "#f00050";c4 = "#f00050";
+        c5 = "#f00050";c6 = "#010409";
+        c7 = "#010409";c8 = "#010409";
+        c9 = "#010409";
+    }
+    if(rd_0 == 6)
+    {
+        c1 = "#f00050";c2 = "#f00050";
+        c3 = "#f00050";c4 = "#f00050";
+        c5 = "#f00050";c6 = "#f00050";
+        c7 = "#010409";c8 = "#010409";
+        c9 = "#010409";
+    }
+    if(rd_0 == 7)
+    {
+        c1 = "#f00050";c2 = "#f00050";
+        c3 = "#f00050";c4 = "#f00050";
+        c5 = "#f00050";c6 = "#f00050";
+        c7 = "#f00050";c8 = "#010409";
+        c9 = "#010409";
+    }
+    if(rd_0 == 8)
+    {
+        c1 = "#f00050";c2 = "#f00050";
+        c3 = "#f00050";c4 = "#f00050";
+        c5 = "#f00050";c6 = "#f00050";
+        c7 = "#f00050";c8 = "#f00050";
+        c9 = "#010409";
+    }
+    if(rd_0 == 9)
+    {
+        c1 = "#f00050";c2 = "#f00050";
+        c3 = "#f00050";c4 = "#f00050";
+        c5 = "#f00050";c6 = "#f00050";
+        c7 = "#f00050";c8 = "#f00050";
+        c9 = "#f00050";
+    }
+    id.style.transition = ".4s";
+    id.style.background = "linear-gradient(90deg,"+c1+" 0%,"+c2+"   8%,"+c3+","+c4+" 40%,"+c5+" 88%,"+c6+" 93%,"+c7+" 95%,"+c8+" 96%,"+c9+" 100%)";
+    console.log(id.style.background+"c1:"+c1+" c2"+c2+"\nc3:"+c3+" c4:"+c4+"\nc5:"+c5+" c6:"+c6+"\nc7:"+c7+" c8:"+c8+"\nc9:"+c9);
 }
 function autoplay()
 {
