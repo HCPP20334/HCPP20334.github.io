@@ -93,9 +93,12 @@ f_GButton.onclick = function()
 {
     f_GcoinCount= parseInt(f_GcoinCount)+ parseInt(f_Gboost);
     f_Gbuffer.innerHTML = "&#8383;Gcoins: " + f_GcoinCount;
-    localStorage.coins = f_GcoinCount;
+    if(f_GcoinCount > 10)
+    {
+        localStorage.coins = f_GcoinCount;
     checkCoins(f_GcoinCount);
     f_GcoinCount = localStorage.coins;
+    }
     
 }
 function checkCoins(count)
