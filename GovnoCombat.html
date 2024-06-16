@@ -1,0 +1,113 @@
+<html>
+    <title id="tl">GOVNO KOMBAT</title>
+<style>
+
+html
+{
+background-color:#010409;
+}
+ @font-face {
+        font-family: WR;
+        src: url("https://hcpp20334.github.io/fonts/WhiteRabbit.ttf");
+    }
+#c_val4Id
+{
+    font-family: 'WR';
+    font-size: 14px;
+    color:#90FFff;
+    
+}
+#Ginfo
+{
+    border-top:2px solid #9090ff;
+    border-bottom:2px solid #9090ff;
+    height: 42px;
+}
+.texts
+{
+    font-family: 'WR';
+    font-size: 14px;
+    color:#90FFff;
+    text-align: center;
+}
+.GovnoCombatFrame
+{
+background-color: transparent;
+width:300px;
+height: 600px;
+border:2px solid #9090ff;
+border-radius:4px;
+display: block;
+margin:auto;
+}
+.ClickButton
+{
+    width: 240px;
+    font-family: 'WR';
+    font-size: 40px;
+    height: 240px;
+    border:2px solid #9090ff;
+    border-radius:140px;
+    background-color: transparent;
+    display: block;
+    margin:auto;
+    transition: .4s;
+      &:not(:disabled) {
+        &:active,
+        &.active {
+            background-color: #9090ff;
+            font-size: 80px;
+        }
+        
+}
+
+.c_val4
+{
+    font-family: 'WR';
+    font-size: 30px;
+}
+</style>
+
+<div class="GovnoCombatFrame">
+<div id="Ginfo"><h1 class="c_val4" id="c_val4Id">5</h1></div>
+<p class="texts">
+КЛИКАЙ И ЗАРАБАТЫВАЙ КОЙНЫ!!
+НЕ УДАЛЯТЬ КУКИ БРАУЗЕРА!!
+ЕСЛИ ВЫ НЕ СОХРАНИЛИ ИХ!!
+</p>
+    <button class="ClickButton" id="ClickButtonId">&#128169;</button>
+    <h1 class="texts">
+GOVNO KOMBAT!! BUILD 0.2 BY HCPP!
+</h1>
+</div>
+<script>
+const f_GButton = document.getElementById("ClickButtonId");
+const f_Gbuffer = document.getElementById("c_val4Id");
+var f_GcoinCount = 0;
+var f_Gboost = 1;
+setTimeout("f_Gbuffer.innerHTML = '&#8383;Gcoins:'+localStorage.coins;f_GcoinCount = localStorage.coins;",10);
+f_GButton.onclick = function()
+{
+    f_GcoinCount= parseInt(f_GcoinCount)+ parseInt(f_Gboost);
+    f_Gbuffer.innerHTML = "&#8383;Gcoins: " + f_GcoinCount;
+    localStorage.coins = f_GcoinCount;
+    checkCoins(f_GcoinCount);
+    
+}
+function checkCoins(count)
+{
+    if(count >= 500)
+    {
+        f_Gboost = 50;
+    }
+    if(count >= 1000)
+    {
+        f_Gboost = 100;
+    }
+    if(count >= 5000)
+    {
+        f_Gboost = 300;
+    }
+}
+</script>
+</html>
