@@ -1,0 +1,234 @@
+<html>
+    <style>
+        @font-face {
+        font-family: WR;
+        src: url("https://hcpp20334.github.io/fonts/WhiteRabbit.ttf");
+    }
+    .title
+    {
+    font-family: 'WR';
+        font-size: 30px;
+        text-shadow: 1px 1px 1px #010409;
+        color: white;
+        transform: translate(10px,5px);
+    }
+    .textje
+    {
+        font-family: 'WR';
+        font-size: 18px;
+        text-shadow: 1px 1px 1px #010409;
+        color: white;
+        width: 300px;
+        transform: translateX(20px);
+    }
+    .loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  border: 4px solid #0000;
+  border-radius: 50%;
+  border-right-color: #ff0050;
+  animation: l15 1s infinite linear;
+  margin: auto;
+}
+.loader::before,
+.loader::after {    
+  content: "";
+  grid-area: 1/1;
+  margin: 2px;
+  border: inherit;
+  border-radius: 50%;
+  animation: l15 2s infinite;
+}
+.loader::after {
+  margin: 8px;
+  animation-duration: 3s;
+}
+@keyframes fill_btn
+{
+    11%{background: linear-gradient(90deg,#9090ff,#ff0050,#ff0050,#ff0050,#ff0050,#ff0050,#ff0050,#ff0050,#ff0050);transition: .4s;}
+    22%{background: linear-gradient(90deg,#9090ff,#9090ff,#ff0050,#ff0050,#ff0050,#ff0050,#ff0050,#ff0050,#ff0050);transition: .4s;}
+    33%{background: linear-gradient(90deg,#9090ff,#9090ff,#9090ff,#ff0050,#ff0050,#ff0050,#ff0050,#ff0050,#ff0050);transition: .4s;}
+    44%{background: linear-gradient(90deg,#9090ff,#9090ff,#9090ff,#9090ff,#ff0050,#ff0050,#ff0050,#ff0050,#ff0050);transition: .4s;}
+    55%{background: linear-gradient(90deg,#9090ff,#9090ff,#9090ff,#9090ff,#9090ff,#ff0050,#ff0050,#ff0050,#ff0050);transition: .4s;}
+    66%{background: linear-gradient(90deg,#9090ff,#9090ff,#9090ff,#9090ff,#9090ff,#9090ff,#9090ff,#ff0050,#ff0050);transition: .4s;}
+    77%{background: linear-gradient(90deg,#9090ff,#9090ff,#9090ff,#9090ff,#9090ff,#9090ff,#9090ff,#ff0050,#ff0050);transition: .4s;}
+    88%{background: linear-gradient(90deg,#9090ff,#9090ff,#9090ff,#9090ff,#9090ff,#9090ff,#9090ff,#9090ff,#ff0050);transition: .4s;}
+    99%{background: linear-gradient(90deg,#9090ff,#9090ff,#9090ff,#9090ff,#9090ff,#9090ff,#9090ff,#9090ff,#9090ff);transition: .4s;}
+}
+@keyframes l15{ 
+  100%{transform: rotate(1turn)}
+}
+    .sysje,#txl
+    {
+        font-family: 'WR';
+        font-size: 18px;
+        text-shadow: 1px 1px 1px #010409;
+        color: white;
+        width: 300px;
+        transform: translateX(20px);
+        
+    }
+    button
+    {
+        transition: .4s;
+        transform: translateX(20px);
+              &:not(:disabled) {
+        &:active,
+        &.active {
+            background-color: #9090ff;
+            font-size: 18px;
+        }}
+    }
+    
+    .sysinfo
+    {
+        box-shadow: 1px 1px 10px #010409;
+        height:400px;
+        width: 100%;
+        display: none;
+        border-left: 4px solid #ff0050;
+        border-radius: 4px;
+    }
+    .systitle
+    {
+        font-family: 'WR';
+        font-size: 25px;
+        text-shadow: 1px 1px 1px #010409;
+        color: white;
+        transform: translate(20px,20px);
+    }
+    #text1
+    {
+        font-family: 'WR';
+        font-size: 18px;
+        text-shadow: 1px 1px 1px #010409;
+        color: white;
+        transform: translate(20px,20px);
+    }
+    #download_frame
+    {
+        box-shadow: 1px 1px 10px #010409;
+        height:100px;
+        width: 100%;
+        display: none;
+        transform: translateY(-30px);
+        background: #1b1b1e;
+    }
+    .mainpage
+    {
+        box-shadow: 1px 1px 10px #010409;
+        background: linear-gradient(120deg,#ff0050,#ff1f2e);
+        height: 60px;
+    }
+    #loading
+    {
+        box-shadow: 1px 1px 10px #010409;
+        height:600px;
+        width: 100%;
+        display: block;
+        transform: translateY(-30px);
+        background: #1b1b1e;
+        font-family: 'WR';
+    }
+    .maincontent
+    {
+        box-shadow: 1px 1px 10px #010409;
+        height:600px;
+        width: 100%;
+        display: block;
+        transform: translateY(-30px);
+        background: #1b1b1e;
+        font-family: 'WR';
+        border-bottom-radius: 4px;
+        
+    }
+    .download_je
+    {
+        width: 100px;
+        height: 40px;
+        box-shadow: 1px 1px 10px #010409;
+        background: #ff0050;
+        display:inline-block;
+        font-size: 18px;
+        text-shadow: 1px 1px 1px #010409;
+        color: white;
+        border:none;
+        border-radius: 4px;
+                font-family: 'WR';
+    }
+    .sysinfobtn
+    {
+        width: 220px;
+        height: 40px;
+        box-shadow: 1px 1px 10px #010409;
+        background: #ff0050;
+        display: inline-block;
+        font-size: 18px;
+        text-shadow: 1px 1px 1px #010409;
+        color: white;
+        border:none;
+        border-radius: 4px;
+                font-family: 'WR';
+    }
+    body{width: 100%;height: 100%;background: #1b1b1e;display: block;}
+    html {background-color:#1b1b1e;}
+    </style>
+    <head><meta name="viewport" content="width=device-width, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body>
+<div class="mainpage">
+<p class="title">JE (x64)</p>
+</div>
+<div class="maincontent">
+    <br>
+<p class="textje">МОЩНЫЙ ИНСТРУМЕНТ ДЛЯ ПРОВЕРКИ ГЕЙМПАДОВ С СОВРЕМЕННЫМ ДИЗАЙНОМ!!</p>
+    <br>
+<p class="textje">  (СБОРКА 1.0.8.1)</p>
+<button class="download_je" id="download">СКАЧАТЬ</button>
+<button class="sysinfobtn" id="sysi">СИСТЕМНЫЕ ТРЕБОВАНИЯ</button>
+<div class="sysinfo" id="framesys">
+<p class="systitle">СИСТЕМНЫЕ ТРЕБОВАНИЯ</p>
+    <br>
+<p class="sysje">ЦП:i3-2100 или fx4100 или любой проц с поддержкой SSE4.2</p>
+<p class="sysje">ГПУ:Любая с 256 мб и с поддержкой OpenGL3.0</p>
+<p class="sysje">ОЗУ: 64 мб </p>
+<p class="sysje">ОС: WINDOWS 7 x64 или WINDOWS 10 x64</p>
+
+<button id="frameclose" class="sysinfobtn">ЗАКРЫТЬ</button>
+</div>
+    <div id="download_frame">
+    <p id="text1">ПОДГОТОВКА ФАЙЛА..</p>
+     <div class="loader"></div> 
+    </div>
+</div>
+</body>
+<script>
+    const JE_Info = document.getElementById("sysi");
+    const fJEsysteminfo = document.getElementById("framesys");
+    const fJEdowload = document.getElementById("download");
+    const JE_Infoclose = document.getElementById("frameclose");
+    const fJEDownloadFrame = document.getElementById("download_frame");
+    let clframe = false;
+    JE_Info.onclick = function()
+    {
+        fJEsysteminfo.style.display = "block";
+        cl();
+    }
+    fJEdowload.onclick = function()
+    {
+        fJEDownloadFrame.style.display = "block";
+        setTimeout("window.location.href = 'https://github.com/HCPP20334/JoyStickTest/releases/download/JE_x64_OpenGL/JE_x64_OpenGLv1.0.8SSE4.2cpp20_Release.zip';cl();",1000);
+        fJEsysteminfo.style.display = "none";
+        
+    }
+    JE_Infoclose.onclick = function()
+    {
+        fJEsysteminfo.style.display = "none";
+    }
+    function cl()
+    {
+        fJEDownloadFrame.style.display = "none";
+    }
+</script>
+</html>
