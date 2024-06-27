@@ -1,376 +1,145 @@
 <html>
 <style>
-@font-face
- {
-  font-family: 'WR';
-  src: url('https://hcpp20334.github.io/fonts/WhiteRabbit.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
 html
 {
-    background-image: url("./pictures/bk.png");
+    background: #1b1b1e;
 }
-@keyframes slide 
+        @font-face {
+        font-family: WR;
+        src: url("https://hcpp20334.github.io/fonts/WhiteRabbit.ttf");
+    }
+#webprojects,#links
 {
-    0%{opacity: 1%;}
-    100%{float:right;opacity:none;}
-}
-#Projects_menu
-{
-    width: 1000px;
-    height: 700px;
-    font-family: 'WR';
-    font-size: 20px;
-    box-shadow: 1px 0 0px 2px  black;
-    color: rgb(200,200,255);
-    background-color: rgb(19, 19, 26);
-    border-radius: 3%;
-    margin: auto;
-    display: block;
-}
-#Down_panel
-{
-    width: 40%;
-    height: 100%;
-    background-image: url("./pictures/modern-desktop-background-geometric-blue-design-vector_53876-135923.avif");
-    border-radius: 3%;
-    display: inline-block;
-    float: right;
-    transition: .4s;
-    animation: slide 1s;
-}
-#Ab_text
-{
-    font-family: 'WR';
-    font-size: 20px;
-    color:#1b1b1e;
-    background-color: #f0f0f0;
-    width: 300px;border: 2px solid #1b1b1e;
-}
-#Projects_name,#titleW
-{
-    font-family: 'WR';
-    font-size: 40px;
-    color: rgb(200,200,255);
-}
-#Projects_name1
-{
-    font-family: 'WR';
-    font-size: 40px;
-    color: rgb(170, 168, 185);
-}
-#info_proj
-{
-    font-family: 'WR';
-    font-size: 20px;
-    color: rgb(200,200,255);
-}
-#pPrev,#pNext
-{
-    background-color: antiquewhite;
-}
-#s_text
-{
-    color:#d0dbeb;
-}
-#s_textC
-{
-    color: #ebaaff;
-    font-size: 20px;
-   font-family: 'WR';
-   width: 60%;
-   border-radius: 6px;
-   border: none;
-   background-color: #010200;border-radius: 4px;
-}
-#s_btn,#s_btn1,#s_btnT0,#s_btnT1,#s_btnT2,#s_btnT3,#s_mobile_button,#s_mobile_buttonP,#s_mobile_buttonM
-{
-   display: inline;
-    background-color:aquamarine;
-   font-size: 20px;
-   font-family: 'WR';
-   color:rgb(14, 14, 14);
-   border: 2px solid #413f46;
-   border-radius: 4px; height: 40px;
-}
-#links
-{
-    display: inline;
-    margin: auto;
-
-}
-#s_tools
-{
-    width: 40%;
-    height: 100%;
-    background-image: url("./pictures/modern-desktop-background-geometric-blue-design-vector_53876-135923.avif");
-    border-radius: 3%;
+    background: #1b1b1e;
+    width: 100%;
+    height: 600px;
+    border-radius: 4px;
     display: none;
-    float: right;
+    margin: auto;
     transition: .4s;
-    animation: slide 1s; 
+}
+#mainprojects
+{
+    background: #1b1b1e;
+    width: 100%;
+    height: 630px;
+    border-radius: 4px;
+    display: block;
+    transition: .4s;
+    margin: auto;
+}
+iframe
+{
+    background: #1b1b1e;
+    width: 100%;
+    height: 630px;
+    border: none;
+}
+#title
+{
+    background: #9090ff;
+    width: 100%;
+    height: 30px;
+    box-shadow: 1px 1px 10px #010409;
+}
+
+#texttitle
+{
+    font-family: 'WR';
+    font-size: 22px;
+    color:white;
+    text-shadow: 1px 1px 1px #010409;
+    transform: translate(10px,6px);
+}
+#hcpptitle
+{
+    width:100%;
+    height: 74px;
+    background: #1b1b1e;
+    border: 2px solid #9090ff;
+    box-shadow: 1px 1px 10px #010409;
+    border-bottom: none;
+}
+#tHcpp
+{
+    font-family: 'WR';
+    font-size: 22px;
+    color:white;
+    text-shadow: 1px 1px 1px #010409;
+    transform: translate(10px,-20px);
+    display: inline-block;
+}
+.mNav
+{
+    font-family: 'WR';
+    font-size: 16px;
+    color:white;
+    text-shadow: 1px 1px 1px #010409;
+    display: inline-block;
+    background: #1b1b1e;
+    border: none;
+    height: 30px;
+    width: 160px;
+    transition: .4s;
+}
+.mNav:hover
+{
+    background: #9090ff;
+}
+#lnkbar
+{
+    width:100%;
+    height: 38px;
+}
+#menu_nav
+{
+    width:100%;
+    height: 30px;
+    border: 2px solid #9090ff;
+    border-radius: 4px;
 }
 </style>
-<br>
-<h1 id="titleW">HCPP Dev</h1>
-<br>
-<div id="Projects_menu">
-    <div id="Down_panel">
-    <h1 id="s_text">Download?</h1>
-    <br>
-    <br>
-    <p id="Projects_name1"></p>
-    <button id="s_btn">Source code</button>
-    <button id="s_btn1">exe file</button>
-    </div>
-    <div id="s_tools">
-        <h1 id="s_text">Web Projects</h1>
-        <button id="s_btnT0">PlayerJS</button>
-        <button id="s_btnT1">Writter</button>
-        <button id="s_btnT2">PassGen</button>
-        <button id="s_btnT3">GPUBench</button>
-    </div>
-    <br>
-<h1 id="Projects_name">Projects empty</h1>
-<br>
-
-<p id="info_proj">JavaScript Error!!</p>
-<p id="s_textC">A - Prev,D - next , E - hidden menu, T - select menu</p>
-<button id="s_mobile_button">Menu</button><button id="s_mobile_buttonP">+</button><button id="s_mobile_buttonM">-</button>
+    <head><meta name="viewport" content="width=device-width, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<div id="hcpptitle">
+<img src="https://hcpp20334.github.io/Pictures/amd.png" style="width:64px;height:64px;transform:translate(5px,5px);"><p id="tHcpp">HCPP STUDIO</p>
 </div>
-<p id="Ab_text">no text</p>
-<a href="https://github.com/hcpp20334" id="links"><img src="https://hcpp20334.github.io/Pictures/git.png" width="64" height="64"></a>
-<a href="https://youtube.com/HackerC" id="links"><img src="https://hcpp20334.github.io/Pictures/YT.jpg" width="64" height="64"></a>
-<a href="https://t.me/HCPPSTUDIO" id="links"><img src="https://hcpp20334.github.io/Pictures/TG.webp" width="64" height="64"></a>
-<a href="https://vk.com/hcpp20334" id="links"><img src="https://hcpp20334.github.io/Pictures/VK.webp" width="64" height="64"></a>
+<div id="menu_nav">
+<button id="op_proj" class="mNav">PROJECTS</button>
+<button id="op_webproj"class="mNav">WEB PROJECTS</button>
+
+</div>
+<div id="title">
+<p id="texttitle">///PROJECTS</p>
+</div>
+<div id="mainprojects">
+<iframe src="projects.html"></iframe>
+</div>
+
+<div id="webprojects">
+<iframe src="web.html"></iframe>
+</div>
+<div id="links">
+<iframe src="links.html"></iframe>
+</div>
 <script>
-    var fProjects = ['JEx64 Console app','JE x64 OpenGL app','JoyStickTest JavaFx App','PassGen','GPUBench'];
-    var fProjectsCount = 3;
-    var fC_point;
-    let fC_count = 0;
-    var fC_dwnPshow = 0;
-    //
-    var fC_btnPrev = document.getElementById('pPrev');
-    var fC_btnNext = document.getElementById('pNext');
-    var fC_prInfo = document.getElementById('info_proj');
-    var fC_prName = document.getElementById('Projects_name');
-    var fC_prN = document.getElementById('Projects_name1');
-    var fC_s_btn0 = document.getElementById('s_btn');
-    var fC_s_btn1 = document.getElementById('s_btn1');
-    var fC_dwnP = document.getElementById('Down_panel');
-    var fC_dtxt = document.getElementById('Ab_text');
-    var fC_key;
-    //
-    var fC_Tbtn0 = document.getElementById('s_btnT0');
-    var fC_Tbtn1 = document.getElementById('s_btnT1');
-    var fC_Tbtn2 = document.getElementById('s_btnT2');
-    var fC_Tbtn3 = document.getElementById('s_btnT3');
-    //
-    //
-    var fC_textBuffer_01 = "JE - JoyStick test and keyboard 2 Gamepad emu \nConsole App First Version JE!! Writtein C++20 on Visual Studio 2022 by HCPP. Build 1.1.6";
-    var fC_textBuffer_02 = "JE - JoyStick test and keyboard 2 Gamepad emu \n JEx64 OpenGL . New Interface!!Build 1.0 Writtein C++20 ";
-    var fC_textBuffer_03 = "JE - JoyStick test and keyboard 2 Gamepad emu \nJavaFX app Port JE on C++ Writtein on Java 11 by rpmaster2";
-    var fC_textBuffer_04 = "PassGen - Generator Hard Password!! Writtein C++11 Console App";
-    var fC_textBuffer_05 = "GPUBench - Test GPU Speed!! Console App";
-    //
-    var fC_toolsShow = 0;
-    var fC_tools = document.getElementById("s_tools");
-    var fC_mBtn = document.getElementById('s_mobile_button');
-    var fC_mBtnP = document.getElementById('s_mobile_buttonP');
-    var fC_mBtnM = document.getElementById('s_mobile_buttonM');
-    setTimeout("fC_started()",1);
-    
-    // fC_btnPrev.onclick = function()
-    // {
-    //     let fC_count;
-    //     fC_count++;
-    //     if(fC_count > 5)
-    function fC_started()
-    {
-        fC_count = 0;
-        fC_project(fC_count,fC_prName,fC_prInfo);
-        fC_project(fC_count,fC_prN,fC_prInfo);
-    }
-    //
-    fC_Tbtn0.onclick = function(){window.open("https://hcpp20334.github.io/playerJS.html");};
-    fC_Tbtn1.onclick = function(){window.open("https://hcpp20334.github.io/Notepad");};
-    fC_Tbtn2.onclick = function(){window.open("https://hcpp20334.github.io/PassGen");};
-    fC_Tbtn3.onclick = function(){window.open("https://hcpp20334.github.io/GPUBench");};
-    function fC_upD()
-    {
-        fC_dtxt.innerHTML = 'fC_count='+fC_count+'\n\r'+'fC_dwnPshow='+fC_dwnPshow+' fProjects[fC_count]='+fProjects[fC_count]+'fC_key+'+fC_key;
-    }
-    //     {
-    //         fC_count = 0;
-    //     }
-    //     fC_project(fC_count,fC_prName,fC_prInfo);
-    // }
-    // https://github.com/HCPP20334/JoyStickTest/releases/download/JE_1.1.5.3/JE_x64.1.1.5.4.exe
-    fC_s_btn1.onclick = function()
-    {
-        switch(fC_count)
-        {
-            case 0:
-                window.open("https://github.com/HCPP20334/JoyStickTest/releases/download/JE_1.1.5.3/JE_x64_cpp20.exe");
-            case 1:
-                window.open("https://github.com/HCPP20334/JoyStickTest/releases/download/JE_x64_OpenGL/JE_x64_OpenGLv1.0.8SSE4.2cpp20_Release.zip")
-            case 2: 
-                window.open("https://github.com/rpmaster2/JoyStickTest/archive/refs/heads/master.zip");
-            case 3: 
-                window.open("https://github.com/HCPP20334/PassGenerator/raw/main/PassGenerator.exe");
-            case 4: 
-                window.open("https://github.com/HCPP20334/GPUBench/raw/main/GPUParticlesBenchMark.exe");
-        }
-    }
-    fC_s_btn0.onclick = function()
-    {
-        switch(fC_count)
-        {
-            case 0:
-                window.open("https://github.com/HCPP20334/JoyStickTest/archive/refs/heads/main.zip");
-            case 1:
-                window.open("https://github.com/HCPP20334/JoyStickTest/archive/refs/heads/main.zip")
-            case 2: 
-                window.open("https://github.com/rpmaster2/JoyStickTest/archive/refs/heads/master.zip");
-            case 3: 
-                window.open("https://github.com/HCPP20334/PassGenerator/archive/refs/heads/main.zip");
-            case 4: 
-                window.open("https://github.com/HCPP20334/GPUBench/archive/refs/heads/main.zip");
-        }
-        }
-        
-    
-    fC_mBtnP.onclick = function()
-    {
-        fC_count++;
-        if(fC_count > 4)
-        {
-            fC_count = 0;
-        }
-        fC_project(fC_count,fC_prName,fC_prInfo);
-        fC_project(fC_count,fC_prN,fC_prInfo);
-    }
-    fC_mBtnM.onclick = function()
-    {
-        fC_count--;
-        if(fC_count < 0)
-        {
-            fC_count = 4;
-        }
-        fC_project(fC_count,fC_prName,fC_prInfo);
-        fC_project(fC_count,fC_prN,fC_prInfo);
-    }
-    fC_mBtn.onclick = function()
-    {
-        fC_toolsShow++;
-    console.log(fC_toolsShow);
-    if(fC_toolsShow > 1)
-    {
-        fC_toolsShow = 0;
-    }
-    if(fC_toolsShow)
-    {
-        fC_tools.style.display = 'inline-block';
-        fC_dwnP.style.display = 'none';
-    }
-    if(!fC_toolsShow)
-    {
-        fC_tools.style.display = 'none';
-        fC_dwnP.style.display = 'inline-block';
-    }
-    }
-    document.addEventListener('keydown', function(event) {
-        fC_key = event.code;
-  if(event.code == 'KeyT')
-  {
-    fC_toolsShow++;
-    console.log(fC_toolsShow);
-    if(fC_toolsShow > 1)
-    {
-        fC_toolsShow = 0;
-    }
-    if(fC_toolsShow)
-    {
-        fC_tools.style.display = 'inline-block';
-        fC_dwnP.style.display = 'none';
-    }
-    if(!fC_toolsShow)
-    {
-        fC_tools.style.display = 'none';
-        fC_dwnP.style.display = 'inline-block';
-    }
-  }
-  if(event.code == 'KeyE')
-  {
-    fC_dwnPshow++;
-    if(fC_dwnPshow > 1)
-    {
-        fC_dwnPshow = 0;
-    }
-    if(fC_dwnPshow)
-    {
-        fC_dwnP.style.display = 'inline-block';
-    }
-    if(!fC_dwnPshow)
-    {
-        fC_dwnP.style.display = 'none';
-    }
-  }
-  if(event.code == 'KeyD')
-  {
-        fC_count++;
-        if(fC_count > 4)
-        {
-            fC_count = 0;
-        }
-        fC_project(fC_count,fC_prName,fC_prInfo);
-        fC_project(fC_count,fC_prN,fC_prInfo);
-  }
-   if(event.code == 'KeyA')
-  {
-      
-        fC_count--;
-        if(fC_count < 0)
-        {
-            fC_count = 4;
-        }
-        fC_project(fC_count,fC_prName,fC_prInfo);
-        fC_project(fC_count,fC_prN,fC_prInfo);
-  }
-});
-    function fC_project(count_n,pr_n,pr_info)
-    {
-        if(count_n == 0)
-        {
-            pr_n.innerHTML = fProjects[count_n];
-            pr_info.innerHTML = fC_textBuffer_01;
-        }
-        
-        if(count_n == 1)
-        {
-            pr_n.innerHTML = fProjects[count_n];
-            pr_info.innerHTML = fC_textBuffer_02;
-        }
-        
-        if(count_n == 2)
-        {
-            pr_n.innerHTML = fProjects[count_n];
-            pr_info.innerHTML = fC_textBuffer_03;
-        }
-        
-        if(count_n == 3)
-        {
-            pr_n.innerHTML = fProjects[count_n];
-            pr_info.innerHTML = fC_textBuffer_04;
-        }
-        
-        if(count_n == 4)
-        {
-            pr_n.innerHTML = fProjects[count_n];
-            pr_info.innerHTML = fC_textBuffer_05;
-        }
-    }
-    </script>
+const fPbutton = document.getElementById("op_proj");
+const fWPbutton = document.getElementById("op_webproj");
+var fDbufTitle = document.getElementById("texttitle");
+var fFproj = document.getElementById("mainprojects");
+var fFWproj = document.getElementById("webprojects");
+//
+fPbutton.onclick = function()
+{
+    fFproj.style.display = "block";
+    fFWproj.style.display = "none";
+    fDbufTitle.innerHTML = "///PROJECTS";
+}
+fWPbutton.onclick = function()
+{
+    fFproj.style.display = "none";
+    fFWproj.style.display = "block";
+    fDbufTitle.innerHTML = "///WEB PROJECTS";
+}
+</script>
 </html>

@@ -1,0 +1,200 @@
+<html>
+<style>
+html
+{
+backgrond:#1b1b1e;
+}
+        @font-face {
+        font-family: WR;
+        src: url("https://hcpp20334.github.io/fonts/WhiteRabbit.ttf");
+    }
+#frame
+{
+    width:1380px;
+    height:600px ;
+   box-shadow: 1px 1px 10px #010409;
+   background: #1b1b1e;
+}
+#projText
+{
+font-family:'WR';
+font-size: 30px;
+color:white;
+text-shadow: 1px 1px 1px #010409;
+}
+#info
+{
+    font-family:'WR';
+font-size: 18px;
+color:#ffffff;
+text-shadow: 1px 1px 1px #010409;
+width: 80%;
+display: block;
+border-left: 4px solid #ff0050;
+transform: translate(10px,4px);
+}
+#download_exe,#download_zip
+{
+    background: #9090ff;
+    width: 160px;
+    height: 30px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 1px 1px 10px #010409;
+    display: inline-block;
+    font-family:'WR';
+font-size: 18px;
+color:white;
+text-shadow: 1px 1px 1px #010409;
+}
+iframe{
+    width: 320px;height: 300px;
+    display: block;
+    margin:auto ;
+}
+    #download_frame
+    {
+        box-shadow: 1px 1px 10px #010409;
+        height:120px;
+        width: 330px;
+        display: none;
+        transform: translateY(30px);
+        background: #1b1b1e;
+        position: absolute;
+    }
+    @keyframes l15{ 
+  100%{transform: rotate(1turn)}
+}
+    #text1
+    {
+        font-family: 'WR';
+        font-size: 18px;
+        text-shadow: 1px 1px 1px #010409;
+        color: white;
+        transform: translate(20px,20px);
+    }
+.prj
+{
+    width: 330px;
+    height: 600px;
+    background: #1b1b1e;
+    border-radius: 8px;
+    box-shadow: 1px 1px 10px #010409;
+    display: inline-block;
+    border:2px solid #9090ff;
+}
+    .loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  border: 4px solid #0000;
+  border-radius: 50%;
+  border-right-color: #ff0050;
+  animation: l15 1s infinite linear;
+  margin: auto;
+}
+.loader::before,
+.loader::after {    
+  content: "";
+  grid-area: 1/1;
+  margin: 2px;
+  border: inherit;
+  border-radius: 50%;
+  animation: l15 2s infinite;
+}
+.loader::after {
+  margin: 8px;
+  animation-duration: 3s;
+}
+</style>
+<div id="frame">
+    
+<div id="JE_PR" class="prj">
+<p id="projText">PLAYER JS 2.0.5</p>
+<iframe src="https://hcpp20334.github.io/playerJS.html"></iframe>
+<p id="info">
+ФОНК ПЛЕЕР В 
+БРАУЗЕРЕ
+</p>
+<button id="download_exe"onclick="javascript:jeGL();">ОТКРЫТЬ</button>
+</div>
+<div id="JE_PR" class="prj">
+<p id="projText">БЛОКНОТ</p>
+<iframe src="https://hcpp20334.github.io/Notepad"></iframe>
+<p id="info">
+ПРОСТО БЛОКНОТ В 
+БРАУЗЕРЕ
+</p>
+<button id="download_exe" onclick="javascript:jeFX();">ОТКРЫТЬ</button>
+</div>
+<div id="JE_PR" class="prj">
+<p id="projText">Electrik Calc JS</p>
+<iframe src="https://hcpp20334.github.io/calc.html"></iframe>
+<p id="info">
+КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА
+</p>
+<button id="download_exe"onclick="javascript:elc();">ОТКРЫТЬ</button>
+</div>
+<div id="JE_PR" class="prj">
+<p id="projText">PASSGEN</p>
+
+<iframe src="https://hcpp20334.github.io/PassGen"></iframe>
+<p id="info">
+ГЕНЕРАТОР ПАРОЛЕЙ
+</p>
+<button id="download_exe"onclick="javascript:psg();">ОТКРЫТЬ</button>
+</div>
+</div>
+<script>
+const fJEDownloadFrame = document.getElementById("download_frame");
+        
+function jeGL()
+{
+    
+        setTimeout("window.location.href = 'https://hcpp20334.github.io/playerJS.html';cl();",1000);
+        
+}
+function jeGLZ()
+{
+    setTimeout("window.location.href = 'https://hcpp20334.github.io/Notepad';cl();",1000);
+        
+}
+function jeFX()
+{
+    setTimeout("window.location.href = 'https://hcpp20334.github.io/Notepad';cl();",1000);
+        
+}
+function jeFXZ()
+{
+    fJEDownloadFrame.style.display = "block";
+        setTimeout("window.location.href = 'https://github.com/HCPP20334/JoyStickTest/releases/download/JE_x64_OpenGL/JE_x64_OpenGLv1.0.8SSE4.2cpp20_Release.zip';cl();",1000);
+        
+}
+function elc()
+{
+    setTimeout("window.location.href = 'https://hcpp20334.github.io/calc.html';cl();",1000);
+        
+}
+function elcZ()
+{
+    fJEDownloadFrame.style.display = "block";
+        setTimeout("window.location.href = 'https://github.com/HCPP20334/JoyStickTest/releases/download/JE_x64_OpenGL/JE_x64_OpenGLv1.0.8SSE4.2cpp20_Release.zip';cl();",1000);
+        
+}
+function psg()
+{
+    setTimeout("window.location.href = 'https://hcpp20334.github.io/PassGen';cl();",1000);
+        
+}
+function psgZ()
+{
+    fJEDownloadFrame.style.display = "block";
+        setTimeout("window.location.href = 'https://github.com/HCPP20334/JoyStickTest/releases/download/JE_x64_OpenGL/JE_x64_OpenGLv1.0.8SSE4.2cpp20_Release.zip';cl();",1000);
+        
+}
+function cl()
+{
+    fJEDownloadFrame.style.display = "none";
+}
+</script>
+</html>
