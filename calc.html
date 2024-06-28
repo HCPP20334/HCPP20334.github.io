@@ -34,7 +34,7 @@
         background-image: url("./Pictures/plati.jpg");
     background-color: #1b1b1e;
     }
-    #calc,#calc2,#calc3,#calc4,#reverb,#calc_amp,#calcR,#calcA,#tableBtn
+    #calc,#calc2,#calc3,#calc4,#reverb,#calc_amp,#calcR,#calcA,#tableBtn,#capcalc
     {
 color: #ffffff;
 font-size: 14px;
@@ -47,6 +47,7 @@ margin: auto;
 transform: translateX(10px);
 border-radius: 8px;
         text-shadow: 1px 1px 1px #010409;
+        border: 2px solid #9090ff;
 }
 button:hover{animation: fillbutton 1s;}
 .text,#amper,#volt,#watt,#rub_text
@@ -69,10 +70,10 @@ width: 200px;
 }
 .title_frame
 {
-transform: translateY(5px);
 color: #ffffff;
 font-size: 18px;
 font-family: 'WR';
+transform: translate(20px,8px);
 text-shadow: 1px 1px #010409;
 }
 #tx
@@ -88,11 +89,12 @@ text-shadow: 1px 1px #010409;
 {
 
 width: 100%;
-        height: 20px;
-        background: linear-gradient(90deg,#9090ff 0%,#010409 77%);
+        height: 30px;
+        background:#1b1c1e;
         display: block;
         margin:auto;
         box-shadow: 1px 1px 10px #010409;
+        transform: translate(0px,-12px);
 
 }
 .in_bar
@@ -119,12 +121,13 @@ border: none;
 box-shadow: 1px 1px 10px #010409;
 border-radius: 2px;
 animation: blur_a 1s;width: 320px;
+border: 2px solid #9090ff;
 transition:.4s;
 
 
 
 }
-#calc_frameW,#calc_frameA,#sec2dia,#calc_rub,#watt_sec,#calc_Rwire
+#calc_frameW,#calc_frameA,#sec2dia,#calc_rub,#watt_sec,#calc_Rwire,#capFrc
 {
 display:none;
 margin: auto;
@@ -135,6 +138,7 @@ box-shadow: 1px 1px 10px #010409;
 border-radius: 2px;
 animation: blur_a 1s;width: 320px;
 transition:.4s;
+border: 2px solid #9090ff;
 
 }
 #calc_Automat
@@ -146,9 +150,10 @@ border-radius: 4px;
 border: none;box-shadow: 1px 1px 10px #010409;
 animation: blur_a 1s;
 margin: auto;
+border: 2px solid #9090ff;
 width: 320px;
 }
-#watt2amp,#amp2watt,#sec2diaBtn,.btndw,#download,#srub2rrub,#sec2amp,#calcRbtn,#calcAutomatN
+#watt2amp,#amp2watt,#sec2diaBtn,.btndw,#download,#srub2rrub,#sec2amp,#calcRbtn,#calcAutomatN,#calcCapitulaor
 {
 font-family:'WR';
 font-size: 14px;
@@ -163,6 +168,7 @@ border: none;
 margin-top: 6px;
         text-shadow: 1px 1px 1px #010409;
 color:#ffffff;
+border: 2px solid #9090ff;
 
 
 }
@@ -334,6 +340,21 @@ box-shadow: 1px 1px 10px #010409;
 <button id="calc_amp" class="calcbtns">Расчитать</button>
 <button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
 </div>
+<div id="capFrc">
+    <div id="tle">
+    <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
+</div>
+<p class="text" id="capbuf">0</p>
+<br>
+<p class="text">Рабочий ток:<input id="capI" class="in_bar" type="comment"></p>
+<p class="text">Напряжение входное:<input id="capU1" class="in_bar" type="comment"></p>
+<p class="text">Напряжение нагрузки:<input id="capU2" class="in_bar" type="comment"></p>
+<br>
+<br>
+<br>
+<button id="capcalc" class="calcbtns">Расчитать</button>
+<button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
+</div>
 <div id="sec2dia">
     <div id="tle">
     <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
@@ -345,7 +366,7 @@ box-shadow: 1px 1px 10px #010409;
 <br>
 <br>
 <br>
-<button id="calc4">Расчитать</button>
+<button id="capcalc">Расчитать</button>
 <button id="calc2" onclick="javascript:loadMframe();">Назад</button>
 </div>
 <div id="calc_rub">
@@ -373,8 +394,9 @@ box-shadow: 1px 1px 10px #010409;
 <button id="sec2diaBtn"class="calcbtns">РАСЧЕТ СЕЧЕНИЯ</button>
 <button id="calcRbtn"class="calcbtns">РАСЧЕТ УДЕЛЬНОГО СОПРОТИВЛЕНИЯ ПРОВОДНИКА</button>
 <button id="calcAutomatN"class="calcbtns">РАСЧЕТ НОМИНАЛА АВТОМАТ</button>
+<button id="calcCapitulaor"class="calcbtns">РАСЧЕТ БАЛЛАСТНОГО КОНДЕНСАТОРА</button>
 <button id="download"class="calcbtns">СКАЧАТЬ ПК ВЕРСИЮ</button>
-<p id="tx">build 1.0.3</p>
+<p id="tx">build 1.0.4</p>
 
 </div>
 <p id="tx"onclick="javascript:window.location.href ='https://github.com/HCPP20334/JoyStickTest/releases/tag/JE_x64_OpenGL';" >СКАЧАЙ JE </p>
@@ -418,6 +440,34 @@ var fDataVolt = 0;
 var fDataSec = 0;
 var rand = 0 ;
 var r,g,b;
+//calc cap
+let C = 0;
+let U1 = 0;
+let U2 = 0;
+let Usum = 0;
+let It = 0;
+//decriptors
+const fCalcCap =  document.getElementById("capcalc");
+const fCapFrame =  document.getElementById("capFrc");
+var fCapBuf =  document.getElementById("capbuf");
+let fU1input =  document.getElementById("capU1");
+let fU2input =  document.getElementById("capU2");
+let fIinput =  document.getElementById("capI");
+const fCalcCapitulator =  document.getElementById("calcCapitulaor");
+fU1input.oninput = function(){U1 = this.value;}
+fU2input.oninput = function(){U2 = this.value;}
+fIinput.oninput = function(){It = this.value;}
+fCalcCapitulator.onclick = function()
+{
+    loadCframe();
+}
+fCalcCap.onclick = function()
+{
+    Usum = Math.sqrt((U1 * U1)-(U2 * U2));
+    C = parseInt(3200 * It / Usum);
+    fCapBuf.innerHTML = C +"мкф";
+}
+//
 setTimeout("document.documentElement.requestFullscreen();",100);
 fsecamp.onclick = function()
 {
@@ -571,6 +621,21 @@ function loadANframe()
  fCalcRubFrame.style.display = "none";
  fCalcSecFrame.style.display = "none";
  fCalcRframe.style.display = "none";
+ fCapFrame.style.display = "none";
+}
+function loadCframe()
+{
+    fCapFrame.style.display = "block";
+    imgTableFrame.style.display = "none";
+    fCANframe.style.display = "none";
+    fC_menu.style.display = "none";
+ fC_Aframe.style.display = "none";
+ fC_Wframe.style.display = "none";
+ fC_Sframe.style.display = "none";
+ document.getElementById("download_panel").style.display= "none";
+ fCalcRubFrame.style.display = "none";
+ fCalcSecFrame.style.display = "none";
+ fCalcRframe.style.display = "none";
 }
 //
 setTimeout("fReverbBtn.click();",1);
@@ -677,6 +742,7 @@ fCalcRubFrame.style.display = "none";
 fCalc = true;
 fCalcSecFrame.style.display = "none";
 fCANframe.style.display = "none";
+fCapFrame.style.display = "none";
 }
 function loadAframe()
 {
@@ -686,6 +752,7 @@ fC_Wframe.style.display = "none";
 fC_menu.style.display = "none";
 fC_Sframe.style.display = "none";
 fCalcRubFrame.style.display = "none";
+fCapFrame.style.display = "none";
 fCalc = false;
 fW = 0;
 fV = 0;
@@ -705,6 +772,7 @@ fW = 0;
 fV = 0;
 fCalcSecFrame.style.display = "none";
 fCANframe.style.display = "none";
+fCapFrame.style.display = "none";
 }
 function loadSAframe()
 {
@@ -717,6 +785,7 @@ document.getElementById("download_panel").style.display= "none";
 fCalcRubFrame.style.display = "none";
 fCalcSecFrame.style.display = "block";
 fCANframe.style.display = "none";
+fCapFrame.style.display = "none";
 }
 function loadRframe()
 {
@@ -729,6 +798,7 @@ document.getElementById("download_panel").style.display= "none";
 fCalcRubFrame.style.display = "block";
 fCalcSecFrame.style.display = "none";
 fCANframe.style.display = "none";
+fCapFrame.style.display = "none";
 }
 function loadMframe()
 {
@@ -742,6 +812,7 @@ fCalcRubFrame.style.display = "none";
 fCalcSecFrame.style.display = "none";
 fCalcRframe.style.display = "none";
 fCANframe.style.display = "none";
+fCapFrame.style.display = "none";
 }
 function loadPwireFrame()
 {
@@ -755,6 +826,7 @@ function loadPwireFrame()
  fCalcSecFrame.style.display = "none";
  fCalcRframe.style.display = "block";
  fCANframe.style.display = "none";
+ fCapFrame.style.display = "none";
 }
 
 </script>
