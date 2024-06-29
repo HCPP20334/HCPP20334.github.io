@@ -42,7 +42,17 @@ iframe
     height: 30px;
     box-shadow: 1px 1px 10px #010409;
 }
-
+#title2
+{
+    background: #9090ff;
+    width: 100%;
+    height: 30px;
+    display: block;
+    margin: auto;
+    box-shadow: 1px 1px 10px #010409;
+    transform: translate(0px,-30px);
+    
+}
 #texttitle
 {
     font-family: 'WR';
@@ -68,6 +78,18 @@ iframe
     text-shadow: 1px 1px 1px #010409;
     transform: translate(10px,-20px);
     display: inline-block;
+}
+#tontext
+{
+    font-family: 'WR';
+    font-size: 20px;
+    width: 170px;
+    color:#00f0ff;
+    text-shadow: 1px 1px 4px #010409;
+    display: inline-block;
+    text-align: center;
+    margin: auto;
+    transform: translate(20px,-20px);
 }
 .mNav
 {
@@ -98,6 +120,141 @@ iframe
     border: 2px solid #9090ff;
     border-radius: 4px;
 }
+#donate
+{
+    display: none;
+    max-width: 428px;
+    width: 100%;
+    height: 6000px;
+    border: 2px solid #9090ff;
+    border-radius: 4px;
+    box-shadow: 1px 1px 10px #010409;
+    background: #1b1b1e;
+    border-top: none;
+    position: absolute;
+}
+#imgton
+{
+    display: inline-block;
+    margin: auto;
+    border: 2px solid #9090ff;
+    box-shadow: 1px 1px 10px #010409;
+    transform: translate(10px,30px);
+}
+
+#ton
+{
+    width: 100%;
+    height: 600px;
+    border: 2px solid #010409;
+    border-radius: 4px;
+    box-shadow: 1px 1px 10px #010409;
+    background: #1b1b1e;
+    display: block;
+    margin: auto;
+    border-top:none;
+}
+#toncopy
+{
+    width: 180px;
+    height: 40px;
+    border: 2px solid #9090ff;
+    border-radius: 8px;
+    box-shadow: 1px 1px 10px #010409;
+    background: #1b1b1e;
+    font-family: 'WR';
+    font-size: 14px;
+    color:white;
+    display: table;
+    text-shadow: 1px 1px 1px #010409;
+    transform: translate(50px,60px);
+}
+#cl
+{
+    background: #ff0050;
+    font-family: 'WR';
+    font-size: 14px;
+    color:white;
+    width: 30px;
+    height: 31px;
+    display: none;
+    position: absolute;
+    border: none;
+    transform: translate(330px,-38px);
+}
+#back
+{
+    background: #ff0050;
+    font-family: 'WR';
+    font-size: 20px;
+    color:white;
+    width: 30px;
+    height: 31px;
+    display: inline-block;
+    position: absolute;
+    border-radius: 2px;
+    border: none;
+    transform: translate(5px,5px)rotate(270deg);
+}
+#controls
+{
+    background: #1b1b1e;
+    border: 2px solid #9090ff;
+    box-shadow: 1px 1px 10px #010409;
+    height: 40px;
+    width:95%;
+    display: none;
+    position: absolute;
+    transform: translateY(300px);
+}
+#load,#loaddata
+{
+    font-family: 'WR';
+    font-size: 40px;
+    color:white;
+    text-align: center;
+}
+#Donatebtn
+{
+    width: 180px;
+    height: 40px;
+    border: 2px solid #9090ff;
+    border-radius: 8px;
+    box-shadow: 1px 1px 10px #010409;
+    background: #1b1b1e;
+    font-family: 'WR';
+    font-size: 16px;
+    color:white;
+    display: table;
+    text-shadow: 1px 1px 1px #010409;
+    transform: translate(50px,60px);
+}
+    .loader {
+  width: 120px;
+  aspect-ratio: 1;
+  display: grid;
+  border: 4px solid #0000;
+  border-radius: 50%;
+  border-right-color: #ff0050;
+  animation: l15 1s infinite linear;
+  margin: auto;
+}
+.loader::before,
+.loader::after {    
+  content: "";
+  grid-area: 1/1;
+  margin: 2px;
+  border: inherit;
+  border-radius: 50%;
+  animation: l15 2s infinite;
+}
+.loader::after {
+  margin: 8px;
+  animation-duration: 3s;
+}
+@keyframes l15{ 
+  100%{transform: rotate(1turn)}
+}
 </style>
     <head><meta name="viewport" content="width=device-width, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
@@ -122,13 +279,53 @@ iframe
 <div id="links">
 <iframe src="links.html"></iframe>
 </div>
+<div id="ton">
+    <div id="title2">
+<p id="texttitle">///DONATE</p><button id="cl"onclick="javascript:document.getElementById('ton').style.display='none';">X</button>
+</div>
+    <img id="imgton" src="ton.jpg" width="128"height="128">
+<p id="tontext">ПОДДЕРЖИ АВТОРА ЗАКИНЬ TON</p>
+<button id="toncopy">СКОПИРОВАТЬ АДРЕС</button>
+<button id="Donatebtn">DONATE</button>
+<div id="controls">
+<button id="back">&#9650;</button>
+</div>
+</div>
 <script>
 const fPbutton = document.getElementById("op_proj");
 const fWPbutton = document.getElementById("op_webproj");
 var fDbufTitle = document.getElementById("texttitle");
 var fFproj = document.getElementById("mainprojects");
 var fFWproj = document.getElementById("webprojects");
-//
+const fTitle1  = document.getElementById("title");
+const fTitle2  = document.getElementById("title2");
+const fTONbutton = document.getElementById("toncopy");
+const fDcontrols = document.getElementById("controls");
+const fMbarFrame  = document.getElementById("menu_nav");
+const fLDbuffer   = document.getElementById("loaddata");
+const fMainTframe   = document.getElementById("hcpptitle");
+const fDONATEbutton = document.getElementById("Donatebtn");
+const fDONATEClosebutton = document.getElementById("back");
+const ton_frame = document.getElementById("ton");
+var frame;
+const LoadData = document.getElementById("loadingfr");
+const ton_key = "UQD7Vo2nbHXif_Tv_iXg5Qb7peKqOR04AW2wceVsjBfo8C0w";
+const donate_url = "https://donationalerts.com/r/hcpp";
+
+fDONATEClosebutton.onclick = function()
+{
+    frame.style.display="none";
+    ton_frame.removeChild(frame);
+    fDcontrols.style.display = "none";
+}
+fTONbutton.onclick = function()
+{
+navigator.clipboard.writeText(ton_key).then();
+}
+fDONATEbutton.onclick = function()
+{
+    CreateFrame(donate_url);
+}
 fPbutton.onclick = function()
 {
     fFproj.style.display = "block";
@@ -141,5 +338,26 @@ fWPbutton.onclick = function()
     fFWproj.style.display = "block";
     fDbufTitle.innerHTML = "///WEB PROJECTS";
 }
+
+function CreateFrame(url)
+{
+     frame = document.createElement("iframe");
+    frame.style.display = "block";
+    frame.style.margin = "auto";
+    frame.style.border="2px solid #9090ff";
+    ton_frame.appendChild(frame);
+    frame.src = url;
+    frame.style.width = "98%";
+    frame.style.height = "550px";
+    frame.style.position = "absolute";
+    frame.style.transform="translateY(-250px)";
+    document.getElementById("title").style.display = "none";
+    fDcontrols.style.width="98%";
+    document.getElementById("title").style.width="98%";
+    fDcontrols.style.display = "block";
+    
+    
+}
+
 </script>
 </html>
