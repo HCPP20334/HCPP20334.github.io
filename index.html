@@ -53,6 +53,32 @@ iframe
     transform: translate(0px,-30px);
     
 }
+#title3
+{
+    background: #1b1b1e;
+    width: 100%;
+    height: 30px;
+    display: block;
+    margin: auto;
+    box-shadow: 1px 1px 10px #010409;
+    transform: translate(3px,-30px);
+    border: 2px solid #9090ff;
+    border-radius: 4px;
+}
+#control
+{
+    font-family: 'WR';
+    font-size: 60px;
+    color:white;
+    text-shadow: 1px 1px 1px #010409;
+}
+#control2
+{
+    font-family: 'WR';
+    font-size: 60px;
+    color:white;
+    text-shadow: 1px 1px 1px #010409;
+}
 #texttitle
 {
     font-family: 'WR';
@@ -60,6 +86,14 @@ iframe
     color:white;
     text-shadow: 1px 1px 1px #010409;
     transform: translate(10px,6px);
+}
+#texttitle3
+{
+    font-family: 'WR';
+    font-size: 22px;
+    color:white;
+    text-shadow: 1px 1px 1px #010409;
+    transform: translate(10px,-8px);
 }
 #hcpptitle
 {
@@ -207,6 +241,7 @@ iframe
     position: absolute;
     transform: translateY(300px);
 }
+
 #load,#loaddata
 {
     font-family: 'WR';
@@ -270,11 +305,14 @@ iframe
 <p id="texttitle">///PROJECTS</p>
 </div>
 <div id="mainprojects">
-<iframe src="projects.html"></iframe>
-</div>
+<iframe src="projects.html" id="prjif"></iframe>
 
+</div>
 <div id="webprojects">
-<iframe src="web.html"></iframe>
+<iframe src="web.html" id="wb"></iframe>
+</div>
+<div id="title3">
+<p id="texttitle3">A,B ПЕРЕКЛЮЧЕНИЕ ПРОЕКТОВ</p>
 </div>
 <div id="links">
 <iframe src="links.html"></iframe>
@@ -308,10 +346,36 @@ const fDONATEbutton = document.getElementById("Donatebtn");
 const fDONATEClosebutton = document.getElementById("back");
 const ton_frame = document.getElementById("ton");
 var frame;
+
 const LoadData = document.getElementById("loadingfr");
 const ton_key = "UQD7Vo2nbHXif_Tv_iXg5Qb7peKqOR04AW2wceVsjBfo8C0w";
 const donate_url = "https://donationalerts.com/r/hcpp";
+const fIfProj = document.getElementById("prjif");
+let dX = 0;
+let fIarrayX = [0,330,660,990];
 
+//fIfProj.contentWindow.scrollTo(400,0);
+document.addEventListener('keydown', function(event) {
+        fC_key = event.code;
+  if(event.code == 'KeyA')
+  {
+      dX--;
+      if(dX < 0)
+      {
+          dX = 0;
+      }
+      fIfProj.contentWindow.scrollTo(fIarrayX[dX],0);
+  }
+  if(event.code == 'KeyS')
+  {
+      dX++;
+      if(dX > 4)
+      {
+          dX = 0;
+      }
+      fIfProj.contentWindow.scrollTo(fIfRamePos[dX],0);
+  }
+});
 fDONATEClosebutton.onclick = function()
 {
     frame.style.display="none";
