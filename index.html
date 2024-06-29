@@ -8,6 +8,10 @@ html
         font-family: WR;
         src: url("https://hcpp20334.github.io/fonts/WhiteRabbit.ttf");
     }
+button
+{
+    cursor: pointer;
+}
 #webprojects,#links
 {
     background: #1b1b1e;
@@ -351,6 +355,7 @@ const LoadData = document.getElementById("loadingfr");
 const ton_key = "UQD7Vo2nbHXif_Tv_iXg5Qb7peKqOR04AW2wceVsjBfo8C0w";
 const donate_url = "https://donationalerts.com/r/hcpp";
 const fIfProj = document.getElementById("prjif");
+const fIfWProj = document.getElementById("prjif");
 let dX = 0;
 let fIarrayX = [0,330,660,990];
 
@@ -365,6 +370,7 @@ document.addEventListener('keydown', function(event) {
           dX = 0;
       }
       fIfProj.contentWindow.scrollTo(fIarrayX[dX],0);
+      fIfWProj.contentWindow.scrollTo(fIarrayX[dX],0);
   }
   if(event.code == 'KeyS')
   {
@@ -374,6 +380,7 @@ document.addEventListener('keydown', function(event) {
           dX = 0;
       }
       fIfProj.contentWindow.scrollTo(fIfRamePos[dX],0);
+      fIfWProj.contentWindow.scrollTo(fIarrayX[dX],0);
   }
 });
 fDONATEClosebutton.onclick = function()
@@ -395,12 +402,14 @@ fPbutton.onclick = function()
     fFproj.style.display = "block";
     fFWproj.style.display = "none";
     fDbufTitle.innerHTML = "///PROJECTS";
+    dX = 0;
 }
 fWPbutton.onclick = function()
 {
     fFproj.style.display = "none";
     fFWproj.style.display = "block";
     fDbufTitle.innerHTML = "///WEB PROJECTS";
+    dX = 0;
 }
 
 function CreateFrame(url)
