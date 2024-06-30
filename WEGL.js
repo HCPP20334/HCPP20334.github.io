@@ -1,0 +1,123 @@
+function setup()
+{
+    let canvas = createCanvas(300,600,WEBGL);
+    
+    canvas.style("display","block");
+    canvas.style("margin","auto");
+    canvas.style("width","100%");
+    canvas.style("height","100%");
+    
+    
+}
+function draw()
+{
+    let rd = 100;
+    let x,y;
+    x++;
+    y++;
+    let flX = sin(frameCount * 0.04) * 20;
+    let flY = sin(frameCount * 0.04) * 20;
+    background('rgba(255,255,255, 0)');
+    ambientLight(0,255/4,0);
+    directionalLight(0,0,255,-1,0,0);
+    
+   // spotLight(0, 0, 255, flX, flY,250);
+    pointLight(0, 0, 255, flX, flY,250);
+push();
+translate(flX,flY);
+rotateX(frameCount / 100);
+ambientMaterial(250);
+specularMaterial (250);
+box(50,50,50,50);
+translate(flX,flY);
+rotateZ(frameCount / rd);
+rotateX(frameCount / rd);
+ambientMaterial(250);
+specularMaterial (250);
+box(50,50,50,50);
+translate(flX,flY);
+rotateZ(frameCount / rd);
+rotateX(frameCount / rd);
+ambientMaterial(250);
+specularMaterial (250);
+box(50,50,50,50);
+translate(flX,flY);
+rotateZ(frameCount / rd);
+rotateX(frameCount / rd);
+ambientMaterial(250);
+specularMaterial (250);
+box(50,50,50,50);
+translate(flX,flY);
+rotateZ(frameCount / rd);
+rotateX(frameCount / rd);
+ambientMaterial(250);
+specularMaterial (250);
+box(50,50,50,50);
+translate(flX,flY);
+rotateZ(frameCount / rd);
+rotateX(frameCount / rd);
+ambientMaterial(250);
+specularMaterial (250);
+box(50,50,50,50);
+translate(flX,flY);
+rotateZ(frameCount / rd);
+rotateX(frameCount / rd);
+ambientMaterial(250);
+specularMaterial (250);
+box(50,50,50,50);
+translate(flX,flY);
+rotateZ(frameCount / rd);
+rotateX(frameCount / rd);
+ambientMaterial(250);
+specularMaterial (250);
+box(50,50,50,50);
+translate(flX,flY);
+rotateZ(frameCount / rd);
+rotateX(frameCount / rd);
+ambientMaterial(250);
+specularMaterial (250);
+box(50,50,50,50);
+translate(flX,flY);
+rotateZ(frameCount / rd);
+rotateX(frameCount / rd);
+ambientMaterial(250);
+specularMaterial (250);
+box(50,50,50,50);
+translate(flX,flY);
+rotateZ(frameCount / rd);
+rotateX(frameCount / rd);
+ambientMaterial(250);
+specularMaterial (250);
+box(50,50,50,50);
+translate(flX,flY);
+rotateZ(frameCount / rd);
+rotateX(frameCount / rd);
+ambientMaterial(250);
+specularMaterial (250);
+box(50,50,50,50);
+translate(flX,flY);
+rotateZ(frameCount / rd);
+rotateX(frameCount / rd);
+ambientMaterial(250);
+specularMaterial (250);
+box(50,50,50,50);
+translate(flX,flY);
+rotateZ(frameCount / rd);
+rotateX(frameCount / rd);
+ambientMaterial(250);
+specularMaterial (250);
+box(50,50,50,50);
+translate(flX,flY);
+rotateZ(frameCount / rd);
+rotateX(frameCount / rd);
+ambientMaterial(250);
+specularMaterial (250);
+box(50,50,50,50);
+translate(flX,flY);
+rotateZ(frameCount / rd);
+rotateX(frameCount / rd);
+ambientMaterial(250);
+specularMaterial (250);
+box(50,50,50,50);
+
+}

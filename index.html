@@ -14,27 +14,29 @@ button
 }
 #webprojects,#links
 {
-    background: #1b1b1e;
+    background: transparent;
     width: 100%;
     height: 600px;
     border-radius: 4px;
     display: none;
     margin: auto;
     transition: .4s;
+    position: relative;
 }
 #mainprojects
 {
-    background: #1b1b1e;
+    background: transparent;
     width: 100%;
     height: 630px;
     border-radius: 4px;
     display: block;
     transition: .4s;
+    position: relative;
     margin: auto;
 }
 iframe
 {
-    background: #1b1b1e;
+    background: transparent;
     width: 100%;
     height: 630px;
     border: none;
@@ -187,9 +189,10 @@ iframe
     border: 2px solid #010409;
     border-radius: 4px;
     box-shadow: 1px 1px 10px #010409;
-    background: #1b1b1e;
+    background: transparent;
     display: block;
     margin: auto;
+    position: absolute;
     border-top:none;
 }
 #toncopy
@@ -233,6 +236,14 @@ iframe
     border-radius: 2px;
     border: none;
     transform: translate(5px,5px)rotate(270deg);
+}
+canvas
+{
+      position:absolute;
+      left:0;
+      top:0;
+      z-index:-1;
+    
 }
 #controls
 {
@@ -296,7 +307,11 @@ iframe
 }
 </style>
     <head><meta name="viewport" content="width=device-width, user-scalable=no">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script async="" src="https://hcpp20334.github.io/Engine/tag.js"></script><script src="https://hcpp20334.github.io/Engine/p5.js"></script>
+
+</head>
+<script async="" src="WEGL.js"></script>
 <div id="hcpptitle">
 <img src="https://hcpp20334.github.io/Pictures/amd.png" style="width:64px;height:64px;transform:translate(5px,5px);"><p id="tHcpp">HCPP STUDIO</p>
 </div>
@@ -316,12 +331,13 @@ iframe
 <iframe src="web.html" id="wb"></iframe>
 </div>
 <div id="title3">
-<p id="texttitle3">A,B ПЕРЕКЛЮЧЕНИЕ ПРОЕКТОВ</p>
+<p id="texttitle3" onclick="javascript:sndState();">A,B ПЕРЕКЛЮЧЕНИЕ ПРОЕКТОВ</p>
 </div>
 <div id="links">
 <iframe src="links.html"></iframe>
 </div>
 <div id="ton">
+
     <div id="title2">
 <p id="texttitle">///DONATE</p><button id="cl"onclick="javascript:document.getElementById('ton').style.display='none';">X</button>
 </div>
@@ -411,7 +427,7 @@ fWPbutton.onclick = function()
     fDbufTitle.innerHTML = "///WEB PROJECTS";
     dX = 0;
 }
-
+let styleData;
 function CreateFrame(url)
 {
      frame = document.createElement("iframe");
@@ -424,6 +440,7 @@ function CreateFrame(url)
     frame.style.height = "550px";
     frame.style.position = "absolute";
     frame.style.transform="translateY(-250px)";
+    styleData = frame.style.background;
     document.getElementById("title").style.display = "none";
     fDcontrols.style.width="98%";
     document.getElementById("title").style.width="98%";
@@ -431,6 +448,5 @@ function CreateFrame(url)
     
     
 }
-
 </script>
 </html>
