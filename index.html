@@ -263,8 +263,23 @@ canvas
     font-size: 40px;
     color:white;
     text-align: center;
+    
 }
-#Donatebtn
+#WebGL_data
+{
+    position:absolute;
+      left:50;
+      top:1300;
+      z-index:-1;
+      font-family: 'WR';
+    font-size: 18px;
+    color:white;
+    background: #9090ff;
+    text-align: center;
+    width:290px;
+    
+}
+#Donatebtn,#blumbtn
 {
     width: 180px;
     height: 40px;
@@ -344,12 +359,15 @@ canvas
     <img id="imgton" src="ton.jpg" width="128"height="128">
 <p id="tontext">ПОДДЕРЖИ АВТОРА ЗАКИНЬ TON</p>
 <button id="toncopy">СКОПИРОВАТЬ АДРЕС</button>
+<button id="blumbtn" onclick="javascript:window.location.href='tg:resolve?domain=BlumCryptoBot&appname=app&startapp=ref_OGY3YUbbem';">BLUM</button>
 <button id="Donatebtn">DONATE</button>
 <div id="controls">
 <button id="back">&#9650;</button>
 </div>
 </div>
+<p id="WebGL_data">WebGL loading..</p>
 <script>
+let debugData = document.getElementById("WebGL_data");
 const fPbutton = document.getElementById("op_proj");
 const fWPbutton = document.getElementById("op_webproj");
 var fDbufTitle = document.getElementById("texttitle");
