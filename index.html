@@ -15,14 +15,13 @@ button
 }
 #webprojects,#links
 {
-    background: transparent;
-    width: 100%;
-    height: 100%;
+    background: rgba(19,19,19,0.5);
+    width: 360px;
+    height: 320px;
     border-radius: 4px;
     display: none;
-    margin: auto;
     transition: .4s;
-    transform: translateY(40px);
+    margin: auto;
 }
 #mainprojects
 {
@@ -41,6 +40,7 @@ iframe
     width: 100%;
     height: 100%;
     border: none;
+    border-radius: 8px;
 }
 #title
 {
@@ -310,14 +310,31 @@ canvas
     width: 100%;height: 100%;
     display: none;
 }
-.prj,.prjw
+.prjbw
 {
     border-radius: 8px;
-    background: rgba(19,19,19,0.5);
-    width: 98%;height: 220px;
-    display: table;
+    background: rgba(40,155,99,0.8);
+    width: 180px;height: 32px;
+    display: block;
     margin: auto;
-    transform: translateY(-150px);
+    translate: transform(-50px,60%);
+    border: none;
+    font-family: 'WR';
+    color:white;
+}
+.postscl
+{
+    border-radius: 8px;
+    background: rgba(40,155,99,0.8);
+    width: 180px;height: 32px;
+    display: block;
+    margin: auto;
+    border: none;
+    font-family: 'WR';
+    color:white;
+    position: absolute;
+    left:100;
+    bottom:30;
 }
 .tProjects
 {
@@ -327,7 +344,7 @@ canvas
     background:#feff00; 
     box-shadow: 1px 1px 10px #010409;
 }
-.prjb,.prjbw
+.prjb
 {
     width: 140px;
     height: 30px;
@@ -384,7 +401,15 @@ canvas
     border: none;
     transform: translate(5px,300px) rotateZ(270deg);
 }
-
+#statie
+{
+    background: rgba(19,19,19,0.5);
+    display: none;
+    margin: auto;
+    width: 360px;
+    border-radius: 8px;
+    height: 500px;
+}
 </style>
     <head><meta name="viewport" content="width=device-width, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -424,7 +449,8 @@ canvas
 <p id="tPrInf">
 JE -POWERED GAMEPAD TESTER (C++20)
 </p>
-<button class="prjb" onclick="javascript:jeGL();">СКАЧАТЬ</button>
+<br>
+<button class="prjb" onclick="javascript:window.location.href ='https://github.com/HCPP20334/JoyStickTest/releases/download/JE_x64_OpenGL/JE_x64_OpenGLv1.0.8SSE4.2cpp20_Release.zip';">СКАЧАТЬ</button>
 <button class="prjb" id="prjclose">ЗАКРЫТЬ</button>
 </div>
 <br>
@@ -433,7 +459,7 @@ JE -POWERED GAMEPAD TESTER (C++20)
 <p id="tPrInf">
 POWERED CALCULATOR FOR ELECTRIK(C++20)
 </p>
-<button class="prjb" onclick="javascript:elc();">СКАЧАТЬ</button>
+<button class="prjb" onclick="javascript:window.location.href = 'https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Electik.Calc.0.4.pre.alpha.C++20.zip';">СКАЧАТЬ</button>
 <button class="prjb"onclick="javascript:fPbuttonClose.click();">ЗАКРЫТЬ</button>
 </div>
 <br>
@@ -442,17 +468,34 @@ POWERED CALCULATOR FOR ELECTRIK(C++20)
 <p id="tPrInf">
 CALCULATOR FOR ELECTRIK DIMA XP(C#)
 </p>
-<button class="prjb" onclick="javascript:clc();">СКАЧАТЬ</button>
+<button class="prjb" onclick="javascript:window.location.href='http://dimaxp.sytes.net/kalkulyator-watt-v-amper-i-obratno';">СКАЧАТЬ</button>
+<button class="prjb"onclick="javascript:fPbuttonClose.click();">ЗАКРЫТЬ</button></div>
+<div id="p1" class="prj">
+<p id="tPr">JE JavaFX(x64)_OpenGL3.0</p>
+<p id="tPrInf">
+JE -POWERED GAMEPAD TESTER (JDK 17)
+</p>
+<button class="prjb" onclick="javascript:window.location.href = 'https://github.com/rpmaster2/JoyStickTest/releases/download/1.0/Archive.zip';">СКАЧАТЬ</button>
 <button class="prjb"onclick="javascript:fPbuttonClose.click();">ЗАКРЫТЬ</button></div>
 </div>
 <div id="webprojects">
-<div id="p1w" class="prjw">
-<p id="tPrw">JE JavaFX(x64)_OpenGL3.0</p>
-<p id="tPrInfw">
-JE -POWERED GAMEPAD TESTER (JDK 17)
-</p>
-<button class="prjbw" onclick="javascript:jeFX();">СКАЧАТЬ</button>
-<button class="prjbw" id="prjclosew">ЗАКРЫТЬ</button></div>
+    <br>
+<br>
+<br>
+<br>
+<button class="prjbw" onclick="javascript:window.location.href = 'https://hcpp20334.github.io/playerJS.html';">PLAYERJS</button>
+<br>
+<button class="prjbw" onclick="javascript:window.location.href = 'https://hcpp20334.github.io/calc.html';">ELECTRIK CALC</button>
+<br>
+<button class="prjbw" onclick="javascript:window.location.href = 'https://hcpp20334.github.io/GPUBench';">GPUBench</button>
+<br>
+<button class="prjbw" onclick="javascript:window.location.href='https://hcpp20334.github.io/PassGen';">PassGen</button>
+<br>
+<button class="prjbw" id="prjclosew">ЗАКРЫТЬ</button>
+</div>
+<div id="statie">
+<iframe src="posts.html"></iframe>
+    <button class="postscl"onclick="javascript:fPbuttonClose.click();">ЗАКРЫТЬ</button>
 </div>
 <div id="ton">
     <img id="imgton" src="ton.jpg" width="128"height="128">
@@ -468,7 +511,10 @@ JE -POWERED GAMEPAD TESTER (JDK 17)
 <br>
 <button id="back">X</button>
 </div>
+</div>
 <script>
+let fSbutton = document.getElementById("op_statie");
+let statieFrame   = document.getElementById("statie");
 let menuFrame  = document.getElementById("main_controls");
 let configGraph = document.getElementById("indata");
 let fBdonate = document.getElementById("op_donate");
@@ -525,9 +571,20 @@ fBdonate.onclick = function()
 {
     fFproj.style.display = "none";
     fFWproj.style.display = "none";
+    statieFrame.style.display = "none";
     fFdonate.style.display = "block";
     menuFrame.style.transform= "translate(-200%,100px)";
+    setTimeout("menuFrame.style.display = 'none';",100);
     fFdonate.style.transform = "translateY(-180px)";
+}
+fSbutton.onclick = function()
+{
+    fFproj.style.display = "none";
+    fFWproj.style.display = "none";
+    statieFrame.style.display = "block";
+    fFdonate.style.display = "none";
+    menuFrame.style.transform= "translate(-200%,100px)";
+    setTimeout("menuFrame.style.display = 'none';",100);
 }
 //fIfProj.contentWindow.scrollTo(400,0);
 document.addEventListener('keydown', function(event) {
@@ -574,16 +631,20 @@ fPbutton.onclick = function()
     fFproj.style.display = "block";
     fFWproj.style.display = "none";
     fFdonate.style.display = "none";
+    statieFrame.style.display = "none";
     dX = 0;
     menuFrame.style.transform= "translate(-200%,100px)";
-    fFproj.style.transform = "translateY(-180px)";
+    fFproj.style.transform = "translateY(-50px)";
+    setTimeout("menuFrame.style.display = 'none';",100);
 }
 fPbuttonClose.onclick = function()
 {
     fFproj.style.display = "none";
     fFWproj.style.display = "none";
     fFdonate.style.display = "none";
+    statieFrame.style.display = "none";
     menuFrame.style.transform= "translate(0px,100px)";
+    setTimeout("menuFrame.style.display = 'block';",100);
     fFproj.style.transform = "translateY(-170px)"; 
 }
 fPWbuttonClose.onclick = function()
@@ -593,6 +654,7 @@ fPWbuttonClose.onclick = function()
     fFdonate.style.display = "none";
     menuFrame.style.transform= "translate(0px,100px)";
     fFWproj.style.transform = "translateY(-170px)"; 
+    setTimeout("menuFrame.style.display = 'block';",100);
 }
 fWPbutton.onclick = function()
 {
@@ -601,7 +663,8 @@ fWPbutton.onclick = function()
     fFdonate.style.display = "none";
     dX = 0;
     menuFrame.style.transform= "translate(-200%,100px)";
-    fFWroj.style.transform = "translateY(-180px)";
+    fFWproj.style.transform = "translateY(-170px)";
+    setTimeout("menuFrame.style.display = 'none';",100);
 }
 let styleData;
 
