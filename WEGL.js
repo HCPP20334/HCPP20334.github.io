@@ -1,142 +1,56 @@
 
+    
+    
+    let boxes = [];
+    let bsize = 64;
+    let amx, amy;
+    let bufferGL = new Array((1024*1024)*2044);
+    function setup() {
+      bufferGL = createCanvas(windowWidth, windowHeight, WEBGL);
+      stroke(0, 0, 0, 200);
+      strokeWeight(0.5);
 
-function setup()
-{
-    let canvas = createCanvas(300,600,WEBGL);
-    
-    canvas.style("display","block");
-    canvas.style("margin","auto");
-    canvas.style("width","100%");
-    canvas.style("height","100%");
-    
-    
-}
-function SetTx(data)
-{
-    let bufferDebug = document.createElement("p");
-    bufferDebug.style = "position:absolute;z-index:-1;color:white;font-family:'WR';transform:translate(0px,400px)";
-    
-    bufferDebug.innerHTML = data;
-    console.log(data);
-}
-function draw()
-{
-    
-    let rd = 100;
-    let x,y;
-    x++;
-    y++;
-    let flX = sin(frameCount * 0.04) * 20;
-    let flY = sin(frameCount * 0.04) * 20;
-    background('rgba(255,255,255, 0)');
-    ambientLight(0,255/4,0);
-    directionalLight(0,0,255,-1,0,0);
-   // spotLight(0, 0, 255, flX, flY,250);
-    pointLight(0, 0, 255, flX, flY,250);
-push();
-translate(flX,flY);
-rotateX(frameCount / 100);
-ambientMaterial(250);
-specularMaterial (250);
-box(50,50,50,50);
-translate(flX,flY);
-rotateZ(frameCount / rd);
-rotateX(frameCount / rd);
-ambientMaterial(250);
-specularMaterial (250);
-box(50,50,50,50);
-translate(flX,flY);
-rotateZ(frameCount / rd);
-rotateX(frameCount / rd);
-ambientMaterial(250);
-specularMaterial (250);
-box(50,50,50,50);
-translate(flX,flY);
-rotateZ(frameCount / rd);
-rotateX(frameCount / rd);
-ambientMaterial(250);
-specularMaterial (250);
-box(50,50,50,50);
-translate(flX,flY);
-rotateZ(frameCount / rd);
-rotateX(frameCount / rd);
-ambientMaterial(250);
-specularMaterial (250);
-box(50,50,50,50);
-translate(flX,flY);
-rotateZ(frameCount / rd);
-rotateX(frameCount / rd);
-ambientMaterial(250);
-specularMaterial (250);
-box(50,50,50,50);
-translate(flX,flY);
-rotateZ(frameCount / rd);
-rotateX(frameCount / rd);
-ambientMaterial(250);
-specularMaterial (250);
-box(50,50,50,50);
-translate(flX,flY);
-rotateZ(frameCount / rd);
-rotateX(frameCount / rd);
-ambientMaterial(250);
-specularMaterial (250);
-box(50,50,50,50);
-translate(flX,flY);
-rotateZ(frameCount / rd);
-rotateX(frameCount / rd);
-ambientMaterial(250);
-specularMaterial (250);
-box(50,50,50,50);
-translate(flX,flY);
-rotateZ(frameCount / rd);
-rotateX(frameCount / rd);
-ambientMaterial(250);
-specularMaterial (250);
-box(50,50,50,50);
-translate(flX,flY);
-rotateZ(frameCount / rd);
-rotateX(frameCount / rd);
-ambientMaterial(250);
-specularMaterial (250);
-box(50,50,50,50);
-translate(flX,flY);
-rotateZ(frameCount / rd);
-rotateX(frameCount / rd);
-ambientMaterial(250);
-specularMaterial (250);
-box(50,50,50,50);
-translate(flX,flY);
-rotateZ(frameCount / rd);
-rotateX(frameCount / rd);
-ambientMaterial(250);
-specularMaterial (250);
-box(50,50,50,50);
-translate(flX,flY);
-rotateZ(frameCount / rd);
-rotateX(frameCount / rd);
-ambientMaterial(250);
-specularMaterial (250);
-box(50,50,50,50);
-translate(flX,flY);
-rotateZ(frameCount / rd);
-rotateX(frameCount / rd);
-ambientMaterial(250);
-specularMaterial (250);
-box(50,50,50,50);
-translate(flX,flY);
-rotateZ(frameCount / rd);
-rotateX(frameCount / rd);
-ambientMaterial(250);
-specularMaterial (250);
-box(50,50,50,50);
-const PLAPImem = performance.memory;
-const PLmemoryUsed  = (PLAPImem.usedJSHeapSize / 1024) / 1024;
-const PLmemoryTotal = (PLAPImem.totalJSHeapSize / 1024);
-const PLmemoryJsHeapSize  = (PLAPImem.jsHeapSizeLimit / 1024) / 1024;
-//
-debugData.style.color="white";
-debugData.style ="transform: translateY(100px);"
-debugData.style.fontFamily="WR";
-debugData.innerHTML = "X:"+parseInt(sin(frameCount * 0.04) * 20)+" Y :"+parseInt(sin(frameCount * 0.04) * 20)+" fps:"+parseInt(frameRate())+" mem:"+parseInt(PLmemoryUsed);
-console.log("X:"+sin(frameCount * 0.04) * 20+"Y:"+sin(frameCount * 0.04) * 20+" fps:"+frameCount);
-}
+      rectMode(CENTER);
+      ortho(-width / 2, width / 2, -height / 2, height / 2, 10, 2000);
+      amx = Math.ceil(width / bsize + 1);
+      amy = Math.ceil(height / bsize + 1)
+      boxes = new Array(amx * amy).fill(400);
+      fill(110);
+    }
+
+    function draw() {
+      //orbitControl();
+      if(windowWidth > 400)
+      {
+          bsize = 96;
+      }
+      background("rgba(255,255,255,0)");
+      directionalLight(55,30, 255, -PI * 0.3, PI * 0.3, -PI * 0.6);
+      translate(0, -10, 250);
+      rotateX(10);
+      rotateY(10);
+      debugData.innerHTML = "(beta build 0.6) FPS:"+parseInt(frameRate())+"\t"+windowWidth+"X"+windowHeight;
+      for (let x = 0; x < width + bsize; x += bsize) {
+          
+        for (let y = 0; y < height + bsize; y += bsize) {
+
+          let h = noise(frameCount * 0.01, x / width * 10, y / height * 10) * 10 * 25;
+          /*let xx = x/bsize;
+          let yy = y/bsize;
+          h = 400 + 200 * sin(sqrt(xx*xx+yy*yy)/1 + frameCount*0.03);*/
+
+          let offs = -35;
+          if (mouseX + offs >= x - bsize / 2 && mouseX + offs <= x + bsize / 2 &&
+            mouseY + offs >= y - bsize / 2 && mouseY + offs <= y + bsize / 2) {
+            h = 400;
+          }
+          let idx = Math.round(x / bsize + (width / bsize) * (y / bsize));
+          let k = boxes[idx] < h ? 0.4 : 0.02;
+          boxes[idx] += (h - boxes[idx]) * k;
+          push();
+          translate(-width / 2 + x, -height / 2 + y);
+          box(bsize, bsize, boxes[idx]);
+          pop();
+        }
+      }
+    }

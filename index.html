@@ -2,7 +2,8 @@
 <style>
 html
 {
-    background: #1b1b1e;
+    background: #010409;
+    
 }
         @font-face {
         font-family: WR;
@@ -16,29 +17,29 @@ button
 {
     background: transparent;
     width: 100%;
-    height: 600px;
+    height: 100%;
     border-radius: 4px;
     display: none;
     margin: auto;
     transition: .4s;
-    position: relative;
+    transform: translateY(40px);
 }
 #mainprojects
 {
     background: transparent;
     width: 100%;
-    height: 630px;
+    height: 800px;
     border-radius: 4px;
-    display: block;
+    display: none;
     transition: .4s;
-    position: relative;
+    transform: translateY(40px);
     margin: auto;
 }
 iframe
 {
     background: transparent;
     width: 100%;
-    height: 630px;
+    height: 100%;
     border: none;
 }
 #title
@@ -47,6 +48,7 @@ iframe
     width: 100%;
     height: 30px;
     box-shadow: 1px 1px 10px #010409;
+    transform: translateY(40px);
 }
 #title2
 {
@@ -64,7 +66,7 @@ iframe
     background: #1b1b1e;
     width: 96%;
     height: 30px;
-    display: block;
+    display: none;
     margin: auto;
     box-shadow: 1px 1px 10px #010409;
     transform: translate(3px,-30px);
@@ -104,11 +106,8 @@ iframe
 #hcpptitle
 {
     width:100%;
-    height: 74px;
-    background: #1b1b1e;
-    border: 2px solid #9090ff;
-    box-shadow: 1px 1px 10px #010409;
-    border-bottom: none;
+    height: 100px;
+    background: transparent;
 }
 #tHcpp
 {
@@ -116,8 +115,7 @@ iframe
     font-size: 22px;
     color:white;
     text-shadow: 1px 1px 1px #010409;
-    transform: translate(10px,-20px);
-    display: inline-block;
+    text-align: center;
 }
 #tontext
 {
@@ -134,14 +132,16 @@ iframe
 .mNav
 {
     font-family: 'WR';
-    font-size: 16px;
+    font-size: 18px;
     color:white;
     text-shadow: 1px 1px 1px #010409;
-    display: inline-block;
-    background: #1b1b1e;
+    display: table;
+    background: rgba(255,255,255,0);
+    border-radius: 4px;
     border: none;
+    margin: auto;
     height: 30px;
-    width: 160px;
+    width: 200px;
     transition: .4s;
 }
 .mNav:hover
@@ -159,6 +159,9 @@ iframe
     height: 30px;
     border: 2px solid #9090ff;
     border-radius: 4px;
+    position: absolute;
+    background: #1b1b1e;
+    
 }
 #donate
 {
@@ -186,29 +189,27 @@ iframe
 {
     width: 100%;
     height: 600px;
-    border: 2px solid #010409;
+    border: 2px solid #8673E0;
     border-radius: 4px;
     box-shadow: 1px 1px 10px #010409;
-    background: transparent;
-    display: block;
+    background: rgba(19,19,19,0.5);
+    display: none;
     margin: auto;
-    position: absolute;
-    border-top:none;
+    transition: .4s;
 }
 #toncopy
 {
-    width: 180px;
+    width: 90px;
     height: 40px;
-    border: 2px solid #9090ff;
     border-radius: 8px;
-    box-shadow: 1px 1px 10px #010409;
-    background: #1b1b1e;
+    border: none;
+    background: #8673E0;
     font-family: 'WR';
     font-size: 14px;
     color:white;
-    display: table;
+    display: inline-block;
     text-shadow: 1px 1px 1px #010409;
-    transform: translate(50px,60px);
+    transform: translate(10px,60px);
 }
 #cl
 {
@@ -223,20 +224,7 @@ iframe
     border: none;
     transform: translate(330px,-38px);
 }
-#back
-{
-    background: #ff0050;
-    font-family: 'WR';
-    font-size: 20px;
-    color:white;
-    width: 30px;
-    height: 31px;
-    display: inline-block;
-    position: absolute;
-    border-radius: 2px;
-    border: none;
-    transform: translate(5px,5px)rotate(270deg);
-}
+
 canvas
 {
       position:absolute;
@@ -245,17 +233,7 @@ canvas
       z-index:-1;
     
 }
-#controls
-{
-    background: #1b1b1e;
-    border: 2px solid #9090ff;
-    box-shadow: 1px 1px 10px #010409;
-    height: 40px;
-    width:95%;
-    display: none;
-    position: absolute;
-    transform: translateY(300px);
-}
+
 
 #load,#loaddata
 {
@@ -267,32 +245,30 @@ canvas
 }
 #WebGL_data
 {
-    position:absolute;
-      left:50;
-      top:1300;
-      z-index:-1;
       font-family: 'WR';
     font-size: 18px;
     color:white;
-    background: #9090ff;
+    border-left: none;
+    border-right: none;
     text-align: center;
-    width:290px;
+    width:100%;
+    height: 30px;
+    transform: translateY(200px);
     
 }
-#Donatebtn,#blumbtn
+#Donatebtn,#blumbtn,.toncl
 {
-    width: 180px;
+    width: 80px;
     height: 40px;
-    border: 2px solid #9090ff;
     border-radius: 8px;
-    box-shadow: 1px 1px 10px #010409;
-    background: #1b1b1e;
+    background: #8673E0;
     font-family: 'WR';
     font-size: 16px;
     color:white;
-    display: table;
+    border: none;
+    display: inline-block;
     text-shadow: 1px 1px 1px #010409;
-    transform: translate(50px,60px);
+    transform: translate(10px,60px);
 }
     .loader {
   width: 120px;
@@ -320,6 +296,95 @@ canvas
 @keyframes l15{ 
   100%{transform: rotate(1turn)}
 }
+#blurframe
+{
+    filter: blur(10px);
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    display: block;
+}
+
+#main
+{
+    width: 100%;height: 100%;
+    display: none;
+}
+.prj,.prjw
+{
+    border-radius: 8px;
+    background: rgba(19,19,19,0.5);
+    width: 98%;height: 220px;
+    display: table;
+    margin: auto;
+    transform: translateY(-150px);
+}
+.tProjects
+{
+    display: table;
+    margin: auto;
+    width: 90%;height: 20px;
+    background:#feff00; 
+    box-shadow: 1px 1px 10px #010409;
+}
+.prjb,.prjbw
+{
+    width: 140px;
+    height: 30px;
+    background: #8673E0;
+    font-size: 14px;
+    border-radius: 4px;
+    color:white;
+    border: none;
+    text-shadow: 1px 1px 1px #010409;
+    font-family: 'WR';
+    transform: translate(20px,50px);
+    display:inline-block;
+}
+#tPr,#tPrw
+{
+    font-size: 24px;
+    color:white;
+    text-shadow: 1px 1px 1px #010409;
+    font-family: 'WR';
+    display: table;
+    transform: translate(30px,30px);
+}
+#tPrInf,#tPrInfw
+{
+    font-size: 18px;
+    color:#ff0050;
+    text-shadow: 1px 1px 1px #010409;
+    font-family: 'WR';
+    float: left;
+    display: table;
+    transform: translate(10px,20px);
+}
+#main_controls
+{
+    display: block;
+    margin: auto;
+    width: 300px;
+    border-radius: 8px;
+    height: 200px;
+    transition: .4s;
+    transform: translate(0px,100px);
+    background: rgba(19,19,19,0.5);
+}
+#back
+{
+    background: #ff0050;
+    font-family: 'WR';
+    font-size: 20px;
+    color:white;
+    width: 30px;
+    height: 31px;
+    display: none;
+    border-radius: 2px;
+    border: none;
+    transform: translate(5px,300px) rotateZ(270deg);
+}
+
 </style>
     <head><meta name="viewport" content="width=device-width, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -327,47 +392,90 @@ canvas
 
 </head>
 <script async="" src="WEGL.js"></script>
-<div id="hcpptitle">
-<img src="https://hcpp20334.github.io/Pictures/amd.png" style="width:64px;height:64px;transform:translate(5px,5px);"><p id="tHcpp">HCPP STUDIO</p>
+<div id="loadframe">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<img src="https://hcpp20334.github.io/Pictures/amd.png" style="width:64px;height:64px;display:block;
+    margin: auto;"><p id="tHcpp">HCPP STUDIO</p>
+<div class="loader"></div>
+<p id="tHcpp">(beta build 0.8)</p>
 </div>
-<div id="menu_nav">
+<div id="main">
+    <div id="hcpptitle">
+<img src="https://hcpp20334.github.io/Pictures/amd.png" style="width:64px;height:64px;display:block;
+    margin: auto;"><p id="tHcpp">HCPP STUDIO</p>
+</div>
+<div id="main_controls">
 <button id="op_proj" class="mNav">PROJECTS</button>
+<br>
 <button id="op_webproj"class="mNav">WEB PROJECTS</button>
-
-</div>
-<div id="title">
-<p id="texttitle">///PROJECTS</p>
-</div>
+<br>
+<button id="op_statie" class="mNav">СТАТЬИ</button>
+<br>
+<button id="op_donate" class="mNav">ДОНАТ</button></div>
+<p id="WebGL_data">PWEngine loading.. </p>
 <div id="mainprojects">
-<iframe src="projects.html" id="prjif"></iframe>
-
+<div id="p1" class="prj">
+<p id="tPr">JE(x64)_OpenGL3.0</p>
+<p id="tPrInf">
+JE -POWERED GAMEPAD TESTER (C++20)
+</p>
+<button class="prjb" onclick="javascript:jeGL();">СКАЧАТЬ</button>
+<button class="prjb" id="prjclose">ЗАКРЫТЬ</button>
+</div>
+<br>
+<div id="p2" class="prj">
+<p id="tPr">ELECTRIK CALC(x64)_OpenGL3.0</p>
+<p id="tPrInf">
+POWERED CALCULATOR FOR ELECTRIK(C++20)
+</p>
+<button class="prjb" onclick="javascript:elc();">СКАЧАТЬ</button>
+<button class="prjb"onclick="javascript:fPbuttonClose.click();">ЗАКРЫТЬ</button>
+</div>
+<br>
+<div id="p2" class="prj">
+<p id="tPr">CALC FOR ELEKTRONIC(x86)</p>
+<p id="tPrInf">
+CALCULATOR FOR ELECTRIK DIMA XP(C#)
+</p>
+<button class="prjb" onclick="javascript:clc();">СКАЧАТЬ</button>
+<button class="prjb"onclick="javascript:fPbuttonClose.click();">ЗАКРЫТЬ</button></div>
 </div>
 <div id="webprojects">
-<iframe src="web.html" id="wb"></iframe>
-</div>
-<div id="title3">
-<p id="texttitle3" onclick="javascript:sndState();">A,B ПЕРЕКЛЮЧЕНИЕ ПРОЕКТОВ</p>
-</div>
-<div id="links">
-<iframe src="links.html"></iframe>
+<div id="p1w" class="prjw">
+<p id="tPrw">JE JavaFX(x64)_OpenGL3.0</p>
+<p id="tPrInfw">
+JE -POWERED GAMEPAD TESTER (JDK 17)
+</p>
+<button class="prjbw" onclick="javascript:jeFX();">СКАЧАТЬ</button>
+<button class="prjbw" id="prjclosew">ЗАКРЫТЬ</button></div>
 </div>
 <div id="ton">
-
-    <div id="title2">
-<p id="texttitle">///DONATE</p><button id="cl"onclick="javascript:document.getElementById('ton').style.display='none';">X</button>
-</div>
     <img id="imgton" src="ton.jpg" width="128"height="128">
 <p id="tontext">ПОДДЕРЖИ АВТОРА ЗАКИНЬ TON</p>
-<button id="toncopy">СКОПИРОВАТЬ АДРЕС</button>
+
 <button id="blumbtn" onclick="javascript:window.location.href='tg:resolve?domain=BlumCryptoBot&appname=app&startapp=ref_OGY3YUbbem';">BLUM</button>
 <button id="Donatebtn">DONATE</button>
-<div id="controls">
-<button id="back">&#9650;</button>
+<button id="toncopy">COPY TON</button>
+<button class="toncl"onclick="javascript:fPbuttonClose.click();">ЗАКРЫТЬ</button>
+<br>
+<br>
+<br>
+<br>
+<button id="back">X</button>
 </div>
-</div>
-<p id="WebGL_data">WebGL loading..</p>
 <script>
+let menuFrame  = document.getElementById("main_controls");
+let configGraph = document.getElementById("indata");
+let fBdonate = document.getElementById("op_donate");
+let fFdonate = document.getElementById("ton");
+let fBsliderMenu = document.getElementById("menu_part1");
 let debugData = document.getElementById("WebGL_data");
+let fPbuttonClose  = document.getElementById("prjclose");
 const fPbutton = document.getElementById("op_proj");
 const fWPbutton = document.getElementById("op_webproj");
 var fDbufTitle = document.getElementById("texttitle");
@@ -384,15 +492,43 @@ const fDONATEbutton = document.getElementById("Donatebtn");
 const fDONATEClosebutton = document.getElementById("back");
 const ton_frame = document.getElementById("ton");
 var frame;
-
+const fFmain = document.getElementById("main");
+const fFload = document.getElementById("loadframe");
 const LoadData = document.getElementById("loadingfr");
 const ton_key = "UQD7Vo2nbHXif_Tv_iXg5Qb7peKqOR04AW2wceVsjBfo8C0w";
 const donate_url = "https://donationalerts.com/r/hcpp";
 const fIfProj = document.getElementById("prjif");
 const fIfWProj = document.getElementById("prjif");
+let fPWbuttonClose  = document.getElementById("prjclosew");
+let donateFrameClose   = document.getElementById("back");
 let dX = 0;
 let fIarrayX = [0,330,660,990];
-
+let fBsliderButton = document.getElementById("sliderbutton");
+let fCXPos = 0;
+let st_b = 0;
+function load()
+{
+    fFmain.style.display = "none";
+    fFload.style.display = "block";
+    setTimeout("fFmain.style.display = 'block';fFload.style.display = 'none';",6000);
+}
+function loaddebug()
+{
+    fFmain.style.display = "block";
+    fFload.style.display = "none";
+   // setTimeout("fFmain.style.display = 'block';fFload.style.display = 'none';",6000);
+}
+load();
+//
+//loaddebug();
+fBdonate.onclick = function()
+{
+    fFproj.style.display = "none";
+    fFWproj.style.display = "none";
+    fFdonate.style.display = "block";
+    menuFrame.style.transform= "translate(-200%,100px)";
+    fFdonate.style.transform = "translateY(-180px)";
+}
 //fIfProj.contentWindow.scrollTo(400,0);
 document.addEventListener('keydown', function(event) {
         fC_key = event.code;
@@ -421,7 +557,8 @@ fDONATEClosebutton.onclick = function()
 {
     frame.style.display="none";
     ton_frame.removeChild(frame);
-    fDcontrols.style.display = "none";
+    fDONATEClosebutton.style.display = "none";
+    //fDcontrols.style.display = "none";
 }
 fTONbutton.onclick = function()
 {
@@ -430,41 +567,58 @@ navigator.clipboard.writeText(ton_key).then();
 fDONATEbutton.onclick = function()
 {
     CreateFrame(donate_url);
+    //fDcontrols.style.display = "block";
 }
 fPbutton.onclick = function()
 {
     fFproj.style.display = "block";
     fFWproj.style.display = "none";
-    fDbufTitle.innerHTML = "///PROJECTS";
+    fFdonate.style.display = "none";
     dX = 0;
+    menuFrame.style.transform= "translate(-200%,100px)";
+    fFproj.style.transform = "translateY(-180px)";
+}
+fPbuttonClose.onclick = function()
+{
+    fFproj.style.display = "none";
+    fFWproj.style.display = "none";
+    fFdonate.style.display = "none";
+    menuFrame.style.transform= "translate(0px,100px)";
+    fFproj.style.transform = "translateY(-170px)"; 
+}
+fPWbuttonClose.onclick = function()
+{
+    fFproj.style.display = "none";
+    fFWproj.style.display = "none";
+    fFdonate.style.display = "none";
+    menuFrame.style.transform= "translate(0px,100px)";
+    fFWproj.style.transform = "translateY(-170px)"; 
 }
 fWPbutton.onclick = function()
 {
     fFproj.style.display = "none";
     fFWproj.style.display = "block";
-    fDbufTitle.innerHTML = "///WEB PROJECTS";
+    fFdonate.style.display = "none";
     dX = 0;
+    menuFrame.style.transform= "translate(-200%,100px)";
+    fFWroj.style.transform = "translateY(-180px)";
 }
 let styleData;
+
 function CreateFrame(url)
 {
      frame = document.createElement("iframe");
     frame.style.display = "block";
     frame.style.margin = "auto";
-    frame.style.border="2px solid #9090ff";
+    frame.style.border="none";
     ton_frame.appendChild(frame);
     frame.src = url;
-    frame.style.width = "98%";
+    frame.style.width = "100%";
     frame.style.height = "550px";
     frame.style.position = "absolute";
-    frame.style.transform="translateY(-250px)";
-    styleData = frame.style.background;
-    document.getElementById("title").style.display = "none";
-    fDcontrols.style.width="98%";
-    document.getElementById("title").style.width="98%";
-    fDcontrols.style.display = "block";
-    
-    
+    frame.style.transform="translateY(-280px)";
+    fDONATEClosebutton.style.display = "inline-block";
 }
+
 </script>
 </html>
