@@ -122,7 +122,8 @@ bEncode.onclick = function()
 }
 bDecode.onclick = function()
 {
-f_bufferDecode = atob(f_bufferEncode);
+
+f_bufferDecode = atob(uInput);
 fOutBuffer.innerHTML = f_bufferDecode;
 }
 </script>
