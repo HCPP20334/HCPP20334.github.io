@@ -54,7 +54,8 @@ background:#010409;
 border: 2px solid rgba(40,155,99,0.8);
 font-family: 'WR';
 color:white;
-height:25px;
+width:300px;
+height:300px;
 border-radius:2px;
 display:block;
 transform: translate(10px,16px);
@@ -95,7 +96,7 @@ display: inline-block;
 </div>
 <p id="text">** RUS NOT SUPPORT!! **</p>
 <p id="outputtx">ENTER TEXT..</p>
-<input id="inputtx" type="comment">
+<textarea id="inputtx"></textarea>
 <button id="decode">DECODE</button>
 <button id="encode">ENCODE</button>
 </body>
@@ -114,17 +115,19 @@ rTextBuffer.oninput = function()
     
     uInput = this.value;
     
+    
 }
 bEncode.onclick = function()
 {
     f_bufferEncode = btoa(uInput);
-    fOutBuffer.innerHTML = f_bufferEncode;
+    navigator.clipboard.writeText(f_bufferEncode).then();
+    fOutBuffer.innerHTML = "Copied!! to buffer!";
+    rTextBuffer.value = f_bufferEncode;
 }
 bDecode.onclick = function()
 {
-
+rTextBuffer.value = f_bufferDecode;
 f_bufferDecode = atob(uInput);
-fOutBuffer.innerHTML = f_bufferDecode;
 }
 </script>
 </html>
