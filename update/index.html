@@ -1,69 +1,158 @@
-
-<!-- saved from url=(0035)https://hcpp20334.github.io/update/ -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>
+<html>
+<style>
+        @font-face {
+        font-family: WR;
+        src: url("https://hcpp20334.github.io/fonts/WhiteRabbit.ttf");
+    }
 html
 {
-	background:linear-gradient(to left bottom,rgb(39,39,39),#010409);
+background: white;
 }
-@keyframes TxSlideRight
+body
 {
-	0%{transition: .8s;transform: translateX(-200px);border:none;}
-	100%{transition: .8s;transform: translateX(0px);border-bottom: 4px solid rgb(0,100,255);}
+border: 1px solid #010409;
+width:100%;
+height: 600px;
+box-shadow: 1px 1px 10px #010409;
 }
-@keyframes TxSlideRightBorderOn
+.title
 {
-	0%{transition: .8s;transform: translateX(-200px);}
-	100%{transition: .8s;transform: translateX(0px);border-bottom: 4px solid rgb(0,100,255);}
+border: 1px solid #010409;
+width:100%;
+border-top:none;
+border-left:none;
+border-right:none;
 }
-@keyframes GrSlide
-{
-	0%{transition: .8s;background: linear-gradient(to top bottom,#1B1B1E,rgb(60,55,239));}
-	0%{transition: .8s;background: linear-gradient(to top bottom,rgb(60,55,239),#1B1B1E);}
-}#buttons_a{display: none;}
-#buttons_b,#buttons_c,#buttons_d,#buttons_e,#buttons_f
-{
-	@media max-width: 1920px;
-	@media max-height: 1080px;
-	background-color: #1b1b1e;
-	width:40%;height:10%;
-	border: 2px solid rgb(100,0,255);color:white;font-family: 'Consolas';font-size:20px;border-radius:10px;animation: TxSlideRightBorderOn 1s ;
+button:hover {
+    background-color: #010409;
+    color: white;
 }
-#buttons_a:hover {border: 2px solid rgb(0,255,255);background: linear-gradient(to left bottom,#1B1B1E,rgb(60,55,239));}
-#buttons_b:hover {border: 2px solid rgb(0,255,255);background: linear-gradient(to left bottom,#1B1B1E,rgb(60,55,239));}
-#buttons_c:hover {border: 2px solid rgb(0,255,255);background: linear-gradient(to left bottom,#1B1B1E,rgb(60,55,239));}
-#buttons_d:hover {border: 2px solid rgb(0,255,255);background: linear-gradient(to left bottom,#1B1B1E,rgb(60,55,239));}
-#buttons_e:hover {border: 2px solid rgb(0,255,255);background: linear-gradient(to left bottom,#1B1B1E,rgb(60,55,239));}
-#buttons_f:hover {border: 2px solid rgb(0,255,255);background: linear-gradient(to left bottom,#1B1B1E,rgb(60,55,239));}
-#m-title
+#text
 {
-	color:white;font-family: 'Consolas';font-size:40px;padding: 10px;border-bottom: 4px solid rgb(0,100,255);border-radius:2px;
-	animation: TxSlideRight 1s;background: linear-gradient(to top bottom,#1B1B1E,rgb(60,55,239));
+font-family: 'WR';
+color: #010409;
+font-size:18px;
+transform: translate(5%,10px);
+}
+#b1
+{
+transform: translate(10px,10px);
+color: #010409;
+background:white;
+border: 1px solid #010409;
+width: 170px;
+height: 30px;
+font-family: 'WR';
+display: inline-block;
+}
+#b2
+{
+transform: translate(10px,10px);
+color: #010409;
+background:white;
+border: 1px solid #010409;
+width: 170px;
+height: 30px;
+font-family: 'WR';
+display: inline-block;
+}
+#b3
+{
+transform: translate(10px,13px);
+color: #010409;
+background:white;
+border: 1px solid #010409;
+width: 170px;
+height: 30px;
+font-family: 'WR';
+display: inline-block;
+}
+#b4
+{
+transform: translate(10px,13px);
+color: #010409;
+background:white;
+border: 1px solid #010409;
+width: 170px;
+height: 30px;
+font-family: 'WR';
+display: inline-block;
+}
+#b5
+{
+transform: translate(10px,16px);
+color: #010409;
+background:white;
+border: 1px solid #010409;
+width: 170px;
+height: 30px;
+font-family: 'WR';
+display: inline-block;
+}
+#buttons
+{
+    width:380px;
+    height: 180px;
+    display: inline-block;
+    
+    transform: translateX(5px,-30px);
+}
+#b6
+{
+transform: translate(10px,16px);
+color: #010409;
+background:white;
+border: 1px solid #010409;
+width: 170px;
+height: 30px;
+font-family: 'WR';
+display: inline-block;
+}
+#b1:hover,#b2:hover,#b3:hover,#b4:hover,#b5:hover,#b6:hover {
+    background-color: #010409;
+    color: white;
 }
 </style>
-</head><body><h1 id="m-title">Поддержка</h1>
-<button id="buttons_a">Скачать Windows 10 активатор</button>
-<button id="buttons_b">Скачать Visual Studio C++ RT(ALL)</button>
-<button id="buttons_c">Скачать PCTool</button>
-<button id="buttons_d">Скачать фон</button>
-<button id="buttons_e">Обновить JE 1.1.5.3</button>
-<button id="buttons_f">Скачать DXVK-Async</button>
+<body>
+<div class="title">
+<p id="text">UPDATE CENTER</p>
+</div>
+<p id="text">[---MY APPS---]</p>
+<br>
+<div id="buttons">
+<button id="b1" onclick="javascript:downloadApp(2);">JEx64OpenGL</button>
+<button id="b2"onclick="javascript:downloadApp(3);">ELECTRIK CALC</button>
+<button id="b3"onclick="javascript:downloadApp(9);">WINDOWS 10 LTSCx64</button>
+<button id="b4"onclick="javascript:downloadApp(0);">PCTool</button>
+<button id="b5"onclick="javascript:downloadApp(7);">MSVS C++ RT</button></button>
+<button id="b6"onclick="javascript:downloadApp(8);">PASSGEN</button>
+</div>
+<p id="text">[---OTHER APPS---]</p>
+<div id="buttons">
+<button id="b1"onclick="javascript:downloadApp(5);">JEx64JavaFX</button>
+<button id="b2"onclick="javascript:downloadApp(1);">DXVK ASYNC</button>
+<button id="b3"onclick="javascript:downloadApp(4);">CALC FOR ELECTRONIK</button>
+<button id="b4"onclick="javascript:downloadApp(6);">CALC WEB</button>
+</div>
+</body>
 <script>
-var fbtn_a = document.getElementById('buttons_a');
-var fbtn_b = document.getElementById('buttons_b');
-var fbtn_c = document.getElementById('buttons_c');
-var fbtn_d = document.getElementById('buttons_d');
-var fbtn_e = document.getElementById('buttons_e');
-var fbtn_f = document.getElementById('buttons_f');
-fbtn_a.onclick = function(){document.location.href = './ActiveWindows.bat';}
-fbtn_b.onclick = function(){InstallMSC();}
-fbtn_c.onclick = function(){document.location.href = './PCTool.bat';}
-fbtn_d.onclick = function(){document.location.href = './1639946810_2-abrakadabra-fun-p-neon-oboi-dlya-pk-2-1.png';}
-fbtn_e.onclick = function(){document.location.href = 'https://github.com/HCPP20334/JoyStickTest/releases/download/JE_1.1.5.3/JE_x64.exe';}
-fbtn_f.onclick = function(){document.location.href = 'https://github.com/Sporif/dxvk-async/releases/download/2.0/dxvk-async-2.0.tar.gz';}
-function InstallMSC()
+let threadDownload = 0;
+let urlArray = 
+[
+    "./PCTool.bat",//0
+    "https://github.com/Sporif/dxvk-async/releases/download/2.0/dxvk-async-2.0.tar.gz",//1
+    "https://github.com/HCPP20334/JoyStickTest/releases/tag/JE_x64_OpenGL",//2
+    "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Electik.Calc.0.4.pre.alpha.C++20.zip",//3
+    "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Setup.Electrick.Calc.V2.1.BY.DIMA.XP.Setup.exe",//4
+    "https://github.com/rpmaster2/JoyStickTest/releases/tag/1.0",//5
+    "https://hcpp20334.github.io/calc.html",//6
+    "https://ia902302.us.archive.org/31/items/vsrc.-7z/VSRC++.7z';",//7
+    "https://hcpp20334.github.io/PassGen",//8
+    "https://drive.google.com/file/d/1410IeNJOpqkroW21Eka2mxAz41gboqSr/view?usp=drive_link"//9
+];
+function downloadApp(thread_id)
 {
-	setTimeout("document.location.href = 'https://ia902302.us.archive.org/31/items/vsrc.-7z/VSRC++.7z';",500);
+    document.location.href = urlArray[thread_id];
 }
 </script>
-
-</body></html>
+</html>
