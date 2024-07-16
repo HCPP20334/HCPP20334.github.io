@@ -2,19 +2,19 @@
 <style>
         @font-face {
         font-family: WR;
-        src: url("https://hcpp20334.github.io/fonts/WhiteRabbit.ttf");
+        src: url("./fonts/monoMMM_5.ttf");
     }
 html
 {
-background: #1b1b1e;
+background: #010409;
 }
 body
 {
-border: 1px solid #010409;
-width:100%;
+border: 1px solid #1b1b1e;
+width:120%;
 height: 600px;
 box-shadow: 1px 1px 10px #010409;
-background: #010409;
+background: #1b1b1e;
 }
 .title
 {
@@ -34,7 +34,28 @@ button:hover {
 font-family: 'WR';
 color: white;
 font-size:18px;
+width: 150px;
 transform: translate(5%,10px);
+border-bottom: 3px solid #ffffff;
+}
+#text1
+{
+font-family: 'WR';
+color: white;
+font-size:18px;
+width: 230px;
+transform: translate(5%,10px);
+}
+#themesel,#ADD
+{
+font-family: 'WR';
+color: white;
+font-size:18px;
+transform: translate(5%,10px);
+width: 100px;
+border: 2px solid #010409;
+display: inline-block;
+background: transparent;
 }
 #b1
 {
@@ -42,7 +63,7 @@ transform: translate(10px,10px);
 color: white;
 background: rgba(40,155,99,0.8);
 border: 1px solid #010409;
-width: 170px;
+width: 190px;
 height: 30px;
 font-family: 'WR';
 display: inline-block;
@@ -53,7 +74,7 @@ transform: translate(10px,10px);
 color: white;
 background: rgba(40,155,99,0.8);
 border: 1px solid #010409;
-width: 170px;
+width: 190px;
 height: 30px;
 font-family: 'WR';
 display: inline-block;
@@ -64,7 +85,7 @@ transform: translate(10px,13px);
 color: white;
 background: rgba(40,155,99,0.8);
 border: 1px solid #010409;
-width: 170px;
+width: 190px;
 height: 30px;
 font-family: 'WR';
 display: inline-block;
@@ -75,7 +96,7 @@ transform: translate(10px,13px);
 color: white;
 background: rgba(40,155,99,0.8);
 border: 1px solid #010409;
-width: 170px;
+width: 190px;
 height: 30px;
 font-family: 'WR';
 display: inline-block;
@@ -86,16 +107,16 @@ transform: translate(10px,16px);
 color: white;
 background: rgba(40,155,99,0.8);
 border: 1px solid #010409;
-width: 170px;
+width: 190px;
 height: 30px;
 font-family: 'WR';
 display: inline-block;
 }
-#buttons
+#buttons,#nav
 {
-    width:380px;
+    width:420px;
     height: 180px;
-    display: inline-block;
+    display: block;
     
     transform: translateX(5px,-30px);
 }
@@ -105,7 +126,7 @@ transform: translate(10px,16px);
 color: white;
 background: rgba(40,155,99,0.8);
 border: 1px solid #010409;
-width: 170px;
+width: 190px;
 height: 30px;
 font-family: 'WR';
 display: inline-block;
@@ -114,12 +135,17 @@ display: inline-block;
     background-color: #636369;
     color: white;
 }
+#outputtx
+{
+    font-family: 'WR';
+    color: white;
+}
 </style>
 <body>
 <div class="title">
-<p id="text">UPDATE CENTER</p>
+<p id="text1">UPDATE CENTER</p>
 </div>
-<p id="text">[---MY APPS---]</p>
+<p id="text">MY APPS</p>
 <br>
 <div id="buttons">
 <button id="b1" onclick="javascript:downloadApp(2);">JEx64OpenGL</button>
@@ -129,16 +155,50 @@ display: inline-block;
 <button id="b5"onclick="javascript:downloadApp(7);">MSVS C++ RT</button></button>
 <button id="b6"onclick="javascript:downloadApp(8);">PASSGEN</button>
 </div>
-<p id="text">[---OTHER APPS---]</p>
+<p id="text">OTHER APPS</p>
 <div id="buttons">
 <button id="b1"onclick="javascript:downloadApp(5);">JEx64JavaFX</button>
 <button id="b2"onclick="javascript:downloadApp(1);">DXVK ASYNC</button>
 <button id="b3"onclick="javascript:downloadApp(4);">CALC FOR ELECTRONIK</button>
 <button id="b4"onclick="javascript:downloadApp(6);">CALC WEB</button>
 </div>
+<div id="nav">
+<button id="themesel">THEME</button>
+<button id="ADD">ADD APP</button>
+</div>
 </body>
 <script>
 let threadDownload = 0;
+let bSwitchTheme = false;
+let fPtheme = 0;
+let fWeb = window;
+let fG_body = document.body;
+let fG_doc = document.documentElement;
+let fB_theme = document.getElementById("themesel");
+let txBuf = "ПРИВЕТ!!Хочу&#13;опубликовать на&#13;сайте&13;свою прогу";
+let fB_addApp = document.getElementById("ADD");
+fB_addApp.onclick = function()
+{
+    fWeb.location.href = "tg://resolve?domain=hcppstudio&text="+txBuf;
+}
+fB_theme.onclick = function()
+{
+    fPtheme++;
+    if(fPtheme > 1)
+    {
+        fPtheme = 0;
+    }
+    if(!fPtheme)
+    {
+        fG_body.style.background = "#1b1b1e";
+        fG_doc.style.background = "#010409";
+    }
+    if(fPtheme)
+    {
+        fG_body.style.background = "#656565";
+        fG_doc.style.background = "#aaaaaa";
+    }
+}
 let urlArray = 
 [
     "./PCTool.bat",//0
