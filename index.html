@@ -321,10 +321,10 @@ font-family: 'WR';
 <div id="links_frame">
 <button id="close">X</button>
 <div class="lnks">
-<p class="txlnk">YOUTUBE</p>
-<p class="txlnk">TWITCH</p>
-<p class="txlnk">GITHUB</p>
-<p class="txlnk">TELEGRAM</p>
+<p class="txlnk" onclick="javascript:Oapp(LinkUrl[1]);">YOUTUBE</p>
+<p class="txlnk" onclick="javascript:Oapp(LinkUrl[2]);">TWITCH</p>
+<p class="txlnk" onclick="javascript:Oapp(LinkUrl[0]);">GITHUB</p>
+<p class="txlnk" onclick="javascript:Oapp(LinkUrl[3]);">TELEGRAM</p>
 </div>
 </div>
 <div id="posts_frame">
@@ -368,6 +368,12 @@ let AppUrl = [
     "https://github.com/rpmaster2/JoyStickTest/releases/tag/1.0",
     "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Setup.Electrick.Calc.V2.1.BY.DIMA.XP.Setup.exe"
     ];
+let LinkUrl = [
+    "https://github.com/hcpp20334",
+    "https://youtube.com/HackerC",
+    "https://twitch.com/hcpp20334_",
+    "https://t.me/hcppstudio"
+    ];
 let WbWindowFrame  = document.getElementById("window");
 let fWbinfo_buf  = document.getElementById("wbinfo");
 //wb btns wbtx1
@@ -381,7 +387,7 @@ wb_btn0.onclick = function(){
     fWbinfo_buf.innerHTML = "CALCULATOR FOR ELEKTRIK JS";
 }
 wb_btn1.onclick = function(){
-    WbWindowFrame.src = "https://hcpp20334.github.io/PlayerJS.html";
+    WbWindowFrame.src = "https://hcpp20334.github.io/playerJS.html";
     fWbinfo_buf.innerHTML = "PLAYER JS";
 }
 wb_btn2.onclick = function(){
