@@ -2,227 +2,17 @@
 <style>
 html
 {
-    background: #010409;
+    background: #1b1b1e;
+    width: 600px;height: 800px;
     
 }
         @font-face {
         font-family: WR;
-        src: url("https://hcpp20334.github.io/fonts/WhiteRabbit.ttf");
+        src: url("https://hcpp20334.github.io/fonts/monoMMM_5.ttf");
     }
 button
 {
     cursor: pointer;
-}
-#webprojects,#links
-{
-    background: rgba(19,19,19,0.5);
-    width: 360px;
-    height: 320px;
-    border-radius: 4px;
-    display: none;
-    transition: .4s;
-    margin: auto;
-}
-#mainprojects
-{
-    background: transparent;
-    width: 100%;
-    height: 800px;
-    border-radius: 4px;
-    display: none;
-    transition: .4s;
-    transform: translateY(40px);
-    margin: auto;
-}
-iframe
-{
-    background: transparent;
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 8px;
-}
-#title
-{
-    background: #9090ff;
-    width: 100%;
-    height: 30px;
-    box-shadow: 1px 1px 10px #010409;
-    transform: translateY(40px);
-}
-#title2
-{
-    background: #9090ff;
-    width: 100%;
-    height: 30px;
-    display: block;
-    margin: auto;
-    box-shadow: 1px 1px 10px #010409;
-    transform: translate(0px,-30px);
-    
-}
-#title3
-{
-    background: #1b1b1e;
-    width: 96%;
-    height: 30px;
-    display: none;
-    margin: auto;
-    box-shadow: 1px 1px 10px #010409;
-    transform: translate(3px,-30px);
-    border: 2px solid #9090ff;
-    border-radius: 4px;
-}
-#control
-{
-    font-family: 'WR';
-    font-size: 60px;
-    color:white;
-    text-shadow: 1px 1px 1px #010409;
-}
-#control2
-{
-    font-family: 'WR';
-    font-size: 60px;
-    color:white;
-    text-shadow: 1px 1px 1px #010409;
-}
-#texttitle
-{
-    font-family: 'WR';
-    font-size: 22px;
-    color:white;
-    text-shadow: 1px 1px 1px #010409;
-    transform: translate(10px,6px);
-}
-#texttitle3
-{
-    font-family: 'WR';
-    font-size: 22px;
-    color:white;
-    text-shadow: 1px 1px 1px #010409;
-    transform: translate(10px,-12px);
-}
-#hcpptitle
-{
-    width:100%;
-    height: 100px;
-    background: transparent;
-}
-#tHcpp
-{
-    font-family: 'WR';
-    font-size: 22px;
-    color:white;
-    text-shadow: 1px 1px 1px #010409;
-    text-align: center;
-}
-#tontext
-{
-    font-family: 'WR';
-    font-size: 20px;
-    width: 170px;
-    color:#00f0ff;
-    text-shadow: 1px 1px 4px #010409;
-    display: inline-block;
-    text-align: center;
-    margin: auto;
-    transform: translate(20px,-20px);
-}
-.mNav
-{
-    font-family: 'WR';
-    font-size: 18px;
-    color:white;
-    text-shadow: 1px 1px 1px #010409;
-    display: table;
-    background: rgba(255,255,255,0);
-    border-radius: 4px;
-    border: none;
-    margin: auto;
-    height: 30px;
-    width: 200px;
-    transition: .4s;
-}
-.mNav:hover
-{
-    background: #9090ff;
-}
-#lnkbar
-{
-    width:100%;
-    height: 38px;
-}
-#menu_nav
-{
-    width:100%;
-    height: 30px;
-    border: 2px solid #9090ff;
-    border-radius: 4px;
-    position: absolute;
-    background: #1b1b1e;
-    
-}
-#donate
-{
-    display: none;
-    max-width: 428px;
-    width: 100%;
-    height: 6000px;
-    border: 2px solid #9090ff;
-    border-radius: 4px;
-    box-shadow: 1px 1px 10px #010409;
-    background: #1b1b1e;
-    border-top: none;
-    position: absolute;
-}
-#imgton
-{
-    display: inline-block;
-    margin: auto;
-    border: 2px solid #9090ff;
-    box-shadow: 1px 1px 10px #010409;
-    transform: translate(10px,30px);
-}
-
-#ton
-{
-    width: 100%;
-    height: 600px;
-    border: 2px solid #8673E0;
-    border-radius: 4px;
-    box-shadow: 1px 1px 10px #010409;
-    background: rgba(19,19,19,0.5);
-    display: none;
-    margin: auto;
-    transition: .4s;
-}
-#toncopy
-{
-    width: 90px;
-    height: 40px;
-    border-radius: 8px;
-    border: none;
-    background: #8673E0;
-    font-family: 'WR';
-    font-size: 14px;
-    color:white;
-    display: inline-block;
-    text-shadow: 1px 1px 1px #010409;
-    transform: translate(10px,60px);
-}
-#cl
-{
-    background: #ff0050;
-    font-family: 'WR';
-    font-size: 14px;
-    color:white;
-    width: 30px;
-    height: 31px;
-    display: none;
-    position: absolute;
-    border: none;
-    transform: translate(330px,-38px);
 }
 
 canvas
@@ -234,15 +24,6 @@ canvas
     
 }
 
-
-#load,#loaddata
-{
-    font-family: 'WR';
-    font-size: 40px;
-    color:white;
-    text-align: center;
-    
-}
 #WebGL_data
 {
       font-family: 'WR';
@@ -255,20 +36,6 @@ canvas
     height: 30px;
     transform: translateY(200px);
     
-}
-#Donatebtn,#blumbtn,.toncl
-{
-    width: 80px;
-    height: 40px;
-    border-radius: 8px;
-    background: #8673E0;
-    font-family: 'WR';
-    font-size: 16px;
-    color:white;
-    border: none;
-    display: inline-block;
-    text-shadow: 1px 1px 1px #010409;
-    transform: translate(10px,60px);
 }
     .loader {
   width: 120px;
@@ -296,119 +63,190 @@ canvas
 @keyframes l15{ 
   100%{transform: rotate(1turn)}
 }
-#blurframe
-{
-    filter: blur(10px);
-    width: 100%;
-    position: absolute;
-    height: 100%;
-    display: block;
-}
-
 #main
 {
     width: 100%;height: 100%;
     display: none;
 }
-.prjbw
+.btn
 {
-    border-radius: 8px;
-    background: rgba(40,155,99,0.8);
-    width: 180px;height: 32px;
-    display: block;
-    margin: auto;
-    translate: transform(-50px,60%);
-    border: none;
     font-family: 'WR';
-    color:white;
-}
-.postscl
-{
-    border-radius: 8px;
-    background: rgba(40,155,99,0.8);
-    width: 180px;height: 32px;
-    display: block;
-    margin: auto;
-    border: none;
-    font-family: 'WR';
-    color:white;
-    position: absolute;
-    left:100;
-    bottom:30;
-}
-.tProjects
-{
-    display: table;
-    margin: auto;
-    width: 90%;height: 20px;
-    background:#feff00; 
-    box-shadow: 1px 1px 10px #010409;
-}
-.prjb
-{
-    width: 140px;
-    height: 30px;
-    background: #8673E0;
-    font-size: 14px;
-    border-radius: 4px;
-    color:white;
-    border: none;
-    text-shadow: 1px 1px 1px #010409;
-    font-family: 'WR';
-    transform: translate(20px,50px);
-    display:inline-block;
-}
-#tPr,#tPrw
-{
-    font-size: 24px;
-    color:white;
-    text-shadow: 1px 1px 1px #010409;
-    font-family: 'WR';
-    display: table;
-    transform: translate(30px,30px);
-}
-#tPrInf,#tPrInfw
-{
     font-size: 18px;
-    color:#ff0050;
-    text-shadow: 1px 1px 1px #010409;
-    font-family: 'WR';
-    float: left;
-    display: table;
-    transform: translate(10px,20px);
-}
-#main_controls
-{
-    display: block;
-    margin: auto;
-    width: 300px;
-    border-radius: 8px;
-    height: 200px;
+    color:white;
+    border: none;
+    width: 80px;height: 30px;
+    background: transparent;
     transition: .4s;
-    transform: translate(0px,100px);
-    background: rgba(19,19,19,0.5);
+    display: inline-block;
+    transform: translate(30px,10px);
+    
+    
 }
-#back
+.btn:hover
 {
-    background: #ff0050;
+    border:1px solid #8373ff;
+}
+#nav
+{
+    width: 600px;height: 64px;
+    background: linear-gradient(45deg,#222222,#010409);
+    border:1px solid #010409;
+    box-shadow: 1px 1px 10px #010409;
+    border-radius: 4px;
+}
+#tx
+{
+font-family: 'WR';
+    font-size: 18px;
+    color:white;
+    transform: translate(10px,10px);
+    display: inline-block;
+}
+#cTx
+{
+    font-family: 'WR';
+    font-size: 14px;
+    color:white;
+    transform: translateX(10px);
+    width: 70%;
+    text-shadow: 1px 1px 2px #010409;
+}
+#cTx2
+{
     font-family: 'WR';
     font-size: 20px;
     color:white;
-    width: 30px;
-    height: 31px;
-    display: none;
-    border-radius: 2px;
-    border: none;
-    transform: translate(5px,300px) rotateZ(270deg);
+    text-align: center;
+    text-shadow: 1px 1px 2px #010409;
+    
 }
-#statie
+#close
 {
-    background: rgba(19,19,19,0.5);
+    font-family: 'WR';
+    font-size: 14px;
+    color:white;
+    text-align: center;
+    box-shadow: 1px 1px 10px #010409;
+    border:1px solid #010409;
+    background: #404040;
+    float: right;
+    width: 32px;height: 32px;
+}
+.apps
+{
+    width: 80%;height:130px;
+    box-shadow: 1px 1px 10px #010409;
+    border:1px solid #010409;
+    background: #202020;
+    border-radius: 4px;
+    transform: translate(10px,30px);
+    
+}
+.apptx
+{
+    font-family: 'WR';
+    font-size: 20px;
+    color:white;
+    transform: translateX(30px);
+}
+.appinfo
+{
+    font-family: 'WR';
+    font-size: 14px;
+    color:white;
+    transform: translateX(30px);
+}
+#appdw
+{
+    border:1px solid #010409;
+    width: 100px;height:30px;
+    background:#8373ff;
+    transform: translateX(30px);
+    font-family: 'WR';
+    font-size: 14px;
+    color:white;
+    border-radius: 4px;
+}
+#content
+{
+    width: 600px;height: 600px;
+    box-shadow: 1px 1px 10px #010409;
+    border:1px solid #010409;
+    background: #151515;
+    border-radius: 4px;
+}
+#app_frame,#web_frame,#links_frame,#posts_frame
+{
+    width: 600px;height: 600px;
+    box-shadow: 1px 1px 10px #010409;
+    border:1px solid #010409;
+    background: #151515;
+    border-radius: 4px;
     display: none;
-    margin: auto;
-    width: 360px;
-    border-radius: 8px;
-    height: 500px;
+}
+.lnks
+{
+    width: 80%;height:300px;
+    box-shadow: 1px 1px 10px #010409;
+    border:1px solid #010409;
+    background: #202020;
+    border-radius: 4px;
+    transform: translate(10px,30px);
+}
+.txlnk
+{
+    transform: translateX(30px);
+    font-family: 'WR';
+    font-size: 14px;
+    color:white;
+    width: 120px;
+    transition: .4s;
+}
+.txlnk:hover
+{
+    background: #8373ff;
+}
+.webs
+{
+    width: 80%;height:300px;
+    box-shadow: 1px 1px 10px #010409;
+    border:1px solid #010409;
+    background: #202020;
+    border-radius: 4px;
+    transform: translate(10px,30px);
+}
+.webtx
+{
+    transform: translateX(30px);
+    font-family: 'WR';
+    font-size: 14px;
+    color:white;
+    width: 120px;
+    transition: .4s;
+}
+.webtx:hover
+{
+    background: #8373ff;
+}
+.webinfo
+{
+    font-family: 'WR';
+    font-size: 14px;
+    color:white;
+    width: 120px;
+    transition: .4s;
+    transform: translate(250px,80px);
+}
+#window
+{
+    display: inline-block;
+    border:2px solid #010409;
+    transform: translate(250px,-200px);
+    width: 200px;height: 200px;
+}
+#wellcome
+{
+    width: 98%;height: 98%;
 }
 </style>
     <head><meta name="viewport" content="width=device-width, user-scalable=no">
@@ -425,263 +263,196 @@ canvas
 <br>
 <br>
 <img src="https://hcpp20334.github.io/Pictures/amd.png" style="width:64px;height:64px;display:block;
-    margin: auto;"><p id="tHcpp">HCPP STUDIO</p>
+    margin: auto;"><p id="cTx2">HCPP STUDIO</p></p>
 <div class="loader"></div>
-<p id="tHcpp">(beta build 0.8)</p>
+<p id="cTx2">(beta build 0.8)</p>
 </div>
 <div id="main">
-    <div id="hcpptitle">
-<img src="https://hcpp20334.github.io/Pictures/amd.png" style="width:64px;height:64px;display:block;
-    margin: auto;"><p id="tHcpp">HCPP STUDIO</p>
-</div>
-<div id="main_controls">
-<button id="op_proj" class="mNav">PROJECTS</button>
-<br>
-<button id="op_webproj"class="mNav">WEB PROJECTS</button>
-<br>
-<button id="op_statie" class="mNav">СТАТЬИ</button>
-<br>
-<button id="op_donate" class="mNav">ДОНАТ</button></div>
-<p id="WebGL_data">PWEngine loading.. </p>
-<div id="mainprojects">
-<div id="p1" class="prj">
-<p id="tPr">JE(x64)_OpenGL3.0</p>
-<p id="tPrInf">
-JE -POWERED GAMEPAD TESTER (C++20)
-</p>
-<br>
-<button class="prjb" onclick="javascript:window.location.href ='https://github.com/HCPP20334/JoyStickTest/releases/download/JE_x64_OpenGL/JE_x64_OpenGLv1.0.8SSE4.2cpp20_Release.zip';">СКАЧАТЬ</button>
-<button class="prjb" id="prjclose">ЗАКРЫТЬ</button>
+<div id="nav">
+<p id="tx">HCPP STUDIO</p>
+<button id="app" class="btn">APPS</button>
+<button id="web" class="btn">WEB</button>
+<button id="links" class="btn">LINKS</button>
+<button id="posts" class="btn">POSTS</button>
 </div>
 <br>
-<div id="p2" class="prj">
-<p id="tPr">ELECTRIK CALC(x64)_OpenGL3.0</p>
-<p id="tPrInf">
-POWERED CALCULATOR FOR ELECTRIK(C++20)
-</p>
-<button class="prjb" onclick="javascript:window.location.href = 'https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Electik.Calc.0.4.pre.alpha.C++20.zip';">СКАЧАТЬ</button>
-<button class="prjb"onclick="javascript:fPbuttonClose.click();">ЗАКРЫТЬ</button>
+<div id="content">
+<div id="wellcome">
+<p id="cTx">WELLCOME!!!</p>
+<p id="cTx">HCPP STUDIO - APP CREATORS TO C++20</p>
+<p id="cTx">PROGRAMMER: HCPP MAIN C++20 DEV</p>
+<p id="cTx">WEBSITE CREATED TO PRESENTS APP AND PROJECTS</p>
 </div>
-<br>
-<div id="p2" class="prj">
-<p id="tPr">CALC FOR ELEKTRONIC(x86)</p>
-<p id="tPrInf">
-CALCULATOR FOR ELECTRIK DIMA XP(C#)
-</p>
-<button class="prjb" onclick="javascript:window.location.href='http://dimaxp.sytes.net/kalkulyator-watt-v-amper-i-obratno';">СКАЧАТЬ</button>
-<button class="prjb"onclick="javascript:fPbuttonClose.click();">ЗАКРЫТЬ</button></div>
-<div id="p1" class="prj">
-<p id="tPr">JE JavaFX(x64)_OpenGL3.0</p>
-<p id="tPrInf">
-JE -POWERED GAMEPAD TESTER (JDK 17)
-</p>
-<button class="prjb" onclick="javascript:window.location.href = 'https://github.com/rpmaster2/JoyStickTest/releases/download/1.0/Archive.zip';">СКАЧАТЬ</button>
-<button class="prjb"onclick="javascript:fPbuttonClose.click();">ЗАКРЫТЬ</button></div>
+<div id="app_frame">
+<button id="close">X</button>
+<div class="apps">
+<p class="apptx">JE x64_OPENGL3_1.0.8(C++20)</p>
+<p class="appinfo">JE - GAMEPAD TESTER TO WINDOWS!!</p>
+<button id="appdw" onclick="javascript:Oapp(AppUrl[0]);">DOWNLOAD</button>
 </div>
-<div id="webprojects">
-    <br>
-<br>
-<br>
-<br>
-<button class="prjbw" onclick="javascript:window.location.href = 'https://hcpp20334.github.io/playerJS.html';">PLAYERJS</button>
-<br>
-<button class="prjbw" onclick="javascript:window.location.href = 'https://hcpp20334.github.io/calc.html';">ELECTRIK CALC</button>
-<br>
-<button class="prjbw" onclick="javascript:window.location.href = 'https://hcpp20334.github.io/GPUBench';">GPUBench</button>
-<br>
-<button class="prjbw" onclick="javascript:window.location.href='https://hcpp20334.github.io/PassGen';">PassGen</button>
-<br>
-<button class="prjbw" id="prjclosew">ЗАКРЫТЬ</button>
+<div class="apps">
+<p class="apptx">JE x64 JAVAFX 1.0.0</p>
+<p class="appinfo">JE - GAMEPAD TESTER TO WINDOWS!!</p>
+<button id="appdw" onclick="javascript:Oapp(AppUrl[2]);">DOWNLOAD</button>
 </div>
-<div id="statie">
-<iframe src="posts.html"></iframe>
-    <button class="postscl"onclick="javascript:fPbuttonClose.click();">ЗАКРЫТЬ</button>
+<div class="apps">
+<p class="apptx">ELECTRIK CALC x64(C++20)</p>
+<p class="appinfo">CALCULATOR FOR ELEKTRIK TO WINDOWS!!</p>
+<button id="appdw" onclick="javascript:Oapp(AppUrl[1]);">DOWNLOAD</button>
 </div>
-<div id="ton">
-    <img id="imgton" src="ton.jpg" width="128"height="128">
-<p id="tontext">ПОДДЕРЖИ АВТОРА ЗАКИНЬ TON</p>
+<div class="apps">
+<p class="apptx">CALC TO AMPER DIMA XP</p>
+<p class="appinfo">CALCULATOR FOR ELEKTRIK TO WINDOWS!</p>
+<button id="appdw"onclick="javascript:Oapp(AppUrl[3]);">DOWNLOAD</button>
+</div>
+</div>
+<div id="web_frame">
+<button id="close">X</button>
+<div class="webs">
+<p class="webtx" id="wbtx">ELEKTRIK CALC</p>
+<p class="webtx" id="wbtx1">PLAYERJS</p>
+<p class="webtx" id="wbtx2">PASSGEN</p>
+<p class="webtx" id="wbtx3">BASE64</p>
+<p class="webtx" id="wbtx4">UPDATER</p>
+<p class="webinfo" id="wbinfo">test</p>
+<iframe id="window"></iframe>
+</div>
+</div>
+<div id="links_frame">
+<button id="close">X</button>
+<div class="lnks">
+<p class="txlnk">YOUTUBE</p>
+<p class="txlnk">TWITCH</p>
+<p class="txlnk">GITHUB</p>
+<p class="txlnk">TELEGRAM</p>
+</div>
+</div>
+<div id="posts_frame">
+<button id="close">X</button>
+<p id="cTx">COMING SOON...</p>
+</div>
+</div>
+<p id="cTx">BETA BULID 0.9 2024</p><p id="WebGL_data"></p>
+</div>
 
-<button id="blumbtn" onclick="javascript:window.location.href='tg:resolve?domain=BlumCryptoBot&appname=app&startapp=ref_OGY3YUbbem';">BLUM</button>
-<button id="Donatebtn">DONATE</button>
-<button id="toncopy">COPY TON</button>
-<button class="toncl"onclick="javascript:fPbuttonClose.click();">ЗАКРЫТЬ</button>
-<br>
-<br>
-<br>
-<br>
-<button id="back">X</button>
-</div>
-</div>
 <script>
-let fSbutton = document.getElementById("op_statie");
-let statieFrame   = document.getElementById("statie");
-let menuFrame  = document.getElementById("main_controls");
-let configGraph = document.getElementById("indata");
-let fBdonate = document.getElementById("op_donate");
-let fFdonate = document.getElementById("ton");
-let fBsliderMenu = document.getElementById("menu_part1");
 let debugData = document.getElementById("WebGL_data");
-let fPbuttonClose  = document.getElementById("prjclose");
-const fPbutton = document.getElementById("op_proj");
-const fWPbutton = document.getElementById("op_webproj");
 var fDbufTitle = document.getElementById("texttitle");
-var fFproj = document.getElementById("mainprojects");
-var fFWproj = document.getElementById("webprojects");
-const fTitle1  = document.getElementById("title");
-const fTitle2  = document.getElementById("title2");
-const fTONbutton = document.getElementById("toncopy");
-const fDcontrols = document.getElementById("controls");
-const fMbarFrame  = document.getElementById("menu_nav");
-const fLDbuffer   = document.getElementById("loaddata");
-const fMainTframe   = document.getElementById("hcpptitle");
-const fDONATEbutton = document.getElementById("Donatebtn");
-const fDONATEClosebutton = document.getElementById("back");
-const ton_frame = document.getElementById("ton");
 var frame;
 const fFmain = document.getElementById("main");
 const fFload = document.getElementById("loadframe");
 const LoadData = document.getElementById("loadingfr");
-const ton_key = "UQD7Vo2nbHXif_Tv_iXg5Qb7peKqOR04AW2wceVsjBfo8C0w";
-const donate_url = "https://donationalerts.com/r/hcpp";
-const fIfProj = document.getElementById("prjif");
-const fIfWProj = document.getElementById("prjif");
-let fPWbuttonClose  = document.getElementById("prjclosew");
-let donateFrameClose   = document.getElementById("back");
-let dX = 0;
-let fIarrayX = [0,330,660,990];
-let fBsliderButton = document.getElementById("sliderbutton");
-let fCXPos = 0;
-let st_b = 0;
+//nav button
+let fBApp  = document.getElementById("app");
+let fBWeb  = document.getElementById("web");
+let fBLinks  = document.getElementById("links");
+let fBPosts  = document.getElementById("posts");
+let fBClose = document.getElementById("close");
+//
+//frame window
+let AppFrame  = document.getElementById("app_frame");
+let WebFrame  = document.getElementById("web_frame");
+let LinksFrame  = document.getElementById("links_frame");
+let PostsFrame  = document.getElementById("posts_frame");
+let WellomeFrame  = document.getElementById("wellcome");
+
+//
+function Oapp(url)
+{
+    document.location.href = url;
+}
+//onclick="javascript:Oapp(AppUrl[]);""
+let AppUrl = [
+    "https://github.com/HCPP20334/JoyStickTest/releases/tag/JE_x64_OpenGL",
+    "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Electik.Calc.0.4.pre.alpha.C++20.zip",//3
+    "https://github.com/rpmaster2/JoyStickTest/releases/tag/1.0",
+    "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Setup.Electrick.Calc.V2.1.BY.DIMA.XP.Setup.exe"
+    ];
+let WbWindowFrame  = document.getElementById("window");
+let fWbinfo_buf  = document.getElementById("wbinfo");
+//wb btns wbtx1
+let wb_btn0 = document.getElementById("wbtx");
+let wb_btn1 = document.getElementById("wbtx1");
+let wb_btn2 = document.getElementById("wbtx2");
+let wb_btn3 = document.getElementById("wbtx3");
+let wb_btn4 = document.getElementById("wbtx4");
+wb_btn0.onclick = function(){
+    WbWindowFrame.src = "https://hcpp20334.github.io/calc.html";
+    fWbinfo_buf.innerHTML = "CALCULATOR FOR ELEKTRIK JS";
+}
+wb_btn1.onclick = function(){
+    WbWindowFrame.src = "https://hcpp20334.github.io/PlayerJS.html";
+    fWbinfo_buf.innerHTML = "PLAYER JS";
+}
+wb_btn2.onclick = function(){
+    WbWindowFrame.src = "https://hcpp20334.github.io/PassGen";
+    fWbinfo_buf.innerHTML = "PASSGEN JS";
+}
+wb_btn3.onclick = function(){
+    WbWindowFrame.src = "https://hcpp20334.github.io/base64.html";
+    fWbinfo_buf.innerHTML = "BASE 64 DEC2ENCJS";
+}
+wb_btn4.onclick = function(){
+    WbWindowFrame.src = "https://hcpp20334.github.io/update";
+    fWbinfo_buf.innerHTML = "UPDATE CENTER";
+}
+//unit btns
+fBApp.onclick = function()
+{
+    AppFrame.style.display = "block";
+    WebFrame.style.display = "none";
+    LinksFrame.style.display = "none";
+    PostsFrame.style.display = "none";
+    WellomeFrame.style.display = "none";
+}
+fBWeb.onclick = function()
+{
+    AppFrame.style.display = "none";
+    WebFrame.style.display = "block";
+    LinksFrame.style.display = "none";
+    PostsFrame.style.display = "none";
+    WellomeFrame.style.display = "none";
+}
+fBLinks.onclick = function()
+{
+    AppFrame.style.display = "none";
+    WebFrame.style.display = "none";
+    LinksFrame.style.display = "block";
+    PostsFrame.style.display = "none";
+    WellomeFrame.style.display = "none";
+}
+fBPosts.onclick = function()
+{
+    AppFrame.style.display = "none";
+    WebFrame.style.display = "none";
+    LinksFrame.style.display = "none";
+    PostsFrame.style.display = "block";
+    WellomeFrame.style.display = "none";
+}
+fBClose.onclick = function()
+{
+    AppFrame.style.display = "none";
+    WebFrame.style.display = "none";
+    LinksFrame.style.display = "none";
+    PostsFrame.style.display = "none";
+    WellomeFrame.style.display = "block";
+}
 function load()
 {
     fFmain.style.display = "none";
     fFload.style.display = "block";
-    setTimeout("fFmain.style.display = 'block';fFload.style.display = 'none';",6000);
+    document.documentElement.style = "width: 100%;height: 100%;"
+    setTimeout("fFmain.style.display = 'block';fFload.style.display = 'none';document.documentElement.style = 'width: 100%;height: 100%;'",6000);
 }
+
 function loaddebug()
 {
     fFmain.style.display = "block";
     fFload.style.display = "none";
    // setTimeout("fFmain.style.display = 'block';fFload.style.display = 'none';",6000);
 }
-load();
+loaddebug();
 //
-//loaddebug();
-fBdonate.onclick = function()
-{
-    fFproj.style.display = "none";
-    fFWproj.style.display = "none";
-    statieFrame.style.display = "none";
-    fFdonate.style.display = "block";
-    menuFrame.style.transform= "translate(-200%,100px)";
-    setTimeout("menuFrame.style.display = 'none';",100);
-    fFdonate.style.transform = "translateY(-180px)";
-}
-fSbutton.onclick = function()
-{
-    fFproj.style.display = "none";
-    fFWproj.style.display = "none";
-    statieFrame.style.display = "block";
-    fFdonate.style.display = "none";
-    menuFrame.style.transform= "translate(-200%,100px)";
-    setTimeout("menuFrame.style.display = 'none';",100);
-}
-//fIfProj.contentWindow.scrollTo(400,0);
-document.addEventListener('keydown', function(event) {
-        fC_key = event.code;
-  if(event.code == 'KeyA')
-  {
-      dX--;
-      if(dX < 0)
-      {
-          dX = 0;
-      }
-      fIfProj.contentWindow.scrollTo(fIarrayX[dX],0);
-      fIfWProj.contentWindow.scrollTo(fIarrayX[dX],0);
-  }
-  if(event.code == 'KeyS')
-  {
-      dX++;
-      if(dX > 4)
-      {
-          dX = 0;
-      }
-      fIfProj.contentWindow.scrollTo(fIfRamePos[dX],0);
-      fIfWProj.contentWindow.scrollTo(fIarrayX[dX],0);
-  }
-});
-fDONATEClosebutton.onclick = function()
-{
-    frame.style.display="none";
-    ton_frame.removeChild(frame);
-    fDONATEClosebutton.style.display = "none";
-    //fDcontrols.style.display = "none";
-}
-fTONbutton.onclick = function()
-{
-navigator.clipboard.writeText(ton_key).then();
-}
-fDONATEbutton.onclick = function()
-{
-    CreateFrame(donate_url);
-    //fDcontrols.style.display = "block";
-}
-fPbutton.onclick = function()
-{
-    fFproj.style.display = "block";
-    fFWproj.style.display = "none";
-    fFdonate.style.display = "none";
-    statieFrame.style.display = "none";
-    dX = 0;
-    menuFrame.style.transform= "translate(-200%,100px)";
-    fFproj.style.transform = "translateY(-50px)";
-    setTimeout("menuFrame.style.display = 'none';",100);
-}
-fPbuttonClose.onclick = function()
-{
-    fFproj.style.display = "none";
-    fFWproj.style.display = "none";
-    fFdonate.style.display = "none";
-    statieFrame.style.display = "none";
-    menuFrame.style.transform= "translate(0px,100px)";
-    setTimeout("menuFrame.style.display = 'block';",100);
-    fFproj.style.transform = "translateY(-170px)"; 
-}
-fPWbuttonClose.onclick = function()
-{
-    fFproj.style.display = "none";
-    fFWproj.style.display = "none";
-    fFdonate.style.display = "none";
-    menuFrame.style.transform= "translate(0px,100px)";
-    fFWproj.style.transform = "translateY(-170px)"; 
-    setTimeout("menuFrame.style.display = 'block';",100);
-}
-fWPbutton.onclick = function()
-{
-    fFproj.style.display = "none";
-    fFWproj.style.display = "block";
-    fFdonate.style.display = "none";
-    dX = 0;
-    menuFrame.style.transform= "translate(-200%,100px)";
-    fFWproj.style.transform = "translateY(-170px)";
-    setTimeout("menuFrame.style.display = 'none';",100);
-}
-let styleData;
-
-function CreateFrame(url)
-{
-     frame = document.createElement("iframe");
-    frame.style.display = "block";
-    frame.style.margin = "auto";
-    frame.style.border="none";
-    ton_frame.appendChild(frame);
-    frame.src = url;
-    frame.style.width = "100%";
-    frame.style.height = "550px";
-    frame.style.position = "absolute";
-    frame.style.transform="translateY(-280px)";
-    fDONATEClosebutton.style.display = "inline-block";
-}
 
 </script>
 </html>
