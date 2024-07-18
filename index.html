@@ -96,8 +96,10 @@ canvas
     width: 99%;height: 100px;
     box-shadow: 1px 1px 10px #010409;
     border-bottom: 3px solid #010409;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
     background: linear-gradient(45deg, #1010ff,#8373ff);
-        animation: gradient 10s ease infinite;
+        animation: gradient 4s ease infinite;
         background-size: 400% 400%;
 }
     @keyframes gradient {
@@ -203,6 +205,9 @@ font-family: 'WR';
     border:1px solid #010409;
     background: #151515;
     border-radius: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    transform: translateY(-10px);
 }
 #app_frame,#web_frame,#links_frame,#posts_frame
 {
@@ -282,17 +287,17 @@ font-family: 'WR';
 }
 #videocontent
 {
-    width:100%;height:300px;
+    width:100%;height:600px;
     overflow-x: scroll;
     box-shadow: 1px 1px 10px #010409;
     border:1px solid #010409;
-    background: #404040;
+    background: #151515;
     border-radius: 4px;
     display: none;
 }
 .post
 {
-    max-width: 360px;
+    max-width: 660px;
     width:100%;height:300px;
     box-shadow: 1px 1px 10px #010409;
     border:1px solid #010409;
@@ -360,22 +365,22 @@ a{outline: none;color:#ffffff;background:#ff2080;}
 <button id="close">X</button>
 <div class="apps">
 <p class="apptx">JE x64_OPENGL(C++20)</p>
-<p class="appinfo">JE - GAMEPAD TESTER TO WINDOWS!!</p>
+<p class="appinfo">JE - GAMEPAD TESTER TO WINDOWS</p>
 <button id="appdw" onclick="javascript:Oapp(AppUrl[0]);">DOWNLOAD</button>
 </div>
 <div class="apps">
 <p class="apptx">JE x64 JAVAFX 1.0.0</p>
-<p class="appinfo">JE - GAMEPAD TESTER TO WINDOWS!!</p>
+<p class="appinfo">JE - GAMEPAD TESTER TO WINDOWS</p>
 <button id="appdw" onclick="javascript:Oapp(AppUrl[2]);">DOWNLOAD</button>
 </div>
 <div class="apps">
 <p class="apptx">ELECTRIK CALC x64(C++20)</p>
-<p class="appinfo">CALCULATOR FOR ELEKTRIK TO WINDOWS!!</p>
+<p class="appinfo">CALCULATOR FOR ELEKTRIK TO WINDOWS</p>
 <button id="appdw" onclick="javascript:Oapp(AppUrl[1]);">DOWNLOAD</button>
 </div>
 <div class="apps">
 <p class="apptx">CALC TO AMPER DIMA XP</p>
-<p class="appinfo">CALCULATOR FOR ELEKTRIK TO WINDOWS!</p>
+<p class="appinfo">CALCULATOR FOR ELEKTRIK TO WINDOWS</p>
 <button id="appdw"onclick="javascript:Oapp(AppUrl[3]);">DOWNLOAD</button>
 </div>
 </div>
@@ -448,7 +453,7 @@ let PostsFrame  = document.getElementById("videocontent");
 //
 function Oapp(url)
 {
-    document.location.href = url;
+    window.open(url);
 }
 //onclick="javascript:Oapp(AppUrl[]);""
 let AppUrl = [
@@ -540,7 +545,7 @@ function load()
     fFmain.style.display = "none";
     fFload.style.display = "block";
     document.documentElement.style = "width: 100%;height: 100%;"
-    setTimeout("fFmain.style.display = 'block';fFload.style.display = 'none';document.documentElement.style = 'width: 100%;height: 100%;'",6000);
+    setTimeout("fFmain.style.display = 'block';fFload.style.display = 'none';document.documentElement.style = 'width: 100%;height: 100%;'",1000);
 }
 
 function loaddebug()
