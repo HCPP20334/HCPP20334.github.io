@@ -298,7 +298,7 @@ font-family: 'WR';
 .post
 {
     max-width: 660px;
-    width:100%;height:300px;
+    width:100%;
     box-shadow: 1px 1px 10px #010409;
     border:1px solid #010409;
     background: #202020;
@@ -325,6 +325,12 @@ font-family: 'WR';
     width:98%;
     transition: .4s;
     overflow-y: scroll;
+}
+.postimg
+{
+    display: table;
+    transform: translateX(20px);
+    border-left: 2px solid #ff2080;
 }
 a{outline: none;color:#ffffff;background:#ff2080;}
 </style>
@@ -399,18 +405,21 @@ a{outline: none;color:#ffffff;background:#ff2080;}
 <div id="videocontent">
 <div class="post">
 <p id="tlpost">0GET ID USER WITH HIDDEN INFO TELEGRAM</p>
+<img src="./Pictures/telegram.jpeg" class="postimg">
 <p id="txpost">
 In this article I will talk about the vulnerability of telegrams. go to <a href="https://web.telegram.org">web.telegram.org</a>, then log into your account. Now we find an account with hidden information in the account and copy the last numbers from the address bar. We all got an id!! Now you can search by id and get information about your account.
 </p>
 </div>
 <div class="post">
 <p id="tlpost">GET SCAN PORTS TO NMAP</p>
+<img src="./Pictures/nmap.jpeg" class="postimg">
 <p id="txpost">
 in the article I will tell you how to get information about the open ports of a website or server using nmap. downloading nmap termux: pkg install nmap then we launch it with the command nmap -sS -sT -sF "ip" or url
 </p>
 </div>
 <div class="post">
 <p id="tlpost">SEND VULNERABILITY WEB SITE OR GOOGLE DORK </p>
+<img src="./Pictures/dorks.jpg" class="postimg">
 <p id="txpost">
 there are vulnerable queries in the Google search engine and there is a website to take advantage of them <a href="https://pentest-tools.com/information-gathering/google-hacking>Pentest tools">pentest-tools</a>
 </p>
