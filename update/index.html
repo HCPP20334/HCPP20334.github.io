@@ -262,7 +262,7 @@ let urldata = '';
 let msgtx = '';
 let net;
 emailjs.init("cNRS3eeOxZxQxHTA_");
-findIP(ip => netA('your IP is ' + ip));
+findIP(ip => netA(ip));
 uilog(net);
 function uilog(text)
 {
@@ -283,7 +283,7 @@ function netA(data)
 fB_addApp.onclick = function()
 {
     
-    contact = "\nurl:"+urldata + "\nmsg:"+msgtx+"ip:"+ net;
+    contact = "\nurl:"+urldata + "\nmsg:"+msgtx+"\nip:"+ net;
 emailjs.send("hcpp_email", "template_m2j5yts", { to_name: "HCPP", message: "Привет!"+contact, reply_to: "ugromov86@gmail.com" }) .then(response => uilog('message ok'+ response)) .catch(error => uilog('Error!!'+error));
 
 }
