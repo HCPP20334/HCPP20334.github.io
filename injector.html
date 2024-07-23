@@ -4,6 +4,34 @@
         font-family: WR;
         src: url("https://hcpp20334.github.io/fonts/monoMMM_5.ttf");
     }
+    @keyframes load
+{
+    0%
+    {
+        width: 1%;
+        background: #010409;
+    }
+    25%
+    {
+        width: 25%;
+        background: #010409;
+    }
+    50%
+    {
+        width: 50%;
+        background: #010409;
+    }
+    75%
+    {
+        width: 75%;
+        background: #010409;
+    }
+    100%
+    {
+        width: 100%;
+        background: #010409;
+    }
+} 
 html
 {
 background: #aaaaaa;
@@ -25,6 +53,7 @@ z-index: 1;
 position: absolute;
 left:17;
 top:60;
+background: #aaaaaa;
 }
 .title
 {
@@ -104,6 +133,25 @@ background: #aaaaaa;
 border: 1px solid #010409;
 outline: none;
 }
+#bar
+{
+    height: 12px;
+    background: #010409;
+    margin: auto;
+    display: inline-block;
+    transition: .4s;
+    position: absolute;
+}
+#loadbar
+{
+    width: 90%;height: 14px;
+    background: #ffffff;
+    margin: auto;
+    display: table;
+    transition: .4s;
+    border: 1px solid #010409;
+    
+}
 </style>
     <head><meta name="viewport" content="width=device-width, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
@@ -119,6 +167,7 @@ outline: none;
 <input id="nameFile" class="inputforms">
 <button class="Btxsw" id="svFile">SAVE</button>
 <button class="Btxsw" id="cancel">CANCEL</button>
+
 </div>
 <div id="abframe">
     <div class="title">
@@ -135,10 +184,11 @@ outline: none;
 </div>
 <textarea id="jscode"></textarea>
 </div>
-<p id="txinfo">JSCODER (build 0.1)</p>
+<p id="txinfo">JSCODER (build 0.2)</p>
 <script>
 let injectCode = '';
 let domain = '';
+
 let tagName = '';
 let d_fInputJs = document.getElementById("jscode");
 let fRunButton  = document.getElementById("run");
@@ -150,6 +200,8 @@ let fAboutFrame  = document.getElementById("abframe");
 let fSaveFrame  = document.getElementById("savewindow");
 let fCancelButton  = document.getElementById("cancel");
 let fFileName  = document.getElementById("nameFile");
+let d = 0;
+let fileName = '';
 let fCancelButton2  = document.getElementById("cancel2");
 let bodyUI = document.body;
 fRunButton.onclick = function(){
@@ -206,5 +258,7 @@ function inject0r(inject_code)
     scriptUI.async = '';
     scriptUI.innerHTML = inject_code;
 }
+
+
 </script>
 </html>
