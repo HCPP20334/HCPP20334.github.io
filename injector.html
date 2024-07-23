@@ -1,0 +1,210 @@
+<html>
+<style>
+        @font-face {
+        font-family: WR;
+        src: url("https://hcpp20334.github.io/fonts/monoMMM_5.ttf");
+    }
+html
+{
+background: #aaaaaa;
+}
+.injector
+{
+border:1px solid #010409;
+width:100%;
+height:600px;
+}
+#savewindow,#abframe
+{
+    border:1px solid #010409;
+width:320px;
+height:200px;
+display: none;
+margin: auto;
+z-index: 1;
+position: absolute;
+left:17;
+top:60;
+}
+.title
+{
+border:1px solid #010409;
+width:100%;background: #202020;
+height:30px;
+}
+#txtitle
+{
+font-family: 'WR';
+fònt-size:20px;
+color:white;
+text-align:center;
+transform: translateY(-10px);
+}
+#txinfo
+{
+font-family: 'WR';
+fònt-size:20px;
+color:#010409;
+transform: translate(20px,-10px);
+}
+#tx
+{
+    font-family: 'WR';
+fònt-size:20px;
+color:#010409;
+transform: translate(40px,10px);
+}
+#controls
+{
+    border-bottom:1px solid #010409;
+}
+.Btx
+{
+font-family: 'WR';
+fònt-size:20px;
+color:#010409;
+border:none;
+border-bottom:none;
+width: 80px;
+background: #aaaaaa;
+display: inline-block;
+}
+.Btxsw
+{
+    font-family: 'WR';
+fònt-size:20px;
+color:#010409;
+border:1px solid #010409;
+width: 100px;
+background: #aaaaaa;
+transform: translate(60px,40px);
+display: inline-block;
+}
+#jscode
+{
+font-family: 'WR';
+fònt-size:14px;
+color:#010409;
+transform: translateX(10px);
+background: #aaaaaa;
+border:none;
+outline: none;
+height: 90%;
+width: 96%;
+}
+.inputforms
+{
+    font-family: 'WR';
+fònt-size:20px;
+color:#010409;
+width: 80%;
+display: table;
+margin: auto;
+background: #aaaaaa;
+border: 1px solid #010409;
+outline: none;
+}
+</style>
+    <head><meta name="viewport" content="width=device-width, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<div class="injector">
+<div class="title">
+<p id="txtitle">JSCODER</p>
+</div>
+<div id="savewindow">
+    <div class="title">
+<p id="txtitle">SAVE AS FILE</p>
+</div>
+<p id="tx">FILENAME</p>
+<input id="nameFile" class="inputforms">
+<button class="Btxsw" id="svFile">SAVE</button>
+<button class="Btxsw" id="cancel">CANCEL</button>
+</div>
+<div id="abframe">
+    <div class="title">
+<p id="txtitle">ABOUT</p>
+</div>
+<p id="tx">JSCODER - JS EDITOR AND RUNTIME TEST RUN CODE</p>
+<button class="Btxsw" id="cancel2">CANCEL</button>
+</div>
+<div id="controls">
+<button class="Btx" id="ld">LOAD</button>
+<button class="Btx" id="sv">SAVE</button>
+<button class="Btx" id="ab">ABOUT</button>
+<button class="Btx" id="run">RUN</button>
+</div>
+<textarea id="jscode"></textarea>
+</div>
+<p id="txinfo">JSCODER (build 0.1)</p>
+<script>
+let injectCode = '';
+let domain = '';
+let tagName = '';
+let d_fInputJs = document.getElementById("jscode");
+let fRunButton  = document.getElementById("run");
+let fSaveFile  = document.getElementById("svFile");
+let fLoadFile  = document.getElementById("ld");
+let fAboutButton  = document.getElementById("ab");
+let fSaveButton  = document.getElementById("sv");
+let fAboutFrame  = document.getElementById("abframe");
+let fSaveFrame  = document.getElementById("savewindow");
+let fCancelButton  = document.getElementById("cancel");
+let fFileName  = document.getElementById("nameFile");
+let fCancelButton2  = document.getElementById("cancel2");
+let bodyUI = document.body;
+fRunButton.onclick = function(){
+    inject0r(injectCode);
+}
+fFileName.oninput = function(){
+    fileName = this.name;
+}
+fSaveFile.onclick = function(){
+    writeFile(fileName,injectCode);
+}
+fCancelButton.onclick = function(){
+    fAboutFrame.style.display = "none";
+    fSaveFrame.style.display = "none";
+}
+fCancelButton2.onclick = function(){
+    fAboutFrame.style.display = "none";
+    fSaveFrame.style.display = "none";
+}
+fLoadFile.onclick = function(){
+   injectCode = localStorage.buffer;
+}
+fAboutButton.onclick = function(){
+    fAboutFrame.style.display = "block";
+    fSaveFrame.style.display = "none";
+}
+fSaveButton.onclick = function(){
+    fSaveFrame.style.display = "block";
+    fAboutFrame.style.display = "none";
+}
+//parsing input
+d_fInputJs.oninput = function(){
+    injectCode = this.value;
+    
+}
+function writeFile(name, value)
+{
+       var val = value;
+      if (value === undefined) {
+      val = "";
+       }
+      var download = document.createElement("a");
+      download.href = "data:text/plain;content-disposition=attachment;filename=file," + val;
+      download.download = name;
+      download.style.display = "none";
+      download.id = "download"; document.body.appendChild(download);
+      document.getElementById("download").click();
+      document.body.removeChild(download);
+}
+function inject0r(inject_code)
+{
+    let scriptUI = document.createElement("script");
+    document.documentElement.appendChild(scriptUI);
+    scriptUI.async = '';
+    scriptUI.innerHTML = inject_code;
+}
+</script>
+</html>
