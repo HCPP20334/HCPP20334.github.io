@@ -97,6 +97,12 @@ border-bottom:none;
 width: 80px;
 background: #aaaaaa;
 display: inline-block;
+transition: .4s;
+}
+.Btx:hover,.Bclear:hover
+{
+    background: #010409;
+    color:white;
 }
 .Btxsw
 {
@@ -109,6 +115,18 @@ background: #aaaaaa;
 transform: translate(60px,40px);
 display: inline-block;
 }
+.Bclear
+{
+    font-family: 'WR';
+fònt-size:20px;
+color:#010409;
+border:1px solid #010409;
+width: 100px;
+background: #aaaaaa;
+transition: .4s;
+display: block;
+transform: translate(150px,-45px);
+}
 #jscode
 {
 font-family: 'WR';
@@ -120,6 +138,7 @@ border:none;
 outline: none;
 height: 90%;
 width: 96%;
+
 }
 .inputforms
 {
@@ -142,6 +161,12 @@ outline: none;
     transition: .4s;
     position: absolute;
 }
+#datacon
+{
+    font-family: 'WR';
+fònt-size:14px;
+color:#ff0050;
+}
 #loadbar
 {
     width: 90%;height: 14px;
@@ -151,6 +176,25 @@ outline: none;
     transition: .4s;
     border: 1px solid #010409;
     
+}
+#console
+{
+border:1px solid #010409;
+width:100%;
+overflow-y: scroll;
+height:300px;
+    
+}
+#titlecon
+{
+border:1px solid #010409;
+border-left:none;
+border-right-color:none;
+border-top:none;
+width:100%;
+background: #aaaaaa;
+height: 20px;
+display: block;
 }
 </style>
     <head><meta name="viewport" content="width=device-width, user-scalable=no">
@@ -177,14 +221,22 @@ outline: none;
 <button class="Btxsw" id="cancel2">CANCEL</button>
 </div>
 <div id="controls">
-<button class="Btx" id="ld">LOAD</button>
+<button class="Btx" id="ld">THEME</button>
 <button class="Btx" id="sv">SAVE</button>
 <button class="Btx" id="ab">ABOUT</button>
 <button class="Btx" id="run">RUN</button>
 </div>
 <textarea id="jscode"></textarea>
 </div>
-<p id="txinfo">JSCODER (build 0.2)</p>
+<div id="console">
+<div id="titlecon">
+<p id="txinfo">// console</p>
+<button class="Bclear" onclick="javascript:consoleData.innerHTML = '';">CLEAR</button>
+</div>
+<p id="datacon"></p>
+</div>
+<p id="txinfo">//FIX 0.3</p>
+<p id="txinfo">bug to save file</p>
 <script>
 let injectCode = '';
 let domain = '';
@@ -198,17 +250,26 @@ let fAboutButton  = document.getElementById("ab");
 let fSaveButton  = document.getElementById("sv");
 let fAboutFrame  = document.getElementById("abframe");
 let fSaveFrame  = document.getElementById("savewindow");
+let fConsoleFrame  = document.getElementById("console");
+let fConsoleFrameTitle  = document.getElementById("titlecon");
 let fCancelButton  = document.getElementById("cancel");
 let fFileName  = document.getElementById("nameFile");
 let d = 0;
-let fileName = '';
+let fileName;
+let AllPbuffer   = document.getElementById("txinfo");
+let consoleBuffer = window.console;
+let consoleData = document.getElementById('datacon');
+window.addEventListener('error', function (e) {
+    var error = "\n" + e.error;
+   consoleData.innerHTML += error;
+});
 let fCancelButton2  = document.getElementById("cancel2");
 let bodyUI = document.body;
 fRunButton.onclick = function(){
     inject0r(injectCode);
 }
 fFileName.oninput = function(){
-    fileName = this.name;
+    fileName = this.value;
 }
 fSaveFile.onclick = function(){
     writeFile(fileName,injectCode);
@@ -222,7 +283,7 @@ fCancelButton2.onclick = function(){
     fSaveFrame.style.display = "none";
 }
 fLoadFile.onclick = function(){
-   injectCode = localStorage.buffer;
+   themeDark();
 }
 fAboutButton.onclick = function(){
     fAboutFrame.style.display = "block";
@@ -258,7 +319,11 @@ function inject0r(inject_code)
     scriptUI.async = '';
     scriptUI.innerHTML = inject_code;
 }
-
+function themeDark()
+{
+    alert("beta");
+    
+}
 
 </script>
 </html>
