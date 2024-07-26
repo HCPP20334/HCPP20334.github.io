@@ -1,0 +1,296 @@
+<html>
+<style>
+        @font-face {
+        font-family: WR;
+        src: url("https://hcpp20334.github.io/fonts/monoMMM_5.ttf");
+    }
+        @keyframes slideY
+    {
+        0%{
+            transform: translateY(-300px);
+        }
+        100%{
+            transform: translateY(10px);
+        }
+    }
+            @keyframes slideY2
+    {
+        0%{
+            transform: translateY(-300px);
+        }
+        100%{
+            transform: translateY(100px);
+        }
+    }
+html
+{
+background:#010409;
+zoom:40%;
+}
+.pwapi
+{
+background:#1b1b1e;
+width:347px;
+display:inline-block;
+height:600px;
+border-top-left-radius: 8px;
+border-top-right-radius: 8px;
+
+}
+.pwinfo
+{
+background: linear-gradient(45deg, #ff2080,#8373ff);
+height:30px;
+display:table;
+width:80%;
+margin:auto;
+border:1px solid #010409;
+transition:.4s;
+border-radius:4px;
+font-family:'WR';
+font-size:18px;
+color:white;
+transform: translateY(100px);
+transition: .4s;
+}
+.pwinfo:hover
+{
+background:#636363;
+
+}
+.pwbtn
+{
+background:#ff2080;
+border:1px solid #010409;
+height:20px;
+}
+.pwtxtl
+{
+font-family:'WR';
+font-size:25px;
+color:white;
+transform:translateY(10px);
+text-align:center;
+transition: .4s;
+animation: slideY 2s;
+}
+.pwtxtl2
+{
+font-family:'WR';
+font-size:20px;
+color:white;
+text-align:center;
+}
+.pwtx
+{
+font-family:'WR';
+font-size:18px;
+color:white;
+transform:translate(30px,3px);
+}
+.pwtitle
+{
+border:1px solid #010409;
+width:100%;background: #ff2080;
+height:120px;
+border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+background: linear-gradient(45deg, #ff2080,#8373ff);
+        animation: gradient 4s ease infinite;
+        background-size: 400% 400%;
+}
+    @keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+#pwabout{animation: slideY2 5s;}
+#pwunitapi{animation: slideY2 1s;}
+#pwfunc{animation: slideY2 3s;}
+#pwsample{animation: slideY2 4s;}
+#pwmemory{animation:  slideY2 2s;}
+
+.pwcontent
+{
+
+width:500px;background: #1b1b1e;
+height:600px;
+display:inline-block;
+float: right;
+border-top-left-radius: 8px;
+border-top-right-radius: 8px;
+}
+#pwaboutf,#pwfuncf,#pwunitapif,#pwsamplef,#pwmemoryf
+{
+    display: none;
+    margin:auto;width:80%;height:80%;background: linear-gradient(45deg, #8330aa,#8373ff);animation: gradient 4s ease infinite;background-size: 400% 400%;transform:translateY(60px);border-radius:6px;border:1px solid #010409;
+}
+.pw
+{
+background:#202020;
+width:100%;
+height:650px;
+transform: translateY(-20px);
+}
+</style>
+<head>
+<script src="./Engine/PWEngine.js"></script>
+</head>
+<div class="pwtitle">
+<p class="pwtxtl">PWENGINE</p>
+<p class="pwtxtl2">by HCPP STUDIO</p>
+</div>
+<div class="pw">
+<div class="pwapi">
+<button class="pwinfo" id="pwunitapi">
+UNIT PWENGINE
+</button>
+<button class="pwinfo" id="pwmemory">
+UNIT MEMORY_API
+</button>
+<button class="pwinfo" id="pwfunc">
+FUNCTIONS
+</button>
+<button class="pwinfo" id="pwsample">
+SAMPLES
+</button>
+<button class="pwinfo" id="pwabout">
+ABOUT
+</button>
+</div>
+<div class="pwcontent" id="pwc">
+<div class="frame" id="pwaboutf">
+<p class="pwtx">
+PWEngine build 0.5 by HCPP  25.07.24(BETA)
+GNU LICENSE
+github.com/hcpp20334/PWEngine
+</p>
+</div>
+<div class="frame" id="pwunitapif">
+<p class="pwtx">UNIT API</p>
+<p class="pwtx">let fPW = new GUI_FUNC();</p>
+</div>
+<div class="frame" id="pwfuncf">
+<p class="pwtx">FUNCTIONS</p>
+<p class="pwtx">
+RTaudioInfo(audio_id,state)
+pw_createAudio(injectID,setID)
+pw_createWindow(injectID,setID,style);
+pw_createText(injectID,setID,style)
+pw_createButton(injectID,setID,style)
+pw_createTag(injectID,setID,tagtype,style)
+pw_destroyTag(getID)
+pw_uninjectTag(getID,injectID)
+pw_parseSlider(inputID)
+</p>
+</div>
+<div class="frame" id="pwsamplef">
+<p class="pwtx">SAMPLES</p>
+</div>
+<div class="frame" id="pwmemoryf">
+<p class="pwtx">UNIT MEM API</p>
+<p class="pwtx">let fM = new memory_api();</p>
+</div>
+</div>
+</div>
+<p class="pwtx">HCPP STUDIO ©2024</p>
+<script>
+
+
+let fGUIPW  = new GUI_FUNC();
+let fGUIMEM = new memory_api();
+//
+var userDeviceArray = [
+    {device: 'Android', platform: /Android/},
+    {device: 'iPhone', platform: /iPhone/},
+    {device: 'iPad', platform: /iPad/},
+    {device: 'Symbian', platform: /Symbian/},
+    {device: 'Windows Phone', platform: /Windows Phone/},
+    {device: 'Tablet OS', platform: /Tablet OS/},
+    {device: 'Linux', platform: /Linux/},
+    {device: 'Windows', platform: /Windows NT/},
+    {device: 'Macintosh', platform: /Macintosh/}
+];
+var platform = navigator.userAgent;
+function GDevice() {
+    for (var i in userDeviceArray) {
+        if (userDeviceArray[i].platform.test(platform))
+         {
+            return userDeviceArray[i].device;
+          }
+        }
+}
+let pwAbout = fGUIPW.pw.getElementById("pwabout");
+let pwUnit = fGUIPW.pw.getElementById("pwunitapi");
+let pwFunc = fGUIPW.pw.getElementById("pwfunc");
+let pwSample = fGUIPW.pw.getElementById("pwsample");
+let pwMemory = fGUIPW.pw.getElementById("pwmemory");
+let pwContent = fGUIPW.pw.getElementById("pwc");
+//
+let pwMemFrame  = fGUIPW.pw.getElementById("pwmemoryf");
+let pwAbFrame  = fGUIPW.pw.getElementById("pwaboutf");
+let pwUnitFrame  = fGUIPW.pw.getElementById("pwunitapif");
+let pwFuncFrame  = fGUIPW.pw.getElementById("pwfuncf");
+let pwSamplesFrame  = fGUIPW.pw.getElementById("pwsamplef");
+function getScreenContent()
+{
+    if(GDevice() == "Android" || GDevice() == "iPhone")
+    {
+    document.documentElement.style="zoom:40%"
+    }
+    if(GDevice() == "Windows" || GDevice() == "Linux" || GDevice() || "Macintosh")
+    {
+    document.documentElement.style="zoom:100%"
+    }
+    return GDevice();
+}
+getScreenContent();
+pwAbout.onclick = function()
+{
+    pwAbFrame.style.display = "block";
+    pwMemFrame.style.display =  "none";
+    pwSamplesFrame.style.display = "none";
+    pwFuncFrame.style.display =  "none";
+    pwUnitFrame.style.display =  "none";
+}
+pwSample.onclick = function()
+{
+    pwAbFrame.style.display = "none";
+    pwMemFrame.style.display =  "none";
+    pwSamplesFrame.style.display = "block";
+    pwFuncFrame.style.display =  "none";
+    pwUnitFrame.style.display =  "none";
+}
+pwMemory.onclick = function()
+{
+ pwMemFrame.style.display =  "block";
+ pwAbFrame.style.display =  "none";
+ pwSamplesFrame.style.display = "none";
+ pwFuncFrame.style.display =  "none";
+ pwUnitFrame.style.display =  "none";
+}
+pwUnit.onclick = function()
+{
+    pwUnitFrame.style.display = "block";
+   pwAbFrame.style.display =  "none";
+    pwSamplesFrame.style.display = "none";
+    pwFuncFrame.style.display =  "none";
+    pwMemFrame.style.display =  "none";
+}
+pwFunc.onclick = function()
+{
+    pwFuncFrame.style.display = "block";
+   pwAbFrame.style.display =  "none";
+    pwSamplesFrame.style.display = "none";
+    pwUnitFrame.style.display =  "none";
+    pwMemFrame.style.display =  "none";
+}
+</script>
+
+</html>
