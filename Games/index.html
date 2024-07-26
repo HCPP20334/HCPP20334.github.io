@@ -1,0 +1,193 @@
+<html>
+<style>
+html
+{
+    background: #303030;
+}
+        @font-face {
+        font-family: WR;
+        src: url("https://hcpp20334.github.io/fonts/monoMMM_5.ttf");
+    }
+.main_frame
+{
+    background: #202020;
+    width: 100%;height: 600px;
+    display: block;
+    margin: auto;
+    border-radius: 4px;
+    border: 1px solid #010409;
+}
+.text
+{
+    font-family: 'WR';
+    font-size: 18px;
+    text-align: center;
+    transform: translateY(-17px);
+    color:white;
+}
+.textW
+{
+    font-family: 'WR';
+    font-size: 18px;
+    transform: translateX(30px);
+    color:white;
+}
+.main_title
+{
+    background: #ff2080;
+    display: block;
+    margin: auto;
+    border-radius: 4px;
+    border: 1px solid #010409;
+    height: 30px;
+    
+}
+.wel_frame
+{
+    background: #1b1b1e;
+    display: block;
+    border-radius: 4px;
+    border: 1px solid #010409;
+    height: 60px;
+    width: 220px;
+    transform: translate(30px,30px);
+}
+.btn_je
+{
+    background: #ff2080;
+    display: table;
+    border-radius: 4px;
+    border: 1px solid #010409;
+    height: 50px;
+    width: 220px;
+    transform: translate(30px,70px);
+    font-family: 'WR';
+    font-size: 18px;
+    transition: .4s;
+    color:white;
+}
+.btn_je:hover
+{
+    background: #636363;
+}
+.analog_stick
+{
+    width: 64px;height: 64px;
+    border: 1px solid #636363;
+    border-radius: 36px;
+    display: inline-block;
+    transform: translate(30px,400px);
+}
+#jax,#jay
+{
+    background: #ff2080;
+    width: 12px;height: 12px;
+    border-radius: 8px;
+    transition: .4s;
+}
+.sliders
+{
+    width: 200px;height: 18px;
+    border: 1px solid #636363;
+    transform: translate(30px,10px);
+    display: block;border-radius: 8px;
+}
+#JA,#JB,#JX,#JY
+{
+    background: #ff2080;
+    width: 12px;height: 18px;
+    transition: .4s;border-radius: 8px;
+    
+    position: absolute;
+}
+#JE
+{
+    display: none;
+}
+#tx{
+    transform: translate(30px,10px);
+    font-family: 'WR';
+    font-size: 18px;
+    color:white;
+}
+</style>
+<div class="main_frame">
+<div class="main_title">
+<p class="text">JE WEB GUI</p>
+</div>
+<div class="wel_frame" id="wlframe">
+<p class="textW">WELLCOME TO JE!!</p>
+<button class="btn_je" id="JErun">JOYSTICKTEST</button>
+</div>
+
+<div id="JE">
+<div class="analog_stick">
+<div class="ball_stick" id="jax"></div>
+</div>
+<div class="analog_stick">
+<div class="ball_stick" id="jay"></div>
+</div>
+<p id="tx">A</p>
+<div class="sliders">
+<div id="JA"></div>
+</div>
+<p id="tx">B</p>
+<div class="sliders">
+<div id="JB"></div>
+</div>
+<p id="tx">X</p>
+<div class="sliders">
+<div id="JX"></div>
+</div>
+<p id="tx">Y</p>
+<div class="sliders">
+<div id="JY"></div>
+</div>
+</div>
+</div>
+<script>
+let J_analogX = document.getElementById("jax");
+let J_analogY = document.getElementById("jay");
+let J_sliderA = document.getElementById("JA");
+let J_sliderY = document.getElementById("JY");
+let J_sliderB = document.getElementById("JB");
+let J_sliderX = document.getElementById("JX");
+let J_buttonMain = document.getElementById("JErun");
+let MainFrame  = document.getElementById("JE");
+let WelFrame  = document.getElementById("wlframe");
+let J_xPoint = 0;
+let J_yPoint = 0;
+let JsliderXA = 0;
+J_buttonMain.onclick = function(){
+    MainFrame.style.display = "block";
+    WelFrame.style.display = "none";
+    J_buttonMain.style.display = "none";
+}
+setInterval("testAnalog();testSlider();",100);
+function testAnalog()
+{
+    console.log(J_xPoint + ":"+J_yPoint);
+    if(J_xPoint > 64){
+        J_xPoint = 64;
+    }
+    if(J_yPoint > 64){
+        J_tPoint = 64;
+    }
+    J_xPoint = Math.random() * 64;
+    J_yPoint = Math.random() * 64;
+    J_analogX.style = "transform: translate("+J_xPoint+"px,"+J_yPoint+"px);";
+    J_analogY.style = "transform: translate("+J_xPoint+"px,"+J_yPoint+"px);";
+}
+function testSlider()
+{
+    if(JsliderXA > 200){
+        JsliderXA = 200;
+    }
+    JsliderXA = Math.random() * 200;
+    J_sliderA.style.width = JsliderXA;
+    J_sliderB.style.width = JsliderXA;
+    J_sliderX.style.width = JsliderXA;
+    J_sliderY.style.width = JsliderXA;
+}
+</script>
+</html>
