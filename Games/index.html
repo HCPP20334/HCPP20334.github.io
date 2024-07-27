@@ -11,7 +11,7 @@ html
 .main_frame
 {
     background: #202020;
-    width: 100%;height: 600px;
+    width: 100%;height: 800px;
     display: block;
     margin: auto;
     border-radius: 4px;
@@ -56,11 +56,12 @@ html
 {
     background: #ff2080;
     display: table;
+    margin: auto;
     border-radius: 4px;
     border: 1px solid #010409;
     height: 50px;
     width: 220px;
-    transform: translate(30px,70px);
+    transform: translateY(160px);
     font-family: 'WR';
     font-size: 18px;
     transition: .4s;
@@ -76,7 +77,7 @@ html
     border: 1px solid #636363;
     border-radius: 36px;
     display: inline-block;
-    transform: translate(30px,400px);
+    transform: translate(30px,700px);
 }
 #jax,#jay
 {
@@ -89,37 +90,99 @@ html
 {
     width: 200px;height: 18px;
     border: 1px solid #636363;
-    transform: translate(30px,10px);
+    transform: translate(30px,0px);
     display: block;border-radius: 8px;
 }
-#JA,#JB,#JX,#JY
+#JA,#JB,#JX,#JY,#JDU,#JDD,#JDL,#JDR
 {
     background: #ff2080;
     width: 12px;height: 18px;
     transition: .4s;border-radius: 8px;
-    
-    position: absolute;
+
+}
+#menubar
+{
+    width: 100%;height: 22px;
+    border-bottom: 1px solid #010409;
+    background: #202020;
+    display: block;
+}
+.nBtn
+{
+    font-family: 'WR';
+    font-size: 18px;
+    transition: .4s;
+    color:white;
+    display: inline-block;
+    border:none;
+    height: 22px;
+    width: 110px;
+    background: #202020;
+}
+.nBtn:hover
+{
+    background: #ff2080;
+}
+#back
+{
+    font-family: 'WR';
+    font-size: 18px;
+    transition: .4s;
+    color:white;
+    display: inline-block;
+    border:none;
+    height: 30px;
+    width: 110px;
+    background: #ff2080;
+    transform: translate(30px,80px);
+    border-radius: 8px;
+}
+#back:hover
+{
+    background: #636363;
 }
 #JE
 {
     display: none;
+    width: 100%;
+    height:400px;
+    transform: translate(10px,-80px);
 }
-#tx{
+#tx,#txh{
     transform: translate(30px,10px);
     font-family: 'WR';
     font-size: 18px;
     color:white;
+}
+.msg
+{
+    width: 300px;height:100px;
+    background: #202020;
+    z-index: 1;
+    display: none;
+    margin: auto;
+    border: 1px solid #010409;
+    position: absolute;
+    left:10%;top:50%;
+    border-radius: 8px;
 }
 </style>
 <div class="main_frame">
 <div class="main_title">
 <p class="text">JE WEB GUI</p>
 </div>
-<div class="wel_frame" id="wlframe">
-<p class="textW">WELLCOME TO JE!!</p>
-<button class="btn_je" id="JErun">JOYSTICKTEST</button>
+<div class="msg">
+<div class="main_title">
+<p class="text">ERROR</p>
 </div>
-
+<p id="txh">Gamepad not connected!!"</p>
+</div>
+<div id="menubar">
+<button id="nAbout" class="nBtn">ABOUT</button>
+<button id="nCpuTest" class="nBtn">CPU TEST</button>
+<button id="nSettings" class="nBtn">SETTINGS</button>
+</div>
+<button class="btn_je" id="JErun">JOYSTICKTEST</button>
 <div id="JE">
 <div class="analog_stick">
 <div class="ball_stick" id="jax"></div>
@@ -143,8 +206,29 @@ html
 <div class="sliders">
 <div id="JY"></div>
 </div>
+<p id="tx">DU</p>
+<div class="sliders">
+<div id="JDU"></div>
+</div>
+<p id="tx">DD</p>
+<div class="sliders">
+<div id="JDD"></div>
+</div>
+<p id="tx">DL</p>
+<div class="sliders">
+<div id="JDL"></div>
+</div>
+<p id="tx">DR</p>
+<div class="sliders">
+<div id="JDR"></div>
+</div>
+<button id="back">BACK</button>
 </div>
 </div>
+<p id="tx">
+JE WEB GUI build 0.1 by HCPP
+PORT JE OpenGL version C++20
+</p>
 <script>
 let J_analogX = document.getElementById("jax");
 let J_analogY = document.getElementById("jay");
@@ -152,21 +236,67 @@ let J_sliderA = document.getElementById("JA");
 let J_sliderY = document.getElementById("JY");
 let J_sliderB = document.getElementById("JB");
 let J_sliderX = document.getElementById("JX");
+let J_sliderDU = document.getElementById("JDU");
+let J_sliderDD = document.getElementById("JDD");
+let J_sliderDL = document.getElementById("JDL");
+let J_sliderDR = document.getElementById("JDR");
 let J_buttonMain = document.getElementById("JErun");
 let MainFrame  = document.getElementById("JE");
-let WelFrame  = document.getElementById("wlframe");
+let J_backBtn  = document.getElementById("back");
 let J_xPoint = 0;
 let J_yPoint = 0;
 let JsliderXA = 0;
+J_backBtn.onclick = function(){
+    MainFrame.style.display = "none";
+    J_buttonMain.style.display = "block";
+}
 J_buttonMain.onclick = function(){
     MainFrame.style.display = "block";
-    WelFrame.style.display = "none";
+    //WelFrame.style.display = "none";
     J_buttonMain.style.display = "none";
 }
+
+//gamepad unit
+let fJCport_a = [];
+function jScanPorts() 
+{
+  for(let cD = 1;cD < 4;cD++)
+  {
+         console.log("Cport"+cD+":st:"+fJCport_a[cD]);
+  }
+  fJCport_a[0]  === navigator.getGamepads()[1];
+  fJCport_a[1]  === navigator.getGamepads()[2];
+  fJCport_a[2]  === navigator.getGamepads()[3];
+  fJCport_a[3] === navigator.getGamepads()[4];
+
+}
+jScanPorts();
+window.addEventListener("gamepadconnected", (e) => {
+  const gp = navigator.getGamepads()[e.gamepad.index];
+  console.log(
+    "Gamepad connected at index %d: %s. %d buttons, %d axes.",
+    gp.index,
+    gp.id,
+    gp.buttons.length,
+    gp.axes.length,
+  );
+});
+window.addEventListener("gamepadisconnected", (e) => {
+  const gp = navigator.getGamepads()[e.gamepad.index];
+  console.log(
+    "Gamepad not connected at index %d: %s. %d buttons, %d axes.",
+    gp.index,
+    gp.id,
+    gp.buttons.length,
+    gp.axes.length,
+  );
+});
+
+//window.addEventListener("gamepaddisconnected
 setInterval("testAnalog();testSlider();",100);
 function testAnalog()
 {
-    console.log(J_xPoint + ":"+J_yPoint);
+    //console.log(J_xPoint + ":"+J_yPoint);
     if(J_xPoint > 64){
         J_xPoint = 64;
     }
@@ -188,6 +318,10 @@ function testSlider()
     J_sliderB.style.width = JsliderXA;
     J_sliderX.style.width = JsliderXA;
     J_sliderY.style.width = JsliderXA;
+    J_sliderDU.style.width = JsliderXA;
+    J_sliderDD.style.width = JsliderXA;
+    J_sliderDL.style.width = JsliderXA;
+    J_sliderDR.style.width = JsliderXA;
 }
 </script>
 </html>
