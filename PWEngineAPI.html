@@ -24,38 +24,38 @@
     }
 html
 {
-background:#010409;
+background:#404030;
 zoom:40%;
 }
 .pwapi
 {
-background:#1b1b1e;
-width:347px;
+background:transparent;
+width:100%;
 display:inline-block;
-height:600px;
+height:30px;
 border-top-left-radius: 8px;
 border-top-right-radius: 8px;
 
 }
 .pwinfo
 {
-background: linear-gradient(45deg, #ff2080,#8373ff);
+background:transparent;
 height:30px;
-display:table;
-width:80%;
+display:inline-block;
 margin:auto;
-border:1px solid #010409;
 transition:.4s;
 border-radius:4px;
 font-family:'WR';
-font-size:18px;
+font-size:14px;
 color:white;
-transform: translateY(100px);
+border: none;
+
 transition: .4s;
 }
 .pwinfo:hover
 {
-background:#636363;
+background: linear-gradient(45deg, #ff2080,#8373ff);
+border:1px solid #010409;
 
 }
 .pwbtn
@@ -67,9 +67,9 @@ height:20px;
 .pwtxtl
 {
 font-family:'WR';
-font-size:25px;
+font-size:18px;
 color:white;
-transform:translateY(10px);
+transform:translateY(-5px);
 text-align:center;
 transition: .4s;
 animation: slideY 2s;
@@ -77,9 +77,10 @@ animation: slideY 2s;
 .pwtxtl2
 {
 font-family:'WR';
-font-size:20px;
+font-size:18px;
 color:white;
 text-align:center;
+transform: translateY(-13px);
 }
 .pwtx
 {
@@ -92,7 +93,18 @@ transform:translate(30px,3px);
 {
 border:1px solid #010409;
 width:100%;background: #ff2080;
-height:120px;
+height:40px;
+border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+background: linear-gradient(45deg, #ff2080,#8373ff);
+        animation: gradient 4s ease infinite;
+        background-size: 400% 400%;
+}
+.pwtitle2
+{
+border:1px solid #010409;
+width:100%;background: #ff2080;
+height:30px;
 border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 background: linear-gradient(45deg, #ff2080,#8373ff);
@@ -110,11 +122,7 @@ background: linear-gradient(45deg, #ff2080,#8373ff);
 		background-position: 0% 50%;
 	}
 }
-#pwabout{animation: slideY2 5s;}
-#pwunitapi{animation: slideY2 1s;}
-#pwfunc{animation: slideY2 3s;}
-#pwsample{animation: slideY2 4s;}
-#pwmemory{animation:  slideY2 2s;}
+
 
 .pwcontent
 {
@@ -129,7 +137,40 @@ border-top-right-radius: 8px;
 #pwaboutf,#pwfuncf,#pwunitapif,#pwsamplef,#pwmemoryf
 {
     display: none;
-    margin:auto;width:80%;height:80%;background: linear-gradient(45deg, #8330aa,#8373ff);animation: gradient 4s ease infinite;background-size: 400% 400%;transform:translateY(60px);border-radius:6px;border:1px solid #010409;
+    margin:auto;width:80%;height:80%;background: linear-gradient(45deg, #202020,#1b1b1e);animation: gradient 4s ease infinite slideY2 1s;background-size: 400% 400%;transform:translateY(10px);border-radius:6px;border:2px solid #636363;
+    
+}
+.smpl
+{
+    background: #202020;
+    border: 1px solid #010409;
+    width: 90%;height: 40px;
+    transform: translateY(10px);
+    display:block;
+    transition: .4s;
+    border-radius:6px;
+    font-size: 18px;
+}
+.smpl:hover
+{
+    background: #ff2080;
+}
+.pwsmptx
+{
+    font-family: 'WR';
+    color: white;
+    transform: translate(20px,-5px);
+}
+.smplframe
+{
+    background:#202020;
+width:100%;
+height:200px;
+overflow-y: scroll;
+overflow-x: scroll;
+border: 2px solid #ff2080;
+transform: translateY(10px);
+display: none;
 }
 .pw
 {
@@ -140,13 +181,12 @@ transform: translateY(-20px);
 }
 </style>
 <head>
-<script src="./Engine/PWEngine.js"></script>
+<script src="https://hcpp20334.github.io/Engine/PWEngine.js"></script>
 </head>
-<div class="pwtitle">
-<p class="pwtxtl">PWENGINE</p>
-<p class="pwtxtl2">by HCPP STUDIO</p>
-</div>
 <div class="pw">
+    <div class="pwtitle">
+<p class="pwtxtl">PWENGINE::GUI API FOR JS</p>
+</div>
 <div class="pwapi">
 <button class="pwinfo" id="pwunitapi">
 UNIT PWENGINE
@@ -164,8 +204,11 @@ SAMPLES
 ABOUT
 </button>
 </div>
-<div class="pwcontent" id="pwc">
+
 <div class="frame" id="pwaboutf">
+<div class="pwtitle2">
+<p class="pwtxtl2">PWENGINE::ABOUT</p>
+</div>
 <p class="pwtx">
 PWEngine build 0.5 by HCPP  25.07.24(BETA)
 GNU LICENSE
@@ -173,11 +216,15 @@ github.com/hcpp20334/PWEngine
 </p>
 </div>
 <div class="frame" id="pwunitapif">
-<p class="pwtx">UNIT API</p>
+    <div class="pwtitle2">
+<p class="pwtxtl2">PWENGINE::UNIT API</p>
+</div>
 <p class="pwtx">let fPW = new GUI_FUNC();</p>
 </div>
 <div class="frame" id="pwfuncf">
-<p class="pwtx">FUNCTIONS</p>
+    <div class="pwtitle2">
+<p class="pwtxtl2">PWENGINE::FUNCTIONS</p>
+</div>
 <p class="pwtx">
 RTaudioInfo(audio_id,state)
 pw_createAudio(injectID,setID)
@@ -185,27 +232,113 @@ pw_createWindow(injectID,setID,style);
 pw_createText(injectID,setID,style)
 pw_createButton(injectID,setID,style)
 pw_createTag(injectID,setID,tagtype,style)
-pw_destroyTag(getID)
+pw_destroyTag(getID)// del obj frame
 pw_uninjectTag(getID,injectID)
 pw_parseSlider(inputID)
 </p>
 </div>
 <div class="frame" id="pwsamplef">
-<p class="pwtx">SAMPLES</p>
+    <div class="pwtitle2">
+<p class="pwtxtl2">PWENGINE::SAMPLES</p>
+</div>
+<div id="msgboxsm" class="smpl">
+<p class="pwsmptx">MSGBOX</p>
+</div>
+<div id="audiosm" class="smpl">
+<p class="pwsmptx">AUDIOPLAYER</p>
+</div>
+<div id="stylesm" class="smpl">
+<p class="pwsmptx">STYLE INJECTOR</p>
+</div>
+<div id="memsm" class="smpl">
+<p class="pwsmptx">Control memory</p>
+</div>
+<div class="smplframe" id="smpl0">
+<p class="pwsmptx">
+    let fMsgStyle = "display:block;background:#1b1b1e;width:300px;height:140px;z-index:1;position:absolute;"; let fTitleBarStyle = "display:block;background:#ff2080;width:100%;height:40px;transform: translateY(-20px);"; let fTextStyle = "font-size:'WR';color:white;text-align:center;"; function msgBox(title,text) { fGUIPW.pw_createWindow(document.body,"msgframe",fMsgStyle); let msgFrame = fGUIPW.pw.getElementById("msgframe"); fGUIPW.pw_createWindow(msgFrame,"msgtitle",fTitleBarStyle); let msgTitle = fGUIPW.pw.getElementById("msgtitle"); fGUIPW.pw_createText(msgTitle,"msgText",fTextStyle); let msgText = fGUIPW.pw.getElementById("msgText"); fGUIPW.pw_createText(msgFrame,"msgTextT",fTextStyle); let msgTextT = fGUIPW.pw.getElementById("msgTextT"); msgText.innerHTML = title; msgTextT.innerHTML = text; }
+</p>
+</div>
+<div class="smplframe" id="smpl1">
+<p class="pwsmptx">
+    fGUIPW.pw_createAudio(fGUIPW.pw.documentElement,"audio_p");
+    let fAudioHandle = fGUIPW.pw.getElementById("audio_p");
+    fAudioHandle.src = "your file.mp3";
+    fAudioHandle.play();
+</p>
+</div>
+<div class="smplframe" id="smpl2">
+<p class="pwsmptx">
+    let fStyleHref = "your.css";
+    fGUIPW.pw_createTag(fGUIPW.pw.documentElement,"lnk_style","link","");
+    let fLinkHandle = fGUIPW.pw.getElementById("lnk_style");
+    fLinkHandle.rel = "text/stylesheet";
+    fLinkHandle.href = fStyleHref;
+</p>
+</div>
+<div class="smplframe" id="smpl3">
+<p class="pwsmptx">
+ let yourTag;
+ AddMem(10,yourTag);
+</p>
+</div>
 </div>
 <div class="frame" id="pwmemoryf">
-<p class="pwtx">UNIT MEM API</p>
+    <div class="pwtitle2">
+<p class="pwtxtl2">PWENGINE::UNIT MEM API</p>
+</div>
 <p class="pwtx">let fM = new memory_api();</p>
+<p id="mem_info" class="pwtx"></p>
 </div>
 </div>
 </div>
-<p class="pwtx">HCPP STUDIO ©2024</p>
+<p class="pwtx" id="txt">HCPP STUDIO ©2024</p>
 <script>
-
+//
 
 let fGUIPW  = new GUI_FUNC();
 let fGUIMEM = new memory_api();
 //
+
+//SAMPLES
+let fSmpl0  = fGUIPW.pw.getElementById("smpl0");
+let fSmpl1  = fGUIPW.pw.getElementById("smpl1");
+let fSmpl2  = fGUIPW.pw.getElementById("smpl2");
+let fSmpl3  = fGUIPW.pw.getElementById("smpl3");
+//
+//btn UNIT
+let fSmplBtn0  = fGUIPW.pw.getElementById("msgboxsm");
+let fSmplBtn1  = fGUIPW.pw.getElementById("audiosm");
+let fSmplBtn2 = fGUIPW.pw.getElementById("stylesm");
+let fSmplBtn3 = fGUIPW.pw.getElementById("memsm");
+fSmplBtn0.onclick = function()
+{
+    fSmpl0.style.display = "block";
+    fSmpl1.style.display = "none";
+    fSmpl2.style.display = "none";
+    fSmpl3.style.display = "none";
+}
+fSmplBtn1.onclick = function()
+{
+    fSmpl0.style.display = "none";
+    fSmpl1.style.display = "block";
+    fSmpl2.style.display = "none";
+    fSmpl3.style.display = "none";
+}
+fSmplBtn2.onclick = function()
+{
+    fSmpl0.style.display = "none";
+    fSmpl1.style.display = "none";
+    fSmpl2.style.display = "block";
+    fSmpl3.style.display = "none";
+}
+fSmplBtn3.onclick = function()
+{
+    fSmpl0.style.display = "none";
+    fSmpl1.style.display = "none";
+    fSmpl2.style.display = "none";
+    fSmpl3.style.display = "block";
+}
+
 var userDeviceArray = [
     {device: 'Android', platform: /Android/},
     {device: 'iPhone', platform: /iPhone/},
@@ -226,6 +359,7 @@ function GDevice() {
           }
         }
 }
+let pwMemInfo = fGUIPW.pw.getElementById("mem_info");
 let pwAbout = fGUIPW.pw.getElementById("pwabout");
 let pwUnit = fGUIPW.pw.getElementById("pwunitapi");
 let pwFunc = fGUIPW.pw.getElementById("pwfunc");
@@ -238,15 +372,22 @@ let pwAbFrame  = fGUIPW.pw.getElementById("pwaboutf");
 let pwUnitFrame  = fGUIPW.pw.getElementById("pwunitapif");
 let pwFuncFrame  = fGUIPW.pw.getElementById("pwfuncf");
 let pwSamplesFrame  = fGUIPW.pw.getElementById("pwsamplef");
+let requestToMem =0;
+function MemInfo()
+{
+    requestToMem++;
+    pwMemInfo.innerHTML ="mem:"+ fGUIMEM.mem_usage+"\ndevice:"+GDevice()+"\nrq:"+requestToMem;
+}
 function getScreenContent()
 {
     if(GDevice() == "Android" || GDevice() == "iPhone")
     {
-    document.documentElement.style="zoom:40%"
+    document.documentElement.style="zoom:40%";//alert("mobile");
     }
     if(GDevice() == "Windows" || GDevice() == "Linux" || GDevice() || "Macintosh")
     {
-    document.documentElement.style="zoom:100%"
+    document.documentElement.style="zoom:100%";
+    //alert("desktop");
     }
     return GDevice();
 }
@@ -274,6 +415,7 @@ pwMemory.onclick = function()
  pwSamplesFrame.style.display = "none";
  pwFuncFrame.style.display =  "none";
  pwUnitFrame.style.display =  "none";
+ setInterval("MemInfo();",1);
 }
 pwUnit.onclick = function()
 {
@@ -291,6 +433,8 @@ pwFunc.onclick = function()
     pwUnitFrame.style.display =  "none";
     pwMemFrame.style.display =  "none";
 }
+//
+let fMsgStyle = "display:block;background:#1b1b1e;width:300px;height:140px;z-index:1;position:absolute;"; let fTitleBarStyle = "display:block;background:#ff2080;width:100%;height:40px;transform: translateY(-20px);"; let fTextStyle = "font-size:'WR';color:white;text-align:center;"; function msgBox(title,text) { fGUIPW.pw_createWindow(document.body,"msgframe",fMsgStyle); let msgFrame = fGUIPW.pw.getElementById("msgframe"); fGUIPW.pw_createWindow(msgFrame,"msgtitle",fTitleBarStyle); let msgTitle = fGUIPW.pw.getElementById("msgtitle"); fGUIPW.pw_createText(msgTitle,"msgText",fTextStyle); let msgText = fGUIPW.pw.getElementById("msgText"); fGUIPW.pw_createText(msgFrame,"msgTextT",fTextStyle); let msgTextT = fGUIPW.pw.getElementById("msgTextT"); msgText.innerHTML = title; msgTextT.innerHTML = text; }
 </script>
 
 </html>
