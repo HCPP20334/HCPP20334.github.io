@@ -5,9 +5,13 @@
         font-family: Rt_3;
         src: url("https://hcpp20334.github.io/fonts/Font0.ttf");
     }
-    @font-face {
+            @font-face {
+        font-family: mm;
+        src: url("https://hcpp20334.github.io/fonts/monoMMM_5.ttf");
+    }
+        @font-face {
         font-family: WR;
-        src: url("https://hcpp20334.github.io/fonts/WhiteRabbit.ttf");
+        src: url("./fonts/Aventura-Bold.ttf");
     }
     @keyframes blur_a
     {
@@ -19,10 +23,15 @@
         0%{transform: translateY(-60px);transition: .4s;}
         100%{transform: translateY(30px);transition: .4s;}
     }
-        @keyframes YslideRb
+        @keyframes XslideRb
     {
-        100%{transform: translateY(-60px);transition: .4s;}
-        0%{transform: translateY(30px);transition: .4s;}
+        100%{transform: translateY(0px);transition: .4s;display:block;}
+        0%{transform: translateY(-100px);transition: .4s;}
+    }
+            @keyframes XslideRbX
+    {
+        100%{transform: translateX(0px);transition: .4s;}
+        0%{transform: translateX(-100px);transition: .4s;display:none}
     }
     @keyframes fillbutton
     {
@@ -30,16 +39,30 @@
         100%{background: linear-gradient(90deg,#1b1b1e,#9090ff)};
     }
     html
-    {
-        background-image: url("./Pictures/plati.jpg");
-    background-color: #1b1b1e;
-    }
-    #calc,#calc2,#calc3,#calc4,#reverb,#calc_amp,#calcR,#calcA,#tableBtn,#capcalc,#calcP
+{
+    background: #1b1b1e;
+    background-image: url("https://dimaxpsite.github.io/anime.webp");
+    animation: gradient 4s ease infinite;
+    transition: .4s;
+}
+@keyframes gradient {
+	0% {
+		background-position: 50% 0%;
+	}
+	50% {
+		background-position: 100% 0%;
+	}
+	100% {
+		background-position: 50% 0%;
+	}
+}
+
+    #calc,#calc2,#calc3,#calc4,#reverb,#calc_amp,#calcR,#calcA,#tableBtn,#capcalc,#calcP,#calcI,#calcS
     {
 color: #ffffff;
-font-size: 14px;
+font-size: 11px;
 font-family: 'WR';
-background-color: #1b1b1e;border:none;
+background-color: #202020;border:none;
 box-shadow: 1px 1px 10px #010409;
 width: 150px;height:40px;
 display: inline-block;
@@ -47,13 +70,13 @@ margin: auto;
 transform: translateX(10px);
 border-radius: 8px;
         text-shadow: 1px 1px 1px #010409;
-        border: 2px solid #9090ff;
+        border: 2px solid #ff2080;
 }
 button:hover{animation: fillbutton 1s;}
 .text,#amper,#volt,#watt,#rub_text
 {
 color: #ffffff;
-font-size: 20px;
+font-size: 16px;
 font-family: 'WR';
 border-radius: 4px;
         text-shadow: 1px 1px 1px #010409;
@@ -62,24 +85,28 @@ text-align: center;
 .abAn
 {
     color: #ffffff;
-font-size: 14px;
+font-size: 10px;
 font-family: 'WR';
-text-align: center;
-        text-shadow: 1px 1px 1px #010409;
-width: 200px;
+border-left: 3px solid #ff2080;
+text-shadow: 1px 1px 1px #010409;
+width: 90%;
+box-shadow: 1px 1px 10px #010409;
+background:#010409;
+animation: XslideRbX 1s;
+transition: .4s;
 }
 .title_frame
 {
 color: #ffffff;
-font-size: 18px;
+font-size: 16px;
 font-family: 'WR';
 transform: translate(20px,8px);
 text-shadow: 1px 1px #010409;
 }
 #tx
 {
-        font-family: 'WR';
-        font-size: 18px;
+        font-family: 'WR','mm';
+        font-size: 16px;
         text-shadow: 1px 1px 1px #010409;
         color: white;
         transform: translate(9px,4px);
@@ -90,87 +117,94 @@ text-shadow: 1px 1px #010409;
 
 width: 100%;
         height: 30px;
-        background:#1b1c1e;
+background: #404080;
         display: block;
         margin:auto;
+        border-top-left-radius: 6px;
+border-top-right-radius: 6px;
         box-shadow: 1px 1px 10px #010409;
         transform: translate(0px,-12px);
 
 }
 .in_bar
 {
-background-color: #1b1c1e;border: 2px solid #9090ff;
-box-shadow: 1px 1px 10px #010409;
-width: 300px;
-display: block;
-margin: auto;
-font-family:'WR';
-font-size: 20px;
-color: #ffffff;
-        text-shadow: 1px 1px 1px #010409;
-outline: none;
-border-radius: 4px;
+background-color: #202020;
+        border: 2px solid #ff2080;
+        font-family: 'WR';
+        font-size: 14px;
+        color: #ffffff;
+        text-shadow: 0px 1px 0px #010409;
+        outline: none;
+        box-shadow: 1px 1px 10px #010409;
+        border-radius: 4px;
+        width: 300px;height: 26px;
+        display:table;
+        margin:auto
+
       }
 #menu
 {
 display:block;
 margin: auto;
-background-color: #1b1b1e;
+background-color: #202020;
 height: 500px;
 border: none;
 box-shadow: 1px 1px 10px #010409;
 border-radius: 2px;
-animation: blur_a 1s;width: 320px;
-border: 2px solid #9090ff;
+animation: XslideRb 1s;width: 320px;
+border: 2px solid #010409;
 transition:.4s;
+border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+
 
 
 
 }
-#calc_frameW,#calc_frameA,#sec2dia,#calc_rub,#watt_sec,#calc_Rwire,#capFrc,#calc_framePheater
+#calc_frameW,#calc_frameA,#sec2dia,#calc_rub,#watt_sec,#calc_Rwire,#capFrc,#calc_framePheater,#calc_impedance,#calcSframe
 {
+max-width: 500px;
 display:none;
 margin: auto;
-background-color: #1b1b1e;
-height: 500px;
+background-color: #202020;
+height: 600px;
 border: none;
 box-shadow: 1px 1px 10px #010409;
 border-radius: 2px;
-animation: blur_a 1s;width: 320px;
+animation: XslideRb 1s;width: 100%;
 transition:.4s;
-border: 2px solid #9090ff;
+border: 2px solid #010409;
+animation: XslideRb 1s;
+border-top-left-radius: 6px;
+border-top-right-radius: 6px;
 
 }
 #calc_Automat
 {
+    max-width: 500px;
     display:none;
-background-color: #1b1b1e;
+background-color: #202020;
 height: 700px;
 border-radius: 4px;
 border: none;box-shadow: 1px 1px 10px #010409;
-animation: blur_a 1s;
+animation: XslideRb 1s;
 margin: auto;
-border: 2px solid #9090ff;
-width: 320px;
+border: 2px solid #010409;
+width: 100%;
 }
-#watt2amp,#amp2watt,#sec2diaBtn,.btndw,#download,#srub2rrub,#sec2amp,#calcRbtn,#calcAutomatN,#calcCapitulaor,#calcPheat
+#watt2amp,#amp2watt,#sec2diaBtn,.btndw,#download,#srub2rrub,#sec2amp,#calcRbtn,#calcAutomatN,#calcCapitulaor,#calcPheat,#calcImpedance,#calcSb
 {
 font-family:'WR';
 font-size: 14px;
-background-color: #1b1b1e;
-height: 30px;
+background-color: #404040;
 width: 250px;
-box-shadow: 1px 1px 10px #010409;
 display: block;
 margin: auto;
 border-radius: 4px;
-border: none;
 margin-top: 6px;
-        text-shadow: 1px 1px 1px #010409;
+text-shadow: 1px 1px 1px #010409;
 color:#ffffff;
-border: 2px solid #9090ff;
-
-
+border: 1px solid #010409;
 }
 #table_img{display:none;}
 .Close
@@ -263,11 +297,11 @@ box-shadow: 1px 1px 10px #010409;
 <button id="400_p" class="buttonProcents">5</button>
 <button id="900_p" class="buttonProcents">10</button>
 <p class="abAn">
-    1.13 - это ток кратко временного расцепления цепи<br>
-       1.45 - ток расцепления при котором автомат не должен выключится<br>
- 2.55- ток при котором автомат должен выключится в течении 1 минуты.<br>
- 5 - аварийный ток перекрузки при котором автомат должен отключится до 10 сек<br>
- 10 - аварийный ток перегрузки при котором автомат должен выключится моментально.
+1.13 - это ток кратко временного расцепления цепи</p>
+<p class="abAn">1.45 - ток расцепления при котором автомат не должен выключится</p>
+ <p class="abAn">2.55- ток при котором автомат должен выключится в течении 1 минуты.</p>
+ <p class="abAn">5 - аварийный ток перекрузки при котором автомат должен отключится до 10 сек</p>
+<p class="abAn"> 10 - аварийный ток перегрузки при котором автомат должен выключится моментально.
 </p>
 <p class="text">идея DIMA XP</p>
 <button id="calcA" class="calcbtns">Расчитать</button>
@@ -290,6 +324,22 @@ box-shadow: 1px 1px 10px #010409;
 <br>
 <br>
 <button id="calcR" class="calcbtns">Расчитать</button>
+<button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
+</div>
+<div id="calcSframe">
+    <div id="tle">
+    <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
+</div>
+<h1 class="title_frame">Расчет Площади</h1>
+<p class="text" id="Sbuf">0</p>
+<p id="volt">Длина</p>
+<input type="comment" id="A_val" class="in_bar">
+<p id="volt">Ширина</p>
+<input type="comment" id="B_val" class="in_bar">
+<br>
+<br>
+<br>
+<button id="calcS" class="calcbtns">Расчитать</button>
 <button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
 </div>
 <div id="calc_frameW">
@@ -408,11 +458,13 @@ box-shadow: 1px 1px 10px #010409;
 <button id="sec2amp"class="calcbtns">РАСЧЕТ ТОКА ИЗ СЕЧЕНИЯ</button>
 <button id="srub2rrub"class="calcbtns">КАЛЬКУЛЯТОР РУБЛЕЙ</button>
 <button id="sec2diaBtn"class="calcbtns">РАСЧЕТ СЕЧЕНИЯ</button>
-<button id="calcRbtn"class="calcbtns">РАСЧЕТ УДЕЛЬНОГО СОПРОТИВЛЕНИЯ ПРОВОДНИКА</button>
+<button id="calcRbtn"class="calcbtns">РАСЧЕТ У сопротивление</button>
 <button id="calcAutomatN"class="calcbtns">РАСЧЕТ НОМИНАЛА АВТОМАТ</button>
 <button id="calcCapitulaor"class="calcbtns">РАСЧЕТ БАЛЛАСТНОГО КОНДЕНСАТОРА</button>
+<button id="calcSb"class="calcbtns">РАСЧЕТ ПЛОЩАДИ</button>
+
 <button id="calcPheat">РАСЧЕТ МОЩНОСТИ ТЕНА</button>
-<p id="tx">build 1.0.5 by HCPP</p>
+<p id="tx">Сборка 1.0.6HCPP</p>
 
 </div>
 <p id="tx"onclick="javascript:window.location.href ='https://github.com/HCPP20334/JoyStickTest/releases/tag/JE_x64_OpenGL';" >СКАЧАЙ JE </p>
@@ -456,6 +508,42 @@ var fDataVolt = 0;
 var fDataSec = 0;
 var rand = 0 ;
 var r,g,b;
+//
+let fCalcFrameS = document.getElementById("calcSframe");
+let fCalcSBtn  = document.getElementById("calcSb");
+let fCalcS = document.getElementById("calcS");
+fCalcSBtn.onclick = function(){
+    imgTableFrame.style.display = "none";
+    fCANframe.style.display = "none";
+    fC_menu.style.display = "none";
+ fC_Aframe.style.display = "none";
+ fC_Wframe.style.display = "none";
+ fC_Sframe.style.display = "none";
+ document.getElementById("download_panel").style.display= "none";
+ fCalcRubFrame.style.display = "none";
+ fCalcSecFrame.style.display = "none";
+ fCalcRframe.style.display = "none";
+ fCalcHeater.style.display = "none";
+ fCapFrame.style.display = "none";
+ fCalcFrameS.style.display = "block";
+}
+let fA_in = 0;
+let fB_in = 0;
+let fS = 0;
+let Abuf  =  document.getElementById("A_val");
+let Bbuf  =  document.getElementById("B_val");
+let fSbuf =  document.getElementById("Sbuf");
+Abuf.oninput = function(){
+    fA_in = this.value;
+}
+Bbuf.oninput = function(){
+    fB_in = this.value;
+}
+fCalcS.onclick =  function()
+{
+    fS = parseFloat(fA_in * fB_in);
+    fSbuf.innerHTML = fS + " mm2";
+}
 // calc P heater
 let fPV = 0;
 let fPR = 0;
@@ -662,6 +750,7 @@ function loadANframe()
  fCalcRframe.style.display = "none";
  fCalcHeater.style.display = "none";
  fCapFrame.style.display = "none";
+ fCalcFrameS.style.display = "none";
 }
 
 //
@@ -773,7 +862,7 @@ function loadPheatFrame()
  document.getElementById("download_panel").style.display= "none";
  fCalcRubFrame.style.display = "none";
  fCalcSecFrame.style.display = "none";
- fCalcRframe.style.display = "none";
+ fCalcRframe.style.display = "none";fCalcFrameS.style.display = "none";
  fCalcHeater.style.display = "block";
 }
 function loadCframe()
@@ -788,14 +877,14 @@ function loadCframe()
  document.getElementById("download_panel").style.display= "none";
  fCalcRubFrame.style.display = "none";
  fCalcSecFrame.style.display = "none";
- fCalcRframe.style.display = "none";
+ fCalcRframe.style.display = "none";fCalcFrameS.style.display = "none";
  fCalcHeater.style.display = "none";
 }
 function loadWframe()
 {
 imgTableFrame.style.display = "none";
 fCalcHeater.style.display = "none";
-fC_Wframe.style.display = "block";
+fC_Wframe.style.display = "block";fCalcFrameS.style.display = "none";
 fC_Aframe.style.display = "none";
 fC_menu.style.display = "none";
 fC_Sframe.style.display = "none";
@@ -812,7 +901,7 @@ fCalcHeater.style.display = "none";
 fC_Aframe.style.display = "block";
 fC_Wframe.style.display = "none";
 fC_menu.style.display = "none";
-fC_Sframe.style.display = "none";
+fC_Sframe.style.display = "none";fCalcFrameS.style.display = "none";
 fCalcRubFrame.style.display = "none";
 fCapFrame.style.display = "none";
 fCalc = false;
@@ -827,7 +916,7 @@ function loadSframe()
     fCalcHeater.style.display = "none";
 fC_Aframe.style.display = "none";
 fC_Wframe.style.display = "none";
-fC_menu.style.display = "none";
+fC_menu.style.display = "none";fCalcFrameS.style.display = "none";
 fC_Sframe.style.display = "block";
 fCalcRubFrame.style.display = "none";
 fCalc = false;
@@ -841,7 +930,7 @@ function loadSAframe()
 {
     imgTableFrame.style.display = "none";
     fC_menu.style.display = "none";
-fC_Aframe.style.display = "none";
+fC_Aframe.style.display = "none";fCalcFrameS.style.display = "none";
 fC_Wframe.style.display = "none";
 fC_Sframe.style.display = "none";
 document.getElementById("download_panel").style.display= "none";
@@ -856,7 +945,7 @@ function loadRframe()
     imgTableFrame.style.display = "none";
 fC_menu.style.display = "none";
 fC_Aframe.style.display = "none";
-fC_Wframe.style.display = "none";
+fC_Wframe.style.display = "none";fCalcFrameS.style.display = "none";
 fCalcHeater.style.display = "none";
 fC_Sframe.style.display = "none";
 document.getElementById("download_panel").style.display= "none";
@@ -869,7 +958,7 @@ function loadMframe()
 {
 imgTableFrame.style.display = "none";
 fC_menu.style.display = "block";
-fC_Aframe.style.display = "none";
+fC_Aframe.style.display = "none";fCalcFrameS.style.display = "none";
 fC_Wframe.style.display = "none";
 fC_Sframe.style.display = "none";
 fCalcHeater.style.display = "none";
@@ -885,7 +974,7 @@ function loadPwireFrame()
     imgTableFrame.style.display = "none";
  fC_menu.style.display = "none";
  fC_Aframe.style.display = "none";
- fCalcHeater.style.display = "none";
+ fCalcHeater.style.display = "none";fCalcFrameS.style.display = "none";
  fC_Wframe.style.display = "none";
  fC_Sframe.style.display = "none";
  document.getElementById("download_panel").style.display= "none";
