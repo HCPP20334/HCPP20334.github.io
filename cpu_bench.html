@@ -1,0 +1,186 @@
+<html>
+<style>
+            @font-face {
+        font-family: WR;
+        src: url("https://hcpp20334.github.io/fonts/monoMMM_5.ttf");
+    }
+html{
+    background: #202020;
+}
+.sdata{
+background: rgba(1,4,9,0.5);
+width: 100%;
+height: 40px;
+border: 0.5px solid #010409;
+border-radius: 4px;
+}
+.stext,#debug{
+    font-family: 'WR';
+    font-size: 18px;
+    color: #ffffff;
+    text-shadow: 2px 2px 0px #010409;
+    transform: translate(30px,-10px);
+}
+.prjbench{
+    font-family: 'WR';
+    font-size: 25px;
+    color: #ffffff;
+    border-bottom: 3px solid #4020ff;
+}
+.btnbench{
+background: linear-gradient(45deg,#636363,#303030,#636363);
+    width: 110px;
+    height:110px;
+    font-family: "WR";
+    border:1px solid #010409;
+    color: #ffffff;
+    display: block;
+    margin: auto;
+    border-radius: 57px;
+    text-shadow: 1px 1px 0px #010409;
+}
+#bench:active{
+    background: #636363;
+    border-radius: 10px;
+}
+
+#bench{
+    background: linear-gradient(45deg,#8020ff,#4020ff,#8020ff);
+    width: 180px;
+    height:40px;
+    font-family: "WR";
+    border:1px solid #010409;
+    color: #ffffff;
+    display: block;
+    margin: auto;
+    border-radius: 10px;
+    transform: translateY(7px);
+    text-shadow: 1px 1px 0px #010409;
+}
+#buffer{
+    overflow-x: scroll;
+}
+#count{
+    background: linear-gradient(45deg,#8020ff,#4020ff,#8020ff);
+    background-clip: text;
+}
+</style>
+<p class="prjbench">CPU BENCHMARK TO JS</p>
+<div class="sdata">
+<p class="stext" id="count">SCORE:0</p>
+</div>
+<br>
+
+<br>
+<div class="sdata">
+<p class="stext" id="buffer">crypto</p>
+</div>
+<br>
+<div class="sdata">
+<p class="stext" id="buffer2">crypto</p>
+</div>
+<br>
+<div class="sdata">
+<p class="stext" id="buffer3">crypto</p>
+</div>
+<br>
+<div class="sdata">
+<p class="stext" id="buffer4">crypto</p>
+</div>
+<br>
+<button id="bench">BENCH</button>
+<p class="prjbench">BUILD 0.5 | CODED BY HCPP</p>
+<script>
+let fcount = 0;
+let fBcount = document.getElementById("count");
+let fDebugBuf = document.getElementById("debug");
+let fB_bench = document.getElementById("bench");
+let fC_buffer = document.getElementById("buffer");
+let fC_buffer2 = document.getElementById("buffer2");
+let fC_buffer3 = document.getElementById("buffer3");
+let fC_buffer4 = document.getElementById("buffer4");
+let cpu_count = 0;
+let cpu_state = false;
+let cpu_timer = 0;
+//
+var  bStrSymbols = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_123456789";
+ var buffer = '';
+ let fch_count = 0;
+ var randName;
+ var fPassOut = '';
+function PassGen(limit_str)
+{
+    fPassOut = '';
+    for(var Chunk_0 = 1;Chunk_0 <=limit_str; Chunk_0++)
+    {
+        fch_count++;
+        fPassOut += bStrSymbols.charAt(Math.floor(Math.random() * 63));
+        if(fch_count > 43)
+        {
+            fPassOut += '\n';
+            fch_count = 0;
+        }
+    }
+    return fPassOut;
+}
+//
+let str_rand = '';
+let str_rand2 = '';
+let str_rand3 = '';
+let str_rand4 = '';
+let gsize = 0;
+function debug(text){
+    fDebugBuf.innerHTML = text + "\n\r";
+}
+fB_bench.onclick = function(){
+    cpu_state = true;
+    setInterval("cpu_cycle();",1);
+    cpu_count = 0;
+    cpu_timer = 0;
+    fB_bench.innerHTML = "TESTING..";
+    gsize = 0;
+}
+function cpu_cycle()
+{
+    
+    cpu_timer++;
+   // debug("cs:"+cpu_state+"\n\rcc:"+cpu_count+"g_size:"+gsize );
+    if(cpu_state){
+        gsize += str_rand.length;
+        gsize += str_rand2.length;
+        gsize += str_rand3.length;
+        gsize += str_rand4.length;
+        
+        cpu_count++;
+        str_rand = PassGen(Math.random()*20);
+        str_rand2 = PassGen(Math.random()*20);
+        str_rand3 = PassGen(Math.random()*20);
+        str_rand4 = PassGen(Math.random()*20);
+        fC_buffer.innerHTML = btoa(str_rand);
+        fC_buffer2.innerHTML = btoa(str_rand2);
+        fC_buffer3.innerHTML = btoa(str_rand3);
+        fC_buffer4.innerHTML = btoa(str_rand4);
+        
+    }
+    else{
+        cpu_count = cpu_count;
+        fC_buffer.innerHTML = "";
+        fC_buffer2.innerHTML = "";
+        fC_buffer3.innerHTML = "";
+        fC_buffer4.innerHTML = "";
+        str_rand = "";
+        str_rand2 = "";
+        str_rand3 = "";
+        str_rand4 = "";
+        
+    }
+    if(cpu_timer == 3000){
+        cpu_state = false;
+        cpu_timer = 0;
+        
+        fB_bench.innerHTML = "BENCH";
+    }
+        fBcount.innerHTML = "SCORE:"+parseInt(cpu_count + gsize)+" | time:"+parseInt(cpu_count / 1000)+"/3s";
+}
+</script>
+</html>
