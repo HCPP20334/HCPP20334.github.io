@@ -11,7 +11,7 @@
     }
         @font-face {
         font-family: WR;
-        src: url("./fonts/Aventura-Bold.ttf");
+        src: url("./fonts/XO_Oriel_Bi.ttf");
     }
     @keyframes blur_a
     {
@@ -41,10 +41,12 @@
     html
 {
     background: #1b1b1e;
-    background-image: url("https://dimaxpsite.github.io/anime.webp");
+    background-image: url("./Pictures/20240825_122726.jpg");
     animation: gradient 4s ease infinite;
     transition: .4s;
+    background-size: 20% 20%;
 }
+
 @keyframes gradient {
 	0% {
 		background-position: 50% 0%;
@@ -62,17 +64,22 @@
 color: #ffffff;
 font-size: 11px;
 font-family: 'WR';
-background-color: #202020;border:none;
+background-color: #010409;border:none;
 box-shadow: 1px 1px 10px #010409;
 width: 150px;height:40px;
 display: inline-block;
 margin: auto;
+transition: .4s;
 transform: translateX(10px);
-border-radius: 8px;
         text-shadow: 1px 1px 1px #010409;
-        border: 2px solid #9090ff;
+        border: 1px solid #ffffff;
+        &:hover{
+            border: 2px solid #ffffff;
+        }
+        &:active{
+            color:#20ff80;
+        }
 }
-button:hover{animation: fillbutton 1s;}
 .text,#amper,#volt,#watt,#rub_text
 {
 color: #ffffff;
@@ -100,7 +107,7 @@ transition: .4s;
 color: #ffffff;
 font-size: 16px;
 font-family: 'WR';
-transform: translate(20px,8px);
+transform: translate(20px,-2px);
 text-shadow: 1px 1px #010409;
 }
 #tx
@@ -117,19 +124,18 @@ text-shadow: 1px 1px #010409;
 
 width: 100%;
         height: 30px;
-background: #404080;
+background: #010409;
         display: block;
         margin:auto;
-        border-top-left-radius: 6px;
-border-top-right-radius: 6px;
+        border: 2px solid #ffffff;
         box-shadow: 1px 1px 10px #010409;
-        transform: translate(0px,-12px);
+        transform: translate(-2px,-12px);
 
 }
 .in_bar
 {
-background-color: #202020;
-        border: 2px solid #9090ff;
+background-color: #010409;
+        border: 2px solid #ffffff;
         font-family: 'WR';
         font-size: 14px;
         color: #ffffff;
@@ -146,16 +152,15 @@ background-color: #202020;
 {
 display:block;
 margin: auto;
-background-color: #202020;
+background: linear-gradient(45deg,#8020ff,#4020ff,#8020ff);
 height: 500px;
 border: none;
 box-shadow: 1px 1px 10px #010409;
 border-radius: 2px;
 animation: XslideRb 1s;width: 320px;
-border: 2px solid #010409;
+border: 2px solid #ffffff;
 transition:.4s;
-border-top-left-radius: 6px;
-        border-top-right-radius: 6px;
+
 
 
 
@@ -166,7 +171,7 @@ border-top-left-radius: 6px;
 max-width: 500px;
 display:none;
 margin: auto;
-background-color: #202020;
+background-color: #010409;
 height: 600px;
 border: none;
 box-shadow: 1px 1px 10px #010409;
@@ -183,7 +188,7 @@ border-top-right-radius: 6px;
 {
     max-width: 500px;
     display:none;
-background-color: #202020;
+background-color: #010409;
 height: 700px;
 border-radius: 4px;
 border: none;box-shadow: 1px 1px 10px #010409;
@@ -196,25 +201,30 @@ width: 100%;
 {
 font-family:'WR';
 font-size: 14px;
-background-color: #9090ff;
+background-color: transparent;
 width: 250px;
 display: block;
 margin: auto;
-border-radius: 4px;
 margin-top: 6px;
 text-shadow: 1px 1px 1px #010409;
 color:#ffffff;
-border: 1px solid #010409;
+border: none;
+        &:hover{
+            border: 2px solid #ffffff;
+        }
+        &:active{
+            color:#20ff80;
+        }
 }
 #table_img{display:none;}
 .Close
 {
     font-family:'WR';
 font-size: 20px;
-background-color: #1b1b1e;
+background-color: #010409;
 height: 60px;
 width: 60px;
-border: 2px solid #9090ff;
+border: 2px solid #ffffff;
 display:block;
 margin: right;
 border-radius: 4px;
@@ -226,7 +236,7 @@ box-shadow: 1px 1px 10px #010409;
 #download_panel
 {
     display:none;
-background-color: #1b1b1e;
+background-color: #010409;
 height: 300px;
 box-shadow: 1px 1px 10px #010409;
 border-radius: 4px;
@@ -248,11 +258,14 @@ animation: blur_a 1s;
     font-family:'WR';
 font-size: 10px;
 transform: translateX(30px);
-border: 2px solid #9090ff;
+border: 2px solid #ffffff;
         text-shadow: 1px 1px 1px #010409;
 box-shadow: 1px 1px 10px #010409;
 }
-.buttonProcents:hover{border: 2px solid #636363;}
+.buttonProcents:hover{background-color: #1b1b1e;border: 2px solid #ffffff;}
+.buttonProcents:active{
+    color:#20ff80;background-color: #1b1b1e;
+}
 #img1
 {
     width:400px;
@@ -261,10 +274,98 @@ box-shadow: 1px 1px 10px #010409;
     margin: auto;
     box-shadow: 1px 1px 10px #010409;
 }
+@keyframes close{
+    100%{
+        height: 0px;
+    }
+}
+.loader{
+    width: 100%;
+    height: 100%;
+    background: #010409;
+    position: absolute;
+    z-index: 1;
+    display: block;
+    overflow: hidden;
+    transition: .4s;
+    transform: translate(-9px,-29px);
+    
+}
+.textLd{
+    
+    color: #ffffff;
+font-size: 24px;
+font-family: 'WR';
+border-radius: 4px;
+        text-shadow: 1px 1px 1px #010409;
+text-align: center;
+}
+@keyframes dg{
+    to{
+        transform: rotate(1turn);
+        
+    }
+}
+@keyframes dg2{
+    0%{
+        border-radius: 6px;
+    }
+    100%{
+        border-radius: 18px;
+    }
+}
+.ld{
+    width: 32px;
+    height: 32px;
+    display: block;
+    margin: auto;
+    border-radius: 18px;
+    transition: .4s;
+    /*animation: dg2 4s infinite;*/
+    
+}
+.df{
+    animation: dg 2s infinite;
+    width: 96px;height: 96px;
+    display: block;
+    margin: auto;
+    /*border: 2px solid #eeeeff;*/
+}
+#ld_0{
+    background: #ffffff;
+    transform: translateY(5px);
+}
+#ld_1{
+    background: #ffffff;
+    transform: translateX(-28px);
+}
+#ld_2{
+    background: #ffffff;
+    transform: translate(0px,-5px);
+}
+#ld_3{
+    background: #ffffff;
+    transform: translate(28px,-63px);
+}
 </style>
 <head><meta name="viewport" content="width=device-width, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
 <br>
+<div class="loader" id="lld">
+    <br>
+    <br>
+    <br><br><br>
+    <br><br><br>
+    <br>
+    <br>
+<div class="df">
+    <div id="ld_0" class="ld"></div>
+<div id="ld_1" class="ld"></div>
+<div id="ld_2" class="ld"></div>
+<div id="ld_3" class="ld"></div>
+</div>
+<p class="textLd">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</p>
+</div>
 <div id="download_panel">
 <div id="tle">
     <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
@@ -464,7 +565,7 @@ box-shadow: 1px 1px 10px #010409;
 <button id="calcSb"class="calcbtns">РАСЧЕТ ПЛОЩАДИ</button>
 
 <button id="calcPheat">РАСЧЕТ МОЩНОСТИ ТЕНА</button>
-<p id="tx">Сборка 1.0.6HCPP</p>
+<p id="tx">Сборка 1.0.7 HCPP STUDIO</p>
 
 </div>
 <p id="tx"onclick="javascript:window.location.href ='https://github.com/HCPP20334/JoyStickTest/releases/tag/JE_x64_OpenGL';" >СКАЧАЙ JE </p>
@@ -474,6 +575,8 @@ box-shadow: 1px 1px 10px #010409;
 </p>
 <button class="btndw"onclick="javascript:window.open('tg://resolve?domain=hcppstudio&text=Привет!!');">Отправить привет</button>
 <script>
+let loadData = document.getElementById("lld");
+setTimeout("loadData.style.height = '0px';",3000);
 var fC_wattIn = document.getElementById("w_value2");
 var fC_amperIn = document.getElementById("a_value");
 var fC_voltIn = document.getElementById("v_value");
@@ -542,7 +645,7 @@ Bbuf.oninput = function(){
 fCalcS.onclick =  function()
 {
     fS = parseFloat(fA_in * fB_in);
-    fSbuf.innerHTML = fS + " mm2";
+    fSbuf.innerHTML = fS + " M2";
 }
 // calc P heater
 let fPV = 0;
