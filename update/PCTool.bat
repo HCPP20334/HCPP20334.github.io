@@ -2,11 +2,11 @@
 title PCTool by HCPP
 :main
 @echo off
-color 09
+color 8b
 mode con cols=47 lines=18
 cls
 echo ----------------------------------------------
-echo   PCTool v 1.0.3
+echo   PCTool v 1.0.4
 echo ----------------------------------------------
 echo .
 echo . (1) - Active windows
@@ -164,6 +164,7 @@ goto main
 slmgr /ipk MHF9N-XY6XB-WVXMC-BTDCT-MKKG7
 slmgr /skms kms.digiboy.ir
 slmgr /ato 
+goto main
 :LTSC
 echo Win10 LTSC->activation..>>rgDumper.log
 slmgr /ipk M7XTQ-FN8P6-TTKYV-9D4CC-J462D
@@ -191,6 +192,7 @@ goto main
 slmgr /ipk VDYBN-27WPP-V4HQT-9VMD4-VMK7H
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win_ser_Datacenter_2019
 slmgr /ipk WMDGN-G9PQG-XVVXX-R3X43-63DFG
 slmgr /skms kms.digiboy.ir
@@ -200,10 +202,12 @@ goto main
 slmgr /ipk 	N69G4-B89J2-4G8F4-WWYCC-J464C
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win_ser_std_2016
 slmgr /ipk WC2BQ-8NRM3-FDDYY-2BFGV-KHKQY
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win_ser_Essentials_2016
 slmgr /ipk 	JCKRF-N37P4-C2D82-9YXRT-4M63B
 slmgr /skms kms.digiboy.ir
@@ -213,18 +217,22 @@ goto main
 slmgr /ipk 	6NMRW-2C8FM-D24W7-TQWMY-CWH2D
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win_ser_std_sac
 slmgr /ipk N2KJX-J94YW-TQVFB-DG9YT-724CC
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win11_10_pro
 slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win11_10_proN
 slmgr /ipk MH37W-N47XK-V7XM9-C7227-GCQG9
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win11_10_pro_wStation
 slmgr /ipk NRG8B-VKK3Q-CXVCJ-9G2XF-6Q84J
 slmgr /skms kms.digiboy.ir
@@ -234,18 +242,22 @@ goto main
 slmgr /ipk DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win11_10_corpN_2016
 slmgr /ipk QFFDN-GRT3P-VKWWX-X7T3R-8B639
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win11_10_corp_2016
 slmgr /ipk DCPHK-NFMTC-H88MJ-PFHPY-QJ4BJ
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win8_1_pro
 slmgr /ipk GCRJD-8NW9H-F2CDX-CCM8D-9D6T9
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win8_1_proN
 slmgr /ipk HMCNV-VVBFX-7HMBH-CTY9B-B4FXY
 slmgr /skms kms.digiboy.ir
@@ -255,22 +267,27 @@ goto main
 slmgr /ipk MHF9N-XY6XB-WVXMC-BTDCT-MKKG7
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win8_1_corpN
 slmgr /ipk MHF9N-XY6XB-WVXMC-BTDCT-MKKG7
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win7_pro
 slmgr /ipk FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win7_corp
 slmgr /ipk 33PXH-7Y6KF-2VJC9-XBBR8-HVTHH
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win_vistaB
 slmgr /ipk YFKBB-PQJJV-G996G-VWGXY-2V3X8
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win_vistaE
 slmgr /ipk VKK3X-68KWM-X2YGT-QR4M6-4BWMV
 slmgr /skms kms.digiboy.ir
@@ -278,18 +295,18 @@ slmgr /ato
 goto main
 :sp_a
 mode con cols=47 lines=20
-color 0a
+color 8b
 cls
 echo ----------------------------------------------
 echo  download center (need internet)
 echo ----------------------------------------------
 echo .
 echo . 
-echo . (1) Скачать MSC++ из под консоли
-echo . (2) Скачать MSC++ с TechPower самому
-echo . (3) Скачать DirectX 
-echo . (4) Скачать NET Framework 4.5
-echo . (5) Скачать MS Edge 
+echo . (1) download MSC++ no browser
+echo . (2) download MSC++ with TechPower
+echo . (3) download DirectX 
+echo . (4) download NET Framework 4.5
+echo . (5) download MS Edge 
 echo ----------------------------------------------
 set /p ff=
 if %ff%==1 goto 7z_ab
@@ -315,7 +332,7 @@ goto main
 :NetFr_0a
 cls
 echo ----------------------------------------------
-echo  Скачивание NET Framework 4.5.. microsoft
+echo  Downloading NET Framework 4.5.. microsoft
 echo ----------------------------------------------
 echo .
 echo . 
