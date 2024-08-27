@@ -1,0 +1,116 @@
+<html>
+    <style>
+     .main{
+        max-width: 600px;
+        display: block;
+        margin: auto;
+      background: #202020;
+      width: 100%;
+      height: 300px;
+      border: 2px solid #010409;
+      border-radius: 6px;
+     }
+     .tx{
+        font-family: "WR";
+        font-size: 20px;
+        color: white;
+        transform: translate(30px,10px);
+     }
+     .tx2{
+        font-family: "WR";
+        font-size: 16px;
+        color: white;
+        text-align: center;
+     }
+     .intx{
+        max-width: 300px;
+        background: transparent;
+        width: 100%;
+        height: 30px;
+        border: 2px solid #ffffff;
+        border-radius: 6px;
+        outline: none;
+        font-family: 'WR';
+        font-size: 20px;
+        color: #ffffff;
+        transform: translate(30px,10px);
+        
+     }
+     .intx:hover{
+            border: 2px solid #f5294b;
+        }
+     html{
+        background: #303030;
+     }
+     .btn_save{
+        background: #20ff80;
+        width: 100px;
+        height: 30px;
+        font-size: 20px;
+        transform: translate(30px,30px);
+        color: #ffffff;
+        border-radius: 6px;
+        display: block;
+        transition: .2s;
+        font-family: WR;
+     }
+     .btn_save:active{
+        color: #010409;
+     }
+     .btn_save:hover{
+        background: #ff2080;
+     }
+     @font-face {
+        font-family: WR;
+        src: url("https://hcpp20334.github.io/fonts/monoMMM_5.ttf");
+     }
+    </style>
+    <p class="tx2">GoodByeDPI configurator by HCPP</p>
+    <div class="main">
+    <p class="tx">DNS</p>
+    <input type="comment" class="intx" id="dns">
+    <p class="tx">PORT</p>
+    <input type="comment" class="intx" id="port">
+    <button class="btn_save" id="smd">SAVE</button>
+    </div>
+    <p class="tx2">github.com/hcpp20334</p>
+    <script>
+        let fD_dns = "";
+        let fD_port ="";
+        let fD_inDns = document.getElementById("dns");
+        let fD_inPort = document.getElementById("port");
+        let fD_saveCmd = document.getElementById("smd");
+        let fD_cmd = "";
+        let fname = "";
+        fD_inDns.oninput = function(){
+            fD_dns = this.value;
+        }
+        fD_inPort.oninput = function(){
+            fD_port = this.value;
+        }
+        fD_saveCmd.onclick = function(){
+            saveConfig(fD_dns,fD_port);
+        }
+        let n = 0;
+        function saveConfig(d1,d2){
+            n++;
+            fD_cmd = '@ECHO OFF PUSHD "%~dp0" set _arch=x86 IF "%PROCESSOR_ARCHITECTURE%"=="AMD64" (set _arch=x86_64) IF DEFINED PROCESSOR_ARCHITEW6432 (set _arch=x86_64) PUSHD "%_arch%" start "" goodbyedpi.exe -5 --dns-addr '+d1+' --dns-port '+d2+' --dnsv6-addr 2a02:6b8::feed:0ff --dnsv6-port '+d2+' --blacklist ..\russia-blacklist.txt POPD POPD';
+            fname = "rusDPIconfig(dpiconfig by HCPP)_("+n+").cmd";
+            writeFile(fname,fD_cmd);
+        }
+        function writeFile(name, value)
+{
+       var val = value;
+      if (value === undefined) {
+      val = "";
+       }
+      var download = document.createElement("a");
+      download.href = "data:text/plain;content-disposition=attachment;filename=file," + val;
+      download.download = name;
+      download.style.display = "none";
+      download.id = "download"; document.body.appendChild(download);
+      document.getElementById("download").click();
+      document.body.removeChild(download);
+}
+        </script>
+</html>
