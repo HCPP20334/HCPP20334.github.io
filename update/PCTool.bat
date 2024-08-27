@@ -1,24 +1,21 @@
-@echo off
- chcp 65001
+﻿
 title PCTool by HCPP
-echo PCTool v 1.0.1 by HCPP >>rgDumper.log
-echo ------------------------------->>rgDumper.log
 :main
+@echo off
 color 09
 mode con cols=47 lines=18
 cls
 echo ----------------------------------------------
 echo   PCTool v 1.0.3
 echo ----------------------------------------------
-echo Лучший помощник Сисадмина и Эникейщика!!
 echo .
-echo . (1) - Активатор Windows 
-echo . (2) - Центр Загрузки
-echo . (3) - Реестр дампер
-echo . (4) - Удалятор говна
-echo . (5) - Профиль Администратора 
-echo . (6) - Тестовый режим
-echo . (7) - Выход
+echo . (1) - Active windows
+echo . (2) - Download Center
+echo . (3) - regedit dumper
+echo . (4) - Uninstaller
+echo . (5) - Admin user
+echo . (6) - Test mode
+echo . (7) - Exit
 echo .
 echo ----------------------------------------------
 set /p menu_sel=
@@ -32,12 +29,12 @@ if  %menu_sel%==7 exit
 :ts_mode
 cls
 echo ----------------------------------------------
-echo   Тестовый режим с отключением проверки подписи драйвера
+echo   TEST MODE 
 echo ----------------------------------------------
 echo .
-echo . (1) - вкл
-echo . (2) - Выкл
-echo . (3) - Назад
+echo . (1) - on
+echo . (2) - off
+echo . (3) - back
 echo .
 echo ----------------------------------------------
 set /p ts_state=
@@ -47,12 +44,12 @@ if %ts_state%==3 goto main
 :ad_tls
 cls
 echo ----------------------------------------------
-echo   Профиль Администратора
+echo   Admin user
 echo ----------------------------------------------
 echo .
-echo . (1) - вкл
-echo . (2) - Выкл
-echo . (3) - Назад
+echo . (1) - on
+echo . (2) - off
+echo . (3) - back
 echo .
 echo ----------------------------------------------
 set /p admin_state=
@@ -62,7 +59,7 @@ if %admin_state%==3 goto main
 :dl_edge
 cls
 echo ----------------------------------------------
-echo   Удалятор Говна 
+echo   Uninstaller
 echo ----------------------------------------------
 echo . (1) - microsoft edge
 echo . (2) - Exit
@@ -70,7 +67,7 @@ set /p dl_menu=
 if  %dl_menu%==1 goto dlE
 if  %dl_menu%==2 goto sp_a
 :dlE
-echo Удаляние Говна...
+echo deleting..
 rd /S /Q C:\Windows\SystemApps\Microsoft.MicrosoftEdge_8wekyb3d8bbwe
 rd /s /q C:\Windows\SystemApps\Microsoft.MicrosoftEdgeDevToolsClient_8wekyb3d8bbwe
 rd /s /q %ProgramFiles(x86)%/Microsoft/Edge/Application
@@ -80,18 +77,18 @@ cd Edge
 cd Application
 taskkill /f /im msedge.exe
 del /f msedge.exe
-echo Удалено!!
+echo deleted!
 goto main
 :WinAc
 mode con cols=60 lines=38
 cls
 echo ----------------------------------------------
-echo   Windows Активатор (Требуется интернет) 
+echo   Windows activitor(need internet) 
 echo ----------------------------------------------
 echo . *******************************************
-echo . Пожалуйста запустите PCTool.bat от админа
+echo . please run PCTool.bat to admin
 echo . *******************************************
-echo . (0)  - Назад
+echo . (0)  - back
 echo . (1)  - Windows 10 LTSC
 echo . (2)  - Windows 10 PRO
 echo . (3)  - Windows 10 HOME
@@ -162,6 +159,7 @@ goto main
 slmgr /ipk NG4HW-VH26C-733KW-K6F98-J8CK4
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win8_pro
 slmgr /ipk MHF9N-XY6XB-WVXMC-BTDCT-MKKG7
 slmgr /skms kms.digiboy.ir
@@ -171,20 +169,24 @@ echo Win10 LTSC->activation..>>rgDumper.log
 slmgr /ipk M7XTQ-FN8P6-TTKYV-9D4CC-J462D
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :PRO
 echo Win10 PRO->activation..>>rgDumper.log
 slmgr /ipk FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :HOME
 echo Win10 HOME>activation..>>rgDumper.log
 slmgr /ipk M7XTQ-FN8P6-TTKYV-9D4CC-J462D
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win_ser_Datacenter_2022
 slmgr /ipk WX4NM-KYWYW-QJJR4-XV3QB-6VM33
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win_ser_standard_2022
 slmgr /ipk VDYBN-27WPP-V4HQT-9VMD4-VMK7H
 slmgr /skms kms.digiboy.ir
@@ -193,6 +195,7 @@ slmgr /ato
 slmgr /ipk WMDGN-G9PQG-XVVXX-R3X43-63DFG
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win_ser_standard_2019
 slmgr /ipk 	N69G4-B89J2-4G8F4-WWYCC-J464C
 slmgr /skms kms.digiboy.ir
@@ -205,6 +208,7 @@ slmgr /ato
 slmgr /ipk 	JCKRF-N37P4-C2D82-9YXRT-4M63B
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win_ser_data_sac
 slmgr /ipk 	6NMRW-2C8FM-D24W7-TQWMY-CWH2D
 slmgr /skms kms.digiboy.ir
@@ -225,6 +229,7 @@ slmgr /ato
 slmgr /ipk NRG8B-VKK3Q-CXVCJ-9G2XF-6Q84J
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win11_10_corpN
 slmgr /ipk DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4
 slmgr /skms kms.digiboy.ir
@@ -245,6 +250,7 @@ slmgr /ato
 slmgr /ipk HMCNV-VVBFX-7HMBH-CTY9B-B4FXY
 slmgr /skms kms.digiboy.ir
 slmgr /ato
+goto main
 :win8_1_corp
 slmgr /ipk MHF9N-XY6XB-WVXMC-BTDCT-MKKG7
 slmgr /skms kms.digiboy.ir
@@ -275,7 +281,7 @@ mode con cols=47 lines=20
 color 0a
 cls
 echo ----------------------------------------------
-echo  Центр Загрузки (Требуется интернет)
+echo  download center (need internet)
 echo ----------------------------------------------
 echo .
 echo . 
@@ -295,11 +301,11 @@ goto main
 :DX_0a
 cls
 echo ----------------------------------------------
-echo  Скачивание DirectX .. microsoft
+echo  download DirectX .. microsoft
 echo ----------------------------------------------
 echo .
 echo . 
-echo . Скачивание..
+
 echo . 
 echo . 
 echo ----------------------------------------------
@@ -313,7 +319,7 @@ echo  Скачивание NET Framework 4.5.. microsoft
 echo ----------------------------------------------
 echo .
 echo . 
-echo . Скачивание..
+echo . Downloading...
 echo . 
 echo . 
 echo ----------------------------------------------
@@ -322,12 +328,12 @@ start ./nt45.exe
 goto main
 :7z_ab
 cls
-echo Для распаковки нужен 7zip!!
+echo for unpack need 7zip!!
 echo -----------------------------------------------
 echo .                                              
-echo .     У вас установлен 7zip?                                         
+echo .     you installed 7zip?                                         
 echo .                                              
-echo .    (1) - да        (2) - нет                                          
+echo .    (1) - yes     (2) -  no
 echo .       
 echo -----------------------------------------------     
 set /p e0a=
@@ -337,11 +343,11 @@ goto main
 :7z_s
 cls
 echo ----------------------------------------------
-echo  Скачивание 7zip.. 7zip.org 
+echo  downloading 7zip.. 7zip.org 
 echo ----------------------------------------------
 echo .
 echo . 
-echo . Скачивание..
+echo . Downloading..
 echo . 
 echo . 
 echo ----------------------------------------------
@@ -354,11 +360,11 @@ md "./MSC"
 mode con cols=47 lines=20
 cls
 echo ----------------------------------------------
-echo  Скачивание VSC++ Runtime.. archive.org
+echo  Downloading...VSC++ Runtime.. archive.org
 echo ----------------------------------------------
 echo .
 echo . 
-echo . Скачивание..
+echo . Downloading...
 echo . 
 echo . 
 echo ----------------------------------------------
@@ -370,14 +376,14 @@ color 0f
 mode con cols=47 lines=20
 cls
 md "./RgDumper/"
-echo RgDumper - дампер реестра
+echo RgDumper - dumper regedit
 echo ----------------------------------------------
 echo :::  RgDumper v 1.0.1
 echo ----------------------------------------------
 echo .
-echo . (1) импорт
-echo . (2) экспорт(not work)
-echo . (3) Назад в меню
+echo . (1) import regedit
+echo . (2) export(not work)
+echo . (3) back
 echo ----------------------------------------------
 set /p cmd_a=
 if %cmd_a%==1 goto import
