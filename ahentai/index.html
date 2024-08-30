@@ -1,0 +1,359 @@
+<html>
+   <title>AHENTAI.IO</title>
+<style>
+html{
+background:#202020;
+border: 2px solid #ffffff;
+}
+            @font-face {
+        font-family: WR;
+        src: url("https://hcpp20334.github.io/fonts/monoMMM_5.ttf");
+    }
+.imgwindow{
+overflow: hidden;
+width:128px;height:128px;
+border-radius:12px;
+background:transparent;
+border: 6px solid #202020;
+display: inline-block;
+}
+.img{
+width:128px;height:128px;
+    transition: .4s;
+}
+.img:hover{
+    transform: scale(1.5);
+}
+#HTX{
+    font-family: 'WR','Consolas';
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: center;
+    position: absolute;
+    background: #8020ff;
+    width: 128px;height: 20px;
+    transform: translateY(-35px);
+    border-bottom-left-radius:9px;
+    border-bottom-right-radius:9px;
+    
+}
+.panel{
+    background: transparent;
+    width: 100%;height: 80px;
+    border-radius: 6px;
+    position: sticky;
+    overflow: hidden;
+    transition: .4s;
+    border: 2px solid #ffffff;
+}
+#tx{
+    font-family: 'WR','Consolas';
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 24px;
+    text-align: center;
+    transform: translateY(-3px);
+}
+.btncat{
+    background: transparent;
+    font-family: 'WR','Consolas';
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 14px;
+    width: 150px;
+    height: 40px;
+    border: none;
+    display: block;
+    margin: auto;
+    
+}        
+@keyframes fg{
+    0%{position: absolute;}
+    100%{position: relative;}
+}
+@keyframes rd{
+    0%{height:0px;}
+    100%{height:200px;}
+}
+@keyframes rdage{
+    0%{height:0px;}
+    100%{height:300px;}
+}
+@keyframes rdcl{
+    100%{height:0px;display:none;}
+    0%{height:200px;}
+}
+.btncat :hover{
+    border:2px solid #ffffff;    
+}
+.btncat:active{
+    border:2px solid #ffffff;    
+    color:#20ff80;
+    
+}
+.cata{
+    background: transparent;
+    font-family: 'WR','Consolas';
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 12px;
+    width: 80px;
+    display: inline-block;
+    transition: .4s;
+    text-align: center;
+    animation: fg 2s;
+    transform: translate(30px,-35px);
+}
+.cata :hover{
+    border:2px solid #ffffff;    
+}
+.cata:active{
+    border:2px solid #ffffff;    
+    color:#20ff80;
+}
+.categories{
+    width: 200px;
+    display:block;
+    background: #202020;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    overflow: hidden;
+    transition: .4s;
+    height: 0px;
+    transform: translateY(-3px);
+}
+.windowAge{
+    width: 100%;
+    display:block;
+    background: #202020;
+    border:2px solid #20ff80;
+    overflow: hidden;
+    margin: auto;
+    height:100%;
+    position: absolute;
+    z-index: 1;
+    transform: translate(-10px,-80px);
+    
+}
+#age{
+    font-family: 'WR','Consolas';
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    
+    transform: translateY(3px);
+}
+#AB{
+    font-family: 'WR','Consolas';
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 18px;
+    transform: translateX(30px);
+}
+#abc{
+    font-family: 'WR','Consolas';
+    font-weight: 600;
+    color: #20ff80;
+    font-size: 12px;
+    transform: translateX(30px);
+    
+    width: 180px;
+}
+#yesAge,#noAge{
+    display: inline-block;
+    width: 70px;
+    height: 40px;
+    border: none;
+    margin: auto;
+    background: transparent;
+    font-family: "WR";
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    transform: translate(80px,100px);
+}
+#yesAge:hover,#noAge:hover{
+    border: 2px solid #eeeeff;
+}
+#yesAge:active,#noAge:active{
+    color:#20ff80;
+    
+}
+.videoFrame{
+    width: 360px;
+    height: 240px;
+    display: block;
+    margin: auto;
+    background: #010409;
+    border-radius: 6px;
+}
+.videos{
+    width: 100%;
+    height: 500px;
+    overflow-y: scroll;
+}
+.loader{
+    width: 100%;
+    height: 100%;
+    background: #010409;
+    z-index: 1;
+    position: absolute;
+    display: block;
+    overflow: hidden;
+    transition: .4s;
+    transform: translate(-10px,-10px);
+    
+}
+.loadtext{
+    text-align: center;
+    color: #ffffff;font-family: "WR";
+    font-size: 45px;transform: translateY(300px);
+}
+@keyframes dg{
+    to{
+        transform: rotate(1turn);
+        
+    }
+}
+@keyframes dg2{
+    0%{
+        border-radius: 6px;
+    }
+    100%{
+        border-radius: 18px;
+    }
+}
+.ld{
+    width: 32px;
+    height: 32px;
+    display: block;
+    margin: auto;
+    border-radius: 18px;
+    transition: .4s;
+    /*animation: dg2 4s infinite;*/
+    
+}
+.df{
+    animation: dg 3s infinite;
+    width: 96px;height: 96px;
+    display: block;
+    margin: auto;
+    /*border: 2px solid #eeeeff;*/
+}
+#ld_0{
+    background: #ffffff;
+    transform: translateY(5px);
+}
+#ld_1{
+    background: #ffffff;
+    transform: translateX(-28px);
+}
+#ld_2{
+    background: #ffffff;
+    transform: translate(0px,-5px);
+}
+#ld_3{
+    background: #ffffff;
+    transform: translate(28px,-63px);
+}
+</style>
+    <head><meta name="viewport" content="width=device-width, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="AHENTAI.IO - BEST HENTAI TO BROWSER!!" />
+<link rel="icon"  href="icon.jpg"></head>
+<div class="loader" id="ldw">
+<p class="loadtext">AHENTAI.IO</p>
+<div class="df">
+    <div id="ld_0" class="ld"></div>
+<div id="ld_1" class="ld"></div>
+<div id="ld_2" class="ld"></div>
+<div id="ld_3" class="ld"></div>
+</div>
+</div>
+<div class="panel" id="wpanel">
+<p id="tx">AHENTAI.IO</p>
+<p class="cata" id="catwdshw">CATEGORIES</p>
+<p class="cata" id="catabout">ABOUT</p>
+<p class="cata">DONATE</p>
+<p class="cata">SUPPORT</p>
+<p id="AB">AHENTAI.IO - SITE TO HENTAI PLAYER</p>
+<p id="AB">©COPYRIGHT 2024 HCPP STUDIO BULID 0.2</p>
+<p id="abc">Press "ABOUT" to close</p>
+</div>
+<div class="windowAge" id="agew">
+<p id="age">You age 18+?</p>
+<button id="yesAge" onclick="javascript:ageBool = true;ageParse();">YES</button>
+<button id="noAge" onclick="javascript:ageBool = false;ageParse();">NO</button>
+</div>
+<div class="categories" id="catwnd">
+<button id="loli" class="btncat">LOLI </button>
+<button id="loli" class="btncat">MILF</button>
+<button id="loli" class="btncat">POPULAR ANIME </button>
+<button id="catwndclosw" class="btncat">BACK</button>
+</div>
+<div class="videos">
+<div class="videoFrame">
+<iframe width="360" height="240" class="videoFrame"src="https://www.youtube.com/embed/vtacwRkVj1g" title="БРАТИШКИН СМОТРИТ - Тик ток девочки ультуют по бедным :(" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<br>
+<div class="videoFrame">
+<iframe width="360" height="240" class="videoFrame"src="https://www.youtube.com/embed/vtacwRkVj1g" title="БРАТИШКИН СМОТРИТ - Тик ток девочки ультуют по бедным :(" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<br>
+<div class="videoFrame">
+<iframe width="360" height="240" class="videoFrame"src="https://www.youtube.com/embed/vtacwRkVj1g" title="БРАТИШКИН СМОТРИТ - Тик ток девочки ультуют по бедным :(" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<br>
+<div class="videoFrame">
+<iframe width="360" height="240" class="videoFrame"src="https://www.youtube.com/embed/vtacwRkVj1g" title="БРАТИШКИН СМОТРИТ - Тик ток девочки ультуют по бедным :(" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+</div>
+<script>
+let catWindow = document.getElementById("catwnd");
+let catWindowClose = document.getElementById("catwndclosw");
+let catPanelBtn = document.getElementById("catwdshw");
+let fW_ageWindow  = document.getElementById("agew");
+let catAboutBtn = document.getElementById("catabout");
+let fW_panel = document.getElementById("wpanel")
+let fW_panelState = 0;
+let ageBool = true;
+let fW_loader  = document.getElementById("ldw");
+setTimeout("WloadClose()",4000);
+function WloadClose(){
+    fW_loader.style.height = "0px";
+}
+ageParse();
+function ageParse(){
+    if(ageBool){
+        fW_ageWindow.style = "display:none;"
+    }
+    if(!ageBool){
+        document.location.href = "errrorAge.html";
+    }
+}
+catAboutBtn.onclick = function(){
+    fW_panelState++;
+    if(fW_panelState > 1){
+        fW_panelState = 0;
+    }
+    if(fW_panelState){
+        fW_panel.style.height = "330px";
+        catWindow.style = "border:none;height:0px;";
+        
+    }
+    if(!fW_panelState){
+        fW_panel.style.height = "80px";
+        
+    }
+}
+catPanelBtn.onclick =function(){
+    catWindow.style = "border: 2px solid #ffffff;border-top:none;height:200px;";
+    fW_panel.style.height = "80px";
+}
+catWindowClose.onclick = function(){
+    catWindow.style = "border:none;height:0px;";
+}
+</script>
+</html>
