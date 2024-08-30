@@ -1,126 +1,362 @@
 <html>
-
 <style>
-@keyframes XSlide
-{
-    0%{transform: translateX(-100px);}
-    100%{transform: translateX(0px);}
-}
-html{
-    background-color: #010409;
-}
-#tx_aread
-{
-    background-color: #1b1b1e;
-    color: white;
-    font-size: 20px;
-    font-family: 'Consolas';
-    width: 100%;
-    height: 80%;border:2px solid  #636973;
-}
+    @font-face{
+	font-family: WR;
+	src: url("https://hcpp20334.github.io/fonts/monoMMM_5.ttf");
+    }
+    html{
+        background: #303030;
+    }
+    .menubar{
+        background: #202020;
+        border: 1px solid #010409;
+        width: 100%;
+        height: 30px;
+    }
+    .mbtns{
+        background: #202020;
+        border:none;
+        font-family: 'Consolas';
+        font-size: 16px;
+        color: #ffffff;
+    }
+    .mbtns:hover{
+        background: #606060;
+        border: none;
+    }
+    .mbtns:active{
+        color: #20ff80;
+    }
+    .prtx{
+        background: #202020;
+        font-family: 'Consolas';
+        font-size: 14px;
+        color: #ffffff;display: inline-block;
+    }
+    .txab{
+        font-family: 'Consolas';
+        font-size: 14px;
+        color: #ffffff;
+        transform: translateX(10px);display: inline-block;
+    }
+    .txab:hover{
+        background: #606060;
+        color: #20ff80;
+    }
+    .buf{
+        background: #202020;
+        border: 1px solid #010409;
+        font-family: 'Consolas';
+        font-size: 12px;
+        color: #ffffff;
+        width: 100%;
+        height: 500px;
+        outline: none;
+    }
+    #params{
+        background: #202020;
+        border: 1px solid #010409; 
+        width: 100%;
+        height: 30px;
+    }
+    #save{
+        background: #303030;
+        font-family: 'Consolas';
+        font-size: 14px;
+        color: #ffffff;
+        display: block;
+        width: 130px;
+        border: none;
+    }
+    #save:hover{
+        background: #606060;
 
-#notepad
-{
-    background-color: #1b1b1e;
-    width: 100%;display: block;
-    height:90%;
-}
-#p01
-{
-    color: white;
-    font-size:20px;
-    font-weight: lighter;
-    font-family: 'Consolas';
-    background-color:#1b1b1e;
-    padding: 4px;
-}
-#h00,#p00
-{
-    color: white;
-    font-size:20px;
-    font-weight: lighter;
-    font-family: 'Consolas';
-    background-color: royalblue;
-    padding: 4px;
-}
-#f_name
-{
-    background-color: #1b1b1e;
-    font-size: 15px;
-    font-family: 'Consolas';
-    border:2px solid  #636973; color: white;
-    height: 30px;
-}
-#sv_file
-{
-    display: none;
-    position: absolute;
-    border: 2px solid #636973;
-    background-color: #1b1b1e;
-}
-#sv_vtn,#dw_vth,#dw_vth4
-{
-    border: 2px solid #1b1b1e;
-    background-color: #4f4fff;
-    color: white;
-    width: 160px;height:60px;
-    font-family: 'Consolas';font-size: 20px;
-}
-#sv_vtn1
-{
-    
-    border: 2px solid #1b1b1e;
-    background-color: #4f4fff;
-    color: white;width: 190px;height:60px;
-    font-family: 'Consolas';font-size: 20px;display: inline;
-}
-#sv_vtn2
-{
-      
-    border: 2px solid #1b1b1e;
-    background-color: #4f4fff;
-    color: white; width: 220px;height:60px;
-    font-family: 'Consolas';font-size: 20px;display: inline;
-}
-#msg_text
-{
-    display: none;
-}
+    }
+    #cnsl,#cnsl1,#cnsl2{
+        background: #303030;
+        font-family: 'Consolas';
+        font-size: 14px;
+        color: #ffffff;
+        display: block;
+        width: 100%;
+        border: none;
+    }
+    #cnsl:hover,#cnsl1:hover,#cnsl2:hover{
+        background: #606060;
+        }
+    #file_menu{
+        width: 130px;
+        height: 60px;
+        background: #303030;
+        border: 1px solid #796c6ccc;
+        position: absolute;
+        z-index: 1;
+        transform: translateY(-10px);
+        display: none;
+    }
+    #file_tl{
+        width: 230px;
+        height: 20px;
+        background: #303030;
+        border: 1px solid #796c6ccc;
+        font-family: 'Consolas';
+        font-size: 14px;
+        color: #ffffff;
+        
+        outline: none;
+    }
+    .in{
+        width: 30px;
+        height: 30px;
+        background: #303030;
+        border: 1px solid #796c6ccc;
+        font-family: 'Consolas';
+        font-size: 14px;
+        color: #ffffff;
+        display: inline-block;
+        outline: none;transform: translateX(10px);
+    }
+    .in2{
+        width: 100px;
+        height: 30px;
+        background: #303030;
+        border: 1px solid #796c6ccc;
+        font-family: 'Consolas';
+        font-size: 14px;
+        color: #ffffff;
+        display: inline-block;
+        outline: none;transform: translateX(10px);
+    }
+    #set_menu,#wndtx{
+        width: 330px;
+        height: 200px;
+        background: #303030;
+        border: 1px solid #796c6ccc;
+        margin: auto;
+        display: none;position: absolute;
+        z-index: 1;
+    }
+    #about_menu{
+        width: 230px;
+        height: 200px;
+        background: #303030;
+        border: 1px solid #796c6ccc;
+        margin: auto;
+        display: none;position: absolute;
+        z-index: 1;
+    }
+    #wbuffer,#testtx{
+        font-family: 'Consolas';
+        font-size: 14px;
+        color: #ffffff;
+        transform: translate(10px,10px);
+    }
+    #loader{
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg,#202020,#303033);
+        position: absolute;
+        z-index: 1;
+        overflow: hidden;
+        transition: .5s;
+    }
+    @keyframes fx{
+        0%{
+            width: 190px;
+        }
+        50%{
+            width: 0px;
+        }
+        100%{
+            width: 180px;
+        }
+    }
+    .txloader{
+        font-family: 'WR';
+        font-size: 40px;
+        width: 180px;
+        transition: .5s;
+        color: #ffffff;
+        text-align: center;
+        animation: fx 2s infinite;
+        overflow: hidden;
+        
+    }
+    .txloader1{
+        font-family: 'Consolas';
+        font-size: 20px;
+        transition: .5s;
+        color: #ffffff;
+        text-align: center;
+        overflow: hidden;
+        
+    }
+    .loaderd{
+        background: #0400ff;
+        box-shadow: 10px 8px #ff202b;
+        display: block;
+        margin: auto;
+        width: 200px;
+        height: 50px;
+
+    }
+    #savebar{
+        width: 100px;
+        height: 10px;
+        border: 1px solid #ff202b;
+        transition: .3s;
+        display: inline-block;
+    }
+    #bar{
+        background: #ff202b;
+        transition: .2s; height: 10px;
+        width: 1px;display: block;
+    }
 </style>
-<div id="sv_file">
-    <p id="p01">Name:<input id="f_name" type="comment"></p>
-    <button id="dw_vth">Скачать файл</button> <button id="dw_vth4" onclick="javascript:cl_svFile();">Закрыть</button>
+<title id="titlenuf">Блокнот:Нет Имени</title>
+<div id="loader">
+    <br><br><br><br><br><br><br>
+<div class="loaderd">
+    <p class="txloader">NOTEPAD</p>
+        <p class="txloader1">На Русском языке!!</p>
+</div>
+</div>
+<div class="menubar">
+<button id="file_t" class="mbtns">ФАЙЛ</button>
+<button id="settings_t" class="mbtns">НАСТРОИКИ</button>
+<button id="about_t" class="mbtns">О ПРОЕКТЕ</button>
+<input type="comment" id="file_tl" value="ИМЯ ФАЙЛА..">
+</div>
+<div id="file_menu">
+<button id="save">Сохранить</button>
+<button id="cnsl">Отмена</button>
+</div>
+<div id="set_menu">
+    <p class="txab">Размер Шрифта:</p><input id="fntsz" type="comment" class="in">
+    <p class="txab">Шрифт</p><input id="fnt" type="comment" class="in2">
+    <p id="testtx">Привет!!</p>
+    <button id="cnsl1">Отмена</button>
     </div>
-    <h1 id="msg_text"></h1>
-<div id="Notepad" onload="javascript:msg('Добро пожаловать!!');">
-    <h1 id="h00">Writer to Web!! ver 1.0</h1>
-    <button id="sv_vtn">Сохранить как</button><button id="sv_vtn1" onclick="javascript:Wr_About();">О проекте</button><button id="sv_vtn2" onclick="javascript:SvToCache();">Сохранить в кеш</button>
-<textarea id="tx_aread"></textarea>
-<p id="p00"></p>
+    <div id="about_menu">
+        <p class="txab">Блокнот Веб - HTML5 версия от HCPP</p>
+        <button id="cnsl2">Отмена</button>
+        </div>
+        <div id="wndtx">
+        <p id="wbuffer"></p>
+        </div>
+<textarea id="buffer_t" class="buf"></textarea>
+<div id="params">
+<p id="size_buffer_t" class="prtx"></p>
+<p id="font_type" class="prtx"></p>
+<p id="file_name" class="prtx">не имени</p>
+<div id="savebar">
+    <div id="bar"></div>
+</div>
 </div>
 <script>
-    setTimeout("RdCache();",1000);
-    var p_data = document.getElementById('p00');
-    var fOutTxBuf;
-    let TxBuffer_0 = document.getElementById('tx_aread');
-    let sv_window = document.getElementById('sv_file');
-    let save_text = document.getElementById('sv_vtn');
-    let dw_file = document.getElementById('dw_vth');
-    let sv_name = document.getElementById('f_name');
-    var fFile_name;
-    var fMsg = document.getElementById("msg_text");
-function msg(text)
-{
-    fMsg.style.display = "block";
-    fMsg.style.position = "absolute";
-    fMsg.style.border = "2px solid #636973";
-    fMsg.style.backgroundColor = "#010409";
-    fMsg.style.color = "rgb(0,200,130)";
-    fMsg.style.fontFamily = "Consolas";
-    fMsg.style.animation = "XSlide 1s";
-    fMsg.innerHTML = text;
-    setTimeout("fMsg.style.display = 'none';",2000);
+let buffer_t = document.getElementById("buffer_t");
+let size_t = document.getElementById("size_buffer_t");
+let fC_txSize = "";
+let fB_fileBtn = document.getElementById("file_t");
+let fB_SettingsBtn = document.getElementById("settings_t");
+let fB_AboutBtn = document.getElementById("about_t");
+let fW_fileFrame = document.getElementById("file_menu");
+let fW_SetFrame = document.getElementById("set_menu");
+let fW_AboutFrame = document.getElementById("about_menu");
+let fW_txbuffer = document.getElementById("file_name");
+//
+let file_tl = document.getElementById("file_tl")
+let fB_cl0 = document.getElementById("cnsl");
+let fB_cl1 = document.getElementById("cnsl1");
+let fB_cl2 = document.getElementById("cnsl2");
+let fBarLoad = document.getElementById("bar");
+let fFnt_sz = document.getElementById("fntsz");
+let fFnt = document.getElementById("fnt");
+//
+let fD_fileName = "";
+let fW_loader = document.getElementById("loader");
+let fW_testtx = document.getElementById("testtx");
+setTimeout("loadClose()",4000);
+function loadClose(){
+    fW_loader.style.height = "0px";
 }
+function load(){
+    fW_loader.style.height = "100%";
+}
+fFnt_sz.oninput = function(){
+    buffer_t.style = "font-size:"+this.value+"px";
+    fW_testtx.style = "font-size:"+this.value+"px";
+    if(this.value == 0){
+        buffer_t.style = "font-size:12px";
+    fW_testtx.style = "font-size:12px";
+    }
+}
+fFnt.oninput = function(){
+    buffer_t.style = "font-family:'"+this.value+"'";
+    fW_testtx.style = "font-family:'"+this.value+"'";
+    if(this.value == ""){
+        buffer_t.style = "font-family:'Consolas'";
+    fW_testtx.style = "font-family:'Consolas'";
+    }
+}
+fW_loader.onclick = function(){
+    loadClose();
+}
+file_tl.oninput = function(){
+    fD_fileName = this.value;
+    document.getElementById("titlenuf").innerHTML ="Блокнот:"+fD_fileName;
+    fW_txbuffer.innerHTML = fD_fileName;
+    if(fD_fileName.length < 1){
+        fW_txbuffer.innerHTML = "нет имени";
+        document.getElementById("titlenuf").innerHTML ="Блокнот: нет имени";
+    }
+}
+//
+let wndTx = document.getElementById("wndtx");
+let wBuffer = document.getElementById("wbuffer");
+function logw(text){
+    wndTx.style.display = "block";
+    wBuffer.innerHTML = text;
+    setTimeout("wndTx.style.display = 'none';",1000);
+}
+document.getElementById("save").onclick = function(){
+    if(fD_fileName.length < 1){
+        logw("Ошибка!! Не задано имя файла!");
+        fW_txbuffer.innerHTML = "нет имени";
+        document.getElementById("titlenuf").innerHTML ="Блокнот: нет имени";
+    }
+    else{
+        fBarLoad.style.width = "100px";
+    setTimeout("fBarLoad.style.width = '0px';",1000);
+    //fW_txbuffer.innerHTML = fD_fileName + "Saved!! size:"+C_txBuffer.length;
+    writeFile(fD_fileName,fC_txBuffer);
+    }
+}
+fB_cl0.onclick = function(){
+    fW_fileFrame.style.display = "none";
+}
+fB_cl1.onclick = function(){
+    fW_SetFrame.style.display = "none";
+}
+fB_cl2.onclick = function(){
+    fW_AboutFrame.style.display = "none";
+}
+fB_fileBtn.onclick = function(){
+    fW_fileFrame.style.display = "block";
+    fW_SetFrame.style.display = "none";
+    fW_AboutFrame.style.display = "none";
+}
+fB_SettingsBtn.onclick = function(){
+    fW_SetFrame.style.display = "block";
+    fW_fileFrame.style.display = "none";
+    fW_AboutFrame.style.display = "none";
+}
+fB_AboutBtn.onclick = function(){
+    fW_AboutFrame.style.display = "block";
+    fW_fileFrame.style.display = "none";
+    fW_SetFrame.style.display = "none";
+}
+
 function writeFile(name, value)
 {
        var val = value;
@@ -135,43 +371,11 @@ function writeFile(name, value)
       document.getElementById("download").click();
       document.body.removeChild(download);
 }
-function RdCache()
-{
-    document.getElementById('tx_aread').value = localStorage.text;
-}
-function Wr_About()
-{
-    document.getElementById('tx_aread').value = "Writter - это простой проект для написания текста \n by HCPP 2023","Writter";
-}
-function SvToCache()
-{
-    localStorage.text = fOutTxBuf;
-    msg("Сохранено!!");
-}
-save_text.onclick = function()
-{
-    sv_window.style.display = 'block';
-}
-sv_name.oninput = function(){
-        fFile_name = this.value;
-    }
-dw_file.onclick = function(){
-    writeFile(fFile_name,fOutTxBuf);
-    msg("Сохранено в "+fFile_name);
-}
-setInterval("Pread();",10);
-    function Pread()
-    {
-        fOutTxBuf = document.getElementById('tx_aread').value;
-        p_data.innerHTML = 'Символов:'+fOutTxBuf.length+'\tСимв в Кеше:'+localStorage.text.length;
-    }
-function cl_svFile()
-{
-    sv_window.style.display = 'none';
-}
-function TxPrint()
-{
-    TxBuffer_0.print();
+buffer_t.oninput = function(){
+    fC_txBuffer = this.value;
+    fC_txSize = fC_txBuffer.length;
+    size_t.innerHTML = "Кол.Символ:"+fC_txSize;
+     
 }
 </script>
 </html>
