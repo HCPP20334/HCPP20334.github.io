@@ -81,7 +81,17 @@
         width: 100%;
         border: none;
     }
-    #cnsl:hover,#cnsl1:hover,#cnsl2:hover{
+    #cnsl3{
+        background: #303030;
+        font-family: 'Consolas';
+        font-size: 14px;
+        color: #ffffff;
+        display: block;
+        width: 100px;
+        transform: translate(10px,10px);
+        border: none;
+    }
+    #cnsl:hover,#cnsl1:hover,#cnsl2:hover,#cnsl3:hover{
         background: #606060;
         }
     #file_menu{
@@ -127,6 +137,17 @@
         display: inline-block;
         outline: none;transform: translateX(10px);
     }
+    #js-code,#console-log{
+        width: 200px;
+        height: 30px;
+        background: #303030;
+        border: 1px solid #796c6ccc;
+        font-family: 'Consolas';
+        font-size: 14px;
+        color: #ffffff;
+        display: inline-block;
+        outline: none;transform: translateX(10px);
+    }
     #set_menu,#wndtx{
         width: 330px;
         height: 200px;
@@ -140,6 +161,15 @@
         width: 230px;
         height: 200px;
         background: #303030;
+        border: 1px solid #796c6ccc;
+        margin: auto;
+        display: none;position: absolute;
+        z-index: 1;
+    }
+    #debug-frame{
+        width: 230px;
+        height: 200px;
+        background: #686883;
         border: 1px solid #796c6ccc;
         margin: auto;
         display: none;position: absolute;
@@ -218,13 +248,14 @@
     <br><br><br><br><br><br><br>
 <div class="loaderd">
     <p class="txloader">NOTEPAD</p>
-        <p class="txloader1">На Русском языке!!</p>
+        <p class="txloader1">Сборка 1.0.21</p>
 </div>
 </div>
 <div class="menubar">
 <button id="file_t" class="mbtns">ФАЙЛ</button>
 <button id="settings_t" class="mbtns">НАСТРОИКИ</button>
 <button id="about_t" class="mbtns">О ПРОЕКТЕ</button>
+<button id="DEBUG_t" class="mbtns">DEBUGTOOL</button>
 <input type="comment" id="file_tl" value="ИМЯ ФАЙЛА..">
 </div>
 <div id="file_menu">
@@ -233,9 +264,16 @@
 </div>
 <div id="set_menu">
     <p class="txab">Размер Шрифта:</p><input id="fntsz" type="comment" class="in">
-    <p class="txab">Шрифт</p><input id="fnt" type="comment" class="in2">
+    <p class="txab" id="fontsinfo">Шрифт</p><input id="fnt" type="comment" class="in2">
     <p id="testtx">Привет!!</p>
     <button id="cnsl1">Отмена</button>
+    </div>
+    <div id="debug-frame">
+    <p class="txab">Код Инжектор</p>
+    <textarea id="js-code"></textarea>
+    <p class="txab">Console</p>
+    <textarea id="console-log"></textarea>
+    <button id="cnsl3">Отмена</button>
     </div>
     <div id="about_menu">
         <p class="txab">Блокнот Веб - HTML5 версия от HCPP</p>
@@ -247,12 +285,14 @@
 <textarea id="buffer_t" class="buf"></textarea>
 <div id="params">
 <p id="size_buffer_t" class="prtx"></p>
+<p id="font_size" class="prtx"></p>
 <p id="font_type" class="prtx"></p>
 <p id="file_name" class="prtx">не имени</p>
 <div id="savebar">
     <div id="bar"></div>
 </div>
 </div>
+<p class="prtx">Сборка 1.0.21</p>
 <script>
 let buffer_t = document.getElementById("buffer_t");
 let size_t = document.getElementById("size_buffer_t");
@@ -264,11 +304,18 @@ let fW_fileFrame = document.getElementById("file_menu");
 let fW_SetFrame = document.getElementById("set_menu");
 let fW_AboutFrame = document.getElementById("about_menu");
 let fW_txbuffer = document.getElementById("file_name");
+let fW_fontType = document.getElementById("font_type");
+let fW_fontSize = document.getElementById("font_size");
+let fW_App = document.documentElement;
+let fW_debugButton = document.getElementById("DEBUG_t");
+let fW_debugFrame = document.getElementById("debug-frame");
+let fW_debugJScode = document.getElementById("js-code");
 //
 let file_tl = document.getElementById("file_tl")
 let fB_cl0 = document.getElementById("cnsl");
 let fB_cl1 = document.getElementById("cnsl1");
 let fB_cl2 = document.getElementById("cnsl2");
+let fB_cl3 = document.getElementById("cnsl3");
 let fBarLoad = document.getElementById("bar");
 let fFnt_sz = document.getElementById("fntsz");
 let fFnt = document.getElementById("fnt");
@@ -276,27 +323,59 @@ let fFnt = document.getElementById("fnt");
 let fD_fileName = "";
 let fW_loader = document.getElementById("loader");
 let fW_testtx = document.getElementById("testtx");
+//
+let consoleData = document.getElementById("console-log");
+let strDataArray = ["нет имени","Шрифты"];
+let fW_fontsInfo = document.getElementById("fontsinfo");
+fB_cl3.onclick = function(){
+    fW_debugFrame.style.display = "none";
+}
+fW_debugButton.onclick = function(){
+    fW_debugFrame.style.display = "block";
+}
+fW_debugJScode.oninput = function(){
+    dbgjs(this.value);
+}
+window.addEventListener('error', function (e) {
+    var error = "\n" + e.error;
+   consoleData.innerHTML += error;
+});
+function dbgjs(code){
+  let jsBuffer = document.createElement("script");
+  fW_App.appendChild(jsBuffer);
+  jsBuffer.innerHTML = code;
+}
 setTimeout("loadClose()",4000);
+function LightTheme(){
+    fW_App.style = "filter: hue-rotate(45deg)";
+}
 function loadClose(){
     fW_loader.style.height = "0px";
 }
 function load(){
     fW_loader.style.height = "100%";
 }
+fW_fontsInfo.onclick = function(){
+    logw("Шрифты<br>1. Verdana<br>2. Comic Sans MS<br>3. Arial<br>4. Sans Serif<br>5. WR");
+}
 fFnt_sz.oninput = function(){
     buffer_t.style = "font-size:"+this.value+"px";
     fW_testtx.style = "font-size:"+this.value+"px";
+    fW_fontSize.innerHTML = "Размер Шрифта:"+this.value;
     if(this.value == 0){
         buffer_t.style = "font-size:12px";
     fW_testtx.style = "font-size:12px";
+    fW_fontSize.innerHTML = "Размер Шрифта:12";
     }
 }
 fFnt.oninput = function(){
     buffer_t.style = "font-family:'"+this.value+"'";
     fW_testtx.style = "font-family:'"+this.value+"'";
+    fW_fontType.innerHTML = "шрифт:"+this.value;
     if(this.value == ""){
         buffer_t.style = "font-family:'Consolas'";
     fW_testtx.style = "font-family:'Consolas'";
+    fW_fontType.innerHTML = "шрифт:Consolas";
     }
 }
 fW_loader.onclick = function(){
@@ -305,9 +384,9 @@ fW_loader.onclick = function(){
 file_tl.oninput = function(){
     fD_fileName = this.value;
     document.getElementById("titlenuf").innerHTML ="Блокнот:"+fD_fileName;
-    fW_txbuffer.innerHTML = fD_fileName;
+    fW_txbuffer.innerHTML = "файл:"+fD_fileName;
     if(fD_fileName.length < 1){
-        fW_txbuffer.innerHTML = "нет имени";
+        fW_txbuffer.innerHTML = "файл:нет имени";
         document.getElementById("titlenuf").innerHTML ="Блокнот: нет имени";
     }
 }
