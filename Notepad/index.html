@@ -80,6 +80,7 @@
         display: block;
         width: 100%;
         border: none;
+        transform: translateY(20px);
     }
     #cnsl3{
         background: #303030;
@@ -91,7 +92,18 @@
         transform: translate(10px,10px);
         border: none;
     }
-    #cnsl:hover,#cnsl1:hover,#cnsl2:hover,#cnsl3:hover{
+    .fntb{
+        background: #303030;
+        font-family: 'Consolas';
+        font-size: 14px;
+        color: #ffffff;
+        display: block;
+        width: 100px;
+        transform: translate(10px,10px);
+        border: none;
+        margin: 4px;
+    }
+    #cnsl:hover,#cnsl1:hover,#cnsl2:hover,#cnsl3:hover,.fntb:hover{
         background: #606060;
         }
     #file_menu{
@@ -103,6 +115,17 @@
         z-index: 1;
         transform: translateY(-10px);
         display: none;
+    }
+    #fontsmenu{
+        width: 130px;
+        height: 100%;
+        background: #303030;
+        border: 1px solid #796c6ccc;
+        border-top:none;border-bottom: none;
+        position: absolute;
+        z-index: 1;
+        transform: translate(200px,0px);
+        display: block;
     }
     #file_tl{
         width: 230px;
@@ -248,7 +271,7 @@
     <br><br><br><br><br><br><br>
 <div class="loaderd">
     <p class="txloader">NOTEPAD</p>
-        <p class="txloader1">Сборка 1.0.21</p>
+        <p class="txloader1">Сборка 1.0.22</p>
 </div>
 </div>
 <div class="menubar">
@@ -263,10 +286,16 @@
 <button id="cnsl">Отмена</button>
 </div>
 <div id="set_menu">
+    <div id="fontsmenu">
+    <button class="fntb" onclick="javascript:loadFont(0);">Consolas</button>
+    <button class="fntb" onclick="javascript:loadFont(1);">Verdana</button>
+    <button class="fntb" onclick="javascript:loadFont(3);">Arial</button>
+    <button class="fntb" onclick="javascript:loadFont(2);">Comic Sans MS</button>
+    <button class="fntb" onclick="javascript:loadFont(4);">monoMMM5</button>
+    <button id="cnsl1" >Отмена</button>
+    </div>
     <p class="txab">Размер Шрифта:</p><input id="fntsz" type="comment" class="in">
-    <p class="txab" id="fontsinfo">Шрифт</p><input id="fnt" type="comment" class="in2">
-    <p id="testtx">Привет!!</p>
-    <button id="cnsl1">Отмена</button>
+    <p id="testtx">Привет!! || HELLO</p>
     </div>
     <div id="debug-frame">
     <p class="txab">Код Инжектор</p>
@@ -292,7 +321,7 @@
     <div id="bar"></div>
 </div>
 </div>
-<p class="prtx">Сборка 1.0.21</p>
+<p class="prtx">Сборка 1.0.22</p>
 <script>
 let buffer_t = document.getElementById("buffer_t");
 let size_t = document.getElementById("size_buffer_t");
@@ -320,13 +349,16 @@ let fBarLoad = document.getElementById("bar");
 let fFnt_sz = document.getElementById("fntsz");
 let fFnt = document.getElementById("fnt");
 //
+let fW_fontsMenu = document.getElementById("fontsmenu");
 let fD_fileName = "";
 let fW_loader = document.getElementById("loader");
 let fW_testtx = document.getElementById("testtx");
 //
 let consoleData = document.getElementById("console-log");
 let strDataArray = ["нет имени","Шрифты"];
-let fW_fontsInfo = document.getElementById("fontsinfo");
+//----------------------0---------1-----------2------------3----------4----
+let fC_fontsArray = ["Consolas","Verdana","Comic Sans MS","Arial","WR"];
+//let fW_fontsInfo = document.getElementById("fontsinfo");
 fB_cl3.onclick = function(){
     fW_debugFrame.style.display = "none";
 }
@@ -338,7 +370,8 @@ fW_debugJScode.oninput = function(){
 }
 window.addEventListener('error', function (e) {
     var error = "\n" + e.error;
-   consoleData.innerHTML += error;
+   consoleData.innerHTML += error + "<br>";
+   logw(error+"<br>");
 });
 function dbgjs(code){
   let jsBuffer = document.createElement("script");
@@ -355,9 +388,6 @@ function loadClose(){
 function load(){
     fW_loader.style.height = "100%";
 }
-fW_fontsInfo.onclick = function(){
-    logw("Шрифты<br>1. Verdana<br>2. Comic Sans MS<br>3. Arial<br>4. Sans Serif<br>5. WR");
-}
 fFnt_sz.oninput = function(){
     buffer_t.style = "font-size:"+this.value+"px";
     fW_testtx.style = "font-size:"+this.value+"px";
@@ -368,11 +398,12 @@ fFnt_sz.oninput = function(){
     fW_fontSize.innerHTML = "Размер Шрифта:12";
     }
 }
-fFnt.oninput = function(){
-    buffer_t.style = "font-family:'"+this.value+"'";
-    fW_testtx.style = "font-family:'"+this.value+"'";
-    fW_fontType.innerHTML = "шрифт:"+this.value;
-    if(this.value == ""){
+
+function loadFont(id){
+    buffer_t.style = "font-family:'"+fC_fontsArray[id]+"'";
+    fW_testtx.style = "font-family:'"+fC_fontsArray[id]+"'";
+    fW_fontType.innerHTML = "шрифт:"+fC_fontsArray[id];
+    if(fC_fontsArray[id] == ""){
         buffer_t.style = "font-family:'Consolas'";
     fW_testtx.style = "font-family:'Consolas'";
     fW_fontType.innerHTML = "шрифт:Consolas";
