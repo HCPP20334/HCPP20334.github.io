@@ -1,0 +1,263 @@
+<html>
+<style>
+        @font-face {
+        font-family: WR;
+        src: url("https://hcpp20334.github.io/fonts/monoMMM_5.ttf");
+    }
+          @font-face {
+        font-family: RUS;
+        src: url("https://hcpp20334.github.io/fonts/3270-Regular.ttf");
+    }
+    @keyframes closeFrame
+    {
+        0%{height:100%;opacity: none;}
+        100%{height: 0px;opacity: 0.2px;display: none;}
+    }
+    html
+    {
+        background:#010409;
+    }
+    iframe
+    {
+    width:100%;height:100%;
+    display: none;
+    }
+    .intro
+    {
+    width:100%;height:100%;
+    z-index:1;
+    position:absolute;
+    background:#1b1b1e;
+    animation: closeFrame 1s;
+    transition: .4s;
+    }
+    .tx
+    {
+    font-family:'WR';
+    font-weight:600;
+    color:white;
+    font-size: 30px;
+    text-align:center;
+    transition: .4s;
+    }
+    .txinfo
+    {
+    font-family:'WR';
+    font-weight:600;
+    color:#7070ff;
+    font-size: 14px;
+    text-align:center;
+    transition: .4s;
+    }
+        .loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  border: 4px solid #0000;
+  border-radius: 50%;
+  border-right-color: #ff0050;
+  animation: l15 1s infinite linear;
+  margin: auto;
+}
+.loader::before,
+.loader::after {    
+  content: "";
+  grid-area: 1/1;
+  margin: 2px;
+  border: inherit;
+  border-radius: 50%;
+  animation: l15 2s infinite;
+}
+.loader::after {
+  margin: 8px;
+  animation-duration: 3s;
+}
+@keyframes l15{ 
+  100%{transform: rotate(1turn)}
+}
+#errorframe
+{
+    display: none;
+    margin: auto;
+    z-index:1;
+    position: absolute;
+    background: #202020;
+    border: 1px solid #636363;
+    transition: .4s;
+    width: 300px;
+    animation: slideY3 1s;
+    border-radius: 6px;
+}
+
+@keyframes slideY3
+    {
+        0%{
+            transform: translateY(-300px);
+        }
+        100%{
+            transform: translateY(300px);
+        }
+    }
+#ertx
+{
+    font-family: 'RUS';
+    font-size: 22px;
+    font-weight: 700;
+    color:white;
+    text-align: center;
+    transform: translateY(-10px);
+}
+.txc
+{
+    font-family:'WR';
+    font-weight:600;
+    color:#ffffff;
+    font-size: 14px;
+    transition: .4s;
+    width: 360px;
+    transform: translateX(10px);
+}
+.pwimg
+{
+    display: block;
+    margin: auto;
+    width: 256px;height: 256px;
+}
+.main_list
+{
+    display: block;
+    margin: auto;
+    width: 100%;
+    border-radius: 6px;
+    background: #101010;
+}
+#langsel,.sh_script
+{
+    background:#8363ff;
+    font-family:'WR';
+    font-weight:600;
+    color:#ffffff;
+    font-size: 14px;
+    transition: .4s;
+    border-radius: 6px;
+    border: 1px solid #010409;
+    width: 60px;height: 20px;
+    transform: translateX(10px);
+    
+}
+    </style>
+    <head>
+        <script src="https://hcpp20334.github.io/Engine/PWEngine.js"></script>
+    </head>
+
+
+    <div id="errorframe">
+<p id="ertx">
+</p>
+</div>
+<img src="pwlogo.png" class="pwimg">
+<p class="tx">
+    PWENGINE PROJECT
+    BUILD 0.7
+</p>
+
+<div class="main_list">
+<p class="tx">FUNCTIONS</p>
+<button id="langsel">RU</button>
+<p class="txc" id="fc">
+RTaudioInfo(audio_id,state)<br>
+pw_createAudio(injectID,setID)<br>
+pw_createWindow(injectID,setID,style);<br>
+pw_createText(injectID,setID,style)<br>
+pw_createButton(injectID,setID,style)<br>
+pw_createTag(injectID,setID,tagtype,style)<br>
+pw_destroyTag(getID)// del obj frame<br>
+pw_uninjectTag(getID,injectID)<br>
+pw_parseSlider(inputID)<br>
+// descriptions<br>
+~ RTaudioInfo - runtime parser audio info<br>
+~ pw_createTag - create tag <br>
+~ pw_createButton - create button<br>
+~ pw_createText - create text<br>
+~ pw_createWindow - create window "div obj"<br>
+~ pw_parseSlider - (beta) parse input tag <br>
+~ pw_destroyTag - off tag to 'none'<br>
+~ pw_uninjectTag - uninject tag to obj<br>
+// arguments info<br>
+~ setID - your id :Example: <br>
+#
+If we want the id to be frame1 , then we<br> write in setID - "frame1"
+#
+~ injectID - tag injectID is the id of the<br> tag to which we will attach the created object<br>
+~ style - style created tag<br>
+Example:
+#
+  let fStyleFrame = "display:block<br>;background:#101010;";
+#
+</p>
+</div>
+<div class="func_list">
+<p class="tx">UNIT API'S</p>
+<p class="txinfo">
+// unit main PWEngine
+let gui = new GUI_FUNC();
+// unit mem_api
+let gui_mem = new memory_api();
+//connect to web
+~</p><button class="sh_script" onclick="msg(txscript);">CODE</button>
+</div>
+<div class="main_list">
+<p class="tx">ABOUT</p>
+<p class="txinfo">
+PWEngine - API to UX/UI for js
+PROJECT created 8 july 2024
+coded by HCPP STUDIO
+</p>
+</div>
+<p class="tx">Contributors</p>
+<p class="txc">HCPP</p>
+<script>
+let yt = new GUI_FUNC();
+
+let errorFrame = yt.pw.getElementById("errorframe");
+let fMsgBuffer= yt.pw.getElementById("ertx");
+let txscript ="https://hcpp20334.github.io/Engine/PWEngine.js";
+let funcBuffer= yt.pw.getElementById("fc");
+let lngBtn = yt.pw.getElementById("langsel");
+let l = 0;
+lngBtn.onclick=function()
+{
+    l++;
+    if(l > 1){
+        l = 0;
+    }
+    if(!l){
+        lngBtn.innerHTML = "EN";
+    }
+    if(l){
+        lngBtn.innerHTML = "RU";
+    }
+    lang(l);
+}
+function msg(text)
+{
+    errorFrame.style.display = "block";
+    setTimeout("errorFrame.style.display = 'none';",100);
+    fMsgBuffer.innerHTML = text;
+    alert(text);
+}
+let ruText = "RTaudioInfo(audio_id,state)<br>pw_createAudio(injectID,setID)<br>pw_createWindow(injectID,setID,style);<br>pw_createText(injectID,setID,style)<br>pw_createButton(injectID,setID,style)<br>pw_createTag(injectID,setID,tagtype,style)<br>pw_destroyTag(getID)// удалить фрейм obj<br>pw_uninjectTag(getID,injectID)<br>pw_parseSlider(inputID)<br>// описания<br>~ RTaudioInfo - информация об аудиоанализаторе времени выполнения<br>~ pw_createTag - создать тег<br>~ pw_createButton - создать кнопку<br>~ pw_createText - создать текст<br>~ pw_createWindow - создать окно 'div obj'<br>~ pw_parseSlider - (бета) анализ входного тега<br>~ pw_destroyTag - отключить тег на 'none'<br>~ pw_uninjectTag - удалить тег из obj<br>// информация об аргументах<br>~ setID - ваш идентификатор :Пример: <br>#Если мы хотим, чтобы идентификатор был frame1, то мы<br> пишем в setID - 'frame1'#~ injectID - тег injectID - это идентификатор<br> тега, к которому мы прикрепим созданный объект<br>~ style - стиль созданного тега<br>Пример:#let fStyleFrame = 'display:block<br>;background:#101010;'';#";
+let enText = "RTaudioInfo(audio_id,state)<br>pw_createAudio(injectID,setID)<br>pw_createWindow(injectID,setID,style);<br>pw_createText(injectID,setID,style)<br>pw_createButton(injectID,setID,style)<br>pw_createTag(injectID,setID,tagtype,style)<br>pw_destroyTag(getID)// delete obj frame<br>pw_uninjectTag(getID,injectID)<br>pw_parseSlider(inputID)<br>// descriptions<br>~ RTaudioInfo - runtime audio analyzer information<br>~ pw_createTag - create tag<br>~ pw_createButton - create button<br>~ pw_createText - create text<br>~ pw_createWindow - create window 'div obj'<br>~ pw_parseSlider - (beta) parse input tag<br>~ pw_destroyTag - disable tag to 'none'<br>~ pw_uninjectTag - remove tag from obj<br>// information about arguments<br>~ setID - your ID :Example: <br>#If we want the ID to be frame1, then we<br> write in setID - 'frame1'#~ injectID - tag injectID is the ID<br> of the tag to which we will attach the created object<br>~ style - style of the created tag<br>Example:#let fStyleFrame = 'display:block<br>;background:#101010;'';#";
+function lang(count){
+    if(count){
+        funcBuffer.innerHTML = ruText;
+        funcBuffer.style = "font-family:'RUS';"
+    }
+    if(!count){
+        funcBuffer.innerHTML = enText;
+        funcBuffer.style = "font-family:'WR';"
+    }
+}
+lang(1);
+</script>
+</html>
