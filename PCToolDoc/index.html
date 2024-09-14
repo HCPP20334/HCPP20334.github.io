@@ -1,0 +1,95 @@
+<html>
+<style>
+html{
+    background: #101010;
+}
+@font-face {
+    font-family: WR;
+    src: url("https://hcpp20334.github.io/fonts/monoMMM_5.ttf");
+}
+@font-face {
+    font-family: WS;
+    src: url("./WINGDNG2.ttf");
+}
+.text{
+    transform: translate(30px,10px);
+    color: #3620ff;
+    font-size: 18px;
+    font-family: "WR";
+}
+.text2{
+    transform: translate(30px,10px);
+    color: #e1dff3;
+    font-size: 20px;
+    font-family: "WR";
+    cursor: pointer;
+}
+.text3{
+    transform: translate(30px,10px);
+    color: #e1dff3;
+    font-size: 35px;
+    font-family: "WS";
+    cursor: pointer;display: inline;
+    margin: 4px;
+}
+.text4,a{
+    transform: translate(30px,10px);
+    color: #e1dff3;
+    font-size: 25px;
+    font-family: "WR";
+    cursor: pointer;
+    display: inline;
+}
+.text2:hover{
+    width: 300px;
+    background: #3620ff;
+}
+</style>
+<p class="text">PCTool manual ru-en</p>
+<p class="text">---------------------------------</p>
+<a href="https://hcpp20334.github.io/update/PCTool.bat">СКАЧАТЬ PCTool</a>
+<p class="text2">Navigation</p>
+<p class="text2" id="u0">1. Activation Windows</p>
+<p class="text2" id="u1">2. Download Center</p>
+<p class="text2" id="u2">3. Admin mode</p>
+<p class="text2" id="u3">4. Test Mode</p>
+<p class="text2" id="u4">5. Regedit Dumper</p>
+<script>
+    let arrayPagesUrl = ["page1.html","page2.html","page3.html","page4.html","page5.html"];
+    let arrayId = 0;
+    //
+    class App{
+        openPage(url){
+            document.location.href = url;
+        }
+        getButton(id){
+            document.getElementById(id).onclick = function(st){
+                return 1;
+                console.log("ok");
+            }
+        }
+    }
+    let AppD = new App();
+    //
+    document.getElementById("u0").onclick = function(st){
+        arrayId = 0;
+        AppD.openPage(arrayPagesUrl[arrayId]);
+    }
+    document.getElementById("u1").onclick = function(st){
+        arrayId = 1;
+        AppD.openPage(arrayPagesUrl[arrayId]);
+    }
+    document.getElementById("u2").onclick = function(st){
+        arrayId = 2;
+        AppD.openPage(arrayPagesUrl[arrayId]);
+    }
+    document.getElementById("u3").onclick = function(st){
+        arrayId = 3;
+        AppD.openPage(arrayPagesUrl[arrayId]);
+    }
+    document.getElementById("u4").onclick = function(st){
+        arrayId = 4;
+        AppD.openPage(arrayPagesUrl[arrayId]);
+    }
+    </script>
+</html>
