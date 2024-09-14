@@ -87,7 +87,17 @@
         font-family: 'Consolas';
         font-size: 14px;
         color: #ffffff;
-        display: block;
+        display: inline-block;
+        width: 100px;
+        transform: translate(10px,10px);
+        border: none;
+    }
+    #cnsl4{
+        background: #303030;
+        font-family: 'Consolas';
+        font-size: 14px;
+        color: #ffffff;
+        display: inline-block;
         width: 100px;
         transform: translate(10px,10px);
         border: none;
@@ -271,7 +281,7 @@
     <br><br><br><br><br><br><br>
 <div class="loaderd">
     <p class="txloader">NOTEPAD</p>
-        <p class="txloader1">Сборка 1.0.22</p>
+        <p class="txloader1">Сборка 1.0.24</p>
 </div>
 </div>
 <div class="menubar">
@@ -303,6 +313,7 @@
     <p class="txab">Console</p>
     <textarea id="console-log"></textarea>
     <button id="cnsl3">Отмена</button>
+    <button id="cnsl4">Инжект</button>
     </div>
     <div id="about_menu">
         <p class="txab">Блокнот Веб - HTML5 версия от HCPP</p>
@@ -321,7 +332,7 @@
     <div id="bar"></div>
 </div>
 </div>
-<p class="prtx">Сборка 1.0.22</p>
+<p class="prtx">Сборка 1.0.24</p>
 <script>
 let buffer_t = document.getElementById("buffer_t");
 let size_t = document.getElementById("size_buffer_t");
@@ -345,6 +356,7 @@ let fB_cl0 = document.getElementById("cnsl");
 let fB_cl1 = document.getElementById("cnsl1");
 let fB_cl2 = document.getElementById("cnsl2");
 let fB_cl3 = document.getElementById("cnsl3");
+let fB_cl4 = document.getElementById("cnsl4");
 let fBarLoad = document.getElementById("bar");
 let fFnt_sz = document.getElementById("fntsz");
 let fFnt = document.getElementById("fnt");
@@ -354,6 +366,7 @@ let fD_fileName = "";
 let fW_loader = document.getElementById("loader");
 let fW_testtx = document.getElementById("testtx");
 //
+let fW_jsCodeBuffer = "";
 let consoleData = document.getElementById("console-log");
 let strDataArray = ["нет имени","Шрифты"];
 //----------------------0---------1-----------2------------3----------4----
@@ -362,11 +375,14 @@ let fC_fontsArray = ["Consolas","Verdana","Comic Sans MS","Arial","WR"];
 fB_cl3.onclick = function(){
     fW_debugFrame.style.display = "none";
 }
+fB_cl4.onclick = function(){
+    dbgjs(fW_jsCodeBuffer);
+}
 fW_debugButton.onclick = function(){
     fW_debugFrame.style.display = "block";
 }
 fW_debugJScode.oninput = function(){
-    dbgjs(this.value);
+    fW_jsCodeBuffer = this.value;
 }
 window.addEventListener('error', function (e) {
     var error = "\n" + e.error;
