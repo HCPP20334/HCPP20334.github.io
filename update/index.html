@@ -1,20 +1,45 @@
 <html>
 <style>
         @font-face {
-        font-family: WR;
+        font-family: W1R;
         src: url("https://hcpp20334.github.io/fonts/monoMMM_5.ttf");
+    }
+    @font-face{
+        font-family: WR;
+        src: url("https://hcpp20334.github.io/fonts/FeatureMono-Light.woff");
+        font-weight:700;
+    }
+                    @font-face {
+        font-family: WR3;
+        src: url("https://hcpp20334.github.io/fonts/ProtoMono-Regular.ttf");
     }
 html
 {
-background: #010409;
+    background: #1b1b1e;
+    background-image: url("https://dimaxpsite.github.io/anime.webp");
+    animation: gradient 4s ease infinite;
+    transition: .4s;
 }
+@keyframes gradient {
+	0% {
+		background-position: 50% 0%;
+	}
+	50% {
+		background-position: 100% 0%;
+	}
+	100% {
+		background-position: 50% 0%;
+	}
+}
+
 body
 {
 border: 1px solid #1b1b1e;
 width:120%;
 height: 600px;
 box-shadow: 1px 1px 10px #010409;
-background: #1b1b1e;
+border-radius: 8px;
+background: transparent;
 }
 .title
 {
@@ -24,6 +49,8 @@ border-top:none;
 border-left:none;
 background: rgba(40,155,99,0.8);
 border-right:none;
+border-top-left-radius: 8px;
+border-top-right-radius: 8px;
 }
 button:hover {
     background-color: #010409;
@@ -52,11 +79,12 @@ font-family: 'WR';
 color: white;
 font-size:18px;
 transform: translate(5%,10px);
-width: 100px;
+width: auto;
 border: 2px solid #010409;
 display: inline-block;
 background: transparent;
 }
+
 #b1
 {
 transform: translate(10px,10px);
@@ -65,7 +93,7 @@ background: rgba(40,155,99,0.8);
 border: 1px solid #010409;
 width: 190px;
 height: 30px;
-font-family: 'WR';
+font-family: 'WR3';
 display: inline-block;
 }
 #b2
@@ -76,7 +104,7 @@ background: rgba(40,155,99,0.8);
 border: 1px solid #010409;
 width: 190px;
 height: 30px;
-font-family: 'WR';
+font-family: 'WR3';
 display: inline-block;
 }
 #b3
@@ -87,7 +115,7 @@ background: rgba(40,155,99,0.8);
 border: 1px solid #010409;
 width: 190px;
 height: 30px;
-font-family: 'WR';
+font-family: 'WR3';
 display: inline-block;
 }
 #b4
@@ -98,7 +126,7 @@ background: rgba(40,155,99,0.8);
 border: 1px solid #010409;
 width: 190px;
 height: 30px;
-font-family: 'WR';
+font-family: 'WR3';
 display: inline-block;
 }
 #b5
@@ -109,7 +137,7 @@ background: rgba(40,155,99,0.8);
 border: 1px solid #010409;
 width: 190px;
 height: 30px;
-font-family: 'WR';
+font-family: 'WR3';
 display: inline-block;
 }
 #buttons,#nav
@@ -128,7 +156,7 @@ background: rgba(40,155,99,0.8);
 border: 1px solid #010409;
 width: 190px;
 height: 30px;
-font-family: 'WR';
+font-family: 'WR3';
 display: inline-block;
 }
 #b1:hover,#b2:hover,#b3:hover,#b4:hover,#b5:hover,#b6:hover {
@@ -153,35 +181,54 @@ display: inline-block;
     width: 300px;
     height: 600px;
     border: 1px solid #010409;
-    background:#656565 ;
+    background:#303030 ;
     display: none;
     margin: auto;
     position: absolute;
     z-index: 1;
+    border-radius: 4px;
+}
+.addtitle{
+    width: 298px;
+    height: 30px;
+    border: 1px solid #010409;
+    background:#9460ff;
+    display: block;
+    margin: auto;
+    border-radius: 4px;
+}
+.tx2{
+    font-family: 'WR';
+    color: white;
+    font-size: 19px;
+    transform: translateY(-12px);
+    text-align: center;
 }
 #con
 {
     border: 1px solid #010409;
-    background:#656565;
+    background:#202020;
     display: table;
     font-family: 'WR';
     color: white;
     font-size: 19px;
     border-radius: 4px;
-    
-    height: 300px;
+    width: 280px;
+    transform: translateX(10px);
+    height: 100px;
 }
 #url
 {
     border: 1px solid #010409;
-    background:#656565;
+    background:#202020;
     display: table;
     font-family: 'WR';
     color: white;
     font-size: 19px;
     border-radius: 4px;
     outline: none;
-    
+    width: 280px;
+    transform: translateX(10px);
 }
 #send,#close
 {
@@ -194,32 +241,66 @@ display: inline-block;
     font-size: 19px;
     border-radius: 4px;
     width: 120px;height: 30px;
-    margin: auto;
-    transform: translateY(10px);
+    margin: 3px;
+    transform: translate(10px,10px);
     
+    
+}
+#msgip
+{
+    font-family: 'WR';
+    color: #ffffff;
+    font-size: 19px;
+    border: 2px solid #ff2080;
 }
 #msg,#urltx
 {
     font-family: 'WR';
     color: #ffffff;
     font-size: 19px;
+    transform: translateX(10px);
+}
+.txe{
+    font-family: 'WR';
+    color: #ffffff;
+    font-size: 30px;
+    text-align: center;
+    font-weight: light;
+    transform: translateY(200px);
+}
+#loader{
+    width: 100%;
+    height: 100%;
+    background: #555555;
+    z-index: 1;
+    position: absolute;
+    overflow: hidden;
+    transition: .4s;
+    transform: translate(-9px,-9px);
 }
 </style>
 <head><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>    <head><meta name="viewport" content="width=device-width, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<div id="loader">
+<p class="txe">HCPP APP CENTER</p>
+<p class="txe">ЗАГРУЗКА...</p>
+</div>
 <body>
 <div class="title">
-<p id="text1">UPDATE CENTER</p>
+<p id="text1">ЦЕНТР ЗАГРУЗКИ</p>
 </div>
 <div id="addapp">
-<p id="urltx">URL APP TO DISK</p>
+<div class="addtitle">
+<p class="tx2">ФОРМА ОТПРАВКИ</p>
+</div>
+<p id="urltx"><br>ССЫЛКА</p>
 <input type="comment" id="url">
-<p id="msg">MESSAGE</p>
+<p id="msg">СООБЩЕНИЕ</p>
 <textarea id="con"></textarea>
-<button id="send">SEND</button><button id="close" onclick="javascript: AppCenter.style.display = 'none';">CANCEL</button>
+<button id="send">ОТПРАВИТЬ</button><button id="close" onclick="javascript: AppCenter.style.display = 'none';">ОТМЕНА</button>
 <p id="logs">logs</p>
 </div>
-<p id="text">MY APPS</p>
+<p id="text">МОИ ПРИЛОЖЕНИЯ</p>
 <br>
 <div id="buttons">
 <button id="b1" onclick="javascript:downloadApp(2);">JEx64OpenGL</button>
@@ -229,20 +310,21 @@ display: inline-block;
 <button id="b5"onclick="javascript:downloadApp(7);">MSVS C++ RT</button></button>
 <button id="b6"onclick="javascript:downloadApp(8);">PASSGEN</button>
 </div>
-<p id="text">OTHER APPS</p>
+<p id="text">СТОРОННИЕ ПРИЛОЖЕНИЯ</p>
 <div id="buttons">
 <button id="b1"onclick="javascript:downloadApp(5);">JEx64JavaFX</button>
 <button id="b2"onclick="javascript:downloadApp(1);">DXVK ASYNC</button>
 <button id="b3"onclick="javascript:downloadApp(4);">CALC FOR ELECTRONIK</button>
 <button id="b4"onclick="javascript:downloadApp(6);">CALC WEB</button>
 </div>
-
+<p id="msgip"></p>
 <div id="nav">
-<button id="themesel">THEME</button>
-<button id="ADD">ADD APP</button>
+<button id="themesel">ТЕМА</button>
+<button id="ADD">ДОБАВИТЬ ПРИЛОЖЕНИЕ</button>
 </div>
 </body>
 <script>
+let fLoaderFrame = document.getElementById("loader");
 let threadDownload = 0;
 let bSwitchTheme = false;
 let fPtheme = 0;
@@ -256,17 +338,24 @@ let fB_addAppF = document.getElementById("ADD");
 let contact4  = document.getElementById("con");
 let urlin  = document.getElementById("url");
 let message   = document.getElementById("logs");
+let msgtext   = document.getElementById("msgip");
 let AppCenter   = document.getElementById("addapp");
 let contact = '';
 let urldata = '';
 let msgtx = '';
 let net;
+setTimeout("fLoaderFrame.style.height = '0px';",1000);
 emailjs.init("cNRS3eeOxZxQxHTA_");
 findIP(ip => netA(ip));
-uilog(net);
+findIP(ip => uimsg("IP:"+net));
+
 function uilog(text)
 {
     message.innerHTML=text;
+}
+function uimsg(text)
+{
+    msgtext.innerHTML=text;
 }
 urlin.oninput = function()
 {
@@ -284,7 +373,7 @@ fB_addApp.onclick = function()
 {
     
     contact = "\nurl:"+urldata + "\nmsg:"+msgtx+"\nip:"+ net;
-emailjs.send("hcpp_email", "template_m2j5yts", { to_name: "HCPP", message: "Привет!"+contact, reply_to: "ugromov86@gmail.com" }) .then(response => uilog('message ok'+ response)) .catch(error => uilog('Error!!'+error));
+emailjs.send("hcpp_email", "template_m2j5yts", { to_name: "HCPP", message: "Привет!"+contact, reply_to: "ugromov86@gmail.com" }) .then(response => uilog('СООБЩЕНИЕ ДОСТАВЛЕНО'+ response)) .catch(error => uilog('Error!!'+error));
 
 }
 fB_addAppF.onclick = function()
@@ -295,7 +384,7 @@ fB_addAppF.onclick = function()
 fB_theme.onclick = function()
 {
     fPtheme++;
-    if(fPtheme > 1)
+    if(fPtheme > 2)
     {
         fPtheme = 0;
     }
@@ -308,6 +397,11 @@ fB_theme.onclick = function()
     {
         fG_body.style.background = "#656565";
         fG_doc.style.background = "#aaaaaa";
+    }
+    if(fPtheme == 2)
+    {
+        fG_doc.style = 'background-image: url("https://dimaxpsite.github.io/anime.webp");'
+        fG_body.style.background = "transparent";
     }
 }
 let urlArray = 
