@@ -11,7 +11,8 @@
     }
         @font-face {
         font-family: WR;
-        src: url("./fonts/XO_Oriel_Bi.ttf");
+        src: url("https://hcpp20334.github.io/fonts/FeatureMono-Light.woff");
+        font-weight:700;
     }
     @keyframes blur_a
     {
@@ -40,9 +41,7 @@
     }
     html
 {
-    background: #1b1b1e;
-    background-image: url("./Pictures/20240825_122726.jpg");
-    animation: gradient 4s ease infinite;
+    background: #202020;
     transition: .4s;
     background-size: 20% 20%;
 }
@@ -64,17 +63,18 @@
 color: #ffffff;
 font-size: 11px;
 font-family: 'WR';
-background-color: #010409;border:none;
-box-shadow: 1px 1px 10px #010409;
+background-color:#202020;
+box-shadow: 5px 6px  #010409;
 width: 150px;height:40px;
 display: inline-block;
-margin: auto;
+margin: 5px;
 transition: .4s;
 transform: translateX(10px);
         text-shadow: 1px 1px 1px #010409;
-        border: 1px solid #ffffff;
+        border: 1px solid #010409;
         &:hover{
-            border: 2px solid #ffffff;
+            border: 1px solid #9090ff;
+            background: #9090ff;
         }
         &:active{
             color:#20ff80;
@@ -92,15 +92,16 @@ text-align: center;
 .abAn
 {
     color: #ffffff;
-font-size: 10px;
+font-size: 14px;
 font-family: 'WR';
-border-left: 3px solid #ff2080;
+border: 1px solid #010409;
 text-shadow: 1px 1px 1px #010409;
 width: 90%;
-box-shadow: 1px 1px 10px #010409;
-background:#010409;
+box-shadow: 3px 5px  #010409;
+background:transparent;
 animation: XslideRbX 1s;
 transition: .4s;
+height: 38px;
 }
 .title_frame
 {
@@ -122,26 +123,26 @@ text-shadow: 1px 1px #010409;
 #tle
 {
 
-width: 100%;
+width: 350px;
         height: 30px;
-background: #010409;
+background: #9020ff;
         display: block;
         margin:auto;
-        border: 2px solid #ffffff;
+        border: 1px solid #010409;
         box-shadow: 1px 1px 10px #010409;
-        transform: translate(-2px,-12px);
 
 }
 .in_bar
 {
-background-color: #010409;
-        border: 2px solid #ffffff;
+background-color: #1b1b1e;
+        border: 2px solid #010409;
         font-family: 'WR';
         font-size: 14px;
         color: #ffffff;
-        text-shadow: 0px 1px 0px #010409;
+        text-shadow: 1px 1px #010409;
+box-shadow: 5px 6px  #010409;
         outline: none;
-        box-shadow: 1px 1px 10px #010409;
+        
         border-radius: 4px;
         width: 300px;height: 26px;
         display:table;
@@ -152,14 +153,15 @@ background-color: #010409;
 {
 display:block;
 margin: auto;
-background: #010409;
-height: 500px;
+background: #303030;
+height: 0px;
 border: none;
-box-shadow: 1px 1px 10px #010409;
+box-shadow: 5px 6px  #010409;
 border-radius: 2px;
-animation: XslideRb 1s;width: 320px;
-border: 2px solid #ffffff;
+animation: XslideRb 1s;width: 350px;
+border: 1px solid #010409;
 transition:.4s;
+overflow: hidden;
 
 
 
@@ -168,17 +170,17 @@ transition:.4s;
 }
 #calc_frameW,#calc_frameA,#sec2dia,#calc_rub,#watt_sec,#calc_Rwire,#capFrc,#calc_framePheater,#calc_impedance,#calcSframe
 {
-max-width: 500px;
+max-width: 350px;
 display:none;
 margin: auto;
-background-color: #010409;
+background-color: #303030;
 height: 600px;
 border: none;
-box-shadow: 1px 1px 10px #010409;
+box-shadow: 5px 6px  #010409;
 border-radius: 2px;
 animation: XslideRb 1s;width: 100%;
 transition:.4s;
-border: 2px solid #010409;
+border: 1px solid #010409;
 animation: XslideRb 1s;
 border-top-left-radius: 6px;
 border-top-right-radius: 6px;
@@ -186,15 +188,15 @@ border-top-right-radius: 6px;
 }
 #calc_Automat
 {
-    max-width: 500px;
+    max-width: 350px;
     display:none;
-background-color: #010409;
+background-color: #303030;
 height: 700px;
 border-radius: 4px;
-border: none;box-shadow: 1px 1px 10px #010409;
+border: none;box-shadow: 5px 6px  #010409;
 animation: XslideRb 1s;
 margin: auto;
-border: 2px solid #010409;
+border: 1px solid #010409;
 width: 100%;
 }
 #watt2amp,#amp2watt,#sec2diaBtn,.btndw,#download,#srub2rrub,#sec2amp,#calcRbtn,#calcAutomatN,#calcCapitulaor,#calcPheat,#calcImpedance,#calcSb
@@ -203,28 +205,28 @@ font-family:'WR';
 font-size: 14px;
 background-color: transparent;
 width: 250px;
+height: 30px;
+box-shadow: 5px 6px  #010409;
 display: block;
 margin: auto;
-margin-top: 6px;
+margin-top: 20px;
 text-shadow: 1px 1px 1px #010409;
 color:#ffffff;
-border: none;
-        &:hover{
-            border: 2px solid #ffffff;
-        }
-        &:active{
-            color:#20ff80;
-        }
+border: 1px solid #010409;
+&:hover{
+    border: 1px solid #9020ff;
+    color: #20ff80;
+}
 }
 #table_img{display:none;}
 .Close
 {
     font-family:'WR';
 font-size: 20px;
-background-color: #010409;
+background-color: #303030;
 height: 60px;
 width: 60px;
-border: 2px solid #ffffff;
+border: 2px solid #010409;
 display:block;
 margin: right;
 border-radius: 4px;
@@ -250,17 +252,19 @@ animation: blur_a 1s;
 }
 .buttonProcents
 {
-    width: 50px;
-    height: 50px;
-    background-color: #1b1b1e;
-    border-radius: 17px;
+    width: 60px;
+    height: 60px;
+    background-color: #9020ff;
     color: #ffffff;
     font-family:'WR';
-font-size: 10px;
-transform: translateX(30px);
-border: 2px solid #ffffff;
-        text-shadow: 1px 1px 1px #010409;
-box-shadow: 1px 1px 10px #010409;
+font-size: 20px;
+display: inline-block;
+margin: 3px;
+border-right: 2px;
+font-weight: 700;
+border: 1px solid #010409;
+        text-shadow: 1px 1px #010409;
+box-shadow: 5px 6px  #010409;
 }
 .buttonProcents:hover{background-color: #1b1b1e;border: 2px solid #ffffff;}
 .buttonProcents:active{
@@ -297,8 +301,17 @@ box-shadow: 1px 1px 10px #010409;
 font-size: 24px;
 font-family: 'WR';
 border-radius: 4px;
+font-weight: bold;
+margin: 4px;
+}
+.textLd2{
+    
+    color: #ffffff;
+font-size: 24px;
+font-family: 'WR';
+border-radius: 4px;
         text-shadow: 1px 1px 1px #010409;
-text-align: center;
+margin: 4px;
 }
 @keyframes dg{
     to{
@@ -347,6 +360,41 @@ text-align: center;
     background: #ffffff;
     transform: translate(28px,-63px);
 }
+#donate{
+    width: 300px;
+    height: 200px;
+    border: 1px solid #010409;
+    display: none;
+    position: absolute;
+    z-index: 1;
+    margin: auto;
+    background: #606060;
+box-shadow: 5px 6px  #010409;
+}
+#bcl{
+    width: 32px;
+    height: 32px;
+    background: #202020;
+box-shadow: 2px 3px  #010409;
+border: 1px solid #010409;
+float: right;
+margin: 4px;
+color: #ffffff;
+font-size: 24px;
+font-family: 'WR';
+}
+#bj{
+    width: 130px;
+    height: 32px;
+    background: #202020;
+box-shadow: 2px 3px  #010409;
+border: 1px solid #010409;
+float: left;
+margin: 4px;
+color: #ffffff;
+font-size: 24px;
+font-family: 'WR';
+}
 </style>
 <head><meta name="viewport" content="width=device-width, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
@@ -365,6 +413,7 @@ text-align: center;
 <div id="ld_3" class="ld"></div>
 </div>
 <p class="textLd">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</p>
+<p class="textLd2">СБОРКА 1.0.8</p>
 </div>
 <div id="download_panel">
 <div id="tle">
@@ -375,6 +424,12 @@ text-align: center;
 <p class="text">ПРИЛОЖЕНИЯ</p>
 <button class="btndw" onclick="javascript:window.open('https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Electik.Calc_C++20_last_build-1.zip');">Electrik Calc C++20_OpenGL3.0 By HCPP</button>
 <button class="btndw" onclick="javascript:window.open('http://dimaxp.sytes.net/kalkulyator-watt-v-amper-i-obratno');">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА ОТ DIMA XP</button>
+</div>
+<div id="donate">
+ <button id="bcl"onclick="javascript:document.getElementById('donate').style.display= 'none';" >X</button>
+<p class="textLd">ПОДДЕРЖИ АВТОРА</p>
+<p class="textLd">НА DONATIONALERTS!!</p>
+ <button id="bj"onclick="javascript:window.location.href ='https://donationalerts.com/r/hcpp';" >ПЕРЕЙТИ</button>
 </div>
 <div id="table_img">
     <div id="tle">
@@ -569,14 +624,16 @@ text-align: center;
 
 </div>
 <p id="tx"onclick="javascript:window.location.href ='https://github.com/HCPP20334/JoyStickTest/releases/tag/JE_x64_OpenGL';" >СКАЧАЙ JE </p>
- <p id="tx"onclick="javascript:window.location.href ='https://donationalerts.com/r/hcpp';" >ПОДДЕРЖАТЬ РАЗРАБОТЧИКА</p>
+
 <p id="tx">Создал HCPP | создано для сайта<br>
   hcpp20334.github.io
 </p>
 <button class="btndw"onclick="javascript:window.open('tg://resolve?domain=hcppstudio&text=Привет!!');">Отправить привет</button>
 <script>
 let loadData = document.getElementById("lld");
-setTimeout("loadData.style.height = '0px';",3000);
+setTimeout("loadData.style.height = '0px';",2000);
+setTimeout("fC_menu.style.height = '550px';",3000);
+setTimeout("document.getElementById('donate').style.display= 'block';",5000);
 var fC_wattIn = document.getElementById("w_value2");
 var fC_amperIn = document.getElementById("a_value");
 var fC_voltIn = document.getElementById("v_value");
@@ -611,6 +668,15 @@ var fDataVolt = 0;
 var fDataSec = 0;
 var rand = 0 ;
 var r,g,b;
+let htmlTag = document.documentElement;
+let windowX = window.screen.width;
+function ZoomScreen(){
+    windowX = window.screen.width;
+    if(windowX >= 400){
+    htmlTag.style.zoom="200%";
+    }
+}
+ZoomScreen();
 //
 let fCalcFrameS = document.getElementById("calcSframe");
 let fCalcSBtn  = document.getElementById("calcSb");
