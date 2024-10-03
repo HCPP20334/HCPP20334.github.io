@@ -102,6 +102,14 @@ background:transparent;
 animation: XslideRbX 1s;
 transition: .4s;
 height: 38px;
+overflow: hidden;
+&:hover{
+    z-index: 1;
+    height: 60px;
+    width: 100%;
+    font-size: 20px;
+    color:#20ff80;
+}
 }
 .title_frame
 {
@@ -154,7 +162,7 @@ box-shadow: 5px 6px  #010409;
 display:block;
 margin: auto;
 background: #303030;
-height: 0px;
+height: 30px;
 border: none;
 box-shadow: 5px 6px  #010409;
 border-radius: 2px;
@@ -298,13 +306,25 @@ box-shadow: 5px 6px  #010409;
 .textLd{
     
     color: #ffffff;
-font-size: 24px;
+font-size: 34px;
 font-family: 'WR';
 border-radius: 4px;
 font-weight: bold;
-margin: 4px;
+display: block;
+text-align: center;
 }
 .textLd2{
+    
+    color: #ffffff;
+font-size: 34px;
+font-family: 'WR';
+border-radius: 4px;
+        text-shadow: 1px 1px 1px #010409;
+text-align: center;
+
+display: block;
+}
+.textLd3{
     
     color: #ffffff;
 font-size: 24px;
@@ -325,6 +345,17 @@ margin: 4px;
     }
     100%{
         border-radius: 18px;
+    }
+}
+@keyframes dh{
+    0%{
+        text-shadow: 1px 1px  #9020ff;
+    }
+    50%{
+        text-shadow: 6px 8px  #9020ff;
+    }
+    100%{
+        text-shadow: 1px 1px  #9020ff;
     }
 }
 .ld{
@@ -395,6 +426,30 @@ color: #ffffff;
 font-size: 24px;
 font-family: 'WR';
 }
+.om{
+    width: 128px;
+    height: 128px;
+    display: block;
+    background: #303030;
+    border: 1px solid #ffffff;
+    box-shadow: 5px 6px #20ff80;
+    margin: auto;
+}
+.omtx{
+    color: #ffffff;
+font-size: 47px;
+font-family: 'WR';
+display: inline-block;
+margin: 6px;
+width: 47px;
+font-weight: bold;
+height: 47px;
+text-align: center;
+box-shadow: 5px 6px  #010409;
+border: 1px solid #010409;
+overflow: hidden;
+transition: .4s;
+}
 </style>
 <head><meta name="viewport" content="width=device-width, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
@@ -403,17 +458,15 @@ font-family: 'WR';
     <br>
     <br>
     <br><br><br>
-    <br><br><br>
-    <br>
-    <br>
-<div class="df">
-    <div id="ld_0" class="ld"></div>
-<div id="ld_1" class="ld"></div>
-<div id="ld_2" class="ld"></div>
-<div id="ld_3" class="ld"></div>
+<div class="om">
+<p class="omtx">P</p>
+<p class="omtx">I</p>
+<br>
+<p class="omtx">R</p>
+<p class="omtx">V</p>
 </div>
 <p class="textLd">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</p>
-<p class="textLd2">СБОРКА 1.0.8</p>
+<p class="textLd2">СБОРКА 1.0.9</p>
 </div>
 <div id="download_panel">
 <div id="tle">
@@ -427,8 +480,8 @@ font-family: 'WR';
 </div>
 <div id="donate">
  <button id="bcl"onclick="javascript:document.getElementById('donate').style.display= 'none';" >X</button>
-<p class="textLd">ПОДДЕРЖИ АВТОРА</p>
-<p class="textLd">НА DONATIONALERTS!!</p>
+<p class="textLd3">ПОДДЕРЖИ АВТОРА</p>
+<p class="textLd3">НА DONATIONALERTS!!</p>
  <button id="bj"onclick="javascript:window.location.href ='https://donationalerts.com/r/hcpp';" >ПЕРЕЙТИ</button>
 </div>
 <div id="table_img">
@@ -456,7 +509,7 @@ font-family: 'WR';
 1.13 - это ток кратко временного расцепления цепи</p>
 <p class="abAn">1.45 - ток расцепления при котором автомат не должен выключится</p>
  <p class="abAn">2.55- ток при котором автомат должен выключится в течении 1 минуты.</p>
- <p class="abAn">5 - аварийный ток перекрузки при котором автомат должен отключится до 10 сек</p>
+ <p class="abAn">5 - аварийный ток перегрузки при котором автомат должен отключится до 10 сек</p>
 <p class="abAn"> 10 - аварийный ток перегрузки при котором автомат должен выключится моментально.
 </p>
 <p class="text">идея DIMA XP</p>
@@ -669,11 +722,45 @@ var fDataSec = 0;
 var rand = 0 ;
 var r,g,b;
 let htmlTag = document.documentElement;
-let windowX = window.screen.width;
+let windowY = "";
+var userDeviceArray = [
+    {device: 'Android', platform: /Android/},
+    {device: 'iPhone', platform: /iPhone/},
+    {device: 'iPad', platform: /iPad/},
+    {device: 'Symbian', platform: /Symbian/},
+    {device: 'Windows Phone', platform: /Windows Phone/},
+    {device: 'Tablet OS', platform: /Tablet OS/},
+    {device: 'Linux', platform: /Linux/},
+    {device: 'Windows', platform: /Windows NT/},
+    {device: 'Macintosh', platform: /Macintosh/}
+];
+var platform = navigator.userAgent;
+function GDevice() {
+    for (var i in userDeviceArray) {
+        if (userDeviceArray[i].platform.test(platform))
+         {
+            return userDeviceArray[i].device;
+          }
+        }
+}
 function ZoomScreen(){
-    windowX = window.screen.width;
-    if(windowX >= 400){
-    htmlTag.style.zoom="200%";
+    if(GDevice() == "Android"){
+    document.documentElement.style.zoom="100%";
+    }
+    if(GDevice() == "iPad"){
+    document.documentElement.style.zoom="100%";
+    }
+    if(GDevice() == "iPhone"){
+    document.documentElement.style.zoom="100%";
+    }
+    if(GDevice() == "Linux"){
+    document.documentElement.style.zoom="200%";
+    }
+    if(GDevice() == "Windows"){
+    document.documentElement.style.zoom="200%";
+    }
+    if(GDevice() == "Macintosh"){
+    document.documentElement.style.zoom="200%";
     }
 }
 ZoomScreen();
@@ -862,11 +949,46 @@ fCANominal.oninput = function()
     
     
 }
-fC13.onclick = function(){fCPoint = 0;}
-fC45.onclick = function(){fCPoint = 1;}
-fC155.onclick = function(){fCPoint = 2;}
-fC400.onclick = function(){fCPoint = 3;}
-fC900.onclick = function(){fCPoint = 4;}
+fC13.onclick = function(){
+    fCPoint = 0;
+    fC13.style.border="1px solid #20ff80";
+    fC45.style.border="1px solid #010409";
+    fC155.style.border="1px solid #010409";
+    fC900.style.border="1px solid #010409";
+    fC400.style.border="1px solid #010409";
+}
+fC45.onclick = function(){
+    fCPoint = 1;
+    fC13.style.border="1px solid #010409";
+    fC45.style.border="1px solid #20ff80";
+    fC155.style.border="1px solid #010409";
+    fC900.style.border="1px solid #010409";
+    fC400.style.border="1px solid #010409";
+    
+}
+fC155.onclick = function(){
+    fCPoint = 2;
+    fC13.style.border="1px solid #010409";
+    fC45.style.border="1px solid #010409";
+    fC155.style.border="1px solid #20ff80";
+    fC900.style.border="1px solid #010409";
+    fC400.style.border="1px solid #010409";
+}
+fC400.onclick = function(){fCPoint = 3;
+    fC13.style.border="1px solid #010409";
+    fC45.style.border="1px solid #010409";
+    fC155.style.border="1px solid #010409";
+    fC400.style.border="1px solid #20ff80";
+    fC900.style.border="1px solid #010409";
+    
+}
+fC900.onclick = function(){fCPoint = 4;
+    fC13.style.border="1px solid #010409";
+    fC45.style.border="1px solid #010409";
+    fC155.style.border="1px solid #010409";
+    fC900.style.border="1px solid #20ff80";
+    fC400.style.border="1px solid #010409";
+}
 fCANcalc.onclick = function()
 {
     fCout =  parseInt(fNdata) + (parseInt(fNdata) * (fProcentArray[fCPoint] / 100));
