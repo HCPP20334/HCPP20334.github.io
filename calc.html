@@ -108,7 +108,7 @@ overflow: hidden;
     z-index: 1;
     height: 60px;
     width: 100%;
-    font-size: 20px;
+    font-size: 15px;
     color:#20ff80;
 }
 .title_frame
@@ -559,7 +559,7 @@ transition: .4s;
 <p class="text" id="out_value">0</p>
 <p id="amper">Амперы</p>
 <input type="comment" id="a_value" class="in_bar">
-<p id="volt">Вольж</p>
+<p id="volt">Вольтаж</p>
 <input type="comment" id="v_value" class="in_bar">
 <br>
 <br>
@@ -589,7 +589,7 @@ transition: .4s;
 </div>
 <h1 class="title_frame"> Ватты в Амперы</h1>
 <p class="text" id="out_value2">0</p>
-<p id="volt">Вольж</p>
+<p id="volt">Вольтаж</p>
 <input type="comment" id="v_value2" class="in_bar">
 <p id="watt">Ватты</p>
 <input type="comment" id="w_value2" class="in_bar">
@@ -673,7 +673,7 @@ transition: .4s;
 <button id="calcSb"class="calcbtns">РАСЧЕТ ПЛОЩАДИ</button>
 
 <button id="calcPheat">РАСЧЕТ МОЩНОСТИ ТЕНА</button>
-<p id="tx">Сборка 1.0.7 HCPP STUDIO</p>
+<p id="tx">Сборка 1.0.9 HCPP STUDIO</p>
 
 </div>
 <p id="tx"onclick="javascript:window.location.href ='https://github.com/HCPP20334/JoyStickTest/releases/tag/JE_x64_OpenGL';" >СКАЧАЙ JE </p>
@@ -754,13 +754,13 @@ function ZoomScreen(){
     document.documentElement.style.zoom="100%";
     }
     if(GDevice() == "Linux"){
-    document.documentElement.style.zoom="200%";
+    document.documentElement.style.zoom="80%";
     }
     if(GDevice() == "Windows"){
-    document.documentElement.style.zoom="200%";
+    document.documentElement.style.zoom="80%";
     }
     if(GDevice() == "Macintosh"){
-    document.documentElement.style.zoom="200%";
+    document.documentElement.style.zoom="80%";
     }
 }
 ZoomScreen();
