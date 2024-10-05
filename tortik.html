@@ -69,6 +69,18 @@ font-size: 14px;
 font-family: 'WR';
 transform: translate(40px,-20px);
 }
+.text2{
+        color: #ffffff;
+font-size: 14px;
+font-family: 'WR';
+transform: translate(40px,0px);
+}
+a{
+    color: #20ff80;
+font-size: 14px;
+font-family: 'WR';
+outline: hidden;
+}
 #tortcalc{
     color: #ffffff;
 font-size: 11px;
@@ -95,12 +107,21 @@ transform: translateY(100px);
     height: 45px;
     transform: translateY(-20px);
 }
+.authors{
+    width: 360px;
+    height: 100px;
+    background: #303030;
+    border-top: 1px solid #010409;
+    display: block;
+    margin: auto;
+    transform: translateY(135px);
+}
 </style>
 <div class="App">
 <div class="Tortik-App">
 <p class="text">РАСЧЕТ ТОРТИКА</p>
 </div>
-<p class="text">Диаметр:</p>
+<p class="text">Диаметр:(см)</p>
 <input id="tortda" class="in_bar" type="comment">
 <p class="text">Количество рыл:</p>
 <input id="tortc" class="in_bar"  type="comment">
@@ -109,7 +130,13 @@ transform: translateY(100px);
 <button id="tortcalc">Расчитать</button>
 
 </div>
+<div class="authors">
+<p class="text2">Авторы</p>
+<p class="text2">оригинал:<a href="https://vk.com/electronicwonders">Juriuscorp</a></p>
+<p class="text2">порт на js:<a href="https://github.com/hcpp20334">HCPP</a></p>
 </div>
+</div>
+<p class="text2">билд 1.0</p>
 <script>
     let fTort = document.getElementById("tortd");
     let fTort_Pcount = document.getElementById("tortc");
@@ -118,14 +145,19 @@ transform: translateY(100px);
     //
     let d = 0;
     let cT = 0;
+    let out = 0;
     fTortDia.oninput = function(){
-        d = this.value;
+        d = this.value * 10;
     }
     fTort_Pcount.oninput = function(){
         cT = this.value;
     }
     fTortCalc.onclick = function(){
-        fTort.innerHTML = parseInt(d / cT)+" mm";
+        out = parseInt(Math.sin(3.14 / cT) * d) ;
+        fTort.innerHTML = parseFloat(out /10) + "см";
+        
     }
+    082204
+
 </script>
  </html>
