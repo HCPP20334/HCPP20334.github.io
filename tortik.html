@@ -1,0 +1,131 @@
+ <html>
+<style>
+html{
+    background: #404040;
+}
+.App{
+    width: 360px;
+    height: 600px;
+    background: #303030;
+    border: 1px solid #010409;
+    display: block;
+    margin: auto;
+    box-shadow: 5px 6px #010409;
+}
+.tort{
+    width: 128px;
+    height:128px;
+    box-shadow: 5px 6px #010409;
+    background: #9080ff;
+    border: 1px solid #010409;
+    border-radius: 66px;
+    display: block;
+    transform: translateY(10px);
+    margin: auto;
+}
+        @font-face {
+        font-family: WR;
+        src: url("https://hcpp20334.github.io/fonts/FeatureMono-Light.woff");
+        font-weight:700;
+    }
+    #tort-part{
+	width: 0;
+	height: 0;
+	border-top: 20px solid transparent;
+	border-right: 80px solid #303030;
+	float: right;
+	border-bottom: 20px solid transparent;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	transform: translateY(40px);
+}
+.text{
+    color: #ffffff;
+font-size: 20px;
+text-align: center;
+font-family: 'WR';
+transform: translateY(10px);
+}
+.in_bar
+{
+background-color: #1b1b1e;
+        border: 2px solid #010409;
+        font-family: 'WR';
+        font-size: 14px;
+        color: #ffffff;
+        text-shadow: 1px 1px #010409;
+box-shadow: 5px 6px  #010409;
+        outline: none;
+        
+        border-radius: 4px;
+        width: 300px;height: 26px;
+        display:table;
+        margin:auto
+
+      }
+.text1{
+    color: #ffffff;
+font-size: 14px;
+font-family: 'WR';
+transform: translate(40px,-20px);
+}
+#tortcalc{
+    color: #ffffff;
+font-size: 11px;
+font-family: 'WR';
+background-color:#202020;
+box-shadow: 5px 6px  #010409;
+width: 150px;height:40px;
+display: inline-block;
+margin: auto;
+transition: .4s;
+transform: translateY(100px);
+        text-shadow: 1px 1px 1px #010409;
+        border: 1px solid #010409;
+        &:hover{
+            border: 1px solid #9090ff;
+            background: #9090ff;
+        }
+        &:active{
+            color:#20ff80;
+        }
+}
+.Tortik-App{
+    background: #9080ff;
+    height: 45px;
+    transform: translateY(-20px);
+}
+</style>
+<div class="App">
+<div class="Tortik-App">
+<p class="text">РАСЧЕТ ТОРТИКА</p>
+</div>
+<p class="text">Диаметр:</p>
+<input id="tortda" class="in_bar" type="comment">
+<p class="text">Количество рыл:</p>
+<input id="tortc" class="in_bar"  type="comment">
+<div class="tort" id="tordid">
+<div id="tort-part"><p class="text1" id="tortd">0</p></div>
+<button id="tortcalc">Расчитать</button>
+
+</div>
+</div>
+<script>
+    let fTort = document.getElementById("tortd");
+    let fTort_Pcount = document.getElementById("tortc");
+    let fTortDia = document.getElementById("tortda");
+    let fTortCalc = document.getElementById("tortcalc");
+    //
+    let d = 0;
+    let cT = 0;
+    fTortDia.oninput = function(){
+        d = this.value;
+    }
+    fTort_Pcount.oninput = function(){
+        cT = this.value;
+    }
+    fTortCalc.onclick = function(){
+        fTort.innerHTML = parseInt(d / cT)+" mm";
+    }
+</script>
+ </html>
