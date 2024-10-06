@@ -145,9 +145,13 @@ transform: translate(100px,100px);
     let out = 0;
     fTortDia.oninput = function(){
         d = this.value * 1000;
+        out = parseInt(d / cT) ;
+        fTort.innerHTML = cT + "x" +parseFloat(out /1000) + "л";
     }
     fTort_Pcount.oninput = function(){
         cT = this.value;
+        out = parseInt(d / cT) ;
+        fTort.innerHTML = cT + "x" +parseFloat(out /1000) + "л";
     }
     fTortCalc.onclick = function(){
         out = parseInt(d / cT) ;
