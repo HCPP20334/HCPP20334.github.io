@@ -1,327 +1,199 @@
 <html>
 <style>
-html
-{
-    background: #303030;
-}
-        @font-face {
-        font-family: WR;
-        src: url("https://hcpp20334.github.io/fonts/monoMMM_5.ttf");
+    html{
+        background: #202020;
     }
-.main_frame
-{
-    background: #202020;
-    width: 100%;height: 800px;
-    display: block;
-    margin: auto;
-    border-radius: 4px;
-    border: 1px solid #010409;
-}
-.text
-{
-    font-family: 'WR';
-    font-size: 18px;
-    text-align: center;
-    transform: translateY(-17px);
-    color:white;
-}
-.textW
-{
-    font-family: 'WR';
-    font-size: 18px;
-    transform: translateX(30px);
-    color:white;
-}
-.main_title
-{
-    background: #ff2080;
-    display: block;
-    margin: auto;
-    border-radius: 4px;
-    border: 1px solid #010409;
-    height: 30px;
-    
-}
-.wel_frame
-{
-    background: #1b1b1e;
-    display: block;
-    border-radius: 4px;
-    border: 1px solid #010409;
-    height: 60px;
-    width: 220px;
-    transform: translate(30px,30px);
-}
-.btn_je
-{
-    background: #ff2080;
-    display: table;
-    margin: auto;
-    border-radius: 4px;
-    border: 1px solid #010409;
-    height: 50px;
-    width: 220px;
-    transform: translateY(160px);
-    font-family: 'WR';
-    font-size: 18px;
-    transition: .4s;
-    color:white;
-}
-.btn_je:hover
-{
-    background: #636363;
-}
-.analog_stick
-{
-    width: 64px;height: 64px;
-    border: 1px solid #636363;
-    border-radius: 36px;
-    display: inline-block;
-    transform: translate(30px,700px);
-}
-#jax,#jay
-{
-    background: #ff2080;
-    width: 12px;height: 12px;
-    border-radius: 8px;
-    transition: .4s;
-}
-.sliders
-{
-    width: 200px;height: 18px;
-    border: 1px solid #636363;
-    transform: translate(30px,0px);
-    display: block;border-radius: 8px;
-}
-#JA,#JB,#JX,#JY,#JDU,#JDD,#JDL,#JDR
-{
-    background: #ff2080;
-    width: 12px;height: 18px;
-    transition: .4s;border-radius: 8px;
-
-}
-#menubar
-{
-    width: 100%;height: 22px;
-    border-bottom: 1px solid #010409;
-    background: #202020;
-    display: block;
-}
-.nBtn
-{
-    font-family: 'WR';
-    font-size: 18px;
-    transition: .4s;
-    color:white;
-    display: inline-block;
-    border:none;
-    height: 22px;
-    width: 110px;
-    background: #202020;
-}
-.nBtn:hover
-{
-    background: #ff2080;
-}
-#back
-{
-    font-family: 'WR';
-    font-size: 18px;
-    transition: .4s;
-    color:white;
-    display: inline-block;
-    border:none;
-    height: 30px;
-    width: 110px;
-    background: #ff2080;
-    transform: translate(30px,80px);
-    border-radius: 8px;
-}
-#back:hover
-{
-    background: #636363;
-}
-#JE
-{
-    display: none;
-    width: 100%;
-    height:400px;
-    transform: translate(10px,-80px);
-}
-#tx,#txh{
-    transform: translate(30px,10px);
-    font-family: 'WR';
-    font-size: 18px;
-    color:white;
-}
-.msg
-{
-    width: 300px;height:100px;
-    background: #202020;
-    z-index: 1;
-    display: none;
-    margin: auto;
-    border: 1px solid #010409;
-    position: absolute;
-    left:10%;top:50%;
-    border-radius: 8px;
-}
-</style>
-<div class="main_frame">
-<div class="main_title">
-<p class="text">JE WEB GUI</p>
-</div>
-<div class="msg">
-<div class="main_title">
-<p class="text">ERROR</p>
-</div>
-<p id="txh">Gamepad not connected!!"</p>
-</div>
-<div id="menubar">
-<button id="nAbout" class="nBtn">ABOUT</button>
-<button id="nCpuTest" class="nBtn">CPU TEST</button>
-<button id="nSettings" class="nBtn">SETTINGS</button>
-</div>
-<button class="btn_je" id="JErun">JOYSTICKTEST</button>
-<div id="JE">
-<div class="analog_stick">
-<div class="ball_stick" id="jax"></div>
-</div>
-<div class="analog_stick">
-<div class="ball_stick" id="jay"></div>
-</div>
-<p id="tx">A</p>
-<div class="sliders">
-<div id="JA"></div>
-</div>
-<p id="tx">B</p>
-<div class="sliders">
-<div id="JB"></div>
-</div>
-<p id="tx">X</p>
-<div class="sliders">
-<div id="JX"></div>
-</div>
-<p id="tx">Y</p>
-<div class="sliders">
-<div id="JY"></div>
-</div>
-<p id="tx">DU</p>
-<div class="sliders">
-<div id="JDU"></div>
-</div>
-<p id="tx">DD</p>
-<div class="sliders">
-<div id="JDD"></div>
-</div>
-<p id="tx">DL</p>
-<div class="sliders">
-<div id="JDL"></div>
-</div>
-<p id="tx">DR</p>
-<div class="sliders">
-<div id="JDR"></div>
-</div>
-<button id="back">BACK</button>
-</div>
-</div>
-<p id="tx">
-JE WEB GUI build 0.1 by HCPP
-PORT JE OpenGL version C++20
-</p>
-<script>
-let J_analogX = document.getElementById("jax");
-let J_analogY = document.getElementById("jay");
-let J_sliderA = document.getElementById("JA");
-let J_sliderY = document.getElementById("JY");
-let J_sliderB = document.getElementById("JB");
-let J_sliderX = document.getElementById("JX");
-let J_sliderDU = document.getElementById("JDU");
-let J_sliderDD = document.getElementById("JDD");
-let J_sliderDL = document.getElementById("JDL");
-let J_sliderDR = document.getElementById("JDR");
-let J_buttonMain = document.getElementById("JErun");
-let MainFrame  = document.getElementById("JE");
-let J_backBtn  = document.getElementById("back");
-let J_xPoint = 0;
-let J_yPoint = 0;
-let JsliderXA = 0;
-J_backBtn.onclick = function(){
-    MainFrame.style.display = "none";
-    J_buttonMain.style.display = "block";
-}
-J_buttonMain.onclick = function(){
-    MainFrame.style.display = "block";
-    //WelFrame.style.display = "none";
-    J_buttonMain.style.display = "none";
-}
-
-//gamepad unit
-let fJCport_a = [];
-function jScanPorts() 
-{
-  for(let cD = 1;cD < 4;cD++)
-  {
-         console.log("Cport"+cD+":st:"+fJCport_a[cD]);
-  }
-  fJCport_a[0]  === navigator.getGamepads()[1];
-  fJCport_a[1]  === navigator.getGamepads()[2];
-  fJCport_a[2]  === navigator.getGamepads()[3];
-  fJCport_a[3] === navigator.getGamepads()[4];
-
-}
-jScanPorts();
-window.addEventListener("gamepadconnected", (e) => {
-  const gp = navigator.getGamepads()[e.gamepad.index];
-  console.log(
-    "Gamepad connected at index %d: %s. %d buttons, %d axes.",
-    gp.index,
-    gp.id,
-    gp.buttons.length,
-    gp.axes.length,
-  );
-});
-window.addEventListener("gamepadisconnected", (e) => {
-  const gp = navigator.getGamepads()[e.gamepad.index];
-  console.log(
-    "Gamepad not connected at index %d: %s. %d buttons, %d axes.",
-    gp.index,
-    gp.id,
-    gp.buttons.length,
-    gp.axes.length,
-  );
-});
-
-//window.addEventListener("gamepaddisconnected
-setInterval("testAnalog();testSlider();",100);
-function testAnalog()
-{
-    //console.log(J_xPoint + ":"+J_yPoint);
-    if(J_xPoint > 64){
-        J_xPoint = 64;
+    .game-window{
+        background: #010409;
+        width: 640px;
+        height: 0px;
+        display: block;
+        margin: auto;
+        transition: .8s;
+        overflow: hidden;
     }
-    if(J_yPoint > 64){
-        J_tPoint = 64;
+    img{
+        transition: all;
     }
-    J_xPoint = Math.random() * 64;
-    J_yPoint = Math.random() * 64;
-    J_analogX.style = "transform: translate("+J_xPoint+"px,"+J_yPoint+"px);";
-    J_analogY.style = "transform: translate("+J_xPoint+"px,"+J_yPoint+"px);";
-}
-function testSlider()
-{
-    if(JsliderXA > 200){
-        JsliderXA = 200;
+    .DebugSettings{
+        width: 330px;
+        height: 0px;
+        display: block;
+        z-index: 1;
+        position: absolute;
+        backdrop-filter: blur(20px);
+        margin: auto;border: none;
+        overflow: hidden;
+        transition: .4s;
     }
-    JsliderXA = Math.random() * 200;
-    J_sliderA.style.width = JsliderXA;
-    J_sliderB.style.width = JsliderXA;
-    J_sliderX.style.width = JsliderXA;
-    J_sliderY.style.width = JsliderXA;
-    J_sliderDU.style.width = JsliderXA;
-    J_sliderDD.style.width = JsliderXA;
-    J_sliderDL.style.width = JsliderXA;
-    J_sliderDR.style.width = JsliderXA;
-}
-</script>
-</html>
+    .tx{
+        font-family: 'Consolas';color:white;
+        margin: 10px;
+    }
+    .tx1{
+        font-family: 'Consolas';color:white;
+        text-align: center;
+    }
+    input{
+        outline: none;
+        background: #202020;
+        border: 1px solid #010409;
+        font-family: 'Consolas';color:white; margin: 10px;
+    }
+    </style>
+    <div class="DebugSettings" id="dbgw">
+        <p class="tx">X offset </p>
+        <input type="comment" id="Xoffset">
+        <p class="tx">Max X offset </p>
+        <input type="comment" id="XMaxoffset">
+        <p class="tx">Y jump offset (1 pfpx)</p>
+        <input type="comment" id="Yoffset">
+        </div>
+    <div class="game-window" id="window-engine"onclick="clearInterval(LoopAE);">
+    </div>
+    <p class="tx1">CONTROLS<br>back - [A] , go [D] , jump - [W], Debug - [Z] , Enable Hitbox - [E]</p>
+    <script>
+        let A_videoBuffer = "<img id='sImg'><p class='atx' id='atxid'></p>";
+        let A_maimWindow = document.getElementById('window-engine');
+        let A_dbgw = document.getElementById('dbgw');
+        let A_dbgw_X = document.getElementById('Xoffset');
+        let A_dbgw_Y = document.getElementById('Yoffset');
+        let A_dbgw_XMax = document.getElementById('XMaxoffset');
+        let object_id;
+        let A_Xcoord = 0;
+        let A_Ycoord = 0;
+        let A_lastXpoint = 0;
+        let a = 0;
+        let A_jumpValue = 20;
+        let A_speedPixel = 0.5;
+        let A_MaxSpeed = 6400;
+        let A_boolDbgw = false;
+        //
+        A_dbgw_XMax.oninput = function(){
+            A_MaxSpeed = parseInt(this.value);
+        }
+        A_dbgw_Y.oninput = function(){
+            A_jumpValue = parseInt(this.value);
+        }
+        A_dbgw_X.oninput = function(){
+            A_speedPixel = parseInt(this.value);
+        }
+        function loadAE(){
+            A_maimWindow.innerHTML = A_videoBuffer;
+            object_id = document.getElementById('sImg');
+            object_id.src = "2a.png";
+             object_id.style = "width:128px;height: 128px;translation: .4s;transform: translateY(130px)";
+             document.getElementById('atxid').style = "font-family: 'Consolas';color:white;transform: translateY(-130px)"
+             document.getElementById('atxid').innerHTML = "X:"+A_Xcoord+"<br>style:"+object_id.style.transform;
+             A_maimWindow.style.backgroundImage = "url('bk.png')";
+             A_maimWindow.style.width = "640px";
+             setTimeout('A_maimWindow.style.height = "480px";',1000);
+             A_Ycoord = 180;
+             //A_maimWindow.style.height = 480+"px";
+        }
+        loadAE();
+        function A_jump(){
+            object_id.src = "3a.png";
+
+            A_Ycoord = -50;
+            A_lastXpoint = 3;
+            parseInt(A_Xcoord = A_Xcoord + A_jumpValue);
+            for(A_Ycoord = -50; A_Ycoord <= 180;A_Ycoord++){
+                if(A_Xcoord > A_MaxSpeed){
+                A_Xcoord = 0;
+            }
+                object_id.style.transform = "translate("+(A_Xcoord)+"px,"+A_Ycoord+"px)";
+                console.log(A_Ycoord+"px,"+(A_Xcoord + 3)+"px)");
+               
+            }
+            setTimeout('object_id.src = "2a.png";',300);
+                //object_id.style.transform = "translate("+A_Ycoord+"px,"+(A_Xcoord + 3)+"px)";
+        }
+        //keyboard
+        document.addEventListener('keydown', function(event) {
+            if(event.code == 'KeyA'){
+                setTimeout("A_back();",100);
+            }
+            if(event.code == 'KeyD'){
+                setTimeout("A_go();",100);
+            }
+            if(event.code == 'KeyW'){
+                setTimeout("A_jump();",100);
+            }
+            if(event.code == 'KeyE'){
+                object_id.style.border = "2px solid #010409";
+            }
+            if(event.code == 'KeyZ'){
+                A_boolDbgw++;
+                if(A_boolDbgw > 1){
+                    A_boolDbgw = 0;
+                }
+                if(!A_boolDbgw){
+                    A_dbgw.style.height = 0+"px";
+                A_dbgw.style.border = "none";
+                }
+                if(A_boolDbgw){
+                    A_dbgw.style.height = 330+"px";
+                    A_dbgw.style.transform = "translateX("+(window.screen.width / 3.14 + 20)+"px)"
+                A_dbgw.style.border = "1px solid #010409";
+                }
+            }
+        });
+        document.addEventListener('keyup', function(event) {
+           
+           if(event.code == 'KeyD'){
+               setTimeout("A_go();A_go();",100);
+           }
+       });
+       let A_XcoordB = 0;
+        function A_go(){
+            parseInt(A_Xcoord = A_Xcoord + A_speedPixel);
+            if(A_Xcoord > A_MaxSpeed){
+                A_Xcoord = 0;
+            
+            }
+            A_XcoordB = ((A_Xcoord * 2 ) / 6400) * 100;
+            A_maimWindow.style.backgroundPositionX = ((A_XcoordB))+"%";
+            setTimeout("a++;",10)
+            
+            if(a > 1){
+                a = 0;
+            }
+            if(a){
+                object_id.src = "2a.png";
+                object_id.style.transform = "translate("+A_Xcoord+"px,"+A_Ycoord+"px)";
+                document.getElementById('atxid').style = "font-family: 'Consolas';color:white;"
+                document.getElementById('atxid').innerHTML = "X:"+A_Xcoord+"<br>style:"+object_id.style.transform;
+            }
+            else{
+                object_id.src = "1a.png";
+            }
+            
+        }
+        function A_back(){
+            parseInt(A_Xcoord = A_Xcoord - A_speedPixel);
+            if(A_Xcoord < 0){
+                A_Xcoord = 0;
+            
+            }
+            A_XcoordB = ((A_Xcoord / 2 ) / 6400) * 100;
+            A_maimWindow.style.backgroundPositionX = ((A_XcoordB))+"%";
+            setTimeout("a++;",10)
+            object_id.style.transform = "scale(1)";
+            if(a > 1){
+                a = 0;
+            }
+            if(a){
+                object_id.src = "2a.png";
+                object_id.style.transform = "translate("+A_Xcoord+"px,"+A_Ycoord+"px)";
+                document.getElementById('atxid').style = "font-family: 'Consolas';color:white;"
+                document.getElementById('atxid').innerHTML = "X:"+A_Xcoord+"<br>style:"+object_id.style.transform;
+            }
+            else{
+                object_id.src = "1a.png";
+            }
+            
+        }
+      //  const AEngine = new GameA();
+        </script>
+    </html>
