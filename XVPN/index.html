@@ -202,9 +202,8 @@
         <p class="text">VLESS+REALITY</p>
         </div>
         <div class="xvpn-window" id="trial">
-            <h1 class="xvpn-text">ПРОБНАЯ ВЕРСИЯ</h1>
-            <p class="text">Пробный период на неделю!</p>
-            <p class="text">10 МБИТ</p>
+            <h1 class="xvpn-text">БЕСПЛАТНО</h1>
+            <p class="text">НАЖМИ ЧТОБЫ ПОЛУЧИТЬ</p>
             <p class="text">СТАТУС: ДОСТУПНО</p>
             <p class="text">VLESS+REALITY</p>
             </div>
@@ -227,19 +226,37 @@
                 let fX_boolWnd = 0;
                 let fX_shopURL = ["https://vk.com/im?media=&sel=-228176457","https://vk.com/im?media=&sel=-228176457"];
                 //
+                let keys_vless = '';
                 let vless_msg = document.documentElement;
-                let key_vless64 = "ZG14bGMzTTZMeTltTkdZNU5tTXdNUzAzTVdJekxUUTVNREl0WVdRNVpDMDFOekUzTXpBME1qZ3dZMlpBTWpFM0xqRTVOaTQ1T1M0MU5EbzBORE0vZEhsd1pUMTBZM0FtYzJWamRYSnBkSGs5Y21WaGJHbDBlU1ptY0QxcGIzTW1jMjVwUFdoamNIQXlNRE16TkM1bmFYUm9kV0l1YVc4bWNHSnJQVXhRVmpnelRVOVRORnBEVm1SSVJtVlBURWhzTkVReE5WazFiVkkyWDNJM2JIUm5kV0YwTXpKTGVXY21jMmxrUFRCa1pXVTJaakJtSm5Od2VEMHZJek53WjJ3NE9HbzU=";
+                let key_vless64 = "ZG14bGMzTTZMeTh3TVRrNFlqTTBOUzAyWmpVeExUUTRNRGt0WW1SbU9TMWhNelJsWVRreE5HWmpaREpBTWpFM0xqRTVOaTQ1T1M0MU5EbzBORE12UDNSNWNHVTlkR053Sm5ObFkzVnlhWFI1UFhKbFlXeHBkSGttY0dKclBVeFFWamd6VFU5VE5GcERWbVJJUm1WUFRFaHNORVF4TlZrMWJWSTJYM0kzYkhSbmRXRjBNekpMZVdjbVpuQTlhVzl6Sm5OdWFUMW5hWFJvZFdJdVkyOXRKbk5wWkQwd1pHVmxObVl3WmlaemNIZzlKVEpHSm1ac2IzYzllSFJzY3kxeWNISjRMWFpwYzJsdmJpTXdZWHB6YWpOck5RPT0=";
                 setTimeout("func_load()",2000);
+                keys_vless = "key_vless64da="+atob(key_vless64)+"\n\nckey_vless64db="+key_vless64+"\n\nkey_vless64="+atob(atob(key_vless64));
                 fX_trial.onclick = function(){
-                    alert("Скопировано!!\nHiddefy: 1.Нажми + и добавить из буфера\nStreisand: 1.Нажми + и добавить из буфера");
-                    navigator.clipboard.writeText(atob(atob(key_vless64))).then();;
+                    alert("%cСкопировано!!\nHiddefy: 1.Нажми + и добавить из буфера\nStreisand: 1.Нажми + и добавить из буфера","background:#ff0033;color:white");
+                    navigator.clipboard.writeText(atob(atob(key_vless64))).then();
+                    console.log("%c"+keys_vless,"background: linear-gradient(45deg, #6f00ff ,#2007ff); border: 2px solid #ffffff;font-family:src: url('https://hcpp20334.github.io/fonts/FeatureMono-Light.woff');;color:white;width:100%;height:100%;");
+
                 }
                 function func_load(){
                     fX_xvpnMain.style.height = "0px";
                 fX_xvpnAbout.click();
 
                 }
-
+                let out_msg = '';
+                checkVPNStatus();
+                console.log("%c"+checkVPNStatus(),"background: linear-gradient(45deg, #6f00ff ,#2007ff); border: 2px solid #ffffff;font-family:src: url('https://hcpp20334.github.io/fonts/FeatureMono-Light.woff');;color:white;width:100%;height:100%;");
+                function checkVPNStatus()
+                {
+                    let response =  fetch("https://hcpp20334.github.io");
+                    if (response.OK) { // если HTTP-статус в диапазоне 200-299
+  // получаем тело ответа (см. про этот метод ниже)
+                   return ":Доступно";
+                  
+                        } else {
+                            return ":Не доступно";
+                   }
+                   
+                }
                 fX_BuyPro.onclick = function(){
                     window.open(fX_shopURL[0]);
                 }
