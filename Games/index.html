@@ -52,7 +52,33 @@
         display: block;
         margin: auto;
     }
+    .load-res{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
+        background: #010409;
+        overflow: hidden;
+    }
+    .ldbar{
+        border: 2px solid #636363;
+        width: 90%;
+        display: block;
+        margin: auto;
+        height: 20px;
+    }
+    #ldbarline{
+        width: 20%;
+        background: #1827ff;
+        height: 20px;
+    }
     </style>
+    <div class="load-res" id="ldrs">
+    <p class="tx1">Загрузка ресурсов...</p>
+    <div class="ldbar">
+    <div id="ldbarline"></div>
+    </div>
+    </div>
     <div class="DebugSettings" id="dbgw">
         <p class="tx">X offset </p>
         <input type="comment" id="Xoffset">
@@ -77,6 +103,8 @@
         let A_dbgw_X = document.getElementById('Xoffset');
         let A_dbgw_Y = document.getElementById('Yoffset');
         let A_dbgw_XMax = document.getElementById('XMaxoffset');
+        let A_bar = document.getElementById('ldbarline');
+        let W_ld = document.getElementById("ldrs");
         let object_id;
         let A_Xcoord = 0;
         let A_Ycoord = 0;
@@ -90,6 +118,7 @@
         let A_state = true;
         let arr_buffer = 0;
         let go_bool = false;
+        let fB_controls_enable = false;
         //
         A_key_fake.oninput = function(){
             A_key_fake.value = "key_"+A_key_fake.value;
@@ -98,6 +127,37 @@
                 A_key_fake.value = "";
             }
         }
+        function preloadImages(urls, allImagesLoadedCallback){
+    var loadedCounter = 0;
+  var toBeLoadedNumber = urls.length;
+  urls.forEach(function(url){
+    preloadImage(url, function(){
+        loadedCounter++;
+        A_bar.style = "width:"+ (loadedCounter * 20)+"%";
+            console.log('Number of loaded images: ' + loadedCounter);
+      if(loadedCounter == toBeLoadedNumber){
+        allImagesLoadedCallback();
+      }
+    });
+  });
+  function preloadImage(url, anImageLoadedCallback){
+      var img = new Image();
+      img.onload = anImageLoadedCallback;
+      img.src = url;
+  }
+}
+
+// Let's call it:
+      preloadImages([
+      A_spA[0],
+      A_spA[1],
+      A_spA[2],
+      A_spA[3],
+      A_spA[4],
+        ], function(){
+           setTimeout(" W_ld.style.height = '0px';fB_controls_enable = true;",500);
+
+         });
         A_dbgw_XMax.oninput = function(){
             A_MaxSpeed = parseInt(this.value);
         }
@@ -141,6 +201,7 @@
                 //object_id.style.transform = "translate("+A_Ycoord+"px,"+(A_Xcoord + 3)+"px)";
         }
         //keyboard
+        //if(fB_controls_enable){
         document.addEventListener('keydown', function(event) {
             if(event.code == 'KeyA'){
                 go_bool = true;
@@ -211,6 +272,7 @@
                 }
             }
        });
+  //  }
        let A_XcoordB = 0;
         function A_go(){
             parseInt(A_Xcoord = A_Xcoord + A_speedPixel);
