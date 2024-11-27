@@ -114,12 +114,13 @@
         let A_speedPixel = 0.5;
         let A_MaxSpeed = 6400;
         let A_boolDbgw = false;
-        let A_spA = ["2a.png","1a.png","3a.png","4a.png","5a.png"];
+        let A_spA = ["2a.png","1a.png","3a.png","4a.png","5a.png","bk.png"];
         let A_state = true;
         let arr_buffer = 0;
         let go_bool = false;
         let fB_controls_enable = false;
         //
+        A_key_fake.click();
         A_key_fake.oninput = function(){
             A_key_fake.value = "key_"+A_key_fake.value;
            // A_key_fake.value = "key_presed:"+A_key_fake.value;
@@ -133,7 +134,7 @@
   urls.forEach(function(url){
     preloadImage(url, function(){
         loadedCounter++;
-        A_bar.style = "width:"+ (loadedCounter * 20)+"%";
+        A_bar.style = "width:"+ (loadedCounter * 17)+"%";
             console.log('Number of loaded images: ' + loadedCounter);
       if(loadedCounter == toBeLoadedNumber){
         allImagesLoadedCallback();
@@ -154,6 +155,7 @@
       A_spA[2],
       A_spA[3],
       A_spA[4],
+      A_spA[5],
         ], function(){
            setTimeout(" W_ld.style.height = '0px';fB_controls_enable = true;",500);
 
