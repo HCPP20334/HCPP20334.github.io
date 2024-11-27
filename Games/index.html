@@ -1,5 +1,9 @@
 <html>
 <style>
+    @font-face {
+        font-family: RUSA;
+        src: url("https://hcpp20334.github.io/fonts/FeatureMono-Light.woff");
+    }
     html{
         background: #202020;
     }
@@ -27,18 +31,26 @@
         transition: .4s;
     }
     .tx{
-        font-family: 'Consolas';color:white;
+        font-family: 'RUSA';color:white;
         margin: 10px;
     }
     .tx1{
-        font-family: 'Consolas';color:white;
+        font-family: 'RUSA';color:white;
         text-align: center;
     }
     input{
         outline: none;
         background: #202020;
         border: 1px solid #010409;
-        font-family: 'Consolas';color:white; margin: 10px;
+        font-family: 'RUSA';color:white; margin: 10px;
+    }
+    .input_key{
+        outline: none;
+        background: #202020;
+        border: 1px solid #010409;
+        font-family: 'RUSA';color:white;
+        display: block;
+        margin: auto;
     }
     </style>
     <div class="DebugSettings" id="dbgw">
@@ -51,10 +63,16 @@
         </div>
     <div class="game-window" id="window-engine"onclick="clearInterval(LoopAE);">
     </div>
-    <p class="tx1">CONTROLS<br>back - [A] , go [D] , jump - [W], Debug - [Z] , Enable Hitbox - [E]</p>
+    <div class="mobile-controls">
+        <p class="tx1">For Mobile! Press input form to CONTROLS</p>
+    <input class="input_key" type="comment" id="key_fake">
+    </div>
+    <p class="tx1">CONTROLS<br>back - [A] , go [D] , jump - [SPACE], Debug - [Z] , Enable Hitbox - [E]</p>
     <script>
-        let A_videoBuffer = "<img id='sImg'><p class='atx' id='atxid'></p>";
-        let A_maimWindow = document.getElementById('window-engine');
+        let A_videoBuffer = ["<img id='sImg'><p class='atx' id='atxid'></p>",""];
+        let A_maimWindow = new Array(parseInt(2048 * 900000))
+        let A_key_fake = document.getElementById('key_fake');
+        A_maimWindow = document.getElementById('window-engine');
         let A_dbgw = document.getElementById('dbgw');
         let A_dbgw_X = document.getElementById('Xoffset');
         let A_dbgw_Y = document.getElementById('Yoffset');
@@ -68,7 +86,18 @@
         let A_speedPixel = 0.5;
         let A_MaxSpeed = 6400;
         let A_boolDbgw = false;
+        let A_spA = ["2a.png","1a.png","3a.png","4a.png","5a.png"];
+        let A_state = true;
+        let arr_buffer = 0;
+        let go_bool = false;
         //
+        A_key_fake.oninput = function(){
+            A_key_fake.value = "key_"+A_key_fake.value;
+           // A_key_fake.value = "key_presed:"+A_key_fake.value;
+            if(A_key_fake.value.length > 5){
+                A_key_fake.value = "";
+            }
+        }
         A_dbgw_XMax.oninput = function(){
             A_MaxSpeed = parseInt(this.value);
         }
@@ -79,12 +108,12 @@
             A_speedPixel = parseInt(this.value);
         }
         function loadAE(){
-            A_maimWindow.innerHTML = A_videoBuffer;
+            A_maimWindow.innerHTML = A_videoBuffer[arr_buffer];
             object_id = document.getElementById('sImg');
             object_id.src = "2a.png";
              object_id.style = "width:128px;height: 128px;translation: .4s;transform: translateY(130px)";
              document.getElementById('atxid').style = "font-family: 'Consolas';color:white;transform: translateY(-130px)"
-             document.getElementById('atxid').innerHTML = "X:"+A_Xcoord+"<br>style:"+object_id.style.transform;
+             document.getElementById('atxid').innerHTML = "MEM:"+object_id.length+"X:"+A_Xcoord+"<br>style:"+object_id.style.transform;
              A_maimWindow.style.backgroundImage = "url('bk.png')";
              A_maimWindow.style.width = "640px";
              setTimeout('A_maimWindow.style.height = "480px";',1000);
@@ -95,14 +124,16 @@
         function A_jump(){
             object_id.src = "3a.png";
 
-            A_Ycoord = -50;
+            A_Ycoord = 1;
             A_lastXpoint = 3;
             parseInt(A_Xcoord = A_Xcoord + A_jumpValue);
-            for(A_Ycoord = -50; A_Ycoord <= 180;A_Ycoord++){
+            for(A_Ycoord = 1; A_Ycoord <= -30;A_Ycoord--){
+                object_id.style.transform = "translate("+A_Xcoord+"px,"+A_Ycoord+"px)";
                 if(A_Xcoord > A_MaxSpeed){
                 A_Xcoord = 0;
             }
-                object_id.style.transform = "translate("+(A_Xcoord)+"px,"+A_Ycoord+"px)";
+            A_Ycoord = 0;
+            object_id.style.transform = "translate("+A_Xcoord+"px,-"+A_Ycoord+"px)";
                 console.log(A_Ycoord+"px,"+(A_Xcoord + 3)+"px)");
                
             }
@@ -112,16 +143,42 @@
         //keyboard
         document.addEventListener('keydown', function(event) {
             if(event.code == 'KeyA'){
-                setTimeout("A_back();",100);
+                go_bool = true;
+                if(go_bool){
+                    setTimeout("A_back();",100);
+                };
+               
             }
             if(event.code == 'KeyD'){
-                setTimeout("A_go();",100);
+                go_bool = true;
+                if(go_bool){
+                    setTimeout("A_go();",100)
+                };
             }
-            if(event.code == 'KeyW'){
-                setTimeout("A_jump();",100);
+            if(event.code == 'Space'){
+                go_bool = false;
+                if(!go_bool){
+                    setTimeout("A_jump();",100);
+                }
+            }
+            if(event.code == 'KeyS'){
+                //A_state = false;
+                A_state = true;
+                if(!A_state){
+                    object_id.src = A_spA[0];
+                    A_Ycoord = 0;
+                }
+                if(A_state){
+                    object_id.src = A_spA[3];
+                    A_Ycoord = 100;
+                }
             }
             if(event.code == 'KeyE'){
                 object_id.style.border = "2px solid #010409";
+                loadAE();
+                arr_buffer = 1;
+                A_maimWindow.style.backgroundImage = "url('')";
+                document.getElementById('atxid').innerHTML = "ERROR: JS RUNTIME CODE";
             }
             if(event.code == 'KeyZ'){
                 A_boolDbgw++;
@@ -144,6 +201,15 @@
            if(event.code == 'KeyD'){
                setTimeout("A_go();A_go();",100);
            }
+           if(event.code == 'KeyS'){
+                A_state = false;
+                if(!A_state){
+                    object_id.src = A_spA[0];
+                }
+                if(A_state){
+                    object_id.src = A_spA[3];
+                }
+            }
        });
        let A_XcoordB = 0;
         function A_go(){
@@ -160,14 +226,25 @@
                 a = 0;
             }
             if(a){
-                object_id.src = "2a.png";
+                if(A_state){
+                    object_id.src = A_spA[0];
+                }
+                if(!A_state){
+                    object_id.src = A_spA[3];
+                }
                 object_id.style.transform = "translate("+A_Xcoord+"px,"+A_Ycoord+"px)";
                 document.getElementById('atxid').style = "font-family: 'Consolas';color:white;"
                 document.getElementById('atxid').innerHTML = "X:"+A_Xcoord+"<br>style:"+object_id.style.transform;
             }
-            else{
-                object_id.src = "1a.png";
+            if(A_state){
+                if(!a){
+                object_id.src = A_spA[1];
+            }}
+            if(!A_state){
+                if(!a){
+                object_id.src = A_spA[4];
             }
+                }
             
         }
         function A_back(){
@@ -179,7 +256,7 @@
             A_XcoordB = ((A_Xcoord / 2 ) / 6400) * 100;
             A_maimWindow.style.backgroundPositionX = ((A_XcoordB))+"%";
             setTimeout("a++;",10)
-            object_id.style.transform = "scale(1)";
+           // object_id.style.transform = "scale(1)";
             if(a > 1){
                 a = 0;
             }
