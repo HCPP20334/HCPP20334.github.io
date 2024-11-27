@@ -1,0 +1,129 @@
+<html>
+    <style>
+         html{
+        background-color: #010409;
+    }
+    @font-face {
+        font-family: WR;
+        src: url("https://hcpp20334.github.io/fonts/FeatureMono-Light.woff");
+        font-weight:700;
+    }
+    .ctx{
+       
+        background: transparent;
+        border: 2px solid #ffffff;
+        outline: none;
+        display: block;
+        border-radius: 10px; color: white;
+        font-size: large;margin: 10px;display: block;
+        cursor: pointer;width: 300px;height: 100px;font-family:'WR';
+    }
+    .ctx1{
+        
+        color: white;
+        font-size: large;
+        margin: 10px;display: inline;font-family:'WR';
+    }
+    input,#dckv64,#dckv641{
+        background: transparent;
+        border: 2px solid #ffffff;
+        outline: none;
+        display: block;
+        border-radius: 10px; color: white;
+        font-size: large;margin: 10px;display: inline;
+        cursor: pointer;font-family:'WR';
+        &:hover{
+            background: #303030;
+            color: #ffffff;
+        }
+    }
+    input{
+        background: transparent;
+        border: 2px solid #ffffff;
+        outline: none;
+        display: block;
+        border-radius: 10px; color: white;
+        font-size: large; display: block;
+        margin: auto;
+        cursor: pointer;font-family:'WR';width: 95%;
+        &:hover{
+            background: #303030;
+            color: #ffffff;
+        }
+    }
+    .window-a{
+        height: 30px;
+        width: 30px;
+        display: block;
+        margin: auto;
+        background: linear-gradient(45deg, #1b1b1b ,#1b1a1a);
+        border: 2px solid #ffffff; border-radius: 10px;
+        transition: .4s;overflow: hidden;
+    }
+    .controls{
+        background: transparent;
+        border: 2px solid #ffffff; border-radius: 10px;
+        display: block;
+        margin: auto;
+        width: 95%;
+        transform: translateY(20px);
+        height: auto;
+    }
+    </style>
+    <div class="window-a" id="wna">
+        <p class="ctx1">OUT</p>
+        <textarea class="ctx" id="ctx_t">0</textarea>
+        <p class="ctx1">KEY</p>
+    <input id="key" type="comment">
+    <div class="controls">
+        <button id="dckv641">GEN</button>
+    <p class="ctx1">MODE:</p><button id="dckv64">DECODE</button>
+    </div>
+    </div>
+
+    <script>
+    let buf = document.getElementById("ctx_t");
+    let bufInKey  = document.getElementById("key");
+    let wna = document.getElementById("wna");
+    let decode = 0;
+    //
+    let dckv64b = document.getElementById("dckv64");
+    let dckv64b1 = document.getElementById("dckv641");
+    let keyData64 = 0;
+    function wna_load(){
+        wna.style = "height: 80%;width: 80%;";
+    }
+    setTimeout("wna_load()",1000);
+    dckv64b1.onclick= function(){
+        if(decode){
+            buf.value = decode_keyvless64(keyData64);
+        }
+        if(!decode){
+            buf.value  = encode_keyvless64(keyData64);
+        }
+    }
+    dckv64b.onclick = function(){
+       // alert("e");
+        decode++;
+        if(decode > 1){
+            decode = 0;
+        }
+        if(decode){
+            dckv64b.innerHTML = "DECODE";
+        }
+        if(!decode){
+            dckv64b.innerHTML = "ENCODE";
+        }
+    }
+    keyData64 = bufInKey.value;
+    bufInKey.oninput = function(){
+        keyData64 = this.value;
+    }//btoa(unescape(encodeURIComponent(`hello лолваоп`)))
+    function decode_keyvless64(key_vless64){
+        return btoa(unescape(encodeURIComponent(btoa(unescape(encodeURIComponent(key_vless64))))));
+    }
+    function encode_keyvless64(key_vless64){
+        return atob(unescape(encodeURIComponent(atob(unescape(encodeURIComponent(key_vless64))))));;
+    }
+    </script>
+</html>
