@@ -106,7 +106,9 @@
    
     .xvpn-window2{
         min-width: 330px;
-        border: 2px solid #ffffff;
+        border-top: 2px solid #ffffff;
+        border-bottom:none;
+        border-left: none;border-right: none;
         width: 100%;
         height: 450px;
         background-size: 400% 400%;
@@ -174,6 +176,44 @@
         z-index: 1;
         position: absolute;
     }
+    .app-down{
+        min-width: 330px;
+        border-top: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+        border-left: none;border-right: none;
+        width: 100%;
+        min-height: 100px;
+        height: 200px;
+        background-size: 400% 400%;
+        animation: gradient_A 4s ease infinite;
+        transition: .4s;
+        display: block;
+        margin: 10px;
+        transform: translate(-10px,-10px);
+        overflow: hidden;
+    }
+    .b_app{
+        background: linear-gradient(transparent 50%, #ff0033 50%);
+        min-width: 200px;
+        width: auto;
+        height: 60px;
+        border-radius: 10px;
+        border: 2px solid #ffffff;
+        background-size: 200% 200%;
+  background-repeat: no-repeat;
+  transition: .2s;
+        display: inline-block;
+        margin: 10px;
+        color: white;
+        font-size: 20px;
+        font-family: 'WR';
+        font-weight: bolder;
+        overflow: hidden;cursor: pointer;transform: translate(40px,-20px);
+        &:hover{
+    background-position: 0 100%;
+        font-size: 20px;
+}
+    }
     .title{
         border: 2px solid #636363;
         height: 30px;
@@ -198,6 +238,12 @@
         <p class="text1">ЗАЩИЩЕННОЕ СОЕДИНЕНИЕ И ВЫСОКАЯ СКОРОСТЬ</p>
         <p class="text1">ПОДДЕРКА РАБОТАЕТ 24 ЧАСА </p>
         <p class="text1">ДОБАВЛЕНИЕ В ЧАТ ДЛЯ ТЕКУЩИХ ОБНОВЛЕНИИ</p>
+        </div>
+        <div class="app-down">
+            <h1 class="xvpn-text3" title="Развернуть">ССЫЛКИ</h1>
+        <button class="b_app" id="hiddefy_win64">Hiddefy Windows</button>
+        <button class="b_app" id="hiddefy_arm64">Hiddefy Android</button>
+        <button class="b_app" id="streisand_64">Streisand IOS</button>
         </div>
         <h1 class="xvpn-text3" title="Развернуть">ТАРИФЫ</h1>
     <div class="xvpn-window" id="buy_base">
@@ -230,6 +276,10 @@
                 let fX_BuyBase = document.getElementById('buy_base');
                 let fX_BuyPro = document.getElementById('buy_pro');
                 let fX_trial = document.getElementById('trial');
+                let fApp_win64 = document.getElementById("hiddefy_win64");
+                let fApp_arm64 = document.getElementById("hiddefy_arm64");
+                let fApp_ios64 = document.getElementById("streisand_64");
+                let fA_appLinksArray = ["https://github.com/hiddify/hiddify-app/releases/download/v2.0.5/Hiddify-Android-arm64.apk","https://github.com/hiddify/hiddify-app/releases/download/v2.0.5/Hiddify-Windows-Setup-x64.exe","https://apps.apple.com/ru/app/streisand/id6450534064"];
                 let fX_boolWnd = 0;
                 let fX_shopURL = ["https://vk.com/im?media=&sel=-228176457","https://vk.com/im?media=&sel=-228176457"];
                 //
@@ -243,6 +293,16 @@
                     navigator.clipboard.writeText(atob(atob(key_vless64))).then();
                     console.log("%c"+keys_vless,"background: linear-gradient(45deg, #6f00ff ,#2007ff); border: 2px solid #ffffff;font-family:src: url('https://hcpp20334.github.io/fonts/FeatureMono-Light.woff');;color:white;width:100%;height:100%;");
 
+                }
+                //
+                fApp_arm64.onclick = function(){
+                    window.open(fA_appLinksArray[0]);
+                }
+                fApp_win64.onclick = function(){
+                    window.open(fA_appLinksArray[1]);
+                }
+                fApp_ios64.onclick = function(){
+                    window.open(fA_appLinksArray[2]);
                 }
                 function func_load(){
                     fX_xvpnMain.style.height = "0px";
