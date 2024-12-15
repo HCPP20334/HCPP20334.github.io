@@ -226,12 +226,62 @@
         font-weight: bolder;
         border: 2px solid transparent;
     }
+    #username_form{
+        width: 530px;
+        height: 200px;
+        display: none;
+        z-index: 1;
+        position: absolute;
+        background: #010409;border: 1px solid #ffffff;
+        border-radius: 10px;
+    }
+    .in_user{
+        outline: none;
+        background: #010409;border: 1px solid #ffffff;
+       font-family: 'WR';
+        font-weight: bolder;color: white;
+        font-size: 20px;margin: 20px;
+    }
+    #save_user{
+        outline: none;
+        background: #010409;border: 1px solid #ffffff;
+       font-family: 'WR';
+        font-weight: bolder;color: white;
+        font-size: 20px;margin: 15px;
+    }
+    .intro_text{
+        font-family: 'WR';
+        font-weight: bolder;color: white;
+        font-size: 60px;
+        text-align: center;
+        text-shadow: 3px 3px #010409;
+    }
+    .pup{
+        font-family: 'WR';
+        font-weight: bolder;color: white;
+        font-size: 15px;
+        display: inline;
+        margin: 30px;
+        text-align: right;
+        text-shadow: 3px 3px #010409;
+        transition: .4s;
+        &:hover{
+            color:#ff0033;
+        }
+    }
     </style>
     <div class="xvpntext-container" id="xvpntext-container_id">
-    <img class="XVPN" src="XVPN.png">
+    <h1 class="intro_text" id="iText"></h1>
+    </div>//fE_memoryStack
+    <br>
+    <br>
+    <div id="username_form">
+        <p class="text">Как вас Звать?</p>
+        <input class="in_user" type="comment" id="inusr">
+        <button id="save_user">Сохранить</button>
     </div>
-    <br>
-    <br>
+    <p id="userW_id" onclick="localStorage.saved = 'false'; location.reload();" class="pup">ИЗМЕНИТЬ ДАННЫЕ</p>
+    <p id="user_id" class="pup">ПОЛЬЗОВАТЕЛЬ:</p>
     <div class="xvpn-window2" id="xvpn-window2id"><h1 class="xvpn-text3" title="Развернуть">ПОЧЕМУ СТОИТ ВЫБРАТЬ XVPN?</h1>
         <p class="text1">НИЗКИЕ ЦЕНЫ НА РЫНКЕ</p>
         <p class="text1">СТАБИЛЬНОЕ СОЕДИНЕНИЕ И ОПЕРАТИВНАЯ ПОДДЕРЖКА</p>
@@ -245,6 +295,7 @@
         <button class="b_app" id="hiddefy_arm64">Hiddefy Android</button>
         <button class="b_app" id="streisand_64">Streisand IOS</button>
         </div>
+        <p id="err_msgs"></p>
         <h1 class="xvpn-text3" title="Развернуть">ТАРИФЫ</h1>
     <div class="xvpn-window" id="buy_base">
         <h1 class="xvpn-text">БАЗОВАЯ</h1>
@@ -271,6 +322,35 @@
             <p class="text">Designed and Coded by HCPP</p>
             <p class="text">Финляндия, Хельсинки Провайдер: kvmka.ru</p>
             <script>
+                function checkUser(){
+                    if(localStorage.saved == 'true'){
+                        fUserNameForm.style.display = 'none';
+                    }
+                    if(localStorage.saved == 'false'){
+                        fUserNameForm.style.display = 'block';
+                    }
+                }
+                //
+                let fUserId = document.getElementById('user_id');
+                let fUserNameForm = document.getElementById('username_form');
+                let fR_SaveForm = document.getElementById('save_user');
+                let fE_inputName = document.getElementById('inusr');
+                let fE_textIntro = document.getElementById('iText');
+                let fE_memoryStack = '';
+                fE_memoryStack  = fE_inputName.value;
+                fE_inputName.oninput = function(){
+                    fE_memoryStack  = this.value;
+
+                }
+                function fM_writeLC(data){
+                localStorage.bufferD = data;
+                }
+                fR_SaveForm.onclick = function(){
+                    fM_writeLC(fE_memoryStack);
+                    localStorage.saved = true;
+                    checkUser(); location.reload();
+                }
+                //
                 let fX_xvpnAbout = document.getElementById('xvpn-window2id');
                 let fX_xvpnMain = document.getElementById('xvpntext-container_id');
                 let fX_BuyBase = document.getElementById('buy_base');
@@ -281,18 +361,60 @@
                 let fApp_ios64 = document.getElementById("streisand_64");
                 let fA_appLinksArray = ["https://github.com/hiddify/hiddify-app/releases/download/v2.0.5/Hiddify-Android-arm64.apk","https://github.com/hiddify/hiddify-app/releases/download/v2.0.5/Hiddify-Windows-Setup-x64.exe","https://apps.apple.com/ru/app/streisand/id6450534064"];
                 let fX_boolWnd = 0;
+                let rdsaw = document.getElementById('err_msgs');
                 let fX_shopURL = ["https://vk.com/im?media=&sel=-228176457","https://vk.com/im?media=&sel=-228176457"];
                 //
                 let keys_vless = '';
                 let vless_msg = document.documentElement;
                 let key_vless64 = "ZG14bGMzTTZMeTgxT1dFNU9HTTNaaTFsWVdNMUxUUXdaR1V0T0dNMFppMWpaVGd3T0RjMk1tSmhPVEZBTWpFM0xqRTVOaTQ1T1M0MU5EbzBORE0vWm14dmR6MTRkR3h6TFhKd2NuZ3RkbWx6YVc5dUpuUjVjR1U5ZEdOd0puTmxZM1Z5YVhSNVBYSmxZV3hwZEhrbVpuQTlhVzl6Sm5OdWFUMXpjR1ZsWkhSbGMzUXVZMjl0Sm5CaWF6MUdWMHN6TkhKalRUWkdWV2RWVTJoTk0zTmhRbTFTUWt4NFZXZDBaRmQyV1ZobE9WVnpiSFZ1T0VoSkpuTnBaRDFoT1dJNE1UTmpZeVp6Y0hnOUx5Tm1kblowYnpWMGFnPT0=";
                 setTimeout("func_load()",2000);
+                //
+               /// rdsaw.style = "overflow:hidden;background: #010409;width:50%;transform: translateX(-100px);translation:.4s;height:60px;border:1px solid #ffffff;"
+                   rdsaw.innerHTML = "ИЗВИНИТЕ БЕСПЛАТНЫЙ ТАРИФ БОЛЬШЕ НЕДОСТУПЕН !! <BR> ПОЖАЛУЙСТА ОФОРМИТЕ ПОДПИСКУ !!";
+                cbxxXda(1);
+                function cbxxXda(e){
+                    // rdsaw.style = "overflow:hidden;background: #ff0033;width:20px;height:0px;translation:.4s; color: white;font-size: 20px;font-family: 'WR';"
+                    if(!e){
+                       fX_trial.style.display = 'block'; 
+                        rdsaw.style.overflow= "hidden";
+                        rdsaw.style.border = "1px solid #ffffff";
+                        rdsaw.style.width = (window.screen.width - 100) +"px";
+                        rdsaw.height = 0+"px";
+                        rdsaw.style.textAlign = "center";
+                        rdsaw.style.fontFamily = "WR";
+                        rdsaw.style.color = "white";
+                        rdsaw.style.fontSize = "20px";
+                    }
+                    if(e){
+                       // checkUser();
+                       fE_textIntro.style.transform = "translateY("+(window.screen.height / 3.14)+"px)";
+                       fUserId.innerHTML = "ПОЛЬЗОВАТЕЛЬ:"+localStorage.bufferD;
+                       fE_textIntro.innerHTML = "ДОБРО ПОЖАЛОВАТЬ,"+localStorage.bufferD;
+                        fX_trial.style.display = 'block'; 
+                        rdsaw.style.overflow= "hidden";
+                        rdsaw.style.border = "1px solid #ffffff";
+                        rdsaw.style.width = (window.screen.width - 100) +"px";
+                        rdsaw.height = 60+"px";
+                        rdsaw.style.textAlign = "center";
+                        rdsaw.style.fontFamily = "WR";
+                        rdsaw.style.color = "white";
+                        rdsaw.style.fontSize = "20px";
+                        rdsaw.innerHTML = "ИЗВИНИТЕ БЕСПЛАТНЫЙ ТАРИФ БОЛЬШЕ НЕДОСТУПЕН !! <BR> ПОЖАЛУЙСТА ОФОРМИТЕ ПОДПИСКУ !!";
+                            fX_trial.style.cursor = "error";
+                            
+                    }
+                    if(e > 1){
+                        rdsaw.style = "overflow:hidden;background: #ff0033;width:460px;translation:.4s;height:40px;"
+                        rdsaw.innerHTML = "Ошибка JavaScript: КОД ОШИБКИ: 003F";
+                    }
+                }
                 keys_vless = "key_vless64da="+atob(key_vless64)+"\n\nckey_vless64db="+key_vless64+"\n\nkey_vless64="+atob(atob(key_vless64));
                 fX_trial.onclick = function(){
-                    alert("%cСкопировано!!\nHiddefy: 1.Нажми + и добавить из буфера\nStreisand: 1.Нажми + и добавить из буфера","background:#ff0033;color:white");
-                    navigator.clipboard.writeText(atob(atob(key_vless64))).then();
-                    console.log("%c"+keys_vless,"background: linear-gradient(45deg, #6f00ff ,#2007ff); border: 2px solid #ffffff;font-family:src: url('https://hcpp20334.github.io/fonts/FeatureMono-Light.woff');;color:white;width:100%;height:100%;");
-
+                    ///alert("%cСкопировано!!\nHiddefy: 1.Нажми + и добавить из буфера\nStreisand: 1.Нажми + и добавить из буфера","background:#ff0033;color:white");
+                    //navigator.clipboard.writeText(atob(atob(key_vless64))).then();
+                   // console.log("%c"+keys_vless,"background: linear-gradient(45deg, #6f00ff ,#2007ff); border: 2px solid #ffffff;font-family:src: url('https://hcpp20334.github.io/fonts/FeatureMono-Light.woff');;color:white;width:100%;height:100%;");
+                   //setTimeout("cbxxXda(1);",1000);
+                   rdsaw.innerHTML = "ИЗВИНИТЕ БЕСПЛАТНЫЙ ТАРИФ БОЛЬШЕ НЕДОСТУПЕН !! <BR> ПОЖАЛУЙСТА ОФОРМИТЕ ПОДПИСКУ !!";
                 }
                 //
                 fApp_arm64.onclick = function(){
@@ -306,7 +428,7 @@
                 }
                 function func_load(){
                     fX_xvpnMain.style.height = "0px";
-                fX_xvpnAbout.click();
+                fX_xvpnAbout.click(); checkUser();
 
                 }
                 let out_msg = '';
@@ -317,10 +439,10 @@
                     let response =  fetch("https://hcpp20334.github.io");
                     if (response.OK) { // если HTTP-статус в диапазоне 200-299
   // получаем тело ответа (см. про этот метод ниже)
-                   return ":Доступно";
+                   return ":Доступно" + response.status;
                   
                         } else {
-                            return ":Не доступно";
+                            return ":Не доступно" + response.status;
                    }
                    
                 }
