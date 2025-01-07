@@ -1,5 +1,4 @@
-<html>
-<title>Калькулятор электроника</title>
+<html ><head><title>Калькулятор электроника</title>
 <style>
      @font-face {
         font-family: Rt_3;
@@ -41,9 +40,10 @@
     }
     html
 {
-    background: #202020;
+    background: #010409;
     transition: .4s;
     background-size: 20% 20%;
+    zoom: 75%;
 }
 
 @keyframes gradient {
@@ -60,31 +60,29 @@
 
     #calc,#calc2,#calc3,#calc4,#reverb,#calc_amp,#calcR,#calcA,#tableBtn,#capcalc,#calcP,#calcI,#calcS,#calcC,#calc_CM
     {
-color: #ffffff;
-font-size: 11px;
-font-family: 'WR';
-background-color:#202020;
-box-shadow: 5px 6px  #010409;
-width: 150px;height:40px;
+        font-family:Monospace;
+font-size: 14px;
+background-color: #0e0f11;
+min-width: 140px;
+width: auto;
+height: 40px;
+margin: auto;
+min-height: 30px;
 display: inline-block;
-margin: 5px;
-transition: .4s;
-transform: translateX(10px);
-        text-shadow: 1px 1px 1px #010409;
-        border: 1px solid #010409;
-        &:hover{
-            border: 1px solid #9090ff;
-            background: #9090ff;
-        }
-        &:active{
-            color:#20ff80;
-        }
+border-radius: 4px;
+transform: translate(150px,20px);
+border: 1px solid #5c5e63;
+text-shadow: 1px 1px 1px #010409;
+color:#ffffff;overflow: hidden;
+&:hover{
+    color: #20ff80;
+}
 }
 .text,#amper,#volt,#watt,#rub_text
 {
 color: #ffffff;
 font-size: 16px;
-font-family: 'WR';
+font-family: Monospace;
 border-radius: 4px;
         text-shadow: 1px 1px 1px #010409;
 text-align: center;
@@ -92,8 +90,8 @@ text-align: center;
 .abAn
 {
     color: #ffffff;
-font-size: 14px;
-font-family: 'WR';
+font-size: 12px;
+font-family: Monospace;
 border: 1px solid #010409;
 text-shadow: 1px 1px 1px #010409;
 width: 90%;
@@ -106,22 +104,21 @@ overflow: hidden;
 }
 .abAn:hover{
     z-index: 1;
-    height: 60px;
     width: 100%;
-    font-size: 20px;
+    font-size: 12px;
     color:#20ff80;
 }
 .title_frame
 {
 color: #ffffff;
 font-size: 16px;
-font-family: 'WR';
-transform: translate(20px,-2px);
+font-family: Monospace;
+transform: translate(20px,-4px);
 text-shadow: 1px 1px #010409;
 }
 #tx
 {
-        font-family: 'WR','mm';
+        font-family: Monospace,'mm';
         font-size: 16px;
         text-shadow: 1px 1px 1px #010409;
         color: white;
@@ -131,20 +128,20 @@ text-shadow: 1px 1px #010409;
 #tle
 {
 
-width: 350px;
+width: 578px;
         height: 30px;
-background: #9020ff;
+background: #0e0f11;
         display: block;
         margin:auto;
-        border: 1px solid #010409;
+        border: 1px solid #010409;border-radius: 10px;
         box-shadow: 1px 1px 10px #010409;
 
 }
 .in_bar
 {
-background-color: #1b1b1e;
-        border: 2px solid #010409;
-        font-family: 'WR';
+background-color: transparent;
+        border: 2px solid #5c5e63;
+        font-family: Monospace;
         font-size: 14px;
         color: #ffffff;
         text-shadow: 1px 1px #010409;
@@ -160,76 +157,79 @@ box-shadow: 5px 6px  #010409;
 #menu
 {
 display:block;
-margin: auto;
-background: #303030;
-height: 30px;
+margin: left;
+background: #0e0f11;
+width: 580px;
 border: none;
-box-shadow: 5px 6px  #010409;
-border-radius: 2px;
-animation: XslideRb 1s;width: 350px;
-border: 1px solid #010409;
-transition:.4s;
-overflow: hidden;
+border-radius: 10px;
+border: 1px solid #5c5e63;
+transition:.4s;zoom: 70%;
 
-
-
-
+}
+#donate
+{
+display:block;
+margin: left;
+background: #0e0f11;
+width: 580px;
+height: 200px;
+border: none;
+border-radius: 10px;
+border: 1px solid #5c5e63;
+transition:.4s;zoom: 70%;
+position: absolute;
+z-index: 1;
 
 }
 #calc_frameW,#calc_frameA,#sec2dia,#calc_rub,#watt_sec,#calc_Rwire,#capFrc,#calc_framePheater,#calc_impedance,#calcSframe,#calcCMframe
 {
-max-width: 350px;
-display:none;
-margin: auto;
-background-color: #303030;
-height: 600px;
-border: none;
-box-shadow: 5px 6px  #010409;
-border-radius: 2px;
-animation: XslideRb 1s;width: 100%;
-transition:.4s;
-border: 1px solid #010409;
-animation: XslideRb 1s;
-border-top-left-radius: 6px;
-border-top-right-radius: 6px;
-
+    display:block;
+margin: left;
+background: #0e0f11;
+min-width: 300px;
+width: 580px;
+height: 506px;
+border-radius: 10px;
+border: 1px solid #5c5e63;
+transition:.4s;zoom: 70%;
 }
 #calc_Automat
 {
-    max-width: 350px;
-    display:none;
-background-color: #303030;
+    display:block;
+margin: left;
+background: #0e0f11;
+width: 580px;
+border: none;
 height: 700px;
-border-radius: 4px;
-border: none;box-shadow: 5px 6px  #010409;
-animation: XslideRb 1s;
-margin: auto;
-border: 1px solid #010409;
-width: 100%;
+border-radius: 10px;zoom: 70%;
+border: 1px solid #5c5e63;
+transition:.4s;
 }
 #watt2amp,#amp2watt,#sec2diaBtn,.btndw,#download,#srub2rrub,#sec2amp,#calcRbtn,#calcAutomatN,#calcCapitulaor,#calcPheat,#calcImpedance,#calcSb,#calcCM
 {
-font-family:'WR';
+font-family:Monospace;
 font-size: 14px;
-background-color: transparent;
+background-color: #0e0f11;
 width: 250px;
-height: 30px;
-box-shadow: 5px 6px  #010409;
+height: auto;
+min-height: 30px;
 display: block;
-margin: auto;
-margin-top: 20px;
+border-radius: 4px;
+margin-top: 3px;
+text-align: left;
 text-shadow: 1px 1px 1px #010409;
+border: 1px solid #5c5e63;
+transform: translate(10px,10px);
 color:#ffffff;
-border: 1px solid #010409;
 &:hover{
-    border: 1px solid #9020ff;
     color: #20ff80;
+    background-color: #222222;
 }
 }
 #table_img{display:none;}
 .Close
 {
-    font-family:'WR';
+    font-family:Monospace;
 font-size: 20px;
 background-color: #303030;
 height: 60px;
@@ -262,9 +262,9 @@ animation: blur_a 1s;
 {
     width: 60px;
     height: 60px;
-    background-color: #9020ff;
+    background-color: #0e0f11;
     color: #ffffff;
-    font-family:'WR';
+    font-family:Monospace;
 font-size: 20px;
 display: inline-block;
 margin: 3px;
@@ -282,9 +282,9 @@ box-shadow: 5px 6px  #010409;
 {
     
     height: 60px;
-    background-color: #9020ff;
+    background-color: #0e0f11;
     color: #ffffff;
-    font-family:'WR';
+    font-family:Monospace;
 font-size: 20px;
 display: inline-block;
 margin: 20px;
@@ -300,11 +300,14 @@ box-shadow: 5px 6px  #010409;
 }
 #img1
 {
-    width:400px;
-    height: 400px;
-    display: block;
-    margin: auto;
-    box-shadow: 1px 1px 10px #010409;
+    display:block;
+margin: left;
+background: #0e0f11;
+width: 478px;
+border: none;height: 398px;
+border-radius: 10px;
+border: 1px solid #5c5e63;
+transition:.4s;
 }
 @keyframes close{
     100%{
@@ -327,7 +330,7 @@ box-shadow: 5px 6px  #010409;
     
     color: #ffffff;
 font-size: 34px;
-font-family: 'WR';
+font-family: Monospace;
 border-radius: 4px;
 font-weight: bold;
 display: block;
@@ -337,7 +340,7 @@ text-align: center;
     
     color: #ffffff;
 font-size: 34px;
-font-family: 'WR';
+font-family: Monospace;
 border-radius: 4px;
         text-shadow: 1px 1px 1px #010409;
 text-align: center;
@@ -348,7 +351,7 @@ display: block;
     
     color: #ffffff;
 font-size: 24px;
-font-family: 'WR';
+font-family: Monospace;
 border-radius: 4px;
         text-shadow: 1px 1px 1px #010409;
 margin: 4px;
@@ -411,17 +414,6 @@ margin: 4px;
     background: #ffffff;
     transform: translate(28px,-63px);
 }
-#donate{
-    width: 300px;
-    height: 200px;
-    border: 1px solid #010409;
-    display: none;
-    position: absolute;
-    z-index: 1;
-    margin: auto;
-    background: #606060;
-box-shadow: 5px 6px  #010409;
-}
 #bcl{
     width: 32px;
     height: 32px;
@@ -432,7 +424,7 @@ float: right;
 margin: 4px;
 color: #ffffff;
 font-size: 24px;
-font-family: 'WR';
+font-family: Monospace;
 }
 #bj{
     width: 130px;
@@ -444,7 +436,7 @@ float: left;
 margin: 4px;
 color: #ffffff;
 font-size: 24px;
-font-family: 'WR';
+font-family: Monospace;
 }
 .om{
     width: 128px;
@@ -458,7 +450,7 @@ font-family: 'WR';
 .omtx{
     color: #ffffff;
 font-size: 47px;
-font-family: 'WR';
+font-family: Monospace;
 display: inline-block;
 margin: 6px;
 width: 47px;
@@ -471,10 +463,10 @@ overflow: hidden;
 transition: .4s;
 }
 </style>
-<head><meta name="viewport" content="width=device-width, user-scalable=no">
+<meta name="viewport" content="width=device-width, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
-<br>
-<div class="loader" id="lld">
+<body><br>
+<div class="loader" id="lld" style="height: 0px;">
     <br>
     <br>
     <br><br><br>
@@ -488,43 +480,44 @@ transition: .4s;
 <p class="textLd">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</p>
 <p class="textLd2">СБОРКА 1.0.9A</p>
 </div>
-<div id="download_panel">
+<div id="download_panel" style="display: none;">
 <div id="tle">
     <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
 </div>
-<button class="Close" onclick="javascript:loadMframe();">&#10006</button>
+<button class="Close" onclick="javascript:loadMframe();">✖</button>
 <br>
 <p class="text">ПРИЛОЖЕНИЯ</p>
 <button class="btndw" onclick="javascript:window.open('https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Electik.Calc_C++20_last_build-1.zip');">Electrik Calc C++20_OpenGL3.0 By HCPP</button>
 <button class="btndw" onclick="javascript:window.open('http://dimaxp.sytes.net/kalkulyator-watt-v-amper-i-obratno');">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА ОТ DIMA XP</button>
 </div>
-<div id="donate">
- <button id="bcl"onclick="javascript:document.getElementById('donate').style.display= 'none';" >X</button>
+<div id="donate" style="display: none;">
+ <button id="bcl" onclick="javascript:document.getElementById('donate').style.display= 'none';">X</button>
 <p class="textLd3">ПОДДЕРЖИ АВТОРА</p>
 <p class="textLd3">НА DONATIONALERTS!!</p>
- <button id="bj"onclick="javascript:window.location.href ='https://donationalerts.com/r/hcpp';" >ПЕРЕЙТИ</button>
+ <button id="bj" onclick="javascript:window.location.href ='https://donationalerts.com/r/hcpp';">ПЕРЕЙТИ</button>
 </div>
 <div id="table_img">
     <div id="tle">
     <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
 </div>
-    <img id="img1" src="./Pictures/tab1.jpg">
+    <img id="img1" src="https://hcpp20334.github.io/Pictures/tab1.jpg">
+    <p id="tx">Нажми на изображение для полного экрана</p>
     <button id="calc2" class="calcbtns" onclick="javascript:loadANframe();">Назад</button>
 </div>
-<div id="calc_Automat">
+<div id="calc_Automat" style="display: none;">
     <div id="tle">
     <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
 </div>
 <h1 class="title_frame">Расчет номинала автомат</h1>
-<p class="text" id="Nvalue">0</p>
+<p class="text" id="Nvalue">100</p>
 <p class="text">Номинал автомата
 <input type="comment" id="NomValue" class="in_bar"></p>
 <br>
-<button id="13_p" class="buttonProcents">1.13</button>
-<button id="45_p" class="buttonProcents">1.45</button>
-<button id="155_p" class="buttonProcents">2.55</button>
-<button id="400_p" class="buttonProcents">5</button>
-<button id="900_p" class="buttonProcents">10</button>
+<button id="13_p" class="buttonProcents" style="border: 1px solid rgb(1, 4, 9);">1.13</button>
+<button id="45_p" class="buttonProcents" style="border: 1px solid rgb(1, 4, 9);">1.45</button>
+<button id="155_p" class="buttonProcents" style="border: 1px solid rgb(1, 4, 9);">2.55</button>
+<button id="400_p" class="buttonProcents" style="border: 1px solid rgb(1, 4, 9);">5</button>
+<button id="900_p" class="buttonProcents" style="border: 1px solid rgb(32, 255, 128);">10</button>
 <p class="abAn">
 1.13 - это ток кратко временного расцепления цепи</p>
 <p class="abAn">1.45 - ток расцепления при котором автомат не должен выключится</p>
@@ -532,12 +525,11 @@ transition: .4s;
  <p class="abAn">5 - аварийный ток перегрузки при котором автомат должен отключится до 10 сек</p>
 <p class="abAn"> 10 - аварийный ток перегрузки при котором автомат должен выключится моментально.
 </p>
-<p class="text">идея DIMA XP</p>
 <button id="calcA" class="calcbtns">Расчитать</button>
 <button id="tableBtn">Показать таблицу</button>
 <button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
 </div>
-<div id="calc_Rwire">
+<div id="calc_Rwire" style="display: none;">
     <div id="tle">
     <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
 </div>
@@ -555,7 +547,7 @@ transition: .4s;
 <button id="calcR" class="calcbtns">Расчитать</button>
 <button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
 </div>
-<div id="calcCMframe">
+<div id="calcCMframe" style="display: none;">
     <div id="tle">
     <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
 </div>
@@ -573,7 +565,7 @@ transition: .4s;
 <button id="calc_CM" class="calcbtns">Расчитать</button>
 <button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
 </div>
-<div id="calcSframe">
+<div id="calcSframe" style="display: none;">
     <div id="tle">
     <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
 </div>
@@ -589,7 +581,7 @@ transition: .4s;
 <button id="calcS" class="calcbtns">Расчитать</button>
 <button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
 </div>
-<div id="calc_frameW">
+<div id="calc_frameW" style="display: none;">
     <div id="tle">
     <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
 </div>
@@ -605,7 +597,7 @@ transition: .4s;
 <button id="calc" class="calcbtns">Расчитать</button>
 <button id="calc" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
 </div>
-<div id="calc_framePheater">
+<div id="calc_framePheater" style="display: none;">
     <div id="tle">
     <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
 </div>
@@ -621,7 +613,7 @@ transition: .4s;
 <button id="calcP" class="calcbtns">Расчитать</button>
 <button id="calc" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
 </div>
-<div id="calc_frameA">
+<div id="calc_frameA" style="display: none;">
     <div id="tle">
     <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
 </div>
@@ -638,22 +630,22 @@ transition: .4s;
 <button id="calc3" class="calcbtns">Расчитать</button>
 <button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
 </div>
-<div id="watt_sec">
+<div id="watt_sec" style="display: none;">
     <div id="tle">
     <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
 </div>
 <p class="text" id="out_amp">0</p>
 <br>
-<p class="text">Ватт:<input id="inwatt"class="in_bar" type="comment"></p>
-<p class="text">Сечение:<input id="insec"class="in_bar" type="comment"></p>
-<p class="text">Напряжение:<input id="involt"class="in_bar" type="comment"></p>
+<p class="text">Ватт:<input id="inwatt" class="in_bar" type="comment"></p>
+<p class="text">Сечение:<input id="insec" class="in_bar" type="comment"></p>
+<p class="text">Напряжение:<input id="involt" class="in_bar" type="comment"></p>
 <br>
 <br>
 <br>
 <button id="calc_amp" class="calcbtns">Расчитать</button>
 <button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
 </div>
-<div id="capFrc">
+<div id="capFrc" style="display: none;">
     <div id="tle">
     <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
 </div>
@@ -668,7 +660,7 @@ transition: .4s;
 <button id="capcalc" class="calcbtns">Расчитать</button>
 <button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
 </div>
-<div id="sec2dia">
+<div id="sec2dia" style="display: none;">
     <div id="tle">
     <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
 </div>
@@ -682,7 +674,7 @@ transition: .4s;
 <button id="calc4">Расчитать</button>
 <button id="calc2" onclick="javascript:loadMframe();">Назад</button>
 </div>
-<div id="calc_rub">
+<div id="calc_rub" style="display: none;">
     <div id="tle">
     <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
 </div>
@@ -700,31 +692,24 @@ transition: .4s;
     <div id="tle">
     <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
 </div>
-<button id="watt2amp"class="calcbtns">АМПЕРЫ В ВАТТЫ</button>
-<button id="amp2watt"class="calcbtns">ВАТТЫ В АМПЕРЫ</button>
-<button id="sec2amp"class="calcbtns">РАСЧЕТ ТОКА ИЗ СЕЧЕНИЯ</button>
-<button id="srub2rrub"class="calcbtns">КАЛЬКУЛЯТОР РУБЛЕЙ</button>
-<button id="sec2diaBtn"class="calcbtns">РАСЧЕТ СЕЧЕНИЯ</button>
-<button id="calcRbtn"class="calcbtns">РАСЧЕТ У сопротивление</button>
-<button id="calcAutomatN"class="calcbtns">РАСЧЕТ НОМИНАЛА АВТОМАТ</button>
-<button id="calcCapitulaor"class="calcbtns">РАСЧЕТ БАЛЛАСТНОГО КОНДЕНСАТОРА</button>
-<button id="calcSb"class="calcbtns">РАСЧЕТ ПЛОЩАДИ</button>
+<button id="watt2amp" class="calcbtns">АМПЕРЫ В ВАТТЫ</button>
+<button id="amp2watt" class="calcbtns">ВАТТЫ В АМПЕРЫ</button>
+<button id="sec2amp" class="calcbtns">РАСЧЕТ ТОКА ИЗ СЕЧЕНИЯ</button>
+<button id="srub2rrub" class="calcbtns">КАЛЬКУЛЯТОР РУБЛЕЙ</button>
+<button id="sec2diaBtn" class="calcbtns">РАСЧЕТ СЕЧЕНИЯ</button>
+<button id="calcRbtn" class="calcbtns">РАСЧЕТ У сопротивление</button>
+<button id="calcAutomatN" class="calcbtns">РАСЧЕТ НОМИНАЛА АВТОМАТ</button>
+<button id="calcCapitulaor" class="calcbtns">РАСЧЕТ БАЛЛАСТНОГО КОНДЕНСАТОРА</button>
+<button id="calcSb" class="calcbtns">РАСЧЕТ ПЛОЩАДИ</button>
 <button id="calcCM" class="calcbtns">РАСЧЕТ ФАЗОСДВИГАЮЩЕГО КОНДЕНСАТОРА</button>
 
 <button id="calcPheat">РАСЧЕТ МОЩНОСТИ ТЕНА</button>
-<p id="tx">Сборка 1.0.9A HCPP STUDIO</p>
+<p id="tx">Сборка 1.1E HCPP STUDIO</p>
 
 </div>
-<p id="tx"onclick="javascript:window.location.href ='https://github.com/HCPP20334/JoyStickTest/releases/tag/JE_x64_OpenGL';" >СКАЧАЙ JE </p>
-
-<p id="tx">Создал HCPP | создано для сайта<br>
-  hcpp20334.github.io
-</p>
-<button class="btndw"onclick="javascript:window.open('tg://resolve?domain=hcppstudio&text=Привет!!');">Отправить привет</button>
 <script>
 let loadData = document.getElementById("lld");
 setTimeout("loadData.style.height = '0px';",2000);
-setTimeout("fC_menu.style.height = '750px';",3000);
 setTimeout("document.getElementById('donate').style.display= 'block';",5000);
 var fC_wattIn = document.getElementById("w_value2");
 var fC_amperIn = document.getElementById("a_value");
@@ -774,6 +759,20 @@ let fC_value = document.getElementById("cmval");
 let fDI = 0;
 let fMtype = 0;
 let fDV = 0;
+let fImgReScreen = document.getElementById('img1');
+let fImgState = 0;
+fImgReScreen.onclick = function(){
+    fImgState++;
+    if(fImgState > 1){
+        fImgState = 0;
+    }
+    if(!fImgState){
+        fImgReScreen.style = " display:block;margin: left;background: #0e0f11;width: 478px;border: none;height: 398px;border-radius: 10px;border: 1px solid #5c5e63;transition:.4s;";
+    }
+    if(fImgState){
+        fImgReScreen.style = "position:absolute;z-index:1;width:100%;height:100%;transform: translate(-10px,-60px)";
+    }
+}
 fC_IM.oninput = function(){
     fDI = this.value;
 }
@@ -789,6 +788,15 @@ f2800.onclick = function(){
 fCalc_CM.onclick = function(){
     fC_value.innerHTML = parseFloat(fMtype * fDI / fDV) + " мкф";
 }
+function screenUpdate(){
+    if(window.screen.width < 500){
+        document.documentElement.style.zoom = '85%';
+    }
+    if(window.screen.width > 500){
+        document.documentElement.style.zoom = '200%';
+    }
+}
+setInterval("screenUpdate()",100);
 fCalcCMbtn.onclick = function(){
     imgTableFrame.style.display = "none";
     fCANframe.style.display = "none";
@@ -826,27 +834,6 @@ function GDevice() {
           }
         }
 }
-function ZoomScreen(){
-    if(GDevice() == "Android"){
-    document.documentElement.style.zoom="100%";
-    }
-    if(GDevice() == "iPad"){
-    document.documentElement.style.zoom="100%";
-    }
-    if(GDevice() == "iPhone"){
-    document.documentElement.style.zoom="100%";
-    }
-    if(GDevice() == "Linux"){
-    document.documentElement.style.zoom="200%";
-    }
-    if(GDevice() == "Windows"){
-    document.documentElement.style.zoom="200%";
-    }
-    if(GDevice() == "Macintosh"){
-    document.documentElement.style.zoom="200%";
-    }
-}
-ZoomScreen();
 //
 let fCalcFrameS = document.getElementById("calcSframe");
 let fCalcSBtn  = document.getElementById("calcSb");
@@ -907,7 +894,6 @@ fCalcP.onclick = function()
 }
 
 //
-setTimeout("document.documentElement.requestFullscreen();",100);
 fsecamp.onclick = function()
 {
     loadSAframe();
@@ -972,10 +958,14 @@ function openTableFrame()
 {
     fCANframe.style.display = "none";
     imgTableFrame.style.display = "block";
-    imgTableFrame.style.width = "400px";
-    imgTableFrame.style.height = "500px";
-    imgTableFrame.style.backgroundColor = "#1b1b1e";
-    imgTableFrame.style.margin="auto";
+    imgTableFrame.style.width = "580px";
+    imgTableFrame.style.height = "600px";
+    imgTableFrame.style.backgroundColor = "#0e0f11";
+    imgTableFrame.style.margin="left";
+    imgTableFrame.style.zoom = "70%";
+    imgTableFrame.style.border = "1px solid #5c5e63";
+    imgTableFrame.style.borderRadius = "10px";
+//
 }
 //R calc
 var fPvalue =  document.getElementById("p_val");
@@ -1371,4 +1361,4 @@ function loadPwireFrame()
 }
 
 </script>
-</html>
+</body></html>
