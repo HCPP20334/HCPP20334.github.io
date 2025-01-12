@@ -54,7 +54,7 @@
             display: block;
             color: #20ff40;
             transform: translateX(30px);
-            overflow-y: scroll;
+
         }
         .text1{
             font-size: 25px;
@@ -62,7 +62,7 @@
             display: block;
             color: #20ff40;
             transform: translateX(30px);
-            overflow-y: scroll;
+
         }
         .btn_a{
             background: #303030;
@@ -138,19 +138,29 @@ let timerIn = "";
 let timerOut = 0;
 let strResult = "";
 let outResult = parseFloat(timerOut - timerIn);
-let timerin2 = 0;
+let timerinH = 0;
+let timerinM = 0;
+let timerinS = 0;
+//
+let timerOutH = 0;
+let timerOutM = 0;
+let timerOutS = 0;
 function genOverflowText(l,magic_key){
     timerIn = "";
     timerOut = 0;
     timerIn = new Date().getHours()+":"+new Date().getMinutes()+":"+new Date().getSeconds()+":"+new Date().getMilliseconds();
-    timerin2 = new Date().getMilliseconds();
+    timerinH = new Date().getHours();
+    timerinM = new Date().getMinutes();
+    timerinS = new Date().getSeconds();
     for(let i = 0;i < l;i++){
         ich++;
         magic_key += magic_key[Math.floor(Math.random() * inBufferArrayOffset)];
         strSizeE = magic_key.length;
-        timerOut = new Date().getMilliseconds();
-        outResult = parseFloat(timerOut);
-        fDbgMsg.innerHTML = "Process Started!!"+timerIn+"<br> Process Stoped!!"+new Date().getHours()+":"+new Date().getMinutes()+":"+new Date().getSeconds()+":"+new Date().getMilliseconds()+"<br> Last Time:"+parseFloat(timerOut - timerin2)+"ms<br>inBufferArrayOffset:"+inBufferArrayOffset+" <br>magic_keyOutSz:"+strSizeE+"<br>fArraySizeOffset:"+l+"chnk:"+i+"<br><br>Created by HCPP";
+        timerOutH = new Date().getHours();
+        timerOutM = new Date().getMinutes();
+        timerOutS = new Date().getSeconds();
+        timeLast = parseFloat(timerOutH - timerinH)+":"+parseFloat(timerOutM - timerinM)+":"+parseFloat(timerOutS - timerinS);
+        fDbgMsg.innerHTML = "Process Started!!"+timerIn+"<br> Process Stoped!!"+new Date().getHours()+":"+new Date().getMinutes()+":"+new Date().getSeconds()+":"+new Date().getMilliseconds()+"<br> Last Time:"+(timeLast)+"<br>inBufferArrayOffset:"+inBufferArrayOffset+" <br>magic_keyOutSz:"+strSizeE+"<br>fArraySizeOffset:"+l+"chnk:"+i+"<br><br>Created by HCPP";
     }
     fStackBuffer = strSizeE;fInfoBuffer.innerHTML = fStackBuffer+"\t:chars/Bytes";
       // fOutBuffer.innerHTML = magic_key;
