@@ -1,0 +1,159 @@
+<html>
+    <style>
+        html{
+            background: #010409;
+            overflow: hidden;
+        }
+        .gen_text{
+            background: transparent;
+            width: 600px;
+            height: 700px;   display: block;
+            margin: auto;
+            transform: translateY(130px);
+            border-radius: 2px;
+            overflow: hidden;
+            border: 1px solid #4b4949;
+  
+        }
+        .out_buffer{
+            background: #303030;
+            width: 400px;
+            height: auto;
+            border-radius: 2px; overflow: hidden;
+            display: inline-block;transform: translateX(0px);
+            transition: .4s;
+        }
+        .controls{
+            background: #303030;
+            width: 400px;
+            height: 400px; 
+            border-radius: 2px; overflow: hidden;
+            display: inline-block;transform: translateX(400px);
+            transition: .4s;
+            position: absolute;
+            z-index: 1;
+        }
+        button{
+            background: #010409;
+            font-size: 30px;
+            font-family: monospace;
+            display: block;
+            border: none;
+            width: 300px;
+            height: 60px;
+            color: #20ff40;
+            transform: translateX(30px);
+            border:1px solid #555555;
+            &:hover{
+                background: #555555;
+            }
+        }
+        .text{
+            font-size: 30px;
+            font-family: monospace;
+            display: block;
+            color: #20ff40;
+            transform: translateX(30px);
+            overflow-y: scroll;
+        }
+        .text1{
+            font-size: 25px;
+            font-family: monospace;
+            display: block;
+            color: #20ff40;
+            transform: translateX(30px);
+            overflow-y: scroll;
+        }
+        .btn_a{
+            background: #303030;
+            font-size: 20px;
+            font-family: monospace;
+            display: inline-block;
+            margin: 10px;
+            border: none;
+            width: 120px;
+            transform: translateX(30px);
+            height: 30px;
+            color: #20ff40;
+            border:1px solid #555555;
+            &:hover{
+                background: #555555;
+            }
+        }
+        input{
+            background: #303030;
+            font-size: 20px;
+            font-family: monospace;
+            display: block;
+            margin: 30px;
+            border: none;
+            width: 80%;
+            height: 30px;
+            color: #20ff40;
+            border:1px solid #555555;
+        }
+        .save{
+            background: #303030;
+            width: 398px;
+            height: 398px;
+            display: block;
+            border-radius: 2px;
+            overflow: hidden;
+            position: absolute;
+            z-index: 1;
+            border:1px solid #eeeeee;
+            transform: translateX(0px);transition: .4s;
+        }
+        </style>
+      
+<div class="gen_text">
+    <br>
+    <br>
+    <p class="text">CPU Bench v 1.0 (1 thread)</p>
+    <br>
+    <br>
+<button class="gen" onclick="trFunc();">Bench</button>
+<br>
+<p id="len_info" class="text1">0</p>
+<p id="ldb_info" class="text1">0</p>
+</div>
+<script>
+let fStackBuffer = 0;
+let fInfoBuffer = document.getElementById('len_info');
+let fDbgMsg = document.getElementById("ldb_info");
+let fArraySizeOffset = 1000000;
+let strSizeE = "";
+let fMagicKeyOffset = "01234567890/,./<>'[{||*&^%$#@@}]";
+let inBufferArrayOffset = fMagicKeyOffset.length;
+let ich = 0;
+let ich_count = 0;
+function trFunc(){
+    //
+ alert("Process Started!!"+new Date().getHours()+":"+new Date().getMinutes()+":"+new Date().getSeconds());
+    setTimeout(genOverflowText(fArraySizeOffset,fMagicKeyOffset),1000);
+   //fStackBuffer = strSizeE;fInfoBuffer.innerHTML = fStackBuffer+"\t:chars/Bytes";
+    
+}
+let timerIn = "";
+let timerOut = 0;
+let strResult = "";
+let outResult = parseFloat(timerOut - timerIn);
+let timerin2 = 0;
+function genOverflowText(l,magic_key){
+    timerIn = "";
+    timerOut = 0;
+    timerIn = new Date().getHours()+":"+new Date().getMinutes()+":"+new Date().getSeconds()+":"+new Date().getMilliseconds();
+    timerin2 = new Date().getMilliseconds();
+    for(let i = 0;i < l;i++){
+        ich++;
+        magic_key += magic_key[Math.floor(Math.random() * inBufferArrayOffset)];
+        strSizeE = magic_key.length;
+        timerOut = new Date().getMilliseconds();
+        outResult = parseFloat(timerOut);
+        fDbgMsg.innerHTML = "Process Started!!"+timerIn+"<br> Process Stoped!!"+new Date().getHours()+":"+new Date().getMinutes()+":"+new Date().getSeconds()+":"+new Date().getMilliseconds()+"<br> Last Time:"+parseFloat(timerOut - timerin2)+"ms<br>inBufferArrayOffset:"+inBufferArrayOffset+" <br>magic_keyOutSz:"+strSizeE+"<br>fArraySizeOffset:"+l+"chnk:"+i+"<br><br>Created by HCPP";
+    }
+    fStackBuffer = strSizeE;fInfoBuffer.innerHTML = fStackBuffer+"\t:chars/Bytes";
+      // fOutBuffer.innerHTML = magic_key;
+}
+</script>
+<html>
