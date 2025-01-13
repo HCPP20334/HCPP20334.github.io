@@ -1,0 +1,295 @@
+<html >
+<body>
+    <head>
+        <title>Калькулятор электроника</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        </head>
+    <br>
+    <div class="loader" id="lld" style="height: 0px;">
+        <br>
+        <br>
+        <br><br><br>
+    <div class="om">
+    <p class="omtx">P</p>
+    <p class="omtx">I</p>
+    <br>
+    <p class="omtx">R</p>
+    <p class="omtx">V</p>
+    </div>
+    <p class="textLd">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</p>
+    <p class="textLd2">СБОРКА 1.0.9A</p>
+    </div>
+    <div id="download_panel" style="display: none;">
+    <div id="tle">
+        <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
+    </div>
+    <button class="Close" onclick="javascript:loadMframe();">✖</button>
+    <br>
+    <p class="text">ПРИЛОЖЕНИЯ</p>
+    <button class="btndw" onclick="javascript:window.open('https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Electik.Calc_C++20_last_build-1.zip');">Electrik Calc C++20_OpenGL3.0 By HCPP</button>
+    <button class="btndw" onclick="javascript:window.open('http://dimaxp.sytes.net/kalkulyator-watt-v-amper-i-obratno');">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА ОТ DIMA XP</button>
+    </div>
+    <div id="donate" style="display: none;">
+     <button id="bcl" onclick="javascript:document.getElementById('donate').style.display= 'none';">X</button>
+    <p class="textLd3">Сейчас будет Реклама!!</p>
+    <p class="textLd3">Это Нужно для Поддержки Автора. Спасибо!</p>
+    </div>
+    <div id="table_img">
+        <div id="tle">
+        <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
+    </div>
+        <img id="img1" src="https://hcpp20334.github.io/Pictures/tab1.jpg">
+        <p id="tx">Нажми на изображение для полного экрана</p>
+        <button id="calc2" class="calcbtns" onclick="javascript:loadANframe();">Назад</button>
+    </div>
+    <div id="calc_Automat" style="display: none;">
+        <div id="tle">
+        <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
+    </div>
+    <h1 class="title_frame">Расчет номинала автомат</h1>
+    <p class="text" id="Nvalue">100</p>
+    <p class="text">Номинал автомата
+    <input type="comment" id="NomValue" class="in_bar"></p>
+    <br>
+    <button id="13_p" class="buttonProcents" style="border: 1px solid rgb(1, 4, 9);">1.13</button>
+    <button id="45_p" class="buttonProcents" style="border: 1px solid rgb(1, 4, 9);">1.45</button>
+    <button id="155_p" class="buttonProcents" style="border: 1px solid rgb(1, 4, 9);">2.55</button>
+    <button id="400_p" class="buttonProcents" style="border: 1px solid rgb(1, 4, 9);">5</button>
+    <button id="900_p" class="buttonProcents" style="border: 1px solid rgb(32, 255, 128);">10</button>
+    <p class="abAn">
+    1.13 - это ток кратко временного расцепления цепи</p>
+    <p class="abAn">1.45 - ток расцепления при котором автомат не должен выключится</p>
+     <p class="abAn">2.55- ток при котором автомат должен выключится в течении 1 минуты.</p>
+     <p class="abAn">5 - аварийный ток перегрузки при котором автомат должен отключится до 10 сек</p>
+    <p class="abAn"> 10 - аварийный ток перегрузки при котором автомат должен выключится моментально.
+    </p>
+    <button id="calcA" class="calcbtns">Расчитать</button>
+    <button id="tableBtn">Показать таблицу</button>
+    <button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
+    </div>
+    <div id="calc_Rwire" style="display: none;">
+        <div id="tle">
+        <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
+    </div>
+    <h1 class="title_frame">Расчет сопротивления проводника</h1>
+    <p class="text">R = (ρ* l) / S</p>
+    <p class="text">R = (Удельное сопротивление * Длина проводника) / Площадь поперечного сечения</p>
+    <p class="text" id="Rvalue">0</p>
+    <p id="amper">Удельное сопротивление</p>
+    <input type="comment" id="p_val" class="in_bar">
+    <p id="volt">Длина проводника</p>
+    <input type="comment" id="l_val" class="in_bar">
+    <p id="volt">Площадь поперечного сечения (мм2)</p>
+    <input type="comment" id="S_val" class="in_bar">
+    <br>
+    <button id="calcR" class="calcbtns">Расчитать</button>
+    <button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
+    </div>
+    <div id="calcCMframe" style="display: none;">
+        <div id="tle">
+        <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
+    </div>
+    <h1 class="title_frame">РАСЧЕТ ФАЗОСДВИГАЮЩЕГО КОНДЕНСАТОРА</h1>
+    <p class="text">C= k * I / U</p>
+    <p class="text" id="cmval">0 мкф</p>
+    <button id="4800_p" class="buttonProcents1">ТРЕУГОЛЬНИК</button>
+    <button id="2800_p" class="buttonProcents1">ЗВЕЗДА</button>
+    <p id="volt">НОМИНАЛЬНЫЙ ТОК </p>
+    <input type="comment" id="IM_val" class="in_bar">
+    <p id="volt">НАПРЯЖЕНИЕ</p>
+    <input type="comment" id="VM_val" class="in_bar">
+    <br>
+    <br>
+    <button id="calc_CM" class="calcbtns">Расчитать</button>
+    <button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
+    </div>
+    <div id="calcSframe" style="display: none;">
+        <div id="tle">
+        <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
+    </div>
+    <h1 class="title_frame">Расчет Площади</h1>
+    <p class="text">S = a * b<p>
+    <p class="text" id="Sbuf">0</p>
+    <p id="volt">Длина</p>
+    <input type="comment" id="A_val" class="in_bar">
+    <p id="volt">Ширина</p>
+    <input type="comment" id="B_val" class="in_bar">
+    <br>
+    <br>
+    <button id="calcS" class="calcbtns">Расчитать</button>
+    <button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
+    </div>
+    <div id="calc_frameW" style="display: none;">
+        <div id="tle">
+        <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
+    </div>
+    <h1 class="title_frame">Амперы в Ватты</h1>
+    <p class="text">P = A * V</p>
+    <p class="text" id="out_value">0</p>
+    <p id="amper">Амперы</p>
+    <input type="comment" id="a_value" class="in_bar">
+    <p id="volt">Вольтаж</p>
+    <input type="comment" id="v_value" class="in_bar">
+    <br>
+    <br>
+    <br>
+    <button id="calc" class="calcbtns">Расчитать</button>
+    <button id="calc" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
+    </div>
+    <div id="calc_framePheater" style="display: none;">
+        <div id="tle">
+        <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
+    </div>
+    <h1 class="title_frame">РАСЧЕТ МОЩНОСТИ ТЕНА</h1>
+    <p class="text">P = (U * U) / R</p>
+    <p class="text" id="Pbuf">0</p>
+    <p id="amper">R:</p>
+    <input type="comment" id="Pres" class="in_bar">
+    <p id="volt">U:</p>
+    <input type="comment" id="Pvolt" class="in_bar">
+    <br>
+    <br>
+    <button id="calcP" class="calcbtns">Расчитать</button>
+    <button id="calc" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
+    </div>
+    <div id="calc_frameA" style="display: none;">
+        <div id="tle">
+        <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
+    </div>
+    <h1 class="title_frame"> Ватты в Амперы</h1>
+    <p class="text">I = P / U</p>
+    <p class="text" id="out_value2">0</p>
+    <p id="volt">Вольтаж</p>
+    <input type="comment" id="v_value2" class="in_bar">
+    <p id="watt">Ватты</p>
+    <input type="comment" id="w_value2" class="in_bar">
+    
+    <br>
+    <br>
+    <br>
+    <button id="calc3" class="calcbtns">Расчитать</button>
+    <button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
+    </div>
+    <div id="watt_sec" style="display: none;">
+        <div id="tle">
+        <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
+    </div>
+    <p class="text">I = (P * P) / (U * 1)</p>
+    <p class="text" id="out_amp">0</p>
+    <br>
+    <p class="text">Ватт:<input id="inwatt" class="in_bar" type="comment"></p>
+    <p class="text">Сечение:<input id="insec" class="in_bar" type="comment"></p>
+    <p class="text">Напряжение:<input id="involt" class="in_bar" type="comment"></p>
+    <br>
+    <br>
+    <br>
+    <button id="calc_amp" class="calcbtns">Расчитать</button>
+    <button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
+    </div>
+    <div id="capFrc" style="display: none;">
+        <div id="tle">
+        <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
+    </div>
+    <p class="text">Uобщая= √((U1 * U1)-(U2 * U2))<br>
+        C = 3200 * I / Uобщая;</p>
+    <p class="text" id="capbuf">0</p>
+    <br>
+    <p class="text">Рабочий ток:<input id="capI" class="in_bar" type="comment"></p>
+    <p class="text">Напряжение входное:<input id="capU1" class="in_bar" type="comment"></p>
+    <p class="text">Напряжение нагрузки:<input id="capU2" class="in_bar" type="comment"></p>
+    <br>
+    <br>
+    <br>
+    <button id="capcalc" class="calcbtns">Расчитать</button>
+    <button id="calc2" class="calcbtns" onclick="javascript:loadMframe();">Назад</button>
+    </div>
+    <div id="sec2dia" style="display: none;">
+        <div id="tle">
+        <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
+    </div>
+    <h1 class="title_frame">Расчет сечения</h1>
+    <p class="text">Сечение = ((Диаметр / 2) * (Диаметр / 2) * 3.14);</p>
+    <p class="text" id="out_value3">0</p>
+    <p id="volt">Диаметр</p>
+    <input type="comment" id="dia_value2" class="in_bar">
+    <br>
+    <br>
+    <br>
+    <button id="calc4">Расчитать</button>
+    <button id="calc2" onclick="javascript:loadMframe();">Назад</button>
+    </div>
+    <div id="calc_rub" style="display: none;">
+        <div id="tle">
+        <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
+    </div>
+      <h1 class="title_frame">Перевод рублей</h1>
+    <p class="text" id="out_rub">0</p>
+    <p id="rub_text">Сов.руб в рос.руб</p>
+    <input type="comment" id="data_rub" class="in_bar">
+    <button id="reverb" class="calcbtns">Наоборот</button>
+    <br>
+    <br>
+    <br>
+    <button id="calc2" onclick="javascript:loadMframe();">Назад</button>  
+    </div>
+    <div id="menu">
+        <div id="tle">
+        <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
+    </div>
+    <button id="watt2amp" class="calcbtns">АМПЕРЫ В ВАТТЫ</button>
+    <button id="amp2watt" class="calcbtns">ВАТТЫ В АМПЕРЫ</button>
+    <button id="sec2amp" class="calcbtns">РАСЧЕТ ТОКА ИЗ СЕЧЕНИЯ</button>
+    <button id="srub2rrub" class="calcbtns">КАЛЬКУЛЯТОР РУБЛЕЙ</button>
+    <button id="sec2diaBtn" class="calcbtns">РАСЧЕТ СЕЧЕНИЯ</button>
+    <button id="calcRbtn" class="calcbtns">РАСЧЕТ У сопротивление</button>
+    <button id="calcAutomatN" class="calcbtns">РАСЧЕТ НОМИНАЛА АВТОМАТ</button>
+    <button id="calcCapitulaor" class="calcbtns">РАСЧЕТ БАЛЛАСТНОГО КОНДЕНСАТОРА</button>
+    <button id="calcSb" class="calcbtns">РАСЧЕТ ПЛОЩАДИ</button>
+    <button id="calcCM" class="calcbtns">РАСЧЕТ ФАЗОСДВИГАЮЩЕГО КОНДЕНСАТОРА</button>
+    <button id="calcPheat">РАСЧЕТ МОЩНОСТИ ТЕНА</button>
+    <p id="tx">Сборка 1.1E HCPP STUDIO</p>
+    <p id="tx" onclick="YaSDKinit();">Инициализировать YaSDK</p>
+    <button id="theme-change">Сменить тему</button>
+    <p id="tx1"></p>
+    </div>
+    <p id="dbgtx"></p>
+</body>
+<script>
+let sdkHandle = '';
+const EngineFilesArray = ["https://hcpp20334.github.io/calc/js/calc.js","https://yandex.ru/ads/system/context.js","https://sdk.games.s3.yandex.net/sdk.js"];
+const EngineFilesArrayCount = 3;
+let EngineScriptsCount = 0;
+let countDataFiles = 0;
+function EngineLoad(fileArray,countFiles){
+    let EngineHandle = "";
+    let fileOkCount = 0;
+    for(let fileCount = 0;fileCount < countFiles;fileCount++){
+        let EngineHandle = document.createElement("script");
+        let MainHandle = document.documentElement;
+        EngineHandle.onload = fileOkCount++;
+        EngineHandle.src = fileArray[fileCount];
+        MainHandle.appendChild(EngineHandle);
+        console.log("[ENGINE] script count:"+fileCount+"file:"+fileArray[fileCount]+"fileTrue:"+fileOkCount);
+        EngineScriptsCount = fileCount;
+        if(fileOkCount == 3){
+            //YaSDKinit();
+        }
+    }
+    countDataFiles = fileOkCount;
+    console.log("[ENGINE] script loaded:"+EngineScriptsCount);
+}
+function YaSDKinit(){
+        YaGames.init().then(ysdk => {sdkHandle = ysdk;});
+}
+function EngineCSSUIData(){
+    let CSSHandle = document.createElement('link');
+    CSSHandle.href = "https://hcpp20334.github.io/calc/css/calc.css";
+    CSSHandle.rel = "stylesheet";
+    document.documentElement.appendChild(CSSHandle);
+}
+EngineLoad(EngineFilesArray,EngineFilesArrayCount);
+EngineCSSUIData();
+YaSDKinit();
+</script>
+</html>
