@@ -1,10 +1,35 @@
 <html >
-<body>
+
     <head>
         <title>Калькулятор электроника</title>
         <meta name="viewport" content="width=device-width, user-scalable=no">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+           <!-- Yandex.RTB -->
+<script>window.yaContextCb=window.yaContextCb||[]</script>
+<script src="https://yandex.ru/ads/system/context.js" async=""></script>
+<!-- Yandex Games SDK -->
+<script src="https://sdk.games.s3.yandex.net/sdk.js"></script>
         </head>
+        <body>
+                <!-- Yandex.RTB R-A-13654662-1 -->
+<script>
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({
+            "blockId": "R-A-13654662-1",
+            "type": "topAd"
+        })
+    })
+    </script>
+    <script>
+        //...
+        YaGames
+            .init()
+            .then(ysdk => {
+                console.log('Yandex SDK initialized');
+                window.ysdk = ysdk;
+            });
+        //...
+        </script>
     <br>
     <div class="loader" id="lld" style="height: 0px;">
         <br>
@@ -257,7 +282,7 @@
 </body>
 <script>
 let sdkHandle = '';
-const EngineFilesArray = ["https://hcpp20334.github.io/calc/js/calc.js","https://yandex.ru/ads/system/context.js","https://sdk.games.s3.yandex.net/sdk.js"];
+const EngineFilesArray = ["js/calc.js","https://yandex.ru/ads/system/context.js","https://sdk.games.s3.yandex.net/sdk.js"];
 const EngineFilesArrayCount = 3;
 let EngineScriptsCount = 0;
 let countDataFiles = 0;
@@ -284,7 +309,7 @@ function YaSDKinit(){
 }
 function EngineCSSUIData(){
     let CSSHandle = document.createElement('link');
-    CSSHandle.href = "https://hcpp20334.github.io/calc/css/calc.css";
+    CSSHandle.href = "https://hcpp20334.github.io/Calc/css/calc.css";
     CSSHandle.rel = "stylesheet";
     document.documentElement.appendChild(CSSHandle);
 }

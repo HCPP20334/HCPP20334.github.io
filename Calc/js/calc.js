@@ -684,13 +684,7 @@ fCalcCMframe.style.display = "none";
 }
 function loadMframe()
 {
-    sdkHandle.adv.showFullscreenAdv({
-                    callbacks: {
-                        onClose: getCallback('onClose'),
-                        onOpen: getCallback('onOpen'),
-                        onError: getCallback('onError')
-                    }
-                });
+    window.ysdk.adv.showFullscreenAdv({});
 imgTableFrame.style.display = "none";
 fC_menu.style.display = "block";
 fC_Aframe.style.display = "none";fCalcFrameS.style.display = "none";
