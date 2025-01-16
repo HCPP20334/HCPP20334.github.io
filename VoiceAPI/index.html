@@ -1,0 +1,138 @@
+<html>
+<style>
+html{
+    background: #010409;
+}
+.voice_api{
+    background: transparent;
+    width: 70%;
+    height: 800px;
+    border: 1px solid #707070;
+    display: block;
+    margin: auto;
+    transform: translateY(100px);
+}
+.info{
+    font-size: 40px;
+    font-weight: Bold;
+    font-family: monospace;
+    color: #20ff40;transform: translate(30px);
+}
+.API_INIT_DATA{
+    font-size: 20px;
+    font-weight: Bold;
+    font-family: monospace;
+    color: #ff0033;transform: translate(30px);
+}
+.tx
+{
+    font-size: 20px;
+    font-weight: Bold;
+    font-family: monospace;
+    color: #ffffff;transform: translate(30px);
+}
+textarea{
+    font-size: 16px;
+    font-weight: Bold;
+    color: #ffffff;
+    font-family: monospace;
+    background: transparent;
+    width: 70%;
+    height: 200px;transform: translate(30px);
+    border: 1px solid #707070;
+}
+input{
+    font-size: 16px;
+    font-weight: Bold;
+    color: #ffffff;
+    font-family: monospace;
+    background: transparent;
+    width: 300px;
+    height: 30px;transform: translate(30px);
+    border: 1px solid #707070;
+}
+#btn_speak{
+    font-size: 24px;
+    font-weight: Bold;
+    color: #ffffff;
+    font-family: monospace;
+    background: transparent;
+    width: 400px;
+    margin: 20px;
+    height: 50px;transform: translate(10px);
+    border: 1px solid #707070;
+}
+</style>
+<div class="voice_api">
+<p class="info">
+Тест Синтеза Речи JS (Web Speech API)
+</p>
+<p class="API_INIT_DATA" id="api_err">
+API_LOG:
+</p>
+<textarea id="voice_outBuffer"></textarea>
+<button id="btn_speak">Record</button>
+<div class="ui-controls">
+<p class="tx">Громкость Речи:</p>
+<input type="comment" value="1.0" step="0.1" min="0.0" max="1.0" id="voiceAPI_vol">
+<p class="tx">Скорость Речи:</p>
+<input type="comment" value="1.0" step="1.0" min="0.0" max="100.0" id="voiceAPI_rate">
+<p class="tx">Высота Речи:</p>
+<input type="comment" value="1.0" step="0.1" min="0.0" max="1.0" id="voiceAPI_pitch">
+</div>
+</div>
+<script>
+    //
+    let volumeOffset = 0;
+    let rateOffset = 0;
+    let pitchOffset = 0;
+    //
+    let RecordButton = document.getElementById("btn_speak");
+    let voice_apiVol = document.getElementById("voiceAPI_vol");
+    let voiceAPI_rate = document.getElementById("voiceAPI_rate");
+    let voiceAPI_pitch = document.getElementById("voiceAPI_pitch");
+    let bufferVoice = "";
+    volumeOffset = voice_apiVol.value;
+    document.getElementById("voice_outBuffer").oninput = function(){
+        bufferVoice = this.value;
+    }
+    voice_apiVol.oninput = function(){
+        parseFloat(rateOffset = this.value);
+        (volumeOffset = this.value);
+    }
+    //
+    rateOffset = voiceAPI_rate.value;
+    voiceAPI_rate.oninput = function(){
+        parseFloat(rateOffset = this.value);
+    }
+    //
+    pitchOffset = voiceAPI_pitch.value;
+    voiceAPI_pitch.oninput = function(){
+        parseFloat(pitchOffset = this.value);
+    }
+    function speak(t,v,s,r){
+    if(window.speechSynthesis) {
+        const voices = window.speechSynthesis.getVoices();
+        const selectedVoice = voices[1];
+        const voiceAPI = new SpeechSynthesisUtterance();
+        voiceAPI.text = t;
+        voiceAPI.lang = "ru";           // аббревиатура языка
+        voiceAPI.volume = parseFloat(v);          // громкость
+        voiceAPI.rate = parseFloat(s);            // скорость
+        voiceAPI.pitch = parseFloat(r);           // высота
+        voiceAPI.onend = () => window.speechSynthesis.cancel();
+        if(t.length < 1){
+            window.speechSynthesis.cancel();
+        }
+        window.speechSynthesis.speak(voiceAPI);
+        document.getElementById("api_err").innerHTML = "Speaking...";
+    }
+    else{
+        document.getElementById("api_err").innerHTML = "Fatal Error: API not Supported";
+    }
+    }
+RecordButton.onclick = function(){speak(bufferVoice,volumeOffset,rateOffset,pitchOffset);}
+
+
+</script>
+</html>
