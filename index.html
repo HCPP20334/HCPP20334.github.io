@@ -1,772 +1,447 @@
 <html>
-<style>
-html
-{
-    background: #202020;
-    
-}
-        @font-face {
-        font-family: WR;
-        src: url("https://hcpp20334.github.io/fonts/monoMMM_5.ttf");
+    <style>
+    html{
+        background: #010409;
+        overflow-x: hidden;
     }
-        @font-face{
-        font-family: RUS;
-        src: url("./../fonts/FeatureMono-Light.woff");
-        font-weight:700;
+    .App{
+        width: 100%;
+        height: 100%;
     }
-button
-{
-    cursor: pointer;
-}
-
-canvas
-{
-      position:absolute;
-      left:0;
-      top:0;
-      z-index:-1;
-    
-}
-
-#WebGL_data
-{
-      font-family: 'WR';
-    font-size: 18px;
-    color:white;
-    border-left: none;
-    border-right: none;
-    text-align: center;
-    width:100%;
-    height: 30px;
-    transform: translateY(200px);
-    
-}
-    .loader {
-  width: 120px;
-  aspect-ratio: 1;
-  display: grid;
-  border: 4px solid #0000;
-  border-radius: 50%;
-  border-right-color: #ff0050;
-  animation: l15 1s infinite linear;
-  margin: auto;
-  
-}
-.loader::before,
-.loader::after {    
-  content: "";
-  grid-area: 1/1;
-  margin: 2px;
-  border: inherit;
-  border-radius: 50%;
-  animation: l15 2s infinite;
-}
-.loader::after {
-  margin: 8px;
-  animation-duration: 3s;
-}
-@keyframes l15{ 
-  100%{transform: rotate(1turn)}
-}
-#main
-{
-    width: 100%;height: 100%;
-    display: none;
-}
-.btn
-{
-    font-family: 'WR';
-    font-size: 14px;
-    color:white;
-    border: none;
-    height: 30px;
-    background: transparent;
-    transition: .4s;
-    display:  inline-block;
-}
-.btnsC
-{
-    width: 300px;height: 20px;
-    background: transparent;
-    display: block;
-    margin: auto;
-    transform: translate(40px,5px);
-}
-.btn:hover
-{
-    border:1px solid #010409;
-    background: #ff2080;
-}
-#nav
-{
-    width: 99%;height: 100px;
-    box-shadow: 1px 1px 10px #010409;
-    border-bottom: 3px solid #010409;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    background: linear-gradient(45deg, #1010ff,#8373ff);
-        animation: gradient 4s ease infinite;
-        background-size: 400% 400%;
-        z-index: 1;
-        position: absolute;
-}
-    @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
-    #fakeborder
-    {
-        height:100%;
-        width: 102px;
-        background: linear-gradient(120deg, #ff2080,#8373ff);
-        animation: gradient 10s ease infinite;
-        background-size: 400% 400%;
-        
+    .main-content{
+        width: 100%;
+        height: 800px;
+        background: #010409;transform: translateY(-28px);
         display: none;
     }
-    @keyframes slideY
-    {
-        0%{
-            transform: translateY(-300px);
+    ::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #010409; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #010409; 
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ff0033; 
+}
+    .nav-bar{
+        width: 100%;
+        height: 200px;
+        background: #8030ff;
+        transform: translateY(10px);
+        z-index: 1;
+        position: relative;overflow: hidden;
+    
+    }
+    .nickname{
+        transform: translate(30px,60px);
+        display: block;
+    }
+    .text0{
+        font-size: 60px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: #ffffff;margin: 15px; transform: translate(0px,-40px); display: inline-block;
+    }
+    .text1{
+        font-size: 30px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: #ffffff;
+        display: inline-block;
+        margin: 15px; transform: translate(30px,30px);
+        &:hover{
+            border-bottom: 4px solid #ffffff;
         }
-        100%{
-            transform: translateY(0px);
+        &:active{
+            background:  #ffffff;
+            color: #010409;
         }
     }
-        @keyframes slideY3
-    {
-        0%{
-            transform: translateY(-300px);
-        }
-        100%{
-            transform: translateY(200px);
+    .text3{
+        font-size: 60px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: #ffffff;text-align: center;
+    }
+    .text4{
+        font-size: 40px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: #ffffff;text-align: center;
+    }
+    .info{
+        width: 50%;
+        height: auto;
+        background: #303030;
+    }
+    .project{
+        border-bottom: 2px solid #ffffff;
+    }
+    .projects-content{
+        width: 100%;
+        height: 800px;
+        background: #010409;
+        display: block;overflow: scroll;
+    }
+    .project_shop{
+        border-bottom: 2px solid #ffffff;
+    }
+    .title_projects{
+        font-size: 30px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: #ffffff;
+        display: block;
+        margin: 15px; transform: translate(30px,5px);
+    }
+    .info_projects{
+        font-size: 20px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: #ffffff;
+        display: block;
+        margin: 15px; transform: translate(30px,5px);
+    }
+    .webprojects{
+        display: none;
+    }
+    .shop{
+        display: none;
+    }
+    .download_zip{
+        font-size: 20px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: #ffffff;
+        display: block;
+        margin: 15px; transform: translate(30px,5px);
+        background: #8030ff;
+        border: 2px solid #ffffff;
+       min-width: 160px;
+       margin: 15px;
+       height: 40px;display: inline-block;
+        &:hover{
+            background:  #ffffff;
+            color: #8030ff;
         }
     }
-#tx
-{
-font-family: 'WR';
-    font-size: 20px;
-    color:white;
-    text-align: center;
-    transform: translateY(10px);
-    display: block
-}
-#cTx
-{
-    font-family: 'WR';
-    font-size: 14px;
-    color:white;
-    transform: translateX(10px);
-    width: 70%;
-    text-shadow: 1px 1px 2px #010409;
-}
-#cTxSm{
-    font-family: 'WR';
-    font-size: 14px;
-    color:white;
-    transform: translateX(30px);
-}
-#cTxT{
-    font-family: 'WR';
-    font-size: 65px;
-    color:white;
-    transform: translateX(30px);
-}
-#cTx2
-{
-    font-family: 'WR';
-    font-size: 20px;
-    color:white;
-    text-align: center;
-    text-shadow: 1px 1px 2px #010409;
-    animation: slideY 1s;
-    transition: .4s;
+    .title_projects2{
+        font-size: 50px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: #ffffff;
+        display: block;
+        margin: 15px; transform: translate(30px,5px);
+    }
+    .tirleP{
+        background: #20dfa5; 
+        border-radius: 10px;;
+    }
+    .wappb{
+        font-size: 50px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: #ffffff;
+        width: auto;
+        overflow: hidden;
+        display: block;
+        margin: 15px; transform: translate(30px,5px);
+        background: #8030ff; 
+        border: none;
+        &:hover{
+            background:  #ffffff;
+            color: #8030ff;
+        }
+    }
+    .cube{
+        width: 64px;
+        height: 64px;
+        background: #8030ff;
+        margin: 10px;
+        display: inline-block;
+        
+    }
+    .loaderText{
+        font-size: 50px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: #ffffff;
+        width: auto;
+        overflow: hidden;
+        display: block;
+        text-align: center;
+        transform: translateY(130px);
+    }
+    </style>
+    <div class="loader" id="AppoaderID">
+    <div class="cube" id="cube0"></div><div class="cube" id="cube1"></div><div  class="cube"id="cube2"></div>
+    </div>
+    <div class="App" id="AppId">
+        <div class="nav-bar">
+        <div class="nickname">
+        <h1 class="text0" onclick="mainContextShow();">HCPP STUDIO</h1>
+        </div>
+        <h1 class="text1" id="btn0">ПРОЕКТЫ</h1>
+        <h1 class="text1" id="btn1">WEBAPP</h1>
+        <h1 class="text1" id="btn2">МАГАЗИН</h1>
+        </div>
+        <div class="main-content" id="mainContent">
+            <h1 class="text3" >HCPP STUDIO</h1><p class="text4">- СТУДИЯ ПО РАЗРАБОТКЕ ПРИЛОЖЕНИИ</p>
+            <p class="text4">НА С++</p>
+        </div>
+        <div class="shop" id="shopHandleId">
+            <div class="project_shop">
+                <p class="title_projects">XVPN Базовая Подписка</p>
+                <p class="info_projects">СКОРОСТЬ ДО 10 МБИТ В СЕК</p>
+                <p class="info_projects">ПОДДЕРЖКА В ЧАТЕ ТЕЛЕГРАММА</p>
+                <p class="info_projects">СТОИМОСТЬ 350 РУБ В МЕСЯЦ / 4000 РУБ В ГОД</p>
+              <button class="download_zip" onclick="UI.redirect('https://t.me/HCPPSTUDIO');">ОФОРМИТЬ</button>
+            </div>
+            <div class="project_shop">
+                <p class="title_projects">XVPN PRO Подписка</p>
+                <p class="info_projects">СКОРОСТЬ ДО 200 МБИТ В СЕК</p>
+                <p class="info_projects">ПОДДЕРЖКА В ЧАТЕ ТЕЛЕГРАММА</p>
+                <p class="info_projects">СТОИМОСТЬ 1000 РУБ В МЕСЯЦ / 9000 РУБ В ГОД</p>
+              <button class="download_zip" onclick="UI.redirect('https://t.me/HCPPSTUDIO');">ОФОРМИТЬ</button>
+            </div>
+        </div>
+        <div class="webprojects" id="WebAppHandleId">
+            <div class="tirleP"> <p class="title_projects2">WEBAPP </p></div>
+            <button class="wappb" onclick="UI.redirect(webAppBuffer[1]);">PLAYER JS</button>
+            <button class="wappb" onclick="UI.redirect(webAppBuffer[0]);">ELECTRIK CALC JS</button>
+            <button class="wappb" onclick="UI.redirect(webAppBuffer[2]);">VOICEAPI JS</button>
+            <button class="wappb" onclick="UI.redirect(webAppBuffer[4]);">NOTEPAD JS</button>
+            <button class="wappb" onclick="UI.redirect(webAppBuffer[3]);">CPUBENCH JS</button>
+        </div>
+        <div class="projects-content" id="projectHandleId">
+           <div class="tirleP"> <p class="title_projects2">ПРОЕКТЫ</p></div>
+           <div class="project">
+            <h1 class="title_projects">JOYSTICKTEST 1.1</h1>
+            <p class="info_projects">ПРИЛОЖЕНИЕ ДЛЯ ТЕСТИРОВАНИЕ ВАШЕГО ГЕЙМПАДА</p>
+            <p class="title_projects">ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ</p>
+            <p class="info_projects">ЯЗЫК: С++20</p>
+            <p class="info_projects">РАЗРЯДНОСТЬ: x64</p>
+            <p class="info_projects">BACKENDAPI: OpenGL3.3</p>
+            <p class="title_projects">СИСТЕМНЫЕ ТРЕБОВАНИЯ</p>
+            <p class="info_projects">ПРОЦЕССОР С ПОДДЕРЖКОЙ ИНСТРУКЦИИ SSE4.2 И x64</p>
+            <p class="info_projects">ВИДЕОКАРТА: ЛЮБАЯ С  ПОДДЕРЖКОЙ OpenGL3.3 И 128 МБ ВИДЕОПАМЯТИ</p>
+            <p class="info_projects">WINDOWS 10 x64 И УСТАНОВЛЕНЫЕ РЕДИСТРИБУТИВЫ VISUAL STUDIO 2019 x64 И ДРАЙВЕР XINPUT</p>
+            <button class="download_zip" onclick="UI.redirect(AppBuffer[0]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
+        </div>
+            <div class="project">
+            <h1 class="title_projects">JOYSTICKTEST 1.0</h1>
+            <p class="info_projects">ПРИЛОЖЕНИЕ ДЛЯ ТЕСТИРОВАНИЕ ВАШЕГО ГЕЙМПАДА</p>
+            <p class="title_projects">ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ</p>
+            <p class="info_projects">ЯЗЫК: JAVA (JDK 18)</p>
+            <p class="info_projects">РАЗРЯДНОСТЬ: x64</p>
+            <p class="info_projects">BACKENDAPI: DX9</p>
+            <p class="title_projects">СИСТЕМНЫЕ ТРЕБОВАНИЯ</p>
+            <p class="info_projects">ПРОЦЕССОР С ПОДДЕРЖКОЙ ИНСТРУКЦИИ x64</p>
+            <p class="info_projects">ВИДЕОКАРТА: ЛЮБАЯ С  ПОДДЕРЖКОЙ  И 128 МБ ВИДЕОПАМЯТИ</p>
+            <p class="info_projects">WINDOWS 10 x64 И УСТАНОВЛЕНЫЕ РЕДИСТРИБУТИВЫ VISUAL STUDIO 2019 x64 И ДРАЙВЕР XINPUT</p>
+            <button class="download_zip" onclick="UI.redirect(AppBuffer[2]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
+           </div>
+           <div class="project">
+            <h1 class="title_projects">ELECTRIK CALC 1.0.1</h1>
+            <p class="info_projects">ФУНКЦИОНАЛЬНЫЙ КАЛЬКУЛЯТОР ДЛЯ ЭЛЕКТРИКА/p>
+            <p class="title_projects">ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ (OpenGL3)</p>
+            <p class="info_projects">ЯЗЫК: С++20</p>
+            <p class="info_projects">РАЗРЯДНОСТЬ: x64</p>
+            <p class="info_projects">BACKENDAPI: OpenGL3.3</p>
+            <p class="title_projects">СИСТЕМНЫЕ ТРЕБОВАНИЯ</p>
+            <p class="info_projects">ПРОЦЕССОР ЛЮБОЙ 2 ЯДЕРНЫЙ</p>
+            <p class="info_projects">ВИДЕОКАРТА: ЛЮБАЯ С  ПОДДЕРЖКОЙ OpenGL3.3 И 128 МБ ВИДЕОПАМЯТИ</p>
+            <button class="download_zip" onclick="UI.redirect(AppBuffer[1]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
+           </div>
+           <div class="project">
+            <h1 class="title_projects">ELECTRIK CALC 1.0.1</h1>
+           <p class="title_projects">ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ (DX9)</p>
+            <p class="info_projects">ЯЗЫК: С++14</p>
+            <p class="info_projects">РАЗРЯДНОСТЬ: x86</p>
+            <p class="info_projects">BACKENDAPI: DX9</p>
+            <p class="title_projects">СИСТЕМНЫЕ ТРЕБОВАНИЯ</p>
+            <p class="info_projects">ПРОЦЕССОР ЛЮБОЙ 2 ЯДЕРНЫЙ</p>
+            <p class="info_projects">ВИДЕОКАРТА: ЛЮБАЯ С  ПОДДЕРЖКОЙ DX9 И 128 МБ ВИДЕОПАМЯТИ</p>
+            <p class="info_projects">WINDOWS 7 x64 И УСТАНОВЛЕНЫЕ РЕДИСТРИБУТИВЫ VISUAL STUDIO 2019 x64</p>
+            <button class="download_zip" onclick="UI.redirect(AppBuffer[1]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
+           </div>
+           <div class="project">
+            <h1 class="title_projects">ELECTRIK CALC 1.0.1</h1>
+           <p class="title_projects">ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ (DX12)</p>
+            <p class="info_projects">ЯЗЫК: С++20</p>
+            <p class="info_projects">РАЗРЯДНОСТЬ: x64</p>
+            <p class="info_projects">BACKENDAPI: DX12</p>
+            <p class="title_projects">СИСТЕМНЫЕ ТРЕБОВАНИЯ</p>
+            <p class="info_projects">ПРОЦЕССОР ЛЮБОЙ 2 ЯДЕРНЫЙ</p>
+            <p class="info_projects">ВИДЕОКАРТА: ЛЮБАЯ С  ПОДДЕРЖКОЙ DX12 И 256 МБ ВИДЕОПАМЯТИ</p>
+            <p class="info_projects">WINDOWS 10 x64 И УСТАНОВЛЕНЫЕ РЕДИСТРИБУТИВЫ VISUAL STUDIO 2019 x64</p>
+            <button class="download_zip" onclick="UI.redirect(AppBuffer[1]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
+           </div>
+        </div>
+    </div>
+    <script>
+    let projectButton = document.getElementById("btn0");
+    let webAppButton = document.getElementById("btn1");
+    let shopButton = document.getElementById("btn2");
+    //
+    let c0 = document.getElementById("cube0");
+    let c1 = document.getElementById("cube1");
+    let c2 = document.getElementById("cube2");
+    c0.style.transform = "translate("+((window.screen.width - 194) / 2) + "px,"+((window.screen.height - 194) / 2)+ "px)";
+    c2.style.transform = "translate("+((window.screen.width - 194) / 2) + "px,"+((window.screen.height - 194) / 2)+ "px)";
+    c1.style.transform = "translate("+((window.screen.width - 194) / 2) + "px,"+((window.screen.height - 194) / 2)+ "px)";
+    //
     
-}
-#close
-{
-    font-family: 'WR';
-    font-size: 14px;
-    color:white;
-    text-align: center;
-    box-shadow: 1px 1px 10px #010409;
-    border:1px solid #010409;
-    background: #404040;
-    display: block;
-    position: absolute;
-    z-index:1;
-    width: 100%;height: 32px;
-    transform: translateY(20px);
-}
-.apps
-{
-    width:360px;height:130px;
-    box-shadow: 1px 1px 10px #010409;
-    border:1px solid #010409;
-    background: #202020;
-    border-radius: 4px;
-    display: block;margin: auto;
-    transform: translate(0px,60px);
-    
-}
-.apptx
-{
-    font-family: 'WR';
-    font-size: 18px;
-    color:white;
-    transform: translateX(30px);
-}
-.appinfo
-{
-    font-family: 'WR';
-    font-size: 14px;
-    color:white;
-    transform: translateX(30px);
-}
-#appdw
-{
-    border:1px solid #010409;
-    width: 100px;height:30px;
-    background:#ff2080;
-    transform: translateX(30px);
-    font-family: 'WR';
-    font-size: 14px;
-    color:white;
-    border-radius: 4px;
-}
-#content
-{
-    width: 100%;height: 600px;
-    box-shadow: 1px 1px 10px #010409;
-    border:1px solid #010409;
-    background: #010409;
-    border-radius: 4px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    transform: translateY(50px);
-}
-@keyframes gradient2 {
-	0% {
-		background-position: 50% 0%;
-	}
-	50% {
-		background-position: 100% 0%;
-	}
-	100% {
-		background-position: 50% 0%;
-	}
-}
-#app_frame,#web_frame,#links_frame,#posts_frame
-{
-    width: 100%;height: 600px;
-    box-shadow: 1px 1px 10px #010409;
-    border:1px solid #010409;
-    background: transparent;
-    border-radius: 4px;
-    display: none;
-    margin: auto;
-    animation: slideY 1s;
-    transition: .4s;
-}
-.lnks
-{
-    width:360px;height:300px;
-    box-shadow: 1px 1px 10px #010409;
-    border:1px solid #010409;
-    background: #202020;
-    border-radius: 4px;
-    transform: translate(10px,60px);
-    display: block;margin: auto;
-}
-.txlnk
-{
-    transform: translateX(30px);
-    font-family: 'WR';
-    font-size: 14px;
-    color:white;
-    width: 120px;
-    transition: .4s;
-}
-.txlnk:hover
-{
-    background: #ff2080;
-}
-.webs
-{
-    width:360px;height:300px;
-    box-shadow: 1px 1px 10px #010409;
-    border:1px solid #010409;
-    background: #202020;
-    border-radius: 4px;
-    transform: translate(10px,60px);
-    display: block;margin: auto;
-}
-.webtx
-{
-    transform: translateX(30px);
-    font-family: 'WR';
-    font-size: 14px;
-    color:white;
-    width: 120px;
-    transition: .4s;
-}
-.webtx:hover
-{
-    background: #ff2080;
-}
-.webinfo
-{
-    font-family: 'WR';
-    font-size: 14px;
-    color:white;
-    width: 120px;
-    transition: .4s;
-    transform: translate(150px,80px);
-}
-#window
-{
-    display: inline-block;
-    border:2px solid #010409;
-    transform: translate(150px,-200px);
-    width: 200px;height: 200px;
-}
-#wellcome
-{
-    width: 98%;height: 98%;
-}
-#videocontent
-{
-    width:100%;height:600px;
-    overflow-x: scroll;
-    box-shadow: 1px 1px 10px #010409;
-    border:1px solid #010409;
-    background: #151515;
-    border-radius: 4px;
-    display: none;
-    animation: slideY 1s;
-    transition: .4s;
-}
-#videocontent::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom right, #4d7fff 0%, #1a56ff 100%);
-  border-radius: 5px;
-}
-#videocontent::-webkit-scrollbar-button:vertical {
- background-color: #4d7fff;
- background-repeat: no-repeat;   
- background-size: 50%;
- background-position: center;
-}
-.post
-{
-    max-width: 660px;
-    width:100%;
-    box-shadow: 1px 1px 10px #010409;
-    border:1px solid #010409;
-    background: #202020;
-    border-radius: 4px;
-    display: block;
-    margin: auto;
-    transition: .4s;
-    transform: translate(10px,60px);
-}
-.post:hover
-{
-
-    background: #808080;
-}
-#tlpost
-{
-    transform: translateX(20px);
-    font-family: 'WR';
-    font-size: 16px;
-    color:white;
-    width:300px;
-    transition: .4s;
-    border-bottom: 3px solid #ff2080;
-}
-#txpost
-{
-    transform: translateX(5px);
-    font-family: 'WR';
-    font-size: 14px;
-    color:white;
-    width:98%;
-    transition: .4s;
-    overflow-y: scroll;
-}
-.postimg
-{
-    display: table;
-    transform: translateX(20px);
-    border-left: 2px solid #ff2080;
-}
-#errorframe
-{
-    display: none;
-    margin: auto;
-    z-index:1;
-    position: absolute;
-    background: #202020;
-    border: 1px solid #636363;
-    transition: .4s;
-    width: 300px;
-    transform: translateY(200px);
-    animation: slideY3 1s;
-    border-radius: 6px;
-}
-#titleerr
-{
-            background: linear-gradient(120deg, #ff2080,#8373ff);
-            width: 299px;height: 30px;
-            display: block;
-            margin:auto;
-            
-            border-radius: 6px;
-            border: 1px solid #636363;
-            
-}
-#ertx
-{
-    font-family: 'RUS';
-    font-size: 22px;
-    font-weight: 700;
-    color:white;
-    text-align: center;
-    transform: translateY(-10px);
-}
-.translateTx
-{
-    font-family: 'WR';
-    font-size: 14px;
-    color:white;
-    border-radius: 6px;
-    border: 1px solid #636363;
-    background: linear-gradient(120deg,#ff2080,#6060ff,#8373ff);
-}
-#loadframe
-{
-    background-image: url("https://dimaxpsite.github.io/anime.webp");
-    animation: gradient2 4s ease infinite;
-    transition: .4s;
-    width: 100%;height: 100%;
-}
-a{outline: none;color:#ffffff;background:#ff2080;font-family:'RUS';}
-#cTxC{
-    font-family: 'WR';
-    font-size: 22px;
-    font-weight: 700;
-    color:white;
-    text-align: center;
-    text-shadow: 4px 3px #010409;
-    transform: translateY(20px);
-}
-.exback{
-    width: 85%;
-    height: 65px;
-    background: #303030;
-    box-shadow: 12px 12px #ff2080;
-    display: block;
-    transform: translateX(30px);
-    transition: .4s;
-}
-.exback:hover{
-    box-shadow: -12px -12px #ff2080;
-}
-</style>
-    <head><meta name="viewport" content="width=device-width, user-scalable=no">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-</head>
-<div id="errorframe">
-<p id="ertx">
-</p>
-</div>
-<div id="loadframe">
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<img src="https://hcpp20334.github.io/Pictures/amd.png" style="width:64px;height:64px;display:block;
-    margin: auto;"><p id="cTx2">HCPP STUDIO</p>
-<div class="loader"></div>
-<p id="cTx2">(build 1.3)</p>
-
-</div>
-<div id="main">
-<div id="nav">
-<p id="tx">HCPP STUDIO</p>
-<div class="btnsC" id="bc">
-<button id="app" class="btn">APPS</button>
-<button id="web" class="btn">WEB</button>
-<button id="links" class="btn">LINKS</button>
-<button id="posts" class="btn">POSTS</button>
-</div>
-</div>
-<div id="content">
-<div id="wellcome">
-<p id="cTxT">HCPP STUDIO</p>
-<p id="cTxSm">STUDIO C++20 DEV PROJECTS AND </p>
-<p id="cTxSm">WEB DESIGN AND BACKEND VANILA JS</p>
-<div class="exback">
-<p id="cTxC">GITHUB.COM/HCPP20334</p>
-</div>
-</div>
-
-<div id="app_frame">
-<div class="apps">
-<p class="apptx">JE x64_OPENGL(C++20)</p>
-<p class="appinfo">JE - GAMEPAD TESTER TO WINDOWS</p>
-<button id="appdw" onclick="javascript:Oapp(AppUrl[0]);">DOWNLOAD</button>
-</div>
-<div class="apps">
-<p class="apptx">JE x64 JAVAFX 1.0.0</p>
-<p class="appinfo">JE - GAMEPAD TESTER TO WINDOWS</p>
-<button id="appdw" onclick="javascript:Oapp(AppUrl[2]);">DOWNLOAD</button>
-</div>
-<div class="apps">
-<p class="apptx">ELECTRIK CALC x64(C++20)</p>
-<p class="appinfo">CALCULATOR FOR ELEKTRIK TO WINDOWS</p>
-<button id="appdw" onclick="javascript:Oapp(AppUrl[1]);">DOWNLOAD</button>
-</div>
-<div class="apps">
-<p class="apptx">CALC TO AMPER DIMA XP</p>
-<p class="appinfo">CALCULATOR FOR ELEKTRIK TO WINDOWS</p>
-<button id="appdw"onclick="javascript:Oapp(AppUrl[3])">DOWNLOAD</button>
-</div>
-</div>
-<div id="web_frame">
-<div class="webs">
-<p class="webtx" id="wbtx">ELEKTRIK CALC</p>
-<p class="webtx" id="wbtx1">PLAYERJS</p>
-<p class="webtx" id="wbtx2">PASSGEN</p>
-<p class="webtx" id="wbtx3">BASE64</p>
-<p class="webtx" id="wbtx4">UPDATER</p>
-<p class="webinfo" id="wbinfo">test</p>
-<iframe id="window"></iframe>
-</div>
-</div>
-<div id="videocontent">
-<div class="post">
-<p id="tlpost">YouTube has started to slow down in Russia!</p>
-<p id="txpost">
-In Russia, YouTube began to work 70% slower!!
-There are applications to bypass the slowdown:
-Windows:<a href="https://github.com/ValdikSS/GoodbyeDPI">GoodbyeDPI</a>
-android::<a href="https://github.com/dovecoteescapee/ByeDPIAndroid/blob/master/README-ru.md">byeDPI</a>
-</p>
-<button class="translateTx" id="btnTstx"onclick="javascript:translatePost(0)">translate</button>
-</div>
-<div class="post">
-<p id="tlpost">0GET ID USER WITH HIDDEN INFO TELEGRAM</p>
-<iframe style="display:table;margin:auto;width:90%;height:240px;" src="https://www.youtube.com/embed/LFYFrOGjAYU" title="УВЯЗВИМОСТЬ TELEGRAM // ПОЛУЧЕНИЕ id С АККАУНТА СО СКРЫТОЙ ИНФОРМАЦИЕЙ //HCPP #hack #exploits #ctf" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<p id="txpost">
-In this article I will talk about the vulnerability of telegrams. go to <a href="https://web.telegram.org">web.telegram.org</a>, then log into your account. Now we find an account with hidden information in the account and copy the last numbers from the address bar. We all got an id!! Now you can search by id and get information about your account.
-</p>
-<button class="translateTx" id="btnTstx"onclick="javascript:translatePost(1)">translate</button>
-</div>
-<div class="post">
-<p id="tlpost">HOW TO DEPOSIT MONEY IN STEAM RU</p>
-<img src="./Pictures/tele2.jpeg" class="postimg">
-<p id="txpost">
-I will show the method through the tele2 operator. go to the my tele2 application and go to the “finance” tab, then transfers and payment for services and in this section click payment for foreign services. Now select steam and then follow the instructions in the application
-</p>
-<button class="translateTx" id="btnTstx"onclick="javascript:translatePost(2)">translate</button>
-</div>
-<div class="post">
-<p id="tlpost">GET SCAN PORTS TO NMAP</p>
-<img src="./Pictures/nmap.jpeg" class="postimg">
-<p id="txpost">
-in the article I will tell you how to get information about the open ports of a website or server using nmap. downloading nmap termux: pkg install nmap then we launch it with the command nmap -sS -sT -sF "ip" or url
-</p>
-<button class="translateTx" id="btnTstx"onclick="javascript:translatePost(3)">translate</button>
-</div>
-<div class="post">
-<p id="tlpost">SEND VULNERABILITY WEB SITE OR GOOGLE DORK </p>
-<img src="./Pictures/dorks.jpg" class="postimg">
-<p id="txpost">
-there are vulnerable queries in the Google search engine and there is a website to take advantage of them <a href="https://pentest-tools.com/information-gathering/google-hacking>Pentest tools">pentest-tools</a>
-</p>
-<button class="translateTx" id="btnTstx"onclick="javascript:translatePost(4);">translate</button>
-</div>
-<div class="post">
-<p id="tlpost">SANYA HAPPY BIRTHDAY FUCK!! </p>
-<p id="txpost">
-<img style="display:table;"src="./Pictures/sanya.jpg" width="64" height="64">
-I wish you happiness and health and that the lump stands and the xeon doesn’t burn out in the fucking minesweeper
-<a href="https://vk.com/pykogjop">SANYA</a>
-
-from <a href="github.com/hcpp20334">HCPP</a>
-</p>
-</div>
-</div>
-<div id="links_frame">
-<div class="lnks">
-<p class="txlnk" onclick="javascript:Oapp(LinkUrl[1]);">YOUTUBE</p>
-<p class="txlnk" onclick="javascript:Oapp(LinkUrl[2]);">TWITCH</p>
-<p class="txlnk" onclick="javascript:Oapp(LinkUrl[0]);">GITHUB</p>
-<p class="txlnk" onclick="javascript:Oapp(LinkUrl[3]);">TELEGRAM</p>
-</div>
-</div>
-
-</div>
-<button id="close">X</button>
-</div>
-
-<script>
-let post_id = 0;
-let fMsgBuffer = document.getElementById("ertx");
-var fDbufTitle = document.getElementById("texttitle");
-var frame;
-const fFmain = document.getElementById("main");
-const fFload = document.getElementById("loadframe");
-const LoadData = document.getElementById("loadingfr");
-//nav button
-let fBApp  = document.getElementById("app");
-let fBWeb  = document.getElementById("web");
-let fBLinks  = document.getElementById("links");
-let fBClose = document.getElementById("close");
-let fBPosts = document.getElementById("posts");
-//
-let fTranslateBtn = document.getElementById("btnTstx");
-//frame window
-let AppFrame  = document.getElementById("app_frame");
-let WebFrame  = document.getElementById("web_frame");
-let LinksFrame  = document.getElementById("links_frame");
-let WellomeFrame  = document.getElementById("wellcome");
-let PostsFrame  = document.getElementById("videocontent");
-let errorFrame   = document.getElementById("errorframe");
-//
-let ftx_buffer = [
-    "В России YouTube стал работать на 70% медленнее!!\n Есть приложения для обхода замедления:",
-    "В этой статье я расскажу об уязвимости Telegram.\n  перейдите на сайт web.telegram.org затем войдите в свою учетную запись.\n  Теперь находим аккаунт со скрытой информацией в аккаунте и копируем последние цифры из адресной строки.\n  У всех нас есть id!! Теперь вы можете осуществлять поиск по идентификатору и получать информацию о своем аккаунте.",
-    "Покажу способ через оператора теле2. заходим в приложение мой теле2 и переходим на вкладку «финансы», далее переводы и оплата услуг и в этом разделе нажимаем оплата за зарубежные услуги. Теперь выберите Steam и далее следуйте инструкциям в приложении.",
-    "в статье я расскажу, как получить информацию об открытых портах сайта или сервера с помощью nmap. скачиваем nmap termux: pkg install nmap затем запускаем его командой nmap -sS -sT -sF 'ip: или url",
-    "в поисковой системе Google есть уязвимые запросы, и существует веб-сайт, на котором можно ими воспользоваться. Это все есть в Pentest Tools"
+    class App{
+        ShowWindow(id_handle,cmdShow){
+            if(cmdShow){
+                id_handle.style.display = "block";
+            }
+            else{
+                id_handle.style.display = "none";
+            }
+        }
+        to_float(int_v){
+            return parseFloat(int_v);
+        }
+        redirect(url){
+            window.open(url);
+        }
+    }
+    let UI = new App();
+    let projectWindow = document.getElementById("projectHandleId");
+    let WebAppWindow = document.getElementById("WebAppHandleId");
+    let shopWindow = document.getElementById("shopHandleId");
+    let mainWindow = document.getElementById("mainContent");
+    let AppMainHandle = document.getElementById("AppId");
+    let AppLoadHandle = document.getElementById("AppoaderID");
+    //
+    let url_0 = document.getElementById("url_0");
+    let url_1 = document.getElementById("url_1");
+    let url_2 = document.getElementById("url_2");
+    let url_3 = document.getElementById("url_3");
+    //
+    let aOffset = 0;
+    let tOffset = 0;
+    let aInterval = setInterval("anim();",500);
+    function anim(){
+            aOffset++;
+            if(aOffset > 3){
+                aOffset = 0;
+                tOffset++;
+                if(tOffset > 4){
+                    tOffset = 4;
+                    clearInterval(aInterval);
+                    UI.ShowWindow(AppMainHandle,1);
+                    UI.ShowWindow(AppLoadHandle,0);
+                }
+            }
+            if(!aOffset){
+                c0.style.background = "#8040ff";
+                c1.style.background = "#8040ff";
+                c2.style.background = "#8040ff";
+            }
+            if(aOffset){
+                c0.style.background = "#101010";
+                c1.style.background = "#8040ff";
+                c2.style.background = "#8040ff";
+            }
+            if(aOffset === 2){
+                c0.style.background = "#101010";
+                c1.style.background = "#101010";
+                c2.style.background = "#8040ff";
+            }
+            if(aOffset === 3){
+                c0.style.background = "#101010";
+                c1.style.background = "#101010";
+                c2.style.background = "#101010";
+            }
+        }
+    //
+    UI.ShowWindow(AppMainHandle,0);
+    let webAppBuffer = [
+        "hcpp20334.github.io/calc.html",
+        "hcpp20334.github.io/playerJS.html",
+        "hcpp20334.github.io/VoiceAPI",
+        "hcpp20334.github.io/CPUBench",
+        "hcpp20334.github.io/Notepad"
     ];
-function translatePost(id){
-    msg(ftx_buffer[id]);
-}
-function msg(text)
-{
-    errorFrame.style.display = "block";
-    setTimeout("errorFrame.style.display = 'none';",3000);
-    fMsgBuffer.innerHTML = text;
-}
-function Oapp(url)
-{
-    window.open(url);
-}
-//onclick="javascript:Oapp(AppUrl[]);""
-let AppUrl = [
-    "https://github.com/HCPP20334/JoyStickTest/releases/tag/JE_x64_OpenGL",
-    "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Electik.Calc.0.4.pre.alpha.C++20.zip",//3
-    "https://github.com/rpmaster2/JoyStickTest/releases/tag/1.0",
-    "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Setup.Electrick.Calc.V2.1.BY.DIMA.XP.Setup.exe"
+    let AppBuffer = [
+        "https://github.com/HCPP20334/JoyStickTest/releases/download/JoyStickTest_x64_OpenGL_1.1/JoyStickTest_x64_OpenGL3SSE4.2.zip",
+        "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/Electric_calc_release/Electik.Calc_1.0.1.x64.zip",
+        "https://github.com/rpmaster2/JoyStickTest/releases/download/1.0/Archive.zip"
     ];
-let LinkUrl = [
-    "https://github.com/hcpp20334",
-    "https://youtube.com/HackerC",
-    "https://twitch.com/hcpp20334_",
-    "https://t.me/hcppstudio"
-    ];
-let WbWindowFrame  = document.getElementById("window");
-let fWbinfo_buf  = document.getElementById("wbinfo");
-//wb btns wbtx1
-let wb_btn0 = document.getElementById("wbtx");
-let wb_btn1 = document.getElementById("wbtx1");
-let wb_btn2 = document.getElementById("wbtx2");
-let wb_btn3 = document.getElementById("wbtx3");
-let wb_btn4 = document.getElementById("wbtx4");
-wb_btn0.onclick = function(){
-    WbWindowFrame.src = "https://hcpp20334.github.io/calc.html";
-    fWbinfo_buf.innerHTML = "CALCULATOR FOR ELEKTRIK JS";
-}
-wb_btn1.onclick = function(){
-    WbWindowFrame.src = "https://hcpp20334.github.io/playerJS.html";
-    fWbinfo_buf.innerHTML = "PLAYER JS";
-}
-wb_btn2.onclick = function(){
-    WbWindowFrame.src = "https://hcpp20334.github.io/PassGen";
-    fWbinfo_buf.innerHTML = "PASSGEN JS";
-}
-wb_btn3.onclick = function(){
-    WbWindowFrame.src = "https://hcpp20334.github.io/base64.html";
-    fWbinfo_buf.innerHTML = "BASE 64 DEC2ENCJS";
-}
-wb_btn4.onclick = function(){
-    WbWindowFrame.src = "https://hcpp20334.github.io/update";
-    fWbinfo_buf.innerHTML = "UPDATE CENTER";
-}
-//unit btns
-fBApp.onclick = function()
-{
-    AppFrame.style.display = "block";
-    WebFrame.style.display = "none";
-    LinksFrame.style.display = "none";
-   PostsFrame.style.display = "none";
-    WellomeFrame.style.display = "none";
-}
-fBWeb.onclick = function()
-{
-    AppFrame.style.display = "none";
-    WebFrame.style.display = "block";
-    LinksFrame.style.display = "none";
-   PostsFrame.style.display = "none";
-    WellomeFrame.style.display = "none";
-}
-fBLinks.onclick = function()
-{
-    AppFrame.style.display = "none";
-    WebFrame.style.display = "none";
-    LinksFrame.style.display = "block";
-    PostsFrame.style.display = "none";
-    WellomeFrame.style.display = "none";
-    
-    
-}
-
-fBClose.onclick = function()
-{
-    AppFrame.style.display = "none";
-    WebFrame.style.display = "none";
-    LinksFrame.style.display = "none";
-   PostsFrame.style.display = "none";
-    WellomeFrame.style.display = "block";
-}
-fBPosts.onclick = function()
-{
-    AppFrame.style.display = "none";
-    WebFrame.style.display = "none";
-    LinksFrame.style.display = "none";
-   PostsFrame.style.display = "block";
-    WellomeFrame.style.display = "none";
-}
-function load()
-{
-    fFmain.style.display = "none";
-    fFload.style.display = "block";
-    document.documentElement.style = "width: 100%;height: 100%;"
-    setTimeout("fFmain.style.display = 'block';fFload.style.display = 'none';document.documentElement.style = 'width: 100%;height: 100%;'",3000);
-    msg("Update 1.3:\n new design\n UX/UI fixed");
-}
-
-function loaddebug()
-{
-    fFmain.style.display = "block";
-    fFload.style.display = "none";
-   // setTimeout("fFmain.style.display = 'block';fFload.style.display = 'none';",6000);
-}
-load();
-//
-
-</script>
+    webAppBuffer.url;
+    //
+    let pOffset = 0;
+    let wOffset = 0;
+    let sOffset = 0;
+    let mOffset = 0;
+    // setup windows
+    UI.ShowWindow(projectWindow,0);
+    UI.ShowWindow(WebAppWindow,0);
+    UI.ShowWindow(shopWindow,0);
+    UI.ShowWindow(mainWindow,1);
+    //
+    function mainContextShow(){
+        UI.ShowWindow(projectWindow,0);
+    UI.ShowWindow(WebAppWindow,0);
+    UI.ShowWindow(shopWindow,0);
+    UI.ShowWindow(mainWindow,1);
+    }
+    shopButton.onclick = function(){
+        sOffset++;
+        if(sOffset > 1){
+            sOffset = 0;
+        }
+        if(!sOffset){
+            UI.ShowWindow(projectWindow,0);
+            UI.ShowWindow(mainWindow,1);
+            UI.ShowWindow(shopWindow,sOffset);
+            UI.ShowWindow(WebAppWindow,0);
+        }
+        if(sOffset){
+            UI.ShowWindow(projectWindow,0);
+            UI.ShowWindow(mainWindow,0);
+            UI.ShowWindow(shopWindow,sOffset);
+            UI.ShowWindow(WebAppWindow,0);
+        }
+    }
+    webAppButton.onclick = function(){
+        wOffset++;
+        if(wOffset > 1){
+            wOffset = 0;
+        }
+        if(!wOffset){
+            UI.ShowWindow(projectWindow,0);
+            UI.ShowWindow(mainWindow,1);
+            UI.ShowWindow(shopWindow,0);
+            UI.ShowWindow(WebAppWindow,0);
+        }
+        if(wOffset){
+            UI.ShowWindow(projectWindow,0);
+            UI.ShowWindow(mainWindow,0);
+            UI.ShowWindow(shopWindow,0);
+            UI.ShowWindow(WebAppWindow,wOffset);
+        }
+    }
+    projectButton.onclick = function(){
+        pOffset++;
+        if(pOffset > 1){
+            pOffset = 0;
+        }
+        if(!pOffset){
+            UI.ShowWindow(projectWindow,pOffset);
+            UI.ShowWindow(mainWindow,1);
+            UI.ShowWindow(shopWindow,0);
+            UI.ShowWindow(WebAppWindow,0);
+        }
+        if(pOffset){
+            UI.ShowWindow(projectWindow,pOffset);
+            UI.ShowWindow(mainWindow,0);
+            UI.ShowWindow(shopWindow,0);
+            UI.ShowWindow(WebAppWindow,0);
+        }
+    }
+    </script>
 </html>
