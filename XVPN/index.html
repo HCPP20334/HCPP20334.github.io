@@ -1,475 +1,294 @@
 <html>
-<style>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
     html{
-        background-color: #010409;
-    }
-    @font-face {
-        font-family: WR;
-        src: url("https://hcpp20334.github.io/fonts/FeatureMono-Light.woff");
-        font-weight:700;
-    }
-    @keyframes gradient_A {
-        0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-        
-    }
-    .xvpntext-container{
-        backdrop-filter: blur(10px);
-        width: 100%;
-        height: 300%;
-        overflow: hidden;
-        z-index: 1;
-        position: absolute;
-        background: transparent;
-    }
-    .xvpn-text-main{
-        color: white;
-        font-size: 50px;
-        text-align: center;
-        transform: translateY(90%);
-        font-family: 'WR';
-    }
-    .xvpn-text{
-        color: white;
-        font-size: 50px;
-        transform: translate(40px,40px);
-        font-family: 'WR';
-    }
-    .xvpn-text1{
-        color: white;
-        font-size: 60px         ;
-        margin: 10px;
-        font-family: 'WR';
-        width: 100%;
-    }
-    .xvpn-text3{
-        color: white;
-        font-size: 50px;
-        transform: translate(40px,10px);
-        font-family: 'WR';
-        cursor: pointer;
-    }
-    .text{
-        color: white;
-        font-size: 20px;
-        transform: translate(40px,20px);
-        font-family: 'WR';
-    }
-    .text1{
-        color: white;
-        font-size: 20px;
-        transform: translate(40px,40px);
-        font-family: 'WR';
-        font-weight: bolder;
-        border: 2px solid transparent;
-    }
-    .text1:hover{
-        border: 2px solid #ffffff;
-        width: 80%
-    }
-    .xvpn-window{
-        min-width: 330px;
-        background: linear-gradient(transparent 50%, #ff0033 50%);
-        width: 40%;
-        height: 400px;
-        border-radius: 20px;
-        border: 2px solid #ffffff;
-        background-size: 200% 200%;
-  background-repeat: no-repeat;
-  transition: .2s;
-        display: inline-block;
-        margin: 10px;
-        overflow: hidden;cursor: pointer;
-        &:hover{
-    background-position: 0 100%;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgb(2, 2, 2) 0%, rgb(3, 1, 15) 300%);
 }
-    }
-    .xvpn-window4{
-        min-width: 330px;
-        width: 100%;
-        height: 450px;
-        background-size: 400% 400%;
-        animation: gradient_A 4s ease infinite;
-        transition: .4s;
-        display: block;
-        margin: 10px;
-        transform: translate(-10px,-10px);
-        overflow: hidden;
-    }
-   
-    .xvpn-window2{
-        min-width: 330px;
-        border-top: 2px solid #ffffff;
-        border-bottom:none;
-        border-left: none;border-right: none;
-        width: 100%;
-        height: 450px;
-        background-size: 400% 400%;
-        animation: gradient_A 4s ease infinite;
-        transition: .4s;
-        display: block;
-        margin: 10px;
-        transform: translate(-10px,-10px);
-        overflow: hidden;
-    }
-   
-    .XVPN{
-        display: block;
-        margin: auto;
-        transform: translateY(100px);
-    }
-    .XVPN1{
-        display: inline-block;
-        margin: 10px;
-        
-    }
-    .cbtn{
-        width: 90%;
-        height: 150px;
-        border-radius: 20px;
-        border: 2px solid #636363;
-        background-size: 200% 200%;
-  background-repeat: no-repeat;
-  transition: .2s;
-        transition: .4s;
-        font-family: 'WR';
-        font-weight: bolder;
-        color: white;
-        font-size: 50px;
-        display: inline-block;
-        margin: 30px;
-        &:hover{
-    background-position: 0 100%;
+.h12, .h122 {
+  margin: 0;
+  padding: 0;
+  color: white;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 1);
+  line-height: 100%; font-family: 'Montserrat';
+  user-select: none;
 }
-        
-    }
-    #trial{
-        background-image: linear-gradient(transparent 50%, #2007ff 50%);
-    }
-    .window-contact{
-        min-width: 330px;
-        background: #202020;
-        width: 90%;
-        height: 80%;
-        
-        border: 2px solid #636363;
-        background-size: 400% 400%;
-        animation: gradient_A 4s ease infinite;
-        transition: all;
-        display: block;
-        margin: auto;
-        overflow: hidden;cursor: pointer;
-        
-    }
-    .window-contact2{
-        width: 100%;
-        height: 100%;
-        backdrop-filter: blur(10px);
-        background: transparent;
-        z-index: 1;
-        position: absolute;
-    }
-    .app-down{
-        min-width: 330px;
-        border-top: 2px solid #ffffff;
-        border-bottom: 2px solid #ffffff;
-        border-left: none;border-right: none;
-        width: 100%;
-        min-height: 100px;
-        height: 200px;
-        background-size: 400% 400%;
-        animation: gradient_A 4s ease infinite;
-        transition: .4s;
-        display: block;
-        margin: 10px;
-        transform: translate(-10px,-10px);
-        overflow: hidden;
-    }
-    .b_app{
-        background: linear-gradient(transparent 50%, #ff0033 50%);
-        min-width: 200px;
-        width: auto;
-        height: 60px;
-        border-radius: 10px;
-        border: 2px solid #ffffff;
-        background-size: 200% 200%;
-  background-repeat: no-repeat;
-  transition: .2s;
-        display: inline-block;
-        margin: 10px;
-        color: white;
-        font-size: 20px;
-        font-family: 'WR';
-        font-weight: bolder;
-        overflow: hidden;cursor: pointer;transform: translate(40px,-20px);
-        &:hover{
-    background-position: 0 100%;
-        font-size: 20px;
+
+.h12 {
+  font-size: 80px;
+  font-weight: 700;
 }
-    }
-    .title{
-        border: 2px solid #636363;
-        height: 30px;
-    }
-    .texttl{
-        color: white;
-        font-size: 20px;
-        transform: translate(40px,-20px);
-        font-family: 'WR';
-        font-weight: bolder;
-        border: 2px solid transparent;
-    }
-    #username_form{
-        width: 530px;
-        height: 200px;
-        display: none;
-        z-index: 1;
-        position: absolute;
-        background: #010409;border: 1px solid #ffffff;
-        border-radius: 10px;
-    }
-    .in_user{
-        outline: none;
-        background: #010409;border: 1px solid #ffffff;
-       font-family: 'WR';
-        font-weight: bolder;color: white;
-        font-size: 20px;margin: 20px;
-    }
-    #save_user{
-        outline: none;
-        background: #010409;border: 1px solid #ffffff;
-       font-family: 'WR';
-        font-weight: bolder;color: white;
-        font-size: 20px;margin: 15px;
-    }
-    .intro_text{
-        font-family: 'WR';
-        font-weight: bolder;color: white;
-        font-size: 60px;
-        text-align: center;
-        text-shadow: 3px 3px #010409;
-    }
-    .pup{
-        font-family: 'WR';
-        font-weight: bolder;color: white;
-        font-size: 15px;
-        display: inline;
-        margin: 30px;
-        text-align: right;
-        text-shadow: 3px 3px #010409;
-        transition: .4s;
-        &:hover{
-            color:#ff0033;
-        }
-    }
-    </style>
-    <div class="xvpntext-container" id="xvpntext-container_id">
-    <h1 class="intro_text" id="iText"></h1>
-    </div>//fE_memoryStack
-    <br>
-    <br>
-    <div id="username_form">
-        <p class="text">Как вас Звать?</p>
-        <input class="in_user" type="comment" id="inusr">
-        <button id="save_user">Сохранить</button>
-    </div>
-    <p id="userW_id" onclick="localStorage.saved = 'false'; location.reload();" class="pup">ИЗМЕНИТЬ ДАННЫЕ</p>
-    <p id="user_id" class="pup">ПОЛЬЗОВАТЕЛЬ:</p>
-    <div class="xvpn-window2" id="xvpn-window2id"><h1 class="xvpn-text3" title="Развернуть">ПОЧЕМУ СТОИТ ВЫБРАТЬ XVPN?</h1>
-        <p class="text1">НИЗКИЕ ЦЕНЫ НА РЫНКЕ</p>
-        <p class="text1">СТАБИЛЬНОЕ СОЕДИНЕНИЕ И ОПЕРАТИВНАЯ ПОДДЕРЖКА</p>
-        <p class="text1">ЗАЩИЩЕННОЕ СОЕДИНЕНИЕ И ВЫСОКАЯ СКОРОСТЬ</p>
-        <p class="text1">ПОДДЕРКА РАБОТАЕТ 24 ЧАСА </p>
-        <p class="text1">ДОБАВЛЕНИЕ В ЧАТ ДЛЯ ТЕКУЩИХ ОБНОВЛЕНИИ</p>
-        </div>
-        <div class="app-down">
-            <h1 class="xvpn-text3" title="Развернуть">ССЫЛКИ</h1>
-        <button class="b_app" id="hiddefy_win64">Hiddefy Windows</button>
-        <button class="b_app" id="hiddefy_arm64">Hiddefy Android</button>
-        <button class="b_app" id="streisand_64">Streisand IOS</button>
-        </div>
-        <p id="err_msgs"></p>
-        <h1 class="xvpn-text3" title="Развернуть">ТАРИФЫ</h1>
-    <div class="xvpn-window" id="buy_base">
-        <h1 class="xvpn-text">БАЗОВАЯ</h1>
-        <p class="text">300 РУБ в МЕСЯЦ </p>
-        <p class="text">4800 РУБ в ГОД </p>
-        <p class="text">10 МБИТ В СЕК</p>
-        <p class="text">СТАТУС: ДОСТУПНО</p>
-        <p class="text">VLESS+REALITY</p>
-        </div>
-        <div class="xvpn-window" id="trial">
-            <h1 class="xvpn-text">БЕСПЛАТНО</h1>
-            <p class="text">НАЖМИ ЧТОБЫ ПОЛУЧИТЬ</p>
-            <p class="text">СТАТУС: ДОСТУПНО</p>
-            <p class="text">VLESS+REALITY</p>
-            </div>
-        <div class="xvpn-window" id="buy_pro">
-            <h1 class="xvpn-text">МАКСИМАЛЬНАЯ</h1>
-            <p class="text">900 РУБ в МЕСЯЦ</p>
-            <p class="text">9990 РУБ в ГОД</p>
-            <p class="text">200 МБИТ</p>
-            <p class="text">СТАТУС: НЕ ДОСТУПНО</p>
-            <p class="text">VLESS+REALITY</p>
-            </div>
-            <p class="text">Designed and Coded by HCPP</p>
-            <p class="text">Финляндия, Хельсинки Провайдер: kvmka.ru</p>
-            <script>
-                function checkUser(){
-                    if(localStorage.saved == 'true'){
-                        fUserNameForm.style.display = 'none';
-                    }
-                    if(localStorage.saved == 'false'){
-                        fUserNameForm.style.display = 'block';
-                    }
-                }
-                //
-                let fUserId = document.getElementById('user_id');
-                let fUserNameForm = document.getElementById('username_form');
-                let fR_SaveForm = document.getElementById('save_user');
-                let fE_inputName = document.getElementById('inusr');
-                let fE_textIntro = document.getElementById('iText');
-                let fE_memoryStack = '';
-                fE_memoryStack  = fE_inputName.value;
-                fE_inputName.oninput = function(){
-                    fE_memoryStack  = this.value;
 
-                }
-                function fM_writeLC(data){
-                localStorage.bufferD = data;
-                }
-                fR_SaveForm.onclick = function(){
-                    fM_writeLC(fE_memoryStack);
-                    localStorage.saved = true;
-                    checkUser(); location.reload();
-                }
-                //
-                let fX_xvpnAbout = document.getElementById('xvpn-window2id');
-                let fX_xvpnMain = document.getElementById('xvpntext-container_id');
-                let fX_BuyBase = document.getElementById('buy_base');
-                let fX_BuyPro = document.getElementById('buy_pro');
-                let fX_trial = document.getElementById('trial');
-                let fApp_win64 = document.getElementById("hiddefy_win64");
-                let fApp_arm64 = document.getElementById("hiddefy_arm64");
-                let fApp_ios64 = document.getElementById("streisand_64");
-                let fA_appLinksArray = ["https://github.com/hiddify/hiddify-app/releases/download/v2.0.5/Hiddify-Android-arm64.apk","https://github.com/hiddify/hiddify-app/releases/download/v2.0.5/Hiddify-Windows-Setup-x64.exe","https://apps.apple.com/ru/app/streisand/id6450534064"];
-                let fX_boolWnd = 0;
-                let rdsaw = document.getElementById('err_msgs');
-                let fX_shopURL = ["https://vk.com/im?media=&sel=-228176457","https://vk.com/im?media=&sel=-228176457"];
-                //
-                let keys_vless = '';
-                let vless_msg = document.documentElement;
-                let key_vless64 = "ZG14bGMzTTZMeTlrTm1Gak1tVTNNeTAzWkRabExUUTBNbVF0T1RFM1l5MWtZMlZqWVRWak5qWTFZVE5BTWpFM0xqRTVOaTQ1T1M0MU5EbzBORE0vZEhsd1pUMTBZM0FtYzJWamRYSnBkSGs5Y21WaGJHbDBlU1p3WW1zOU9GRlhTM290ZW1sUllubEVNakZ3VEc1cVNXbHlTVlpyWTBkd1prOW5UMUJwVEZSMVpraGhiVko0Y3labWNEMWphSEp2YldVbWMyNXBQV2R2YjJkc1pTNWpiMjBtYzJsa1BURmhZamRrTlRjeUpuTndlRDBsTWtZamF6Tm9kMmRtY0dNPQ==";
-                setTimeout("func_load()",2000);
-                //
-               /// rdsaw.style = "overflow:hidden;background: #010409;width:50%;transform: translateX(-100px);translation:.4s;height:60px;border:1px solid #ffffff;"
-                   rdsaw.innerHTML = "ИЗВИНИТЕ БЕСПЛАТНЫЙ ТАРИФ БОЛЬШЕ НЕДОСТУПЕН !! <BR> ПОЖАЛУЙСТА ОФОРМИТЕ ПОДПИСКУ !!";
-                    rdsaw.onclick = function(){
-                      sxadcdx = true;
+.h122 {
+  font-size: 60px;
+  font-weight: 500;
+}
+.h121, .h1221 {
+  margin: 0;
+  padding: 0;
+  color: rgb(20, 19, 19);
+  text-transform: uppercase;
+  line-height: 100%; font-family: 'Montserrat';
+  user-select: none;
+  margin: 20px;
+}
 
-                    }
-                cbxxXda(1);
-                function cbxxXda(e){
-                    // rdsaw.style = "overflow:hidden;background: #ff0033;width:20px;height:0px;translation:.4s; color: white;font-size: 20px;font-family: 'WR';"
-                    if(!e){
-                       fX_trial.style.display = 'inline-block'; 
-                        rdsaw.style.overflow= "hidden";
-                        rdsaw.style.border = "1px solid #ffffff";
-                        rdsaw.style.width = (window.screen.width - 100) +"px";
-                        rdsaw.height = 0+"px";
-                        rdsaw.style.textAlign = "center";
-                        rdsaw.style.fontFamily = "WR";
-                        rdsaw.style.color = "white";
-                        rdsaw.style.fontSize = "20px";
-                    }
-                    if(e){
-                       // checkUser();
-                       fE_textIntro.style.transform = "translateY("+(window.screen.height / 3.14)+"px)";
-                       fUserId.innerHTML = "ПОЛЬЗОВАТЕЛЬ:"+localStorage.bufferD;
-                       fE_textIntro.innerHTML = "ДОБРО ПОЖАЛОВАТЬ,"+localStorage.bufferD;
-                       fX_trial.style.display = 'inline-block'; 
-                        rdsaw.style.overflow= "hidden";
-                        rdsaw.style.border = "1px solid #ffffff";
-                        rdsaw.style.width = (window.screen.width - 100) +"px";
-                        rdsaw.height = 60+"px";
-                        rdsaw.style.textAlign = "center";
-                        rdsaw.style.fontFamily = "WR";
-                        rdsaw.style.color = "white";
-                        rdsaw.style.fontSize = "20px";
-                        rdsaw.innerHTML = "ИЗВИНИТЕ БЕСПЛАТНЫЙ ТАРИФ БОЛЬШЕ НЕДОСТУПЕН !! <BR> ПОЖАЛУЙСТА ОФОРМИТЕ ПОДПИСКУ !!";
-                            fX_trial.style.cursor = "error";
-                            
-                    }
-                    if(e > 1){
-                        rdsaw.style = "overflow:hidden;background: #ff0033;width:460px;translation:.4s;height:40px;"
-                        rdsaw.innerHTML = "Ошибка JavaScript: КОД ОШИБКИ: 003F";
-                    }
-                }
-                let sxadcdx = false;
-                keys_vless = "key_vless64da="+atob(key_vless64)+"\n\nckey_vless64db="+key_vless64+"\n\nkey_vless64="+atob(atob(key_vless64));
-                fX_trial.onclick = function(){
-                    if(sxadcdx){
-                        alert("%cСкопировано!!\nHiddefy: 1.Нажми + и добавить из буфера\nStreisand: 1.Нажми + и добавить из буфера","background:#ff0033;color:white");
-                    navigator.clipboard.writeText(atob(atob(key_vless64))).then();
-                   console.log("%c"+keys_vless,"background: linear-gradient(45deg, #6f00ff ,#2007ff); border: 2px solid #ffffff;font-family:src: url('https://hcpp20334.github.io/fonts/FeatureMono-Light.woff');;color:white;width:100%;height:100%;");
-                   setTimeout("cbxxXda(1);",1000);
-                    }
-                   rdsaw.innerHTML = "ИЗВИНИТЕ БЕСПЛАТНЫЙ ТАРИФ БОЛЬШЕ НЕДОСТУПЕН !! <BR> ПОЖАЛУЙСТА ОФОРМИТЕ ПОДПИСКУ !!";
-                }
-                //
-                fApp_arm64.onclick = function(){
-                    window.open(fA_appLinksArray[0]);
-                }
-                fApp_win64.onclick = function(){
-                    window.open(fA_appLinksArray[1]);
-                }
-                fApp_ios64.onclick = function(){
-                    window.open(fA_appLinksArray[2]);
-                }
-                function func_load(){
-                    fX_xvpnMain.style.height = "0px";
-                fX_xvpnAbout.click(); checkUser();
+.h121 {
+  font-size: 40px;
+  font-weight: 700;
+}
 
-                }
-                let out_msg = '';
-                checkVPNStatus();
-                console.log("%c"+checkVPNStatus(),"background: linear-gradient(45deg, #6f00ff ,#2007ff); border: 2px solid #ffffff;font-family:src: url('https://hcpp20334.github.io/fonts/FeatureMono-Light.woff');;color:white;width:100%;height:100%;");
-                function checkVPNStatus()
-                {
-                    let response =  fetch("https://hcpp20334.github.io");
-                    if (response.OK) { // если HTTP-статус в диапазоне 200-299
-  // получаем тело ответа (см. про этот метод ниже)
-                   return ":Доступно" + response.status;
-                  
-                        } else {
-                            return ":Не доступно" + response.status;
-                   }
-                   
-                }
-                fX_BuyPro.onclick = function(){
-                    window.open(fX_shopURL[0]);
-                }
-                fX_BuyBase.onclick = function(){
-                    window.open(fX_shopURL[1]);
-                }
-                fX_xvpnAbout.onclick = function(){
-                    //fX_boolWnd++;
-                    //if(fX_boolWnd > 1){
-                        fX_boolWnd = 0;
-                   // }
-                   // if(!fX_boolWnd){
-                        //fX_xvpnAbout.style.height = "150px";
-                    //}
-                    //
-                        fX_xvpnAbout.style.height = "450px";
-                    //}
-                }
-            </script>
+.h1221 {
+  font-size: 20px;
+  font-weight: 500;
+}
+.h1212, .h12212 {
+  margin: 0;
+  padding: 0;
+  color: rgb(110, 105, 105);
+  text-transform: uppercase;
+  line-height: 100%; font-family: 'Montserrat';
+  user-select: none;
+  margin: 20px;
+}
+
+.h1212 {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.h12212 {
+  font-size: 15px;
+  font-weight: 500;
+}
+.logo {
+  position: relative;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+.p5Canvas{
+  transform: translate(200px,-300px);
+  z-index: 1;position: absolute;
+
+}
+.xvpn_frame{
+  width: 400px;
+  height: 70%;
+  margin: 80px;
+  border: 1px solid #010409;transform: translate(20px,30px);
+  border-radius: 10px;transition: .4s;
+  display: inline-block;overflow: hidden;
+  &:hover{
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1);
+  }
+}
+.va22{
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgb(255, 253, 253) 0%, rgb(3, 1, 15) 300%);
+}
+.bottom_frame{
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  background: radial-gradient(circle, rgb(2, 2, 2) 0%, rgb(3, 1, 15) 300%);
+}
+.htext{
+  margin: 0;
+  padding: 0;
+  color: rgb(110, 105, 105);
+  text-transform: uppercase;
+  line-height: 100%; font-family: 'Montserrat';
+  user-select: none;
+  display: inline;
+  margin: 20px; font-size: 20px;
+  font-weight: 700;
+  transition: .4s;
+  &:hover{
+    text-shadow:  0 0 20px rgb(255, 253, 253);
+    color: rgb(255, 253, 253);
+  }
+}
+.btn{
+  margin: 0;
+  padding: 0;
+  color: rgb(20, 19, 19);
+  text-transform: uppercase;
+  line-height: 100%; font-family: 'Montserrat';
+  user-select: none;
+  display: inline;
+  margin: 20px; font-size: 15px;
+  background: transparent;
+  font-weight: 500;border: 1px solid #010409;
+  width: 200px;
+  transition: .4s;
+  height: 50px;
+  &:hover{
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1);
+    background:rgba(0, 0, 0, 1) ;
+    color: rgb(255, 253, 253);
+  }
+}
+#lang_btnid{
+  color: rgb(255, 253, 253);
+  text-transform: uppercase;
+  line-height: 100%; font-family: 'Montserrat';
+  display: inline;
+  margin: 20px; font-size: 15px;
+  background: transparent;
+  font-weight: 500;border: 1px solid rgb(255, 253, 253);;
+  width: 200px;
+  transition: .4s;
+  height: 50px;
+  &:hover{
+    box-shadow: 0 0 20px rgb(255, 253, 253);;
+    background:rgb(255, 253, 253); ;
+    color: rgba(0, 0, 0, 1);
+  }
+}
+  </style>
+<div class="logo">
+  <h1 class="h12">XVPN</h1>
+  <h2 class="h122">POWERFUL VPN</h1>
+</div>
+<div class="va22">
+  <div class="xvpn_frame">
+    <h1 class="h121" id="t0data">XVPN BASE</h1>
+    <h2 class="h1221" id="t1data">Supported only devices</h1>
+      <h2 class="h1221" id="t2data">Speed Limit to 10 MBIT</h1>
+        <h2 class="h1221" id="t3data"> PROTOCOL VLESS , CRYPTO REALITY</h1>
+          <h2 class="h1221" id="t4data">PRICE: 3$/350 RUB per month</h1>
+            <button class="btn" onclick="AppHandle.buttonBuyUI();">BUY</button>
+  </div>
+  <div class="xvpn_frame">
+    <h1 class="h121" id="t5data">XVPN BASE+</h1>
+    <h2 class="h1221" id="t6data">Supported only devices</h1>
+      <h2 class="h1221" id="t7data">Speed Limit to 100 MBIT</h1>
+        <h2 class="h1221" id="t8data"> PROTOCOL VLESS , CRYPTO REALITY</h1>
+          <h2 class="h1221" id="t9data">PRICE: 6$/650 RUB per month</h1>
+            <button class="btn" onclick="AppHandle.buttonBuyUI();">BUY</button>
+  </div>
+  <div class="xvpn_frame">
+    <h1 class="h121" id="tA0data">XVPN PRO</h1>
+    <h2 class="h1221" id="tA1data">Supported only devices</h1>
+      <h2 class="h1221" id="tA2data">Speed Limit to 200 MBIT</h1>
+        <h2 class="h1221" id="tA3data"> PROTOCOL VLESS , CRYPTO REALITY</h1>
+          <h2 class="h1221" id="tA4data">PRICE: 10$/1000 RUB per month</h1>
+            <button class="btn" onclick="AppHandle.buttonBuyUI();">BUY</button>
+  </div>
+</div>
+<div class="bottom_frame">
+  <h1 class="h1212">CONTACTS</h1>
+    <h2 class="h12212">@All Right Copyright 2025</h1>
+      <h2 class="htext">Github</h1>
+        <h2 class="htext">Donate</h1>
+            <h1 class="h1212">HCPP STUDIO</h1>
+            <button class="lng" id="lang_btnid">EN</button>
+</div>
+<script>
+let stringData = [
+ "XVPN БАЗОВАЯ",//0
+ "XVPN ПРО",//1
+ "XVPN МАКС",//2
+ "@Все права Защищены 2025",//3
+ "Гитхаб",//4
+ "Донат",//5
+ "Работает на Любых устроиствах",//6
+ "Ограничение 10 МБИТ",//7
+ "Ограничение 100 МБИТ",//8
+ "Ограничение 200 МБИТ",//9
+ " ПРОТОКОЛ VLESS , ШИФРОВАНИЕ REALITY",//10
+ "3$/400 RUB в месяц",//11
+ "6$/600 RUB в месяц",//12
+ "10$/1000 RUB в месяц",//13
+ "XVPN BASE",//14
+ "XVPN BASE+",//15
+ "XVPN PRO",//16
+ "@All Right Copyright 2025",//17
+ "Speed Limit to 10 MBIT",//18
+ "Speed Limit to 100 MBIT",//19
+ "Speed Limit to 200 MBIT",//20
+ "Work Only Devices",//21
+ " PROTOCOL VLESS , CRYPTO REALITY",//22
+ "PRICE: 3$/400 RUB per month",//23
+ "PRICE: 6$/600 RUB per month",//24
+ "PRICE: 10$/1000 RUB per month",//25
+];
+class AppUI{
+   LangUI(id_lang){
+    if(!id_lang){langButton.innerHTML = "RU";
+      tx_0.innerHTML = stringData[0];
+    tx_1.innerHTML = stringData[6];
+    tx_2.innerHTML = stringData[7];
+    tx_3.innerHTML = stringData[10];
+    tx_4.innerHTML = stringData[11];
+    tx_5.innerHTML = stringData[1];
+    tx_6.innerHTML = stringData[6];
+    tx_7.innerHTML = stringData[8];
+    tx_8.innerHTML = stringData[10];
+    tx_9.innerHTML = stringData[11];
+    tx_A0.innerHTML = stringData[2];
+    tx_A1.innerHTML = stringData[6];
+    tx_A2.innerHTML = stringData[9];
+    tx_A3.innerHTML = stringData[10];
+    tx_A4.innerHTML = stringData[12];
+    }
+    if(id_lang){langButton.innerHTML = "EN";
+      tx_0.innerHTML = stringData[14];
+    tx_1.innerHTML = stringData[21];
+    tx_2.innerHTML = stringData[18];
+    tx_3.innerHTML = stringData[22];
+    tx_4.innerHTML = stringData[23];
+    tx_5.innerHTML = stringData[15];
+    tx_6.innerHTML = stringData[21];
+    tx_7.innerHTML = stringData[19];
+    tx_8.innerHTML = stringData[22];
+    tx_9.innerHTML = stringData[24];
+    tx_A0.innerHTML = stringData[16];
+    tx_A1.innerHTML = stringData[21];
+    tx_A2.innerHTML = stringData[20];
+    tx_A3.innerHTML = stringData[22];
+    tx_A4.innerHTML = stringData[25];
+    }
+   }
+   buttonBuyUI(id){
+    window.open("https://t.me/hcppstudio");
+   }
+}
+let tx_0 = document.getElementById("t0data");
+let tx_1 = document.getElementById("t1data");
+let tx_2 = document.getElementById("t2data");
+let tx_3 = document.getElementById("t3data");
+let tx_4 = document.getElementById("t4data");
+let tx_5 = document.getElementById("t5data");
+let tx_6 = document.getElementById("t6data");
+let tx_7 = document.getElementById("t7data");
+let tx_8 = document.getElementById("t8data");
+let tx_9 = document.getElementById("t9data");
+let tx_A0 = document.getElementById("tA0data");
+let tx_A1 = document.getElementById("tA1data");
+let tx_A2 = document.getElementById("tA2data");
+let tx_A3 = document.getElementById("tA3data");
+let tx_A4 = document.getElementById("tA4data");
+//
+let langButton = document.getElementById("lang_btnid");
+
+let AppHandle = new AppUI();
+let langId = 0;
+langButton.onclick = function(){
+  langId++;
+  if(langId > 1){
+    langId = 0;
+  }
+  AppHandle.LangUI(langId);
+}
+
+</script>
 </html>
