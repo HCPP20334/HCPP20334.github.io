@@ -70,6 +70,18 @@ class AppUI{
       cssLoader.rel = "stylesheet";
       cssLoader.href = "././css/main_mobile.css";
     }
+    if(DeviceInfo.getDevice() == 'Windows'){
+      bMobile = false;
+    }
+    if(DeviceInfo.getDevice() == 'Linix'){
+      bMobile = false;
+    }
+    if(!bMobile){
+      if(ctx_display < 1920){
+        document.getElementById("contentframeid").style.overflowY = "scroll";
+        document.getElementById("contentframeid").style.overflowX = "hidden";
+      }
+    }
   }
    LangUI(id_lang){
     if(!id_lang){langButton.innerHTML = "RU";
