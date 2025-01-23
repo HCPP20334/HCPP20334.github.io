@@ -71,15 +71,20 @@ class AppUI{
       cssLoader.href = "././css/main_mobile.css";
     }
     if(DeviceInfo.getDevice() == 'Windows'){
-      bMobile = false;
+      bMobile = false; 
+      console.log("[device.js] device : Windows");
     }
-    if(DeviceInfo.getDevice() == 'Linix'){
+    if(DeviceInfo.getDevice() == 'Linux'){
       bMobile = false;
+       console.log("[device.js] device : Linux");
     }
     if(!bMobile){
+      console.log("[device.js] device :"+DeviceInfo.getDevice());
       if(ctx_display < 1920){
         document.getElementById("contentframeid").style.overflowY = "scroll";
         document.getElementById("contentframeid").style.overflowX = "hidden";
+        console.log("[device.js] you display size offset: ctx_display:"+ctx_display+" < 1920");
+        console.log("[main.js] Enable Scroll");
       }
     }
   }
