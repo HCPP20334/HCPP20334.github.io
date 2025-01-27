@@ -50,13 +50,23 @@ class Device{
   }
 }
 let DeviceInfo = new Device();
+let AppInit = false;
 class AppUI{
   AppInit(){
     let ctx_display = window.screen.width;
     let cty_display = window.screen.height;
     let bMobile = false;
+    AppInit = true;
     console.log("[main.js] init class AppUI");
     console.log("[device.js] display size offset: "+ctx_display +"x"+cty_display);
+    console.log("[main,js] loaded data:");
+    console.log("[main.js]\n=====================\n");
+   let   fAllDivsFrames = document.getElementsByTagName('div');
+   let   fAllPTags = document.getElementsByTagName('h1');
+   let   fAllButtonsFrames = document.getElementsByTagName('button');
+    console.log("[main.js]\ndivs:"+fAllDivsFrames.length+"=====================\n");
+    console.log("[main.js]\np:"+fAllPTags.length+"=====================\n");
+    console.log("[main.js]\nbuttons:"+fAllButtonsFrames.length+"=====================\n");
     if(DeviceInfo.getDevice() == 'Android'){
       console.log("[device.js] device : Android");
       bMobile = true;
@@ -69,6 +79,9 @@ class AppUI{
       console.log("[main.js] loaded css main_mobile.css");
       cssLoader.rel = "stylesheet";
       cssLoader.href = "././css/main_mobile.css";
+      document.getElementById("contentframeid").style.overflowY = "scroll";
+      document.getElementById("contentframeid").style.overflowX = "hidden";
+      console.log("[main.js] Enable Scroll");
     }
     if(DeviceInfo.getDevice() == 'Windows'){
       bMobile = false; 
@@ -89,6 +102,11 @@ class AppUI{
     }
   }
    LangUI(id_lang){
+    if(!AppInit){
+      id_lang= undefined;
+      alert("Fatal Error: main.js AppInit not initilizeted!");
+      window.location.href = "";
+    }
     if(!id_lang){langButton.innerHTML = "RU";
       tx_0.innerHTML = stringData[0];
     tx_1.innerHTML = stringData[6];
@@ -124,9 +142,19 @@ class AppUI{
     tx_A4.innerHTML = stringData[25];
     }
    }
+   bodyDataLast = document.body.outerHTML;
    buttonBuyUI(id){
-    window.open("https://t.me/hcppstudio");
+    document.getElementById("payment_data").style.display = "block";
+    document.getElementById("payment_data").style.width  = 609+"px";
+    document.getElementById("payment_data").style.height  = 196+"px";
+    document.getElementById("payment_data").style.transform = "translate("+(( window.screen.width / 2 ) / 2)+"px,"+(( window.screen.height / 2) / 2)+"px)";
+    console.log("[main.js] payment_data: window id to "+"translate("+(( window.screen.width / 2 ) / 2)+"px,"+(( window.screen.height / 2) / 2)+"px)");
+    //window.open("https://t.me/hcppstudio");
    }
+}
+document.getElementById("payment_data").onclick = function(){
+  document.getElementById("payment_data").style.width  = 0+"px";
+    document.getElementById("payment_data").style.height  = 0+"px";
 }
 let tx_0 = document.getElementById("t0data");
 let tx_1 = document.getElementById("t1data");
@@ -147,6 +175,7 @@ let tx_A4 = document.getElementById("tA4data");
 let langButton = document.getElementById("lang_btnid");
 
 let AppHandle = new AppUI();
+//
 let langId = 0;
 langButton.onclick = function(){
   langId++;
@@ -155,3 +184,4 @@ langButton.onclick = function(){
   }
   AppHandle.LangUI(langId);
 }
+
