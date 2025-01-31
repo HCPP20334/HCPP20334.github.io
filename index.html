@@ -1,8 +1,12 @@
 <html>
+    <head><link rel="icon" type="image/png" href="pictures/favicon.png">
+    <title>HCPP STUDIO 2025</title>
+    </head>
     <style>
     html{
         background: #010409;
         overflow-x: hidden;
+        overflow-y: hidden;
     }
     .App{
         width: 100%;
@@ -25,13 +29,13 @@
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0); 
+    background: #ff0033; 
   border-radius: 20px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff0033; 
+  background: #131212; 
 }
     .nav-bar{
         width: 100%;
@@ -39,12 +43,12 @@
         background-image: url("./code.png");
         transform: translateY(10px);
         z-index: 1;
-        position: relative;overflow: hidden;
+        position: relative;overflow-y: auto;
     
     }
     .nickname{
         width: 100%;transform: translateY(0px);
-        height: 100%;
+        height: 100%;overflow-y:scroll;overflow-x:hidden;
         display: block; backdrop-filter: blur(10px);
         background: transparent;
     }
@@ -85,16 +89,16 @@
         background: transparent;
     }
     .project{
-        border-bottom: 2px solid #ffffff;width: 99%;
-        margin: 1px;
-        height: auto;
-        overflow: hidden;
+        border-bottom: 2px solid #ffffff;width: auto;
+        margin: 2px;
+        min-height: 400px;
+        height: 600px;
+        zoom: 100%;
     }
     .projects-content{
-        width: 99%;height: 200%;
+        width: 99%;height: auto;
         background: transparent;
-        display: block;overflow: scroll;
-        position: absolute;
+        display: block;
     }
     .project_shop{
         border-bottom: 2px solid #ffffff;
@@ -190,10 +194,14 @@
 }
 .page_buttons{
     background: #1b1b1b;
+    width: 100%;
+    display: block;
+    margin: auto;
 }
 p,h1,h2{
     user-select: none;
 }
+
     </style>
     <audio id="audio_id"></audio>
     <div class="loader" id="AppoaderID">
@@ -267,7 +275,7 @@ p,h1,h2{
            </div>
            <div class="project">
             <h1 class="title_projects">ELECTRIK CALC 1.0.1</h1>
-            <p class="info_projects">ФУНКЦИОНАЛЬНЫЙ КАЛЬКУЛЯТОР ДЛЯ ЭЛЕКТРИКА/p>
+            <p class="info_projects">ФУНКЦИОНАЛЬНЫЙ КАЛЬКУЛЯТОР ДЛЯ ЭЛЕКТРИКА</p>
             <p class="title_projects">ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ (OpenGL3)</p>
             <p class="info_projects">ЯЗЫК: С++20</p>
             <p class="info_projects">РАЗРЯДНОСТЬ: x64</p>
@@ -366,42 +374,9 @@ document.getElementById('btn3').click();
     //
     let aOffset = 0;
     let tOffset = 0;
-    let aInterval = setInterval("anim();",50);
-    function anim(){
-            aOffset++;
-            if(aOffset > 3){
-                aOffset = 0;
-                tOffset++;
-                if(tOffset > 10){
-                    tOffset = 10;
-                    clearInterval(aInterval);
-                    UI.ShowWindow(AppLoadHandle,0);
-                    UI.ShowWindow(AppMainHandle,1);
-                }
-            }
-            if(!aOffset){
-                c0.style.background = "#8040ff";
-                c1.style.background = "#8040ff";
-                c2.style.background = "#8040ff";
-            }
-            if(aOffset){
-                c0.style.background = "#101010";
-                c1.style.background = "#8040ff";
-                c2.style.background = "#8040ff";
-            }
-            if(aOffset === 2){
-                c0.style.background = "#101010";
-                c1.style.background = "#101010";
-                c2.style.background = "#8040ff";
-            }
-            if(aOffset === 3){
-                c0.style.background = "#101010";
-                c1.style.background = "#101010";
-                c2.style.background = "#101010";
-            }
-        }
+    UI.ShowWindow(AppLoadHandle,0);
+    UI.ShowWindow(AppMainHandle,1);
     //
-    UI.ShowWindow(AppMainHandle,0);
     let webAppBuffer = [
         "https://hcpp20334.github.io/calc.html",
         "https://hcpp20334.github.io/playerJS.html",
