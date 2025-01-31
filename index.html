@@ -6,7 +6,7 @@
     }
     .App{
         width: 100%;
-        height: 100%;
+        height:auto;
     }
     .main-content{
         width: 100%;
@@ -20,12 +20,12 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #010409; 
+  background: rgba(255, 255, 255, 0); 
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #010409; 
+    background: rgba(255, 255, 255, 0); 
   border-radius: 20px;
 }
 
@@ -35,28 +35,32 @@
 }
     .nav-bar{
         width: 100%;
-        height: 200px;
-        background: #8030ff;
+        height: 100%;
+        background-image: url("./code.png");
         transform: translateY(10px);
         z-index: 1;
         position: relative;overflow: hidden;
     
     }
     .nickname{
-        transform: translate(30px,60px);
-        display: block;
+        width: 100%;transform: translateY(0px);
+        height: 100%;
+        display: block; backdrop-filter: blur(10px);
+        background: transparent;
     }
     .text0{
-        font-size: 60px;
+        font-size: 100px;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        color: #ffffff;margin: 15px; transform: translate(0px,-40px); display: inline-block;
+        color: #ffffff; display: block;transform: translate(30px,100%);
+        
     }
     .text1{
-        font-size: 30px;
+        font-size: 20px;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         color: #ffffff;
         display: inline-block;
-        margin: 15px; transform: translate(30px,30px);
+        margin: 10px; transform: translate(5px,5px);
+        border-bottom: 4px solid transparent;
         &:hover{
             border-bottom: 4px solid #ffffff;
         }
@@ -73,21 +77,24 @@
     .text4{
         font-size: 40px;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        color: #ffffff;text-align: center;
+        color: #ffffff;transform: translate(30px,100%);
     }
     .info{
         width: 50%;
         height: auto;
-        background: #303030;
+        background: transparent;
     }
     .project{
-        border-bottom: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;width: 99%;
+        margin: 1px;
+        height: auto;
+        overflow: hidden;
     }
     .projects-content{
-        width: 100%;
-        height: 800px;
-        background: #010409;
+        width: 99%;height: 200%;
+        background: transparent;
         display: block;overflow: scroll;
+        position: absolute;
     }
     .project_shop{
         border-bottom: 2px solid #ffffff;
@@ -136,8 +143,9 @@
         margin: 15px; transform: translate(30px,5px);
     }
     .tirleP{
-        background: #20dfa5; 
-        border-radius: 10px;;
+        background: #1b1b1b; 
+        border-radius: none;
+        border: 1px solid transparent;width: 99%;
     }
     .wappb{
         font-size: 50px;
@@ -172,24 +180,40 @@
         text-align: center;
         transform: translateY(130px);
     }
+    #webgl-canvas {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+.page_buttons{
+    background: #1b1b1b;
+}
+p,h1,h2{
+    user-select: none;
+}
     </style>
+    <audio id="audio_id"></audio>
     <div class="loader" id="AppoaderID">
     <div class="cube" id="cube0"></div><div class="cube" id="cube1"></div><div  class="cube"id="cube2"></div>
     </div>
     <div class="App" id="AppId">
         <div class="nav-bar">
         <div class="nickname">
-        <h1 class="text0" onclick="mainContextShow();">HCPP STUDIO</h1>
-        </div>
-        <h1 class="text1" id="btn0">ПРОЕКТЫ</h1>
-        <h1 class="text1" id="btn1">WEBAPP</h1>
-        <h1 class="text1" id="btn2">МАГАЗИН</h1>
-        </div>
-        <div class="main-content" id="mainContent">
-            <h1 class="text3" >HCPP STUDIO</h1><p class="text4">- СТУДИЯ ПО РАЗРАБОТКЕ ПРИЛОЖЕНИИ</p>
-            <p class="text4">НА С++</p>
-        </div>
-        <div class="shop" id="shopHandleId">
+            <div class="page_buttons">
+                <h1 class="text1" id="btn0">ПРОЕКТЫ</h1>
+                <h1 class="text1" id="btn1">WEBAPP</h1>
+                <h1 class="text1" id="btn2">МАГАЗИН</h1>
+                <h1 class="text1" id="btn3">&#128266;</h1>
+            </div>
+            <br>
+          <div id="mainContent">
+            <h1 class="text0" onclick="mainContextShow();">HCPP STUDIO</h1>
+            <p class="text4">СТУДИЯ ПО РАЗРАБОТКЕ ПРИЛОЖЕНИИ</p>
+          </div>
+          <div class="shop" id="shopHandleId">
             <div class="project_shop">
                 <p class="title_projects">XVPN Базовая Подписка</p>
                 <p class="info_projects">СКОРОСТЬ ДО 10 МБИТ В СЕК</p>
@@ -278,8 +302,15 @@
             <button class="download_zip" onclick="UI.redirect(AppBuffer[1]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
            </div>
         </div>
+        </div>
+        </div>
+
+       
     </div>
+    <script src="PXEngineMain.js"></script>
     <script>
+         //import Grid1Background from 'https://cdn.jsdelivr.net/npm/threejs-components@0.0.16/build/backgrounds/grid1.cdn.min.js';
+         let d3 = 0;
     let projectButton = document.getElementById("btn0");
     let webAppButton = document.getElementById("btn1");
     let shopButton = document.getElementById("btn2");
@@ -291,7 +322,6 @@
     c2.style.transform = "translate("+((window.screen.width - 194) / 2) + "px,"+((window.screen.height - 194) / 2)+ "px)";
     c1.style.transform = "translate("+((window.screen.width - 194) / 2) + "px,"+((window.screen.height - 194) / 2)+ "px)";
     //
-    
     class App{
         ShowWindow(id_handle,cmdShow){
             if(cmdShow){
@@ -309,6 +339,7 @@
         }
     }
     let UI = new App();
+    let PXAudio = new PXEngine2D_Audio();
     let projectWindow = document.getElementById("projectHandleId");
     let WebAppWindow = document.getElementById("WebAppHandleId");
     let shopWindow = document.getElementById("shopHandleId");
@@ -321,19 +352,31 @@
     let url_2 = document.getElementById("url_2");
     let url_3 = document.getElementById("url_3");
     //
+    document.getElementById('btn3').onclick = function(){
+        d3++;
+        if(d3 > 1){d3 = 0;}
+        if(!d3){document.getElementById('btn3').innerHTML='&#128264;';
+    }
+    if(d3){
+        document.getElementById('btn3').innerHTML='&#128266;';
+    
+    }
+}
+document.getElementById('btn3').click();
+    //
     let aOffset = 0;
     let tOffset = 0;
-    let aInterval = setInterval("anim();",500);
+    let aInterval = setInterval("anim();",50);
     function anim(){
             aOffset++;
             if(aOffset > 3){
                 aOffset = 0;
                 tOffset++;
-                if(tOffset > 4){
-                    tOffset = 4;
+                if(tOffset > 10){
+                    tOffset = 10;
                     clearInterval(aInterval);
-                    UI.ShowWindow(AppMainHandle,1);
                     UI.ShowWindow(AppLoadHandle,0);
+                    UI.ShowWindow(AppMainHandle,1);
                 }
             }
             if(!aOffset){
@@ -390,7 +433,7 @@
     UI.ShowWindow(mainWindow,1);
     }
     shopButton.onclick = function(){
-        sOffset++;
+        sOffset++;if(d3){PXAudio.PXPlay();}
         if(sOffset > 1){
             sOffset = 0;
         }
@@ -408,7 +451,7 @@
         }
     }
     webAppButton.onclick = function(){
-        wOffset++;
+        wOffset++;if(d3){PXAudio.PXPlay();}
         if(wOffset > 1){
             wOffset = 0;
         }
@@ -425,8 +468,22 @@
             UI.ShowWindow(WebAppWindow,wOffset);
         }
     }
+    PXAudio.initAudio();
+    projectButton.addEventListener("mouseover",function(key){
+           
+        if(d3){PXAudio.PXPlay();}
+                   
+    });
+    webAppButton.addEventListener("mouseover",function(key){
+           
+        if(d3){PXAudio.PXPlay();}  
+});
+shopButton.addEventListener("mouseover",function(key){
+           
+           if(d3){PXAudio.PXPlay();}
+});
     projectButton.onclick = function(){
-        pOffset++;
+        pOffset++;if(d3){PXAudio.PXPlay();}
         if(pOffset > 1){
             pOffset = 0;
         }
@@ -444,4 +501,5 @@
         }
     }
     </script>
+
 </html>
