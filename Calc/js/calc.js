@@ -682,23 +682,6 @@ fCANframe.style.display = "none";
 fCapFrame.style.display = "none";
 fCalcCMframe.style.display = "none";
 }
-function loadMframe()
-{
-    window.ysdk.adv.showFullscreenAdv({});
-imgTableFrame.style.display = "none";
-fC_menu.style.display = "block";
-fC_Aframe.style.display = "none";fCalcFrameS.style.display = "none";
-fC_Wframe.style.display = "none";
-fC_Sframe.style.display = "none";
-fCalcHeater.style.display = "none";
-document.getElementById("download_panel").style.display= "none";
-fCalcRubFrame.style.display = "none";
-fCalcSecFrame.style.display = "none";
-fCalcRframe.style.display = "none";
-fCANframe.style.display = "none";
-fCapFrame.style.display = "none";
-fCalcCMframe.style.display = "none";
-}
 function loadPwireFrame()
 {
     imgTableFrame.style.display = "none";
