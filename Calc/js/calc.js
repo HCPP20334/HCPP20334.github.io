@@ -1,4 +1,23 @@
-//calc.js - Calc Code 
+let loadData = document.getElementById("main_preloader");
+//
+let txDataHash = document.getElementById("txhash");
+let txDataHash2 = document.getElementById("txhash2");
+let build_number = '1.1.D.5';
+function hashData(){
+    let hash_offset = 0;
+    let hash_seedChars = '1234567890qwertyuiopasdfgfhjklzxcvbnm';
+    let hash_size = hash_seedChars.length;
+    let hash_strKey = '';
+    for(hash_offset = 0;hash_offset < 14;hash_offset++){
+        hash_strKey += hash_seedChars[Math.floor(Math.random() * hash_size)];
+    }
+   // return hash_strKey;
+    txDataHash.innerHTML = "Сборка "+build_number+"<br>HCPP STUDIO | session_id:"+hash_strKey;
+    txDataHash2.innerHTML = build_number;
+}
+hashData();
+//document.getElementById("logo").style.transform = "translateY("+parseFloat((window.screen.height - 64) / 2)+"px)";
+setTimeout("loadData.style.height = '0px';",2000);
 //setTimeout("document.getElementById('donate').style.display= 'block';",5000);
 var fC_wattIn = document.getElementById("w_value2");
 var fC_amperIn = document.getElementById("a_value");
@@ -62,14 +81,14 @@ fThemeSelector.click();
 function loadDebugInfo(str){
     str.style.color = "#ffffff";
     str.style.fontSize = "12px";
-    str.style.fontFamily = "Monospace";
+    str.style.fontFamily = "monospace";
     str.style.display = "inline-block";
     str.innerHTML = "div_frames:"+fAllDivsFrames.length+" buttons:"+fAllButtonsFrames.length+"<br>p_tagText:"+fAllPTags.length;
 }
 function msgDebug(str,data){
     str.style.color = "#ffffff";
     str.style.fontSize = "12px";
-    str.style.fontFamily = "Monospace";
+    str.style.fontFamily = "monospace";
     str.style.display = "inline-block";
     str.style.overflow = "scroll";
     str.innerHTML += data;
@@ -83,13 +102,17 @@ fThemeSelector.onclick = function(){
     if(!tm_bool){
         //
         fThemeSelector.innerHTML = "Сменить тему: Светлая";
-        document.documentElement.style.background = '#909090';
+        document.documentElement.style.background = '#ffffff';
+        for(let i = 0; i < document.getElementsByTagName('input').length;i++){
+            document.getElementsByTagName('input')[i].style.background = '#aaaaaa';
+        document.getElementsByTagName('input')[i].style.border = '1px solid #010409';
+        }
         for (var i = 0; i < fAllDivsFrames.length; i++) {
-            fAllDivsFrames[i].style.background = '#707070';
-            fAllDivsFrames[i].style.border = '1px solid #010409';
+            
+            fAllDivsFrames[i].style.background = '#aaaaaa';
         }
         for (var i = 0; i < fAllButtonsFrames.length; i++) {
-            fAllButtonsFrames[i].style.background = '#707070';
+            fAllButtonsFrames[i].style.background = '#aaaaaa';
             fAllButtonsFrames[i].style.border = '1px solid #010409';
         }
         for (var i = 0; i < fAllPTags.length; i++) {
@@ -98,11 +121,15 @@ fThemeSelector.onclick = function(){
     }
     if(tm_bool){
         //
+        for(let i = 0; i < document.getElementsByTagName('input').length;i++){
+            document.getElementsByTagName('input')[i].style.background = '#0e0f11';
+        document.getElementsByTagName('input')[i].style.border = '1px solid #5c5e63';
+        }
         fThemeSelector.innerHTML = "Сменить тему: Темная";
         document.documentElement.style.background = '#010409';
          for (var i = 0; i < fAllDivsFrames.length; i++) {
             fAllDivsFrames[i].style.background = '#0e0f11';
-            fAllDivsFrames[i].style.border = '1px solid #5c5e63';
+            //fAllDivsFrames[i].style.border = '1px solid #5c5e63';
         }
         for (var i = 0; i < fAllButtonsFrames.length; i++) {
             fAllButtonsFrames[i].style.background = '#0e0f11';
@@ -120,17 +147,21 @@ fImgReScreen.onclick = function(){
         fImgState = 0;
     }
     if(!fImgState){
-        fImgReScreen.style = " display:block;margin: left;background: #0e0f11;width: 478px;border: none;height: 398px;border-radius: 10px;border: 1px solid #5c5e63;transition:.4s;";
+        imgTableFrame.style.maxWidth = "580px";
+        imgTableFrame.style.maxHeight = "600px";
+        fImgReScreen.style = " display:block;margin: auto;background: #0e0f11;width: 478px;border: none;height: 398px;border: 1px solid #5c5e63;transition:.4s;";
     }
     if(fImgState){
-        fImgReScreen.style = "position:absolute;z-index:1;width:100%;height:100%;transform: translate(-10px,-60px)";
+        imgTableFrame.style.maxWidth = "100%";
+        imgTableFrame.style.maxHeight = "100%";
+        fImgReScreen.style = "width:100%;height:100%;";
     }
 }
 fC_IM.oninput = function(){
-    fDI = this.value;
+    fDI = parseFloat(this.value);
 }
 fC_VM.oninput = function(){
-    fDV = this.value;
+    fDV = parseFloat(this.value);
 }
 f4800.onclick = function(){
     fMtype = 4800;
@@ -216,10 +247,10 @@ let Abuf  =  document.getElementById("A_val");
 let Bbuf  =  document.getElementById("B_val");
 let fSbuf =  document.getElementById("Sbuf");
 Abuf.oninput = function(){
-    fA_in = this.value;
+    fA_in = parseFloat(this.value);
 }
 Bbuf.oninput = function(){
-    fB_in = this.value;
+    fB_in = parseFloat(this.value);
 }
 fCalcS.onclick =  function()
 {
@@ -237,11 +268,11 @@ var fHRes = document.getElementById("Pres");
 var fPbuf  = document.getElementById("Pbuf");
 fHRes.oninput = function()
 {
-    fPR = this.value;
+    fPR = parseFloat(this.value);
 }
 fHvolt.oninput = function()
 {
-    fPV = this.value;
+    fPV = parseFloat(this.value);
 }
 fCalcP.onclick = function()
 {
@@ -255,15 +286,15 @@ fsecamp.onclick = function()
 }
 in_watt.oninput=function()
 {
-fDataWatt = this.value;
+fDataWatt = parseFloat(this.value);
 }
 in_sec.oninput=function()
 {
-fDataSec = this.value;
+fDataSec = parseFloat(this.value);
 }
 in_volt.oninput=function()
 {
-fDataVolt = this.value;
+fDataVolt = parseFloat(this.value);
 }
 fCalcSecWatt.onclick = function()
 {
@@ -313,13 +344,15 @@ function openTableFrame()
 {
     fCANframe.style.display = "none";
     imgTableFrame.style.display = "block";
-    imgTableFrame.style.width = "580px";
-    imgTableFrame.style.height = "600px";
+    imgTableFrame.style.maxWidth = "580px";
+    imgTableFrame.style.maxHeight = "600px";
+    imgTableFrame.style.width = "100%";
+    imgTableFrame.style.height = "100%";
     imgTableFrame.style.backgroundColor = "#0e0f11";
-    imgTableFrame.style.margin="left";
+    imgTableFrame.style.margin="auto";
     imgTableFrame.style.zoom = "70%";
-    imgTableFrame.style.border = "1px solid #5c5e63";
-    imgTableFrame.style.borderRadius = "10px";
+    imgTableFrame.style.borderTop = "1px solid #5c5e63";
+    imgTableFrame.style.borderBottom = "1px solid #5c5e63";
 //
 }
 //R calc
@@ -336,15 +369,15 @@ var fWs_data = 0;
 
 fPvalue.oninput = function()
 {
-    fWp_data = this.value;
+    fWp_data = parseFloat(this.value);
 }
 fIvalue.oninput = function()
 {
-    fWi_data = this.value;
+    fWi_data = parseFloat(this.value);
 }
 fSvalue.oninput = function()
 {
-    fWs_data = this.value;
+    fWs_data = parseFloat(this.value);
 }
 fRcalcButton.onclick = function()
 {
@@ -374,7 +407,7 @@ var fCout = 0;
 //
 fCANominal.oninput = function()
 {
-    fNdata = this.value;
+    fNdata = parseFloat(this.value);
     
     
 }
@@ -442,9 +475,9 @@ let fU1input =  document.getElementById("capU1");
 let fU2input =  document.getElementById("capU2");
 let fIinput =  document.getElementById("capI");
 const fCalcCapitulator =  document.getElementById("calcCapitulaor");
-fU1input.oninput = function(){U1 = this.value;}
-fU2input.oninput = function(){U2 = this.value;}
-fIinput.oninput = function(){It = this.value;}
+fU1input.oninput = function(){U1 = parseFloat(this.value);}
+fU2input.oninput = function(){U2 = parseFloat(this.value);}
+fIinput.oninput = function(){It = parseFloat(this.value);}
 fCalcCapitulator.onclick = function()
 {
     loadCframe();
@@ -499,33 +532,33 @@ fReverbBtn.onclick = function()
 }
 fDiaIn.oninput = function()
 {
-    fDia_value =  this.value;
+    fDia_value =  parseFloat(this.value);
 }
 fC_voltIn.oninput = function()
 {
-fV =this.value;
+fV =parseFloat(this.value);
 }
 fC_voltIn2.oninput = function()
 {
-fV =this.value;
+fV =parseFloat(this.value);
 }
 fC_wattIn.oninput = function()
 {
-fW = Math.trunc(this.value);
+fW = parseFloat(parseFloat(this.value));
 }
 fC_amperIn.oninput = function()
 {
-fA = Math.trunc(this.value);
+fA = parseFloat(parseFloat(this.value));
 }
 fOutRubBuf.oninput = function()
 {
     if(!fCalcSovRub)
     {
-        fOutRubResult.innerHTML =(this.value * 275);
+        fOutRubResult.innerHTML =(parseFloat(this.value) * 275);
     }
     if(fCalcSovRub)
 {
-        fOutRubResult.innerHTML = (this.value / 275);
+        fOutRubResult.innerHTML = (parseFloat(this.value) / 275);
     }
     
 }
@@ -678,6 +711,23 @@ fC_Sframe.style.display = "none";
 document.getElementById("download_panel").style.display= "none";
 fCalcRubFrame.style.display = "block";
 fCalcSecFrame.style.display = "none";
+fCANframe.style.display = "none";
+fCapFrame.style.display = "none";
+fCalcCMframe.style.display = "none";
+}
+function loadMframe()
+{
+ //window.ysdk.adv.showFullscreenAdv({});
+imgTableFrame.style.display = "none";
+fC_menu.style.display = "block";
+fC_Aframe.style.display = "none";fCalcFrameS.style.display = "none";
+fC_Wframe.style.display = "none";
+fC_Sframe.style.display = "none";
+fCalcHeater.style.display = "none";
+document.getElementById("download_panel").style.display= "none";
+fCalcRubFrame.style.display = "none";
+fCalcSecFrame.style.display = "none";
+fCalcRframe.style.display = "none";
 fCANframe.style.display = "none";
 fCapFrame.style.display = "none";
 fCalcCMframe.style.display = "none";
