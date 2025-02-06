@@ -1,0 +1,192 @@
+<html>
+<style>
+html{
+    background: linear-gradient(to right,#303040,#404090);
+}
+.keyboard{
+    width: 950px;
+    height: auto;
+    display: block;
+    margin: auto;
+    transform: translateY(300px);
+    border: 2px solid #ffffff;
+}
+.textBz{
+    font-family: 'Roboto Mono';
+    color: #ffffff;
+    margin: 10px;
+    font-size: 40px;transform: translateY(300px);
+    text-align: center;
+}
+.textBz1{
+    font-family: 'Roboto Mono';
+    color: #ffffff;
+    margin: 10px;
+    font-size: 40px;transform: translateY(300px);
+}
+.kb_b{
+    background: transparent;
+    border: 2px solid #ffffff;
+    min-width: 64px;height: 64px;width: auto;
+    font-family: 'Roboto Mono';
+    color: #ffffff;
+    margin: 10px;
+    font-size: 40px;
+    &:hover{
+        background: #ffffff;
+        color: #010409;
+    }
+}
+</style>
+<h1 class="textBz">KEYBOARD TEST</h1>
+<div class="keyboard">
+<button class="kb_b" id="kb_f1">F1</button>
+<button class="kb_b" id="kb_f2">F2</button>
+<button class="kb_b" id="kb_f3">F3</button>
+<button class="kb_b" id="kb_f4">F4</button>
+<button class="kb_b" id="kb_f5">F5</button>
+<button class="kb_b" id="kb_f6">F6</button>
+<button class="kb_b" id="kb_f7">F7</button>
+<button class="kb_b" id="kb_f8">F8</button>
+<button class="kb_b" id="kb_f9">F9</button>
+<button class="kb_b" id="kb_f10">F10</button>
+<button class="kb_b" id="kb_f11">F11</button>
+<button class="kb_b" id="kb_f12">F12</button>
+<button class="kb_b" id="kb_1">1</button>
+<button class="kb_b" id="kb_2">2</button>
+<button class="kb_b" id="kb_3">3</button>
+<button class="kb_b" id="kb_4">4</button>
+<button class="kb_b" id="kb_5">5</button>
+<button class="kb_b" id="kb_6">6</button>
+<button class="kb_b" id="kb_7">7</button>
+<button class="kb_b" id="kb_8">8</button>
+<button class="kb_b" id="kb_9">9</button>
+<button class="kb_b" id="kb_0">0</button>
+<button class="kb_b" id="kb_q">q</button>
+<button class="kb_b" id="kb_w">w</button>
+<button class="kb_b" id="kb_e">e</button>
+<button class="kb_b" id="kb_r">r</button>
+<button class="kb_b" id="kb_t">t</button>
+<button class="kb_b" id="kb_y">y</button>
+<button class="kb_b" id="kb_u">u</button>
+<button class="kb_b" id="kb_i">i</button>
+<button class="kb_b" id="kb_o">o</button>
+<button class="kb_b" id="kb_p">p</button>
+<button class="kb_b" id="kb_a">a</button>
+<button class="kb_b" id="kb_s">s</button>
+<button class="kb_b" id="kb_d">d</button>
+<button class="kb_b" id="kb_f">f</button>
+<button class="kb_b" id="kb_g">g</button>
+<button class="kb_b" id="kb_h">h</button>
+<button class="kb_b" id="kb_j">j</button>
+<button class="kb_b" id="kb_k">k</button>
+<button class="kb_b" id="kb_l">l</button>
+<button class="kb_b" id="kb_z">z</button>
+<button class="kb_b" id="kb_x">x</button>
+<button class="kb_b" id="kb_c">c</button>
+<button class="kb_b" id="kb_v">v</button>
+<button class="kb_b" id="kb_b">b</button>
+<button class="kb_b" id="kb_n">n</button>
+<button class="kb_b" id="kb_m">m</button>
+<button class="kb_b" id="kb_cl">ctrlL</button>
+<button class="kb_b" id="kb_cr">ctrlR</button>
+<button class="kb_b" id="kb_cpslck">CPSLOCK</button>
+<button class="kb_b" id="kb_altl">AltL</button>
+<button class="kb_b" id="kb_altr">AltR</button>
+<button class="kb_b" id="kb_tb">Tab</button>
+<button class="kb_b" id="kb_esc">Escape</button>
+<button class="kb_b" id="kb_shl">ShiftL</button>
+<button class="kb_b" id="kb_shr">ShiftR</button>
+</div>
+<h1 class="textBz1">PRESS ANY KEY</h1>
+<script>
+let kb_0 = document.getElementById("kb_0");
+let kb_1 = document.getElementById("kb_1");
+let kb_2 = document.getElementById("kb_2");
+let kb_3 = document.getElementById("kb_3");
+let kb_4 = document.getElementById("kb_4");
+let kb_5 = document.getElementById("kb_5");
+let kb_6 = document.getElementById("kb_6");
+let kb_7 = document.getElementById("kb_7");
+let kb_8 = document.getElementById("kb_8");
+let kb_9 = document.getElementById("kb_9");
+let kb_q = document.getElementById("kb_q");
+let kb_w = document.getElementById("kb_w");
+let kb_e = document.getElementById("kb_e");
+let kb_r = document.getElementById("kb_r");
+let kb_t = document.getElementById("kb_t");
+let kb_y = document.getElementById("kb_y");
+let kb_u = document.getElementById("kb_u");
+let kb_i = document.getElementById("kb_i");
+let kb_o = document.getElementById("kb_o");
+let kb_p = document.getElementById("kb_p");
+let kb_a = document.getElementById("kb_a");
+let kb_s = document.getElementById("kb_s");
+let kb_d = document.getElementById("kb_d");
+let kb_f = document.getElementById("kb_f");
+let kb_g = document.getElementById("kb_g");
+let kb_h = document.getElementById("kb_h");
+let kb_j = document.getElementById("kb_j");
+let kb_k = document.getElementById("kb_k");
+let kb_l = document.getElementById("kb_l");
+let kb_z = document.getElementById("kb_z");
+let kb_x = document.getElementById("kb_x");
+let kb_c = document.getElementById("kb_c");
+let kb_v = document.getElementById("kb_v");
+let kb_b = document.getElementById("kb_b");
+let kb_n = document.getElementById("kb_n");
+let kb_m = document.getElementById("kb_m");
+//
+let kb_cl = document.getElementById("kb_cl");
+let kb_cr = document.getElementById("kb_cr");
+let kb_shl = document.getElementById("kb_shl");
+let kb_shr = document.getElementById("kb_shr");
+let kb_cpslck = document.getElementById("kb_cpslck");
+let kb_tb = document.getElementById("kb_tb");
+let kb_altl = document.getElementById("kb_altl");
+let kb_altr = document.getElementById("kb_altr");
+let kb_esc = document.getElementById("kb_esc");
+//
+let kb_f1 = document.getElementById("kb_f1");
+let kb_f2 = document.getElementById("kb_f2");
+let kb_f3 = document.getElementById("kb_f3");
+let kb_f4 = document.getElementById("kb_f4");
+let kb_f5 = document.getElementById("kb_f5");
+let kb_f6 = document.getElementById("kb_f6");
+let kb_f7 = document.getElementById("kb_f7");
+let kb_f8 = document.getElementById("kb_f8");
+let kb_f9 = document.getElementById("kb_f9");
+let kb_f11 = document.getElementById("kb_f11");
+let kb_f12 = document.getElementById("kb_f12");
+//
+function activeButton(id){
+    
+    //background: #ffffff;
+    //color: #010409;
+    id.style.background="#ffffff";
+    id.style.color = "#010409";
+    setTimeout(function(){
+        id.style.background="transparent";
+        id.style.color = "#ffffff";
+    },100);
+}
+document.addEventListener("keydown",function(event){
+    key = event.code;
+    console.log(key);
+ if(key == 'Digit0'){activeButton(kb_0);} if(key == 'KeyW'){activeButton(kb_w);}if(key == 'KeyD'){activeButton(kb_d);}if(key == 'KeyB'){activeButton(kb_b);}if(key == 'Digit1'){activeButton(kb_1);}
+ if(key == 'Digit1'){activeButton(kb_1);} if(key == 'KeyE'){activeButton(kb_e);}if(key == 'KeyF'){activeButton(kb_f);}if(key == 'KeyN'){activeButton(kb_n);}if(key == 'Digit1'){activeButton(kb_1);}
+ if(key == 'Digit2'){activeButton(kb_2);} if(key == 'KeyR'){activeButton(kb_r);}if(key == 'KeyG'){activeButton(kb_g);}if(key == 'KeyM'){activeButton(kb_m);}if(key == 'Digit1'){activeButton(kb_1);}
+ if(key == 'Digit3'){activeButton(kb_3);} if(key == 'KeyT'){activeButton(kb_t);}if(key == 'KeyH'){activeButton(kb_h);}if(key == 'ControlLeft'){activeButton(kb_cl);} if(key == 'ControlRight'){activeButton(kb_cr);}
+ if(key == 'Digit4'){activeButton(kb_4);} if(key == 'KeyY'){activeButton(kb_y);}if(key == 'KeyJ'){activeButton(kb_j);}if(key == 'ShiftLeft'){activeButton(kb_shl);} if(key == 'ShiftRight'){activeButton(kb_shr);}
+ if(key == 'Digit5'){activeButton(kb_5);} if(key == 'KeyU'){activeButton(kb_u);}if(key == 'KeyK'){activeButton(kb_k);}if(key == 'CapsLock'){activeButton(kb_cpslck);} if(key == 'Escape'){activeButton(kb_esc);}
+ if(key == 'Digit6'){activeButton(kb_6);} if(key == 'KeyI'){activeButton(kb_i);}if(key == 'KeyL'){activeButton(kb_l);}if(key == 'Tab'){activeButton(kb_tb);}
+ if(key == 'Digit7'){activeButton(kb_7);} if(key == 'KeyO'){activeButton(kb_o);}if(key == 'KeyZ'){activeButton(kb_z);}if(key == 'AltLeft'){activeButton(kb_altl);}if(key == 'AltRight'){activeButton(kb_altr);}
+ if(key == 'Digit8'){activeButton(kb_8);} if(key == 'KeyP'){activeButton(kb_p);}if(key == 'KeyX'){activeButton(kb_x);}if(key == 'KeyV'){activeButton(kb_v);}if(key == 'F1'){activeButton(kb_f1);}
+ if(key == 'Digit9'){activeButton(kb_9);} if(key == 'KeyA'){activeButton(kb_a);}if(key == 'KeyC'){activeButton(kb_c);}if(key == 'F1'){activeButton(kb_f1);}if(key == 'F2'){activeButton(kb_f2);}
+ if(key == 'KeyQ'){activeButton(kb_q);} if(key == 'KeyS'){activeButton(kb_s);}if(key == 'F3'){activeButton(kb_f3);}if(key == 'F4'){activeButton(kb_f4)}if(key == 'F5'){activeButton(kb_f5);}
+ if(key == 'F1'){activeButton(kb_f1);}if(key == 'F6'){activeButton(kb_f6);}if(key == 'F7'){activeButton(kb_f7);}if(key == 'F8'){activeButton(kb_f8);}if(key == 'F9'){activeButton(kb_f9);}
+ if(key == 'F10'){activeButton(kb_f10);}if(key == 'F11'){activeButton(kb_f11);}if(key == 'F12'){activeButton(kb_f12);}
+});
+
+</script>
+</html>
