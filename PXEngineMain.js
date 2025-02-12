@@ -1,7 +1,7 @@
 console.log("module PXEngineMain.js loaded");
 class PXEngine2D_Audio{
     PX_audioEngine =  document.getElementById('audio_id');
-    filesArray = 'hover.mp3';
+    filesArray = '';
     EngineInitLogs(msg_code){
     msgCount2++;
     logInitData.innerHTML += "\n"+msgCount2+">>[PXEngine2D_Audio.js] "+ msg_code+"\n------------------------------------";
@@ -18,6 +18,9 @@ class PXEngine2D_Audio{
         logInitData.style.overflowX = "hidden";
         msgCount2 = 0;
     }
+    }
+    loadToFile(file){
+        this.filesArray = file;
     }
     initAudio(){
     console.log("Audio Device Init OK!");
