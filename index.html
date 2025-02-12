@@ -201,7 +201,17 @@
 p,h1,h2{
     user-select: none;
 }
-
+.dbg_tool{
+    width: auto;
+    height: 100px;
+    background: #010409;
+    display: inline-block;
+}
+.tx{
+    font-size: 14px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: #ffffff;
+}
     </style>
     <audio id="audio_id"></audio>
     <div class="loader" id="AppoaderID">
@@ -219,7 +229,7 @@ p,h1,h2{
             <br>
           <div id="mainContent">
             <h1 class="text0" onclick="mainContextShow();">HCPP STUDIO</h1>
-            <p class="text4">СТУДИЯ ПО РАЗРАБОТКЕ ПРИЛОЖЕНИИ</p>
+            <p class="text4" id="textid">СТУДИЯ ПО РАЗРАБОТКЕ ПРИЛОЖЕНИИ</p>
           </div>
           <div class="shop" id="shopHandleId">
             <div class="project_shop">
@@ -295,7 +305,7 @@ p,h1,h2{
             <p class="info_projects">ПРОЦЕССОР ЛЮБОЙ 2 ЯДЕРНЫЙ</p>
             <p class="info_projects">ВИДЕОКАРТА: ЛЮБАЯ С  ПОДДЕРЖКОЙ DX9 И 128 МБ ВИДЕОПАМЯТИ</p>
             <p class="info_projects">WINDOWS 7 x64 И УСТАНОВЛЕНЫЕ РЕДИСТРИБУТИВЫ VISUAL STUDIO 2019 x64</p>
-            <button class="download_zip" onclick="UI.redirect(AppBuffer[1]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
+            <button class="download_zip" onclick="UI.redirect(AppBuffer[4]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
            </div>
            <div class="project">
             <h1 class="title_projects">ELECTRIK CALC 1.0.1</h1>
@@ -307,7 +317,7 @@ p,h1,h2{
             <p class="info_projects">ПРОЦЕССОР ЛЮБОЙ 2 ЯДЕРНЫЙ</p>
             <p class="info_projects">ВИДЕОКАРТА: ЛЮБАЯ С  ПОДДЕРЖКОЙ DX12 И 256 МБ ВИДЕОПАМЯТИ</p>
             <p class="info_projects">WINDOWS 10 x64 И УСТАНОВЛЕНЫЕ РЕДИСТРИБУТИВЫ VISUAL STUDIO 2019 x64</p>
-            <button class="download_zip" onclick="UI.redirect(AppBuffer[1]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
+            <button class="download_zip" onclick="UI.redirect(AppBuffer[3]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
            </div>
         </div>
         </div>
@@ -360,15 +370,52 @@ p,h1,h2{
     let url_2 = document.getElementById("url_2");
     let url_3 = document.getElementById("url_3");
     //
+    let d3_switch = 0;
+    if(!d3_switch){
+        PXAudio.loadToFile("hover1.mp3");
+    }
     document.getElementById('btn3').onclick = function(){
         d3++;
-        if(d3 > 1){d3 = 0;}
+        if(d3 > 1){d3 = 0;d3_switch++;if(d3_switch > 2){d3_switch = 0;}if(d3_switch == 2){
+                PXAudio.loadToFile("hover.mp3");
+            }}
         if(!d3){document.getElementById('btn3').innerHTML='&#128264;';
     }
     if(d3){
         document.getElementById('btn3').innerHTML='&#128266;';
     
     }
+}
+let dbg_switch = false;
+let dbg_switchI = false;
+let d0sw = 0;
+let d0sc = new Date().getMilliseconds();
+let d0sc2 = new Date().getMilliseconds();
+document.getElementById("textid").onclick = function(){
+ d0sw++;
+ dbg_switchI = setInterval(function(){
+    if(dbg_switch){
+
+    document.getElementById("textid").innerHTML = "aOffset="+aOffset+" 'tOffset="+tOffset+"<br>pOffset="+pOffset+" wOffset="+wOffset+"<br>sOffset="+sOffset+" mOffset="+mOffset+"<br>d3:d3_switch="+d3+":"+d3_switch+"</p></div>";
+    }
+    if(!dbg_switch){
+        document.getElementById("textid").innerHTML = "СТУДИЯ ПО РАЗРАБОТКЕ ПРИЛОЖЕНИИ";
+    }
+ });
+ if(d0sw > 1){
+    d0sw = 0;
+ }
+ if(!d0sw){
+    dbg_switch = false;
+    clearInterval(dbg_switchI);
+    d0sc2 = new Date().getMilliseconds();
+    alert(d0sc + " to "+d0sc2);
+    d0sc2 = 0;d0sc = 0;
+ }
+ if(d0sw){
+    dbg_switch = true;
+    d0sc = new Date().getMilliseconds();
+ }
 }
 document.getElementById('btn3').click();
     //
@@ -385,9 +432,11 @@ document.getElementById('btn3').click();
         "https://hcpp20334.github.io/Notepad"
     ];
     let AppBuffer = [
-        "https://github.com/HCPP20334/JoyStickTest/releases/download/JoyStickTest_x64_OpenGL_1.1/JoyStickTest_x64_OpenGL3SSE4.2.zip",
-        "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/Electric_calc_release/Electik.Calc_1.0.1.x64.zip",
-        "https://github.com/rpmaster2/JoyStickTest/releases/download/1.0/Archive.zip"
+        "https://github.com/HCPP20334/JoyStickTest/releases/download/JoyStickTest_x64_OpenGL_1.1/JoyStickTest_x64_OpenGL3SSE4.2.zip",//0
+        "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/Electric_calc_release/Electik.Calc_1.0.1.x64.zip",//1
+        "https://github.com/rpmaster2/JoyStickTest/releases/download/1.0/Archive.zip",//2
+        "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/Electric_calc_release/Electik.Calc_1.0.1.x64_DX12.zip",//3
+        "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/Electric_calc_release/Electik.Calc_1.0.1.x86_DX9.zip"//4
     ];
     webAppBuffer.url;
     //
@@ -446,16 +495,16 @@ document.getElementById('btn3').click();
     PXAudio.initAudio();
     projectButton.addEventListener("mouseover",function(key){
            
-        if(d3){PXAudio.PXPlay();}
+        if(d3){PXAudio.PXPlay();} wOffset = 0;pOffset = 1;sOffset = 0;
                    
     });
     webAppButton.addEventListener("mouseover",function(key){
            
-        if(d3){PXAudio.PXPlay();}  
+        if(d3){PXAudio.PXPlay();}  wOffset = 1;pOffset = 0;sOffset = 0;
 });
 shopButton.addEventListener("mouseover",function(key){
            
-           if(d3){PXAudio.PXPlay();}
+           if(d3){PXAudio.PXPlay();}  wOffset = 0;pOffset = 0;sOffset = 1;
 });
     projectButton.onclick = function(){
         pOffset++;if(d3){PXAudio.PXPlay();}
