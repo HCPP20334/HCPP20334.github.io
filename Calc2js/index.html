@@ -1,0 +1,125 @@
+<html>
+<style>
+html{
+    background-image: linear-gradient(to right, #303030,#111111);
+}
+.text{
+    background-image: linear-gradient(90deg, #0144ff 70%, #fa0909 30%);
+    background-clip: text;
+    font-size: 80px;
+    font-family: 'system-ui';
+    color: transparent;
+    background-size: 200% 200%;
+}
+.calculator_app{
+    width: 500px;
+    height: 700px;
+    background-color: #1b1b1b;
+   display: block;
+   margin: auto;border-radius: 20px;
+}
+.calc-numpad{
+    width: 99.4%;
+    height: 60.4%;
+    background-color: transparent;
+   display: block;
+   border-radius: 20px;
+   margin: auto;
+}
+.calc-data{
+    width: 97.4%;
+    height: 131px;
+    background-color: #101010;
+   display: block;
+   transform: translateY(10px);
+   border-radius: 20px;
+   margin: auto;
+}
+.calc-numpad{
+    width: 97.4%;
+    height: 68%;
+    background-color: #201f1f;
+   display: block;
+   transform: translateY(50px);
+   border-radius: 20px;
+   margin: auto;
+}
+.numbers{
+    width: 100px;
+    height: 100px;
+    background-color: #101010;
+   display: inline-block;
+   margin: 9px;
+   border-radius: 10px;
+   font-size: 40px;
+   font-weight: bolder;
+   color: #ffffff;
+   border: none;
+   &:hover{
+    background: radial-gradient(#003cff 70%,#003cff);
+   }
+}
+.out_result{
+    font-size: 40px;
+   font-weight: bolder;
+   color: #ffffff;
+   font-weight: bolder;
+   font-family: 'system-ui';
+   float: right;
+   background: transparent;
+   border: none;
+   outline: none;
+   width: 100%;
+   height: 100%;
+}
+</style>
+<h1 class="text">CALCULATOR JS</h1>
+<div class="calculator_app">
+<div class="calc-data"><input class="out_result" id="outData"type="comment"></div>
+<div class="calc-numpad">
+<button class="numbers" onclick="fM_stack.AddCharToInput('1');">1</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('2');">2</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('3');">3</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('+');">+</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('4');">4</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('5');">5</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('6');">6</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('-');">-</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('7');">7</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('8');">8</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('9');">9</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('*');">*</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('00');">00</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('0');">0</button>
+<button class="numbers" onclick="fM_stack.clearBuffer();">C</button>
+<button class="numbers" onclick="fM_stack.CalcYouData();">=</button>
+</div>
+</div>
+<script>
+    let fBufferOffset = document.getElementById("outData");
+class calcApp{
+    out_buffer = '';
+    init(stackInputA){
+        this.out_buffer = stackInputA;
+    }
+    AddCharToText(char){
+        this.out_buffer.innerHTML = char;
+    }
+    AddCharToInput(char){
+        this.out_buffer.value += char;
+    }
+    CalcYouData(data){
+        this.out_buffer.value =  eval(this.out_buffer.value);
+    }
+    clearBuffer(){
+        this.out_buffer.value = "";
+    }
+}
+let fM_stack = new calcApp();
+let stackInputArray = '';
+fM_stack.init(fBufferOffset);
+fBufferOffset.oninput = function(){
+    stackInputArray = this.value;
+}
+</script>
+</html>
