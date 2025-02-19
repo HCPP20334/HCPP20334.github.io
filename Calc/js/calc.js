@@ -2,7 +2,7 @@ let loadData = document.getElementById("main_preloader");
 //
 let txDataHash = document.getElementById("txhash");
 let txDataHash2 = document.getElementById("txhash2");
-let build_number = '1.1.D.5';
+let build_number = '1.1.D.6';
 function hashData(){
     let hash_offset = 0;
     let hash_seedChars = '1234567890qwertyuiopasdfgfhjklzxcvbnm';
@@ -74,6 +74,8 @@ let fAllDivsFrames = document.getElementsByTagName('div');
 let fAllPTags = document.getElementsByTagName('p');
 let fAllButtonsFrames = document.getElementsByTagName('button');
 let fThemeSelector = document.getElementById('theme-change');
+//
+let fmodule_calc = document.getElementById("module_calc");
 //
 let fDebugStrData = document.getElementById('tx1');
 let debug_data = true;
@@ -603,9 +605,25 @@ fCalcHeaterBtn.onclick = function()
 {
     loadPheatFrame();
 }
-
+function loadModuleCalc(){
+    fmodule_calc.style.display = "block";
+    fCapFrame.style.display = "none";
+    imgTableFrame.style.display = "none";
+    fCANframe.style.display = "none";
+    fC_menu.style.display = "none";
+ fC_Aframe.style.display = "none";
+ fC_Wframe.style.display = "none";
+ fC_Sframe.style.display = "none";
+ document.getElementById("download_panel").style.display= "none";
+ fCalcRubFrame.style.display = "none";
+ fCalcSecFrame.style.display = "none";
+ fCalcRframe.style.display = "none";fCalcFrameS.style.display = "none";
+ fCalcHeater.style.display = "none";
+ fCalcCMframe.style.display = "none";
+}
 function loadPheatFrame()
 {
+    fmodule_calc.style.display = "none";
     fCapFrame.style.display = "none";
     imgTableFrame.style.display = "none";
     fCANframe.style.display = "none";
@@ -622,6 +640,7 @@ function loadPheatFrame()
 }
 function loadCframe()
 {
+    fmodule_calc.style.display = "none";
     fCapFrame.style.display = "block";
     imgTableFrame.style.display = "none";
     fCANframe.style.display = "none";
@@ -638,6 +657,7 @@ function loadCframe()
 }
 function loadWframe()
 {
+    fmodule_calc.style.display = "none";
 imgTableFrame.style.display = "none";
 fCalcHeater.style.display = "none";
 fC_Wframe.style.display = "block";fCalcFrameS.style.display = "none";
@@ -653,6 +673,7 @@ fCalcCMframe.style.display = "none";
 }
 function loadAframe()
 {
+    fmodule_calc.style.display = "none";
 imgTableFrame.style.display = "none";
 fCalcHeater.style.display = "none";
 fC_Aframe.style.display = "block";
@@ -670,6 +691,7 @@ fCalcCMframe.style.display = "none";
 }
 function loadSframe()
 {
+    fmodule_calc.style.display = "none";
     imgTableFrame.style.display = "none";
     fCalcHeater.style.display = "none";
 fC_Aframe.style.display = "none";
@@ -687,6 +709,7 @@ fCalcCMframe.style.display = "none";
 }
 function loadSAframe()
 {
+    fmodule_calc.style.display = "none";
     imgTableFrame.style.display = "none";
     fC_menu.style.display = "none";
 fC_Aframe.style.display = "none";fCalcFrameS.style.display = "none";
@@ -702,6 +725,7 @@ fCalcCMframe.style.display = "none";
 }
 function loadRframe()
 {
+    fmodule_calc.style.display = "none";
     imgTableFrame.style.display = "none";
 fC_menu.style.display = "none";
 fC_Aframe.style.display = "none";
@@ -717,7 +741,7 @@ fCalcCMframe.style.display = "none";
 }
 function loadMframe()
 {
- //window.ysdk.adv.showFullscreenAdv({});
+    fmodule_calc.style.display = "none";
 imgTableFrame.style.display = "none";
 fC_menu.style.display = "block";
 fC_Aframe.style.display = "none";fCalcFrameS.style.display = "none";
@@ -734,6 +758,7 @@ fCalcCMframe.style.display = "none";
 }
 function loadPwireFrame()
 {
+    fmodule_calc.style.display = "none";
     imgTableFrame.style.display = "none";
  fC_menu.style.display = "none";
  fC_Aframe.style.display = "none";

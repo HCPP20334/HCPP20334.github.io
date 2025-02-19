@@ -242,6 +242,66 @@
 <br>
 <button id="calc2" onclick="javascript:loadMframe();">Назад</button>
 </div>
+<div class="calculator_app" id="module_calc">
+<div class="calc-data"><input class="out_result" id="outData"type="comment"></div>
+<br>
+<div class="calc-numpad">
+<button class="numbers" onclick="fM_stack.AddCharToInput('1');">1</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('2');">2</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('3');">3</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('+');">+</button>
+<br>
+<button class="numbers" onclick="fM_stack.AddCharToInput('4');">4</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('5');">5</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('6');">6</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('-');">-</button>
+<br>
+<button class="numbers" onclick="fM_stack.AddCharToInput('7');">7</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('8');">8</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('9');">9</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('*');">*</button>
+<br>
+<button class="numbers" onclick="fM_stack.AddCharToInput('/');">/</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('0');">0</button>
+<button class="numbers" onclick="fM_stack.clearBuffer();">C</button>
+<button class="numbers" onclick="fM_stack.CalcYouData();">=</button>
+<br>
+<button class="numbers" onclick="fM_stack.AddCharToInput('%');">%</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput('(');">(</button>
+<button class="numbers" onclick="fM_stack.AddCharToInput(')');">)</button>
+<button class="numbers" onclick="fM_stack.closeModule();">Back</button>
+</div>
+<script>
+    let fBufferOffset = document.getElementById("outData");
+class calcApp{
+    out_buffer = '';
+    init(stackInputA){
+        this.out_buffer = stackInputA;
+    }
+    AddCharToText(char){
+        this.out_buffer.innerHTML = char;
+    }
+    AddCharToInput(char){
+        this.out_buffer.value += char;
+    }
+    CalcYouData(data){
+        this.out_buffer.value =  eval(this.out_buffer.value);
+    }
+    clearBuffer(){
+        this.out_buffer.value = "";
+    }
+    closeModule(){
+        loadMframe();
+    }
+}
+let fM_stack = new calcApp();
+let stackInputArray = '';
+fM_stack.init(fBufferOffset);
+fBufferOffset.oninput = function(){
+    stackInputArray = this.value;
+}
+</script>
+</div>
 <div id="menu">
 <div id="tle">
 <h1 class="title_frame">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
@@ -257,6 +317,7 @@
 <button id="calcSb" class="calcbtns">РАСЧЕТ ПЛОЩАДИ</button>
 <button id="calcCM" class="calcbtns">РАСЧЕТ ФАЗОСДВИГАЮЩЕГО КОНДЕНСАТОРА</button>
 <button id="calcPheat">РАСЧЕТ МОЩНОСТИ ТЕНА</button>
+<button id="calcApp" class="calcbtns" onclick="loadModuleCalc();">ОБЫЧНЫЙ КАЛЬКУЛЯТОР</button>
 <p id="txhash"></p>
 <button id="theme-change">Сменить тему</button>
 <p id="tx1"></p>

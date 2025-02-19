@@ -219,11 +219,10 @@ border-left: none;
 border-right: none;
 transition:.4s;
 }
-#watt2amp,#amp2watt,#sec2diaBtn,.btndw,#download,#srub2rrub,#sec2amp,#calcRbtn,#calcAutomatN,#calcCapitulaor,#calcPheat,#calcImpedance,#calcSb,#calcCM
+#watt2amp,#amp2watt,#sec2diaBtn,.btndw,#download,#srub2rrub,#sec2amp,#calcRbtn,#calcAutomatN,#calcCapitulaor,#calcPheat,#calcImpedance,#calcSb,#calcCM,#calcApp
 {
 font-family:monospace;
 font-size: 14px;
-background-color: #0e0f11;
 width: 250px;
 height: auto;
 min-height: 30px;
@@ -235,9 +234,12 @@ border: 1px solid #5c5e63;
 transform: translate(10px,10px);
 color:#ffffff;
 transition: .4s;
+background-image: linear-gradient(#0e0f11 50%, rgb(11, 50, 228)0%);
+background-size: 200% 200%;
+background-repeat: no-repeat;
+transition: .2s;
 &:hover{
-color: #ffffff;
-background-color: #073ef0;
+background-position: 0 100%;
 }
 }
 #table_img{display:none;}
@@ -543,4 +545,67 @@ width: fit-content;
 margin-left: auto;
 margin-right: auto;
 }
+.calculator_app{
+    display:none;
+    margin: left;
+    background: #0e0f11;
+    min-width: 300px;
+    width: 100%;
+    min-height: 506px;
+    max-width: 500px;
+    zoom: 70%;margin: auto;
+    border: 1px solid #010409;
+    border-left: none;
+    border-right: none;
+    transition:.4s;
+}
+.calc-numpad{
+    width: 360px;
+    height: 490px;
+    background-color: #0e0f11;
+   display: block;
+   border-radius: 20px;
+   margin: auto;
+}
+.calc-data{
+    width: 97.4%;
+    height: 80px;
+    background-color: #0e0f11;
+   display: block;
+   transform: translateY(10px);
+   border-radius: 2px;
+   margin: auto; border: 1px solid #010409;
+}
 
+.numbers{
+    height: 60px;
+    width: 60px;
+    color: #ffffff;
+    font-family:monospace;
+    font-size: 20px;
+    margin: 4px;
+    display: inline-block;border-radius: 8px;
+    font-weight: 700;
+    border: 2px solid #010409;
+        text-shadow: 1px 1px #010409;
+    background-image: linear-gradient(#0e0f11 50%, rgb(11, 50, 228)0%);
+    background-size: 200% 200%;
+    background-repeat: no-repeat;
+    transition: .2s;
+    &:hover{
+    background-position: 0 100%;
+    }
+}
+.out_result{
+    font-size: 40px;
+   font-weight: bolder;
+   color: #ffffff;
+   font-weight: bolder;
+   font-family: monospace;
+   float: right;
+   background: transparent;
+   border: none;
+   outline: none;
+   width: 100%;
+   height: 100%;
+}
