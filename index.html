@@ -6,11 +6,15 @@
     <style>
     html{
         background: #010409;
-        overflow-x: hidden;
+        overflow-x: hidden;animation: fadein 4s;
         overflow-y: hidden;
     }
+    @font-face {
+        font-family: 'Mst';
+        src: url("ofont.ru_Montserrat.ttf");
+    }
     .App{
-        width: 100%;
+        width: 102%;
         height:auto;
     }
     .main-content{
@@ -39,11 +43,11 @@
   background: #131212; 
 }
     .nav-bar{
-        width: 100%;
+        width: 101%;
         height: 100%;
         background-image: url("code.png");
         transform: translateY(10px);
-        z-index: 1;
+        z-index: 1;animation: fadein 4s;
         position: relative;overflow-y: auto;
     
     }
@@ -55,34 +59,55 @@
     }
     .text0{
         font-size: 100px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+         font-family: 'Mst';
         color: #ffffff; display: block;transform: translate(30px,100%);
         
     }
     .text1{
         font-size: 20px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        color: #ffffff;
+         font-family: 'Mst';
+        color: #ffffff;animation: fadein 4s;
         display: inline-block;
         margin: 10px; transform: translate(5px,5px);
         border-bottom: 4px solid transparent;
-        &:hover{
+        &:hover{ 
             border-bottom: 4px solid #ffffff;
+            text-shadow: 1px 1px 2px #ffffff;
         }
         &:active{
             background:  #ffffff;
             color: #010409;
         }
     }
+    .text_post{
+        font-size: 20px;
+         font-family: 'Mst';
+         height: 200px;
+        color: #ffffff;animation: fadein 4s;
+        text-align: left;
+        background-size: 200%;
+        &:hover{
+        background: #2c2b2b;
+    }
+    }
     .text3{
         font-size: 60px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+         font-family: 'Mst';animation: fadein 4s;
         color: #ffffff;text-align: center;
+    }
+    @keyframes fadein {
+        0%{
+            color: transparent;
+        }
+        100%{
+            opacity: 100%;
+        }
     }
     .text4{
         font-size: 40px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+         font-family: 'Mst';
         color: #ffffff;transform: translate(30px,100%);
+        animation: fadein 4s;
     }
     .info{
         width: 50%;
@@ -94,7 +119,13 @@
         margin: 2px;
         min-height: 400px;
         height: 600px;
-        zoom: 100%;
+        background-image: linear-gradient(transparent 50%, #010409);
+    background-size: 200% 200%;
+    background-repeat: no-repeat;
+    transition: .2s;
+    &:hover{
+    background-position: 0 100%;
+    }
     }
     .projects-content{
         width: 99%;height: auto;
@@ -106,15 +137,15 @@
     }
     .title_projects{
         font-size: 30px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+         font-family: 'Mst';
         color: #ffffff;
-        display: block;
+        display: block;animation: fadein 4s;
         margin: 15px; transform: translate(30px,5px);
     }
     .info_projects{
         font-size: 20px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        color: #ffffff;
+         font-family: 'Mst';
+        color: #ffffff;animation: fadein 4s;
         display: block;
         margin: 15px; transform: translate(30px,5px);
     }
@@ -126,13 +157,13 @@
     }
     .download_zip{
         font-size: 20px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+         font-family: 'Mst';
         color: #ffffff;
         display: block;
         margin: 15px; transform: translate(30px,5px);
         background: #8030ff;
         border: 2px solid #ffffff;
-       min-width: 160px;
+       min-width: 160px;animation: fadein 4s;
        margin: 15px;
        height: 40px;display: inline-block;
         &:hover{
@@ -142,7 +173,7 @@
     }
     .title_projects2{
         font-size: 50px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+         font-family: 'Mst';
         color: #ffffff;
         display: block;
         margin: 15px; transform: translate(30px,5px);
@@ -154,7 +185,7 @@
     }
     .wappb{
         font-size: 50px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+         font-family: 'Mst';
         color: #ffffff;
         width: auto;
         overflow: hidden;
@@ -177,7 +208,7 @@
     }
     .loaderText{
         font-size: 50px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+         font-family: 'Mst';
         color: #ffffff;
         width: auto;
         overflow: hidden;
@@ -194,9 +225,10 @@
   overflow: hidden;
 }
 .page_buttons{
-    background: #1b1b1b;
+    background: #010409;
     width: 100%;
     display: block;
+    height: 80px;
     margin: auto;
 }
 p,h1,h2{
@@ -210,8 +242,77 @@ p,h1,h2{
 }
 .tx{
     font-size: 14px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+         font-family: 'Mst';
         color: #ffffff;
+}
+#otherWindow{
+
+}
+.post{
+    display: block;
+    width: 90%;
+    height: auto;
+    min-height: 50px;
+    border: 1px solid #3a3939;
+    background: #1b1b1b;
+    border-radius: 8px;
+    transition: .4s;
+    background: rgba(1,4,9,0.4);
+    transform: translateX(40px);
+    margin: 20px;
+}
+.posts{
+    display: block;
+    width: 90%;
+    height: 100px;
+    min-height: 50px;
+    border: 1px solid #3a3939;
+    background: #1b1b1b;
+    border-radius: 8px;
+    transition: .4s;
+    background: rgba(1,4,9,0.4);
+    transform: translateX(40px);
+    overflow: hidden;
+    margin: 20px;
+}
+.postdata{
+    display: block;
+    width:600px;
+    height: 60px;
+    background: transparent;
+    transition: .4s;border-bottom: 1px solid #3a3939;
+    border-top: none;
+    border-left: none;
+    border-right:1px solid #3a3939;
+    font-size: 14px;
+         font-family: 'Mst';
+        color: #ffffff;
+        &:hover{
+            background: rgba(77, 78, 80, 0.4);
+        }
+}
+.tx0{
+    width:300px;
+    height: 60px;
+    font-size: 30px;
+         font-family: 'Mst';
+        color: #ffffff;
+        display: block;animation: fadein 4s;
+        margin: 15px; transform: translate(30px,5px);
+}
+.tx1{
+    width:300px;
+    height: 60px;
+    font-size: 15px;
+         font-family: 'Mst';
+        color: #ffffff;
+        display: block;;animation: fadein 4s;
+        margin: 15px; transform: translate(30px,-35px);
+}
+.pw{
+    width:600px;
+    height: 120px; transform: translate(0px,-5px);
+    border-right:1px solid #3a3939;
 }
     </style>
     <audio id="audio_id"></audio>
@@ -225,13 +326,103 @@ p,h1,h2{
                 <h1 class="text1" id="btn00">ГЛАВНАЯ</h1>
                 <h1 class="text1" id="btn0">ПРОЕКТЫ</h1>
                 <h1 class="text1" id="btn1">WEBAPP</h1>
-                <h1 class="text1" id="btn2">МАГАЗИН</h1>
+                <h1 class="text1" id="btn2">МАГАЗИН</h1> 
+                <h1 class="text1" id="btn4">ДРУГОЕ</h1>
                 <h1 class="text1" id="btn3">&#128266;</h1>
             </div>
             <br>
           <div id="mainContent">
             <h1 class="text0" onclick="mainContextShow();">HCPP STUDIO</h1>
             <p class="text4" id="textid">СТУДИЯ ПО РАЗРАБОТКЕ ПРИЛОЖЕНИИ</p>
+            <p class="text4" id="textid">С++20, JAVASCRIPT.</p>
+          </div>
+          <div id="otherWindow">
+            <div class="post">
+            <button class="postdata" onclick="UI.ReSizeWindow(pst_0);">УСТАНОВКА  ЗАПРЕТА НА WINDOWS</button>
+            <button class="postdata" onclick="UI.ReSizeWindow(pst_1);">УСТАНОВКА
+                3X-UI НА СЕРВЕР</button>
+            <div class="pw">
+                <h1 class="tx0" onclick="mainContextShow();">ПОСТЫ И ДРУГОЕ</h1>
+                <br>
+                <p class="tx1" id="textid">Пока ничего нет</p>
+            </div>
+            </div>
+            <div class="posts"  onclick="UI.ReSizeWindow(pst_0);" id="pst_0">
+                <h1 class="title_projects2">УСТАНОВКА ЗАПРЕТА НА WINDOWS</h1>
+                <h2 class="info_projects">
+                КАЧАЕМ С РЕПОЗИТОРИЯ 
+                </h2>
+                </div>
+                <div class="posts" id="pst_1" onclick="UI.ReSizeWindow(pst_1);">
+                    <h1 class="title_projects2">УСТАНОВКА
+                        3X-UI НА СЕРВЕР</h1>
+                        <h2 class="info_projects">
+                            ГАЙД ПО УСТАНОВКЕ 3X-UI НА СЕРВЕР!<br> 
+                            1. ОБНОВИМ ПАКЕТЫ УБУНТУ<br>
+                            apt update &amp;&amp; apt upgrade -y<br>
+                            Теперь установим Curl — эта утилита нужна для загрузки файлов и пакетов в терминале. Сделаем это с помощью этой команды:<br>
+                            apt install curl -y<br>
+                            2. СКАЧАЕМ 3X-UI С ГИТХАБА<br>
+                            bash &lt;(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)<br>
+                            после успешного скачивания<br>
+                            проверим работаспособность x-ui<br>
+                            и должна вылезти информация о аргументах x-ui<br>
+                            3. x-ui start<br>
+                             Смотрим Данные о Админке<br>
+                             пишем 10<br>
+                             и там должно вылезти<br>
+                             [INF] current panel settings as follows:<br>
+                            username: ваш логин<br>
+                            password: ваш пароль<br>
+                            port: ваш порт<br>
+                            webBasePath: путь к Админке<br>
+                            4. переходим в админку<br>
+                            https://ip_сервера:ваш порт/путь к Админке<br>
+                            5. настроика подключения<br>
+                            нажимаем на Добавить подключение<br>
+                            и все как тут<br>
+                            Примечание:<br>
+                            Протокол: vless 
+                            Порт IP<br>
+                            Порт: 443<br>
+                            Общий расход: 0<br>
+                            Дата окончания:<br>
+                            Протокол передачи:TCP(RAW)<br>
+                            Proxy Protocol: OFF<br>
+                            HTTP Маскировка: OFF<br>
+                            Sockopt: OFF<br>
+                            External Proxy: OFF<br>
+                            Безопасность: REALITY<br>
+                            Show: 0<br>
+                            Xver: 0<br>
+                            uTLS: chrome<br>
+                            Dest: www.apple.com:443<br>
+                            SNI: www.apple.com<br>
+                            Max Time Diff (ms): 0<br>
+                            Нажми на Get New Cert и он сам сгенерирует сам эти пункты<br>
+                            Short IDs:<br>
+                            Приватный ключ<br>
+                            Публичный ключ<br>
+                            Этот пункт пустой<br>
+                            SpiderX:/<br>
+                            Sniffing:<br> 
+                            Включено: ON<br>
+                            HTTP, TLS, QUIC, FAKEDNS - все эти галочки включить<br>
+                            остальные не трогаем<br>
+                            и сохраняем<br>
+                            6. Создаем клиента<br>
+                            нажимаем троиточие на созданным профилем<br>
+                            и добавить подключение<br> 
+                            меняем только flow: xtls-rprx-vision<br>
+                            7. Проверка<br> 
+                            Нажимаем на плюсик где наши подключения и там наш клиент и нажимает на Куар Код и кликаем на куар код и у нас скопировался ключ<br>
+                            Теперь<br>
+                            Качаем Прогу:<br>
+                            на Андроид это v2RayTun<br>
+                            На Айфон это Streisand<br>
+                            На ПК - Invisible Man XRAY или v2RayN - https://github.com/2dust/v2rayN/releases/download/7.7.0/v2rayN-windows-64.zip<br>
+                            </h2>
+                    </div>   
           </div>
           <div class="shop" id="shopHandleId">
             <div class="project_shop">
@@ -335,15 +526,27 @@ p,h1,h2{
     let projectButton = document.getElementById("btn0");
     let webAppButton = document.getElementById("btn1");
     let shopButton = document.getElementById("btn2");
+    let otherButton = document.getElementById("btn4");
     //
     let c0 = document.getElementById("cube0");
     let c1 = document.getElementById("cube1");
     let c2 = document.getElementById("cube2");
+    let pst_0 = document.getElementById("pst_0");
+    let pst_1 = document.getElementById("pst_1");
+    let pst_2 = document.getElementById("pst_2");
+    let pst_3 = document.getElementById("pst_3");
+    let pst_4 = document.getElementById("pst_4");
+    let pst_5 = document.getElementById("pst_5");
+    let pst_6 = document.getElementById("pst_6");
+    let pst_7 = document.getElementById("pst_7");
+    let pst_8 = document.getElementById("pst_8");
+    //
     c0.style.transform = "translate("+((window.screen.width - 194) / 2) + "px,"+((window.screen.height - 194) / 2)+ "px)";
     c2.style.transform = "translate("+((window.screen.width - 194) / 2) + "px,"+((window.screen.height - 194) / 2)+ "px)";
     c1.style.transform = "translate("+((window.screen.width - 194) / 2) + "px,"+((window.screen.height - 194) / 2)+ "px)";
     //
     class App{
+        call_count = 0;
         ShowWindow(id_handle,cmdShow){
             if(cmdShow){
                 id_handle.style.display = "block";
@@ -351,6 +554,21 @@ p,h1,h2{
             else{
                 id_handle.style.display = "none";
             }
+        }
+        ReSizeWindow(id){
+            this.call_count++;
+            if(this.call_count > 1){
+                this.call_count = 0;
+            }
+            if(!this.call_count){
+                id.style.height = "100px";
+            }
+            if(this.call_count){
+                id.style.height = "auto";
+            }
+        }
+        minSizeWindow(id){
+            id.style.height = "100px";
         }
         to_float(int_v){
             return parseFloat(int_v);
@@ -365,6 +583,7 @@ p,h1,h2{
     let WebAppWindow = document.getElementById("WebAppHandleId");
     let shopWindow = document.getElementById("shopHandleId");
     let mainWindow = document.getElementById("mainContent");
+    let otherWindow = document.getElementById("otherWindow");
     let AppMainHandle = document.getElementById("AppId");
     let AppLoadHandle = document.getElementById("AppoaderID");
     //
@@ -420,6 +639,7 @@ document.getElementById("textid").onclick = function(){
     d0sc = new Date().getMilliseconds();
  }
 }
+
 document.getElementById('btn3').click();
     //
     let aOffset = 0;
@@ -452,11 +672,13 @@ document.getElementById('btn3').click();
     UI.ShowWindow(WebAppWindow,0);
     UI.ShowWindow(shopWindow,0);
     UI.ShowWindow(mainWindow,1);
+    UI.ShowWindow(otherWindow,0);
     //
     function mainContextShow(){
-        UI.ShowWindow(projectWindow,0);
+    UI.ShowWindow(projectWindow,0);
     UI.ShowWindow(WebAppWindow,0);
     UI.ShowWindow(shopWindow,0);
+    UI.ShowWindow(otherWindow,0);
     UI.ShowWindow(mainWindow,1);
     }
     shopButton.onclick = function(){
@@ -470,12 +692,35 @@ document.getElementById('btn3').click();
             UI.ShowWindow(mainWindow,1);
             UI.ShowWindow(shopWindow,sOffset);
             UI.ShowWindow(WebAppWindow,0);
+            UI.ShowWindow(otherWindow,0);
         }
         if(sOffset){
             UI.ShowWindow(projectWindow,0);
             UI.ShowWindow(mainWindow,0);
             UI.ShowWindow(shopWindow,sOffset);
             UI.ShowWindow(WebAppWindow,0);
+            UI.ShowWindow(otherWindow,0);
+        }
+    }
+    otherButton.onclick = function(){
+        otOffset++;if(d3){PXAudio.PXPlay();}
+        console.log(otOffset);
+        if(otOffset > 1){
+            otOffset = 0;
+        }
+        if(!otOffset){
+            UI.ShowWindow(projectWindow,0);
+            UI.ShowWindow(mainWindow,1);
+            UI.ShowWindow(shopWindow,sOffset);
+            UI.ShowWindow(WebAppWindow,0);
+            UI.ShowWindow(otherWindow,0);
+        }
+        if(otOffset){
+            UI.ShowWindow(projectWindow,0);
+            UI.ShowWindow(mainWindow,0);
+            UI.ShowWindow(shopWindow,0);
+            UI.ShowWindow(WebAppWindow,0);
+            UI.ShowWindow(otherWindow,otOffset);
         }
     }
     webAppButton.onclick = function(){
@@ -488,12 +733,14 @@ document.getElementById('btn3').click();
             UI.ShowWindow(mainWindow,1);
             UI.ShowWindow(shopWindow,0);
             UI.ShowWindow(WebAppWindow,0);
+            UI.ShowWindow(otherWindow,0);
         }
         if(wOffset){
             UI.ShowWindow(projectWindow,0);
             UI.ShowWindow(mainWindow,0);
             UI.ShowWindow(shopWindow,0);
             UI.ShowWindow(WebAppWindow,wOffset);
+            UI.ShowWindow(otherWindow,0);
         }
     }
     PXAudio.initAudio();
@@ -518,6 +765,7 @@ document.getElementById('btn3').click();
             UI.ShowWindow(mainWindow,1);
             UI.ShowWindow(shopWindow,0);
             UI.ShowWindow(WebAppWindow,0);        
+            UI.ShowWindow(otherWindow,0);
     }
     projectButton.onclick = function(){
         if(d3){PXAudio.PXPlay();}
@@ -525,6 +773,7 @@ document.getElementById('btn3').click();
             UI.ShowWindow(mainWindow,0);
             UI.ShowWindow(shopWindow,0);
             UI.ShowWindow(WebAppWindow,0);        
+            UI.ShowWindow(otherWindow,0);
     }
     webAppButton.onclick = function(){
         if(d3){PXAudio.PXPlay();}
@@ -532,6 +781,7 @@ document.getElementById('btn3').click();
             UI.ShowWindow(mainWindow,0);
             UI.ShowWindow(shopWindow,0);
             UI.ShowWindow(WebAppWindow,1);        
+            UI.ShowWindow(otherWindow,0);
     }  
     shopButton.onclick = function(){
         if(d3){PXAudio.PXPlay();}
@@ -539,9 +789,17 @@ document.getElementById('btn3').click();
             UI.ShowWindow(mainWindow,0);
             UI.ShowWindow(shopWindow,1);
             UI.ShowWindow(WebAppWindow,0);        
+            UI.ShowWindow(otherWindow,0);
     }
     /* ****** */
-
+    otherButton.onclick = function(){
+        if(d3){PXAudio.PXPlay();}
+            UI.ShowWindow(projectWindow,0);
+            UI.ShowWindow(mainWindow,0);
+            UI.ShowWindow(shopWindow,0);
+            UI.ShowWindow(WebAppWindow,0);   
+            UI.ShowWindow(otherWindow,1);
+            alert("Раздел имеет недочеты и баги!!\nЭто бета функционал.");
+    }
     </script>
-
 </html>
