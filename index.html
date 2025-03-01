@@ -16,6 +16,7 @@
     .App{
         width: 102%;
         height:auto;
+        
     }
     .main-content{
         width: 100%;
@@ -60,7 +61,7 @@
     .text0{
         font-size: 100px;
          font-family: 'Mst';
-        color: #ffffff; display: block;transform: translate(30px,100%);
+        color: #ffffff; display: block;transform: translate(30px,50px);
         
     }
     .text1{
@@ -106,7 +107,7 @@
     .text4{
         font-size: 40px;
          font-family: 'Mst';
-        color: #ffffff;transform: translate(30px,100%);
+        color: #ffffff;transform: translate(30px,50px);
         animation: fadein 4s;
     }
     .info{
@@ -216,6 +217,12 @@
         text-align: center;
         transform: translateY(130px);
     }
+    .loader{
+        overflow-y: auto;
+        overflow-x: hidden;
+        width: 100%;
+        height: 100%;
+    }
     #webgl-canvas {
   position: fixed;
   top: 0;
@@ -314,10 +321,24 @@ p,h1,h2{
     height: 120px; transform: translate(0px,-5px);
     border-right:1px solid #3a3939;
 }
+.btnclose{
+    background-color: #3a3939;
+    color: white;
+    width:auto;
+    height: 60px;
+    font-size: 15px;
+    border: none;
+         font-family: 'Mst';
+        color: #ffffff;
+        &:hover{
+            background: #131212;
+        }
+}
     </style>
     <audio id="audio_id"></audio>
     <div class="loader" id="AppoaderID">
-    <div class="cube" id="cube0"></div><div class="cube" id="cube1"></div><div class="cube" id="cube2"></div>
+    <button class="btnclose" onclick="dbg_switch = false;">Закрыть консоль отладки</button>
+    <p class="tx0" id="loadedKernel"></p>
     </div>
     <div class="App" id="AppId">
         <div class="nav-bar">
@@ -528,6 +549,7 @@ p,h1,h2{
     let shopButton = document.getElementById("btn2");
     let otherButton = document.getElementById("btn4");
     //
+    //
     let c0 = document.getElementById("cube0");
     let c1 = document.getElementById("cube1");
     let c2 = document.getElementById("cube2");
@@ -541,44 +563,13 @@ p,h1,h2{
     let pst_7 = document.getElementById("pst_7");
     let pst_8 = document.getElementById("pst_8");
     //
-    c0.style.transform = "translate("+((window.screen.width - 194) / 2) + "px,"+((window.screen.height - 194) / 2)+ "px)";
-    c2.style.transform = "translate("+((window.screen.width - 194) / 2) + "px,"+((window.screen.height - 194) / 2)+ "px)";
-    c1.style.transform = "translate("+((window.screen.width - 194) / 2) + "px,"+((window.screen.height - 194) / 2)+ "px)";
+    
     //
-    class App{
-        call_count = 0;
-        ShowWindow(id_handle,cmdShow){
-            if(cmdShow){
-                id_handle.style.display = "block";
-            }
-            else{
-                id_handle.style.display = "none";
-            }
-        }
-        ReSizeWindow(id){
-            this.call_count++;
-            if(this.call_count > 1){
-                this.call_count = 0;
-            }
-            if(!this.call_count){
-                id.style.height = "100px";
-            }
-            if(this.call_count){
-                id.style.height = "auto";
-            }
-        }
-        minSizeWindow(id){
-            id.style.height = "100px";
-        }
-        to_float(int_v){
-            return parseFloat(int_v);
-        }
-        redirect(url){
-            window.open(url);
-        }
-    }
+
     let UI = new App();
     let PXAudio = new PXEngine2D_Audio();
+    let fPXEngineInit = new PXEngineMainDevice();
+    fPXEngineInit.init();
     let projectWindow = document.getElementById("projectHandleId");
     let WebAppWindow = document.getElementById("WebAppHandleId");
     let shopWindow = document.getElementById("shopHandleId");
@@ -586,6 +577,7 @@ p,h1,h2{
     let otherWindow = document.getElementById("otherWindow");
     let AppMainHandle = document.getElementById("AppId");
     let AppLoadHandle = document.getElementById("AppoaderID");
+    fPXEngineInit.scaleWindowToDevice(AppMainHandle);
     //
     let url_0 = document.getElementById("url_0");
     let url_1 = document.getElementById("url_1");
@@ -617,10 +609,12 @@ document.getElementById("textid").onclick = function(){
  d0sw++;
  dbg_switchI = setInterval(function(){
     if(dbg_switch){
-
-    document.getElementById("textid").innerHTML = "aOffset="+aOffset+" 'tOffset="+tOffset+"<br>pOffset="+pOffset+" wOffset="+wOffset+"<br>sOffset="+sOffset+" mOffset="+mOffset+"<br>d3:d3_switch="+d3+":"+d3_switch+"</p></div>";
+        UI.ShowWindow(AppLoadHandle,1);UI.ShowWindow(AppMainHandle,0);
+    
+    //document.getElementById("textid").innerHTML = "aOffset="+aOffset+" 'tOffset="+tOffset+"<br>pOffset="+pOffset+" wOffset="+wOffset+"<br>sOffset="+sOffset+" mOffset="+mOffset+"<br>d3:d3_switch="+d3+":"+d3_switch+"logs API<br>"+logStr+"</p>";
     }
     if(!dbg_switch){
+        UI.ShowWindow(AppLoadHandle,0);UI.ShowWindow(AppMainHandle,1);
         document.getElementById("textid").innerHTML = "СТУДИЯ ПО РАЗРАБОТКЕ ПРИЛОЖЕНИИ";
     }
  });
@@ -644,8 +638,14 @@ document.getElementById('btn3').click();
     //
     let aOffset = 0;
     let tOffset = 0;
-    UI.ShowWindow(AppLoadHandle,0);
-    UI.ShowWindow(AppMainHandle,1);
+    UI.ShowWindow(AppLoadHandle,1);
+    UI.ShowWindow(AppMainHandle,0);
+    setTimeout(function(){
+        UI.ShowWindow(AppLoadHandle,0);
+       UI.ShowWindow(AppMainHandle,1);
+    },400);
+    
+   KernelLog("load module");
     //
     let webAppBuffer = [
         "https://hcpp20334.github.io/calc.html",
