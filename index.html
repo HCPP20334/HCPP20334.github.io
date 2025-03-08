@@ -334,6 +334,26 @@ p,h1,h2{
             background: #131212;
         }
 }
+img{
+    margin: 50px;display: inline-block;
+}
+a{
+    margin: 50px;
+    display: inline-block;
+    color: white;
+    outline: none;
+    width:300px;
+    height: 60px;
+    font-size: 30px;
+         font-family: 'Mst';
+        color: #ffffff;
+        transform: translate(-80px,-90px);
+        animation: fadein 4s;
+}
+.avatar{
+    display: block;
+    margin: 10px;
+}
     </style>
     <audio id="audio_id"></audio>
     <div class="loader" id="AppoaderID">
@@ -356,6 +376,23 @@ p,h1,h2{
             <h1 class="text0" onclick="mainContextShow();">HCPP STUDIO</h1>
             <p class="text4" id="textid">СТУДИЯ ПО РАЗРАБОТКЕ ПРИЛОЖЕНИИ</p>
             <p class="text4" id="textid">С++20, JAVASCRIPT.</p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="window0" id="dolFrame">
+                <p class="tx0">Главный Долбаеб</p>
+                <div class="avatar">
+                   <img src="./pictures/dol0.png"><a  href="vk.com/eve.rust">Виктор Голиков</a>
+                </div>
+                </div>
           </div>
           <div id="otherWindow">
             <div class="post">
@@ -548,6 +585,7 @@ p,h1,h2{
     let webAppButton = document.getElementById("btn1");
     let shopButton = document.getElementById("btn2");
     let otherButton = document.getElementById("btn4");
+    let dolbaebsButton = document.getElementById("btn5");
     //
     //
     let c0 = document.getElementById("cube0");
