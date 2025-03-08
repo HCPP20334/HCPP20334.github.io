@@ -55,14 +55,65 @@ let sendCmd = document.getElementById("inject");
 cmd.oninput = function(){
   cmdData = this.value;
 }
+let scriptEdit = false;
+let mathMode = false;
 let vmjs = document.createElement("script");
 vmjs.async = "";
 document.body.appendChild(vmjs);
 sendCmd.onclick = function(){
-  vmjs.innerHTML += cmdData;
+  if(scriptEdit){
+    if(cmdData == "jsedit 0"){
+      ///mainLog("PXEngine Console v0.3");
+      mainLog("js call mode 0!!");
+      scriptEdit = false;
+    }
+    vmjs.innerHTML += cmdData;
   mainLog(">"+cmdData);
   vmjs.innerHTML += "";
   cmdData = "";
+  }
+  else{
+    if(cmdData == "--help"){
+      mainLog("PXEngine Console v0.3");
+      mainLog("jsedit 1 - js code edit mode");
+      mainLog("jsedit 0 - change command mode");
+      mainLog("math 0 to off math mode!");
+      mainLog("math 1 to on math mode!");
+      mainLog("--savelog - save logs");
+    //  mainLog("--b64  - gen you text to base64");
+    }
+    if(cmdData == "jsedit 1"){
+      ///mainLog("PXEngine Console v0.3");
+      mainLog("js call mode 1!!");
+      mainLog("Enter Javascript code!!");
+      scriptEdit = true;
+    }
+    if(cmdData == "--savelog"){
+     SaveLog();
+    }
+    if(cmdData == "math 1"){
+      ///mainLog("PXEngine Console v0.3");
+      mainLog("math mode 1!!");
+      mainLog("Enter numbers!!");
+      mathMode = true;
+      
+    }
+    if(cmdData == "math 0"){
+      ///mainLog("PXEngine Console v0.3");
+      mainLog("math mode 0!!");
+      mathMode = false;
+      
+    }
+    else{
+      mainLog("Error Command not Found!!");
+    }
+    if(mathMode){
+      mainLog(">"+eval(cmdData));
+    }
+    else{
+      mainLog(">"+cmdData);
+    }
+  }
 }
 let d = new Date();
 function mainLog(data){
@@ -112,12 +163,13 @@ class Device{
 }
 let DeviceInfo = new Device();
 let AppInit = false;
+let cssFiles = ["././css/main.css", "././css/main_mobile.css"]
 class AppUI{
   CSSReset(){
     cssLoader.rel = "stylesheet";
     cssLoader.href = "";
     setTimeout(function(){
-      cssLoader.href =  "././css/main.css";
+      cssLoader.href =  cssFiles[0];
     },100);
   }
   AppShutdown(dbg_sw,mainContent,consoleContent){
