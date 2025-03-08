@@ -1,0 +1,31 @@
+<html><head><style>
+    html{
+        background: #1b1b1b;
+    }
+    #page_wrap{
+        background: #1b1b1b;
+    }
+    </style>
+    </head><body><div id="vk_post_448295538_412" style="width: 100%; height: 627.094px; background: none;"><iframe name="fXD8a9f4" frameborder="0" src="https://vk.com/widget_post.php?app=0&amp;background=101010;width=100%25&amp;_ver=1&amp;owner_id=448295538&amp;post_id=412&amp;hash=A5URhsllg-Wnffo4zo7VrBCPHuP-&amp;from=undefined&amp;mode=&amp;startWidth=1584&amp;url=file%3A%2F%2F%2FC%3A%2FUsers%2F%25D0%2590%25D0%25B4%25D0%25BC%25D0%25B8%25D0%25BD%25D0%25B8%25D1%2581%25D1%2582%25D1%2580%25D0%25B0%25D1%2582%25D0%25BE%25D1%2580%2FDesktop%2Fprojects%2Fhtml%2Fmain%2FXVPN%2Fhash.html&amp;referrer=&amp;title=&amp;194bd766ee0" width="100%" height="90" scrolling="no" id="vkwidget1" style="overflow: hidden; height: 627.094px;"></iframe></div>
+<script>
+let strBuffer = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890";
+function genHash(str,len){
+    let out_hash = "";
+    let dsp_a = 0;
+    for(let sz_str = 0;sz_str <= len;sz_str++){
+        dsp_a++;
+        if(dsp_a == 5){
+            dsp_a = 0;
+        }
+        if(dsp_a == 4){
+            out_hash += "-";
+        }
+        out_hash += str[Math.floor(Math.random() * str.length)];
+    }
+    return out_hash;
+}
+let hashData = genHash(strBuffer,8);
+console.log(hashData);
+</script>
+</body>
+</html>

@@ -25,15 +25,16 @@
   font-size: 60px;
   font-weight: 500;
 }
-.h121, .h1221 {
+.h1212, .h12212 {
   margin: 0;
   padding: 0;
-  color: rgb(20, 19, 19);
+  color: rgb(110, 105, 105);
   text-transform: uppercase;
   line-height: 100%; font-family: 'Montserrat';
   user-select: none;
-  margin: 20px;
+  margin: 10px;text-align: center;
 }
+
 
 .h121 {
   font-size: 40px;

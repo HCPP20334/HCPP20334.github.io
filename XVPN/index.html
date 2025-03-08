@@ -1,46 +1,59 @@
 <html>
 <head>
   <link id="cssdata" rel="stylesheet" href="./css/main.css"></link>
-  <script async="" src="./script/main.js" onload="AppHandle.AppInit();AppHandle.LangUI(0);"></script>
+  <script id="module" async="" src="./script/main.js" onload="AppHandle.AppInit();AppHandle.LangUI(0);"></script>
   <meta charset="utf-8">
 </head>
 <div class="logo">
   <h1 class="h12">XVPN</h1>
-  <h2 class="h122">POWERFUL VPN</h1>
+  <h2 class="h122" id="conOn">POWERFUL VPN</h1>
+</div>
+<div id="console">
+<button class="btn" id="conState">ShutDown console</button><button class="btn" id="js_reload">Reload JS</button><button class="btn" id="css_reload">Reload CSS</button>
+<p id="con_log" class="conLog"></p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<input id="cmdjs"><button id="inject">ENTER</button>
 </div>
 <div class="va22" id="contentframeid">
   <div class='buy_data' id="payment_data"><h1 class='h121'>ОПЛАТА ЧЕРЕЗ | PAY TO</h1><button class="btn" onclick="window.open('https://t.me/hcppstudio');">TON</button><button class="btn" onclick="window.open('https://t.me/hcppstudio');">TELEGRAM (MIR CARDS)</button></div>
   <div class="xvpn_frame">
     <h1 class="h121" id="t0data">XVPN BASE</h1>
-    <h2 class="h1221" id="t1data">Supported only devices</h1>
       <h2 class="h1221" id="t2data">Speed Limit to 10 MBIT</h1>
+        <br>
         <h2 class="h1221" id="t3data"> PROTOCOL VLESS , CRYPTO REALITY</h1>
           <h2 class="h1221" id="t4data">PRICE: 3$/350 RUB per month</h1>
-            <button class="btn" onclick="AppHandle.buttonBuyUI();">BUY</button>
+            <button class="btn" onclick="AppHandle.buttonBuyUI(0);">BUY</button>
   </div>
   <div class="xvpn_frame">
     <h1 class="h121" id="t5data">XVPN BASE+</h1>
-    <h2 class="h1221" id="t6data">Supported only devices</h1>
       <h2 class="h1221" id="t7data">Speed Limit to 100 MBIT</h1>
+        <br>
         <h2 class="h1221" id="t8data"> PROTOCOL VLESS , CRYPTO REALITY</h1>
           <h2 class="h1221" id="t9data">PRICE: 6$/650 RUB per month</h1>
-            <button class="btn" onclick="AppHandle.buttonBuyUI();">BUY</button>
+            <button class="btn" onclick="AppHandle.buttonBuyUI(1);">BUY</button>
   </div>
-  <div class="xvpn_frame">
+  <div class="xvpn_frame" >
     <h1 class="h121" id="tA0data">XVPN PRO</h1>
-    <h2 class="h1221" id="tA1data">Supported only devices</h1>
       <h2 class="h1221" id="tA2data">Speed Limit to 200 MBIT</h1>
+        <br>
         <h2 class="h1221" id="tA3data"> PROTOCOL VLESS , CRYPTO REALITY</h1>
           <h2 class="h1221" id="tA4data">PRICE: 10$/1000 RUB per month</h1>
-            <button class="btn" onclick="AppHandle.buttonBuyUI();">BUY</button>
+            <button class="btn" onclick="AppHandle.buttonBuyUI(2);">BUY</button>
   </div>
 </div>
 <div class="bottom_frame">
-  <h1 class="h1212">CONTACTS</h1>
-    <h2 class="h12212">@All Right Copyright 2025</h1>
-      <h2 class="htext">Github</h1>
-        <h2 class="htext">Donate</h1>
-            <h1 class="h1212">HCPP STUDIO</h1>
+      <div class="links">
+        <h1 class="h121">CONTACTS</h1>
+        <br>
+        <h2 class="h1221">@All Right Copyright 2025</h1>
+          <br>
+            <h1 class="h1221">HCPP STUDIO</h1>
+      </div>
             <button class="lng" id="lang_btnid">EN</button>
 </div>
 </html>
