@@ -8,6 +8,7 @@ function KernelLog(log){
 }
 KernelLog("module PXEngineMain.js loaded");
 class App{
+    st = 0;
     call_count = 0;
     ShowWindow(id_handle,cmdShow){
         if(cmdShow){
@@ -16,6 +17,27 @@ class App{
         else{
             id_handle.style.display = "none";
         }
+    }
+    switchBool(f){
+      this.st = f;
+    }
+    changeBackground(id){
+     if(this.st > 1){
+        this.st = 0;
+     }
+     KernelLog("changeBackground()->"+this.st);
+     switch(this.st){
+        case 0:
+            id.style.background = "#000003";
+            KernelLog("changeBackground()->Fill Background to #010409 color offset");
+     document.getElementById("pageid").style.borderBottom  = "1px solid #3a3939";
+     break;
+        case 1:
+            KernelLog("changeBackground()->load image code.png");
+            id.style.backgroundImage = "url('code.png')";
+            document.getElementById("pageid").style.borderBottom  = "none";
+        break;
+     }
     }
     ReSizeWindow(id){
         this.call_count++;

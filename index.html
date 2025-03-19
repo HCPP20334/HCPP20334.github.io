@@ -67,7 +67,7 @@
     .text1{
         font-size: 20px;
          font-family: 'Mst';
-        color: #ffffff;animation: fadein 4s;
+        color: #ffffff;animation: fadein 4s;font-style: oblique;
         display: inline-block;
         margin: 10px; transform: translate(5px,5px);
         border-bottom: 4px solid transparent;
@@ -138,16 +138,17 @@
     }
     .title_projects{
         font-size: 30px;
-         font-family: 'Mst';
+         font-family: 'Mst';font-style: oblique;
         color: #ffffff;
         display: block;animation: fadein 4s;
         margin: 15px; transform: translate(30px,5px);
     }
     .info_projects{
         font-size: 20px;
-         font-family: 'Mst';
+         font-family: monospace;
         color: #ffffff;animation: fadein 4s;
         display: block;
+        user-select: auto;
         margin: 15px; transform: translate(30px,5px);
     }
     .webprojects{
@@ -174,10 +175,33 @@
     }
     .title_projects2{
         font-size: 50px;
-         font-family: 'Mst';
+         font-family: monospace;
+        color: #ffffff;
+        display: block;
+        text-rendering: optimizeSpeed;
+        font-style: oblique;
+        margin: 15px; transform: translate(30px,5px);
+    }
+    .title_projects3{
+        font-size: 30px;
+         font-family: monospace;font-style: oblique;
         color: #ffffff;
         display: block;
         margin: 15px; transform: translate(30px,5px);
+    }
+    .date-post{
+        font-size: 15px;
+         font-family: monospace;
+        color: #1f06ff;
+        display: inline;
+        margin: 80px;
+    }
+    .id-post{
+        font-size: 15px;
+         font-family: monospace;
+        color: #02fd73;
+        display: inline;
+        margin: 10px;
     }
     .tirleP{
         background: #1b1b1b; 
@@ -270,15 +294,15 @@ p,h1,h2{
 }
 .posts{
     display: block;
-    width: 90%;
-    height: 100px;
+    width: 100%;
+    height: auto;
     min-height: 50px;
-    border: 1px solid #3a3939;
-    background: #1b1b1b;
-    border-radius: 8px;
+    border-bottom: 1px solid #3a3939;
+    background: transparent;
+
     transition: .4s;
-    background: rgba(1,4,9,0.4);
-    transform: translateX(40px);
+    background: #161616;
+    transform: translateX(-30px);
     overflow: hidden;
     margin: 20px;
 }
@@ -347,7 +371,6 @@ a{
     font-size: 30px;
          font-family: 'Mst';
         color: #ffffff;
-        transform: translate(-80px,-90px);
         animation: fadein 4s;
 }
 .avatar{
@@ -361,9 +384,9 @@ a{
     <p class="tx0" id="loadedKernel"></p>
     </div>
     <div class="App" id="AppId">
-        <div class="nav-bar">
+        <div class="nav-bar" id="navid">
         <div class="nickname">
-            <div class="page_buttons">
+            <div class="page_buttons" id="pageid">
                 <h1 class="text1" id="btn00">ГЛАВНАЯ</h1>
                 <h1 class="text1" id="btn0">ПРОЕКТЫ</h1>
                 <h1 class="text1" id="btn1">WEBAPP</h1>
@@ -376,28 +399,26 @@ a{
             <h1 class="text0" onclick="mainContextShow();">HCPP STUDIO</h1>
             <p class="text4" id="textid">СТУДИЯ ПО РАЗРАБОТКЕ ПРИЛОЖЕНИИ</p>
             <p class="text4" id="textid">С++20, JAVASCRIPT.</p>
-           
+          
           </div>
           <div id="otherWindow">
-            <div class="post">
-            <button class="postdata" onclick="UI.ReSizeWindow(pst_0);">УСТАНОВКА  ЗАПРЕТА НА WINDOWS</button>
-            <button class="postdata" onclick="UI.ReSizeWindow(pst_1);">УСТАНОВКА
-                3X-UI НА СЕРВЕР</button>
-            <div class="pw">
-                <h1 class="tx0" onclick="mainContextShow();">ПОСТЫ И ДРУГОЕ</h1>
-                <br>
-                <p class="tx1" id="textid">Пока ничего нет</p>
-            </div>
-            </div>
             <div class="posts"  onclick="UI.ReSizeWindow(pst_0);" id="pst_0">
-                <h1 class="title_projects2">УСТАНОВКА ЗАПРЕТА НА WINDOWS</h1>
+                <h1 class="title_projects3">УСТАНОВКА ЗАПРЕТА НА WINDOWS</h1>
+                <br>
+                <p class="date-post">18.03.25</p>
+                <p class="id-post">id-203340</p>
                 <h2 class="info_projects">
-                КАЧАЕМ С РЕПОЗИТОРИЯ 
+                КАЧАЕМ С РЕПОЗИТОРИЯ <br>
+                <a href="https://github.com/bol-van/zapret-win-bundle/tree/master">https://github.com/bol-van/zapret-win-bundle/tree/master</a><br>
+                Распаковываем и запускаем от админа preset_russia.cmd
                 </h2>
                 </div>
-                <div class="posts" id="pst_1" onclick="UI.ReSizeWindow(pst_1);">
-                    <h1 class="title_projects2">УСТАНОВКА
+                <div class="posts" id="pst_1" onclick="">
+                    <h1 class="title_projects3">УСТАНОВКА
                         3X-UI НА СЕРВЕР</h1>
+                        <br>
+                        <p class="date-post">18.03.25</p>
+                        <p class="id-post">id-203341</p>
                         <h2 class="info_projects">
                             ГАЙД ПО УСТАНОВКЕ 3X-UI НА СЕРВЕР!<br> 
                             1. ОБНОВИМ ПАКЕТЫ УБУНТУ<br>
@@ -462,7 +483,7 @@ a{
                             Качаем Прогу:<br>
                             на Андроид это v2RayTun<br>
                             На Айфон это Streisand<br>
-                            На ПК - Invisible Man XRAY или v2RayN - https://github.com/2dust/v2rayN/releases/download/7.7.0/v2rayN-windows-64.zip<br>
+                            На ПК - Invisible Man XRAY или v2RayN - <a href="https://github.com/2dust/v2rayN/releases/download/7.7.0/v2rayN-windows-64.zip">https://github.com/2dust/v2rayN/releases/download/7.7.0/v2rayN-windows-64.zip</a><br>
                             </h2>
                     </div>   
           </div>
@@ -500,8 +521,8 @@ a{
             <p class="info_projects">РАЗРЯДНОСТЬ: x64</p>
             <p class="info_projects">BACKENDAPI: OpenGL3.3</p>
             <p class="title_projects">СИСТЕМНЫЕ ТРЕБОВАНИЯ</p>
-            <p class="info_projects">ПРОЦЕССОР С ПОДДЕРЖКОЙ ИНСТРУКЦИИ SSE4.2 И x64</p>
-            <p class="info_projects">ВИДЕОКАРТА: ЛЮБАЯ С  ПОДДЕРЖКОЙ OpenGL3.3 И 128 МБ ВИДЕОПАМЯТИ</p>
+            <p class="info_projects">INTEL I3-550 (1156) или Phenom x3 (am3) или ПРОЦЕССОР С ПОДДЕРЖКОЙ ИНСТРУКЦИИ SSE4.2 И x64</p>
+            <p class="info_projects">GPU Nvidia GTX550 , AMD Radeon HD 7000x series - (OpenGL3.3) или поддерживающая OpenGL3.3</p>
             <p class="info_projects">WINDOWS 10 x64 И УСТАНОВЛЕНЫЕ РЕДИСТРИБУТИВЫ VISUAL STUDIO 2019 x64 И ДРАЙВЕР XINPUT</p>
             <button class="download_zip" onclick="UI.redirect(AppBuffer[0]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
         </div>
@@ -511,7 +532,7 @@ a{
             <p class="title_projects">ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ</p>
             <p class="info_projects">ЯЗЫК: JAVA (JDK 18)</p>
             <p class="info_projects">РАЗРЯДНОСТЬ: x64</p>
-            <p class="info_projects">BACKENDAPI: DX9</p>
+            <p class="info_projects">BACKENDAPI: ?</p>
             <p class="title_projects">СИСТЕМНЫЕ ТРЕБОВАНИЯ</p>
             <p class="info_projects">ПРОЦЕССОР С ПОДДЕРЖКОЙ ИНСТРУКЦИИ x64</p>
             <p class="info_projects">ВИДЕОКАРТА: ЛЮБАЯ С  ПОДДЕРЖКОЙ  И 128 МБ ВИДЕОПАМЯТИ</p>
@@ -519,40 +540,18 @@ a{
             <button class="download_zip" onclick="UI.redirect(AppBuffer[2]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
            </div>
            <div class="project">
-            <h1 class="title_projects">ELECTRIK CALC 1.0.1</h1>
+            <h1 class="title_projects">ELECTRIK CALC 1.0.3 (ВСЕ ВЕРСИИ В ОДНОМ)</h1>
             <p class="info_projects">ФУНКЦИОНАЛЬНЫЙ КАЛЬКУЛЯТОР ДЛЯ ЭЛЕКТРИКА</p>
-            <p class="title_projects">ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ (OpenGL3)</p>
-            <p class="info_projects">ЯЗЫК: С++20</p>
-            <p class="info_projects">РАЗРЯДНОСТЬ: x64</p>
-            <p class="info_projects">BACKENDAPI: OpenGL3.3</p>
-            <p class="title_projects">СИСТЕМНЫЕ ТРЕБОВАНИЯ</p>
-            <p class="info_projects">ПРОЦЕССОР ЛЮБОЙ 2 ЯДЕРНЫЙ</p>
-            <p class="info_projects">ВИДЕОКАРТА: ЛЮБАЯ С  ПОДДЕРЖКОЙ OpenGL3.3 И 128 МБ ВИДЕОПАМЯТИ</p>
+            <p class="title_projects">ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ</p>
+            <p class="info_projects">(x64) OpenGL3.3,DX12 - С++20</p>
+            <p class="info_projects">(x86) DX9 - С++14</p>
+            <p class="info_projects">ЛЮБОЙ ПРОЦЕССОР С ПОДДЕРЖКОЙ x64 (OpenGL3.3,DX12)</p>
+            <p class="info_projects">ЛЮБОЙ ПРОЦЕССОР С ПОДДЕРЖКОЙ x86 (DX9)</p>
+            <p class="info_projects">GPU Nvidia GT250 , AMD Radeon HD 5000x series - (OpenGL3.3,DX9)</p>
+            <p class="info_projects">GPU Nvidia GTX550 , AMD Radeon HD 7000x series - (DX12) или поддерживающая DX12</p>
+            <p class="info_projects">WINDOWS 10 x64 + Visual Studio C++ Runtime 2019 (x64) - OpenGL3.3,DX12</p>
+            <p class="info_projects">WINDOWS Vista x86 + Visual Studio C++ Runtime 2012 (x86) - DX9</p>
             <button class="download_zip" onclick="UI.redirect(AppBuffer[1]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
-           </div>
-           <div class="project">
-            <h1 class="title_projects">ELECTRIK CALC 1.0.1</h1>
-           <p class="title_projects">ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ (DX9)</p>
-            <p class="info_projects">ЯЗЫК: С++14</p>
-            <p class="info_projects">РАЗРЯДНОСТЬ: x86</p>
-            <p class="info_projects">BACKENDAPI: DX9</p>
-            <p class="title_projects">СИСТЕМНЫЕ ТРЕБОВАНИЯ</p>
-            <p class="info_projects">ПРОЦЕССОР ЛЮБОЙ 2 ЯДЕРНЫЙ</p>
-            <p class="info_projects">ВИДЕОКАРТА: ЛЮБАЯ С  ПОДДЕРЖКОЙ DX9 И 128 МБ ВИДЕОПАМЯТИ</p>
-            <p class="info_projects">WINDOWS 7 x64 И УСТАНОВЛЕНЫЕ РЕДИСТРИБУТИВЫ VISUAL STUDIO 2019 x64</p>
-            <button class="download_zip" onclick="UI.redirect(AppBuffer[4]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
-           </div>
-           <div class="project">
-            <h1 class="title_projects">ELECTRIK CALC 1.0.1</h1>
-           <p class="title_projects">ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ (DX12)</p>
-            <p class="info_projects">ЯЗЫК: С++20</p>
-            <p class="info_projects">РАЗРЯДНОСТЬ: x64</p>
-            <p class="info_projects">BACKENDAPI: DX12</p>
-            <p class="title_projects">СИСТЕМНЫЕ ТРЕБОВАНИЯ</p>
-            <p class="info_projects">ПРОЦЕССОР ЛЮБОЙ 2 ЯДЕРНЫЙ</p>
-            <p class="info_projects">ВИДЕОКАРТА: ЛЮБАЯ С  ПОДДЕРЖКОЙ DX12 И 256 МБ ВИДЕОПАМЯТИ</p>
-            <p class="info_projects">WINDOWS 10 x64 И УСТАНОВЛЕНЫЕ РЕДИСТРИБУТИВЫ VISUAL STUDIO 2019 x64</p>
-            <button class="download_zip" onclick="UI.redirect(AppBuffer[3]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
            </div>
         </div>
         </div>
@@ -670,7 +669,7 @@ document.getElementById('btn3').click();
    KernelLog("load module");
     //
     let webAppBuffer = [
-        "https://hcpp20334.github.io/calc.html",
+        "https://hcpp20334.github.io/Calc",
         "https://hcpp20334.github.io/playerJS.html",
         "https://hcpp20334.github.io/VoiceAPI",
         "https://hcpp20334.github.io/CPUBench",
@@ -678,10 +677,8 @@ document.getElementById('btn3').click();
     ];
     let AppBuffer = [
         "https://github.com/HCPP20334/JoyStickTest/releases/download/JoyStickTest_x64_OpenGL_1.1/JoyStickTest_x64_OpenGL3SSE4.2.zip",//0
-        "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/Electric_calc_release/Electik.Calc_1.0.1.x64.zip",//1
+        "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/Electric_calc_release/Electrik.Calc.1.0.3.x86_64.zip",//1
         "https://github.com/rpmaster2/JoyStickTest/releases/download/1.0/Archive.zip",//2
-        "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/Electric_calc_release/Electik.Calc_1.0.1.x64_DX12.zip",//3
-        "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/Electric_calc_release/Electik.Calc_1.0.1.x86_DX9.zip"//4
     ];
     webAppBuffer.url;
     //
@@ -788,6 +785,8 @@ document.getElementById('btn3').click();
             UI.ShowWindow(shopWindow,0);
             UI.ShowWindow(WebAppWindow,0);        
             UI.ShowWindow(otherWindow,0);
+            UI.switchBool(1);
+            UI.changeBackground(document.getElementById("navid"));
     }
     projectButton.onclick = function(){
         if(d3){PXAudio.PXPlay();}
@@ -796,6 +795,8 @@ document.getElementById('btn3').click();
             UI.ShowWindow(shopWindow,0);
             UI.ShowWindow(WebAppWindow,0);        
             UI.ShowWindow(otherWindow,0);
+            UI.switchBool(1);
+            UI.changeBackground(document.getElementById("navid"));
     }
     webAppButton.onclick = function(){
         if(d3){PXAudio.PXPlay();}
@@ -804,6 +805,8 @@ document.getElementById('btn3').click();
             UI.ShowWindow(shopWindow,0);
             UI.ShowWindow(WebAppWindow,1);        
             UI.ShowWindow(otherWindow,0);
+            UI.switchBool(1);
+            UI.changeBackground(document.getElementById("navid"));
     }  
     shopButton.onclick = function(){
         if(d3){PXAudio.PXPlay();}
@@ -812,8 +815,11 @@ document.getElementById('btn3').click();
             UI.ShowWindow(shopWindow,1);
             UI.ShowWindow(WebAppWindow,0);        
             UI.ShowWindow(otherWindow,0);
+            UI.switchBool(1);
+            UI.changeBackground(document.getElementById("navid"));
     }
     /* ****** */
+    UI.ReSizeWindow(pst_1);
     otherButton.onclick = function(){
         if(d3){PXAudio.PXPlay();}
             UI.ShowWindow(projectWindow,0);
@@ -821,6 +827,8 @@ document.getElementById('btn3').click();
             UI.ShowWindow(shopWindow,0);
             UI.ShowWindow(WebAppWindow,0);   
             UI.ShowWindow(otherWindow,1);
+            UI.switchBool(0);
+            UI.changeBackground(document.getElementById("navid"));
             alert("Раздел имеет недочеты и баги!!\nЭто бета функционал.");
     }
     </script>
