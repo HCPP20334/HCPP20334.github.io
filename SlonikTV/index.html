@@ -1,0 +1,308 @@
+<html>
+<style>
+    html{
+        background: #101010;
+    }
+    video{
+        width: 90%;
+        height: 90%;
+        display: block;
+        margin: auto;
+        background-image: url("./video/orig.jpeg");
+    }
+    .panel{
+        width: 90%;
+        height: 120px;
+        display: block;
+        margin: auto;
+        background: #1a1a1a;
+    }
+    .controls{
+        width: 64px;
+        height: 64px;
+        color: #0ccf9e;
+        font-size: 64px;
+        font-weight: bolder;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: inline;
+        margin: 20px;
+        text-align: center;
+        user-select: none;text-shadow: 1px 1px  #3ec054;
+        
+    }
+    .controls2{
+        width: 64px;
+        height: 64px;
+        color: #0ccf9e;
+        font-size: 30px;
+        font-weight: bolder;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: inline;
+        margin: 20px;
+        text-align: center;
+        user-select: none;text-shadow: 1px 1px  #3ec054;
+        
+    }
+    .text,.tx{
+        font-size: 40px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        color: #3ec054;
+        text-shadow: 1px 1px  #0ccf9e;
+        transform: translateY(80px);
+    }
+    .tx2{
+        font-size: 32px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        color: #3ec054;
+        text-shadow: 1px 1px  #0ccf9e;
+    }
+    .tx3{
+        font-size: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        transform: translateX(100px);
+        color: #ff0000;
+    }
+    #time{
+        font-size: 20;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        transform: translate(0px,10px);
+        color: #f1fff4;
+    }
+    .btns{
+        display: block;
+        margin: auto;
+        transform: translate(10px,0px);
+    }
+    input{
+        -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+    }
+    input[type="range"]::-webkit-slider-runnable-track {
+  background: #1d1e1f;
+  height: 20px;border-radius: 10px;
+}
+
+/******** Firefox ********/
+input[type="range"]::-moz-range-track {
+  background: #053a5f;
+  height: 0.5rem;
+}
+input[type="range"]::-webkit-slider-thumb {
+   -webkit-appearance: none; /* Override default look */
+   background-color: #3ec054;
+   transition: .4s;
+   height: 20px;
+   width: 1rem;    
+   box-shadow: calc(-100vmax - 18px) 0 0 100vmax #3ec054;
+}
+#timeline{
+    width: 100%;
+}
+</style>
+<title>СЛОНИК ТВ</title>
+<audio id="audio"></audio>
+<h1 class="text">СЛОНИК ТВ</h1>
+<video id="video_player_obs" >
+</video>
+<div class="panel">
+    <p id="time" >0:0</p>
+    <input type="range" id="timeline" step="0.10" min="0" value="0">
+    <div class="btns">
+        <input type="range" min="0" max="1" step="0.1" id="volume" value="0.3" title="громкость">
+        <h1 class="controls2" id="prev" title="Следующее видео"><</h1>
+        <h1 class="controls2" id="next" title="Предыдущие видео">></h1>
+        <p id="volume_offset" class="controls2">30%</p>
+        <p id="video_id" class="controls2">Видео:0/13</p>
+        <p id="video_state" class="controls2">Пауза</p>
+    </div>
+</div>
+<h1 class="tx3">SlonikPlayerJS build 1.0.2.3a by HCPP</h1>
+<h1 class="tx3">Спасибо DIMA XP за Сервер!! его сайт dimaxp.sytes.net</h1>
+<h1 class="tx3">https://github.com/hcpp20334</h1>
+<h1 class="tx3">https://www.youtube.com/@HCPP20334</h1>
+<script>
+    let vtprev = document.getElementById("prev");
+    let vtnext = document.getElementById("next"); 
+    let abuffer = document.getElementById("audio");
+    let volumeBar = document.getElementById("volume");
+    let volume_offset = document.getElementById("volume_offset");
+    let video_id = document.getElementById("video_id");
+    let video_state = document.getElementById("video_state");
+    class Video{
+        
+        videoPlayer;
+        vid = 0;
+        videoPlayer = "";
+        playlist =
+        [
+            
+            "http://dimaxp.sytes.net/video/SlonikTV/14_03_2025__19_25_26_HCPP__Rust.mp4",
+            "http://dimaxp.sytes.net/video/SlonikTV/15_03_2025__12_14_59_HCPP__PHP.mp4",
+            "http://dimaxp.sytes.net/video/SlonikTV/16_03_2025__07_06_24_HCPP__multithreading_async_.mp4",
+            "http://dimaxp.sytes.net/video/SlonikTV/16_03_2025__13_03_57_HCPP__.mp4",
+            "http://dimaxp.sytes.net/video/SlonikTV/19_03_2025__01_54_16_HCPP__Python.mp4",
+            "http://dimaxp.sytes.net/video/SlonikTV/19_03_2025__08_28_53_HCPP__Java.mp4",
+            "http://dimaxp.sytes.net/video/SlonikTV/20_03_2025__22_17_03_HCPP_UI__js.mp4",
+            "http://dimaxp.sytes.net/video/SlonikTV/21_03_2025__12_11_10_HCPP__Linux__Windows__mac_os.mp4",
+            "http://dimaxp.sytes.net/video/SlonikTV/22_03_2025__17_23_43_HCPP___.mp4",
+            "http://dimaxp.sytes.net/video/SlonikTV/24_03_2025__01_39_45_HCPP________Ruby.mp4",
+            "http://dimaxp.sytes.net/video/SlonikTV/24_03_2025__22_39_28_HCPP__IT_________.mp4",
+            "http://dimaxp.sytes.net/video/SlonikTV/25_03_2025__00_39_08_HCPP__OpenGL_Vulkan.mp4",
+            "http://dimaxp.sytes.net/video/SlonikTV/27_03_2025__19_47_51_HCPP____Intel_AMD__.mp4",
+
+
+        ];
+        status(st){
+        if(st){
+            this.videoPlayer.play();
+            video_state.innerHTML = "Играет..";
+        }
+        if(!st){
+            this.videoPlayer.pause();
+            video_state.innerHTML = "Пауза";
+        }
+       }
+        initPlayer(id){
+            this.videoPlayer = id;
+        }
+        select(idv){
+            this.vid = idv;
+            if(idv > this.playlist.length){
+                this.vid  = 0;
+            }
+            if(idv < 0){
+                this.vid  = this.playlist.length;
+            }
+        }
+       init(){
+        this.videoPlayer.loop = true;
+        this.videoPlayer.src = this.playlist[this.vid];
+       }
+       volume(vOffset){
+        this.videoPlayer.volume = vOffset;
+        if(vOffset > 1){
+            vOffset = 0;
+            alert("Пидарас обосрался!! Ты понимаешь что ты поехавший громкость максимум!");
+        }
+       }
+    }
+    class Audio{
+        audioHandle;
+        file = "http://dimaxp.sytes.net/video/SlonikTV/смыв.mp3";
+        initAudio(id){
+            this.audioHandle = id;
+        }
+        init(){
+            this.audioHandle.src = this.file;
+        }
+        audioPlay(){
+            this.audioHandle.play();
+        }
+        volume(vOffset){
+        this.audioHandle.volume = vOffset;
+        if(vOffset > 1){
+            vOffset = 0;
+            alert("Пидарас обосрался!! Ты понимаешь что ты поехавший громкость максимум!");
+        }
+       }
+    }
+    let vts = 0;
+    let VideoPlayer = new Video();
+    let AudioPlayer = new Audio();
+    let timeline = document.getElementById("timeline");
+    AudioPlayer.initAudio(abuffer);
+    AudioPlayer.init();
+    let max_videos = VideoPlayer.playlist.length;
+    VideoPlayer.initPlayer(document.getElementById("video_player_obs"));
+    VideoPlayer.init();
+    let fVolumeOffset = 0;
+    let vt_count = 0;
+    let str_data;
+    let str_data2;
+    let pl_adur ;
+    let fPLAudioMin;
+    let fPLAudioSec 
+    let fPLAudioMin2;
+    let fPLAudioSec2;
+    VideoPlayer.volume(0.3);
+    fVolumeOffset = volumeBar.value;
+    document.getElementById("video_player_obs").addEventListener("timeupdate",function(){
+    pl_adur = parseFloat(document.getElementById("video_player_obs").duration);
+    console.log(pl_adur);
+     fPLAudioMin = parseFloat( Math.floor(pl_adur / 60));
+     fPLAudioSec = parseFloat(Math.floor(pl_adur % 60));
+     fPLAudioMin2 = parseFloat( Math.floor(this.currentTime / 60));
+     fPLAudioSec2 = parseFloat(Math.floor(this.currentTime % 60));
+     str_data= `${fPLAudioMin}:${fPLAudioSec}`;
+     str_data2= `${fPLAudioMin2}:${fPLAudioSec2}`;
+     timeline.value = this.currentTime;
+     document.getElementById("time").innerHTML = str_data2 + "|"+str_data;
+        });
+        timeline.oninput = function(){
+            document.getElementById("video_player_obs").currentTime = this.value;
+        }
+    volumeBar.oninput = function(){
+        AudioPlayer.audioPlay();
+        console.log(fVolumeOffset);
+        fVolumeOffset = this.value;
+        VideoPlayer.volume(fVolumeOffset);
+        AudioPlayer.volume(fVolumeOffset);
+        volume_offset.innerHTML = (fVolumeOffset * 100)+"%"; 
+        if(volume_offset > 0.5)
+         {
+            volume_offset.style.color = "#f0ff33";
+         }
+        if(fVolumeOffset == 1){
+            alert("Пидарас обосрался!! Ты понимаешь что ты поехавший громкость максимум!");
+        }
+    }
+    document.getElementById("video_player_obs").onclick = function(){
+        AudioPlayer.audioPlay();
+       vts++;
+       if(vts > 1){
+        vts = 0;
+       }
+       VideoPlayer.status(vts);
+    }
+    vtnext.onclick = function(){
+        AudioPlayer.audioPlay();
+        vt_count++;
+        if(vt_count > max_videos){
+            
+            vt_count = 0;
+        }
+        if(vt_count < 0){
+            vt_count = max_videos;
+        }
+        video_id.innerHTML = "Видео:"+vt_count+"/"+max_videos;
+        VideoPlayer.select(vt_count);
+        VideoPlayer.init();
+        VideoPlayer.status(1);
+
+    }
+    vtprev.onclick = function(){
+        AudioPlayer.audioPlay();
+        vt_count--;
+        if(vt_count > max_videos){
+            
+            vt_count = 0;
+        }
+        if(vt_count < 0){
+            vt_count = max_videos;
+        }
+        video_id.innerHTML = "Видео:"+vt_count+"/"+max_videos;
+        VideoPlayer.select(vt_count);
+        VideoPlayer.init();
+        VideoPlayer.status(1);
+
+    }
+</script>
+</html>
