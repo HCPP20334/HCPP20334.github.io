@@ -1,0 +1,271 @@
+<html>
+<style>
+html{
+    background: #202020;
+}
+@font-face {
+    font-family: 'Monoserrat';
+    src: url("static/Montserrat-Regular.ttf");
+}
+.main{
+    background: #101010;
+    background-image: url("pic/freepik__upload__83643.png");
+    width: 100%;
+    height: 100%;
+    animation: fadein 4s;
+}
+
+.infowindow{
+    background: #202020;
+    width: 100%;
+    height: auto;margin: 30px;
+}
+.navbar{
+    background: transparent;
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid #595963;
+}
+.navbtn{
+    color: #ffffff;
+    background: transparent;
+    border: none;
+    display: inline;
+    font-size: 25px;
+    font-family: 'Monoserrat'; animation: fadein 4s;
+}
+.infotext{
+    color: #ffffff;
+    margin: 10px;
+    font-size: 25px;
+    display: inline;
+    font-weight: bold;
+    font-family: 'Monoserrat';
+    border-bottom: 3px solid #010101; animation: fadein 4s;
+}
+.navb{ 
+    display: block;
+    margin: auto; animation: fadein 4s;
+}
+.maintext{
+    text-align: center;
+    font-size: 60px;
+    color: #ffbf0ff5;
+    font-family: 'Monoserrat';
+    text-shadow: 0px 1px 3px #010101;
+
+}
+@keyframes fadein {
+        0%{
+            color: transparent;
+        }
+        100%{
+            opacity: 100%;
+        }
+    }
+.maintext2{
+    text-align: center;
+    font-size: 20px;
+    color: #ffffff;
+    font-family: 'Monoserrat';transition: .4s;
+    
+
+}
+.maintext3{
+    text-align: left;
+    font-size: 20px;
+    color: #ffffff;
+    font-family: 'Monoserrat';transition: .4s;
+    
+
+}
+.about0{
+    width: 550px;
+    height: 260px;
+    display: inline-block;
+    background: transparent;
+    margin-left: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 2px solid #ffffff;
+    overflow: hidden;transition: .4s;
+}
+.line{
+  width: 400px;
+  height: 5px;
+  bottom: 0;
+  left: 200;
+  background-color: #010101;
+  transition: all .1s linear;
+  margin: auto;
+}
+.infodata{
+    display: block;
+    margin: auto;
+    width: 90%;
+    height: 90%;
+}
+.links_button{
+    display: block;
+    margin: auto;
+    width: 100%;
+    height: 40px;
+    background: #ffbf0ff5;
+}
+.links{
+    background: #ffbf0ff5;
+    border: none;font-family: 'Monoserrat';
+    font-size: 20px;
+    width: 150px;height: 40px;
+    border: 3px solid #ffbf0ff5;
+    color: #ffffff;
+    border-radius: 10px;
+    transition: .4s;
+    &:hover{
+        background: #ffffff;
+        color: #010101;
+    }
+}
+.uslugi,.o_nas,.contact{
+    width: 350px;
+    height: 0px;
+    background: #ffbf0ff5;
+    position: absolute;
+    transform: translateY(35px);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transition: .4s;overflow: hidden;
+}
+.text{
+    text-align: left;
+    font-size: 20px;
+    color: #010101;
+    font-family: 'Monoserrat';transition: .4s;
+    transform: translateX(10px);
+    font-weight: bold;
+}
+.text2{
+    text-align: left;
+    font-size: 18px;
+    color: #010101;
+    font-family: 'Monoserrat';transition: .4s;
+    transform: translateX(10px);
+    font-weight: bold;
+}
+img{
+    width: 64px;transform: translateX(10px);
+    height: 64px;margin: 10px;
+}
+.links2
+{
+    background: #ffbf0ff5;
+    border: none;font-family: 'Monoserrat';
+    font-size: 20px;
+    width: 150px;height: 40px;
+    border: 3px solid #000000f5;
+    color: #ffffff;
+    border-radius: 10px;
+    display: block;
+    transition: .4s;transform: translateX(20px);
+    &:hover{
+        background: #ffffff;
+        color: #010101;
+    }
+}
+
+</style>
+<div class="main">
+    <div class="uslugi" id="uslugiid">
+    <p class="text">- поиск людей, биологических родственников, восстановление родственных связей;</p>
+    <p class="text">- интернет розыск;</p>
+    <p class="text">- сбор интересующей информации;</p>
+    <p class="text">- прояснение ситуаций в семейных отношениях;</p>
+    <p class="text">- возможности в сотовой связи;</p>
+    <p class="text">- наблюдение и фиксация;</p>
+    <p class="text">- поиск по фото;</p>
+    <p class="text">
+        Если вас интересует другие услуги, их обсуждаем в личных сообщениях.
+    </p>
+    </div>
+    <div class="contact" id="contactid">
+        <p class="text2">Наш адрес: <br>г.Волгоград ,<br>ул. Кразнознаменская, 7</p>
+        <p class="text2">Телефон: +7 925 661 30 91</p>
+        <img src="./pic/whatapp.png" title="Написать в whatapp" onclick="window.open('https://api.whatsapp.com/send/?phone=79256613091&text&type=phone_number&app_absent=0')">
+        <img src="./pic/images.png" title="Написать в Telegram" onclick="window.open('https://t.me/+79256613091')">
+        <button class="links2" onclick="window.open('tel://+79256613091')">Позвонить</button>
+        </div>
+    <div class="o_nas" id="aboutid">
+        <p class="text2">
+        Мы находимся  в г.Волгоград. <br>Имеем опыт работы более 10 лет.
+        Обладаем возможностью работать во многих странам СНГ и дальнего Зарубежья.<br>
+          МЫ РАБОТАЕМ ПО ВСЕМУ МИРУ.
+          Наше агентство является членом Международной Организацией Детективов (МОД)
+        </p>
+        </div>
+    <div class="links_button">
+        <button class="links" onclick="ui.show(aboutid)">О нас</button>
+        <button class="links" onclick="ui.show(uslugiid)">Услуги</button>
+        <button class="links" onclick="ui.show(contactid)">Контакты</button>
+    </div>
+    <br>
+    <br>
+    <br>
+<h1 class="maintext">ЧАСТНОЕ ДЕТЕКТИВНОЕ АГЕНСТВО<br>
+    Тайное и Явное<div class="line"></div></h1>
+</div>
+<div class="infodata">
+    <div class="infowindow">
+        <h1 class="maintext">
+            ПРОФЕССИОНАЛЬНЫЕ ДЕТЕКТИВНЫЕ УСЛУГИ
+        </h1>
+       
+    </div>
+   <di class="about">
+    <h1 class="maintext">
+        РАЗЫСКИВАЕМ ЛЮДЕЙ
+    </h1>
+    <h1 class="maintext3">
+        Действительно, а как найти биологических родителей? <br>
+        Если перед Вами стоит такая задача, мы поможем её решить. <br>
+        Наше агентство занимается поисками биологических родителей и родственников.<br>
+        Мы можем быстро и качественно выполнить эту поисковую работу. <br>
+        Сфера нашей деятельности распространяется на страны бывшего Советского союза, которые входят в состав Содружества Независимых Государств (СНГ). <br>
+        Не имеет никакого значения, где вы живете сейчас, мы сможем помочь Вам найти этих людей или этого человека.<br>
+        <br>
+        Мы помогли очень многим людям найти родных и близких, поэтому поможем и Вам!<br>
+        
+        Страны, в которых уже неоднократно приходилось осуществлять поиски био-родителей это: Россия, Украина, Белоруссия, Казахстан, Молдавия, Армения, Грузия, Азербайджан, Кыргызстан и Узбекистан, А также Америка, Канада, Новая Зеландия, и другие страны
+        <br>
+        За время нашей продолжительной работы мы смогли помочь людям найти своих родителей, найти матерей, отцов, братьев и сестер. <br>
+        Это очень трогательные моменты, когда спустя много лет люди снова находят друг друга. <br>
+        Все наши клиенты остались довольны качеством выполненной работы и сотрудничеством с нами, люди пишут отзывы, благодарят. <br>
+        
+        Если Вы решили найти своих биологических родителей, пишите.
+        <br>
+        <br>
+    </h1>
+   </div>
+</div>
+<script>
+    let uslugiid = document.getElementById("uslugiid");
+    let aboutid = document.getElementById("aboutid");
+    let contactid = document.getElementById("contactid");
+    class UI{
+        g = 0;
+        show(id){
+           this.g++;
+           if(this.g > 1){
+            this.g = 0;
+           }
+           if(!this.g){
+            id.style.height = "0px";
+           }
+           if(this.g){
+            id.style.height = "500px";
+           }
+        }
+    }
+    let ui = new UI();
+
+</script>
+</html>
