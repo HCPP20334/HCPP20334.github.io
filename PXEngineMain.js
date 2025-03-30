@@ -7,6 +7,13 @@ function KernelLog(log){
     logStr += "\n[PXEngine]->"+log;
 }
 KernelLog("module PXEngineMain.js loaded");
+let fBNav0 = document.getElementById("bv0");
+        let fBNav1 = document.getElementById("bv1");
+        let fBNav2 = document.getElementById("bv2");
+        let fBNav3 = document.getElementById("bv3");
+        let fBNav4 = document.getElementById("bv4");
+        let fBNav5 = document.getElementById("bv5");
+        let fBNav6 = document.getElementById("bv6");
 class App{
     st = 0;
     call_count = 0;

@@ -64,6 +64,11 @@
         color: #ffffff; display: block;transform: translate(30px,50px);
         
     }
+    .textld{
+        font-size: 40px;
+         font-family: 'Mst';
+        color: #ffffff;   position: absolute;
+    }
     .text1{
         font-size: 20px;
          font-family: 'Mst';
@@ -328,7 +333,7 @@ p,h1,h2{
     font-size: 30px;
          font-family: 'Mst';
         color: #ffffff;
-        display: block;animation: fadein 4s;
+        display: none;animation: fadein 4s;
         margin: 15px; transform: translate(30px,5px);
 }
 .tx1{
@@ -351,6 +356,7 @@ p,h1,h2{
     width:auto;
     height: 60px;
     font-size: 15px;
+    display: none;
     border: none;
          font-family: 'Mst';
         color: #ffffff;
@@ -377,11 +383,29 @@ a{
     display: block;
     margin: 10px;
 }
+.ball{
+            width: 32px;
+            height: 32px;display: inline-block;
+            transform: translateX(220px);
+            background: #0059ff;transition: .1s;
+            overflow: hidden;
+            
+        }
+        .ld{
+            display: block;
+            width: 300px;
+            height: 100px;
+            
+        }
     </style>
     <audio id="audio_id"></audio>
     <div class="loader" id="AppoaderID">
     <button class="btnclose" onclick="dbg_switch = false;">Закрыть консоль отладки</button>
     <p class="tx0" id="loadedKernel"></p>
+    <div class="ld" id="loadid2">
+        <h1 class="textld" id="loadid2tx">HCPP STUDIO</h1>
+        <div class="ball" id="bl0"></div> <div class="ball"  id="bl1"></div> <div class="ball"  id="bl2"></div> <div class="ball"  id="bl3"></div>
+    </div>
     </div>
     <div class="App" id="AppId">
         <div class="nav-bar" id="navid">
@@ -559,6 +583,7 @@ a{
 
        
     </div>
+    <script src="pxengine_1.0.js"></script>
     <script src="PXEngineMain.js"></script>
     <script>
          //import Grid1Background from 'https://cdn.jsdelivr.net/npm/threejs-components@0.0.16/build/backgrounds/grid1.cdn.min.js';
@@ -570,6 +595,10 @@ a{
     let otherButton = document.getElementById("btn4");
     let dolbaebsButton = document.getElementById("btn5");
     //
+    let loadid = document.getElementById("loadid2");
+    let loadidtx = document.getElementById("loadid2tx");
+    loadid.style.transform = "translate("+parseInt((window.screen.width - 600) / 2)+"px,"+parseInt((window.screen.height - 100) / 2)+"px)";
+    loadidtx.style.transform = "translate("+parseInt((600 - 320) / 2)+"px,"+parseInt((600 - 940) / 2)+"px)";
     //
     let c0 = document.getElementById("cube0");
     let c1 = document.getElementById("cube1");
@@ -584,11 +613,16 @@ a{
     let pst_7 = document.getElementById("pst_7");
     let pst_8 = document.getElementById("pst_8");
     //
-    
+    let AnimationHandle;
     //
 
     let UI = new App();
     let PXAudio = new PXEngine2D_Audio();
+    let PX = new PXEngine();
+    PX.init();
+    AnimationHandle = setInterval(function(){
+            PX.animload();
+        },100)
     let fPXEngineInit = new PXEngineMainDevice();
     fPXEngineInit.init();
     let projectWindow = document.getElementById("projectHandleId");
@@ -664,7 +698,7 @@ document.getElementById('btn3').click();
     setTimeout(function(){
         UI.ShowWindow(AppLoadHandle,0);
        UI.ShowWindow(AppMainHandle,1);
-    },400);
+    },1500);
     
    KernelLog("load module");
     //
