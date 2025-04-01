@@ -1,1 +1,0 @@
-loop { print "\r*"; sleep 0.5; print "\r-"; sleep 0.5 }
