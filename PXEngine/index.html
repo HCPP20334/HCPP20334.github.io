@@ -1,0 +1,148 @@
+<html>
+<style>
+    html{
+        background: #01040e;
+    }
+    .pxtext{
+        font-size: 20px;
+        font-family: monospace;
+        color: #f7f9ff;
+        transform: translateX(30px);
+        width: 300px;
+        font-style: oblique;
+        text-transform: uppercase;
+    }
+    .pxtext2{
+        font-size: 20px;
+        font-family: monospace;
+        color: #01040e;
+        text-align: center;
+        font-style: oblique; 
+        margin: 10px;
+        text-transform: uppercase;
+    }
+    .pxtext1{
+        font-size: 15px;
+        font-family: monospace;
+        color: #92a2ff;
+        text-align: left;
+        font-style: oblique;
+        margin: 10px;
+        transform: translateX(20px);
+    }
+    .pxtext3{
+        font-size: 15px;
+        font-family: monospace;
+        color: #92a2ff;
+        text-align: left;
+        font-style: oblique;display: inline-block;
+        text-transform: uppercase;
+        margin: 10px;
+        transform: translateX(20px);
+    }
+    .textarea{
+        width: 100%;
+        height: auto;
+        border: 1px solid #92a2ff;
+         margin: 10px;
+    }
+    .download{
+        background: #92a2ff;
+        font-size: 20px;
+        font-family: monospace;
+        color: #01040e;display: inline-block;
+        border: 1px solid #01040e;
+        &:hover{
+            background: #464749;
+            color: #ffffff;
+        }
+    }
+    .nav{
+        background: #92a2ff;
+        width: 101%;transform: translateX(5px);
+        font-size: 20px;height: 30px;
+    }
+    </style>
+    <div class="nav">
+        <h1 class="pxtext2">PXEngine 1.0 </h1>
+        
+    </div>
+    <div class="textarea">
+        <h1 class="pxtext1">//add you code"</h1>
+        <h1 class="pxtext1">script src="pxengine_1.0.js"</h1>
+    </div>
+    <h1 class="pxtext3">Powerful gui app api to js!!</h1>    <button class="download" onclick="window.open('https://hcpp20334.github.io/Engine/pxengine_1.0.js')">DOWNLOAD</button>
+    <div class="textarea">
+        <p class="pxtext1">
+            <br> GUI Functions
+            </p>
+    <p class="pxtext1">
+        <br> EXAMPLES:
+        <br> // init main class
+        <br> let GUI = new PXEngine_1.0();
+        <br> GUI.init();
+        <br> // show & close frame
+        <br> GUI.show(youframeid);
+        <br> GUI.close(youframeid);
+        <br> // switcher frame : state - true = display: block; false = display:none;
+        <br> GUI.frame(youframeid,state);
+        <br> // animation load  : create 4 div tags to id [bl0 ,bl1 ,bl2, bl3]
+        <br> // start animation
+        <br> GUI.animload();
+        </p>
+    </div>
+    <div class="textarea">
+        <p class="pxtext1">
+            <br> Audio Functions
+            </p>
+    <p class="pxtext1">
+        <br> EXAMPLES:
+        <br> // init main class : audio_tagid - audio tag id
+        <br> GUI.initAudio(audio_tagid);
+        <br> // load File
+        <br> GUI.pxLoadFile(file);
+        <br> GUI.AudioLoad();
+        <br> // play audio
+        <br> GUI.pxPlay();
+        <br> // pause audio
+        <br> GUI.pxPause();
+        </p>
+    </div>
+    <div class="textarea">
+        <p class="pxtext1">
+            <br> Video Functions
+            </p>
+    <p class="pxtext1">
+        <br> EXAMPLES:
+        <br> // init main class : videotagid - video tag id
+        <br> GUI.initPlayer(videotagid);
+        <br> // load File : create array files to playlist
+        <br> GUI.playlist = []
+        <br> // select video
+        <br> GUI.select(count_fileInArray);
+        <br> // play video
+        <br> GUI.init();
+        <br> GUI.playVideo();
+        <br> // pause video
+        <br> GUI.pauseVideo();
+        <br> // volume offset
+        <br> GUI.volume(vOffset)
+        </p>
+    </div>
+    <div class="textarea">
+        <p class="pxtext1">
+            <br> Image Functions
+            </p>
+    <p class="pxtext1">
+        <br> EXAMPLES:
+        <br> // CreateImage()
+        <br> GUI.CreateImage(src,x,y,posX,posY,id);
+        <br> // delete Image
+        <br> GUI.deleteImage();
+        <br> // inject to Tag objects
+        <br> GUI. injectToImg(tagToInject,idimg)
+        <br> // animation fadein to Image
+        <br> GUI.aFadeinImg(id,timeInterval);
+        </p>
+    </div>
+</html>
