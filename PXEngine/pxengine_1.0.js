@@ -37,15 +37,36 @@ let userDeviceArray = [
         videoPlayer;
         vid = 0;
         videoPlayer = "";
-        playlist = [];
+        playlist =
+        [
+            
+             "./Video/𝐏𝐥𝐚𝐲𝐥𝐢𝐬𝐭 Tokyo City Lofi Hiphip Night🌙 ⧸ Lofi hiphop music [ chill beats to work⧸study⧸sleep ] [PxstRN_9umQ].mp4",
+             "./Video/SlonikTV/Rust.mp4",
+             " ./Video/SlonikTV/PHP.mp4",
+             " ./Video/SlonikTV/multithreading_async.mp4",
+             " ./Video/SlonikTV/HCPP.mp4",
+             " ./Video/SlonikTV/Python.mp4",
+             " ./Video/SlonikTV/Java.mp4",
+             " ./Video/SlonikTV/js.mp4",
+             " ./Video/SlonikTV/macos.mp4",
+             " ./Video/SlonikTV/111.mp4",
+             " ./Video/SlonikTV/Ruby.mp4",
+             " ./Video/SlonikTV/IT.mp4",
+             " ./Video/SlonikTV/Vulkan.mp4",
+             " ./Video/SlonikTV/AMD.mp4",
+             " ./Video/SlonikTV/01. Turtle Tracks.mkv",
+
+   
+
+        ];
         status(st){
         if(st){
             this.videoPlayer.play();
-           // video_state.innerHTML = "Играет..";
+            video_state.innerHTML = "Играет..";
         }
         if(!st){
             this.videoPlayer.pause();
-            //video_state.innerHTML = "Пауза";
+            video_state.innerHTML = "Пауза";
         }
        }
         initPlayer(id){
@@ -70,12 +91,6 @@ let userDeviceArray = [
             vOffset = 0;
             
         }
-       }
-       playVideo(){
-        this.VideoBuffer.play();
-       }
-       pauseVideo(){
-        this.VideoBuffer.pause();
        }
             initAudio(id){
                 this.audioBuffer  = id;
