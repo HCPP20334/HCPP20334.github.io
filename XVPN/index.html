@@ -1,59 +1,242 @@
 <html>
-<head>
-  <link id="cssdata" rel="stylesheet" href="./css/main.css"></link>
-  <script id="module" async="" src="./script/main.js" onload="AppHandle.AppInit();AppHandle.LangUI(0);"></script>
-  <meta charset="utf-8">
-</head>
-<div class="logo">
-  <h1 class="h12">XVPN</h1>
-  <h2 class="h122" id="conOn">POWERFUL VPN</h1>
-</div>
-<div id="console">
-<button class="btn" id="conState">ShutDown console</button><button class="btn" id="js_reload">Reload JS</button><button class="btn" id="css_reload">Reload CSS</button>
-<p id="con_log" class="conLog"></p>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<input id="cmdjs"><button id="inject">ENTER</button>
-</div>
-<div class="va22" id="contentframeid">
-  <div class='buy_data' id="payment_data"><h1 class='h121'>ОПЛАТА ЧЕРЕЗ | PAY TO</h1><button class="btn" onclick="window.open('https://t.me/hcppstudio');">TON</button><button class="btn" onclick="window.open('https://t.me/hcppstudio');">TELEGRAM (MIR CARDS)</button></div>
-  <div class="xvpn_frame">
-    <h1 class="h121" id="t0data">XVPN BASE</h1>
-      <h2 class="h1221" id="t2data">Speed Limit to 10 MBIT</h1>
-        <br>
-        <h2 class="h1221" id="t3data"> PROTOCOL VLESS , CRYPTO REALITY</h1>
-          <h2 class="h1221" id="t4data">PRICE: 3$/350 RUB per month</h1>
-            <button class="btn" onclick="AppHandle.buttonBuyUI(0);">BUY</button>
+  <style>
+    @font-face {
+      font-family: xvpnFont;
+      src: url("syne-latin-wght-normal.Dvf_39Wt.woff2");
+    }
+   html{
+    background: linear-gradient(to right, #161515, #161515)
+   }
+   .maincontent{
+    width: 330px;
+    height: 330px;
+    display: block;
+    height: 420px;
+    margin: auto;
+    
+   }
+   .text3{
+    color: #ffffff;
+    font-size: 50px;
+    text-align: center;
+    font-family: 'xvpnFont';
+    width: 330px; transform: translateY(240px);
+    height: 100px;
+    
+   }
+   .text4{
+    color: #ffffff;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'xvpnFont';
+    width: 330px; transform: translateY(240px);
+    height: 100px;
+    
+   }
+   .text5{
+    color: #ffffff;
+    font-size: 15px;
+    text-align: center;
+    font-family: 'xvpnFont';
+
+   }
+   .text6{
+    color: #ffffff;
+    font-size: 20px;
+    text-align: left;  transform: translateX(90px);
+    font-family: 'xvpnFont';
+   }
+
+   .text7{
+    color: #ffffff;
+    font-size: 30px;
+    text-align: center; 
+    font-family: 'xvpnFont';
+   }
+   .text{
+    color: #ffffff;
+    font-size: 50px;font-family: 'xvpnFont';
+    text-align: left;background-color: transparent;
+    transform: translateX(40px);
+
+   }
+   .price{
+    color: #ffffff;
+    font-size: 40px;font-family: 'Segoe UI';
+    text-align: left;background-color: transparent;display: inline;
+   }
+   .price2{
+    color: #ffffff;
+    font-size: 13px;font-family: 'Segoe UI';
+    text-align: left;background-color: transparent;display: inline;
+   }
+   .text2{
+    color: #ffffff;font-family: 'xvpnFont'; display: block;
+    height: 30px;
+    margin: auto;
+    font-size: 20px;text-align: left;background-color: transparent;
+    transform: translateX(40px);
+   }
+   .items{
+    border-bottom: 1px solid #ffffff;
+    min-width: 490px;
+    width: 90%;
+    height: auto;
+    display: block;
+    margin: auto;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: .8s;
+    z-index: -1;
+    &:hover{
+      background: #4213fd;
+      box-shadow: 2px 3px 100px #4213fd;
+      border-bottom: 1px solid #4213fd;
+    }
+
+   }
+   .ball{
+    width: 32px;
+    height: 32px;
+    background: #ffffff;
+    box-shadow: 2px 3px 330px #ffffff;
+   }
+   .buy{
+    border: 1px solid #ffffff;
+    color: #ffffff;font-family: 'xvpnFont';
+    font-size: 20px;text-align: center;box-shadow: 2px 2px 10px #ffffff;
+    background: transparent;
+    width: 100px;
+    display: inline-block;
+    height: 30px;
+    margin: auto;
+   }
+   @keyframes glow {
+     100%{
+      box-shadow: 10px -20px 700px 60px rgb(255, 255, 255);
+     }
+     50%{
+      box-shadow: 10px -20px 700px 10px rgb(255, 255, 255);
+     }
+     0%{
+      box-shadow: 10px -20px 700px 60px rgb(255, 255, 255);
+     }
+     
+   }
+   .hglow{
+    display: block;margin: auto;
+    animation:  glow 3s infinite ease;
+    box-shadow: 10px -20px 500px 60px rgb(255, 255, 255);
+    border-radius: 32px;width: 0px;
+    height: 0px; background: rgba(255, 255, 255,0.1);
+    transform: translateY(200px);
+   }
+   .redirect_to{
+    display:none;
+    width: 400px;
+    height: 500px;
+    background: #0c0c0c;border-radius: 20px;
+    position: absolute;
+    z-index: 1;
+    transform: translate(200px,400px);
+      box-shadow: 2px 3px 100px #4213fd;
+   }
+   @keyframes yanim {
+     100%{
+      transform: translate(40px,0px);
+     }
+     0%{
+      transform: translate(40px,-100px);
+     }
+   }
+   .btns{
+    color: #ffffff;
+    font-size: 20px;font-family: 'xvpnFont';
+    display: inline-block;
+    width: 300px;
+    height: 60px;
+    border: none;
+    border-radius: 20px;
+    background: #4213fd;
+    margin: 5px;
+    animation: yanim 2s ease-in;
+    transform: translate(40px,0px);
+    box-shadow: 2px 3px 100px #4213fd;
+    transition: .6s;
+    &:hover{
+      background: #ff0b40;
+      box-shadow: 2px 3px 100px #ff0b40;
+    }
+   }
+  </style>
+  <div class="redirect_to" id="paywnd">
+  <p class="text7"><strong>REDIRECT TO</strong></p>
+  <button class="btns" onclick="window.open('https://t.me/hcppstudio')">Telegram</button>
+  <button class="btns" onclick="window.open('https://vk.com/hcpp20334')">VK</button>
+  <button class="btns" onclick="window.open('malito:xvpnsupport20334@gmail.com')">Gmail</button>
+  <p class="text7"><strong>PRESS TO ANY FRAME<br>TO CLOSE</strong></p>
   </div>
-  <div class="xvpn_frame">
-    <h1 class="h121" id="t5data">XVPN BASE+</h1>
-      <h2 class="h1221" id="t7data">Speed Limit to 100 MBIT</h1>
-        <br>
-        <h2 class="h1221" id="t8data"> PROTOCOL VLESS , CRYPTO REALITY</h1>
-          <h2 class="h1221" id="t9data">PRICE: 6$/650 RUB per month</h1>
-            <button class="btn" onclick="AppHandle.buttonBuyUI(1);">BUY</button>
-  </div>
-  <div class="xvpn_frame" >
-    <h1 class="h121" id="tA0data">XVPN PRO</h1>
-      <h2 class="h1221" id="tA2data">Speed Limit to 200 MBIT</h1>
-        <br>
-        <h2 class="h1221" id="tA3data"> PROTOCOL VLESS , CRYPTO REALITY</h1>
-          <h2 class="h1221" id="tA4data">PRICE: 10$/1000 RUB per month</h1>
-            <button class="btn" onclick="AppHandle.buttonBuyUI(2);">BUY</button>
-  </div>
+<div class="hglow"></div>
+<div class="maincontent">
+<h1 class="text3">XVPN</h1>
+<h2 class="text4">VLESS + REALITY VPN</h2>
+<br>
 </div>
-<div class="bottom_frame">
-      <div class="links">
-        <h1 class="h121">CONTACTS</h1>
-        <br>
-        <h2 class="h1221">@All Right Copyright 2025</h1>
-          <br>
-            <h1 class="h1221">HCPP STUDIO</h1>
-      </div>
-            <button class="lng" id="lang_btnid">EN</button>
+<div class="content">
+<div class="items" id="base_frame">
+  <h1 class="text">BASE - <p class="price">150RUB</p></h1>
+  <h2 class="text2">10 MBIT VLESS + REALITY VPN</h2>
+  <br>
 </div>
+<div class="items"  id="pro_frame">
+  <h1 class="text">PRO - <p class="price">350RUB</p></h1>
+  <h class="text2">100 MBIT VLESS + REALITY VPN</h>
+  <br>
+</div>
+<div class="items"  id="ultimate_frame">
+  <h1 class="text">ULTIMATE - <p class="price">650RUB</p></h1>
+  <h2 class="text2">1000 MBIT VLESS + REALITY VPN</h2>
+ <br>
+</div>
+</div>
+<p class="text6">
+  <strong>Fast & Secure VPN with VLESS + REALITY</strong><br>
+  Experience ultra-fast and private browsing with our high-performance VPN,<br>
+  powered by the <strong>VLESS protocol</strong> and <strong>REALITY technology</strong><br>
+  for enhanced security and bypassing restrictions.<br>
+  <br>
+  <strong>Choose Your Plan:</strong><br>
+  ⚡ <strong>BASE</strong> – <strong>10 Mbps</strong> (Ideal for browsing & messaging)<br>
+  🚀 <strong>PRO</strong> – <strong>100 Mbps</strong> (Great for streaming & downloads)<br>
+  🔥 <strong>ULTIMATE</strong> – <strong>1 Gbps</strong> (Maximum speed for 4K, gaming & more)<br>
+  <br>
+  ✔ <strong>No logs</strong> · ✔ <strong>Stable connection</strong> · ✔ <strong>Bypass censorship</strong><br>
+  <br>
+  Upgrade your online freedom today!
+</p>
+<h2 class="text5">POWERED BY PWENGINEJS<p class="price2">_1.3012daef</p></h2>
+<script src="./script/pxengine_1.0.js"></script>
+<script>
+let WXGUI = new PXEngine_1_0();
+class XVPN{
+  fWXbase= document.getElementById("base_frame");
+  fWXpro= document.getElementById("pro_frame");
+  fWXultimate= document.getElementById("ultimate_frame");
+  fWXpay = document.getElementById("paywnd");
+}
+WXGUI.init();
+let WX = new XVPN();
+WX.fWXbase.onclick = function(){
+WXGUI.frame(WX.fWXpay,1);
+}
+WX.fWXpro.onclick = function(){
+WXGUI.frame(WX.fWXpay,1);
+}
+WX.fWXultimate.onclick = function(){
+WXGUI.frame(WX.fWXpay,1);
+}
+WX.fWXpay.onclick = function(){
+WXGUI.frame(WX.fWXpay,0);
+}
+</script>
 </html>

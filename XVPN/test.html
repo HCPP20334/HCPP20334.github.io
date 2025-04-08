@@ -1,0 +1,49 @@
+<html>
+<style>
+    html{
+        background: #010101;
+    }
+    .text{
+        color: #00ff70;
+        font-size: 16px;
+        font-family: monospace;
+    }
+    </style>
+    <title id="tl">none</title>
+    <p class="text" id="txbuffer">test</p>
+    <script>
+    let stack  = 2096;
+    let fCharsBuffer = "1234567890qwertyuiop[]asdfghjkl;'zxcvbnm,./[';']";
+    let out = "";
+    let pBuffer = document.getElementById("txbuffer");
+    let loop = false;
+    let count = 0;
+    let dloop = 0;
+    let cell_mem = 0;
+    let fillState = true;
+    loop = setInterval(function(){
+        count++;
+        document.getElementById("tl").value = count;
+        if(count > 600)
+    {   
+        fillState = false;
+        
+    }
+    if(!fillState){
+        cell_mem--;
+            if(cell_mem <= 0){
+                console.log("cell_mem:"+cell_mem+"bufferOutSize:"+out.length);
+                cell_mem = 0;
+               clearInterval(loop);
+            }
+            pBuffer.innerHTML -= "";
+            out -= "";
+    }
+    if(fillState){
+        cell_mem = out.length;
+    out += fCharsBuffer[Math.floor(Math.random() * fCharsBuffer.length)];
+    pBuffer.innerHTML += "<br>+["+count+"]"+out;
+    }
+    },30);
+        </script>
+</html>
