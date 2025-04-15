@@ -1,869 +1,186 @@
-﻿<html>
-    <head><link rel="icon" type="image/png" href="favicon.png">
-    <title>HCPP STUDIO 2025</title>
-    <meta name="viewport" content="width=device-width">
-    </head>
-    <style>
-    html{
-        background: #010409;
-        overflow-x: hidden;animation: fadein 4s;
-        overflow-y: hidden;
-    }
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>XVPN Cyberpunk VPN</title>
+  <style>
+    /* Подключаем кастомный шрифт */
     @font-face {
-        font-family: 'Mst';
-        src: url("ofont.ru_Montserrat.ttf");
+      font-family: "HackerFont";
+      src: url("syne-latin-wght-normal.Dvf_39Wt.woff2");
     }
-    .App{
-        width: 102%;
-        height:auto;
-        
+    /* Общие стили для киберпанк-атмосферы */
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #1A1A2E, #16213E);
+      color: #C5C6C7;
+      font-family: 'HackerFont', sans-serif;
     }
-    .main-content{
-        width: 100%;
-        height: 800px;
-        background: #010409;transform: translateY(-28px);
-        display: none;
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 50px 15px;
     }
-    ::-webkit-scrollbar {
-  width: 15px;
-}
+    /* Селектор языка в правом верхнем углу */
+    .language-selector {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(26, 26, 46, 0.6);
+      border: 1px solid #0f0;
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 14px;
+    }
+    /* Основной контент */
+    .maincontent {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    h1 {
+      font-size: 48px;
+      margin: 0;
+      color: #66FCF1;
+    }
+    h2 {
+      font-size: 22px;
+      margin: 10px 0 0 0;
+      color: #45A29E;
+    }
+    .items {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid #45A29E;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .items:hover {
+      background: rgba(0, 0, 0, 0.5);
+      transform: scale(1.02);
+    }
+    .items h1 {
+      font-size: 32px;
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #66FCF1;
+    }
+    .pricing {
+      font-size: 28px;
+      color: #66FCF1;
+    }
+    .items h2 {
+      font-size: 18px;
+      margin-top: 10px;
+      color: #C5C6C7;
+    }
+    .description {
+      font-size: 16px;
+      line-height: 1.5;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 15px;
+      border-radius: 5px;
+      color: #C5C6C7;
+    }
+    .btns {
+      padding: 10px 20px;
+      border: 1px solid #66FCF1;
+      background: transparent;
+      color: #66FCF1;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+      margin: 5px;
+      transition: background 0.3s, color 0.3s;
+    }
+    .btns:hover {
+      background: #66FCF1;
+      color: #000;
+    }
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 30px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <!-- Селектор языка -->
+  <select id="langSelect" class="language-selector">
+    <option value="ru">Русский</option>
+    <option value="en">English</option>
+  </select>
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0); 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #ff0033; 
-  border-radius: 20px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #131212; 
-}
-    .nav-bar{
-        width: 101%;
-        height: 100%;
-        background-image: url("code.png");
-        transform: translateY(10px);
-        z-index: 1;animation: fadein 4s;
-        position: relative;overflow-y: auto;
-    
-    }
-    .nickname{
-        width: 100%;transform: translateY(0px);
-        height: 100%;overflow-y:scroll;overflow-x:hidden;
-        display: block; backdrop-filter: blur(10px);
-        background: transparent;
-    }
-    .text0{
-        font-size: 100px;
-         font-family: 'Mst';
-        color: #ffffff; display: block;transform: translate(30px,50px);
-        
-    }
-    .textld{
-        font-size: 40px;
-         font-family: 'Mst';
-        color: #ffffff;   position: absolute;
-    }
-    .text1{
-        font-size: 20px;
-         font-family: 'Mst';
-        color: #ffffff;animation: fadein 4s;font-style: oblique;
-        display: inline-block;
-        margin: 10px; transform: translate(5px,5px);
-        border-bottom: 4px solid transparent;
-        &:hover{ 
-            border-bottom: 4px solid #ffffff;
-            text-shadow: 1px 1px 2px #ffffff;
-        }
-        &:active{
-            background:  #ffffff;
-            color: #010409;
-        }
-    }
-    .text_post{
-        font-size: 20px;
-         font-family: 'Mst';
-         height: 200px;
-        color: #ffffff;animation: fadein 4s;
-        text-align: left;
-        background-size: 200%;
-        &:hover{
-        background: #2c2b2b;
-    }
-    }
-    .text3{
-        font-size: 60px;
-         font-family: 'Mst';animation: fadein 4s;
-        color: #ffffff;text-align: center;
-    }
-    @keyframes fadein {
-        0%{
-            color: transparent;
-        }
-        100%{
-            opacity: 100%;
-        }
-    }
-    .text4{
-        font-size: 40px;
-         font-family: 'Mst';
-        color: #ffffff;transform: translate(30px,50px);
-        animation: fadein 4s;
-    }
-    .info{
-        width: 50%;
-        height: auto;
-        background: transparent;
-    }
-    .project{
-        border-bottom: 2px solid #ffffff;width: auto;
-        margin: 2px;
-        min-height: 400px;
-        height: 600px;
-        background-image: linear-gradient(transparent 50%, #010409);
-    background-size: 200% 200%;
-    background-repeat: no-repeat;
-    transition: .2s;
-    &:hover{
-    background-position: 0 100%;
-    }
-    }
-    .projects-content{
-        width: 99%;height: auto;
-        background: transparent;
-        display: block;
-    }
-    .project_shop{
-        border-bottom: 2px solid #ffffff;
-    }
-    .title_projects{
-        font-size: 30px;
-         font-family: 'Mst';font-style: oblique;
-        color: #ffffff;
-        display: block;animation: fadein 4s;
-        margin: 15px; transform: translate(30px,5px);
-    }
-    .info_projects{
-        font-size: 20px;
-         font-family: monospace;
-        color: #ffffff;animation: fadein 4s;
-        display: block;
-        user-select: auto;
-        margin: 15px; transform: translate(30px,5px);
-    }
-    .webprojects{
-        display: none;
-    }
-    .shop{
-        display: none;
-    }
-    .download_zip{
-        font-size: 20px;
-         font-family: 'Mst';
-        color: #ffffff;
-        display: block;
-        margin: 15px; transform: translate(30px,5px);
-        background: #8030ff;
-        border: 2px solid #ffffff;
-       min-width: 160px;animation: fadein 4s;
-       margin: 15px;
-       height: 40px;display: inline-block;
-        &:hover{
-            background:  #ffffff;
-            color: #8030ff;
-        }
-    }
-    .title_projects2{
-        font-size: 50px;
-         font-family: monospace;
-        color: #ffffff;
-        display: block;
-        text-rendering: optimizeSpeed;
-        font-style: oblique;
-        margin: 15px; transform: translate(30px,5px);
-    }
-    .title_projects3{
-        font-size: 30px;
-         font-family: monospace;font-style: oblique;
-        color: #ffffff;
-        display: block;
-        margin: 15px; transform: translate(30px,5px);
-    }
-    .date-post{
-        font-size: 15px;
-         font-family: monospace;
-        color: #1f06ff;
-        display: inline;
-        margin: 80px;
-    }
-    .id-post{
-        font-size: 15px;
-         font-family: monospace;
-        color: #02fd73;
-        display: inline;
-        margin: 10px;
-    }
-    .tirleP{
-        background: #1b1b1b; 
-        border-radius: none;
-        border: 1px solid transparent;width: 99%;
-    }
-    .wappb{
-        font-size: 50px;
-         font-family: 'Mst';
-        color: #ffffff;
-        width: auto;
-        overflow: hidden;
-        display: block;
-        margin: 15px; transform: translate(30px,5px);
-        background: #8030ff; 
-        border: none;
-        &:hover{
-            background:  #ffffff;
-            color: #8030ff;
-        }
-    }
-    .cube{
-        width: 64px;
-        height: 64px;
-        background: #8030ff;
-        margin: 10px;
-        display: inline-block;
-        
-    }
-    .loaderText{
-        font-size: 50px;
-         font-family: 'Mst';
-        color: #ffffff;
-        width: auto;
-        overflow: hidden;
-        display: block;
-        text-align: center;
-        transform: translateY(130px);
-    }
-    .loader{
-        overflow-y: auto;
-        overflow-x: hidden;
-        width: 100%;
-        height: 100%;
-    }
-    #webgl-canvas {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-}
-.page_buttons{
-    background: #010409;
-    width: 100%;
-    display: block;
-    height: 80px;
-    margin: auto;
-}
-p,h1,h2{
-    user-select: none;
-}
-.dbg_tool{
-    width: auto;
-    height: 100px;
-    background: #010409;
-    display: inline-block;
-}
-.tx{
-    font-size: 14px;
-         font-family: 'Mst';
-        color: #ffffff;
-}
-#otherWindow{
-
-}
-.post{
-    display: block;
-    width: 90%;
-    height: auto;
-    min-height: 50px;
-    border: 1px solid #3a3939;
-    background: #1b1b1b;
-    border-radius: 8px;
-    transition: .4s;
-    background: rgba(1,4,9,0.4);
-    transform: translateX(40px);
-    margin: 20px;
-}
-.posts{
-    display: block;
-    width: 100%;
-    height: auto;
-    min-height: 50px;
-    border-bottom: 1px solid #3a3939;
-    background: transparent;
-
-    transition: .4s;
-    background: #161616;
-    transform: translateX(-30px);
-    overflow: hidden;
-    margin: 20px;
-}
-.postdata{
-    display: block;
-    width:600px;
-    height: 60px;
-    background: transparent;
-    transition: .4s;border-bottom: 1px solid #3a3939;
-    border-top: none;
-    border-left: none;
-    border-right:1px solid #3a3939;
-    font-size: 14px;
-         font-family: 'Mst';
-        color: #ffffff;
-        &:hover{
-            background: rgba(77, 78, 80, 0.4);
-        }
-}
-.tx0{
-    width:300px;
-    height: 60px;
-    font-size: 30px;
-         font-family: 'Mst';
-        color: #ffffff;
-        display: none;animation: fadein 4s;
-        margin: 15px; transform: translate(30px,5px);
-}
-.tx1{
-    width:300px;
-    height: 60px;
-    font-size: 15px;
-         font-family: 'Mst';
-        color: #ffffff;
-        display: block;;animation: fadein 4s;
-        margin: 15px; transform: translate(30px,-35px);
-}
-.pw{
-    width:600px;
-    height: 120px; transform: translate(0px,-5px);
-    border-right:1px solid #3a3939;
-}
-.btnclose{
-    background-color: #3a3939;
-    color: white;
-    width:auto;
-    height: 60px;
-    font-size: 15px;
-    display: none;
-    border: none;
-         font-family: 'Mst';
-        color: #ffffff;
-        &:hover{
-            background: #131212;
-        }
-}
-img{
-    margin: 50px;display: inline-block;
-}
-a{
-    margin: 50px;
-    display: inline-block;
-    color: white;
-    outline: none;
-    width:300px;
-    height: 60px;
-    font-size: 30px;
-         font-family: 'Mst';
-        color: #ffffff;
-        animation: fadein 4s;
-}
-.avatar{
-    display: block;
-    margin: 10px;
-}
-.ball{
-            width: 32px;
-            height: 32px;display: inline-block;
-            transform: translateX(220px);
-            background: #0059ff;transition: .1s;
-            overflow: hidden;
-            
-        }
-        .ld{
-            display: block;
-            width: 300px;
-            height: 100px;
-            
-        }
-    </style>
-    <audio id="audio_id"></audio>
-    <div class="loader" id="AppoaderID">
-    <button class="btnclose" onclick="dbg_switch = false;">Закрыть консоль отладки</button>
-    <p class="tx0" id="loadedKernel"></p>
-    <div class="ld" id="loadid2">
-        <h1 class="textld" id="loadid2tx">HCPP STUDIO</h1>
-        <div class="ball" id="bl0"></div> <div class="ball"  id="bl1"></div> <div class="ball"  id="bl2"></div> <div class="ball"  id="bl3"></div>
+  <div class="container">
+    <div class="maincontent">
+      <h1 id="title">XVPN</h1>
+      <h2 id="subtitle">VLESS + REALITY VPN</h2>
     </div>
+
+    <!-- Тарифные планы -->
+    <div class="items" id="itemBase">
+      <h1>BASE - <span class="pricing" id="priceBase">150 RUB</span></h1>
+      <h2 id="descBase">10 MBIT VLESS + REALITY VPN</h2>
     </div>
-    <div class="App" id="AppId">
-        <div class="nav-bar" id="navid">
-        <div class="nickname">
-            <div class="page_buttons" id="pageid">
-                <h1 class="text1" id="btn00">ГЛАВНАЯ</h1>
-                <h1 class="text1" id="btn0">ПРОЕКТЫ</h1>
-                <h1 class="text1" id="btn1">WEBAPP</h1>
-                <h1 class="text1" id="btn2">МАГАЗИН</h1> 
-                <h1 class="text1" id="btn4">ДРУГОЕ</h1>
-                <h1 class="text1" id="btn3">&#128266;</h1>
-            </div>
-            <br>
-          <div id="mainContent">
-            <h1 class="text0" onclick="mainContextShow();">HCPP STUDIO</h1>
-            <p class="text4" id="textid">СТУДИЯ ПО РАЗРАБОТКЕ ПРИЛОЖЕНИИ</p>
-            <p class="text4" id="textid">С++20, JAVASCRIPT.</p>
-          
-          </div>
-          <div id="otherWindow">
-            <div class="posts"  onclick="UI.ReSizeWindow(pst_0);" id="pst_0">
-                <h1 class="title_projects3">УСТАНОВКА ЗАПРЕТА НА WINDOWS</h1>
-                <br>
-                <p class="date-post">18.03.25</p>
-                <p class="id-post">id-203340</p>
-                <h2 class="info_projects">
-                КАЧАЕМ С РЕПОЗИТОРИЯ <br>
-                <a href="https://github.com/bol-van/zapret-win-bundle/tree/master">https://github.com/bol-van/zapret-win-bundle/tree/master</a><br>
-                Распаковываем и запускаем от админа preset_russia.cmd
-                </h2>
-                </div>
-                <div class="posts" id="pst_1" onclick="">
-                    <h1 class="title_projects3">УСТАНОВКА
-                        3X-UI НА СЕРВЕР</h1>
-                        <br>
-                        <p class="date-post">18.03.25</p>
-                        <p class="id-post">id-203341</p>
-                        <h2 class="info_projects">
-                            ГАЙД ПО УСТАНОВКЕ 3X-UI НА СЕРВЕР!<br> 
-                            1. ОБНОВИМ ПАКЕТЫ УБУНТУ<br>
-                            apt update &amp;&amp; apt upgrade -y<br>
-                            Теперь установим Curl — эта утилита нужна для загрузки файлов и пакетов в терминале. Сделаем это с помощью этой команды:<br>
-                            apt install curl -y<br>
-                            2. СКАЧАЕМ 3X-UI С ГИТХАБА<br>
-                            bash &lt;(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)<br>
-                            после успешного скачивания<br>
-                            проверим работаспособность x-ui<br>
-                            и должна вылезти информация о аргументах x-ui<br>
-                            3. x-ui start<br>
-                             Смотрим Данные о Админке<br>
-                             пишем 10<br>
-                             и там должно вылезти<br>
-                             [INF] current panel settings as follows:<br>
-                            username: ваш логин<br>
-                            password: ваш пароль<br>
-                            port: ваш порт<br>
-                            webBasePath: путь к Админке<br>
-                            4. переходим в админку<br>
-                            https://ip_сервера:ваш порт/путь к Админке<br>
-                            5. настроика подключения<br>
-                            нажимаем на Добавить подключение<br>
-                            и все как тут<br>
-                            Примечание:<br>
-                            Протокол: vless 
-                            Порт IP<br>
-                            Порт: 443<br>
-                            Общий расход: 0<br>
-                            Дата окончания:<br>
-                            Протокол передачи:TCP(RAW)<br>
-                            Proxy Protocol: OFF<br>
-                            HTTP Маскировка: OFF<br>
-                            Sockopt: OFF<br>
-                            External Proxy: OFF<br>
-                            Безопасность: REALITY<br>
-                            Show: 0<br>
-                            Xver: 0<br>
-                            uTLS: chrome<br>
-                            Dest: www.apple.com:443<br>
-                            SNI: www.apple.com<br>
-                            Max Time Diff (ms): 0<br>
-                            Нажми на Get New Cert и он сам сгенерирует сам эти пункты<br>
-                            Short IDs:<br>
-                            Приватный ключ<br>
-                            Публичный ключ<br>
-                            Этот пункт пустой<br>
-                            SpiderX:/<br>
-                            Sniffing:<br> 
-                            Включено: ON<br>
-                            HTTP, TLS, QUIC, FAKEDNS - все эти галочки включить<br>
-                            остальные не трогаем<br>
-                            и сохраняем<br>
-                            6. Создаем клиента<br>
-                            нажимаем троиточие на созданным профилем<br>
-                            и добавить подключение<br> 
-                            меняем только flow: xtls-rprx-vision<br>
-                            7. Проверка<br> 
-                            Нажимаем на плюсик где наши подключения и там наш клиент и нажимает на Куар Код и кликаем на куар код и у нас скопировался ключ<br>
-                            Теперь<br>
-                            Качаем Прогу:<br>
-                            на Андроид это v2RayTun<br>
-                            На Айфон это Streisand<br>
-                            На ПК - Invisible Man XRAY или v2RayN - <a href="https://github.com/2dust/v2rayN/releases/download/7.7.0/v2rayN-windows-64.zip">https://github.com/2dust/v2rayN/releases/download/7.7.0/v2rayN-windows-64.zip</a><br>
-                            </h2>
-                    </div>   
-          </div>
-          <div class="shop" id="shopHandleId">
-            <div class="project_shop">
-                <p class="title_projects">XVPN Базовая Подписка</p>
-                <p class="info_projects">СКОРОСТЬ ДО 10 МБИТ В СЕК</p>
-                <p class="info_projects">ПОДДЕРЖКА В ЧАТЕ ТЕЛЕГРАММА</p>
-                <p class="info_projects">СТОИМОСТЬ 350 РУБ В МЕСЯЦ / 4000 РУБ В ГОД</p>
-              <button class="download_zip" onclick="UI.redirect('https://t.me/HCPPSTUDIO');">ОФОРМИТЬ</button>
-            </div>
-            <div class="project_shop">
-                <p class="title_projects">XVPN PRO Подписка</p>
-                <p class="info_projects">СКОРОСТЬ ДО 200 МБИТ В СЕК</p>
-                <p class="info_projects">ПОДДЕРЖКА В ЧАТЕ ТЕЛЕГРАММА</p>
-                <p class="info_projects">СТОИМОСТЬ 1000 РУБ В МЕСЯЦ / 9000 РУБ В ГОД</p>
-              <button class="download_zip" onclick="UI.redirect('https://t.me/HCPPSTUDIO');">ОФОРМИТЬ</button>
-            </div>
-        </div>
-        <div class="webprojects" id="WebAppHandleId">
-            <div class="tirleP"> <p class="title_projects2">WEBAPP </p></div>
-            <button class="wappb" onclick="UI.redirect(webAppBuffer[1]);">PLAYER JS</button>
-            <button class="wappb" onclick="UI.redirect(webAppBuffer[0]);">ELECTRIK CALC JS</button>
-            <button class="wappb" onclick="UI.redirect(webAppBuffer[2]);">VOICEAPI JS</button>
-            <button class="wappb" onclick="UI.redirect(webAppBuffer[4]);">NOTEPAD JS</button>
-            <button class="wappb" onclick="UI.redirect(webAppBuffer[3]);">CPUBENCH JS</button>
-        </div>
-        <div class="projects-content" id="projectHandleId">
-           <div class="tirleP"> <p class="title_projects2">ПРОЕКТЫ</p></div>
-           <div class="project">
-            <h1 class="title_projects">JOYSTICKTEST 1.1</h1>
-            <p class="info_projects">ПРИЛОЖЕНИЕ ДЛЯ ТЕСТИРОВАНИЕ ВАШЕГО ГЕЙМПАДА</p>
-            <p class="title_projects">ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ</p>
-            <p class="info_projects">ЯЗЫК: С++20</p>
-            <p class="info_projects">РАЗРЯДНОСТЬ: x64</p>
-            <p class="info_projects">BACKENDAPI: OpenGL3.3</p>
-            <p class="title_projects">СИСТЕМНЫЕ ТРЕБОВАНИЯ</p>
-            <p class="info_projects">INTEL I3-550 (1156) или Phenom x3 (am3) или ПРОЦЕССОР С ПОДДЕРЖКОЙ ИНСТРУКЦИИ SSE4.2 И x64</p>
-            <p class="info_projects">GPU Nvidia GTX550 , AMD Radeon HD 7000x series - (OpenGL3.3) или поддерживающая OpenGL3.3</p>
-            <p class="info_projects">WINDOWS 10 x64 И УСТАНОВЛЕНЫЕ РЕДИСТРИБУТИВЫ VISUAL STUDIO 2019 x64 И ДРАЙВЕР XINPUT</p>
-            <button class="download_zip" onclick="UI.redirect(AppBuffer[0]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
-        </div>
-            <div class="project">
-            <h1 class="title_projects">JOYSTICKTEST 1.0</h1>
-            <p class="info_projects">ПРИЛОЖЕНИЕ ДЛЯ ТЕСТИРОВАНИЕ ВАШЕГО ГЕЙМПАДА</p>
-            <p class="title_projects">ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ</p>
-            <p class="info_projects">ЯЗЫК: JAVA (JDK 18)</p>
-            <p class="info_projects">РАЗРЯДНОСТЬ: x64</p>
-            <p class="info_projects">BACKENDAPI: ?</p>
-            <p class="title_projects">СИСТЕМНЫЕ ТРЕБОВАНИЯ</p>
-            <p class="info_projects">ПРОЦЕССОР С ПОДДЕРЖКОЙ ИНСТРУКЦИИ x64</p>
-            <p class="info_projects">ВИДЕОКАРТА: ЛЮБАЯ С  ПОДДЕРЖКОЙ  И 128 МБ ВИДЕОПАМЯТИ</p>
-            <p class="info_projects">WINDOWS 10 x64 И УСТАНОВЛЕНЫЕ РЕДИСТРИБУТИВЫ VISUAL STUDIO 2019 x64 И ДРАЙВЕР XINPUT</p>
-            <button class="download_zip" onclick="UI.redirect(AppBuffer[2]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
-           </div>
-           <div class="project">
-            <h1 class="title_projects">ELECTRIK CALC 1.0.3 (ВСЕ ВЕРСИИ В ОДНОМ)</h1>
-            <p class="info_projects">ФУНКЦИОНАЛЬНЫЙ КАЛЬКУЛЯТОР ДЛЯ ЭЛЕКТРИКА</p>
-            <p class="title_projects">ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ</p>
-            <p class="info_projects">(x64) OpenGL3.3,DX12 - С++20</p>
-            <p class="info_projects">(x86) DX9 - С++14</p>
-            <p class="info_projects">ЛЮБОЙ ПРОЦЕССОР С ПОДДЕРЖКОЙ x64 (OpenGL3.3,DX12)</p>
-            <p class="info_projects">ЛЮБОЙ ПРОЦЕССОР С ПОДДЕРЖКОЙ x86 (DX9)</p>
-            <p class="info_projects">GPU Nvidia GT250 , AMD Radeon HD 5000x series - (OpenGL3.3,DX9)</p>
-            <p class="info_projects">GPU Nvidia GTX550 , AMD Radeon HD 7000x series - (DX12) или поддерживающая DX12</p>
-            <p class="info_projects">WINDOWS 10 x64 + Visual Studio C++ Runtime 2019 (x64) - OpenGL3.3,DX12</p>
-            <p class="info_projects">WINDOWS Vista x86 + Visual Studio C++ Runtime 2012 (x86) - DX9</p>
-            <button class="download_zip" onclick="UI.redirect(AppBuffer[1]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
-           </div>
-        </div>
-        </div>
-        </div>
 
-       
+    <div class="items" id="itemPro">
+      <h1>PRO - <span class="pricing" id="pricePro">350 RUB</span></h1>
+      <h2 id="descPro">100 MBIT VLESS + REALITY VPN</h2>
     </div>
-    <script src="pxengine_1.0.js"></script>
-    <script src="PXEngineMain.js"></script>
-    <script>
-         //import Grid1Background from 'https://cdn.jsdelivr.net/npm/threejs-components@0.0.16/build/backgrounds/grid1.cdn.min.js';
-         let d3 = 0;
-    let mainButton = document.getElementById("btn00");
-    let projectButton = document.getElementById("btn0");
-    let webAppButton = document.getElementById("btn1");
-    let shopButton = document.getElementById("btn2");
-    let otherButton = document.getElementById("btn4");
-    let dolbaebsButton = document.getElementById("btn5");
-    //
-    let loadid = document.getElementById("loadid2");
-    let loadidtx = document.getElementById("loadid2tx");
-    loadid.style.transform = "translate("+parseInt((window.screen.width - 600) / 2)+"px,"+parseInt((window.screen.height - 100) / 2)+"px)";
-    loadidtx.style.transform = "translate("+parseInt((600 - 320) / 2)+"px,"+parseInt((600 - 940) / 2)+"px)";
-    //
-    let c0 = document.getElementById("cube0");
-    let c1 = document.getElementById("cube1");
-    let c2 = document.getElementById("cube2");
-    let pst_0 = document.getElementById("pst_0");
-    let pst_1 = document.getElementById("pst_1");
-    let pst_2 = document.getElementById("pst_2");
-    let pst_3 = document.getElementById("pst_3");
-    let pst_4 = document.getElementById("pst_4");
-    let pst_5 = document.getElementById("pst_5");
-    let pst_6 = document.getElementById("pst_6");
-    let pst_7 = document.getElementById("pst_7");
-    let pst_8 = document.getElementById("pst_8");
-    //
-    let AnimationHandle;
-    //
 
-    let UI = new App();
-    let PXAudio = new PXEngine2D_Audio();
-    let PX = new PXEngine();
-    PX.init();
-    AnimationHandle = setInterval(function(){
-            PX.animload();
-        },100)
-    let fPXEngineInit = new PXEngineMainDevice();
-    fPXEngineInit.init();
-    let projectWindow = document.getElementById("projectHandleId");
-    let WebAppWindow = document.getElementById("WebAppHandleId");
-    let shopWindow = document.getElementById("shopHandleId");
-    let mainWindow = document.getElementById("mainContent");
-    let otherWindow = document.getElementById("otherWindow");
-    let AppMainHandle = document.getElementById("AppId");
-    let AppLoadHandle = document.getElementById("AppoaderID");
-    fPXEngineInit.scaleWindowToDevice(AppMainHandle);
-    //
-    let url_0 = document.getElementById("url_0");
-    let url_1 = document.getElementById("url_1");
-    let url_2 = document.getElementById("url_2");
-    let url_3 = document.getElementById("url_3");
-    //
-    let d3_switch = 0;
-    if(!d3_switch){
-        PXAudio.loadToFile("hover1.mp3");
-    }
-    document.getElementById('btn3').onclick = function(){
-        d3++;
-        if(d3 > 1){d3 = 0;d3_switch++;if(d3_switch > 2){d3_switch = 0;}if(d3_switch == 2){
-                PXAudio.loadToFile("hover.mp3");
-            }}
-        if(!d3){document.getElementById('btn3').innerHTML='&#128264;';
-    }
-    if(d3){
-        document.getElementById('btn3').innerHTML='&#128266;';
-    
-    }
-}
-let dbg_switch = false;
-let dbg_switchI = false;
-let d0sw = 0;
-let d0sc = new Date().getMilliseconds();
-let d0sc2 = new Date().getMilliseconds();
-document.getElementById("textid").onclick = function(){
- d0sw++;
- dbg_switchI = setInterval(function(){
-    if(dbg_switch){
-        UI.ShowWindow(AppLoadHandle,1);UI.ShowWindow(AppMainHandle,0);
-    
-    //document.getElementById("textid").innerHTML = "aOffset="+aOffset+" 'tOffset="+tOffset+"<br>pOffset="+pOffset+" wOffset="+wOffset+"<br>sOffset="+sOffset+" mOffset="+mOffset+"<br>d3:d3_switch="+d3+":"+d3_switch+"logs API<br>"+logStr+"</p>";
-    }
-    if(!dbg_switch){
-        UI.ShowWindow(AppLoadHandle,0);UI.ShowWindow(AppMainHandle,1);
-        document.getElementById("textid").innerHTML = "СТУДИЯ ПО РАЗРАБОТКЕ ПРИЛОЖЕНИИ";
-    }
- });
- if(d0sw > 1){
-    d0sw = 0;
- }
- if(!d0sw){
-    dbg_switch = false;
-    clearInterval(dbg_switchI);
-    d0sc2 = new Date().getMilliseconds();
-    alert(d0sc + " to "+d0sc2);
-    d0sc2 = 0;d0sc = 0;
- }
- if(d0sw){
-    dbg_switch = true;
-    d0sc = new Date().getMilliseconds();
- }
-}
+    <div class="items" id="itemUltimate">
+      <h1>ULTIMATE - <span class="pricing" id="priceUltimate">650 RUB</span></h1>
+      <h2 id="descUltimate">1000 MBIT VLESS + REALITY VPN</h2>
+    </div>
 
-document.getElementById('btn3').click();
-    //
-    let aOffset = 0;
-    let tOffset = 0;
-    UI.ShowWindow(AppLoadHandle,1);
-    UI.ShowWindow(AppMainHandle,0);
-    setTimeout(function(){
-        UI.ShowWindow(AppLoadHandle,0);
-       UI.ShowWindow(AppMainHandle,1);
-    },1500);
-    
-   KernelLog("load module");
-    //
-    let webAppBuffer = [
-        "https://hcpp20334.github.io/Calc",
-        "https://hcpp20334.github.io/playerJS.html",
-        "https://hcpp20334.github.io/VoiceAPI",
-        "https://hcpp20334.github.io/CPUBench",
-        "https://hcpp20334.github.io/Notepad"
-    ];
-    let AppBuffer = [
-        "https://github.com/HCPP20334/JoyStickTest/releases/download/JoyStickTest_x64_OpenGL_1.1/JoyStickTest_x64_OpenGL3SSE4.2.zip",//0
-        "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/Electric_calc_release/Electrik.Calc.1.0.3.x86_64.zip",//1
-        "https://github.com/rpmaster2/JoyStickTest/releases/download/1.0/Archive.zip",//2
-    ];
-    webAppBuffer.url;
-    //
-    let pOffset = 0;
-    let wOffset = 0;
-    let sOffset = 0;
-    let mOffset = 0;
-    // setup windows
-    UI.ShowWindow(projectWindow,0);
-    UI.ShowWindow(WebAppWindow,0);
-    UI.ShowWindow(shopWindow,0);
-    UI.ShowWindow(mainWindow,1);
-    UI.ShowWindow(otherWindow,0);
-    //
-    function mainContextShow(){
-    UI.ShowWindow(projectWindow,0);
-    UI.ShowWindow(WebAppWindow,0);
-    UI.ShowWindow(shopWindow,0);
-    UI.ShowWindow(otherWindow,0);
-    UI.ShowWindow(mainWindow,1);
-    }
-    shopButton.onclick = function(){
-        sOffset++;if(d3){PXAudio.PXPlay();}
-        console.log(sOffset);
-        if(sOffset > 1){
-            sOffset = 0;
-        }
-        if(!sOffset){
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,1);
-            UI.ShowWindow(shopWindow,sOffset);
-            UI.ShowWindow(WebAppWindow,0);
-            UI.ShowWindow(otherWindow,0);
-        }
-        if(sOffset){
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,0);
-            UI.ShowWindow(shopWindow,sOffset);
-            UI.ShowWindow(WebAppWindow,0);
-            UI.ShowWindow(otherWindow,0);
-        }
-    }
-    otherButton.onclick = function(){
-        otOffset++;if(d3){PXAudio.PXPlay();}
-        console.log(otOffset);
-        if(otOffset > 1){
-            otOffset = 0;
-        }
-        if(!otOffset){
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,1);
-            UI.ShowWindow(shopWindow,sOffset);
-            UI.ShowWindow(WebAppWindow,0);
-            UI.ShowWindow(otherWindow,0);
-        }
-        if(otOffset){
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,0);
-            UI.ShowWindow(shopWindow,0);
-            UI.ShowWindow(WebAppWindow,0);
-            UI.ShowWindow(otherWindow,otOffset);
-        }
-    }
-    webAppButton.onclick = function(){
-        wOffset++;if(d3){PXAudio.PXPlay();}
-        if(wOffset > 1){
-            wOffset = 0;
-        }
-        if(!wOffset){
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,1);
-            UI.ShowWindow(shopWindow,0);
-            UI.ShowWindow(WebAppWindow,0);
-            UI.ShowWindow(otherWindow,0);
-        }
-        if(wOffset){
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,0);
-            UI.ShowWindow(shopWindow,0);
-            UI.ShowWindow(WebAppWindow,wOffset);
-            UI.ShowWindow(otherWindow,0);
-        }
-    }
-    PXAudio.initAudio();
-    projectButton.addEventListener("mouseover",function(key){
-           
-        if(d3){PXAudio.PXPlay();} wOffset = 0;pOffset = 1;sOffset = 0;
-                   
-    });
-    webAppButton.addEventListener("mouseover",function(key){
-           
-        if(d3){PXAudio.PXPlay();}  wOffset = 1;pOffset = 0;sOffset = 0;
-    });
-    shopButton.addEventListener("mouseover",function(key){
-            
-            if(d3){PXAudio.PXPlay();}  wOffset = 0;pOffset = 0;sOffset = 1;
-    });
+    <!-- Описание услуг -->
+    <div class="description" id="description">
+      <strong>Fast & Secure VPN with VLESS + REALITY</strong><br>
+      Experience ultra-fast and private browsing with our high-performance VPN,<br>
+      powered by the <strong>VLESS protocol</strong> and <strong>REALITY technology</strong><br>
+      for enhanced security and bypassing restrictions.<br><br>
+      <strong>Choose Your Plan:</strong><br>
+      ⚡ <strong>BASE</strong>: 10 Mbps (Ideal for browsing & messaging)<br>
+      🚀 <strong>PRO</strong>: 100 Mbps (Great for streaming & downloads)<br>
+      🔥 <strong>ULTIMATE</strong>: 1 Gbps (Maximum speed for 4K, gaming & more)<br><br>
+      ✔ <strong>No logs</strong> · ✔ <strong>Stable connection</strong> · ✔ <strong>Bypass censorship</strong><br><br>
+      Upgrade your online freedom today!
+    </div>
 
-    /* ****** */
-    mainButton.onclick = function(){
-        if(d3){PXAudio.PXPlay();}
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,1);
-            UI.ShowWindow(shopWindow,0);
-            UI.ShowWindow(WebAppWindow,0);        
-            UI.ShowWindow(otherWindow,0);
-            UI.switchBool(1);
-            UI.changeBackground(document.getElementById("navid"));
-    }
-    projectButton.onclick = function(){
-        if(d3){PXAudio.PXPlay();}
-            UI.ShowWindow(projectWindow,1);
-            UI.ShowWindow(mainWindow,0);
-            UI.ShowWindow(shopWindow,0);
-            UI.ShowWindow(WebAppWindow,0);        
-            UI.ShowWindow(otherWindow,0);
-            UI.switchBool(1);
-            UI.changeBackground(document.getElementById("navid"));
-    }
-    webAppButton.onclick = function(){
-        if(d3){PXAudio.PXPlay();}
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,0);
-            UI.ShowWindow(shopWindow,0);
-            UI.ShowWindow(WebAppWindow,1);        
-            UI.ShowWindow(otherWindow,0);
-            UI.switchBool(1);
-            UI.changeBackground(document.getElementById("navid"));
-    }  
-    shopButton.onclick = function(){
-        if(d3){PXAudio.PXPlay();}
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,0);
-            UI.ShowWindow(shopWindow,1);
-            UI.ShowWindow(WebAppWindow,0);        
-            UI.ShowWindow(otherWindow,0);
-            UI.switchBool(1);
-            UI.changeBackground(document.getElementById("navid"));
-    }
-    /* ****** */
-    UI.ReSizeWindow(pst_1);
-    otherButton.onclick = function(){
-        if(d3){PXAudio.PXPlay();}
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,0);
-            UI.ShowWindow(shopWindow,0);
-            UI.ShowWindow(WebAppWindow,0);   
-            UI.ShowWindow(otherWindow,1);
-            UI.switchBool(0);
-            UI.changeBackground(document.getElementById("navid"));
-            alert("Раздел имеет недочеты и баги!!\nЭто бета функционал.");
-    }
-    </script>
-</html>
+    <!-- Кнопки социальных сетей -->
+    <div style="text-align: center; margin-top: 30px;">
+      <button class="btns" onclick="window.open('https://t.me/hcppstudio')">Telegram</button>
+      <button class="btns" onclick="window.open('https://vk.com/hcpp20334')">VK</button>
+      <button class="btns" onclick="window.open('mailto:xvpnsupport20334@gmail.com')">Gmail</button>
+    </div>
+
+    <div class="footer">
+      POWERED BY PWENGINEJS <span style="font-size: 10px;">_1.3012daef</span>
+    </div>
+  </div>
+
+  <script>
+    // Объект переводов для поддержки русского и английского языков
+    const translations = {
+      ru: {
+        title: "XVPN",
+        subtitle: "VLESS + REALITY VPN",
+        items: {
+          base: { name: "BASE", price: "150 RUB", desc: "10 Мбит VLESS + REALITY VPN" },
+          pro: { name: "PRO", price: "350 RUB", desc: "100 Мбит VLESS + REALITY VPN" },
+          ultimate: { name: "ULTIMATE", price: "650 RUB", desc: "1000 Мбит VLESS + REALITY VPN" }
+        },
+        description: `
+<strong>Быстрый и безопасный VPN с VLESS + REALITY</strong><br>
+Испытайте ультрабыстрый и приватный серфинг с нашим высокопроизводительным VPN,<br>
+работающим на базе <strong>протокола VLESS</strong> и <strong>технологии REALITY</strong><br>
+для повышения безопасности и обхода блокировок.<br><br>
+<strong>Выберите тариф:</strong><br>
+⚡ <strong>BASE</strong>: 10 Мбит (идеально для серфинга и мессенджеров)<br>
+🚀 <strong>PRO</strong>: 100 Мбит (отлично для стриминга и скачивания)<br>
+🔥 <strong>ULTIMATE</strong>: 1 Гбит (максимальная скорость для 4K, игр и прочего)<br><br>
+✔ <strong>Без логов</strong
