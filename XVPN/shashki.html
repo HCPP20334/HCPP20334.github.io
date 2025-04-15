@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Игра в шашки — Псевдографика</title>
+  <style>
+    /* Общий стиль – моноширинный шрифт, тёмный фон */
+    body {
+      background-color: #222;
+      color: #fff;
+      font-family: monospace;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    #status {
+      margin: 20px;
+      font-size: 18px;
+    }
+    /* Доска */
+    #boardTable {
+      border-collapse: collapse;
+      margin: 0 auto;
+    }
+    #boardTable td {
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 36px;
+      border: 1px solid #555;
+      cursor: pointer;
+    }
+    /* Цвета клеток: чётные (тёмные) и нечётные (светлые) */
+    .dark {
+      background-color: #444;
+    }
+    .light {
+      background-color: #888;
+    }
+    /* Подсветка выбранной клетки */
+    .selected {
+      outline: 3px solid yellow;
+    }
+    /* Шашки: черные – "грязь", белые – "бумага от папироски" */
+    .piece.black {
+      color: #4B2E0B;  /* оттенок грязи */
+    }
+    .piece.white {
+      color: #F2F2F2;  /* почти белый, легкий как бумага */
+    }
+  </style>
+</head>
+<body>
+  <h1>Игра в шашки</h1>
+  <div id="status">Ход: Черные (из грязи)</div>
+  <div id="game"></div>
+
+  <script>
+    // Глобальные переменные:
+    // board[r][c]: 0 – пустая, 1 – чёрная (грязь), 2 – белая (папироска)
+    let board = [];
+    let currentPlayer = 1; // 1 – черные, 2 – белые; ходят по очереди
+    let selectedCell = null;
+
+    // Инициализируем внутреннее представление доски 8×8
+    function initializeBoard() {
+      board = [];
+      for (let r = 0; r < 8; r++) {
+        board[r] = [];
+        for (let c = 0; c < 8; c++) {
+          board[r][c] = 0;
+        }
+      }
+      // Помещаем черные шашки (1) на первых трех рядах на тёмных клетках 
+      for (let r = 0; r < 3; r++) {
+        for (let c = 0; c < 8; c++) {
+          if ((r + c) % 2 === 0) {
+            board[r][c] = 1;
+          }
+        }
+      }
+      // Помещаем белые шашки (2) на последних трех рядах на тёмных клетках
+      for (let r = 5; r < 8; r++) {
+        for (let c = 0; c < 8; c++) {
+          if ((r + c) % 2 === 0) {
+            board[r][c] = 2;
+          }
+        }
+      }
+    }
+
+    // Создаем HTML-таблицу для отображения доски
+    function createBoardHTML() {
+      let table = document.createElement("table");
+      table.id = "boardTable";
+      for (let r = 0; r < 8; r++) {
+        let tr = document.createElement("tr");
+        for (let c = 0; c < 8; c++) {
+          let td = document.createElement("td");
+          td.dataset.row = r;
+          td.dataset.col = c;
+          td.addEventListener("click", cellClick);
+          // Назначаем класс окраски: клетка "dark" если (r+c) чётное, иначе "light"
+          td.className = ((r + c) % 2 === 0) ? "dark" : "light";
+          tr.appendChild(td);
+        }
+        table.appendChild(tr);
+      }
+      return table;
+    }
+
+    // Отрисовка содержимого доски из массива board
+    function updateBoard() {
+      let table = document.getElementById("boardTable");
+      for (let r = 0; r < 8; r++) {
+        for (let c = 0; c < 8; c++) {
+          let cell = table.rows[r].cells[c];
+          cell.innerHTML = "";
+          if (board[r][c] === 1) {
+            let span = document.createElement("span");
+            span.classList.add("piece", "black");
+            span.innerText = "▓"; // символ, ассоциирующийся с грязью
+            cell.appendChild(span);
+          } else if (board[r][c] === 2) {
+            let span = document.createElement("span");
+            span.classList.add("piece", "white");
+            span.innerText = "░"; // лёгкий символ, как бумага
+            cell.appendChild(span);
+          }
+        }
+      }
+      updateStatus();
+    }
+    
+    // Обновление информации о текущем ходе
+    function updateStatus() {
+      let statusDiv = document.getElementById("status");
+      statusDiv.innerText = currentPlayer === 1 
+        ? "Ход: Черные (из грязи)" 
+        : "Ход: Белые (из бумаги от папироски)";
+    }
+
+    // Функция проверки допустимости хода от (fromRow,fromCol) к (toRow,toCol)
+    function isValidMove(fromRow, fromCol, toRow, toCol, player) {
+      // Проверка выхода за границы и пустоты целевой клетки
+      if (toRow < 0 || toRow >= 8 || toCol < 0 || toCol >= 8) return false;
+      if (board[toRow][toCol] !== 0) return false;
+      let dRow = toRow - fromRow;
+      let dCol = toCol - fromCol;
+      // Для черных (движутся вниз)
+      if (player === 1) {
+        // Обычный ход: шаг вперед по диагонали
+        if (dRow === 1 && Math.abs(dCol) === 1) return true;
+        // Прыжок через шашку противника
+        if (dRow === 2 && Math.abs(dCol) === 2) {
+          let midRow = fromRow + 1;
+          let midCol = fromCol + dCol / 2;
+          if (board[midRow][midCol] === 2) return true;
+        }
+      }
+      // Для белых (движутся вверх)
+      if (player === 2) {
+        if (dRow === -1 && Math.abs(dCol) === 1) return true;
+        if (dRow === -2 && Math.abs(dCol) === 2) {
+          let midRow = fromRow - 1;
+          let midCol = fromCol + dCol / 2;
+          if (board[midRow][midCol] === 1) return true;
+        }
+      }
+      return false;
+    }
+
+    // Обработчик клика по клетке доски
+    function cellClick(e) {
+      let row = parseInt(this.dataset.row);
+      let col = parseInt(this.dataset.col);
+      
+      // Если нажаты на свою шашку – выбираем её
+      if (board[row][col] === currentPlayer) {
+        if (selectedCell) {
+          selectedCell.classList.remove("selected");
+        }
+        selectedCell = this;
+        this.classList.add("selected");
+      } else if (selectedCell) {
+        // Если выбрана шашка и кликнули по пустой клетке – проверяем ход
+        let fromRow = parseInt(selectedCell.dataset.row);
+        let fromCol = parseInt(selectedCell.dataset.col);
+        if (isValidMove(fromRow, fromCol, row, col, currentPlayer)) {
+          // Если сделан прыжок, удаляем шашку противника, попавшую между
+          if (Math.abs(row - fromRow) === 2) {
+            let midRow = (fromRow + row) / 2;
+            let midCol = (fromCol + col) / 2;
+            board[midRow][midCol] = 0;
+          }
+          // Перемещаем выбранную шашку
+          board[row][col] = board[fromRow][fromCol];
+          board[fromRow][fromCol] = 0;
+          selectedCell.classList.remove("selected");
+          selectedCell = null;
+          updateBoard();
+          // Меняем игрока
+          currentPlayer = currentPlayer === 1 ? 2 : 1;
+          updateStatus();
+        } else {
+          // Если ход недопустим — снимаем выделение
+          selectedCell.classList.remove("selected");
+          selectedCell = null;
+        }
+      }
+    }
+
+    // Инициализация и запуск игры
+    function initGame() {
+      initializeBoard();
+      let gameDiv = document.getElementById("game");
+      gameDiv.innerHTML = "";
+      gameDiv.appendChild(createBoardHTML());
+      updateBoard();
+    }
+
+    initGame();
+  </script>
+</body>
+</html>

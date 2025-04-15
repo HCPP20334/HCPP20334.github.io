@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Doom 3D c врагами, стрельбой и наклоном головы</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      overflow: hidden;
+    }
+    /* Канвас занимает всё окно браузера */
+    canvas {
+      display: block;
+      background: #000;
+    }
+    .msg{
+        font-size: 20px;
+        margin: 20px;
+        font-family: monospace; 
+        color: #ffffff;
+        text-shadow: 3px 3px 30 #000;
+        position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="msg" id="data">Test</h1>
+  <canvas id="gameCanvas"></canvas>
+  <script>
+     const info = document.getElementById("data");
+      let frameCounta = 0;
+    let lastTime = performance.now();
+    
+    // Функция, которая обновляет значение FPS
+    function updateFPS() {
+      const now = performance.now();
+      frameCounta++;
+      
+      // Если прошло больше 1000 мс, обновляем счетчик
+      if (now - lastTime >= 1000) {
+        const fps = frameCounta; // число кадров за прошествие 1 секунды
+        frameCounta = 0;
+        lastTime = now;
+        info.innerHTML = "fps:"+fps+" WASD - Ходьба , F - стрельба , PageUP/Down - Наклон головы";
+      }
+      
+      // Запускаем следующий кадр
+      requestAnimationFrame(updateFPS);
+    }
+    
+    // Запуск цикла обновления FPS
+    updateFPS();
+    // Настройка Canvas
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    function logs(s){
+        info.innerHTML = s;
+    }
+    // Параметры карты: 16×16 (символ '#' – стена, '.' – свободное пространство)
+    const mapWidth = 16;
+    const mapHeight = 16;
+    const map = 
+      "################" +
+      "#..............#" +
+      "#.......###....#" +
+      "#......#...#...#" +
+      "########...#...#" +
+      "#..........##..#" +
+      "#...........#..#" +
+      "##########..#..#" +
+      "#..............#" +
+      "#..............#" +
+      "#......#.......#" +
+      "#......#.......#" +
+      "#..............#" +
+      "#......#########" +
+      "#..............#" +
+      "################";
+
+    // Параметры игрока
+    let playerX = 8.0;
+    let playerY = 8.0;
+    let playerAngle = 0;
+    const FOV = Math.PI / 4;    // 45° поле зрения
+    const depth = 16.0;         // максимальная дистанция обзора
+
+    // Дополнительная переменная для вертикального наклона (поворот головы вверх / вниз)
+    let cameraPitch = 0; // смещение по вертикали в пикселях (положительное – смотреть вниз)
+
+    // Учет времени для движения
+    let previousTime = performance.now();
+
+    // Обработка нажатий клавиш
+    const keys = {};
+    window.addEventListener("keydown", (e) => keys[e.code] = true);
+    window.addEventListener("keyup", (e) => keys[e.code] = false);
+
+    // Переменные стрельбы
+    let shootCooldown = 0;
+    const shootDelay = 0.3; // задержка между выстрелами (сек)
+    const shootDamage = 50;
+    let shotCount = 0;
+    let frameCount = 0;
+    // Массив врагов (объекты с координатами, здоровьем и скоростью)
+    let enemies = [
+      { x: 3.5, y: 3.5, health: 100, speed: 1.0 },
+      { x: 12.5, y: 9.5, health: 100, speed: 1.0 },
+      { x: 10.5, y: 12.5, health: 100, speed: 1.0 }
+    ];
+
+    // Функция проверки проходимости клетки (не стена)
+    function isWalkable(x, y) {
+      const mx = Math.floor(x);
+      const my = Math.floor(y);
+      if (mx < 0 || mx >= mapWidth || my < 0 || my >= mapHeight) return false;
+      return map[my * mapWidth + mx] !== "#";
+    }
+
+    // Простейший AI для врагов: движение в сторону игрока
+    function updateEnemies(elapsedTime) {
+      for (let enemy of enemies) {
+        if (enemy.health <= 0) continue; // мертвые враги пропускаются
+        const dx = playerX - enemy.x;
+        const dy = playerY - enemy.y;
+        const distance = Math.hypot(dx, dy);
+        if (distance > 1.0) {
+          const moveStep = enemy.speed * elapsedTime;
+          let newX = enemy.x + (dx / distance) * moveStep;
+          let newY = enemy.y + (dy / distance) * moveStep;
+          if (isWalkable(newX, newY)) {
+            enemy.x = newX;
+            enemy.y = newY;
+          }
+        }
+      }
+    }
+
+    // Функция проверки линии видимости: пошагово от (x1,y1) до (x2,y2)
+    function lineOfSight(x1, y1, x2, y2) {
+      const dist = Math.hypot(x2 - x1, y2 - y1);
+      const steps = Math.ceil(dist / 0.1);
+      for (let i = 0; i < steps; i++) {
+        const t = i / steps;
+        const ix = x1 + (x2 - x1) * t;
+        const iy = y1 + (y2 - y1) * t;
+        const mx = Math.floor(ix);
+        const my = Math.floor(iy);
+        if (mx < 0 || mx >= mapWidth || my < 0 || my >= mapHeight) return false;
+        if (map[my * mapWidth + mx] === "#") return false;
+      }
+      return true;
+    }
+
+    // Нормализация угла в диапазон [-PI, PI]
+    function normalizeAngle(angle) {
+      while (angle < -Math.PI) angle += 2 * Math.PI;
+      while (angle > Math.PI) angle -= 2 * Math.PI;
+      return angle;
+    }
+
+    // Функция стрельбы (hitscan): проверяет попадание по врагу, находящемуся по прямой взгляда
+    function shoot() {
+      let target = null;
+      shotCount = 0;
+      let minAngleDiff = Infinity;
+      for (let enemy of enemies) {
+        if (enemy.health <= 0) continue;
+        const dx = enemy.x - playerX;
+        const dy = enemy.y - playerY;
+        const distance = Math.hypot(dx, dy);
+        if (distance > depth) continue;
+        let angleToEnemy = Math.atan2(dy, dx);
+        let angleDiff = Math.abs(normalizeAngle(angleToEnemy - playerAngle));
+        if (angleDiff < 0.1 && angleDiff < minAngleDiff) { // враг почти прямо перед игроком
+          if (lineOfSight(playerX, playerY, enemy.x, enemy.y)) {
+            target = enemy;
+            minAngleDiff = angleDiff;
+          }
+        }
+      }
+      if (target) {
+        shotCount++;
+        target.health -= shootDamage;
+        logs("Попадание! Здоровье врага:" + target.health);
+      }
+    }
+
+    // Главная игровая функция (gameLoop)
+    function gameLoop(currentTime) {
+      const elapsedTime = (currentTime - previousTime) / 1000.0;
+      previousTime = currentTime;
+
+      // Обработка стрельбы (Space или F)
+      shootCooldown -= elapsedTime;
+      if ((keys["Space"] || keys["KeyF"]) && shootCooldown <= 0) {
+        shoot();
+        shootCooldown = shootDelay;
+        keys["Space"] = false;
+        keys["KeyF"] = false;
+      }
+
+      // Поворот игрока (A/D)
+      const rotSpeed = 2.0; // радиан в секунду
+
+      if (keys["KeyA"]) {
+        playerAngle -= rotSpeed * elapsedTime;
+      }
+      if (keys["KeyD"]) {
+        playerAngle += rotSpeed * elapsedTime;
+      }
+
+      // Движение игрока (W/ArrowUp, S/ArrowDown)
+      const moveSpeed = 5.0; // скорость
+      let newX = playerX;
+      let newY = playerY;
+      
+      if (keys["KeyW"] || keys["ArrowUp"]) {
+        newX += Math.cos(playerAngle) * moveSpeed * elapsedTime;
+        newY += Math.sin(playerAngle) * moveSpeed * elapsedTime;
+      }
+      if (keys["KeyS"] || keys["ArrowDown"]) {
+        newX -= Math.cos(playerAngle) * moveSpeed * elapsedTime;
+        newY -= Math.sin(playerAngle) * moveSpeed * elapsedTime;
+      }
+      if (isWalkable(newX, newY)) {
+        playerX = newX;
+        playerY = newY;
+      }
+      if (keys["PageUp"]) {
+        cameraPitch -= pitchSpeed * elapsedTime;
+      }
+      if (keys["PageDown"]) {
+        cameraPitch += pitchSpeed * elapsedTime;
+      }
+      
+      // Ограничиваем диапазон наклона (например, ±50 пикселей)
+      cameraPitch = Math.max(-50, Math.min(50, cameraPitch));
+
+      // Обновление позиций врагов (AI)
+      updateEnemies(elapsedTime);
+
+      // Отрисовка потолка и пола
+      ctx.fillStyle = "#797797";  // потолок
+      ctx.fillRect(0, 0, canvas.width, canvas.height / 2);
+      ctx.fillStyle = "#636363";  // пол
+      ctx.fillRect(0, canvas.height / 2, canvas.width, canvas.height / 2);
+
+      // Массив для z‑буфера (расстояния до стен по каждому столбцу)
+      let zBuffer = new Array(canvas.width);
+
+      // Raycasting для стен
+      for (let x = 0; x < canvas.width; x++) {
+        // Вычисляем угол луча от (playerAngle - FOV/2) до (playerAngle + FOV/2)
+        const rayAngle = playerAngle - FOV / 2 + (x / canvas.width) * FOV;
+        let distanceToWall = 0;
+        let hitWall = false;
+        const eyeX = Math.cos(rayAngle);
+        const eyeY = Math.sin(rayAngle);
+
+        while (!hitWall && distanceToWall < depth) {
+          distanceToWall += 0.1;
+          let testX = Math.floor(playerX + eyeX * distanceToWall);
+          let testY = Math.floor(playerY + eyeY * distanceToWall);
+          if (testX < 0 || testX >= mapWidth || testY < 0 || testY >= mapHeight) {
+            hitWall = true;
+            distanceToWall = depth;
+          } else {
+            if (map[testY * mapWidth + testX] === "#") {
+              hitWall = true;
+            }
+          }
+        }
+        // Исправляем эффект "рыбьего глаза"
+        const correctedDistance = distanceToWall * Math.cos(rayAngle - playerAngle);
+        zBuffer[x] = correctedDistance;
+        // Вычисляем высоту стены с учётом вертикального наклона камеры
+        const lineHeight = Math.floor(canvas.height / correctedDistance);
+        const drawStart = Math.floor((canvas.height - lineHeight) / 2) + cameraPitch;
+        // Оттенок стены зависит от расстояния
+        let shade = Math.floor(995 * (1 - correctedDistance / depth));
+        shade = Math.max(0, Math.min(shade, 255));
+        ctx.fillStyle = `rgb(${0}, ${Math.floor(shade * 0.8)}, ${Math.floor(shade * 0.3)})`;
+        ctx.fillRect(x, drawStart, 1, lineHeight);
+      }
+
+      // Отрисовка врагов
+      let visibleEnemies = [];
+      for (let enemy of enemies) {
+        if (enemy.health <= 0) continue;
+        const dx = enemy.x - playerX;
+        const dy = enemy.y - playerY;
+        const distance = Math.hypot(dx, dy);
+        const angleToEnemy = Math.atan2(dy, dx) - playerAngle;
+        const enemyAngle = normalizeAngle(angleToEnemy);
+        // Если враг в пределах поля зрения
+        if (Math.abs(enemyAngle) < FOV / 1.5) {
+          visibleEnemies.push({
+            enemy: enemy,
+            distance: distance,
+            angle: enemyAngle
+          });
+        }
+      }
+      // Сортируем врагов от дальних к ближним для корректной отрисовки
+      visibleEnemies.sort((a, b) => b.distance - a.distance);
+      
+      for (let data of visibleEnemies) {
+        const enemy = data.enemy;
+        const distance = data.distance;
+        // Пропорционально расстоянию вычисляем размер врага
+        const enemySize = canvas.height / distance;
+        const enemyScreenX = (canvas.width / 2) + (data.angle / (FOV/2)) * (canvas.width / 2) - enemySize/2;
+        // Добавляем к вертикальной позиции также сдвиг камеры (наклон головы)
+        const enemyScreenY = (canvas.height / 2) - enemySize/2 + cameraPitch;
+        // Проверка occlusion: берем координату середины врага и сравниваем с z-буфером
+        const centerX = Math.floor(enemyScreenX + enemySize/2);
+        if (centerX >= 0 && centerX < canvas.width && distance < zBuffer[centerX]) {
+          ctx.fillStyle = "red";
+          ctx.fillRect(enemyScreenX, enemyScreenY, enemySize, enemySize);
+        }
+      }
+
+      requestAnimationFrame(gameLoop);
+    }
+
+    requestAnimationFrame(gameLoop);
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>

@@ -1,242 +1,186 @@
-<html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>XVPN Cyberpunk VPN</title>
   <style>
+    /* Подключаем кастомный шрифт */
     @font-face {
-      font-family: xvpnFont;
+      font-family: "HackerFont";
       src: url("syne-latin-wght-normal.Dvf_39Wt.woff2");
     }
-   html{
-    background: linear-gradient(to right, #161515, #161515)
-   }
-   .maincontent{
-    width: 330px;
-    height: 330px;
-    display: block;
-    height: 420px;
-    margin: auto;
-    
-   }
-   .text3{
-    color: #ffffff;
-    font-size: 50px;
-    text-align: center;
-    font-family: 'xvpnFont';
-    width: 330px; transform: translateY(240px);
-    height: 100px;
-    
-   }
-   .text4{
-    color: #ffffff;
-    font-size: 20px;
-    text-align: center;
-    font-family: 'xvpnFont';
-    width: 330px; transform: translateY(240px);
-    height: 100px;
-    
-   }
-   .text5{
-    color: #ffffff;
-    font-size: 15px;
-    text-align: center;
-    font-family: 'xvpnFont';
-
-   }
-   .text6{
-    color: #ffffff;
-    font-size: 20px;
-    text-align: left;  transform: translateX(90px);
-    font-family: 'xvpnFont';
-   }
-
-   .text7{
-    color: #ffffff;
-    font-size: 30px;
-    text-align: center; 
-    font-family: 'xvpnFont';
-   }
-   .text{
-    color: #ffffff;
-    font-size: 50px;font-family: 'xvpnFont';
-    text-align: left;background-color: transparent;
-    transform: translateX(40px);
-
-   }
-   .price{
-    color: #ffffff;
-    font-size: 40px;font-family: 'Segoe UI';
-    text-align: left;background-color: transparent;display: inline;
-   }
-   .price2{
-    color: #ffffff;
-    font-size: 13px;font-family: 'Segoe UI';
-    text-align: left;background-color: transparent;display: inline;
-   }
-   .text2{
-    color: #ffffff;font-family: 'xvpnFont'; display: block;
-    height: 30px;
-    margin: auto;
-    font-size: 20px;text-align: left;background-color: transparent;
-    transform: translateX(40px);
-   }
-   .items{
-    border-bottom: 1px solid #ffffff;
-    min-width: 490px;
-    width: 90%;
-    height: auto;
-    display: block;
-    margin: auto;
-    margin-bottom: 10px;
-    overflow: hidden;
-    transition: .8s;
-    z-index: -1;
-    &:hover{
-      background: #4213fd;
-      box-shadow: 2px 3px 100px #4213fd;
-      border-bottom: 1px solid #4213fd;
+    /* Общие стили для киберпанк-атмосферы */
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #1A1A2E, #16213E);
+      color: #C5C6C7;
+      font-family: 'HackerFont', sans-serif;
     }
-
-   }
-   .ball{
-    width: 32px;
-    height: 32px;
-    background: #ffffff;
-    box-shadow: 2px 3px 330px #ffffff;
-   }
-   .buy{
-    border: 1px solid #ffffff;
-    color: #ffffff;font-family: 'xvpnFont';
-    font-size: 20px;text-align: center;box-shadow: 2px 2px 10px #ffffff;
-    background: transparent;
-    width: 100px;
-    display: inline-block;
-    height: 30px;
-    margin: auto;
-   }
-   @keyframes glow {
-     100%{
-      box-shadow: 10px -20px 700px 60px rgb(255, 255, 255);
-     }
-     50%{
-      box-shadow: 10px -20px 700px 10px rgb(255, 255, 255);
-     }
-     0%{
-      box-shadow: 10px -20px 700px 60px rgb(255, 255, 255);
-     }
-     
-   }
-   .hglow{
-    display: block;margin: auto;
-    animation:  glow 3s infinite ease;
-    box-shadow: 10px -20px 500px 60px rgb(255, 255, 255);
-    border-radius: 32px;width: 0px;
-    height: 0px; background: rgba(255, 255, 255,0.1);
-    transform: translateY(200px);
-   }
-   .redirect_to{
-    display:none;
-    width: 400px;
-    height: 500px;
-    background: #0c0c0c;border-radius: 20px;
-    position: absolute;
-    z-index: 1;
-    transform: translate(200px,400px);
-      box-shadow: 2px 3px 100px #4213fd;
-   }
-   @keyframes yanim {
-     100%{
-      transform: translate(40px,0px);
-     }
-     0%{
-      transform: translate(40px,-100px);
-     }
-   }
-   .btns{
-    color: #ffffff;
-    font-size: 20px;font-family: 'xvpnFont';
-    display: inline-block;
-    width: 300px;
-    height: 60px;
-    border: none;
-    border-radius: 20px;
-    background: #4213fd;
-    margin: 5px;
-    animation: yanim 2s ease-in;
-    transform: translate(40px,0px);
-    box-shadow: 2px 3px 100px #4213fd;
-    transition: .6s;
-    &:hover{
-      background: #ff0b40;
-      box-shadow: 2px 3px 100px #ff0b40;
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 50px 15px;
     }
-   }
+    /* Селектор языка в правом верхнем углу */
+    .language-selector {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(26, 26, 46, 0.6);
+      border: 1px solid #0f0;
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 14px;
+    }
+    /* Основной контент */
+    .maincontent {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    h1 {
+      font-size: 48px;
+      margin: 0;
+      color: #66FCF1;
+    }
+    h2 {
+      font-size: 22px;
+      margin: 10px 0 0 0;
+      color: #45A29E;
+    }
+    .items {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid #45A29E;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .items:hover {
+      background: rgba(0, 0, 0, 0.5);
+      transform: scale(1.02);
+    }
+    .items h1 {
+      font-size: 32px;
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #66FCF1;
+    }
+    .pricing {
+      font-size: 28px;
+      color: #66FCF1;
+    }
+    .items h2 {
+      font-size: 18px;
+      margin-top: 10px;
+      color: #C5C6C7;
+    }
+    .description {
+      font-size: 16px;
+      line-height: 1.5;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 15px;
+      border-radius: 5px;
+      color: #C5C6C7;
+    }
+    .btns {
+      padding: 10px 20px;
+      border: 1px solid #66FCF1;
+      background: transparent;
+      color: #66FCF1;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+      margin: 5px;
+      transition: background 0.3s, color 0.3s;
+    }
+    .btns:hover {
+      background: #66FCF1;
+      color: #000;
+    }
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 30px;
+      color: #777;
+    }
   </style>
-  <div class="redirect_to" id="paywnd">
-  <p class="text7"><strong>REDIRECT TO</strong></p>
-  <button class="btns" onclick="window.open('https://t.me/hcppstudio')">Telegram</button>
-  <button class="btns" onclick="window.open('https://vk.com/hcpp20334')">VK</button>
-  <button class="btns" onclick="window.open('malito:xvpnsupport20334@gmail.com')">Gmail</button>
-  <p class="text7"><strong>PRESS TO ANY FRAME<br>TO CLOSE</strong></p>
+</head>
+<body>
+  <!-- Селектор языка -->
+  <select id="langSelect" class="language-selector">
+    <option value="ru">Русский</option>
+    <option value="en">English</option>
+  </select>
+
+  <div class="container">
+    <div class="maincontent">
+      <h1 id="title">XVPN</h1>
+      <h2 id="subtitle">VLESS + REALITY VPN</h2>
+    </div>
+
+    <!-- Тарифные планы -->
+    <div class="items" id="itemBase">
+      <h1>BASE - <span class="pricing" id="priceBase">150 RUB</span></h1>
+      <h2 id="descBase">10 MBIT VLESS + REALITY VPN</h2>
+    </div>
+
+    <div class="items" id="itemPro">
+      <h1>PRO - <span class="pricing" id="pricePro">350 RUB</span></h1>
+      <h2 id="descPro">100 MBIT VLESS + REALITY VPN</h2>
+    </div>
+
+    <div class="items" id="itemUltimate">
+      <h1>ULTIMATE - <span class="pricing" id="priceUltimate">650 RUB</span></h1>
+      <h2 id="descUltimate">1000 MBIT VLESS + REALITY VPN</h2>
+    </div>
+
+    <!-- Описание услуг -->
+    <div class="description" id="description">
+      <strong>Fast & Secure VPN with VLESS + REALITY</strong><br>
+      Experience ultra-fast and private browsing with our high-performance VPN,<br>
+      powered by the <strong>VLESS protocol</strong> and <strong>REALITY technology</strong><br>
+      for enhanced security and bypassing restrictions.<br><br>
+      <strong>Choose Your Plan:</strong><br>
+      ⚡ <strong>BASE</strong>: 10 Mbps (Ideal for browsing & messaging)<br>
+      🚀 <strong>PRO</strong>: 100 Mbps (Great for streaming & downloads)<br>
+      🔥 <strong>ULTIMATE</strong>: 1 Gbps (Maximum speed for 4K, gaming & more)<br><br>
+      ✔ <strong>No logs</strong> · ✔ <strong>Stable connection</strong> · ✔ <strong>Bypass censorship</strong><br><br>
+      Upgrade your online freedom today!
+    </div>
+
+    <!-- Кнопки социальных сетей -->
+    <div style="text-align: center; margin-top: 30px;">
+      <button class="btns" onclick="window.open('https://t.me/hcppstudio')">Telegram</button>
+      <button class="btns" onclick="window.open('https://vk.com/hcpp20334')">VK</button>
+      <button class="btns" onclick="window.open('mailto:xvpnsupport20334@gmail.com')">Gmail</button>
+    </div>
+
+    <div class="footer">
+      POWERED BY PWENGINEJS <span style="font-size: 10px;">_1.3012daef</span>
+    </div>
   </div>
-<div class="hglow"></div>
-<div class="maincontent">
-<h1 class="text3">XVPN</h1>
-<h2 class="text4">VLESS + REALITY VPN</h2>
-<br>
-</div>
-<div class="content">
-<div class="items" id="base_frame">
-  <h1 class="text">BASE - <p class="price">150RUB</p></h1>
-  <h2 class="text2">10 MBIT VLESS + REALITY VPN</h2>
-  <br>
-</div>
-<div class="items"  id="pro_frame">
-  <h1 class="text">PRO - <p class="price">350RUB</p></h1>
-  <h class="text2">100 MBIT VLESS + REALITY VPN</h>
-  <br>
-</div>
-<div class="items"  id="ultimate_frame">
-  <h1 class="text">ULTIMATE - <p class="price">650RUB</p></h1>
-  <h2 class="text2">1000 MBIT VLESS + REALITY VPN</h2>
- <br>
-</div>
-</div>
-<p class="text6">
-  <strong>Fast & Secure VPN with VLESS + REALITY</strong><br>
-  Experience ultra-fast and private browsing with our high-performance VPN,<br>
-  powered by the <strong>VLESS protocol</strong> and <strong>REALITY technology</strong><br>
-  for enhanced security and bypassing restrictions.<br>
-  <br>
-  <strong>Choose Your Plan:</strong><br>
-  ⚡ <strong>BASE</strong> – <strong>10 Mbps</strong> (Ideal for browsing & messaging)<br>
-  🚀 <strong>PRO</strong> – <strong>100 Mbps</strong> (Great for streaming & downloads)<br>
-  🔥 <strong>ULTIMATE</strong> – <strong>1 Gbps</strong> (Maximum speed for 4K, gaming & more)<br>
-  <br>
-  ✔ <strong>No logs</strong> · ✔ <strong>Stable connection</strong> · ✔ <strong>Bypass censorship</strong><br>
-  <br>
-  Upgrade your online freedom today!
-</p>
-<h2 class="text5">POWERED BY PWENGINEJS<p class="price2">_1.3012daef</p></h2>
-<script src="./script/pxengine_1.0.js"></script>
-<script>
-let WXGUI = new PXEngine_1_0();
-class XVPN{
-  fWXbase= document.getElementById("base_frame");
-  fWXpro= document.getElementById("pro_frame");
-  fWXultimate= document.getElementById("ultimate_frame");
-  fWXpay = document.getElementById("paywnd");
-}
-WXGUI.init();
-let WX = new XVPN();
-WX.fWXbase.onclick = function(){
-WXGUI.frame(WX.fWXpay,1);
-}
-WX.fWXpro.onclick = function(){
-WXGUI.frame(WX.fWXpay,1);
-}
-WX.fWXultimate.onclick = function(){
-WXGUI.frame(WX.fWXpay,1);
-}
-WX.fWXpay.onclick = function(){
-WXGUI.frame(WX.fWXpay,0);
-}
-</script>
-</html>
+
+  <script>
+    // Объект переводов для поддержки русского и английского языков
+    const translations = {
+      ru: {
+        title: "XVPN",
+        subtitle: "VLESS + REALITY VPN",
+        items: {
+          base: { name: "BASE", price: "150 RUB", desc: "10 Мбит VLESS + REALITY VPN" },
+          pro: { name: "PRO", price: "350 RUB", desc: "100 Мбит VLESS + REALITY VPN" },
+          ultimate: { name: "ULTIMATE", price: "650 RUB", desc: "1000 Мбит VLESS + REALITY VPN" }
+        },
+        description: `
+<strong>Быстрый и безопасный VPN с VLESS + REALITY</strong><br>
+Испытайте ультрабыстрый и приватный серфинг с нашим высокопроизводительным VPN,<br>
+работающим на базе <strong>протокола VLESS</strong> и <strong>технологии REALITY</strong><br>
+для повышения безопасности и обхода блокировок.<br><br>
+<strong>Выберите тариф:</strong><br>
+⚡ <strong>BASE</strong>: 10 Мбит (идеально для серфинга и мессенджеров)<br>
+🚀 <strong>PRO</strong>: 100 Мбит (отлично для стриминга и скачивания)<br>
+🔥 <strong>ULTIMATE</strong>: 1 Гбит (максимальная скорость для 4K, игр и прочего)<br><br>
+✔ <strong>Без логов</strong
