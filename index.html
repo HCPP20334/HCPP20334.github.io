@@ -1,869 +1,1179 @@
 ﻿<html>
-    <head><link rel="icon" type="image/png" href="favicon.png">
-    <title>HCPP STUDIO 2025</title>
-    <meta name="viewport" content="width=device-width">
+    <head>
+        <link rel="icon" type="image/png" href="favicon.png">
+        <title>HCPP STUDIO 2025</title>
+        <meta name="viewport" content="width=device-width">
+        <style>
+            /* Хакерская тема с красными акцентами */
+            @font-face {
+                font-family: 'Hacker';
+                src: url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+            }
+            
+            :root {
+                --color-bg-primary: #0a0a0a;
+                --color-bg-secondary: #111111;
+                --color-border-primary: #1a1a1a;
+                --color-text-primary: #ff0000;
+                --color-text-secondary: #990000;
+                --color-accent: #cc0000;
+                --color-btn-bg: #111111;
+                --color-btn-border: #330000;
+                --color-btn-hover: #220000;
+                --color-btn-active: #aa0000;
+                --color-header-bg: #0a0a0a;
+                --color-code-bg: #000000;
+                --color-code-text: #ff0000;
+                --glitch-intensity: 0;
+            }
+            
+            * {
+                font-family: 'Share Tech Mono', monospace;
+                box-sizing: border-box;
+            }
+            
+            html, body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                overflow-x: hidden;
+            }
+            
+            body {
+                background: var(--color-bg-primary);
+                color: var(--color-text-primary);
+                line-height: 1.5;
+                text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+                position: relative;
+            }
+            
+            .glitch-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: transparent;
+                z-index: 9999;
+                pointer-events: none;
+                opacity: var(--glitch-intensity);
+                mix-blend-mode: screen;
+            }
+            
+            canvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+            }
+            
+            ::selection {
+                background: var(--color-accent);
+                color: black;
+            }
+            
+            @keyframes fadein {
+                0% { opacity: 0; }
+                100% { opacity: 1; }
+            }
+            
+            @keyframes blink {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0; }
+            }
+            
+            @keyframes glitch {
+                0% { transform: translate(0); }
+                20% { transform: translate(-2px, 2px); }
+                40% { transform: translate(-2px, -2px); }
+                60% { transform: translate(2px, 2px); }
+                80% { transform: translate(2px, -2px); }
+                100% { transform: translate(0); }
+            }
+            
+            .App {
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+                position: relative;
+            }
+            
+            .header {
+                background-color: var(--color-header-bg);
+                padding: 16px;
+                border-bottom: 1px solid var(--color-border-primary);
+                display: flex;
+                align-items: center;
+                box-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
+                position: relative;
+                z-index: 10;
+            }
+            
+            .header-logo {
+                font-size: 24px;
+                font-weight: bold;
+                color: var(--color-text-primary);
+                text-decoration: none;
+                margin-right: 24px;
+                letter-spacing: 1px;
+            }
+            
+            .nav {
+                display: flex;
+                gap: 16px;
+            }
+            
+            .nav-link {
+                color: var(--color-text-primary);
+                text-decoration: none;
+                font-size: 14px;
+                padding: 8px 12px;
+                border-radius: 4px;
+                border: 1px solid var(--color-btn-border);
+                transition: all 0.3s;
+            }
+            
+            .nav-link:hover {
+                background-color: var(--color-btn-hover);
+                box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+                animation: glitch 0.3s linear;
+            }
+            
+            .nav-link.active {
+                background-color: var(--color-btn-active);
+                color: black;
+                font-weight: bold;
+                border-color: var(--color-accent);
+            }
+            
+            .container {
+                max-width: 1280px;
+                margin: 0 auto;
+                padding: 24px 16px;
+                width: 100%;
+                position: relative;
+                z-index: 5;
+            }
+            
+            .hero {
+                text-align: center;
+                padding: 80px 0;
+                border-bottom: 1px solid var(--color-border-primary);
+                position: relative;
+            }
+            
+            .hero-title {
+                font-size: 48px;
+                font-weight: bold;
+                margin-bottom: 16px;
+                letter-spacing: 2px;
+                text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+                position: relative;
+            }
+            
+            .hero-subtitle {
+                font-size: 20px;
+                color: var(--color-text-secondary);
+                max-width: 800px;
+                margin: 0 auto 32px;
+                position: relative;
+            }
+            
+            .btn {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: var(--color-btn-bg);
+                border: 1px solid var(--color-btn-border);
+                border-radius: 4px;
+                color: var(--color-text-primary);
+                text-decoration: none;
+                font-size: 14px;
+                cursor: pointer;
+                transition: all 0.3s;
+                margin: 5px;
+                letter-spacing: 1px;
+                position: relative;
+            }
+            
+            .btn:hover {
+                background-color: var(--color-btn-hover);
+                box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+                transform: translateY(-1px);
+                animation: glitch 0.3s linear;
+            }
+            
+            .btn-primary {
+                background-color: var(--color-btn-active);
+                border-color: var(--color-btn-active);
+                color: black;
+                font-weight: bold;
+            }
+            
+            .btn-primary:hover {
+                background-color: #dd0000;
+                border-color: #dd0000;
+                box-shadow: 0 0 12px rgba(255, 0, 0, 0.5);
+            }
+            
+            .section {
+                margin-bottom: 48px;
+                position: relative;
+            }
+            
+            .section-title {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 16px;
+                border-bottom: 1px solid var(--color-border-primary);
+                padding-bottom: 8px;
+                letter-spacing: 1px;
+                position: relative;
+            }
+            
+            .card {
+                background-color: var(--color-bg-secondary);
+                border: 1px solid var(--color-border-primary);
+                border-radius: 4px;
+                padding: 24px;
+                margin-bottom: 16px;
+                transition: all 0.3s;
+                box-shadow: 0 0 5px rgba(255, 0, 0, 0.1);
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .card:hover {
+                box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+                transform: translateY(-2px);
+            }
+            
+            .card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.1), transparent);
+                transition: 0.5s;
+            }
+            
+            .card:hover::before {
+                left: 100%;
+            }
+            
+            .card-title {
+                font-size: 20px;
+                font-weight: bold;
+                margin-bottom: 8px;
+                color: var(--color-accent);
+            }
+            
+            .card-meta {
+                font-size: 12px;
+                color: var(--color-text-secondary);
+                margin-bottom: 16px;
+            }
+            
+            .card-content {
+                margin-bottom: 16px;
+            }
+            
+            .card-footer {
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+            
+            .repo-language {
+                display: flex;
+                align-items: center;
+                font-size: 12px;
+                color: var(--color-text-secondary);
+            }
+            
+            .repo-language-color {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                margin-right: 4px;
+                box-shadow: 0 0 3px rgba(255, 0, 0, 0.5);
+            }
+            
+            .repo-language-cpp { background-color: #aa0000; }
+            .repo-language-java { background-color: #770000; }
+            .repo-language-js { background-color: #cc0000; }
+            
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 16px;
+            }
+            
+            .loading {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                flex-direction: column;
+                background: var(--color-bg-primary);
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+            }
+            
+            .loading-spinner {
+                width: 48px;
+                height: 48px;
+                border: 5px solid var(--color-border-primary);
+                border-bottom-color: var(--color-accent);
+                border-radius: 50%;
+                animation: rotation 1s linear infinite;
+                box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+            }
+            
+            .loading h1 {
+                margin-top: 20px;
+                animation: blink 1.5s infinite;
+            }
+            
+            @keyframes rotation {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+            
+            .hidden {
+                display: none;
+            }
+            
+            pre, code {
+                background-color: var(--color-code-bg);
+                color: var(--color-code-text);
+                padding: 10px;
+                border-radius: 4px;
+                border: 1px solid var(--color-border-primary);
+                overflow-x: auto;
+                font-family: 'Share Tech Mono', monospace;
+                font-size: 14px;
+            }
+            
+            pre {
+                margin: 15px 0;
+            }
+            
+            a {
+                color: var(--color-accent);
+                text-decoration: none;
+                transition: all 0.3s;
+            }
+            
+            a:hover {
+                text-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+            }
+            
+            ul {
+                padding-left: 20px;
+            }
+            
+            li {
+                margin-bottom: 8px;
+            }
+            
+            /* Terminal-like cursor effect */
+            .cursor {
+                animation: blink 1s infinite;
+            }
+            
+            /* Scrollbar styling */
+            ::-webkit-scrollbar {
+                width: 10px;
+            }
+            
+            ::-webkit-scrollbar-track {
+                background: var(--color-bg-primary);
+            }
+            
+            ::-webkit-scrollbar-thumb {
+                background: var(--color-accent);
+                border-radius: 5px;
+            }
+            
+            ::-webkit-scrollbar-thumb:hover {
+                background: var(--color-text-primary);
+            }
+            
+            /* Glitch effect */
+            .glitch-effect {
+                position: relative;
+            }
+            
+            .glitch-effect::before,
+            .glitch-effect::after {
+                content: attr(data-text);
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: var(--color-bg-primary);
+            }
+            
+            .glitch-effect::before {
+                left: 2px;
+                text-shadow: -2px 0 #00ff00;
+                clip: rect(44px, 450px, 56px, 0);
+                animation: glitch-anim-1 2s infinite linear alternate-reverse;
+            }
+            
+            .glitch-effect::after {
+                left: -2px;
+                text-shadow: -2px 0 #0000ff;
+                clip: rect(44px, 450px, 56px, 0);
+                animation: glitch-anim-2 2s infinite linear alternate-reverse;
+            }
+            
+            @keyframes glitch-anim-1 {
+                0% { clip: rect(32px, 9999px, 76px, 0); }
+                20% { clip: rect(8px, 9999px, 14px, 0); }
+                40% { clip: rect(66px, 9999px, 71px, 0); }
+                60% { clip: rect(92px, 9999px, 58px, 0); }
+                80% { clip: rect(53px, 9999px, 99px, 0); }
+                100% { clip: rect(54px, 9999px, 98px, 0); }
+            }
+            
+            @keyframes glitch-anim-2 {
+                0% { clip: rect(54px, 9999px, 28px, 0); }
+                20% { clip: rect(18px, 9999px, 87px, 0); }
+                40% { clip: rect(29px, 9999px, 2px, 0); }
+                60% { clip: rect(90px, 9999px, 73px, 0); }
+                80% { clip: rect(70px, 9999px, 13px, 0); }
+                100% { clip: rect(44px, 9999px, 56px, 0); }
+            }
+            
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .hero-title {
+                    font-size: 32px;
+                }
+                
+                .hero-subtitle {
+                    font-size: 16px;
+                }
+                
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                
+                .nav {
+                    margin-top: 16px;
+                    flex-wrap: wrap;
+                }
+                
+                .btn {
+                    padding: 8px 16px;
+                    font-size: 12px;
+                }
+            }
+        </style>
+        <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     </head>
-    <style>
-    html{
-        background: #010409;
-        overflow-x: hidden;animation: fadein 4s;
-        overflow-y: hidden;
-    }
-    @font-face {
-        font-family: 'Mst';
-        src: url("ofont.ru_Montserrat.ttf");
-    }
-    .App{
-        width: 102%;
-        height:auto;
+    <body>
+        <!-- Canvas for WebGL effects -->
+        <canvas id="glitchCanvas"></canvas>
+        <div class="glitch-overlay"></div>
         
-    }
-    .main-content{
-        width: 100%;
-        height: 800px;
-        background: #010409;transform: translateY(-28px);
-        display: none;
-    }
-    ::-webkit-scrollbar {
-  width: 15px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0); 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #ff0033; 
-  border-radius: 20px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #131212; 
-}
-    .nav-bar{
-        width: 101%;
-        height: 100%;
-        background-image: url("code.png");
-        transform: translateY(10px);
-        z-index: 1;animation: fadein 4s;
-        position: relative;overflow-y: auto;
-    
-    }
-    .nickname{
-        width: 100%;transform: translateY(0px);
-        height: 100%;overflow-y:scroll;overflow-x:hidden;
-        display: block; backdrop-filter: blur(10px);
-        background: transparent;
-    }
-    .text0{
-        font-size: 100px;
-         font-family: 'Mst';
-        color: #ffffff; display: block;transform: translate(30px,50px);
-        
-    }
-    .textld{
-        font-size: 40px;
-         font-family: 'Mst';
-        color: #ffffff;   position: absolute;
-    }
-    .text1{
-        font-size: 20px;
-         font-family: 'Mst';
-        color: #ffffff;animation: fadein 4s;font-style: oblique;
-        display: inline-block;
-        margin: 10px; transform: translate(5px,5px);
-        border-bottom: 4px solid transparent;
-        &:hover{ 
-            border-bottom: 4px solid #ffffff;
-            text-shadow: 1px 1px 2px #ffffff;
-        }
-        &:active{
-            background:  #ffffff;
-            color: #010409;
-        }
-    }
-    .text_post{
-        font-size: 20px;
-         font-family: 'Mst';
-         height: 200px;
-        color: #ffffff;animation: fadein 4s;
-        text-align: left;
-        background-size: 200%;
-        &:hover{
-        background: #2c2b2b;
-    }
-    }
-    .text3{
-        font-size: 60px;
-         font-family: 'Mst';animation: fadein 4s;
-        color: #ffffff;text-align: center;
-    }
-    @keyframes fadein {
-        0%{
-            color: transparent;
-        }
-        100%{
-            opacity: 100%;
-        }
-    }
-    .text4{
-        font-size: 40px;
-         font-family: 'Mst';
-        color: #ffffff;transform: translate(30px,50px);
-        animation: fadein 4s;
-    }
-    .info{
-        width: 50%;
-        height: auto;
-        background: transparent;
-    }
-    .project{
-        border-bottom: 2px solid #ffffff;width: auto;
-        margin: 2px;
-        min-height: 400px;
-        height: 600px;
-        background-image: linear-gradient(transparent 50%, #010409);
-    background-size: 200% 200%;
-    background-repeat: no-repeat;
-    transition: .2s;
-    &:hover{
-    background-position: 0 100%;
-    }
-    }
-    .projects-content{
-        width: 99%;height: auto;
-        background: transparent;
-        display: block;
-    }
-    .project_shop{
-        border-bottom: 2px solid #ffffff;
-    }
-    .title_projects{
-        font-size: 30px;
-         font-family: 'Mst';font-style: oblique;
-        color: #ffffff;
-        display: block;animation: fadein 4s;
-        margin: 15px; transform: translate(30px,5px);
-    }
-    .info_projects{
-        font-size: 20px;
-         font-family: monospace;
-        color: #ffffff;animation: fadein 4s;
-        display: block;
-        user-select: auto;
-        margin: 15px; transform: translate(30px,5px);
-    }
-    .webprojects{
-        display: none;
-    }
-    .shop{
-        display: none;
-    }
-    .download_zip{
-        font-size: 20px;
-         font-family: 'Mst';
-        color: #ffffff;
-        display: block;
-        margin: 15px; transform: translate(30px,5px);
-        background: #8030ff;
-        border: 2px solid #ffffff;
-       min-width: 160px;animation: fadein 4s;
-       margin: 15px;
-       height: 40px;display: inline-block;
-        &:hover{
-            background:  #ffffff;
-            color: #8030ff;
-        }
-    }
-    .title_projects2{
-        font-size: 50px;
-         font-family: monospace;
-        color: #ffffff;
-        display: block;
-        text-rendering: optimizeSpeed;
-        font-style: oblique;
-        margin: 15px; transform: translate(30px,5px);
-    }
-    .title_projects3{
-        font-size: 30px;
-         font-family: monospace;font-style: oblique;
-        color: #ffffff;
-        display: block;
-        margin: 15px; transform: translate(30px,5px);
-    }
-    .date-post{
-        font-size: 15px;
-         font-family: monospace;
-        color: #1f06ff;
-        display: inline;
-        margin: 80px;
-    }
-    .id-post{
-        font-size: 15px;
-         font-family: monospace;
-        color: #02fd73;
-        display: inline;
-        margin: 10px;
-    }
-    .tirleP{
-        background: #1b1b1b; 
-        border-radius: none;
-        border: 1px solid transparent;width: 99%;
-    }
-    .wappb{
-        font-size: 50px;
-         font-family: 'Mst';
-        color: #ffffff;
-        width: auto;
-        overflow: hidden;
-        display: block;
-        margin: 15px; transform: translate(30px,5px);
-        background: #8030ff; 
-        border: none;
-        &:hover{
-            background:  #ffffff;
-            color: #8030ff;
-        }
-    }
-    .cube{
-        width: 64px;
-        height: 64px;
-        background: #8030ff;
-        margin: 10px;
-        display: inline-block;
-        
-    }
-    .loaderText{
-        font-size: 50px;
-         font-family: 'Mst';
-        color: #ffffff;
-        width: auto;
-        overflow: hidden;
-        display: block;
-        text-align: center;
-        transform: translateY(130px);
-    }
-    .loader{
-        overflow-y: auto;
-        overflow-x: hidden;
-        width: 100%;
-        height: 100%;
-    }
-    #webgl-canvas {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-}
-.page_buttons{
-    background: #010409;
-    width: 100%;
-    display: block;
-    height: 80px;
-    margin: auto;
-}
-p,h1,h2{
-    user-select: none;
-}
-.dbg_tool{
-    width: auto;
-    height: 100px;
-    background: #010409;
-    display: inline-block;
-}
-.tx{
-    font-size: 14px;
-         font-family: 'Mst';
-        color: #ffffff;
-}
-#otherWindow{
-
-}
-.post{
-    display: block;
-    width: 90%;
-    height: auto;
-    min-height: 50px;
-    border: 1px solid #3a3939;
-    background: #1b1b1b;
-    border-radius: 8px;
-    transition: .4s;
-    background: rgba(1,4,9,0.4);
-    transform: translateX(40px);
-    margin: 20px;
-}
-.posts{
-    display: block;
-    width: 100%;
-    height: auto;
-    min-height: 50px;
-    border-bottom: 1px solid #3a3939;
-    background: transparent;
-
-    transition: .4s;
-    background: #161616;
-    transform: translateX(-30px);
-    overflow: hidden;
-    margin: 20px;
-}
-.postdata{
-    display: block;
-    width:600px;
-    height: 60px;
-    background: transparent;
-    transition: .4s;border-bottom: 1px solid #3a3939;
-    border-top: none;
-    border-left: none;
-    border-right:1px solid #3a3939;
-    font-size: 14px;
-         font-family: 'Mst';
-        color: #ffffff;
-        &:hover{
-            background: rgba(77, 78, 80, 0.4);
-        }
-}
-.tx0{
-    width:300px;
-    height: 60px;
-    font-size: 30px;
-         font-family: 'Mst';
-        color: #ffffff;
-        display: none;animation: fadein 4s;
-        margin: 15px; transform: translate(30px,5px);
-}
-.tx1{
-    width:300px;
-    height: 60px;
-    font-size: 15px;
-         font-family: 'Mst';
-        color: #ffffff;
-        display: block;;animation: fadein 4s;
-        margin: 15px; transform: translate(30px,-35px);
-}
-.pw{
-    width:600px;
-    height: 120px; transform: translate(0px,-5px);
-    border-right:1px solid #3a3939;
-}
-.btnclose{
-    background-color: #3a3939;
-    color: white;
-    width:auto;
-    height: 60px;
-    font-size: 15px;
-    display: none;
-    border: none;
-         font-family: 'Mst';
-        color: #ffffff;
-        &:hover{
-            background: #131212;
-        }
-}
-img{
-    margin: 50px;display: inline-block;
-}
-a{
-    margin: 50px;
-    display: inline-block;
-    color: white;
-    outline: none;
-    width:300px;
-    height: 60px;
-    font-size: 30px;
-         font-family: 'Mst';
-        color: #ffffff;
-        animation: fadein 4s;
-}
-.avatar{
-    display: block;
-    margin: 10px;
-}
-.ball{
-            width: 32px;
-            height: 32px;display: inline-block;
-            transform: translateX(220px);
-            background: #0059ff;transition: .1s;
-            overflow: hidden;
-            
-        }
-        .ld{
-            display: block;
-            width: 300px;
-            height: 100px;
-            
-        }
-    </style>
-    <audio id="audio_id"></audio>
-    <div class="loader" id="AppoaderID">
-    <button class="btnclose" onclick="dbg_switch = false;">Закрыть консоль отладки</button>
-    <p class="tx0" id="loadedKernel"></p>
-    <div class="ld" id="loadid2">
-        <h1 class="textld" id="loadid2tx">HCPP STUDIO</h1>
-        <div class="ball" id="bl0"></div> <div class="ball"  id="bl1"></div> <div class="ball"  id="bl2"></div> <div class="ball"  id="bl3"></div>
-    </div>
-    </div>
-    <div class="App" id="AppId">
-        <div class="nav-bar" id="navid">
-        <div class="nickname">
-            <div class="page_buttons" id="pageid">
-                <h1 class="text1" id="btn00">ГЛАВНАЯ</h1>
-                <h1 class="text1" id="btn0">ПРОЕКТЫ</h1>
-                <h1 class="text1" id="btn1">WEBAPP</h1>
-                <h1 class="text1" id="btn2">МАГАЗИН</h1> 
-                <h1 class="text1" id="btn4">ДРУГОЕ</h1>
-                <h1 class="text1" id="btn3">&#128266;</h1>
+        <div class="App">
+            <!-- Loading screen -->
+            <div class="loading" id="AppoaderID">
+                <div class="loading-spinner"></div>
+                <h1 class="glitch-effect" data-text="HCPP_STUDIO">HCPP_STUDIO<span class="cursor">_</span></h1>
             </div>
-            <br>
-          <div id="mainContent">
-            <h1 class="text0" onclick="mainContextShow();">HCPP STUDIO</h1>
-            <p class="text4" id="textid">СТУДИЯ ПО РАЗРАБОТКЕ ПРИЛОЖЕНИИ</p>
-            <p class="text4" id="textid">С++20, JAVASCRIPT.</p>
-          
-          </div>
-          <div id="otherWindow">
-            <div class="posts"  onclick="UI.ReSizeWindow(pst_0);" id="pst_0">
-                <h1 class="title_projects3">УСТАНОВКА ЗАПРЕТА НА WINDOWS</h1>
-                <br>
-                <p class="date-post">18.03.25</p>
-                <p class="id-post">id-203340</p>
-                <h2 class="info_projects">
-                КАЧАЕМ С РЕПОЗИТОРИЯ <br>
-                <a href="https://github.com/bol-van/zapret-win-bundle/tree/master">https://github.com/bol-van/zapret-win-bundle/tree/master</a><br>
-                Распаковываем и запускаем от админа preset_russia.cmd
-                </h2>
+            
+            <!-- Main app content (initially hidden) -->
+            <div class="hidden" id="AppId">
+                <header class="header">
+                    <a href="#" class="header-logo glitch-effect" data-text="HCPP_STUDIO">HCPP_STUDIO<span class="cursor">_</span></a>
+                    <nav class="nav">
+                        <a href="#" class="nav-link active" id="btn00">HOME</a>
+                        <a href="#" class="nav-link" id="btn0">PROJECTS</a>
+                        <a href="#" class="nav-link" id="btn1">WEB_APPS</a>
+                        <a href="#" class="nav-link" id="btn2">SHOP</a>
+                        <a href="#" class="nav-link" id="btn4">GUIDES</a>
+                        <a href="#" class="nav-link" id="btn3">SOUND</a>
+                    </nav>
+                </header>
+                
+                <!-- Main content sections -->
+                <div id="mainContent">
+                    <section class="hero">
+                        <h1 class="hero-title glitch-effect" data-text=">_HCPP_STUDIO">> HCPP_STUDIO<span class="cursor">_</span></h1>
+                        <p class="hero-subtitle glitch-effect" data-text=">_Application_development_studio_specializing_in_C++2020_and_JavaScript">> Application development studio specializing in C++2020 and JavaScript<span class="cursor">_</span></p>
+                        <div>
+                            <a href="#projects" class="btn btn-primary" id="exploreProjects">> EXPLORE_PROJECTS</a>
+                            <a href="#webapps" class="btn">> VIEW_WEB_APPS</a>
+                        </div>
+                    </section>
+                    
+                    <div class="container">
+                        <section class="section">
+                            <h2 class="section-title glitch-effect" data-text=">_ABOUT">> ABOUT<span class="cursor">_</span></h2>
+                            <div class="card">
+                                <p class="glitch-effect" data-text=">_HCPP_STUDIO_is_a_development_studio_focused_on_creating_high-performance_applications_using_modern_C++20_and_web_technologies._Our_projects_range_from_system_utilities_to_web_applications.">> HCPP_STUDIO is a development studio focused on creating high-performance applications using modern C++20 and web technologies. Our projects range from system utilities to web applications.<span class="cursor">_</span></p>
+                            </div>
+                        </section>
+                    </div>
                 </div>
-                <div class="posts" id="pst_1" onclick="">
-                    <h1 class="title_projects3">УСТАНОВКА
-                        3X-UI НА СЕРВЕР</h1>
-                        <br>
-                        <p class="date-post">18.03.25</p>
-                        <p class="id-post">id-203341</p>
-                        <h2 class="info_projects">
-                            ГАЙД ПО УСТАНОВКЕ 3X-UI НА СЕРВЕР!<br> 
-                            1. ОБНОВИМ ПАКЕТЫ УБУНТУ<br>
-                            apt update &amp;&amp; apt upgrade -y<br>
-                            Теперь установим Curl — эта утилита нужна для загрузки файлов и пакетов в терминале. Сделаем это с помощью этой команды:<br>
-                            apt install curl -y<br>
-                            2. СКАЧАЕМ 3X-UI С ГИТХАБА<br>
-                            bash &lt;(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)<br>
-                            после успешного скачивания<br>
-                            проверим работаспособность x-ui<br>
-                            и должна вылезти информация о аргументах x-ui<br>
-                            3. x-ui start<br>
-                             Смотрим Данные о Админке<br>
-                             пишем 10<br>
-                             и там должно вылезти<br>
-                             [INF] current panel settings as follows:<br>
-                            username: ваш логин<br>
-                            password: ваш пароль<br>
-                            port: ваш порт<br>
-                            webBasePath: путь к Админке<br>
-                            4. переходим в админку<br>
-                            https://ip_сервера:ваш порт/путь к Админке<br>
-                            5. настроика подключения<br>
-                            нажимаем на Добавить подключение<br>
-                            и все как тут<br>
-                            Примечание:<br>
-                            Протокол: vless 
-                            Порт IP<br>
-                            Порт: 443<br>
-                            Общий расход: 0<br>
-                            Дата окончания:<br>
-                            Протокол передачи:TCP(RAW)<br>
-                            Proxy Protocol: OFF<br>
-                            HTTP Маскировка: OFF<br>
-                            Sockopt: OFF<br>
-                            External Proxy: OFF<br>
-                            Безопасность: REALITY<br>
-                            Show: 0<br>
-                            Xver: 0<br>
-                            uTLS: chrome<br>
-                            Dest: www.apple.com:443<br>
-                            SNI: www.apple.com<br>
-                            Max Time Diff (ms): 0<br>
-                            Нажми на Get New Cert и он сам сгенерирует сам эти пункты<br>
-                            Short IDs:<br>
-                            Приватный ключ<br>
-                            Публичный ключ<br>
-                            Этот пункт пустой<br>
-                            SpiderX:/<br>
-                            Sniffing:<br> 
-                            Включено: ON<br>
-                            HTTP, TLS, QUIC, FAKEDNS - все эти галочки включить<br>
-                            остальные не трогаем<br>
-                            и сохраняем<br>
-                            6. Создаем клиента<br>
-                            нажимаем троиточие на созданным профилем<br>
-                            и добавить подключение<br> 
-                            меняем только flow: xtls-rprx-vision<br>
-                            7. Проверка<br> 
-                            Нажимаем на плюсик где наши подключения и там наш клиент и нажимает на Куар Код и кликаем на куар код и у нас скопировался ключ<br>
-                            Теперь<br>
-                            Качаем Прогу:<br>
-                            на Андроид это v2RayTun<br>
-                            На Айфон это Streisand<br>
-                            На ПК - Invisible Man XRAY или v2RayN - <a href="https://github.com/2dust/v2rayN/releases/download/7.7.0/v2rayN-windows-64.zip">https://github.com/2dust/v2rayN/releases/download/7.7.0/v2rayN-windows-64.zip</a><br>
-                            </h2>
-                    </div>   
-          </div>
-          <div class="shop" id="shopHandleId">
-            <div class="project_shop">
-                <p class="title_projects">XVPN Базовая Подписка</p>
-                <p class="info_projects">СКОРОСТЬ ДО 10 МБИТ В СЕК</p>
-                <p class="info_projects">ПОДДЕРЖКА В ЧАТЕ ТЕЛЕГРАММА</p>
-                <p class="info_projects">СТОИМОСТЬ 350 РУБ В МЕСЯЦ / 4000 РУБ В ГОД</p>
-              <button class="download_zip" onclick="UI.redirect('https://t.me/HCPPSTUDIO');">ОФОРМИТЬ</button>
+                
+                <!-- Projects section -->
+                <div class="container hidden" id="projectHandleId">
+                    <section class="section">
+                        <h2 class="section-title glitch-effect" data-text=">_PROJECTS">> PROJECTS<span class="cursor">_</span></h2>
+                        
+                        <div class="grid">
+                            <div class="card">
+                                <h3 class="card-title glitch-effect" data-text=">_JOYSTICKTEST_1.1">> JOYSTICKTEST_1.1<span class="cursor">_</span></h3>
+                                <div class="card-meta">
+                                    <span class="repo-language">
+                                        <span class="repo-language-color repo-language-cpp"></span>
+                                        C++20
+                                    </span>
+                                </div>
+                                <div class="card-content">
+                                    <p class="glitch-effect" data-text=">_Application_for_testing_your_gamepad_with_OpenGL_3.3_backend.">> Application for testing your gamepad with OpenGL 3.3 backend.<span class="cursor">_</span></p>
+                                    <p class="glitch-effect" data-text=">_System_Requirements:_Intel_i3-550_or_equivalent,_GPU_with_OpenGL_3.3_support,_Windows_10_x64"><strong>> System_Requirements:</strong> Intel i3-550 or equivalent, GPU with OpenGL 3.3 support, Windows 10 x64<span class="cursor">_</span></p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn download-btn" data-url="https://github.com/HCPP20334/JoyStickTest/releases/download/JoyStickTest_x64_OpenGL_1.1/JoyStickTest_x64_OpenGL3SSE4.2.zip">> DOWNLOAD_ZIP</button>
+                                    <button class="btn">> SOURCE_CODE</button>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <h3 class="card-title glitch-effect" data-text=">_JOYSTICKTEST_1.0">> JOYSTICKTEST_1.0<span class="cursor">_</span></h3>
+                                <div class="card-meta">
+                                    <span class="repo-language">
+                                        <span class="repo-language-color repo-language-java"></span>
+                                        Java
+                                    </span>
+                                </div>
+                                <div class="card-content">
+                                    <p class="glitch-effect" data-text=">_Gamepad_testing_application_(Java_version).">> Gamepad testing application (Java version).<span class="cursor">_</span></p>
+                                    <p class="glitch-effect" data-text=">_System_Requirements:_x64_processor,_any_GPU_with_128MB_VRAM,_Windows_10_x64"><strong>> System_Requirements:</strong> x64 processor, any GPU with 128MB VRAM, Windows 10 x64<span class="cursor">_</span></p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn download-btn" data-url="https://github.com/rpmaster2/JoyStickTest/releases/download/1.0/Archive.zip">> DOWNLOAD_ZIP</button>
+                                    <button class="btn">> SOURCE_CODE</button>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <h3 class="card-title glitch-effect" data-text=">_SYSTEM-Z_1.0">>SYSTEM-Z_1.0<span class="cursor">_</span></h3>
+                                <div class="card-meta">
+                                    <span class="repo-language">
+                                        <span class="repo-language-color repo-language-cpp"></span>
+                                        C++20
+                                    </span>
+                                </div>
+                                <div class="card-content">
+                                    <p class="glitch-effect" data-text=">_Functional_system_monitor.">> Functional system monitor tools.<span class="cursor">_</span></p>
+                                    <p class="glitch-effect" data-text=">_Versions:_x64_(OpenGL3.3)"><strong>> Versions:</strong> x64 (OpenGL3.3)<span class="cursor">_</span></p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn download-btn" data-url="https://github.com/HCPP20334/SYSTEM-Z/releases/download/System_Z_1.0.5/system-z.x64._amd_ags_windows_amd64.7z">> DOWNLOAD_ZIP</button>
+                                    <button class="btn" data-url="https://github.com/HCPP20334/SYSTEM-Z/archive/refs/tags/System_Z_1.0.5.zip">> SOURCE_CODE</button>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <h3 class="card-title glitch-effect" data-text=">_XHASH_0.5">>_XHASH_0.5<span class="cursor">_</span></h3>
+                                <div class="card-meta">
+                                    <span class="repo-language">
+                                        <span class="repo-language-color repo-language-cpp"></span>
+                                        C++20
+                                    </span>
+                                </div>
+                                <div class="card-content">
+                                    <p class="glitch-effect" data-text=">_Functional_hash_generator.">> Functional hash generator.<span class="cursor">_</span></p>
+                                    <p class="glitch-effect" data-text=">_Versions:_x64_(OpenGL3.3)"><strong>> Versions:</strong> x64 (OpenGL3.3)<span class="cursor">_</span></p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn download-btn" data-url="https://github.com/HCPP20334/XHASH/releases/download/0.5(x64)C%2B%2B20_windows/XHASH.x64.7z">> DOWNLOAD_ZIP</button>
+                                    <button class="btn" data-url="https://github.com/HCPP20334/XHASH/archive/refs/tags/0.5(x64)C++20_windows.zip">> SOURCE_CODE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                
+                <!-- Web Apps section -->
+                <div class="container hidden" id="WebAppHandleId">
+                    <section class="section">
+                        <h2 class="section-title glitch-effect" data-text=">_WEB_APPLICATIONS">> WEB_APPLICATIONS<span class="cursor">_</span></h2>
+                        
+                        <div class="grid">
+                            <div class="card">
+                                <h3 class="card-title glitch-effect" data-text=">_PLAYER_JS">> PLAYER_JS<span class="cursor">_</span></h3>
+                                <div class="card-meta">
+                                    <span class="repo-language">
+                                        <span class="repo-language-color repo-language-js"></span>
+                                        JavaScript
+                                    </span>
+                                </div>
+                                <div class="card-content">
+                                    <p class="glitch-effect" data-text=">_A_web-based_media_player_built_with_JavaScript.">> A web-based media player built with JavaScript.<span class="cursor">_</span></p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary webapp-btn" data-url="https://hcpp20334.github.io/playerJS.html">> OPEN_APP</button>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <h3 class="card-title glitch-effect" data-text=">_ELECTRIK_CALC_JS">> ELECTRIK_CALC_JS<span class="cursor">_</span></h3>
+                                <div class="card-meta">
+                                    <span class="repo-language">
+                                        <span class="repo-language-color repo-language-js"></span>
+                                        JavaScript
+                                    </span>
+                                </div>
+                                <div class="card-content">
+                                    <p class="glitch-effect" data-text=">_Web_version_of_the_electrician's_calculator.">> Web version of the electrician's calculator.<span class="cursor">_</span></p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary webapp-btn" data-url="https://hcpp20334.github.io/Calc">> OPEN_APP</button>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <h3 class="card-title glitch-effect" data-text=">_VOICEAPI_JS">> VOICEAPI_JS<span class="cursor">_</span></h3>
+                                <div class="card-meta">
+                                    <span class="repo-language">
+                                        <span class="repo-language-color repo-language-js"></span>
+                                        JavaScript
+                                    </span>
+                                </div>
+                                <div class="card-content">
+                                    <p class="glitch-effect" data-text=">_Web_speech_API_demonstration_and_toolkit.">> Web speech API demonstration and toolkit.<span class="cursor">_</span></p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary webapp-btn" data-url="https://hcpp20334.github.io/VoiceAPI">> OPEN_APP</button>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <h3 class="card-title glitch-effect" data-text=">_NOTEPAD_JS">> NOTEPAD_JS<span class="cursor">_</span></h3>
+                                <div class="card-meta">
+                                    <span class="repo-language">
+                                        <span class="repo-language-color repo-language-js"></span>
+                                        JavaScript
+                                    </span>
+                                </div>
+                                <div class="card-content">
+                                    <p class="glitch-effect" data-text=">_A_simple_browser-based_notepad_application.">> A simple browser-based notepad application.<span class="cursor">_</span></p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary webapp-btn" data-url="https://hcpp20334.github.io/Notepad">> OPEN_APP</button>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <h3 class="card-title glitch-effect" data-text=">_CPUBENCH_JS">> CPUBENCH_JS<span class="cursor">_</span></h3>
+                                <div class="card-meta">
+                                    <span class="repo-language">
+                                        <span class="repo-language-color repo-language-js"></span>
+                                        JavaScript
+                                    </span>
+                                </div>
+                                <div class="card-content">
+                                    <p class="glitch-effect" data-text=">_JavaScript-based_CPU_benchmark_tool.">> JavaScript-based CPU benchmark tool.<span class="cursor">_</span></p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary webapp-btn" data-url="https://hcpp20334.github.io/CPUBench">> OPEN_APP</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                
+                <!-- Shop section -->
+                <div class="container hidden" id="shopHandleId">
+                    <section class="section">
+                        <h2 class="section-title glitch-effect" data-text=">_VPN_SERVICES">> VPN_SERVICES<span class="cursor">_</span></h2>
+                        
+                        <div class="grid">
+                            <div class="card">
+                                <h3 class="card-title glitch-effect" data-text=">_XVPN_BASIC_SUBSCRIPTION">> XVPN_BASIC_SUBSCRIPTION<span class="cursor">_</span></h3>
+                                <div class="card-content">
+                                    <ul>
+                                        <li class="glitch-effect" data-text=">_Speed_up_to_10_Mbps">> Speed up to 10 Mbps<span class="cursor">_</span></li>
+                                        <li class="glitch-effect" data-text=">_Telegram_chat_support">> Telegram chat support<span class="cursor">_</span></li>
+                                        <li class="glitch-effect" data-text=">_Price:_350_RUB/month_or_4000_RUB/year">> Price: 350 RUB/month or 4000 RUB/year<span class="cursor">_</span></li>
+                                    </ul>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="https://t.me/HCPPSTUDIO" class="btn btn-primary">> SUBSCRIBE</a>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <h3 class="card-title glitch-effect" data-text=">_XVPN_PRO_SUBSCRIPTION">> XVPN_PRO_SUBSCRIPTION<span class="cursor">_</span></h3>
+                                <div class="card-content">
+                                    <ul>
+                                        <li class="glitch-effect" data-text=">_Speed_up_to_200_Mbps">> Speed up to 200 Mbps<span class="cursor">_</span></li>
+                                        <li class="glitch-effect" data-text=">_Telegram_chat_support">> Telegram chat support<span class="cursor">_</span></li>
+                                        <li class="glitch-effect" data-text=">_Price:_1000_RUB/month_or_9000_RUB/year">> Price: 1000 RUB/month or 9000 RUB/year<span class="cursor">_</span></li>
+                                    </ul>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="https://t.me/HCPPSTUDIO" class="btn btn-primary">> SUBSCRIBE</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                
+                <!-- Guides section -->
+                <div class="container hidden" id="otherWindow">
+                    <section class="section">
+                        <h2 class="section-title glitch-effect" data-text=">_GUIDES_&_TUTORIALS">> GUIDES_&_TUTORIALS<span class="cursor">_</span></h2>
+                        
+                        <div class="card">
+                            <h3 class="card-title glitch-effect" data-text=">_WINDOWS_RESTRICTION_SETUP">> WINDOWS_RESTRICTION_SETUP<span class="cursor">_</span></h3>
+                            <div class="card-meta">
+                                <span class="glitch-effect" data-text=">_Posted:_18.03.25">> Posted: 18.03.25<span class="cursor">_</span></span>
+                                <span class="glitch-effect" data-text=">_|_ID:_203340"> | ID: 203340<span class="cursor">_</span></span>
+                            </div>
+                            <div class="card-content">
+                                <p class="glitch-effect" data-text=">_Download_from_repository:">> Download from repository:<span class="cursor">_</span></p>
+                                <p><a href="https://github.com/bol-van/zapret-win-bundle/tree/master" class="glitch-effect" data-text=">_https://github.com/bol-van/zapret-win-bundle/tree/master">> https://github.com/bol-van/zapret-win-bundle/tree/master<span class="cursor">_</span></a></p>
+                                <p class="glitch-effect" data-text=">_Unpack_and_run_preset_russia.cmd_as_administrator">> Unpack and run preset_russia.cmd as administrator<span class="cursor">_</span></p>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <h3 class="card-title glitch-effect" data-text=">_3X-UI_SERVER_INSTALLATION">> 3X-UI_SERVER_INSTALLATION<span class="cursor">_</span></h3>
+                            <div class="card-meta">
+                                <span class="glitch-effect" data-text=">_Posted:_18.03.25">> Posted: 18.03.25<span class="cursor">_</span></span>
+                                <span class="glitch-effect" data-text=">_|_ID:_203341"> | ID: 203341<span class="cursor">_</span></span>
+                            </div>
+                            <div class="card-content">
+                                <h4 class="glitch-effect" data-text=">_1._Update_Ubuntu_packages:">> 1. Update Ubuntu packages:<span class="cursor">_</span></h4>
+                                <pre><code class="glitch-effect" data-text="apt_update_&&_apt_upgrade_-y">apt update && apt upgrade -y</code></pre>
+                                
+                                <h4 class="glitch-effect" data-text=">_2._Install_Curl:">> 2. Install Curl:<span class="cursor">_</span></h4>
+                                <pre><code class="glitch-effect" data-text="apt_install_curl_-y">apt install curl -y</code></pre>
+                                
+                                <h4 class="glitch-effect" data-text=">_3._Download_3X-UI:">> 3. Download 3X-UI:<span class="cursor">_</span></h4>
+                                <pre><code class="glitch-effect" data-text="bash_&lt;_(curl_-Ls_https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)">bash &lt;(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)</code></pre>
+                                
+                                <h4 class="glitch-effect" data-text=">_4._Start_service:">> 4. Start service:<span class="cursor">_</span></h4>
+                                <pre><code class="glitch-effect" data-text="x-ui_start">x-ui start</code></pre>
+                                
+                                <p class="glitch-effect" data-text=">_View_admin_panel_details_with_option_10,_then_access_at:">> View admin panel details with option 10, then access at:<span class="cursor">_</span></p>
+                                <p><code class="glitch-effect" data-text=">_https://your_server_ip:port/path">> https://your_server_ip:port/path<span class="cursor">_</span></code></p>
+                                
+                                <h4 class="glitch-effect" data-text=">_Connection_setup:">> Connection setup:<span class="cursor">_</span></h4>
+                                <p class="glitch-effect" data-text=">_Protocol:_vless">> Protocol: vless<span class="cursor">_</span><br>
+                                <span class="glitch-effect" data-text=">_Port:_443">> Port: 443<span class="cursor">_</span></span><br>
+                                <span class="glitch-effect" data-text=">_Transmission_protocol:_TCP(RAW)">> Transmission protocol: TCP(RAW)<span class="cursor">_</span></span><br>
+                                <span class="glitch-effect" data-text=">_Security:_REALITY">> Security: REALITY<span class="cursor">_</span></span><br>
+                                <span class="glitch-effect" data-text=">_uTLS:_chrome">> uTLS: chrome<span class="cursor">_</span></span><br>
+                                <span class="glitch-effect" data-text=">_Dest:_www.apple.com:443">> Dest: www.apple.com:443<span class="cursor">_</span></span><br>
+                                <span class="glitch-effect" data-text=">_SNI:_www.apple.com">> SNI: www.apple.com<span class="cursor">_</span></span></p>
+                                
+                                <p class="glitch-effect" data-text=">_Click_"Get_New_Cert"_to_auto-generate_keys.">> Click "Get New Cert" to auto-generate keys.<span class="cursor">_</span></p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </div>
-            <div class="project_shop">
-                <p class="title_projects">XVPN PRO Подписка</p>
-                <p class="info_projects">СКОРОСТЬ ДО 200 МБИТ В СЕК</p>
-                <p class="info_projects">ПОДДЕРЖКА В ЧАТЕ ТЕЛЕГРАММА</p>
-                <p class="info_projects">СТОИМОСТЬ 1000 РУБ В МЕСЯЦ / 9000 РУБ В ГОД</p>
-              <button class="download_zip" onclick="UI.redirect('https://t.me/HCPPSTUDIO');">ОФОРМИТЬ</button>
-            </div>
-        </div>
-        <div class="webprojects" id="WebAppHandleId">
-            <div class="tirleP"> <p class="title_projects2">WEBAPP </p></div>
-            <button class="wappb" onclick="UI.redirect(webAppBuffer[1]);">PLAYER JS</button>
-            <button class="wappb" onclick="UI.redirect(webAppBuffer[0]);">ELECTRIK CALC JS</button>
-            <button class="wappb" onclick="UI.redirect(webAppBuffer[2]);">VOICEAPI JS</button>
-            <button class="wappb" onclick="UI.redirect(webAppBuffer[4]);">NOTEPAD JS</button>
-            <button class="wappb" onclick="UI.redirect(webAppBuffer[3]);">CPUBENCH JS</button>
-        </div>
-        <div class="projects-content" id="projectHandleId">
-           <div class="tirleP"> <p class="title_projects2">ПРОЕКТЫ</p></div>
-           <div class="project">
-            <h1 class="title_projects">JOYSTICKTEST 1.1</h1>
-            <p class="info_projects">ПРИЛОЖЕНИЕ ДЛЯ ТЕСТИРОВАНИЕ ВАШЕГО ГЕЙМПАДА</p>
-            <p class="title_projects">ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ</p>
-            <p class="info_projects">ЯЗЫК: С++20</p>
-            <p class="info_projects">РАЗРЯДНОСТЬ: x64</p>
-            <p class="info_projects">BACKENDAPI: OpenGL3.3</p>
-            <p class="title_projects">СИСТЕМНЫЕ ТРЕБОВАНИЯ</p>
-            <p class="info_projects">INTEL I3-550 (1156) или Phenom x3 (am3) или ПРОЦЕССОР С ПОДДЕРЖКОЙ ИНСТРУКЦИИ SSE4.2 И x64</p>
-            <p class="info_projects">GPU Nvidia GTX550 , AMD Radeon HD 7000x series - (OpenGL3.3) или поддерживающая OpenGL3.3</p>
-            <p class="info_projects">WINDOWS 10 x64 И УСТАНОВЛЕНЫЕ РЕДИСТРИБУТИВЫ VISUAL STUDIO 2019 x64 И ДРАЙВЕР XINPUT</p>
-            <button class="download_zip" onclick="UI.redirect(AppBuffer[0]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
-        </div>
-            <div class="project">
-            <h1 class="title_projects">JOYSTICKTEST 1.0</h1>
-            <p class="info_projects">ПРИЛОЖЕНИЕ ДЛЯ ТЕСТИРОВАНИЕ ВАШЕГО ГЕЙМПАДА</p>
-            <p class="title_projects">ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ</p>
-            <p class="info_projects">ЯЗЫК: JAVA (JDK 18)</p>
-            <p class="info_projects">РАЗРЯДНОСТЬ: x64</p>
-            <p class="info_projects">BACKENDAPI: ?</p>
-            <p class="title_projects">СИСТЕМНЫЕ ТРЕБОВАНИЯ</p>
-            <p class="info_projects">ПРОЦЕССОР С ПОДДЕРЖКОЙ ИНСТРУКЦИИ x64</p>
-            <p class="info_projects">ВИДЕОКАРТА: ЛЮБАЯ С  ПОДДЕРЖКОЙ  И 128 МБ ВИДЕОПАМЯТИ</p>
-            <p class="info_projects">WINDOWS 10 x64 И УСТАНОВЛЕНЫЕ РЕДИСТРИБУТИВЫ VISUAL STUDIO 2019 x64 И ДРАЙВЕР XINPUT</p>
-            <button class="download_zip" onclick="UI.redirect(AppBuffer[2]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
-           </div>
-           <div class="project">
-            <h1 class="title_projects">ELECTRIK CALC 1.0.3 (ВСЕ ВЕРСИИ В ОДНОМ)</h1>
-            <p class="info_projects">ФУНКЦИОНАЛЬНЫЙ КАЛЬКУЛЯТОР ДЛЯ ЭЛЕКТРИКА</p>
-            <p class="title_projects">ТЕХНИЧЕСКАЯ ИНФОРМАЦИЯ</p>
-            <p class="info_projects">(x64) OpenGL3.3,DX12 - С++20</p>
-            <p class="info_projects">(x86) DX9 - С++14</p>
-            <p class="info_projects">ЛЮБОЙ ПРОЦЕССОР С ПОДДЕРЖКОЙ x64 (OpenGL3.3,DX12)</p>
-            <p class="info_projects">ЛЮБОЙ ПРОЦЕССОР С ПОДДЕРЖКОЙ x86 (DX9)</p>
-            <p class="info_projects">GPU Nvidia GT250 , AMD Radeon HD 5000x series - (OpenGL3.3,DX9)</p>
-            <p class="info_projects">GPU Nvidia GTX550 , AMD Radeon HD 7000x series - (DX12) или поддерживающая DX12</p>
-            <p class="info_projects">WINDOWS 10 x64 + Visual Studio C++ Runtime 2019 (x64) - OpenGL3.3,DX12</p>
-            <p class="info_projects">WINDOWS Vista x86 + Visual Studio C++ Runtime 2012 (x86) - DX9</p>
-            <button class="download_zip" onclick="UI.redirect(AppBuffer[1]);">СКАЧАТЬ ZIP</button><button class="download_zip">СКАЧАТЬ SOURCE</button>
-           </div>
-        </div>
-        </div>
         </div>
 
-       
-    </div>
-    <script src="pxengine_1.0.js"></script>
-    <script src="PXEngineMain.js"></script>
-    <script>
-         //import Grid1Background from 'https://cdn.jsdelivr.net/npm/threejs-components@0.0.16/build/backgrounds/grid1.cdn.min.js';
-         let d3 = 0;
-    let mainButton = document.getElementById("btn00");
-    let projectButton = document.getElementById("btn0");
-    let webAppButton = document.getElementById("btn1");
-    let shopButton = document.getElementById("btn2");
-    let otherButton = document.getElementById("btn4");
-    let dolbaebsButton = document.getElementById("btn5");
-    //
-    let loadid = document.getElementById("loadid2");
-    let loadidtx = document.getElementById("loadid2tx");
-    loadid.style.transform = "translate("+parseInt((window.screen.width - 600) / 2)+"px,"+parseInt((window.screen.height - 100) / 2)+"px)";
-    loadidtx.style.transform = "translate("+parseInt((600 - 320) / 2)+"px,"+parseInt((600 - 940) / 2)+"px)";
-    //
-    let c0 = document.getElementById("cube0");
-    let c1 = document.getElementById("cube1");
-    let c2 = document.getElementById("cube2");
-    let pst_0 = document.getElementById("pst_0");
-    let pst_1 = document.getElementById("pst_1");
-    let pst_2 = document.getElementById("pst_2");
-    let pst_3 = document.getElementById("pst_3");
-    let pst_4 = document.getElementById("pst_4");
-    let pst_5 = document.getElementById("pst_5");
-    let pst_6 = document.getElementById("pst_6");
-    let pst_7 = document.getElementById("pst_7");
-    let pst_8 = document.getElementById("pst_8");
-    //
-    let AnimationHandle;
-    //
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // App state
+            const state = {
+                soundEnabled: false,
+                soundMode: 0,
+                debugMode: false,
+                currentSection: 'mainContent',
+                cursorVisible: true,
+                glitchActive: false
+            };
 
-    let UI = new App();
-    let PXAudio = new PXEngine2D_Audio();
-    let PX = new PXEngine();
-    PX.init();
-    AnimationHandle = setInterval(function(){
-            PX.animload();
-        },100)
-    let fPXEngineInit = new PXEngineMainDevice();
-    fPXEngineInit.init();
-    let projectWindow = document.getElementById("projectHandleId");
-    let WebAppWindow = document.getElementById("WebAppHandleId");
-    let shopWindow = document.getElementById("shopHandleId");
-    let mainWindow = document.getElementById("mainContent");
-    let otherWindow = document.getElementById("otherWindow");
-    let AppMainHandle = document.getElementById("AppId");
-    let AppLoadHandle = document.getElementById("AppoaderID");
-    fPXEngineInit.scaleWindowToDevice(AppMainHandle);
-    //
-    let url_0 = document.getElementById("url_0");
-    let url_1 = document.getElementById("url_1");
-    let url_2 = document.getElementById("url_2");
-    let url_3 = document.getElementById("url_3");
-    //
-    let d3_switch = 0;
-    if(!d3_switch){
-        PXAudio.loadToFile("hover1.mp3");
-    }
-    document.getElementById('btn3').onclick = function(){
-        d3++;
-        if(d3 > 1){d3 = 0;d3_switch++;if(d3_switch > 2){d3_switch = 0;}if(d3_switch == 2){
-                PXAudio.loadToFile("hover.mp3");
-            }}
-        if(!d3){document.getElementById('btn3').innerHTML='&#128264;';
-    }
-    if(d3){
-        document.getElementById('btn3').innerHTML='&#128266;';
-    
-    }
-}
-let dbg_switch = false;
-let dbg_switchI = false;
-let d0sw = 0;
-let d0sc = new Date().getMilliseconds();
-let d0sc2 = new Date().getMilliseconds();
-document.getElementById("textid").onclick = function(){
- d0sw++;
- dbg_switchI = setInterval(function(){
-    if(dbg_switch){
-        UI.ShowWindow(AppLoadHandle,1);UI.ShowWindow(AppMainHandle,0);
-    
-    //document.getElementById("textid").innerHTML = "aOffset="+aOffset+" 'tOffset="+tOffset+"<br>pOffset="+pOffset+" wOffset="+wOffset+"<br>sOffset="+sOffset+" mOffset="+mOffset+"<br>d3:d3_switch="+d3+":"+d3_switch+"logs API<br>"+logStr+"</p>";
-    }
-    if(!dbg_switch){
-        UI.ShowWindow(AppLoadHandle,0);UI.ShowWindow(AppMainHandle,1);
-        document.getElementById("textid").innerHTML = "СТУДИЯ ПО РАЗРАБОТКЕ ПРИЛОЖЕНИИ";
-    }
- });
- if(d0sw > 1){
-    d0sw = 0;
- }
- if(!d0sw){
-    dbg_switch = false;
-    clearInterval(dbg_switchI);
-    d0sc2 = new Date().getMilliseconds();
-    alert(d0sc + " to "+d0sc2);
-    d0sc2 = 0;d0sc = 0;
- }
- if(d0sw){
-    dbg_switch = true;
-    d0sc = new Date().getMilliseconds();
- }
-}
+            // DOM elements
+            const elements = {
+                loader: document.getElementById('AppoaderID'),
+                app: document.getElementById('AppId'),
+                navLinks: document.querySelectorAll('.nav-link'),
+                sections: {
+                    main: document.getElementById('mainContent'),
+                    projects: document.getElementById('projectHandleId'),
+                    webapps: document.getElementById('WebAppHandleId'),
+                    shop: document.getElementById('shopHandleId'),
+                    guides: document.getElementById('otherWindow')
+                },
+                soundBtn: document.getElementById('btn3'),
+                exploreBtn: document.getElementById('exploreProjects'),
+                downloadBtns: document.querySelectorAll('.download-btn'),
+                webappBtns: document.querySelectorAll('.webapp-btn'),
+                cursors: document.querySelectorAll('.cursor'),
+                glitchOverlay: document.querySelector('.glitch-overlay'),
+                canvas: document.getElementById('glitchCanvas')
+            };
 
-document.getElementById('btn3').click();
-    //
-    let aOffset = 0;
-    let tOffset = 0;
-    UI.ShowWindow(AppLoadHandle,1);
-    UI.ShowWindow(AppMainHandle,0);
-    setTimeout(function(){
-        UI.ShowWindow(AppLoadHandle,0);
-       UI.ShowWindow(AppMainHandle,1);
-    },1500);
-    
-   KernelLog("load module");
-    //
-    let webAppBuffer = [
-        "https://hcpp20334.github.io/Calc",
-        "https://hcpp20334.github.io/playerJS.html",
-        "https://hcpp20334.github.io/VoiceAPI",
-        "https://hcpp20334.github.io/CPUBench",
-        "https://hcpp20334.github.io/Notepad"
-    ];
-    let AppBuffer = [
-        "https://github.com/HCPP20334/JoyStickTest/releases/download/JoyStickTest_x64_OpenGL_1.1/JoyStickTest_x64_OpenGL3SSE4.2.zip",//0
-        "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/Electric_calc_release/Electrik.Calc.1.0.3.x86_64.zip",//1
-        "https://github.com/rpmaster2/JoyStickTest/releases/download/1.0/Archive.zip",//2
-    ];
-    webAppBuffer.url;
-    //
-    let pOffset = 0;
-    let wOffset = 0;
-    let sOffset = 0;
-    let mOffset = 0;
-    // setup windows
-    UI.ShowWindow(projectWindow,0);
-    UI.ShowWindow(WebAppWindow,0);
-    UI.ShowWindow(shopWindow,0);
-    UI.ShowWindow(mainWindow,1);
-    UI.ShowWindow(otherWindow,0);
-    //
-    function mainContextShow(){
-    UI.ShowWindow(projectWindow,0);
-    UI.ShowWindow(WebAppWindow,0);
-    UI.ShowWindow(shopWindow,0);
-    UI.ShowWindow(otherWindow,0);
-    UI.ShowWindow(mainWindow,1);
-    }
-    shopButton.onclick = function(){
-        sOffset++;if(d3){PXAudio.PXPlay();}
-        console.log(sOffset);
-        if(sOffset > 1){
-            sOffset = 0;
-        }
-        if(!sOffset){
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,1);
-            UI.ShowWindow(shopWindow,sOffset);
-            UI.ShowWindow(WebAppWindow,0);
-            UI.ShowWindow(otherWindow,0);
-        }
-        if(sOffset){
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,0);
-            UI.ShowWindow(shopWindow,sOffset);
-            UI.ShowWindow(WebAppWindow,0);
-            UI.ShowWindow(otherWindow,0);
-        }
-    }
-    otherButton.onclick = function(){
-        otOffset++;if(d3){PXAudio.PXPlay();}
-        console.log(otOffset);
-        if(otOffset > 1){
-            otOffset = 0;
-        }
-        if(!otOffset){
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,1);
-            UI.ShowWindow(shopWindow,sOffset);
-            UI.ShowWindow(WebAppWindow,0);
-            UI.ShowWindow(otherWindow,0);
-        }
-        if(otOffset){
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,0);
-            UI.ShowWindow(shopWindow,0);
-            UI.ShowWindow(WebAppWindow,0);
-            UI.ShowWindow(otherWindow,otOffset);
-        }
-    }
-    webAppButton.onclick = function(){
-        wOffset++;if(d3){PXAudio.PXPlay();}
-        if(wOffset > 1){
-            wOffset = 0;
-        }
-        if(!wOffset){
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,1);
-            UI.ShowWindow(shopWindow,0);
-            UI.ShowWindow(WebAppWindow,0);
-            UI.ShowWindow(otherWindow,0);
-        }
-        if(wOffset){
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,0);
-            UI.ShowWindow(shopWindow,0);
-            UI.ShowWindow(WebAppWindow,wOffset);
-            UI.ShowWindow(otherWindow,0);
-        }
-    }
-    PXAudio.initAudio();
-    projectButton.addEventListener("mouseover",function(key){
-           
-        if(d3){PXAudio.PXPlay();} wOffset = 0;pOffset = 1;sOffset = 0;
-                   
-    });
-    webAppButton.addEventListener("mouseover",function(key){
-           
-        if(d3){PXAudio.PXPlay();}  wOffset = 1;pOffset = 0;sOffset = 0;
-    });
-    shopButton.addEventListener("mouseover",function(key){
-            
-            if(d3){PXAudio.PXPlay();}  wOffset = 0;pOffset = 0;sOffset = 1;
-    });
+            // WebGL Glitch Effect
+            function initGlitchEffect() {
+                const canvas = elements.canvas;
+                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                
+                if (!gl) {
+                    console.error('WebGL not supported');
+                    return;
+                }
 
-    /* ****** */
-    mainButton.onclick = function(){
-        if(d3){PXAudio.PXPlay();}
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,1);
-            UI.ShowWindow(shopWindow,0);
-            UI.ShowWindow(WebAppWindow,0);        
-            UI.ShowWindow(otherWindow,0);
-            UI.switchBool(1);
-            UI.changeBackground(document.getElementById("navid"));
-    }
-    projectButton.onclick = function(){
-        if(d3){PXAudio.PXPlay();}
-            UI.ShowWindow(projectWindow,1);
-            UI.ShowWindow(mainWindow,0);
-            UI.ShowWindow(shopWindow,0);
-            UI.ShowWindow(WebAppWindow,0);        
-            UI.ShowWindow(otherWindow,0);
-            UI.switchBool(1);
-            UI.changeBackground(document.getElementById("navid"));
-    }
-    webAppButton.onclick = function(){
-        if(d3){PXAudio.PXPlay();}
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,0);
-            UI.ShowWindow(shopWindow,0);
-            UI.ShowWindow(WebAppWindow,1);        
-            UI.ShowWindow(otherWindow,0);
-            UI.switchBool(1);
-            UI.changeBackground(document.getElementById("navid"));
-    }  
-    shopButton.onclick = function(){
-        if(d3){PXAudio.PXPlay();}
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,0);
-            UI.ShowWindow(shopWindow,1);
-            UI.ShowWindow(WebAppWindow,0);        
-            UI.ShowWindow(otherWindow,0);
-            UI.switchBool(1);
-            UI.changeBackground(document.getElementById("navid"));
-    }
-    /* ****** */
-    UI.ReSizeWindow(pst_1);
-    otherButton.onclick = function(){
-        if(d3){PXAudio.PXPlay();}
-            UI.ShowWindow(projectWindow,0);
-            UI.ShowWindow(mainWindow,0);
-            UI.ShowWindow(shopWindow,0);
-            UI.ShowWindow(WebAppWindow,0);   
-            UI.ShowWindow(otherWindow,1);
-            UI.switchBool(0);
-            UI.changeBackground(document.getElementById("navid"));
-            alert("Раздел имеет недочеты и баги!!\nЭто бета функционал.");
-    }
-    </script>
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                // Vertex shader
+                const vs = `
+                    attribute vec2 position;
+                    void main() {
+                        gl_Position = vec4(position, 0.0, 1.0);
+                    }
+                `;
+
+                // Fragment shader with glitch effect
+                const fs = `
+                    precision highp float;
+                    
+                    uniform float time;
+                    uniform vec2 resolution;
+                    uniform sampler2D texture;
+                    
+                    float rand(vec2 co) {
+                        return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
+                    }
+                    
+                    void main() {
+                        vec2 uv = gl_FragCoord.xy / resolution.xy;
+                        
+                        // Base glitch effect
+                        float glitchIntensity = 0.05 + 0.05 * sin(time * 2.0);
+                        float r = rand(vec2(time, uv.y));
+                        float g = rand(vec2(time + 1.0, uv.y));
+                        float b = rand(vec2(time + 2.0, uv.y));
+                        
+                        vec2 uvR = uv;
+                        vec2 uvG = uv;
+                        vec2 uvB = uv;
+                        
+                        if (r < glitchIntensity) {
+                            uvR.x += (r - 0.5) * 0.1;
+                            uvR.y += (rand(vec2(time, uv.x)) * 0.05;
+                        }
+                        
+                        if (g < glitchIntensity) {
+                            uvG.x += (g - 0.5) * 0.1;
+                            uvG.y += (rand(vec2(time + 1.0, uv.x)) * 0.05;
+                        }
+                        
+                        if (b < glitchIntensity) {
+                            uvB.x += (b - 0.5) * 0.1;
+                            uvB.y += (rand(vec2(time + 2.0, uv.x)) * 0.05;
+                        }
+                        
+                        float red = texture2D(texture, uvR).r;
+                        float green = texture2D(texture, uvG).g;
+                        float blue = texture2D(texture, uvB).b;
+                        
+                        // Add scanlines
+                        float scanline = sin(uv.y * resolution.y * 1.5 + time * 5.0) * 0.05;
+                        red += scanline;
+                        green += scanline;
+                        blue += scanline;
+                        
+                        // Add noise
+                        float noise = rand(uv + time) * 0.05;
+                        red += noise;
+                        green += noise;
+                        blue += noise;
+                        
+                        gl_FragColor = vec4(red, green, blue, 1.0);
+                    }
+                `;
+
+                // Compile shaders
+                const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+                gl.shaderSource(vertexShader, vs);
+                gl.compileShader(vertexShader);
+                
+                const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+                gl.shaderSource(fragmentShader, fs);
+                gl.compileShader(fragmentShader);
+                
+                // Create program
+                const program = gl.createProgram();
+                gl.attachShader(program, vertexShader);
+                gl.attachShader(program, fragmentShader);
+                gl.linkProgram(program);
+                gl.useProgram(program);
+                
+                // Create geometry
+                const vertices = new Float32Array([
+                    -1.0, -1.0,
+                    1.0, -1.0,
+                    -1.0, 1.0,
+                    1.0, 1.0
+                ]);
+                
+                const buffer = gl.createBuffer();
+                gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+                gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+                
+                const positionLocation = gl.getAttribLocation(program, "position");
+                gl.enableVertexAttribArray(positionLocation);
+                gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+                
+                // Set uniforms
+                const resolutionLocation = gl.getUniformLocation(program, "resolution");
+                gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
+                
+                const timeLocation = gl.getUniformLocation(program, "time");
+                
+                // Create texture
+                const texture = gl.createTexture();
+                gl.bindTexture(gl.TEXTURE_2D, texture);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+                
+                // Render loop
+                let lastTime = 0;
+                function render(time) {
+                    if (!lastTime) lastTime = time;
+                    const deltaTime = (time - lastTime) / 1000;
+                    lastTime = time;
+                    
+                    // Update time uniform
+                    gl.uniform1f(timeLocation, time / 1000);
+                    
+                    // Update glitch intensity based on state
+                    const targetIntensity = state.glitchActive ? 0.8 : 0.1;
+                    document.documentElement.style.setProperty(
+                        '--glitch-intensity', 
+                        targetIntensity.toString()
+                    );
+                    
+                    // Render
+                    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                    requestAnimationFrame(render);
+                }
+                
+                requestAnimationFrame(render);
+                
+                // Handle resize
+                window.addEventListener('resize', function() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                    gl.viewport(0, 0, canvas.width, canvas.height);
+                    gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
+                });
+            }
+
+            // Terminal typing effect
+            function typeWriter(element, text, speed = 50) {
+                let i = 0;
+                element.textContent = '';
+                function typing() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typing, speed);
+                    }
+                }
+                typing();
+            }
+
+            // Initialize the app
+            function init() {
+                // Initialize WebGL glitch effect
+                initGlitchEffect();
+                
+                // Show loader first
+                elements.loader.classList.remove('hidden');
+                elements.app.classList.add('hidden');
+                
+                // Cursor blinking effect
+                setInterval(() => {
+                    state.cursorVisible = !state.cursorVisible;
+                    elements.cursors.forEach(cursor => {
+                        cursor.style.opacity = state.cursorVisible ? '1' : '0';
+                    });
+                }, 500);
+                
+                // Random glitch effect
+                setInterval(() => {
+                    state.glitchActive = Math.random() > 0.7;
+                }, 3000);
+                
+                // Simulate loading
+                setTimeout(() => {
+                    elements.loader.classList.add('hidden');
+                    elements.app.classList.remove('hidden');
+                    toggleSound(); // Initialize sound
+                    
+                    // Add typing effects to main headings
+                    const heroTitle = document.querySelector('.hero-title');
+                    const heroSubtitle = document.querySelector('.hero-subtitle');
+                    typeWriter(heroTitle, heroTitle.textContent.replace('>', '').replace('_', ' '));
+                    typeWriter(heroSubtitle, heroSubtitle.textContent.replace('>', '').replace('_', ' '));
+                }, 1500);
+                
+                // Setup event listeners
+                setupEventListeners();
+            }
+
+            // Setup all event listeners
+            function setupEventListeners() {
+                // Navigation
+                elements.navLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const target = this.id.replace('btn', '');
+                        navigateTo(target);
+                    });
+                });
+
+                // Explore projects button
+                elements.exploreBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navigateTo('0');
+                });
+
+                // Sound toggle
+                elements.soundBtn.addEventListener('click', toggleSound);
+
+                // Download buttons
+                elements.downloadBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const url = this.getAttribute('data-url');
+                        redirect(url);
+                    });
+                });
+
+                // Webapp buttons
+                elements.webappBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const url = this.getAttribute('data-url');
+                        redirect(url);
+                    });
+                });
+
+                // Debug functionality (double click on subtitle)
+                const subtitle = document.querySelector('.hero-subtitle');
+                subtitle.addEventListener('dblclick', toggleDebugMode);
+            }
+
+            // Navigation function
+            function navigateTo(target) {
+                // Hide all sections
+                Object.values(elements.sections).forEach(section => {
+                    section.classList.add('hidden');
+                });
+
+                // Remove active class from all nav links
+                elements.navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                // Show target section and set active nav link
+                let sectionKey;
+                switch(target) {
+                    case '00':
+                        sectionKey = 'main';
+                        break;
+                    case '0':
+                        sectionKey = 'projects';
+                        break;
+                    case '1':
+                        sectionKey = 'webapps';
+                        break;
+                    case '2':
+                        sectionKey = 'shop';
+                        break;
+                    case '4':
+                        sectionKey = 'guides';
+                        alert("> This section may have some bugs and issues!\n> This is beta functionality.");
+                        break;
+                    default:
+                        sectionKey = 'main';
+                }
+
+                elements.sections[sectionKey].classList.remove('hidden');
+                document.getElementById(`btn${target}`).classList.add('active');
+                state.currentSection = sectionKey;
+
+                // Play sound if enabled
+                if (state.soundEnabled) {
+                    playSound();
+                }
+            }
+
+            // Sound control
+            function toggleSound() {
+                state.soundEnabled = !state.soundEnabled;
+                state.soundMode++;
+                
+                if (state.soundMode > 2) {
+                    state.soundMode = 0;
+                }
+
+                elements.soundBtn.textContent = state.soundEnabled ? '> SOUND_ON' : '> SOUND_OFF';
+                
+                // Here you would typically initialize your audio engine
+                console.log(`> Sound ${state.soundEnabled ? 'enabled' : 'disabled'}, mode: ${state.soundMode}`);
+            }
+
+            function playSound() {
+                // This would call your audio engine to play a sound
+                console.log('> Playing sound');
+            }
+
+            // Redirect function
+            function redirect(url) {
+                window.open(url, '_blank');
+                
+                // Play sound if enabled
+                if (state.soundEnabled) {
+                    playSound();
+                }
+            }
+
+            // Debug mode toggle
+            function toggleDebugMode() {
+                state.debugMode = !state.debugMode;
+                console.log(`> Debug mode ${state.debugMode ? 'enabled' : 'disabled'}`);
+                
+                if (state.debugMode) {
+                    elements.loader.classList.remove('hidden');
+                    elements.app.classList.add('hidden');
+                } else {
+                    elements.loader.classList.add('hidden');
+                    elements.app.classList.remove('hidden');
+                }
+            }
+
+            // Initialize the app
+            init();
+        });
+        </script>
+    </body>
 </html>
