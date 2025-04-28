@@ -12,14 +12,16 @@ html{
 }
 @font-face {
     font-family: PixelizerBold;
-    src: url("assets/PixelizerBold.ttf");
+    src: url("PahomEngine/assets/PixelizerBold.ttf");
 }
 .game_container{
-    width: 100%;
-    height: 100%;
-    background-image: url("assets/back.jpg");
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+    background-image: url("PahomEngine/assets/back.jpg");
     border: 1px solid #636363;
     background-size: 200% 200%;
+    transition: .4s;
 }
 .bread{
     width: 96px;
@@ -74,7 +76,7 @@ img{
 }
 .gameMenu{
     width: 300px;
-    height: 300px;
+    height: 400px;
     background: rgba(0, 0, 0, 0.692);
     display: block;
     position: absolute;
@@ -88,19 +90,68 @@ img{
 input{
     width: 32px;height: 32px;background: transparent;border: 1px solid #636363;outline: none;
 }
+.bar{
+    width: 93%;
+    border: 1px solid #c7bfbf;
+    height: 20px;
+    display: block;
+    margin: auto;
+}
+#A_bar{
+    width: 10px;
+    background:  #c7bfbf;
+    height: 20px;
+    display: block;
+}
+.load{
+    width: 330px;
+    height: 330px;position: absolute;
+    background: #010101;
+    justify-items: center;
+    z-index: 1;
+}
+.msgwindow{
+    width: 100%;
+    height: 0px;
+    background: #010101;
+    border: 1px solid #c7bfbf;
+    overflow: hidden;
+    transition: .4s;
+    position: absolute;
+}
+#dtext{
+    transform: translateY(-5px);
+    text-align: center;
+}
 </style>
 <title>ХЛЕБОНОИД: ГОВНЕНЫЙ ПУТЬ</title>
+<link rel="icon" type="image/png" href="PahomEngine/assets/bread.png" sizes="32x32">
+<div class="msgwindow" id="dwindow">
+<p class="text" id="dtext"></p>
+</div>
 <div class="gameMenu" id="menu">
     <br>
 <h1 class="text">ХЛЕБОНОИД: ГОВНЕНЫЙ ПУТЬ</h1>
 <button class="menuBtn" id="startEngine">Играть</button>
 <button class="menuBtn" id="SettingsEngine">Настройки</button>
-<h1 class="text">pahomEngine.js_0.7.65 </h1>
+<button class="menuBtn" onclick="engine.save();">Сохранить Результат</button>
+<button class="menuBtn" onclick="alert(localStorage.score);">Последний результат</button>
+<button class="menuBtn" onclick="engine.benchMarkCPU();">Бенчмарк CPU</button>
+<h1 class="text">[pahomEngine.js_0.9012da2]</h1>
 <h1 class="text">HCPP STUDIO</h1>
+</div>
+<div class="load" id="loadEngine">
+    <br>
+    <br>
+<h1 class="text" id="as">Загрузка ресурсов игры..</h1>
+<div class="bar">
+<div id="A_bar"></div>
+<p class="text" id="currentFile"></p>
+</div>
 </div>
 <div class="gameMenu" id="menuSettings">
     <br>
-<h1 class="stext">pahomEngine.js_0.7.65 </h1>
+<h1 class="stext">[pahomEngine.js_0.9012da2]</h1>
 <br>
 <h1 class="stext">breadSizeOffset.........:<input class="stext" type="comment" id="bszoffset"></h1>
 <br>
@@ -111,9 +162,9 @@ input{
 <button class="menuBtn" onclick="engine.closeSettings();">OK</button>
 <br>
 </div>
-<div class="game_container">
-    <div id="sprite_pahom" class="pahom"  style="position: fixed; transition: transform 0.1s;"><img src="assets/пахом.png"></div>
-    <div id="sprite_bread" class="bread" style="position: fixed; transition: transform 0.1s;"><img src="assets/bread.png"></div>
+<div class="game_container" id="gameframe">
+    <div id="sprite_pahom" class="pahom"  style="position: fixed; transition: transform 0.1s;"><img src="PahomEngine/assets/пахом.png"></div>
+    <div id="sprite_bread" class="bread" style="position: fixed; transition: transform 0.1s;"><img src="PahomEngine/assets/bread.png"></div>
     <div id="fps" class="framerate"></div>
     <div id="score" class="score"></div>
     <audio id="kurlik_Engine"></audio>
@@ -124,15 +175,34 @@ input{
 // Инициализация движка
 const engine = new ENGINE_1_0();
 engine.initGame();
-let EngineStop = true;
+let EngineStop = engine.pahomEngineState;
+let  pahomEngineFiles = ["PahomEngine/assets/пахом.png","PahomEngine/assets/bread.png","PahomEngine/assets/back.jpg"];
 // Цикл игры
+function d(){
+    engine.closeMenu();
+    engine.preloadImages([
+        pahomEngineFiles[0],
+        pahomEngineFiles[1],
+        pahomEngineFiles[2]
+             ], function(){
+                engine.pahomEngineState = true;
+               engine.showMenu();
+                engine.loadEngineFrame.style.display = "none";
+              });
+} d();
 function gameLoop() {
+    window.addEventListener("error",function(execption){
+        engine.log(execption.error);
+    });
     if(!EngineStop){
     engine.updateGame();
     requestAnimationFrame(gameLoop);
+    document.getElementById("gameframe").style.width = "100%";
+            document.getElementById("gameframe").style.height = "100%";
     }
     else{
-        engine.showMenu();
+        document.getElementById("gameframe").style.width = "0px";
+    document.getElementById("gameframe").style.height = "0px";
     }
 }
 let bszoffset = document.getElementById("bszoffset");
@@ -159,6 +229,7 @@ wszyoffset.oninput = function(){
 //
 startEngine.onclick = function(){
     EngineStop = false;
+
     gameLoop();engine.closeMenu();
 }
 SettingsEngine.onclick = function(){
@@ -189,6 +260,9 @@ window.addEventListener("keypress",function(event){
     if(!EngineStop){
     engine.moveRight();
     }
+  }
+  if(event.code == 'KeyH'){
+    alert(localStorage.score);
   }
   if(event.code == 'KeyA'){
     if(!EngineStop){
