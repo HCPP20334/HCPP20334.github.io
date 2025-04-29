@@ -130,18 +130,18 @@ input{
     height: 300px;border: 1px solid #c7bfbf;
 }
 .moveButton{
-    background: #c7bfbf;
+    background: #0b0b0b;
     border: 1px solid #c7bfbf;
-    width: 128px;
+    width:90%;
     height: 128px;
-    color: rgb(0, 0, 0);
+    color: #c7bfbf;
     font-size: 20px;
     display: block;border-radius: 20px;
     margin: auto;
     margin-top: 10px;
     font-family: 'PixelizerBold';
     border-radius: 128px;
-    display: inline-block;
+    display: block;
     margin: 30px;
     &:hover{
         background: #636363;
@@ -195,9 +195,7 @@ input{
     <audio id="kurlik_Engine"></audio>
 </div>
 <div class="mobileControls">
-<button class="moveButton" id="Lbutton">L</button>
-<button class="moveButton" id="Rbutton">R</button>
-<button class="moveButton" id="SPACEbutton">PAUSE</button>
+<input type="comment" class="moveButton" id="inputMobile">
 </div>
 <script src="PahomEngine/pahomEngine.js"></script>
 <script>
@@ -240,9 +238,7 @@ let pszyoffset = document.getElementById("pszyoffset");
 let wszxoffset = document.getElementById("wszxoffset");
 let wszyoffset = document.getElementById("wszyoffset");
 //
-document.getElementById("Lbutton").onclick = function(){ engine.moveLeft();}
-document.getElementById("Rbutton").onclick = function(){ engine.moveRight();}
-document.getElementById("SPACEbutton").onclick = function(){EngineStop = true;engine.showMenu();}
+
 bszoffset.oninput = function(){
     engine.breadSize = this.value;
 }
@@ -286,8 +282,15 @@ function updateFPS() {
     }
     requestAnimationFrame(updateFPS);
 }
+let kbCount = 0;
 engine.showMenu();
 window.addEventListener("keypress",function(event){
+    kbCount++;
+    document.getElementById("inputMobile").value = event.code;
+    if(kbCount > 1){
+        kbCount = 0;
+        document.getElementById("inputMobile").value = "";
+    }
   if(event.code == 'KeyD'){
     if(!EngineStop){
     engine.moveRight();
