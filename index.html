@@ -7,28 +7,28 @@
             /* Хакерская тема с красными акцентами */
             @font-face {
                 font-family: 'Hacker';
-                src: url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+                src: url('https://hcpp20334.github.io/fonts/Mono Regular.ttf');
             }
             
             :root {
                 --color-bg-primary: #0a0a0a;
                 --color-bg-secondary: #111111;
                 --color-border-primary: #1a1a1a;
-                --color-text-primary: #ff0000;
-                --color-text-secondary: #990000;
-                --color-accent: #cc0000;
+                --color-text-primary: #00ff95;
+                --color-text-secondary: #00ff95;
+                --color-accent: #00ff95;
                 --color-btn-bg: #111111;
-                --color-btn-border: #330000;
-                --color-btn-hover: #220000;
-                --color-btn-active: #aa0000;
+                --color-btn-border: #00ff95;
+                --color-btn-hover: #00ff95;
+                --color-btn-active: #00ff95;
                 --color-header-bg: #0a0a0a;
                 --color-code-bg: #000000;
-                --color-code-text: #ff0000;
+                --color-code-text: #00ff95;
                 --glitch-intensity: 0;
             }
             
             * {
-                font-family: 'Share Tech Mono', monospace;
+                font-family: 'Hacker', 'Hacker';
                 box-sizing: border-box;
             }
             
@@ -44,7 +44,7 @@
                 background: var(--color-bg-primary);
                 color: var(--color-text-primary);
                 line-height: 1.5;
-                text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+                text-shadow: 0 0 5px #00ff95;
                 position: relative;
             }
             
@@ -107,7 +107,7 @@
                 border-bottom: 1px solid var(--color-border-primary);
                 display: flex;
                 align-items: center;
-                box-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
+                box-shadow: 0 0 10px #00ff95;
                 position: relative;
                 z-index: 10;
             }
@@ -138,8 +138,9 @@
             
             .nav-link:hover {
                 background-color: var(--color-btn-hover);
-                box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+                box-shadow: 0 0 8px #00ff95;
                 animation: glitch 0.3s linear;
+                color: black;
             }
             
             .nav-link.active {
@@ -170,7 +171,7 @@
                 font-weight: bold;
                 margin-bottom: 16px;
                 letter-spacing: 2px;
-                text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+                text-shadow: 0 0 10px #00ff95;
                 position: relative;
             }
             
@@ -200,8 +201,9 @@
             
             .btn:hover {
                 background-color: var(--color-btn-hover);
-                box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+                box-shadow: 0 0 8px #00ff95;
                 transform: translateY(-1px);
+                color: black;
                 animation: glitch 0.3s linear;
             }
             
@@ -213,9 +215,10 @@
             }
             
             .btn-primary:hover {
-                background-color: #dd0000;
-                border-color: #dd0000;
-                box-shadow: 0 0 12px rgba(255, 0, 0, 0.5);
+                background-color: #00ff95;
+                border-color: #00ff95;
+                box-shadow: 0 0 12px #00ff95;
+                color: black;
             }
             
             .section {
@@ -240,13 +243,13 @@
                 padding: 24px;
                 margin-bottom: 16px;
                 transition: all 0.3s;
-                box-shadow: 0 0 5px rgba(255, 0, 0, 0.1);
+                box-shadow: 0 0 5px #00ff95;
                 position: relative;
                 overflow: hidden;
             }
             
             .card:hover {
-                box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+                box-shadow: 0 0 15px #00ff95;
                 transform: translateY(-2px);
             }
             
@@ -257,7 +260,7 @@
                 left: -100%;
                 width: 100%;
                 height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.1), transparent);
+                background: linear-gradient(90deg, transparent, #00ff95, transparent);
                 transition: 0.5s;
             }
             
@@ -300,12 +303,12 @@
                 height: 12px;
                 border-radius: 50%;
                 margin-right: 4px;
-                box-shadow: 0 0 3px rgba(255, 0, 0, 0.5);
+                box-shadow: 0 0 3px #00ff95;
             }
             
-            .repo-language-cpp { background-color: #aa0000; }
-            .repo-language-java { background-color: #770000; }
-            .repo-language-js { background-color: #cc0000; }
+            .repo-language-cpp { background-color: #00ff95; }
+            .repo-language-java { background-color: #00ff95; }
+            .repo-language-js { background-color: #00ff95; }
             
             .grid {
                 display: grid;
@@ -334,7 +337,7 @@
                 border-bottom-color: var(--color-accent);
                 border-radius: 50%;
                 animation: rotation 1s linear infinite;
-                box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+                box-shadow: 0 0 10px #00ff95;
             }
             
             .loading h1 {
@@ -358,7 +361,7 @@
                 border-radius: 4px;
                 border: 1px solid var(--color-border-primary);
                 overflow-x: auto;
-                font-family: 'Share Tech Mono', monospace;
+                font-family: 'Hacker', 'Hacker';
                 font-size: 14px;
             }
             
@@ -373,7 +376,7 @@
             }
             
             a:hover {
-                text-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+                text-shadow: 0 0 5px 00ff95;
             }
             
             ul {
@@ -502,14 +505,15 @@
             <!-- Main app content (initially hidden) -->
             <div class="hidden" id="AppId">
                 <header class="header">
-                    <a href="#" class="header-logo glitch-effect" data-text="HCPP_STUDIO">HCPP_STUDIO<span class="cursor">_</span></a>
+                    <a href="#" class="header-logo glitch-effect" data-text="HCPP_STUDIO">HCPP::STUDIO<span class="cursor">_</span></a>
                     <nav class="nav">
                         <a href="#" class="nav-link active" id="btn00">HOME</a>
                         <a href="#" class="nav-link" id="btn0">PROJECTS</a>
                         <a href="#" class="nav-link" id="btn1">WEB_APPS</a>
                         <a href="#" class="nav-link" id="btn2">SHOP</a>
                         <a href="#" class="nav-link" id="btn4">GUIDES</a>
-                        <a href="#" class="nav-link" id="btn3">SOUND</a>
+                        <a href="#" class="nav-link" id="btn5" onclick="document.location.href = './game/index.html';">GAME</a>
+                        
                     </nav>
                 </header>
                 
@@ -541,7 +545,7 @@
                         
                         <div class="grid">
                             <div class="card">
-                                <h3 class="card-title glitch-effect" data-text=">_JOYSTICKTEST_1.1">> JOYSTICKTEST_1.1<span class="cursor">_</span></h3>
+                                <h3 class="card-title glitch-effect" data-text=">_JOYSTICKTEST_1.1">> JOYSTICKTEST_1.2.4<span class="cursor">_</span></h3>
                                 <div class="card-meta">
                                     <span class="repo-language">
                                         <span class="repo-language-color repo-language-cpp"></span>
@@ -793,6 +797,7 @@
                         </div>
                     </section>
                 </div>
+                
             </div>
         </div>
 
@@ -819,6 +824,7 @@
                     webapps: document.getElementById('WebAppHandleId'),
                     shop: document.getElementById('shopHandleId'),
                     guides: document.getElementById('otherWindow')
+             
                 },
                 soundBtn: document.getElementById('btn3'),
                 exploreBtn: document.getElementById('exploreProjects'),

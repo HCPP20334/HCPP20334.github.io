@@ -1,0 +1,291 @@
+<html>
+<style>
+    html{
+        background: #010101;
+    }
+    .game-container{
+        background: rgba(5,5,5,0.2);
+        width: 100%;
+        height: 800px;
+        border: 1px solid #00ff95;
+    }
+    @font-face {
+                font-family: 'Hacker';
+                src: url('https://hcpp20334.github.io/fonts/Mono Regular.ttf');
+            }
+    @keyframes anim0 {
+        0%{
+            background-position: 200 60;
+        }
+        50%{
+            background-position: 0 10;
+        }
+        100%{
+            background-position: 0 0;
+        }
+    }
+    .obj{
+        background: #00ff95;
+        width: 64px;
+        height: 64px;
+    }
+    .fake-crt-shader{
+        background: rgba(5,5,5,0.2);
+        width: 96%;
+        height: 800px;
+        background-size: 0% 200%;
+        animation: anim0 400ms infinite ease;
+        transition: .4s;
+        position: absolute;
+        z-index: 2;
+        background: linear-gradient(180deg, 
+        rgba(5,5,5,0.2) , #101010 ,rgba(5,5,5,0.2) ,
+         #101010 ,rgba(5,5,5,0.2) , #101010,
+         rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+          #101010,rgba(5,5,5,0.2) , #101010,
+          rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+           #101010,rgba(5,5,5,0.2) , #101010,
+           rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+            #101010,rgba(5,5,5,0.2) , #101010,
+            rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+             #101010,rgba(5,5,5,0.2) , #101010,
+             rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) , 
+             #101010,rgba(5,5,5,0.2) , #101010,
+             rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+              #101010,rgba(5,5,5,0.2) , #101010,
+              rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+               #101010,rgba(5,5,5,0.2) , #101010,
+               rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) , 
+               #101010,rgba(5,5,5,0.2) , #101010,
+               rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                #101010,rgba(5,5,5,0.2) , #101010,
+                rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                 #101010,rgba(5,5,5,0.2) , #101010,
+                 rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                  #101010,rgba(5,5,5,0.2) , #101010,
+                  rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                   #101010,rgba(5,5,5,0.2) , #101010,
+                   rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                    #101010,rgba(5,5,5,0.2) , #101010,
+                    rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     #101010,rgba(5,5,5,0.2) , #101010,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                     rgba(5,5,5,0.2) , #101010,rgba(5,5,5,0.2) ,
+                      #101010);
+        
+    }
+    .text{
+        color: #00ff95;
+        font-family: 'Hacker';
+        font-size: 35px;
+        margin: 20px;
+        text-shadow: 0 0 30px #00ff95;
+    }
+    .window2{
+      width: 340px;
+      height: 210px;
+      display: block;
+      position: absolute;
+      background: transparent;
+      border: 1px solid #00ff95;
+      z-index: 3;
+    }
+    .window{
+      width: 300px;
+      height: 150px;
+      display: none;
+      position: absolute;
+      background: transparent;
+      border: 1px solid #00ff95;
+    }
+    .error_text{
+        color: #00ff95;
+        color: #00ff95;
+        font-family: 'Hacker';
+        font-size: 15px;
+        text-align: center;
+        transform: translateY(50px);
+        margin: 20px;
+        text-shadow: 0 0 30px #00ff95;
+    }
+    ._text{
+        color: #00ff95;
+        color: #00ff95;
+        font-family: 'Hacker';
+        font-size: 15px;
+        text-align: center;
+        transform: translateY(0px);
+        margin: 20px;
+        text-shadow: 0 0 30px #00ff95;
+    }
+    .btn{
+        background: transparent;
+      border: 1px solid #00ff95;
+      color: #00ff95;
+        font-family: 'Hacker';
+        font-size: 15px;
+        width: 120px; height: 30px;
+        display: block;
+        margin: auto;
+        &:hover{
+            background: #00ff95;
+            color: #010101;
+        }
+    }
+</style>
+<div class="window2" id="wn_main">
+    <p class="_text">TERMINAL GOVNO</p>
+    <p class="_text">Version 0.1 Valila Javascript edition</p>
+    <p class="_text">HCPP STUDIO</p>
+    <button class="btn" onclick="init();">PLAY</button>
+    </div>
+<div class="game-container" id="gameframe">
+    <div class="fake-crt-shader" id="fake_shader"></div>
+    <div class="window" id="error">
+     <p class="error_text" id="err_buffer">TEST</p>
+    </div>
+    <p id="info" class="text">Score: 20</p>
+    <div class="obj" id="obj"></div>
+</div>
+<script>
+    let objid = document.getElementById("obj");
+    let error_window = document.getElementById("error");
+    let error_buffer = document.getElementById("err_buffer");
+    let main_window = document.getElementById("wn_main");
+    let game_window = document.getElementById("gameframe");
+    
+    let wndw = {
+        ctx: window.innerWidth, 
+        cty: window.innerHeight,
+        gtx: (window.innerWidth / 100 * 98) - 64,
+        gty: (window.innerHeight / 100 * 98) - 64 // Исправлено на innerHeight для вертикали
+    };
+    function error_log(text){
+    error_window.style.display = "block";
+    error_buffer.innerHTML = text;
+    main_window.style.display = "none";
+    setTimeout(function(){
+        main_window.style.display = "block";
+        error_window.style.display = "none";
+    },1000);
+    error_window.style.transform = "translate("+((wndw.ctx - 300) / 2)+"px,"+((wndw.cty - 150) / 2)+"px)";
+}
+
+window.addEventListener("error",function(e){
+    error_log(e.error);
+});
+    game_window.style.height = wndw.cty + "px"; // Добавлены px
+    document.getElementById("fake_shader").style.height = wndw.cty + "px";
+    main_window.style.transform = "translate("+((wndw.ctx - 340) / 2)+"px,"+((wndw.cty - 210) / 2)+"px)";
+    let pos = {x:0, y:0};
+    let posa = {x:0, y:0};
+    let scoreCount = 0;
+    let scoreOut = document.getElementById("info");
+    let apple = document.createElement("div");
+    
+    function init(){
+        objid.style.display = "block";
+        scoreOut.style.display = "block";
+        main_window.style.display = "none";
+        apple.style.display = "block";
+        createApple();
+    }
+    
+    function createApple(){
+        posa.x = Math.floor(Math.random() * wndw.gtx);
+        posa.y = Math.floor(Math.random() * wndw.gty);
+        apple.style = `background: #00ff95; width: 64px; height: 64px; transform: translate(${posa.x}px,${posa.y}px);`;
+        apple.id = "apple";
+        if(!apple.parentElement) game_window.appendChild(apple);
+    }
+    
+    function checkCollision() {
+        // Получаем границы обоих объектов
+        const playerRect = objid.getBoundingClientRect();
+        const appleRect = apple.getBoundingClientRect();
+        
+        // Проверка пересечения
+        const collision = !(playerRect.right < appleRect.left || 
+                          playerRect.left > appleRect.right || 
+                          playerRect.bottom < appleRect.top || 
+                          playerRect.top > appleRect.bottom);
+        
+        if(collision) {
+            scoreCount++;
+            scoreOut.innerHTML = "SCORE:" + scoreCount;
+            createApple();
+        }
+    }
+    
+    window.addEventListener("keydown", function(key) {
+        const step = 35;
+        switch(key.code) {
+            case 'KeyD':
+                pos.x = Math.min(pos.x + step, wndw.gtx);
+                break;
+            case 'KeyA':
+                pos.x = Math.max(pos.x - step, 0);
+                break;
+            case 'KeyS':
+                pos.y = Math.min(pos.y + step, wndw.gty);
+                break;
+            case 'KeyW':
+                pos.y = Math.max(pos.y - step, 0);
+                break;
+        }
+        objid.style.transform = `translate(${pos.x}px, ${pos.y}px)`;
+        checkCollision(); // Проверяем коллизию после каждого движения
+    });
+    
+    // Инициализация яблока
+    apple.style.display = "none";
+    game_window.appendChild(apple);
+    </script>
+</html>
