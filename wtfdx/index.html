@@ -1,0 +1,78 @@
+<html>
+<Style>
+html{
+    background-image: url("res/background.gif");
+    background: rgba(1,1,1,0.0);
+    transition: .4s;
+}
+.main_text{
+    color: #ffffff; font-family: monospace;text-align: center;
+   height: 30px;font-size: 20px;
+}
+.window_main{
+    width: 100%;
+    height: auto;
+}
+.dox_info{
+    width: 400px;
+    height: 200px;
+    border: 1px solid #535353;
+    position: absolute;
+    display: none;
+    margin: auto;
+}
+#doxinfobuffer{
+    color: #ffffff; font-family: monospace;text-align: center;
+   height: 30px;font-size: 20px;
+}
+#start{
+    color: #ffffff; font-family: monospace;text-align: center;
+   height: 30px;font-size: 20px; background: #010101;display: block;
+   margin: auto; transform: translateY(60px);border: 1px solid #ffffff;
+}
+</Style>
+<head>
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+</head>
+<div class="dox_info" id="doxid"> 
+<p id="doxinfobuffer">Wellcome</p>
+<h1 class="main_text" id="t_0">PRESS START!!</h1>
+<button id="start">START</button>
+</div>
+<div class="window_main" id="main_container"></div>
+<script src="res\modules\pxengine_1.0.js"></script>
+<script>
+ let api_event = {message: ""};
+
+const api = {PX: new PXEngine_1_0() , PXDEBUG: new PXEngineDebug()};
+let main_container = document.getElementById("main_container");
+let t0 = document.getElementById("t_0");
+function gtST(t){
+    t0.innerHTML = t;
+}
+function putTextToDox(t){ 
+    document.getElementById("doxinfobuffer").innerHTML = t;
+}
+t0.style.transform = "translate("+(api.PX.wcty- 300) / 2 +"px," + (api.PX.wcty - 150) / 2+"px)";
+t0.style.position = "absolute";
+t0.style.left = "50%";
+t0.style.top = "50%";
+t0.style.transform = "translate(-50%, -50%)";
+t0.style.textAlign = "center";
+document.getElementById("doxid").style.transform = "translate("+(api.PX.wcty- 400) / 2 +"px," + (api.PX.wcty - 200) / 2+"px)";
+document.getElementById("doxid").style.position = "absolute";
+document.getElementById("doxid").style.left = "50%";
+document.getElementById("doxid").style.top = "50%";
+document.getElementById("doxid").style.transform = "translate(-50%, -50%)";
+//
+let button_start = document.getElementById("start");
+//style.transform = "translate("+(api.PX.wcty - 400) / 2+"px,"+(api.PX.wcty - 200) / 2+"px)";
+// api.PX.init();
+api.PX.reFillMain();
+//putTextToDox(api.PX.getIPinfo());
+button_start.onclick = function(){
+    api.PX.init();
+    putTextToDox(api.PX.getIPinfo()); 
+}
+</script>
+</html>
