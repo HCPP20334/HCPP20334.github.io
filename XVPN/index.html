@@ -2,17 +2,19 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>XVPN Cyberpunk VPN</title>
+  <title>XVPN</title>
   <style>
     /* Подключаем кастомный шрифт */
     @font-face {
       font-family: "HackerFont";
-      src: url("syne-latin-wght-normal.Dvf_39Wt.woff2");
+      src: url("Bounded-Regular.ttf");
     }
-    /* Общие стили для киберпанк-атмосферы */
+    html{
+      background: linear-gradient(135deg, #000000, rgb(14, 13, 17));
+    }
     body {
       margin: 0;
-      background: linear-gradient(135deg, #1A1A2E, #16213E);
+     
       color: #C5C6C7;
       font-family: 'HackerFont', sans-serif;
     }
@@ -20,6 +22,12 @@
       max-width: 800px;
       margin: 0 auto;
       padding: 50px 15px;
+      
+    }
+    #main_container{
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #000000, rgb(14, 13, 17));
     }
     /* Селектор языка в правом верхнем углу */
     .language-selector {
@@ -27,7 +35,7 @@
       top: 15px;
       right: 15px;
       background: rgba(26, 26, 46, 0.6);
-      border: 1px solid #0f0;
+      border: 1px solid rgb(51, 16, 255);
       padding: 5px 10px;
       border-radius: 5px;
       color: #fff;
@@ -41,24 +49,27 @@
     h1 {
       font-size: 48px;
       margin: 0;
-      color: #66FCF1;
+      color: #ffffff;
+      text-shadow: 0 0 10px #ffffff;
     }
     h2 {
       font-size: 22px;
       margin: 10px 0 0 0;
-      color: #45A29E;
+      color: #FFFFFF;
     }
     .items {
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid #45A29E;
+      
       padding: 20px;
       margin-bottom: 20px;
       border-radius: 5px;
       transition: background 0.3s, transform 0.3s;
+      border: 1px solid #535353;
+      
     }
     .items:hover {
-      background: rgba(0, 0, 0, 0.5);
+      background: #1c0cff;
       transform: scale(1.02);
+      box-shadow: 0 0 30px #1c0cff;
     }
     .items h1 {
       font-size: 32px;
@@ -66,39 +77,46 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: #66FCF1;
+      color: #FFFFFF;
+      text-shadow: 0 0 10px #ffffff;
     }
     .pricing {
       font-size: 28px;
-      color: #66FCF1;
+      color: #FFFFFF;
+      text-shadow: 0 0 10px #ffffff;
     }
     .items h2 {
       font-size: 18px;
       margin-top: 10px;
       color: #C5C6C7;
+      
     }
     .description {
       font-size: 16px;
       line-height: 1.5;
-      background: rgba(0, 0, 0, 0.4);
+      background: linear-gradient(135deg, #1c0cff, #1c0cff);
       padding: 15px;
       border-radius: 5px;
       color: #C5C6C7;
     }
     .btns {
-      padding: 10px 20px;
-      border: 1px solid #66FCF1;
-      background: transparent;
-      color: #66FCF1;
-      cursor: pointer;
-      font-size: 16px;
-      border-radius: 5px;
-      margin: 5px;
-      transition: background 0.3s, color 0.3s;
+      background-color: #0098EA;
+    color: #FFFFFF;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.16);
+    padding: 8px 16px 8px 12px;
+    display: inline-block;
+    align-items: center;
+    gap: 4px;
+    height: 40px;
+    border-radius: 0px;
+    border: none;
+    overflow: hidden;
+    width: 100px;
+    transition: .2s;
+    font-family: 'HackerFont', sans-serif;
+    transform: translateY(7px);
     }
     .btns:hover {
-      background: #66FCF1;
-      color: #000;
     }
     .footer {
       text-align: center;
@@ -106,33 +124,81 @@
       margin-top: 30px;
       color: #777;
     }
+    .fake-glow{
+      position: absolute;
+      z-index: -1;
+      background-color: transparent;
+      box-shadow: 0 0 2900px #ffffff;
+      width: 250px;height: 250px;
+      display: block;
+      border-radius: 250px;
+    }
+#add-api{
+ display: inline-block;
+ transform: translateY(6px);
+}
+.blur_loading{
+  width: 100%;
+  height: 200%;
+  backdrop-filter: blur(10px);
+  position: absolute;
+}
+.cude{
+  width: 32px;
+            height: 32px;display: inline-block;
+            transform: translateX(220px);
+            background: #0059ff;transition: .1s;
+            overflow: hidden;position: ab;
+}
+.loader{
+  width: 300px;
+  height: 300px;
+  display: block;
+
+
+}
+.title2{
+  text-align: center;
+}
   </style>
 </head>
-<body>
+<head>
+  <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+  <script src="pxengine_1.0.js"></script>
+</head>
+<div class="blur_loading" id="blurid">
+  <h1 class="title2" id="title2id">XVPN</h1>
+ <div class="loader" id="loaderid">
+  <div class="cude" id="bl0"></div>
+  <div class="cude" id="bl1"></div>
+  <div class="cude" id="bl2"></div>
+  <div class="cude" id="bl3"></div>
+ </div>
+</div>
+<div id="main_container">
+  <div class="fake-glow" id="fakeid"></div>
   <!-- Селектор языка -->
-  <select id="langSelect" class="language-selector">
-    <option value="ru">Русский</option>
-    <option value="en">English</option>
-  </select>
+
 
   <div class="container">
-    <div class="maincontent">
+    <div class="maincontent" >
       <h1 id="title">XVPN</h1>
       <h2 id="subtitle">VLESS + REALITY VPN</h2>
     </div>
-
     <!-- Тарифные планы -->
-    <div class="items" id="itemBase">
+    <div class="items" id="itemBase" onclick="window.open('https://t.me/hcppstudio')">
       <h1>BASE - <span class="pricing" id="priceBase">150 RUB</span></h1>
       <h2 id="descBase">10 MBIT VLESS + REALITY VPN</h2>
+
     </div>
 
-    <div class="items" id="itemPro">
+    <div class="items" id="itemPro" onclick="window.open('https://t.me/hcppstudio')">
       <h1>PRO - <span class="pricing" id="pricePro">350 RUB</span></h1>
       <h2 id="descPro">100 MBIT VLESS + REALITY VPN</h2>
+
     </div>
 
-    <div class="items" id="itemUltimate">
+    <div class="items" id="itemUltimate" onclick="window.open('https://t.me/hcppstudio')">
       <h1>ULTIMATE - <span class="pricing" id="priceUltimate">650 RUB</span></h1>
       <h2 id="descUltimate">1000 MBIT VLESS + REALITY VPN</h2>
     </div>
@@ -153,34 +219,41 @@
 
     <!-- Кнопки социальных сетей -->
     <div style="text-align: center; margin-top: 30px;">
-      <button class="btns" onclick="window.open('https://t.me/hcppstudio')">Telegram</button>
-      <button class="btns" onclick="window.open('https://vk.com/hcpp20334')">VK</button>
-      <button class="btns" onclick="window.open('mailto:xvpnsupport20334@gmail.com')">Gmail</button>
+      <div id="add-api"></div>
     </div>
 
-    <div class="footer">
-      POWERED BY PWENGINEJS <span style="font-size: 10px;">_1.3012daef</span>
+    <div class="footer" id="pxbuild">
+      
     </div>
   </div>
-
+</div>
   <script>
-    // Объект переводов для поддержки русского и английского языков
-    const translations = {
-      ru: {
-        title: "XVPN",
-        subtitle: "VLESS + REALITY VPN",
-        items: {
-          base: { name: "BASE", price: "150 RUB", desc: "10 Мбит VLESS + REALITY VPN" },
-          pro: { name: "PRO", price: "350 RUB", desc: "100 Мбит VLESS + REALITY VPN" },
-          ultimate: { name: "ULTIMATE", price: "650 RUB", desc: "1000 Мбит VLESS + REALITY VPN" }
-        },
-        description: `
-<strong>Быстрый и безопасный VPN с VLESS + REALITY</strong><br>
-Испытайте ультрабыстрый и приватный серфинг с нашим высокопроизводительным VPN,<br>
-работающим на базе <strong>протокола VLESS</strong> и <strong>технологии REALITY</strong><br>
-для повышения безопасности и обхода блокировок.<br><br>
-<strong>Выберите тариф:</strong><br>
-⚡ <strong>BASE</strong>: 10 Мбит (идеально для серфинга и мессенджеров)<br>
-🚀 <strong>PRO</strong>: 100 Мбит (отлично для стриминга и скачивания)<br>
-🔥 <strong>ULTIMATE</strong>: 1 Гбит (максимальная скорость для 4K, игр и прочего)<br><br>
-✔ <strong>Без логов</strong
+    let bl0 = document.getElementById("bl0");
+let bl1 = document.getElementById("bl1");
+let bl2 = document.getElementById("bl2");
+let bl3 = document.getElementById("bl3");
+let wndw = {x: window.innerWidth, y: window.innerHeight};
+document.getElementById("loaderid").style.transform = "translate("+(wndw.x - 590) / 2+"px,"+(wndw.y - 300) / 2+"px)";
+document.getElementById("fakeid").style.transform = "translate("+(wndw.x - 300) / 2+"px,"+-250+"px)";
+//title2id
+document.getElementById("title2id").style.transform = "translateY("+(wndw.y - 380) / 2+"px)";
+let buttonsArrayList = {a: "itemBase" , b: "itemPro", c: "itemUltimate"};
+let btn = document.getElementById(buttonsArrayList.a);
+let btn1 = document.getElementById(buttonsArrayList.b);
+let btn2 = document.getElementById(buttonsArrayList.c);
+let pxbuildid = document.getElementById("pxbuild");
+let main_container = document.getElementById("main_container");
+let api = new PXEngine_1_0();
+api.init();
+pxbuildid.innerHTML = api.PXENGINE_START ? api.PXENGINE_VERSION : "PXEngine Fatal Error!";
+let timer_loader = 0;
+let loader = setInterval(function(){
+  timer_loader++;
+  api.animload();
+  if(timer_loader >= 30){
+    clearInterval(loader);
+    api.close(document.getElementById("blurid"));
+  }
+},100);
+    </script>
+</html>
