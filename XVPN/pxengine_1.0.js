@@ -19,38 +19,6 @@ window.addEventListener("error",function(exception_){
     logL(exception_.error);
 });
 
-function dox(ip){  
-    logs.innerHTML = "";
-    let API_KEY = 'https://api.2ip.io/'+ip+'?token=scbl9m73lqki9cr5&lang=ru';
-    fetch(API_KEY)  
-                .then(  
-                  function(response) {  
-                    if (response.status !== 200) {  
-                      logL('Fatal to Fetch. Status Code: ' +  
-                        response.status);  
-                        
-                      return;  
-                    }
-              
-                    // Examine the text in the response  
-                    response.json().then(function(data) {  
-                        
-                        gtST("YOU DOXSED");
-                        logL("IP:"+data.ip);   
-                        logL("country:"+data.country);
-                        logL("lat:"+data.lat);
-                        logL("lon:"+data.lon);
-                        logL("timezone:"+data.timezone); 
-                        console.log(data);
-                        putTextToDox(data.ip);
-                        logs.style = t_px_style;   
-                    });  
-                  }  
-                )  
-                .catch(function(err) {  
-                 logL('Fatal to Fetch. ' + err);  
-                });
-}
 let userDeviceArray = [
     {device: 'Android', platform: /Android/},
     {device: 'iPhone', platform: /iPhone/},
@@ -89,24 +57,34 @@ let userDeviceArray = [
             PXENGINE_VERSION = "POWERED BY PWENGINEJS_1.0.4";
             API_KEY = 'https://api.2ip.io/?token=scbl9m73lqki9cr5&lang=ru';
             m_initLog = false;
+            strmeta = [];
               
         videoPlayer;
         vid = 0;
         videoPlayer = "";
         playlist = [];
+        videoLoaded = false;
         status(st){
         if(st){
             this.videoPlayer.play();
-            video_state.innerHTML = "Играет..";
+          //  video_state.innerHTML = "Играет..";
         }
         if(!st){
             this.videoPlayer.pause();
-            video_state.innerHTML = "Пауза";
+          //  video_state.innerHTML = "Пауза";
         }
        }
-        initPlayer(id){
-            this.videoPlayer = id;
+       playVideo(){
+        this.videoPlayer.play();
+       }
+       initPlayer(videoElement) {
+        if (!(videoElement instanceof HTMLVideoElement)) {
+            console.error("Переданный элемент не является видео!");
+            return false;
         }
+        this.videoPlayer = videoElement;
+        return true;
+    }
         select(idv){
             this.vid = idv;
             if(idv > this.playlist.length){
@@ -120,6 +98,30 @@ let userDeviceArray = [
         this.videoPlayer.loop = true;
         this.videoPlayer.src = this.playlist[this.vid];
        }
+       initVideoFromFile(file) {
+        if (!this.videoPlayer) {
+            console.error("Плеер не инициализирован!");
+            return;
+        }
+
+        this.videoPlayer.loop = true;
+        this.videoPlayer.src = file;
+        this.videoPlayer.autoplay = true;
+        this.videoPlayer.muted = true; // Разрешает автовоспроизведение в браузерах
+
+        console.log("Файл:", this.videoPlayer.src);
+
+        // Обработка ошибок
+        this.videoPlayer.onerror = () => {
+            console.error("Ошибка загрузки видео:", this.videoPlayer.error);
+           // MessageLog("Video", `Ошибка: ${this.videoPlayer.error.message}`);
+        };
+
+        this.videoPlayer.oncanplay = () => {
+            console.log("Видео готово к воспроизведению!");
+          //  MessageLog("Video", "Видео загружено");
+        };
+    }
        volume(vOffset){
         this.videoPlayer.volume = vOffset;
         if(vOffset > 1){
@@ -275,39 +277,6 @@ let userDeviceArray = [
              }
             }
             }
-            getIPinfo(){
-                api.PXDEBUG.getInfo();
-               logL("Get IP Info...");
-                fetch(this.API_KEY)  
-                .then(  
-                  function(response) {  
-                    if (response.status !== 200) {  
-                      logL('Looks like there was a problem. Status Code: ' +  
-                        response.status);  
-                        
-                      return;  
-                    }
-              
-                    // Examine the text in the response  
-                    response.json().then(function(data) {  
-                        gtST("YOU DOXSED");
-                        // logL("IP:"+data.ip);   
-                        // logL("country:"+data.country);
-                        // logL("lat:"+data.lat);
-                        // logL("lon:"+data.lon);
-                        // logL("timezone:"+data.timezone); 
-                        console.log(data);
-                        putTextToDox(data.ip);
-                        dox(data.ip);
-                        this.m_initLog = false; 
-                    });  
-                  }  
-                )  
-                .catch(function(err) {  
-                 logL('Fetch Error :-S' + err);  
-                });
-                
-            }
             addLink(link){
                 if(!this.PXENGINE_START){
                     alert("PXEngine: Fatal Error!! Please add Init() you code");
@@ -343,7 +312,7 @@ let userDeviceArray = [
                     this.asp  = 0;
                  }
                  if(!this.asp){
-                     bl0.style.boxShadow = "0px 0px 50px #0040ff";
+                     bl0.style.boxShadow = "0px 0px 50px #ffffff";
                      bl1.style.boxShadow = "none";
                      bl2.style.boxShadow = "none";
                      bl3.style.boxShadow = "none";
@@ -355,7 +324,7 @@ let userDeviceArray = [
                    
                  }
                  if(this.asp){
-                    bl1.style.boxShadow = "0px 0px 50px #0040ff";
+                    bl1.style.boxShadow = "0px 0px 50px #ffffff";
                      bl0.style.boxShadow = "none";
                      bl2.style.boxShadow = "none";
                      bl3.style.boxShadow = "none";
@@ -367,7 +336,7 @@ let userDeviceArray = [
                     
                  }
                  if(this.asp == 2){
-                    bl2.style.boxShadow = "0px 0px 50px #0040ff";
+                    bl2.style.boxShadow = "0px 0px 50px #ffffff";
                      bl1.style.boxShadow = "none";
                      bl0.style.boxShadow = "none";
                      bl3.style.boxShadow = "none";
@@ -378,7 +347,7 @@ let userDeviceArray = [
                     bl3.style.transform = "translate(220px,0px)";
                  }
                  if(this.asp == 3){
-                    bl3.style.boxShadow = "0px 0px 50px #0040ff";
+                    bl3.style.boxShadow = "0px 0px 50px #ffffff";
                      bl1.style.boxShadow = "none";
                      bl2.style.boxShadow = "none";
                      bl0.style.boxShadow = "none";
@@ -389,6 +358,28 @@ let userDeviceArray = [
                     bl0.style.transform = "translate(220px,0px)";
                  }
             }
+        }
+        str(t,idx){
+            this.strmeta[idx] = t;
+        }
+        metainfo(){  
+            let API_KEY = 'https://api.2ip.io?token=scbl9m73lqki9cr5';
+            let api = this;
+            fetch(API_KEY)  
+                        .then(  
+                          function(response) {  
+                            response.json().then(function(data) {  
+                                api.str(data.ip,0);
+                                api.str(data.country,1);
+                                api.str(data.lat + ","+ data.lon,2);
+                                api.str(data.timezone,3);
+                                pxbuildid.innerHTML = api.PXENGINE_START ? (api.PXENGINE_VERSION + "  |  HCPP STUDIO @2025<br>"+api.strmeta[0] + " | " + api.strmeta[3]) : "PXEngine Fatal Error!";
+                            });  
+                          }  
+                        )  
+                        .catch(function(err) {  
+                         logL('Fatal to Fetch. ' + err);  
+                        });
         }
         }
         class PXEngineDebug{
