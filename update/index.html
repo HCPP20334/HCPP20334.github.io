@@ -1,456 +1,233 @@
 <html>
 <style>
-        @font-face {
-        font-family: W1R;
-        src: url("https://hcpp20334.github.io/fonts/monoMMM_5.ttf");
+html{
+    background: #010101;
+}
+@font-face {
+      font-family: "BD";
+      src: url("Roboto_Mono.ttf");
     }
-    @font-face{
-        font-family: WR;
-        src: url("https://hcpp20334.github.io/fonts/FeatureMono-Light.woff");
-        font-weight:700;
-    }
-                    @font-face {
-        font-family: WR3;
-        src: url("https://hcpp20334.github.io/fonts/ProtoMono-Regular.ttf");
-    }
-html
-{
-    background: #1b1b1e;
-    background-image: url("https://dimaxpsite.github.io/anime.webp");
-    animation: gradient 4s ease infinite;
-    transition: .4s;
-}
-@keyframes gradient {
-	0% {
-		background-position: 50% 0%;
-	}
-	50% {
-		background-position: 100% 0%;
-	}
-	100% {
-		background-position: 50% 0%;
-	}
-}
-
-body
-{
-border: 1px solid #1b1b1e;
-width:120%;
-height: 600px;
-box-shadow: 1px 1px 10px #010409;
-border-radius: 8px;
-background: transparent;
-}
-.title
-{
-border: 1px solid #010409;
-width:100%;
-border-top:none;
-border-left:none;
-background: rgba(40,155,99,0.8);
-border-right:none;
-border-top-left-radius: 8px;
-border-top-right-radius: 8px;
-}
-button:hover {
-    background-color: #010409;
-    color: white;
-}
-#text
-{
-font-family: 'WR';
-color: white;
-font-size:18px;
-width: 150px;
-transform: translate(5%,10px);
-border-bottom: 3px solid #ffffff;
-}
-#text1
-{
-font-family: 'WR';
-color: white;
-font-size:18px;
-width: 230px;
-transform: translate(5%,10px);
-}
-#themesel,#ADD
-{
-font-family: 'WR';
-color: white;
-font-size:18px;
-transform: translate(5%,10px);
-width: auto;
-border: 2px solid #010409;
-display: inline-block;
-background: transparent;
-}
-
-#b1
-{
-transform: translate(10px,10px);
-color: white;
-background: rgba(40,155,99,0.8);
-border: 1px solid #010409;
-width: 190px;
-height: 30px;
-font-family: 'WR3';
-display: inline-block;
-}
-#b2
-{
-transform: translate(10px,10px);
-color: white;
-background: rgba(40,155,99,0.8);
-border: 1px solid #010409;
-width: 190px;
-height: 30px;
-font-family: 'WR3';
-display: inline-block;
-}
-#b3
-{
-transform: translate(10px,13px);
-color: white;
-background: rgba(40,155,99,0.8);
-border: 1px solid #010409;
-width: 190px;
-height: 30px;
-font-family: 'WR3';
-display: inline-block;
-}
-#b4
-{
-transform: translate(10px,13px);
-color: white;
-background: rgba(40,155,99,0.8);
-border: 1px solid #010409;
-width: 190px;
-height: 30px;
-font-family: 'WR3';
-display: inline-block;
-}
-#b5
-{
-transform: translate(10px,16px);
-color: white;
-background: rgba(40,155,99,0.8);
-border: 1px solid #010409;
-width: 190px;
-height: 30px;
-font-family: 'WR3';
-display: inline-block;
-}
-#buttons,#nav
-{
-    width:420px;
-    height: 180px;
-    display: block;
-    
-    transform: translateX(5px,-30px);
-}
-#b6
-{
-transform: translate(10px,16px);
-color: white;
-background: rgba(40,155,99,0.8);
-border: 1px solid #010409;
-width: 190px;
-height: 30px;
-font-family: 'WR3';
-display: inline-block;
-}
-#b1:hover,#b2:hover,#b3:hover,#b4:hover,#b5:hover,#b6:hover {
-    background-color: #636369;
-    color: white;
-}
-#outputtx
-{
-    font-family: 'WR';
-    color: white;
-}
-#logs
-{
-    font-family: 'WR';
-    color: white;
-    font-size: 19px;
-    border: 1px solid #010409;
-    width: 90%;
-}
-#addapp
-{
-    width: 300px;
-    height: 600px;
-    border: 1px solid #010409;
-    background:#303030 ;
-    display: none;
-    margin: auto;
-    position: absolute;
-    z-index: 1;
-    border-radius: 4px;
-}
-.addtitle{
-    width: 298px;
-    height: 30px;
-    border: 1px solid #010409;
-    background:#9460ff;
-    display: block;
-    margin: auto;
-    border-radius: 4px;
-}
-.tx2{
-    font-family: 'WR';
-    color: white;
-    font-size: 19px;
-    transform: translateY(-12px);
-    text-align: center;
-}
-#con
-{
-    border: 1px solid #010409;
-    background:#202020;
-    display: table;
-    font-family: 'WR';
-    color: white;
-    font-size: 19px;
-    border-radius: 4px;
-    width: 280px;
-    transform: translateX(10px);
-    height: 100px;
-}
-#url
-{
-    border: 1px solid #010409;
-    background:#202020;
-    display: table;
-    font-family: 'WR';
-    color: white;
-    font-size: 19px;
-    border-radius: 4px;
-    outline: none;
-    width: 280px;
-    transform: translateX(10px);
-}
-#send,#close
-{
-    
-    border: 1px solid #010409;
-    background:#656565;
-    display: inline-block;
-    font-family: 'WR';
-    color: white;
-    font-size: 19px;
-    border-radius: 4px;
-    width: 120px;height: 30px;
-    margin: 3px;
-    transform: translate(10px,10px);
-    
-    
-}
-#msgip
-{
-    font-family: 'WR';
-    color: #ffffff;
-    font-size: 19px;
-    border: 2px solid #ff2080;
-}
-#msg,#urltx
-{
-    font-family: 'WR';
-    color: #ffffff;
-    font-size: 19px;
-    transform: translateX(10px);
-}
-.txe{
-    font-family: 'WR';
-    color: #ffffff;
-    font-size: 30px;
-    text-align: center;
-    font-weight: light;
-    transform: translateY(200px);
-}
-#loader{
-    width: 100%;
-    height: 100%;
-    background: #555555;
-    z-index: 1;
-    position: absolute;
+.windowMain{
+    background: transparent;
+    border: 1px solid #535353;
+    width: 900px;
+    height: 700px;
+    transform: translateY(40px);
     overflow: hidden;
-    transition: .4s;
-    transform: translate(-9px,-9px);
+}
+.itemContent{
+    background: transparent;
+    border: 1px solid #1b1b1b;
+    width: 330px;
+    height: 30px;
+    display: block;
+    margin: 10px;
+    font-size: 15px;
+    font-family: 'BD';
+    color: #ffffff;
+    text-align: left;
+    transform: translate(30px,20px);
+    &:hover{
+        background: #1b1b1b;
+    }
+}
+.download{
+    background: transparent;
+    border: 1px solid #1b1b1b;
+    width: 130px;
+    height: 30px;
+    display: block;
+    font-size: 15px;
+    font-family: 'BD';
+    color: #ffffff;
+    margin: auto;
+
+    transform: translateY(10px);
+    &:hover{
+        background: #1b1b1b;
+    }
+}
+.itemText{
+    font-size: 15px;
+    font-family: 'BD';
+    color: #ffffff;
+    transform: translate(30px,-10px);
+}
+.previnfo{
+    float: right;
+    min-width: 330px;
+    width: 49%;
+    height: 100%;
+    background: #000000;
+    display: inline-block;
+    border-left: 1px solid #1b1b1b;
+}
+.imgPrev{
+    width: 300px;
+    height: 300px;
+    border: 1px solid #1b1b1b;
+    transform: translate(15px,20px);
+}
+.textInfo{
+    font-size: 15px;
+    font-family: 'BD';
+    color: #ffffff;
+    transform: translate(10px,10px);
+}
+.itemDownload{
+    font-size: 15px;
+    font-family: 'BD';
+    color: #ffffff;
+    text-align: center;
+}
+.itemText2{
+    font-size: 15px;
+    font-family: 'BD';
+    color: #ffffff;
+    transform: translate(40px,10px);
+}
+a{
+    font-size: 15px;
+    font-family: 'BD';
+    color: #ffffff;
+    outline: none;
+}
+#pxbuild{
+    font-size: 15px;
+    font-family: 'BD';
+    color: #ffffff;
+    transform: translate(40px,10px);
+}
+.projetcts_and_app{
+    font-size: 15px;
+    font-family: 'BD';
+    color: #ffffff;
+    font-size: 15px;
+    font-family: 'BD';
+    color: #ffffff;
+    transform: translate(40px,10px);
 }
 </style>
-<head><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>    <head><meta name="viewport" content="width=device-width, user-scalable=no">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
-<div id="loader">
-<p class="txe">HCPP APP CENTER</p>
-<p class="txe">ЗАГРУЗКА...</p>
+<div class="windowMain">
+<div class="previnfo">
+    <p class="itemDownload">NONE</p>
+<button class="download">СКАЧАТЬ</button>
+<p class="textInfo" id="desc">test text<br>test text<br>test text<br>test text<br>test text<br>test text<br>test text<br>test text<br>test text<br>test text<br>test text<br>test text<br></p>
 </div>
-<body>
-<div class="title">
-<p id="text1">ЦЕНТР ЗАГРУЗКИ</p>
+<p class="projetcts_and_app">СКАЧАЙ И ИДИ НАХУЙ))</p>
+<button class="itemContent" id="button_0">JoyStickTest</button>
+<button class="itemContent" id="button_1">Electrik Calc</button>
+<button class="itemContent" id="button_2">Calc to Electronik DIMA XP</button>
+<button class="itemContent" id="button_3">XHASH</button>
+<button class="itemContent" id="button_4">ImPicture</button>
+<button class="itemContent" id="button_5">SYSTEM-Z</button>
+<button class="itemContent" id="button_6">PCTOOL</button>
+<button class="itemContent" id="button_7">WINDOWS 10(x64) 21H2 LTSC</button>
+<button class="itemContent" id="button_8">CNOTEPAD++</button>
+<p class="itemText2">Это мой сайт для скачивания<br>
+Моих проектов и не только.
+<br>Мой гитхаб: <a href="https://github.com/hcpp20334">hcpp20334</a>
+<br>Мой сайт: <a href="https://hcpp20334.github.io">https://hcpp20334.github.io</a>
+<br>Сайт DIMA XP: <a href="https://dimaxp228.github.io/">https://dimaxp228.github.io</a>
+<br>-----------------------------------------
+<br>Купить подписку на мой VPN: <a href="https://hcpp20334.github.io/XVPN">XVPN</a>
+<br>САМЫЙ БЫСТРЫЙ И ЗАЩИЩЕНЫЙ VPN В СНГ!!
+<br>РАБОТАЕТ НА VLESS + REALITY  + TLS 
+<br>-----------------------------------------
+<p id="pxbuild"></p>
+</p>
 </div>
-<div id="addapp">
-<div class="addtitle">
-<p class="tx2">ФОРМА ОТПРАВКИ</p>
-</div>
-<p id="urltx"><br>ССЫЛКА</p>
-<input type="comment" id="url">
-<p id="msg">СООБЩЕНИЕ</p>
-<textarea id="con"></textarea>
-<button id="send">ОТПРАВИТЬ</button><button id="close" onclick="javascript: AppCenter.style.display = 'none';">ОТМЕНА</button>
-<p id="logs">logs</p>
-</div>
-<p id="text">МОИ ПРИЛОЖЕНИЯ</p>
-<br>
-<div id="buttons">
-<button id="b1" onclick="javascript:downloadApp(2);">JEx64OpenGL</button>
-<button id="b2"onclick="javascript:downloadApp(3);">ELECTRIK CALC</button>
-<button id="b3"onclick="javascript:downloadApp(9);">WINDOWS 10 LTSCx64</button>
-<button id="b4"onclick="javascript:downloadApp(0);">PCTool</button>
-<button id="b5"onclick="javascript:downloadApp(7);">MSVS C++ RT</button></button>
-<button id="b6"onclick="javascript:downloadApp(8);">PASSGEN</button>
-</div>
-<p id="text">СТОРОННИЕ ПРИЛОЖЕНИЯ</p>
-<div id="buttons">
-<button id="b1"onclick="javascript:downloadApp(5);">JEx64JavaFX</button>
-<button id="b2"onclick="javascript:downloadApp(1);">DXVK ASYNC</button>
-<button id="b3"onclick="javascript:downloadApp(4);">CALC FOR ELECTRONIK</button>
-<button id="b4"onclick="javascript:downloadApp(6);">CALC WEB</button>
-</div>
-<p id="msgip"></p>
-<div id="nav">
-<button id="themesel">ТЕМА</button>
-<button id="ADD">ДОБАВИТЬ ПРИЛОЖЕНИЕ</button>
-</div>
-</body>
+
+<script src="pxengine_1.0.js"></script>
 <script>
-let fLoaderFrame = document.getElementById("loader");
-let threadDownload = 0;
-let bSwitchTheme = false;
-let fPtheme = 0;
-let fWeb = window;
-let fG_body = document.body;
-let fG_doc = document.documentElement;
-let fB_theme = document.getElementById("themesel");
-let txBuf = "HELLO!!MY&#13;PROGRAM!!";
-let fB_addApp = document.getElementById("send");
-let fB_addAppF = document.getElementById("ADD");
-let contact4  = document.getElementById("con");
-let urlin  = document.getElementById("url");
-let message   = document.getElementById("logs");
-let msgtext   = document.getElementById("msgip");
-let AppCenter   = document.getElementById("addapp");
-let contact = '';
-let urldata = '';
-let msgtx = '';
-let net;
-setTimeout("fLoaderFrame.style.height = '0px';",1000);
-emailjs.init("cNRS3eeOxZxQxHTA_");
-findIP(ip => netA(ip));
-findIP(ip => uimsg("IP:"+net));
-
-function uilog(text)
-{
-    message.innerHTML=text;
+let pxbuildid = document.querySelector("#pxbuild");
+let strings = {
+  joysticktest:"JoyStickTest(amd64)<br>Написан на С++20 (GCC)<br> Работает на OpenGL3.3 и DirectX 12.0(DX12)<br>Описание:<br>Это Многофункциональное приложение для тестирование геймпадов с красивым и современнным GUI ",
+  Electrik_Calc: "Electrik Calc(x64_86)<br>Написан на С++20(amd64),C++14(x86)(GCC)<br>Работает на OpenGL3.3,DirectX9 (DX9),DirectX12.0(DX12)<br>Это мощный калькулятор для электрика и электроника с красивым и современным GUI",
+  Electrik_Calc_dima_xp: "Calc to Electronik DIMA XP(x86)<br>Написан на С#, WinAPI32<br>Это Урезанный Electrik Calc(x64_86)<br>с простым интерфейсом и для старых пк",
+  XHASH: "XHASH(amd64)<br>Написан на С++20 (GCC)<br> Работает на OpenGL3.3<br>Это многопроизводительный генератор хешей",
+  ImPicture: "ImPicture(amd64)<br>Написан на С++20 (GCC)<br> Работает на OpenGL3.3<br>Просмоторщик любых фото",
+  SYSTEM_Z: "SYSTEM_Z(amd64)<br>Написан на С++20 (GCC)<br> Работает на OpenGL3.3<br>Копия CPU-Z, Которая превосходит его)",
+  PCTOOL: "PCTOOL<br> Написан на batch<br>Это многофункциональный скрипт для настроики ПК",
+  WINDOWS_10: "WINDOWS 10(x64), Моя сборка Винды",
+  CNOTEPADPP: "CNOTEPAD++(amd64)<br>Написан на С++20 (GCC)<br> Работает на OpenGL3.3<br>Улудшенный блокнот с функциями для выполнение кода и кастомизацией"
+};
+let strings_title = {
+    joysticktest: "JoyStickTest",
+    Electrik_Calc: "Electrik Calc",
+    Electrik_Calc_dima_xp: "Calc to Electronik DIMA XP",
+    XHASH: "XHASH",
+    ImPicture: " ImPicture",
+    SYSTEM_Z: "SYSTEM-Z",
+    PCTOOL: "PCTOOL",
+    WINDOWS_10: "WINDOWS 10(x64) LTSC",
+    CNOTEPADPP:" CNOTEPAD++:"
+};
+let strings_url = {
+    joysticktest: "https://github.com/HCPP20334/JoyStickTest/tree/main",
+    Electrik_Calc: "https://github.com/HCPP20334/Calc-for-Electronic/releases/tag/Electric_calc_release",
+    Electrik_Calc_dima_xp: "Calc to Electronik DIMA XP",
+    XHASH: "https://github.com/HCPP20334/XHASH",
+    ImPicture: " https://github.com/HCPP20334/ImPicture",
+    SYSTEM_Z: "https://github.com/HCPP20334/SYSTEM-Z",
+    PCTOOL: "PCTOOL.bat",
+    WINDOWS_10: "index.html",
+    CNOTEPADPP:" https://github.com/HCPP20334/CNotepad_0.1-x64-OpenGL3.3-"
+};
+let api = new PXEngine_1_0();
+api.init();
+api.metainfo();
+let windowMain = document.querySelector(".windowMain");
+let url_str = "";
+windowMain.style.transform = "translate("+(api.wctx - 900) / 2+"px,"+(api.wcty - 700) / 2+"px)";
+document.querySelector("#desc").innerHTML = "Нажмите на любой проект<br>Чтобы показать информацию" + window.innerWidth + " "+ window.innerHeight;
+document.querySelector("#button_0").onclick = function(){
+    document.querySelector("#desc").innerHTML = strings.joysticktest;
+    document.querySelector(".itemDownload").innerHTML = strings_title.joysticktest;
+    url_str = strings_url.joysticktest;
 }
-function uimsg(text)
-{
-    msgtext.innerHTML=text;
+document.querySelector("#button_1").onclick = function(){
+    document.querySelector("#desc").innerHTML = strings.Electrik_Calc;
+    document.querySelector(".itemDownload").innerHTML = strings_title.Electrik_Calc;
+    url_str = strings_url.Electrik_Calc;
 }
-urlin.oninput = function()
-{
-    urldata = this.value;
+document.querySelector("#button_2").onclick = function(){
+    document.querySelector("#desc").innerHTML = strings.Electrik_Calc_dima_xp;
+    document.querySelector(".itemDownload").innerHTML = strings_title.Electrik_Calc_dima_xp;
+    url_str = strings_url.Electrik_Calc_dima_xp;
 }
-contact4.oninput = function()
-{
-    msgtx = this.value;
+document.querySelector("#button_3").onclick = function(){
+    document.querySelector("#desc").innerHTML = strings.XHASH;
+    document.querySelector(".itemDownload").innerHTML = strings_title.XHASH;
+    url_str = strings_url.XHASH;
 }
-function netA(data)
-{
-    net = data;
+document.querySelector("#button_4").onclick = function(){
+    document.querySelector("#desc").innerHTML = strings.ImPicture;
+    document.querySelector(".itemDownload").innerHTML = strings_title.ImPicture;
+    url_str = strings_url.ImPicture;
 }
-fB_addApp.onclick = function()
-{
-    
-    contact = "\nurl:"+urldata + "\nmsg:"+msgtx+"\nip:"+ net;
-emailjs.send("hcpp_email", "template_m2j5yts", { to_name: "HCPP", message: "Привет!"+contact, reply_to: "ugromov86@gmail.com" }) .then(response => uilog('СООБЩЕНИЕ ДОСТАВЛЕНО'+ response)) .catch(error => uilog('Error!!'+error));
-
+document.querySelector("#button_5").onclick = function(){
+    document.querySelector("#desc").innerHTML = strings.SYSTEM_Z;
+    document.querySelector(".itemDownload").innerHTML = strings_title.SYSTEM_Z;
+    url_str = strings_url.SYSTEM_Z;
 }
-fB_addAppF.onclick = function()
-{
-    AppCenter.style.display = "block";
+document.querySelector("#button_6").onclick = function(){
+    document.querySelector("#desc").innerHTML = strings.PCTOOL;
+    document.querySelector(".itemDownload").innerHTML = strings_title.PCTOOL;
+    url_str = strings_url.PCTOOL;
 }
-
-fB_theme.onclick = function()
-{
-    fPtheme++;
-    if(fPtheme > 2)
-    {
-        fPtheme = 0;
-    }
-    if(!fPtheme)
-    {
-        fG_body.style.background = "#1b1b1e";
-        fG_doc.style.background = "#010409";
-    }
-    if(fPtheme)
-    {
-        fG_body.style.background = "#656565";
-        fG_doc.style.background = "#aaaaaa";
-    }
-    if(fPtheme == 2)
-    {
-        fG_doc.style = 'background-image: url("https://dimaxpsite.github.io/anime.webp");'
-        fG_body.style.background = "transparent";
-    }
+document.querySelector("#button_7").onclick = function(){
+    document.querySelector("#desc").innerHTML = strings.WINDOWS_10;
+    document.querySelector(".itemDownload").innerHTML = strings_title.WINDOWS_10;
+    url_str = strings_url.WINDOWS_10;
 }
-let urlArray = 
-[
-    "./PCTool.bat",//0
-    "https://github.com/Sporif/dxvk-async/releases/download/2.0/dxvk-async-2.0.tar.gz",//1
-    "https://github.com/HCPP20334/JoyStickTest/releases/tag/JE_x64_OpenGL",//2
-    "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Electik.Calc.0.4.pre.alpha.C++20.zip",//3
-    "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/calc_elektronic/Setup.Electrick.Calc.V2.1.BY.DIMA.XP.Setup.exe",//4
-    "https://github.com/rpmaster2/JoyStickTest/releases/tag/1.0",//5
-    "https://hcpp20334.github.io/calc.html",//6
-    "https://ia902302.us.archive.org/31/items/vsrc.-7z/VSRC++.7z';",//7
-    "https://hcpp20334.github.io/PassGen",//8
-    "https://drive.google.com/file/d/1410IeNJOpqkroW21Eka2mxAz41gboqSr/view?usp=drive_link"//9
-];
-function downloadApp(thread_id)
-{
-    document.location.href = urlArray[thread_id];
+document.querySelector("#button_8").onclick = function(){
+    document.querySelector("#desc").innerHTML = strings.CNOTEPADPP;
+    document.querySelector(".itemDownload").innerHTML = strings_title.CNOTEPADPP;
+    url_str = strings_url.CNOTEPADPP;
 }
-function findIP(onNewIP) {
-    var myPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
-    var pc = new myPeerConnection({
-        iceServers: []
-    }),
-    noop = function() {},
-    localIPs = {},
-    ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g,
-    key;
-
-    function iterateIP(ip) {
-        if (!localIPs[ip]) onNewIP(ip);
-        localIPs[ip] = true;
-    }
-
-    pc.createDataChannel("");
-
-    pc.createOffer(function(sdp) {
-        sdp.sdp.split('\n').forEach(function(line) {
-            if (line.indexOf('candidate') < 0) return;
-            line.match(ipRegex).forEach(iterateIP);
-        });
-
-        pc.setLocalDescription(sdp, noop, noop);
-    }, noop);
-
-    pc.onicecandidate = function(ice) {
-        if (!ice || !ice.candidate || !ice.candidate.candidate || !ice.candidate.candidate.match(ipRegex)) return;
-        ice.candidate.candidate.match(ipRegex).forEach(iterateIP);
-    };
+document.querySelector(".download").onclick = function(){
+    window.open(url_str);
 }
 </script>
 </html>
