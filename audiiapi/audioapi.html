@@ -1,0 +1,691 @@
+<html>
+<style>
+    html{
+        background: #090909;
+    }
+    .player{
+        width:600px;
+        height: 600px;
+        box-shadow: 0 0 40px #070707;
+        border: 1px solid #010101;
+        display: block;
+        margin: auto;
+        position: relative;
+        top: 20%;
+        background: #070707;
+    }
+    .controls{
+        width: 95%;
+        border-radius: 20px;
+        height: 60px;
+        border: 1px solid #6b5bff;
+        background: #070707;
+        transform: translateY(230px);
+        display: block;
+        margin: auto;
+    }
+    .con_a{
+        font-size: 30px;
+        color: #ffffff;
+        background: transparent;
+        border: none;
+        transition: .4s;
+        transform: translate(10px,12px);
+        &:hover{
+            color: #6b5bff;
+        }
+    }
+ 
+    .tline{
+        display: inline-block;
+        border: 1px solid #070707;
+        height: 10px;
+        border-radius: 10px;
+        overflow: hidden;
+        transform: translate(20px,10px);
+        background: #363636;
+        background: #070707;
+        appearance: none;
+        width: 39%;
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+             width: 0;
+             height: 20px;
+             background: #6b5bff;
+             box-shadow: -1000px 0 0 1000px #6b5bff; /* Магия заполнения */
+             margin-top: -7px;
+             border: none;
+             cursor: pointer;
+        }
+    }
+    .text_audio{
+        font-size: 15px;
+        color:#6b5bff;
+        display: block;
+        position: absolute;
+        text-align: center;
+        transform: translate(150px,-12px);
+        font-family: 'roboto mono';
+        text-transform: uppercase;
+        white-space: nowrap;       /* Запрещаем перенос строк */
+    overflow: hidden;          /* Скрываем выходящий за границы текст */
+    text-overflow: ellipsis;   /* Добавляем многоточие */
+    max-width: 200px;          /* Ширина элемента */
+    }
+    .preview_image{
+        width: 256px;
+        height: 256px;
+        border: 1px solid #535353;
+        display: block;
+        margin: auto;
+        transform: translateY(50%);
+    }
+    .primg{
+        width: 100%;
+        height: 100%;
+    }
+    #buf_api{
+        font-family: 'roboto mono';
+        font-size: 15px;
+        color:#6b5bff;
+        transform: translate(20px,-5px);
+        position: absolute;
+        
+    }
+    .api_log_window{
+        transform: translate(30px,10px);
+        position: absolute;
+        min-width: 500px; 
+        width: auto;
+        border-radius: 20px;
+        height: 40px;
+        border: 1px solid #010101;
+        transform: translateY(20px);
+        display: block;
+        margin: auto;
+        background: #070707;
+    }
+    .songs_list{
+        overflow-y: scroll;
+        padding-right: 10px;
+        overflow-x: hidden;
+        &::-webkit-scrollbar {
+        width: 10px; /* Ширина скроллбара */
+        background-color: #070707;
+        }
+        &::-webkit-scrollbar-thumb {
+        background-color: #6b5bff; /* Цвет ползунка */
+        border-radius: 20px;
+        border: 2px solid #1b1b1b; /* Добавляем отступ за счёт границы */
+        }
+        &::-webkit-scrollbar-track {
+        background-color: #363636;
+        border-radius: 20px;
+        margin: 10px ; /* Отступ сверху и снизу для трека */
+        }
+        width: 490px;
+        background-color: #070707;;
+        height: 300px;
+        transform: translateY(50px);
+
+        
+    }
+    @keyframes opacity {
+        from {
+        filter: opacity(0); /* Полностью прозрачный */
+    }
+    to {
+        filter: opacity(1); /* Полностью видимый */
+    }
+    }
+    @font-face {
+        font-family: 'roboto mono';
+        src: url("Roboto_Mono.ttf");
+    }
+    .playlist_loaded{
+        
+        transform: translate(100px,20px);
+        display: none;
+        position: absolute;
+        z-index: 2;
+        width: 500px;
+        height: 480px;
+        
+        background: #070707;
+        
+        border: 1px solid #1b1b1b;
+        position: absolute;
+        margin: auto;
+        top: 18%;
+        right: 30%;
+        animation: opacity 1s ease-in-out;
+        transition: .4s;
+      
+    }
+    .add_song{
+        background: #070707;
+        font-family: 'roboto mono';
+        font-size: 15px;
+        color:#ffffff;
+        border: 1px solid #6b5bff;
+        transform: translate(20px, 55px);
+        min-width: 130px;
+        width: auto;
+        margin: 1px;
+        height: 35px;
+       &:hover{
+        background-color: #6b5bff;
+       }
+    }
+    .song{
+        font-family: 'roboto mono';
+        font-size: 15px;
+        color:#6b5bff;
+        transform: translate(10px, 20px);
+        width: 90%;
+        height: 30px;
+        border-bottom: 2px solid #535353;
+        white-space: nowrap;       /* Запрещаем перенос строк */
+    overflow: hidden;          /* Скрываем выходящий за границы текст */
+    text-overflow: ellipsis;   /* Добавляем многоточие */
+    max-width: 500px;          /* Ширина элемента */
+        margin: 5px;
+        padding: 3px;
+    }
+    .titles{
+        font-family: 'roboto mono';
+        font-size: 20px;
+        color:#ffffff;
+        position: absolute;
+        transform: translate(218px, 5px);
+        text-transform: uppercase;
+        display: inline-block;
+    }
+    .close{
+        background: transparent;
+        font-family: 'roboto mono';
+        font-size: 20px;
+        text-transform: uppercase;
+        color:#ffffff;
+        border: none;
+        display: inline-block;
+        float: right;
+        transform: translate(-20px, 8px);
+        &:hover{
+        color: #6b5bff;
+       }
+    }
+    .add_form{
+        width: 400px;
+        height: 250px;
+        background-color: #070707;
+        position: absolute;
+        border: 1px solid #1b1b1b;
+        z-index: 2;
+        transform: translate(50px,100px);
+        display: none;
+    }
+    .add_form_title{
+        font-family: 'roboto mono';
+        font-size: 20px;
+        text-transform: uppercase;
+        color:#6b5bff;
+        font-weight: bolder;
+        margin: 10px;
+    }
+    #url{
+        background: #070707;
+        border: 1px solid #6b5bff;
+        outline: none;
+        font-family: 'roboto mono';
+        font-size: 20px;
+        color:#ffffff;
+        margin: 10px;
+    }
+    .del{
+        background: transparent;
+        font-family: 'roboto mono';
+        font-size: 20px;
+        text-transform: uppercase;
+        color:#ffffff;
+        border: none;
+        display: inline-block;
+        float: right;
+        transform: translate(-20px, -20px);
+        &:hover{
+        color: #6b5bff;
+       }
+    }
+    .volume_bar{
+        background: #070707;
+        appearance: none;
+        width: 104px;
+        border: 1px solid #000000;
+        height: 12px;
+        border-radius: 10px;
+        overflow: hidden;
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+             width: 0;
+             height: 20px;
+             background: #6b5bff;
+             box-shadow: -1000px 0 0 1000px #6b5bff; /* Магия заполнения */
+             margin-top: -7px;
+             border: none;
+             cursor: pointer;
+        }
+    }
+
+    .volume_icon{
+        display: inline-block;transform: translateX(30px);
+        color: #ffffff;font-family: 'roboto mono';position: fixed;
+    }
+    .pxbuildid{
+        color: #6b5bff;
+        font-family: 'roboto mono';
+        transform: translate(30px, 230px);
+        font-size: 12px; 
+    }
+    .fakeborderline{
+        width: 100%;
+        height: 0.1px;
+        background: #6b5bff;
+        border: 1px solid #6b5bff;
+        transform:translateY(10px);
+    }
+    .audio_data{
+        color: #6b5bff;
+        font-family: 'roboto mono';
+        transform: translate(-11px, 27px);
+        display: inline-block;
+        position: absolute;
+        margin: 10px;
+        font-size: 12px; 
+    }
+    .audio_data1{
+        color: #6b5bff;
+        font-family: 'roboto mono';
+        transform: translate(-217px, 27px);
+        display: inline-block;
+        position: absolute;
+        margin: 10px;
+        font-size: 12px; 
+    }
+    .track_count{
+        color: #6b5bff;
+        font-family: 'roboto mono';
+        position: absolute;font-size: 50px; 
+        transform: translate(290px,80px);
+    }
+    .title_app{
+        color: #6b5bff;
+        font-family: 'roboto mono';
+        position: absolute;font-size: 20px; 
+        transform: translate(160px,0px);
+    }
+    #svg0{
+        position: absolute;
+        z-index: 1;
+    }
+    .control_add_song{
+        transform: translate(10px,80px);
+        width: 480px;
+        height: 50px;
+
+        background: #070707;
+       border: 1px solid #535353;
+        animation: opacity 1s ease-in-out;
+        transition: .4s;
+    }
+    .control_playlist_loaded{
+        border-bottom: 1px solid #535353;
+        height: 40px;
+    }
+    svg{
+        transform: translate(-55px,99px);
+    }
+</style>
+<div class="api_log_window"><p id="buf_api"></p></div>
+<div class="playlist_loaded">
+    <div class="control_playlist_loaded">
+    <h1 class="titles" style="transform: translate(200px,-4px);">Плейлист</h1><button class="close" id="cl_playlist">X</button>
+</div>
+    <div class="add_form">
+    <p class="add_form_title">Создание Плейлиста</p>
+    <p class="add_form_title">URL/FILE Аудио</p>
+    <input type="comment" id="url"><button class="add_song" onclick="add_track(ArrayFiles,Player.AudioFilesCount++);">Добавить</button><button class="add_song" onclick="_addForm(0);">Закрыть</button>
+    </div>
+<div class="songs_list">
+</div>
+<div class="control_add_song"> 
+    <button class="add_song" style="transform: translate(10px,7px);"onclick="_addForm(1);">Создать 🖊</button>
+    <button class="add_song" style="transform: translate(10px,7px);"onclick="parseGithubFolder();">Парсинг с Github 🖊</button>
+    <button class="add_song" id="delete_add_sond" style="transform: translate(10px,7px);" onclick="deletePlaylist();">Очистить 🗑</button>
+</div>
+</div>
+<div class="player">
+    <p class="title_app">PXPlayerJS v 0.4(alpha)</p>
+    <audio id="audio"></audio>
+    <div class="preview_image">
+        <svg id="svg0" width="310" height="200" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#6b5bff">
+                  <animate attributeName="stop-color" values="#6b5bff; #8a7dff; #6b5bff" dur="5s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="100%" stop-color="#4a3dcc">
+                  <animate attributeName="stop-color" values="#4a3dcc; #6b5bff; #4a3dcc" dur="5s" repeatCount="indefinite" />
+                </stop>
+              </linearGradient>
+              
+              <path id="wavePath" d="M0,100 C150,180 250,20 400,100 C550,180 650,20 800,100 L800,200 L0,200 Z" fill="url(#waveGradient)">
+                <animate attributeName="d" 
+                         values="M0,100 C150,180 250,20 400,100 C550,180 650,20 800,100 L800,200 L0,200 Z;
+                                 M0,100 C150,80 250,120 400,100 C550,80 650,120 800,100 L800,200 L0,200 Z;
+                                 M0,100 C150,180 250,20 400,100 C550,180 650,20 800,100 L800,200 L0,200 Z" 
+                         dur="8s" 
+                         repeatCount="indefinite" />
+              </path>
+            </defs>
+            
+            <use href="#wavePath" />
+            
+            <!-- Дополнительная анимация для плавности -->
+           
+          </svg>
+    </div>
+<div class="controls">
+<p class="text_audio">NONE</p>
+<button class="con_a" id="play_audio">▶</button>
+<button class="con_a"  onclick="prev_audio();">⇤</button>
+<button class="con_a"  onclick="next_audio();">⇥</button>
+
+<input type="range" class="tline" min="0">
+<p class="audio_data">00</p><p class="audio_data1">00</p>
+<p class="volume_icon" style="transform: translate(90px,-14px);" id="volume_offset">c</p>
+<p class="volume_icon" id="vlicon" style="transform: translate(30px,-14px);">🔊</p>
+<input type="range" class="volume_bar" style="transform: translate(30px,10px);" min="0" step="0.1" max="1">
+<button class="con_a" id="playlist_open" style="transform: translate(30px,10px);">⇶</button>
+</div>
+<p class="pxbuildid">fff</p> 
+</div>
+<script src="pxengine_1.0.js"></script>
+<script>
+// errors callback
+window.addEventListener("error",function(api_callback){
+    str_log(api_callback.error);
+});
+
+// main values
+let Player = {
+    playlistWindow: document.querySelector(".playlist_loaded"),
+    playlistOpenButton: document.querySelector("#playlist_open"),
+    playlistSongList: document.querySelector(".songs_list"),
+    playlistAddFormInputFile: document.querySelector("#url"),
+    AudioFilesCount: 0,
+    playlistAddFormWindow: document.querySelector(".add_form"),
+    idx_array: 0,
+    AudioHandle: document.querySelector("#audio"),
+    AudioAPIPlay: document.querySelector("#play_audio"),
+    AudioVolumeInputOffset:document.querySelector(".volume_bar"),
+    AudioTextVolumeOffset: document.querySelector("#volume_offset"),
+    AudioCurrentFile: document.querySelector(".text_audio"),
+    AudioVolumeIcon: document.querySelector("#vlicon"),
+    AudioCurrentTimeOffset: "",
+    AudioDurationOffset: "",
+    AudioTimeline: document.querySelector(".tline"),
+    AudioInfo0: document.querySelector(".audio_data"),
+    AudioInfo1: document.querySelector(".audio_data1"),
+    AudioTrackCountBuffer: document.querySelector(".track_count"),
+    CurrentAudio: 0,
+    AudioCurrentTimeDataInt: 0,
+    isInput: false,
+    PlaylistDeleteButtom: document.querySelector("#delete_add_sond")
+};
+// buffer file to AddFormInput
+let ArrayFiles = "";
+let pxbuildid = document.querySelector(".pxbuildid");
+// init PXEngine_1_0 
+let api = new PXEngine_1_0();
+// init API
+api.init();
+// func log
+let logTimeout;
+
+function str_log(t) {
+    const logWindow = document.querySelector(".api_log_window");
+    const buf = document.querySelector("#buf_api");
+    
+    // Очищаем предыдущий таймер
+    if (logTimeout) clearTimeout(logTimeout);
+    
+    // Показываем окно и устанавливаем сообщение
+    logWindow.style.display = "block";
+    logWindow.style.opacity = "1";
+    buf.textContent = t;
+    
+    // Устанавливаем новый таймер для скрытия
+    logTimeout = setTimeout(() => {
+        // Плавное исчезновение
+        logWindow.style.opacity = "0";
+        setTimeout(() => {
+            logWindow.style.display = "none";
+            buf.textContent = "";
+        }, 300); // Время анимации исчезновения
+    }, 3000); // Сообщение видно 3 секунды
+}
+// in data to file AddFormInput
+Player.playlistAddFormInputFile.oninput = function(){
+    ArrayFiles = this.value;
+}
+Player.AudioTextVolumeOffset.innerHTML = parseFloat(Player.AudioVolumeInputOffset.value * 100) + "%";
+Player.AudioVolumeInputOffset.oninput = function(){
+    api.volumeA(this.value);
+    Player.AudioTextVolumeOffset.innerHTML = parseFloat(this.value * 100) + "%";
+    Player.AudioVolumeIcon.innerHTML = (this.value >= 0.1) ? "🔊" : "🔈";
+    str_log("Громкость "+((this.value >= 0.1) ? "🔊" : "🔈") + " "+parseFloat(this.value * 100) + "%");
+    
+}
+// init button closePlaylist
+let closePlaylist = document.querySelector("#cl_playlist");
+// check presed to closePlaylist
+closePlaylist.onclick = function(){
+    Player.playlistWindow.style.filter = "opacity(1)";
+    setTimeout(function(){
+        api.frame(Player.playlistWindow,0);
+        str_log("Плейлист Закрыт"); 
+    },10);
+}
+// check playlistOpenButton
+Player.playlistOpenButton.onclick = function(){
+    api.frame(Player.playlistWindow,1);
+    str_log("Плейлист Открыт");
+}
+// init buffer to print message log
+let buf = document.querySelector("#buf_api");
+// check correcly init API
+if(!api.PXENGINE_START){
+    str_log(api.str.message.error_init_api);  
+
+}
+else{
+    loadPlaylistFromStorage();
+    str_log(api.str.message.success_init_api);
+    
+}
+//
+// backend
+function _addForm(b){
+  api.frame(Player.playlistAddFormWindow,b);
+}
+function loadPlayList() {
+    Player.playlistSongList.innerHTML = "";
+    // Фильтруем undefined перед отображением
+    const filteredPlaylist = api.playlist.filter(item => item !== undefined);
+    filteredPlaylist.forEach((track, index) => {
+        Player.PlaylistDeleteButtom = "Очистить 🗑:" + index;
+        Player.playlistSongList.innerHTML += `
+            <div class="track-row">
+                <p class="song">${index}. ${track}</p>
+                <button class="del" onclick="delete_track(${index})">🗑</button>
+            </div>
+        `;
+    });
+}
+
+function delete_track(idx) {
+    // Корректируем индекс, учитывая возможные undefined
+    const realIndex = api.playlist.findIndex((_, i) => i === idx);
+    if (realIndex === -1) return;
+
+    api.playlist.splice(realIndex, 1);
+    
+    // Обновляем текущий трек
+    if (Player.AudioFilesCount === realIndex) {
+        Player.AudioFilesCount = -1;
+    } else if (Player.AudioFilesCount > realIndex) {
+        Player.AudioFilesCount--;
+    }
+    savePlaylistToStorage()
+    loadPlayList();
+}
+//
+function add_track(file,idx) {
+   
+    api.playlist[idx] = file;
+    loadPlayList();
+    savePlaylistToStorage();
+}
+function prev_audio(){
+    str_log("Играет: "+api.playlist[Player.CurrentAudio]);
+    api.AudioLoad(Player.CurrentAudio);
+    api.pxPlay();
+    Player.CurrentAudio--;
+    if(Player.CurrentAudio <= 0){
+        Player.CurrentAudio = api.playlist.length;
+    }
+  // Player.AudioTrackCountBuffer.innerHTML = Player.CurrentAudio +"/"+api.playlist.length;
+    Player.AudioCurrentFile.innerHTML = Player.CurrentAudio+"."+api.playlist[Player.CurrentAudio - 1];
+}
+function next_audio(){
+    str_log("Играет: "+api.playlist[Player.CurrentAudio]);
+    //https://hcpp20334.github.io/music/4.mp3
+    if(Player.AudioHandle.duration > 1){
+        Player.AudioAPIPlay.innerHTML = "◼";
+        cp = 1;
+    }
+    else{
+        Player.AudioAPIPlay.innerHTML = "▶";
+        cp = 0;
+    }
+    api.AudioLoad(Player.CurrentAudio);
+    api.pxPlay();
+    Player.CurrentAudio++;
+    if(Player.CurrentAudio > api.playlist.length){
+        Player.CurrentAudio  =  1;
+    }
+  //  Player.AudioTrackCountBuffer.innerHTML = Player.AudioFilesCount +"/"+api.playlist.length;
+    Player.AudioCurrentFile.innerHTML = Player.CurrentAudio+"."+api.playlist[Player.CurrentAudio - 1] ;
+}
+// audio init api
+api.initAudio(Player.AudioHandle);
+let cp = 0;
+Player.AudioAPIPlay.onclick = function(e){
+    cp++;
+    if(cp > 1){
+        cp = 0; 
+    }
+    //https://hcpp20334.github.io/music/4.mp3
+    Player.AudioCurrentFile.innerHTML = Player.CurrentAudio+"."+api.playlist[Player.CurrentAudio] ;
+    Player.AudioAPIPlay.innerHTML =  cp ? "◼" : "▶";
+    api.AudioLoad(Player.CurrentAudio);
+    if(Player.CurrentAudio == Player.AudioFilesCount){
+        Player.AudioCurrentFile.innerHTML = "Нет файла";
+    }
+    cp ? str_log("Играет: "+api.playlist[Player.CurrentAudio]) : str_log("Пауза");
+    cp ? api.pxPlay(): api.pxPause();
+}
+// parse audio data
+let in0 = Player.AudioTimeline.value;
+// Обработка ручной перемотки
+Player.AudioTimeline.addEventListener('input', function() {
+    Player.isInput = true;
+    Player.AudioHandle.currentTime = this.value;
+});
+
+Player.AudioTimeline.addEventListener('change', function() {
+    Player.isInput = false;
+});
+Player.AudioHandle.addEventListener('timeupdate', function() {
+    let currentTime = Player.AudioHandle.currentTime;
+    let duration = Player.AudioHandle.duration;
+    Player.AudioCurrentTimeOffset = api.formatTime(currentTime);
+    Player.AudioDurationOffset    = api.formatTime(duration);
+    Player.AudioTimeline.max = duration;
+    if(!Player.isInput){
+        Player.AudioTimeline.value = currentTime ;
+    }
+    Player.AudioInfo1.innerHTML = Player.AudioCurrentTimeOffset;
+    Player.AudioInfo0.innerHTML = Player.AudioDurationOffset ;
+    if(Player.AudioCurrentTimeOffset == Player.AudioDurationOffset){
+        Player.AudioFilesCount++;
+        api.AudioLoad(Player.AudioFilesCount);
+        if(Player.AudioHandle.duration){
+        api.pxPlay();
+        }
+    }
+});
+function parseGithubFolder(){
+    for(let m = 0; m <= 23; m++){
+        api.playlist[m] = "https://hcpp20334.github.io/music/"+m+".mp3";
+    }
+    savePlaylistToStorage();
+    loadPlayList();
+}
+
+function deletePlaylist(){
+    for(let at = 0; at <= api.playlist.length;at++){
+        str_log("Удалено: "+ at);
+        delete_track(at);
+    }
+}
+function savePlaylistToStorage() {
+    try {
+        // Преобразуем массив в JSON-строку
+        const playlistJSON = JSON.stringify(api.playlist);
+        
+        // Сохраняем в localStorage под ключом 'audioPlaylist'
+        localStorage.setItem('audioPlaylist', playlistJSON);
+        
+        str_log('Обновлен localStorage');
+    } catch (error) {
+        str_log('Ошибка при сохранении плейлиста:', error);
+    }
+}
+function loadPlaylistFromStorage() {
+    try {
+        // Получаем данные из localStorage
+        const playlistJSON = localStorage.getItem('audioPlaylist');
+        
+        // Если данные есть - парсим и возвращаем
+        if (playlistJSON) {
+            api.playlist = JSON.parse(playlistJSON);
+            
+            // Обновляем UI
+            loadPlayList();
+            Player.AudioTrackCountBuffer.textContent = `0/${api.playlist.length}`;
+            
+            str_log('Плейлист загружен из localStorage');
+            return true;
+        }
+        
+        str_log('В localStorage нет сохраненного плейлиста');
+        return false;
+    } catch (error) {
+        str_log('Ошибка при загрузке плейлиста:', error);
+        return false;
+    }
+}
+api.metainfo();
+</script>
+</html>
