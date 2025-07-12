@@ -1,0 +1,232 @@
+<html>
+<style>
+html{
+    background: #010101;
+}
+@font-face {
+    font-family: 'SF';
+    src: url("SFMono-Bold.ttf");
+}
+.content{
+   background: linear-gradient(to top,#010101,#090909);
+   width: 100%;
+   height: 50%;
+}
+.tx60{
+    font-size: 60px;
+    color: #c9c9dd;
+    padding-top: 50px;
+    padding-left: 50px;
+    font-family: 'SF';
+    
+}
+.tx20{
+    font-size: 20px;
+    color: #c9c9dd;
+    font-family: 'SF';
+    padding-left: 50px;
+    
+}
+.tx20np{
+    font-size: 20px;
+    color: #191919;
+    font-family: 'SF';
+    padding-left: 50px;
+}
+.tx40np{
+    font-size: 40px;
+    color: #191919;
+    font-family: 'SF';
+    padding-left: 50px;
+    padding-top: 30px;
+}
+.child{
+    width: 700px;
+    background: #fff;
+    margin: 50px;
+}
+._buttons{
+    width: auto;
+    min-width: 200px;
+    height: 40px;
+    background: #000000;
+    font-size: 15px;
+    color: #c9c9dd;
+    border: 1px solid #fff;
+    font-family: 'SF';margin: 5px;
+    transform: translateX(50px);
+    display: inline-block;
+}
+._buttons:hover{
+
+        background: #fff;
+        color: #010101;
+    
+}
+._imgNext,._imgPrev,._imgClose{
+    width: auto;
+    min-width: 40px;
+    height: 40px;
+    background: #01010100;
+    font-size: 15px;
+    color: #c9c9dd;
+    border: 1px solid #fff;
+    border-radius: 40px;
+    font-family: 'SF';margin: 5px;
+
+    &:hover{
+        background: #fff;
+        color: #010101;
+    }
+}
+.img{
+    width: 375px;
+    height: 473px;
+    display: block;
+    margin: auto;
+   
+    border: 1px solid #fff;
+}
+.buttons{
+    width: 100%;
+    height: 60px;
+    display: block;
+    margin: auto;
+    border-top: 1px solid #191919;
+    transform: translate(8px,-13px);
+}
+._screenshots {
+    width: 400px;
+    background: #01010100;
+    height: 0;
+    border: 1px solid #191919; 
+    position: fixed;
+    z-index: 2;
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+    left: 50%;
+    top: 50%;
+    border-radius: 30px;
+    transform: translate(-50%, -50%);
+    max-height: 80vh;
+    backdrop-filter: blur(10px);
+}
+
+._screenshots.active {
+    height: auto;
+    min-height: 530px;
+    opacity: 1;
+    padding: 20px;
+}
+@keyframes opacity {
+    0%{
+        filter: opacity(0);
+    }
+}
+.info{
+    width: auto;
+    min-width: 40px;
+    height: 40px;border-radius: 40px;
+    background: #01010100;
+    border: 1px solid #191919; 
+    font-family: 'SF';
+    font-size: 25px;
+    color: #8cff08;transform: translateY(23px);
+    margin: 5px;display: inline-block;
+}
+div,img{
+    transition: .4s;
+    animation: 3s opacity ease-in-out;
+    
+    
+}
+.counts{
+    text-align: center;
+    font-weight: bolder;
+    transform: translateY(-20px);
+}
+</style>
+<div class="_screenshots">
+<img class="img" src="">
+<div class="buttons">
+    <button class="_imgPrev" ><</button>
+    <button class="_imgNext">></button>
+    <button class="_imgClose" id="_scr_button_close">Закрыть Окно</button>
+    <div class="info">
+    <p class="counts">00</p>
+    </div>
+</div>
+</div>
+<div class="content">
+<h1 class="tx60">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</h1>
+<h1 class="tx20">Многофункциональный,современный калькулятор</h1>
+<h1 class="tx20">Для электриков и  электроников</h1>
+<div class="child">
+    <h1 class="tx40np">Системные требования</h1>
+    <h1 class="tx20np">ЦП: Любой 2ух ядерный</h1>
+    <h1 class="tx20np">ГПУ: Любая с поддержкой OpenGL3.3 и 64 мб видеопамяти</h1>
+    <h1 class="tx20np">ОЗУ: 64мб</h1>
+    <h1 class="tx20np">ОС: Windows 8.1 x64 или новее</h1>
+    <h1 class="tx20np">Доп: Установлены пакеты обновлении Visual Studio C++ 2019</h1>
+    <br>
+</div>
+<button class="_buttons" id="_download_zip">Скачать</button>
+<button class="_buttons" id="_scr_button">Скриншоты</button>
+</div>
+<script src="pxengine_ui1.0.js"></script>
+<script src="pxengine_1.0.js"></script>
+<script>
+let api = {
+    frontend: new px_window(),
+    backend: new PXEngine_1_0()
+};
+api.frontend.init();
+api.backend.init();
+
+
+//
+let _main  = {
+    content: api.frontend.GetItem(".content"),
+    screenshots: api.frontend.GetItem("._screenshots"),
+    buttonScreen: api.frontend.GetItem("#_scr_button"),
+    buttonScreenClose: api.frontend.GetItem("#_scr_button_close"),
+    buttonDownload: api.frontend.GetItem("#_download_zip")
+    
+};//Electrik_Calc(amd64)OpenGL3.3(1.1.2).zip
+let ScreenShot = {
+    prev: api.frontend.GetItem("._imgPrev"),
+    next: api.frontend.GetItem("._imgNext"),
+    ImageBuffer: api.frontend.GetItem(".img")
+};
+api.backend.frame(_main.content,1);
+api.backend.closeH(_main.screenshots,0);
+_main.buttonScreen.onclick = function(){
+    _main.screenshots.classList.add('active');
+}
+_main.buttonDownload.onclick = function(){
+    window.open("Electrik_Calc(amd64)OpenGL3.3(1.1.2).zip");
+}
+_main.buttonScreenClose.onclick = function(){
+    _main.screenshots.classList.remove('active');
+}
+let img_id = 0;
+api.frontend.GetItem(".counts").textContent = img_id;
+ScreenShot.ImageBuffer.src = img_id + ".png";
+ScreenShot.next.onclick = function(){
+    img_id++;
+    if(img_id > 12){
+        img_id = 0;
+    }
+    api.frontend.GetItem(".counts").textContent = img_id;
+    ScreenShot.ImageBuffer.src = img_id + ".png";
+}
+ScreenShot.prev.onclick = function(){
+    img_id--;
+    if(img_id < 0){
+        img_id = 12;
+    }
+    api.frontend.GetItem(".counts").textContent = img_id;
+    ScreenShot.ImageBuffer.src = img_id + ".png";
+}
+</script>
+</html>
