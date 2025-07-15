@@ -132,7 +132,7 @@
     let text = document.querySelector('.progress-text');
     let radius = circle.r.baseVal.value;
     let circumference = 2 * Math.PI * radius;
-    
+    let g_FileSize = 0;
     circle.style.strokeDasharray = circumference;
     circle.style.strokeDashoffset = circumference;
     
@@ -162,7 +162,7 @@
         try {
             // Тест скачивания
             let downloadResult = await testDownloadSpeed();
-            document.querySelector(".progress-text").textContent = downloadResult.speed / 8 +" MiB/s";
+            document.querySelector(".progress-text").innerHTML = downloadResult.speed / 8 +" MiB/s<br>FileSize:"+(g_FileSize / 1024 / 1024).toFixed(2) + " MB";
             document.getElementById('downloadSpeed').textContent = `${downloadResult.speed} Mbps`;
             updateProgress(50);
             
@@ -201,7 +201,8 @@
             
             const durationSeconds = (endTime - startTime) / 1000;
             const fileSizeBytes = blob.size;
-            const speedMbps = ((fileSizeBytes * 8) / durationSeconds / 10) / 1000000;
+            g_FileSize = fileSizeBytes;
+            const speedMbps = ((fileSizeBytes * 8) / durationSeconds) / 1000000;
             
             return {
                 speed: speedMbps.toFixed(2)
