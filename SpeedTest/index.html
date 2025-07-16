@@ -187,7 +187,7 @@
     }
     
     async function testDownloadSpeed() {
-        const testDataUrl = 'https://hcpp20334.github.io/update/python.mp4' + Date.now(); // Добавляем timestamp для избежания кеширования
+        const testDataUrl = 'https://hcpp20334.github.io/update/python.mp4?'+ Date.now(); // Добавляем timestamp для избежания кеширования
         const startTime = performance.now();
         
         try {
