@@ -1,0 +1,236 @@
+<html>
+    <title>Image2Base64 by HCPP</title> 
+    <head>
+        <meta name="description" content="Image2Base64 Converter — удобный инструмент для конвертации изображений в Base64. Загружайте файлы или используйте URL, чтобы быстро получить Base64-строку для веб-разработки, CSS и HTML. Простой интерфейс и быстрая обработка для разработчиков и дизайнеров.">
+    </head>
+    <style>
+       
+    html{ 
+        background: #e7e5e7;
+    }
+    @font-face {
+        font-family: 'SF';
+        src: url("./fonts/SFMono-Bold.ttf");
+    }
+    .convert_app{
+        background: transparent;
+        border: 1px solid #010101;
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    #imgSource{
+        width: 200px;
+        height: 30px;
+        font-family: 'SF';
+        background: transparent;
+        margin: 30px;border: 1px solid #010101;
+        outline: none;
+    }
+    #convert{
+        width: 100px;border: 1px solid #010101;
+        height: 30px;font-family: 'SF';
+        margin-left: -30px;
+    }
+    .titleText{
+        font-family: 'SF';
+        margin-left: 30px;
+    }
+    .Text{
+        font-family: 'SF';
+        margin-left: 30px;
+        margin-top: 40px;
+        margin-bottom: -20px;
+        font-size: 16px;
+    }
+    .outBase64{
+        width: 400px;
+        height: 250px;
+        font-family: 'SF';
+        background: transparent;
+        margin: 30px;border: 1px solid #010101;
+        outline: none;
+        resize: none;
+    }
+    .Text2{
+        font-family: 'SF';
+        margin-left: 30px;
+           
+        margin-bottom: -10px;
+        font-size: 16px;
+        color: #ff0033;
+    }
+    .outData{
+        border: 1px solid #010101;
+        width: 500px;
+        height: 60px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        border-top: none;
+
+    }
+    .outData2{
+        border: 1px solid #010101;
+        width: 500px;
+        height: 60px;
+        position: absolute;
+        left: 50%;
+        border-top: none;
+        display: block;
+        transform: translate(-50%,60px);
+
+    }
+    #fileHandle{
+        display: inline-block;
+        width: 150px;
+        height: 30px;
+        transform: translateY(23px);
+        border: 1px solid #010101;
+        &::-webkit-file-upload-button{
+            width: 150px;border: none;
+        height: 30px;font-family: 'SF';
+        display: block;
+        margin: auto;
+        
+        }
+    }
+    </style>
+<div class="convert_app">
+    <h1 class="titleText">Image2base64 Converter</h1>
+    <p class="Text">URL</p>
+    <input type="comment" id="imgSource">
+    <button id="convert">Convert</button>
+    <input type="file" id="fileHandle">
+    <textarea class="outBase64"></textarea>
+    <div class="outData">
+        <p class="Text2">URL</p>
+        <p class="Text2">URL</p>
+    </div>
+    <div class="outData2">
+        <p class="Text2" id="ConsoleErr">Message:</p>
+    </div>
+</div>
+<script>
+    let g_url = "";
+    let g_base64out = "";
+    let g_ConsoleErrors = document.querySelector("#ConsoleErr");
+    const Inputs = {
+        in: document.querySelector("#imgSource"),
+        out: document.querySelector(".outBase64"),
+        file: document.querySelector("#fileHandle"),
+        ButtonConvert: document.querySelector("#convert")
+    };
+    
+    const ConverterB64 = {
+        ImageCreate: function(url, callback) {
+            let ImageSource = new Image();
+            // Разрешаем кросс-доменные изображения
+            ImageSource.crossOrigin = "Anonymous";
+            ImageSource.src = url;
+    
+            ImageSource.onload = function() {
+                callback(null, ImageSource);
+            };
+    
+            ImageSource.onerror = function() {
+                callback(new Error("Не удалось загрузить изображение. Проверьте URL или CORS."));
+            };
+        },
+        ImageToBase64: function(img, callback) {
+            try {
+                const canvas = document.createElement("canvas");
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0);
+                // Получаем данные в формате Base64
+                const base64 = canvas.toDataURL("image/png");
+                callback(null, base64);
+            } catch (err) {
+                callback(err);
+            }
+        },
+        FileToBase64: function(file, callback) {
+        if (!file || !file.type.startsWith("image/")) {
+            callback(new Error("Пожалуйста, выберите файл изображения."));
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function() {
+            const base64 = reader.result;
+            callback(null, base64);
+        };
+        reader.onerror = function() {
+            callback(new Error("Ошибка чтения файла."));
+        };
+        reader.readAsDataURL(file);
+    }
+    };
+    
+    // Обработчик ввода URL
+    Inputs.in.oninput = function() {
+        g_url = this.value.trim();
+        g_ConsoleErrors.textContent = "Message: Введите URL и нажмите Convert.";
+    };
+    
+    // Обработчик ввода в поле вывода (если нужно редактировать Base64)
+    Inputs.out.oninput = function() {
+        g_base64out = this.value;
+    };
+    Inputs.file.onchange = function() {
+        Inputs.in.value = Inputs.file.files[0].name;
+    g_ConsoleErrors.textContent = "Message: Файл выбран. Нажмите Convert для конвертации.";
+};
+    // Обработчик кнопки Convert
+    Inputs.ButtonConvert.onclick = function() {
+        g_ConsoleErrors.textContent = "Message: Обработка...";
+
+// Проверяем, выбран ли файл
+if (Inputs.file.files && Inputs.file.files.length > 0) {
+    const file = Inputs.file.files[0];
+    ConverterB64.FileToBase64(file, function(err, base64) {
+        if (err) {
+            g_ConsoleErrors.textContent = `Message: ${err.message}`;
+            Inputs.out.value = "";
+            return;
+        }
+        g_base64out = base64;
+        Inputs.out.value = base64;
+        g_ConsoleErrors.textContent = "Message: Файл успешно конвертирован в Base64!";
+    });
+}
+// Если файл не выбран, пробуем URL
+else if (g_url) {
+    ConverterB64.ImageCreate(g_url, function(err, img) {
+        if (err) {
+            g_ConsoleErrors.textContent = `Message: ${err.message}`;
+            Inputs.out.value = "";
+            return;
+        }
+        ConverterB64.ImageToBase64(img, function(err, base64) {
+            if (err) {
+                g_ConsoleErrors.textContent = `Message: Ошибка конвертации: ${err.message}`;
+                Inputs.out.value = "";
+                return;
+            }
+            g_base64out = base64;
+            Inputs.out.value = base64;
+            g_ConsoleErrors.textContent = "Message: URL успешно конвертирован в Base64!";
+        });
+    });
+} else {
+    g_ConsoleErrors.textContent = "Message: Введите URL или выберите файл.";
+}
+    };
+    
+    // Глобальный обработчик ошибок (для непредвиденных случаев)
+    window.addEventListener("error", function(err) {
+        g_ConsoleErrors.textContent = `Message: Произошла ошибка: ${err.message}`;
+    });
+    </script>
+</html>
