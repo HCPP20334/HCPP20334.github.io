@@ -23,17 +23,17 @@
         transform: translate(-50%,-50%);
     }
     #imgSource{
-        width: 200px;
+        width: 440px;
         height: 30px;
         font-family: 'SF';
-        background: transparent;
+        background: transparent;display: inline-block;
         margin: 30px;border: 1px solid #010101;
         outline: none;
     }
     #convert{
         width: 100px;border: 1px solid #010101;
-        height: 30px;font-family: 'SF';
-        margin-left: -30px;
+        height: 30px;font-family: 'SF';transform: translateY(-21px);
+        margin-left: 30px; display: inline-block;
     }
     .titleText{
         font-family: 'SF';
@@ -46,14 +46,21 @@
         margin-bottom: -20px;
         font-size: 16px;
     }
+    .Text4{
+        font-family: 'SF';
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: -20px;
+        font-size: 16px;
+    }
     .outBase64{
-        width: 400px;
+        width: 440px;
         height: 250px;
         font-family: 'SF';
         background: transparent;
         margin: 30px;border: 1px solid #010101;
         outline: none;
-        resize: none;
+        resize: none;transform: translateY(-20px);
     }
     .Text2{
         font-family: 'SF';
@@ -69,7 +76,7 @@
         height: 60px;
         position: absolute;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%,-30px);
         border-top: none;
 
     }
@@ -81,34 +88,74 @@
         left: 50%;
         border-top: none;
         display: block;
-        transform: translate(-50%,60px);
+        transform: translate(-50%,20px);
 
     }
     #fileHandle{
         display: inline-block;
         width: 150px;
         height: 30px;
-        transform: translateY(23px);
         border: 1px solid #010101;
+        transform: translateY(-20px);
         &::-webkit-file-upload-button{
             width: 150px;border: none;
         height: 30px;font-family: 'SF';
-        display: block;
-        margin: auto;
-        
+
+
         }
     }
+    #savetxt{
+        display: inline-block;
+        width: 180px;
+        height: 30px;font-family: 'SF';transform: translateY(-21px);
+        border: 1px solid #010101;
+    }
+    button:hover,#filehandle::-webkit-file-upload-button:hover{
+            background: #010101;
+            color: #fff;
+        }
+    #imageShow{
+        background: #e7e5e7;
+        border: 1px solid #010101;
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        top: 50%;
+        z-index: 2;
+        left: 50%;
+        display: none;
+        transform: translate(-50%,-50%);
+    }
+    #ShowImage{
+        display: inline-block;
+        width: 180px;
+        height: 30px;font-family: 'SF';transform: translate(-30px,-11px);float: right;
+        border: 1px solid #010101;
+    }
+    #ImgBuffer{
+       max-width: 400px;
+       max-height: 400px;
+      display: block;
+      margin: auto;
+      transform: translateY(30px);
+    }
     </style>
+    <div id="imageShow">
+    <img src="" id="ImgBuffer">
+    <p class="Text4">Нажми на фото чтобы закрыть</p>
+    </div>
 <div class="convert_app">
     <h1 class="titleText">Image2base64 Converter</h1>
     <p class="Text">URL</p>
     <input type="comment" id="imgSource">
+    <br>
     <button id="convert">Convert</button>
     <input type="file" id="fileHandle">
+    <button id="savetxt">Сохранить в (*.txt)</button>
     <textarea class="outBase64"></textarea>
     <div class="outData">
-        <p class="Text2">URL</p>
-        <p class="Text2">URL</p>
+        <p class="Text2" id="iImageSize">Размер:0 КБ</p>
+        <button id="ShowImage">Просмотреть фото</button>
     </div>
     <div class="outData2">
         <p class="Text2" id="ConsoleErr">Message:</p>
@@ -117,14 +164,46 @@
 <script>
     let g_url = "";
     let g_base64out = "";
+    let g_iImageSize = document.querySelector("#iImageSize");
     let g_ConsoleErrors = document.querySelector("#ConsoleErr");
+    let ImageViewer = {
+        main: document.querySelector("#imageShow"),
+        ImgBuffer: document.querySelector("#ImgBuffer"),
+        ShowImage:  document.querySelector("#ShowImage"),
+        state: 0,
+        Frame: function(isOpen){
+            if(!isOpen){
+                this.main.style.display = "none";
+            }
+            if(isOpen){
+                this.main.style.display = "block";
+            }
+        },
+        loadBase64: function(b64data){
+            this.ImgBuffer.src = b64data;
+        }
+    }
+    ImageViewer.ShowImage.onclick = function(){
+        if(g_base64out.length <= 0){
+            g_ConsoleErrors.textContent = "Message:Вы не сгенирировали ничего нажмите Convert.";
+        }
+        else{
+            ImageViewer.Frame(1);
+            ImageViewer.loadBase64(g_base64out);
+        }
+    }
+    ImageViewer.ImgBuffer.onclick = function(){
+        ImageViewer.Frame(0);
+        ImageViewer.loadBase64("");
+    }
     const Inputs = {
         in: document.querySelector("#imgSource"),
         out: document.querySelector(".outBase64"),
         file: document.querySelector("#fileHandle"),
-        ButtonConvert: document.querySelector("#convert")
+        ButtonConvert: document.querySelector("#convert"),
+        ButtonSaveTxt: document.querySelector("#savetxt")
     };
-    
+
     const ConverterB64 = {
         ImageCreate: function(url, callback) {
             let ImageSource = new Image();
@@ -154,12 +233,24 @@
                 callback(err);
             }
         },
+        SaveFile: function(data,filename){
+            var val = data;
+            if (data === undefined) {
+              val = "";
+            }
+            var download = document.createElement("a");
+            download.href = "data:text/plain;content-disposition=attachment;filename=file," + val;
+            download.download = filename+".txt";
+            download.style.display = "none";
+            download.id = "download"; document.body.appendChild(download);
+            document.getElementById("download").click();
+            document.body.removeChild(download);
+        },
         FileToBase64: function(file, callback) {
         if (!file || !file.type.startsWith("image/")) {
             callback(new Error("Пожалуйста, выберите файл изображения."));
             return;
         }
-
         const reader = new FileReader();
         reader.onload = function() {
             const base64 = reader.result;
@@ -184,6 +275,7 @@
     };
     Inputs.file.onchange = function() {
         Inputs.in.value = Inputs.file.files[0].name;
+        g_url = Inputs.file.files[0].name;
     g_ConsoleErrors.textContent = "Message: Файл выбран. Нажмите Convert для конвертации.";
 };
     // Обработчик кнопки Convert
@@ -202,6 +294,7 @@ if (Inputs.file.files && Inputs.file.files.length > 0) {
         g_base64out = base64;
         Inputs.out.value = base64;
         g_ConsoleErrors.textContent = "Message: Файл успешно конвертирован в Base64!";
+        g_iImageSize.textContent = "Размер:"+parseFloat(g_base64out.length / 1024).toFixed(1)+" КБ";
     });
 }
 // Если файл не выбран, пробуем URL
@@ -232,5 +325,13 @@ else if (g_url) {
     window.addEventListener("error", function(err) {
         g_ConsoleErrors.textContent = `Message: Произошла ошибка: ${err.message}`;
     });
+    Inputs.ButtonSaveTxt.onclick = function(){
+        if(g_url == ""){
+            g_ConsoleErrors.textContent = `Message: Нет файла! Загрузить файл через кнопку или введите вручную`;
+        }
+        else{
+            ConverterB64.SaveFile(g_base64out,g_url);
+        }
+    }
     </script>
 </html>
