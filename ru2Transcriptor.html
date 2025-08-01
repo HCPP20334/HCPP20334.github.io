@@ -1,0 +1,152 @@
+<html>
+<head>
+<style>
+    html {
+        background: #090909;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: monospace; font-weight: bold;
+    }
+    
+ 
+    
+    .frame {
+        background: #0c0c0c;
+        width: 500px;
+        height: 500px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 50%;
+        left: 50%;border: 1px solid #f86d10;
+        transform: translate(-50%,-50%);
+    }
+    
+    .input-field {
+        width: 100%;
+        height: 200px;
+        background: #0c0c0c;
+        border: none;
+        outline: none;
+        font-family: inherit;
+        color: #f86d10;
+        font-size: 15px;
+        padding: 0 20px; font-family: monospace; font-weight: bold;
+        box-sizing: border-box;
+    }
+    .input-field2 {
+        width: 100%;
+        height: 200px;
+        background: #0c0c0c;
+        border: none;
+        outline: none;
+        font-family: inherit;
+        color: rgb(255, 0, 106);
+        font-size: 15px;
+        padding: 0 20px; font-family: monospace; font-weight: bold;
+        box-sizing: border-box;
+    }
+    .input-top {
+        border-bottom: 1px solid #191919;
+    }
+    .copy{
+        width: 150px;
+        height: 40px;
+        background: #0c0c0c; font-family: monospace; font-weight: bold;
+        border: none;color: #f86d10;
+        position: absolute;
+        top: 50%;
+        left: 50%;border: 1px solid #f86d10;
+        transform: translate(-50%,270px);
+        &:hover{
+            border: 1px solid #f86d10;
+            background: #f86d10;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+    }
+    @keyframes op {
+        to{
+            filter: opacity(1);
+        }
+    }
+    @keyframes opout {
+        to{
+            filter: opacity(1);
+        }
+    }
+    .msg{
+        background: #f86d10;box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        width: 300px;border-radius: 20px;
+        height: 40px;transition: .2s;
+        display: none;
+        animation: op 300ms ease-in-out;
+    }
+</style>
+</head>
+<body>
+<div class="msg">
+
+</div>
+<div class="frame">
+    <input type="text" class="input-field input-top" placeholder="Русский текст">
+    <input type="text" class="input-field2" placeholder="Транслитерация" readonly>
+</div>
+<button class="copy">Скопировать</button>
+<script>
+        let result = '';
+document.addEventListener('DOMContentLoaded', () => {
+    // Получаем элементы
+    const inputTop = document.querySelector('.input-top');
+    const inputBottom = document.querySelector('.input-field2:not(.input-top)');
+    
+    // Словарь транслитерации
+    const translitMap = {
+        'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
+        'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
+        'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
+        'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
+        'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya',
+        ' ': ' ',  // пробел
+    };
+    // Обработчик ввода
+    inputTop.addEventListener('input', () => {
+        const russianText = inputTop.value.toLowerCase();
+        result = '';
+        
+        for (let i = 0; i < russianText.length; i++) {
+            const char = russianText[i];
+            // Проверяем наличие символа в словаре
+            result += translitMap[char] || char;
+        }
+        
+        inputBottom.value = result;
+    });
+});
+document.querySelector(".copy").onclick = function(){
+    document.querySelector(".msg").style.display = "block";
+    let tx = document.createElement("p");
+    tx.style.cssText = `
+    color: #fff;
+    font-family: monospace; font-weight: bold;
+    text-align: center;
+    transform: translateY(10px);
+    `;
+    document.querySelector(".msg").appendChild(tx);
+    tx.textContent = "Скопированно";
+    let t = setTimeout(function(){
+        document.querySelector(".msg").removeChild(tx);
+        document.querySelector(".msg").style.animation = "opout 300ms ease-out";
+        document.querySelector(".msg").style.display = "none";
+    },300);
+    document.querySelector(".msg").style.animation = "op 300ms ease-out";
+
+    navigator.clipboard.writeText(result);
+}
+</script>
+</body>
+</html>
