@@ -22,7 +22,7 @@ const frames_id = [
  "#window_voltage_diode_boost",
  "#window_price_to_minute"
 ];
-
+document.documentElement.style.zoom = "75%";
 function getItem(id_class){
     return document.querySelector(id_class);
    }
@@ -65,18 +65,16 @@ const frontend = {
     }
     },
     frame: function(id, state) {
-      let iWidth = state ? 0 : 100; // Начальная ширина: 0 для открытия, 100 для закрытия
-      const maxWidth = 100; // Максимальная ширина в процентах
-      const minWidth = 0; // Минимальная ширина
-      const step = 3; // Шаг изменения ширины (для плавности)
-      const intervalTime = 10; // Интервал в миллисекундах для анимации
-      iWidth = (state ? 100 : 0);
+      id.style.display = "block";
+      let iWidth =  (state ? 100 : 0);
       let i = setInterval(function(){
          if(id.style.width == "0px"){
             id.style.display = "none";
+            clearInterval(i);
          }
          if(id.style.width == "100%"){
-            id.style.display = "block";
+           
+            clearInterval(i);
          }
            
          },1);
