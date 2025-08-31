@@ -1,0 +1,249 @@
+/* @ main.css Coded by HCPP
+ 
+*/
+html{
+    background: #090909;
+}
+.main{
+    width: 100%;
+    height: 100%;
+    box-shadow: 20px 10px  #010101;
+    background: #070709;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.border_line{
+    width: 99%;
+    height: 2px;
+    background: #101010;
+    display: block;
+    margin: auto;
+}
+@font-face {
+    font-family: 'BOUNDED';
+    src: url("fonts/BOUNDED.ttf");
+}
+.main_title_text_project{
+    color: #ccc;
+    font-size: 18px;
+    font-family: 'BOUNDED';
+    margin: 15px;
+}
+.main_buttons{
+    display: block;
+    margin: auto;
+    width: 90%;
+    max-width: 500px;
+    height: 45px;
+    margin-top: 10px;
+    background: #1d1d27;
+    color: #ccc;
+    font-size: 18px;
+    font-family: 'BOUNDED';
+    border: none;
+    &:hover{
+        box-shadow: 0px 0px 10px #1234f5;
+        background: #1234f5;
+    }
+
+}
+.version_text{
+    color: #ccc;
+    font-size: 18px;
+    font-family: 'BOUNDED';
+    margin: 15px;
+    text-align: center;
+}
+.log_buffer{
+    color: #ccc;
+    font-size: 10px;
+    font-family: 'BOUNDED';
+    &::-webkit-scrollbar{
+        background: #090909;
+    }
+    &::-webkit-scrollbar-thumb{
+        background: #1d1d27;
+    }
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 358px;
+    width: 500px;
+    border-bottom: 1px solid #191919;
+    transform: translateX(0px);
+}
+.logger{
+   
+    display: none;
+    margin: auto;
+    width: 90%;
+    max-width: 500px;
+    height: 400px;
+    background: #010101;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    overflow: hidden;
+    transition: .3s;
+
+}
+.window_{
+    width: 0px;
+    height: 100%;
+    box-shadow: 20px 10px  #010101;
+    background: #070709;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);transition: .2s;
+    z-index: 2;
+}
+
+.inputs_all{
+    border: 2px solid #303040;
+    background: #303040;
+    border-radius: 30px;
+    width: 30%;
+    height: 30px;
+    max-width: 400px;
+    min-width: 300px;
+    outline: none;
+    display: block;
+    margin: 15px;
+    transform: translateX(100px);
+    color: #ccc;
+    font-size: 20px;
+    font-family: 'BOUNDED';
+}
+.buttons_all{
+    border: 2px solid #000000;
+    background: #303060;
+    border-radius: 30px;
+    width: 300px;
+    height: 50px;
+    outline: none;
+    display: block;
+    margin: 15px;
+    transform: translateX(100px);
+    color: #ccc;
+    font-size: 20px;
+    font-family: 'BOUNDED';
+    &:hover{
+        background: #383434;
+    }
+}
+.text_values_offsets10{
+    color: #ccc;
+    font-size: 10px;
+    font-family: 'BOUNDED';
+    margin: 15px;
+    transform: translateX(100px);
+}
+.text_values_offsets10{
+    color: #ccc;
+    font-size: 10px;
+    font-family: 'BOUNDED';
+    margin: 15px;
+    transform: translateX(100px);
+}
+.text_values_offsets20{
+    color: #ccc;
+    font-size: 20px;
+    font-family: 'BOUNDED';
+    margin: 15px;
+    transform: translateX(100px);
+}
+.text_values_offsets30{
+    color: #ccc;
+    font-size: 23px;
+    font-family: 'BOUNDED';
+    margin: 15px;
+    transform: translateX(100px);
+}
+.bug_alerts{
+    background: #070709;
+    background: #ccc;
+    display: block;
+    margin: auto;
+    position: absolute;
+    z-index: 1000;
+    border: 1px solid #303060;
+    
+}
+.vertical_button{
+    height: 100%;
+    width: 80px;
+    color: #ccc;
+    font-size: 12px;
+    font-family: 'BOUNDED';
+    display: inline-block;
+    position: absolute;
+    background: #1234f5;
+    border: none;
+    transition: .1s;
+    &:hover{
+        box-shadow: 0px 0px 100px #1234f5;
+        background: #1234f5;
+    }
+}
+.border_line_orange{
+    width: 99%;
+    height: 2px;
+    background: #303060;
+    display: block;
+    margin: auto;
+}
+#command_line{
+    background: #050505;
+    border: none;
+    width: 400px;
+    height: 30px;
+    color: #ccc;
+    font-size: 12px;
+    font-family: 'BOUNDED';
+    outline: none;
+    display: inline-block;
+    transform: translateY(-9px);
+}
+.send_coomand{
+    background: #1a1818;
+    border: none;
+    width: 100px;transform: translateY(-9px);
+    height: 30px;
+    color: #ccc;
+    font-size: 12px;
+    font-family: 'BOUNDED';
+    outline: none;
+    display: inline-block;
+}
+.nomival_automat_button6464{
+    background: #404060;
+    border: none;
+    width: 64px;
+    height: 64px;
+    color: #ccc;
+    margin-left: 6px;
+    border-radius: 10px;
+    font-size: 22px;
+    font-family: 'BOUNDED';
+    display: inline-block;
+    box-shadow: 0px 0px 10px #010101;
+    border: none;
+    transform: translateX(130px);
+    transition: .1s;
+}
+a{
+    color: #1234f5;
+    margin-left: 6px;
+    border-radius: 10px;
+    font-size: 22px;
+    font-family: 'BOUNDED';
+    text-decoration: none;
+}
+div{
+    transition: .2s;
+}

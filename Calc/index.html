@@ -1,763 +1,119 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Калькулятор электроники</title>
-    <style>
-        :root {
-            --bg-dark: #121212;
-            --bg-darker: #0a0a0a;
-            --bg-code: #1e1e1e;
-            --primary: #6a8cff;
-            --primary-dark: #4361ee;
-            --secondary: #ff5c8d;
-            --text: #e0e0e0;
-            --text-light: #a0a0a0;
-            --border: #333;
-            --border-radius: 4px;
-            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'IBM Plex Mono', 'Roboto Mono', 'Courier New', monospace;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            letter-spacing: -1px;
-        }
-
-        .version {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-        }
-
-        .calculator-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        .calculator-card {
-            background-color: var(--bg-code);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            box-shadow: var(--box-shadow);
-            border-left: 3px solid var(--primary);
-        }
-
-        .calculator-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .calculator-title::before {
-            content: ">_";
-            margin-right: 0.5rem;
-            color: var(--secondary);
-        }
-
-        .formula {
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .input-group {
-            margin-bottom: 1rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.3rem;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        input[type="text"],
-        input[type="number"] {
-            width: 100%;
-            padding: 0.5rem;
-            background-color: var(--bg-dark);
-            border: 1px solid var(--border);
-            color: var(--text);
-            border-radius: var(--border-radius);
-            font-family: inherit;
-        }
-
-        .result {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin: 1rem 0;
-            padding: 0.5rem;
-            background-color: var(--bg-darker);
-            border-radius: var(--border-radius);
-            text-align: center;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        button {
-            padding: 0.5rem 1rem;
-            background-color: var(--primary);
-            color: var(--bg-dark);
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-family: inherit;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        button:hover {
-            background-color: var(--primary-dark);
-        }
-
-        .secondary-btn {
-            background-color: var(--bg-darker);
-            color: var(--text);
-        }
-
-        .secondary-btn:hover {
-            background-color: #333;
-        }
-
-        .nav-button {
-            display: block;
-            width: 100%;
-            padding: 0.8rem;
-            margin-bottom: 0.5rem;
-            background-color: var(--bg-code);
-            border: 1px solid var(--border);
-            color: var(--text);
-            text-align: left;
-            transition: var(--transition);
-        }
-
-        .nav-button:hover {
-            background-color: var(--bg-darker);
-            border-color: var(--primary);
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .back-button {
-            margin-top: 1rem;
-            width: 100%;
-        }
-
-        /* Адаптация для мобильных устройств */
-        @media (min-width: 768px) {
-            .calculator-grid {
-                grid-template-columns: 250px 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1 class="logo">Калькулятор электроники</h1>
-            <div class="version">Версия 1.1D</div>
-        </header>
-
-        <div class="calculator-grid">
-            <!-- Панель навигации -->
-            <div>
-                <button class="nav-button" onclick="showSection('watt-amp')">Амперы в Ватты</button>
-                <button class="nav-button" onclick="showSection('amp-watt')">Ватты в Амперы</button>
-                <button class="nav-button" onclick="showSection('wire-section')">Расчет сечения провода</button>
-                <button class="nav-button" onclick="showSection('current-section')">Ток по сечению</button>
-                <button class="nav-button" onclick="showSection('rubles-converter')">Конвертер рублей</button>
-                <button class="nav-button" onclick="showSection('wire-resistance')">Сопротивление провода</button>
-                <button class="nav-button" onclick="showSection('circuit-breaker')">Номинал автомата</button>
-                <button class="nav-button" onclick="showSection('ballast-capacitor')">Балластный конденсатор</button>
-                <button class="nav-button" onclick="showSection('area-calculation')">Расчет площади</button>
-                <button class="nav-button" onclick="showSection('phase-capacitor')">Фазосдвигающий конденсатор</button>
-                <button class="nav-button" onclick="showSection('heater-power')">Мощность ТЭНа</button>
-                <button class="nav-button" onclick="showSection('basic-calculator')">Обычный калькулятор</button>
-            </div>
-
-            <!-- Разделы калькулятора -->
-            <div>
-                <!-- Амперы в Ватты -->
-                <div id="watt-amp" class="calculator-card">
-                    <h2 class="calculator-title">Амперы в Ватты</h2>
-                    <p class="formula">P = A × V</p>
-                    
-                    <div class="input-group">
-                        <label for="a-value">Амперы (A)</label>
-                        <input type="number" id="a-value" placeholder="Введите ток в амперах">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="v-value">Напряжение (V)</label>
-                        <input type="number" id="v-value" placeholder="Введите напряжение в вольтах">
-                    </div>
-                    
-                    <div class="result" id="out-value">0 Вт</div>
-                    
-                    <div class="button-group">
-                        <button onclick="calculateWatts()">Рассчитать</button>
-                        <button class="secondary-btn" onclick="resetInputs('watt-amp')">Сбросить</button>
-                    </div>
-                    
-                    <button class="secondary-btn back-button" onclick="showMainMenu()">Вернуться в меню</button>
-                </div>
-
-                <!-- Ватты в Амперы -->
-                <div id="amp-watt" class="calculator-card hidden">
-                    <h2 class="calculator-title">Ватты в Амперы</h2>
-                    <p class="formula">I = P ÷ V</p>
-                    
-                    <div class="input-group">
-                        <label for="w-value2">Ватты (Вт)</label>
-                        <input type="number" id="w-value2" placeholder="Введите мощность в ваттах">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="v-value2">Напряжение (V)</label>
-                        <input type="number" id="v-value2" placeholder="Введите напряжение в вольтах">
-                    </div>
-                    
-                    <div class="result" id="out-value2">0 А</div>
-                    
-                    <div class="button-group">
-                        <button onclick="calculateAmps()">Рассчитать</button>
-                        <button class="secondary-btn" onclick="resetInputs('amp-watt')">Сбросить</button>
-                    </div>
-                    
-                    <button class="secondary-btn back-button" onclick="showMainMenu()">Вернуться в меню</button>
-                </div>
-
-                <!-- Расчет сечения провода -->
-                <div id="wire-section" class="calculator-card hidden">
-                    <h2 class="calculator-title">Расчет сечения провода</h2>
-                    <p class="formula">Сечение = (Диаметр ÷ 2)² × π</p>
-                    
-                    <div class="input-group">
-                        <label for="dia-value2">Диаметр (мм)</label>
-                        <input type="number" id="dia-value2" placeholder="Введите диаметр в мм">
-                    </div>
-                    
-                    <div class="result" id="out-value3">0 мм²</div>
-                    
-                    <div class="button-group">
-                        <button onclick="calculateWireSection()">Рассчитать</button>
-                        <button class="secondary-btn" onclick="resetInputs('wire-section')">Сбросить</button>
-                    </div>
-                    
-                    <button class="secondary-btn back-button" onclick="showMainMenu()">Вернуться в меню</button>
-                </div>
-
-                <!-- Ток по сечению -->
-                <div id="current-section" class="calculator-card hidden">
-                    <h2 class="calculator-title">Расчет тока по сечению</h2>
-                    <p class="formula">I = (P × S) ÷ (V × 1)</p>
-                    
-                    <div class="input-group">
-                        <label for="inwatt">Мощность (Вт)</label>
-                        <input type="number" id="inwatt" placeholder="Введите мощность в ваттах">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="insec">Сечение (мм²)</label>
-                        <input type="number" id="insec" placeholder="Введите сечение провода в мм²">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="involt">Напряжение (V)</label>
-                        <input type="number" id="involt" placeholder="Введите напряжение в вольтах">
-                    </div>
-                    
-                    <div class="result" id="out-amp">0 А</div>
-                    
-                    <div class="button-group">
-                        <button onclick="calculateCurrentFromSection()">Рассчитать</button>
-                        <button class="secondary-btn" onclick="resetInputs('current-section')">Сбросить</button>
-                    </div>
-                    
-                    <button class="secondary-btn back-button" onclick="showMainMenu()">Вернуться в меню</button>
-                </div>
-
-                <!-- Конвертер рублей -->
-                <div id="rubles-converter" class="calculator-card hidden">
-                    <h2 class="calculator-title">Конвертер рублей</h2>
-                    <p class="formula" id="rub-text">Советские рубли в Российские рубли</p>
-                    
-                    <div class="input-group">
-                        <label for="data-rub">Сумма</label>
-                        <input type="number" id="data-rub" placeholder="Введите сумму">
-                    </div>
-                    
-                    <div class="result" id="out-rub">0</div>
-                    
-                    <div class="button-group">
-                        <button onclick="convertRubles()">Конвертировать</button>
-                        <button id="reverb" onclick="toggleRublesConversion()">Обратно</button>
-                        <button class="secondary-btn" onclick="resetInputs('rubles-converter')">Сбросить</button>
-                    </div>
-                    
-                    <button class="secondary-btn back-button" onclick="showMainMenu()">Вернуться в меню</button>
-                </div>
-
-                <!-- Сопротивление провода -->
-                <div id="wire-resistance" class="calculator-card hidden">
-                    <h2 class="calculator-title">Сопротивление провода</h2>
-                    <p class="formula">R = (ρ × L) ÷ S</p>
-                    
-                    <div class="input-group">
-                        <label for="p-val">Удельное сопротивление (ρ)</label>
-                        <input type="number" id="p-val" placeholder="Введите удельное сопротивление">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="l-val">Длина (м)</label>
-                        <input type="number" id="l-val" placeholder="Введите длину в метрах">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="S-val">Сечение (мм²)</label>
-                        <input type="number" id="S-val" placeholder="Введите сечение в мм²">
-                    </div>
-                    
-                    <div class="result" id="Rvalue">0 Ом</div>
-                    
-                    <div class="button-group">
-                        <button onclick="calculateWireResistance()">Рассчитать</button>
-                        <button class="secondary-btn" onclick="resetInputs('wire-resistance')">Сбросить</button>
-                    </div>
-                    
-                    <button class="secondary-btn back-button" onclick="showMainMenu()">Вернуться в меню</button>
-                </div>
-
-                <!-- Номинал автомата -->
-                <div id="circuit-breaker" class="calculator-card hidden">
-                    <h2 class="calculator-title">Расчет номинала автомата</h2>
-                    <p class="formula">Номинал = Ток + (Ток × Процент)</p>
-                    
-                    <div class="input-group">
-                        <label for="NomValue">Номинальный ток</label>
-                        <input type="number" id="NomValue" placeholder="Введите номинальный ток">
-                    </div>
-                    
-                    <div class="result" id="Nvalue">0</div>
-                    
-                    <div class="button-group">
-                        <button id="13-p" onclick="setPercentage(1.13)">1.13×</button>
-                        <button id="45-p" onclick="setPercentage(1.45)">1.45×</button>
-                        <button id="155-p" onclick="setPercentage(2.55)">2.55×</button>
-                        <button id="400-p" onclick="setPercentage(5)">5×</button>
-                        <button id="900-p" onclick="setPercentage(10)">10×</button>
-                    </div>
-                    
-                    <div class="button-group">
-                        <button onclick="calculateBreakerRating()">Рассчитать</button>
-                        <button class="secondary-btn" onclick="resetInputs('circuit-breaker')">Сбросить</button>
-                    </div>
-                    
-                    <button class="secondary-btn back-button" onclick="showMainMenu()">Вернуться в меню</button>
-                </div>
-
-                <!-- Балластный конденсатор -->
-                <div id="ballast-capacitor" class="calculator-card hidden">
-                    <h2 class="calculator-title">Балластный конденсатор</h2>
-                    <p class="formula">U_общ = √(U₁² - U₂²)<br>C = 3200 × I ÷ U_общ</p>
-                    
-                    <div class="input-group">
-                        <label for="capI">Ток (А)</label>
-                        <input type="number" id="capI" placeholder="Введите ток в амперах">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="capU1">Входное напряжение (V)</label>
-                        <input type="number" id="capU1" placeholder="Введите входное напряжение">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="capU2">Напряжение нагрузки (V)</label>
-                        <input type="number" id="capU2" placeholder="Введите напряжение нагрузки">
-                    </div>
-                    
-                    <div class="result" id="capbuf">0 мкФ</div>
-                    
-                    <div class="button-group">
-                        <button onclick="calculateBallastCapacitor()">Рассчитать</button>
-                        <button class="secondary-btn" onclick="resetInputs('ballast-capacitor')">Сбросить</button>
-                    </div>
-                    
-                    <button class="secondary-btn back-button" onclick="showMainMenu()">Вернуться в меню</button>
-                </div>
-
-                <!-- Расчет площади -->
-                <div id="area-calculation" class="calculator-card hidden">
-                    <h2 class="calculator-title">Расчет площади</h2>
-                    <p class="formula">S = a × b</p>
-                    
-                    <div class="input-group">
-                        <label for="A-val">Длина (a)</label>
-                        <input type="number" id="A-val" placeholder="Введите длину">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="B-val">Ширина (b)</label>
-                        <input type="number" id="B-val" placeholder="Введите ширину">
-                    </div>
-                    
-                    <div class="result" id="Sbuf">0</div>
-                    
-                    <div class="button-group">
-                        <button onclick="calculateArea()">Рассчитать</button>
-                        <button class="secondary-btn" onclick="resetInputs('area-calculation')">Сбросить</button>
-                    </div>
-                    
-                    <button class="secondary-btn back-button" onclick="showMainMenu()">Вернуться в меню</button>
-                </div>
-
-                <!-- Фазосдвигающий конденсатор -->
-                <div id="phase-capacitor" class="calculator-card hidden">
-                    <h2 class="calculator-title">Фазосдвигающий конденсатор</h2>
-                    <p class="formula">C = k × I ÷ U</p>
-                    
-                    <div class="input-group">
-                        <label for="IM-val">Номинальный ток (А)</label>
-                        <input type="number" id="IM-val" placeholder="Введите ток в амперах">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="VM-val">Напряжение (V)</label>
-                        <input type="number" id="VM-val" placeholder="Введите напряжение">
-                    </div>
-                    
-                    <div class="result" id="cmval">0 мкФ</div>
-                    
-                    <div class="button-group">
-                        <button id="4800-p" onclick="setCapacitorType(4800)">Треугольник</button>
-                        <button id="2800-p" onclick="setCapacitorType(2800)">Звезда</button>
-                    </div>
-                    
-                    <div class="button-group">
-                        <button onclick="calculatePhaseCapacitor()">Рассчитать</button>
-                        <button class="secondary-btn" onclick="resetInputs('phase-capacitor')">Сбросить</button>
-                    </div>
-                    
-                    <button class="secondary-btn back-button" onclick="showMainMenu()">Вернуться в меню</button>
-                </div>
-
-                <!-- Мощность ТЭНа -->
-                <div id="heater-power" class="calculator-card hidden">
-                    <h2 class="calculator-title">Расчет мощности ТЭНа</h2>
-                    <p class="formula">P = U² ÷ R</p>
-                    
-                    <div class="input-group">
-                        <label for="Pres">Сопротивление (Ом)</label>
-                        <input type="number" id="Pres" placeholder="Введите сопротивление">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="Pvolt">Напряжение (V)</label>
-                        <input type="number" id="Pvolt" placeholder="Введите напряжение">
-                    </div>
-                    
-                    <div class="result" id="Pbuf">0 Вт</div>
-                    
-                    <div class="button-group">
-                        <button onclick="calculateHeaterPower()">Рассчитать</button>
-                        <button class="secondary-btn" onclick="resetInputs('heater-power')">Сбросить</button>
-                    </div>
-                    
-                    <button class="secondary-btn back-button" onclick="showMainMenu()">Вернуться в меню</button>
-                </div>
-
-                <!-- Обычный калькулятор -->
-                <div id="basic-calculator" class="calculator-card hidden">
-                    <h2 class="calculator-title">Обычный калькулятор</h2>
-                    
-                    <div class="input-group">
-                        <input type="text" id="outData" class="result" readonly>
-                    </div>
-                    
-                    <div class="button-group">
-                        <button onclick="addToInput('7')">7</button>
-                        <button onclick="addToInput('8')">8</button>
-                        <button onclick="addToInput('9')">9</button>
-                        <button onclick="addToInput('+')">+</button>
-                    </div>
-                    
-                    <div class="button-group">
-                        <button onclick="addToInput('4')">4</button>
-                        <button onclick="addToInput('5')">5</button>
-                        <button onclick="addToInput('6')">6</button>
-                        <button onclick="addToInput('-')">-</button>
-                    </div>
-                    
-                    <div class="button-group">
-                        <button onclick="addToInput('1')">1</button>
-                        <button onclick="addToInput('2')">2</button>
-                        <button onclick="addToInput('3')">3</button>
-                        <button onclick="addToInput('*')">×</button>
-                    </div>
-                    
-                    <div class="button-group">
-                        <button onclick="addToInput('0')">0</button>
-                        <button onclick="addToInput('.')">.</button>
-                        <button onclick="clearInput()">C</button>
-                        <button onclick="addToInput('/')">÷</button>
-                    </div>
-                    
-                    <div class="button-group">
-                        <button onclick="addToInput('(')">(</button>
-                        <button onclick="addToInput(')')">)</button>
-                        <button onclick="addToInput('%')">%</button>
-                        <button onclick="calculateExpression()">=</button>
-                    </div>
-                    
-                    <button class="secondary-btn back-button" onclick="showMainMenu()">Вернуться в меню</button>
-                </div>
-            </div>
+<html>
+    <link rel="stylesheet" href="css/main.css">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+    <div class="main">
+        <!-- 
+        frames
+        <--?--> 
+        <div id="window_watt_to_amper" class="window_">
+        <button class="vertical_button" onclick="closeWindow();">Закрыть</button>
+        <p class="text_values_offsets30">Ватты в амперы</p>
+        <p class="text_values_offsets20" id="fwua">0000</p>
+        <p class="text_values_offsets20">напряжениe</p>
+        <input type="comment" class="inputs_all" id="uinput">
+        <p class="text_values_offsets20">Ватты</p>
+        <input type="comment" class="inputs_all" id="winput">
+        <button class="buttons_all" onclick="textBuffers.setText(fwua,(ELC.watt2amper(floatoffsets.fu,floatoffsets.fw)))">Расчитать</button>
+        <div class="border_line_orange"></div>
+        <p class="text_values_offsets30">Амперы в ватты</p>
+        <p class="text_values_offsets20" id="fau">0000</p>
+        <p class="text_values_offsets20">напряжениe</p>
+        <input type="comment" class="inputs_all" id="u2input">
+        <p class="text_values_offsets20">ток</p>
+        <input type="comment" class="inputs_all" id="a2input">
+        <button class="buttons_all" onclick="textBuffers.setText(fau,ELC.amper2watt(floatoffsets.fu2,floatoffsets.fa))">Расчитать</button>
         </div>
+        <div id="window_amper_to_om" class="window_">
+            <button class="vertical_button" onclick="closeWindow();">Закрыть</button>
+            <p class="text_values_offsets30">Расчет Тока по ОМУ</p>
+            <p class="text_values_offsets20" id="frb">0000</p>
+            <p class="text_values_offsets20">напряжениe</p>
+            <input type="comment" class="inputs_all" id="u3input">
+            <p class="text_values_offsets20">Сопротивление</p>
+            <input type="comment" class="inputs_all" id="rinput">
+            <button class="buttons_all" onclick="textBuffers.setText(frb,(ELC.om2volt(floatoffsets.fuv,floatoffsets.frv)))">Расчитать</button>
+        </div>
+        <div id="window_diametr_to_section" class="window_">
+            <button class="vertical_button" onclick="closeWindow();">Закрыть</button>
+            <p class="text_values_offsets30">Расчет диаметра провода</p>
+            <p class="text_values_offsets20" id="fsec">0000</p>
+            <p class="text_values_offsets20">Сечение</p>
+            <input type="comment" class="inputs_all" id="diainput">
+            <button class="buttons_all" onclick="textBuffers.setText(fsec,(ELC.diametr2section(floatoffsets.fRmm2)))">Расчитать</button>
+        </div>
+        <div id="window_power_to_thermal" class="window_">
+            <button class="vertical_button" onclick="closeWindow();">Закрыть</button>
+        </div>
+        <div id="window_nomival_automat" class="window_">
+            <button class="vertical_button" onclick="closeWindow();">Закрыть</button>
+            <p class="text_values_offsets30">Расчет номинала автомата</p>
+        <p class="text_values_offsets20" id="anbf">0000</p>
+        <p class="text_values_offsets20">На сколько ампер автомат</p>
+        <input type="comment" class="inputs_all" id="aninput">
+        <button class="nomival_automat_button6464" id="bn0" onclick="setPercentN(0,bn0)">1.13</button>
+        <button class="nomival_automat_button6464" id="bn1" onclick="setPercentN(1,bn1)">1.45</button>
+        <button class="nomival_automat_button6464" id="bn2" onclick="setPercentN(2,bn2)">2.55</button>
+        <button class="nomival_automat_button6464" id="bn3" onclick="setPercentN(3,bn3)">5.0</button>
+        <button class="nomival_automat_button6464" id="bn4" onclick="setPercentN(4,bn4)">10.0</button>
+        <br>
+        <p class="text_values_offsets10">1.13 - ток кратковременного отключения цепи</p>
+        <p class="text_values_offsets10">1.45 — ток отключения, при котором <br>машина не должна выключаться</p>
+        <p class="text_values_offsets10">2.55 - ток, при котором машина<br>должна выключиться в течение 1 минуты</p>
+        <p class="text_values_offsets10">5.00 - ток аварийной перегрузки при которой машина<br>должна выключиться в течение 10 секунд </p>
+        <p class="text_values_offsets10">10.0 - ток аварийной перегрузки<br>при которой машина должна выключиться выключать</p>
+        <button class="buttons_all" onclick="textBuffers.setText(textBuffers.anbf,ELC.nominalAutomat(floatoffsets.fna,nk))">Расчитать</button>
+        </div>
+        <div id="window_balast_cap" class="window_">
+           
+        </div>
+        <div id="window_phase_cap" class="window_">
+            <button class="vertical_button" onclick="closeWindow();">Закрыть</button>
+            <button class="vertical_button" onclick="closeWindow();">Закрыть</button>
+            <p class="text_values_offsets30">Расчет баластного конденсатора</p>
+            <p class="text_values_offsets20" id="acap">0000</p>
+            <p class="text_values_offsets20">напряжениe Нагрузки</p>
+            <input type="comment" class="inputs_all" id="uoutinput">
+            <p class="text_values_offsets20">напряжениe Входное</p>
+            <input type="comment" class="inputs_all" id="uininput">
+            <p class="text_values_offsets20">Ток</p>
+            <input type="comment" class="inputs_all" id="iinput">
+            <button class="buttons_all" onclick="textBuffers.setText(textBuffers.acap,ELC.balastCap(floatoffsets.fbcapu1,floatoffsets.fbcapu0,floatoffsets.fbcapu2))">Расчитать</button>
+        </div>
+        <div id="window_amper_to_ompower" class="window_">
+            <button class="vertical_button" onclick="closeWindow();">Закрыть</button>
+        </div>
+        <div id="window_voltage_diode_boost" class="window_">
+            <button class="vertical_button" onclick="closeWindow();">Закрыть</button>
+        </div>
+        <div id="window_price_to_minute" class="window_">
+            <button class="vertical_button" onclick="closeWindow();">Закрыть</button>
+        </div>
+        <!-- 
+        end frames
+        <--?--> 
+        <p class="main_title_text_project">КАЛЬКУЛЯТОР ЭЛЕКТРОНИКА</p>
+    <div class="border_line"></div>
+    <button class="main_buttons" id="watt_to_amper">Ватты в амперы</button>
+    <button class="main_buttons" id="amper_to_om">Расчет ампер по ому</button>
+    <button class="main_buttons" id="diametr_to_section">Расчет диаметра провода</button>
+    <button class="main_buttons" id="power_to_thermal">Расчет мощности тена</button>
+    <button class="main_buttons" id="nomival_automat">Расчет номинала автомата</button>
+    <button class="main_buttons" id="balast_cap">Расчет фазосдвиг. конденсатора</button>
+    <button class="main_buttons" id="phase_cap">Расчет баластного конденсатора</button>
+    <button class="main_buttons" id="amper_to_ompower">Расчет Тока КЗ Нагрузки</button>
+    <button class="main_buttons" id="voltage_diode_boost">Расчет умножителя напряжения</button>
+    <button class="main_buttons" id="price_to_minute">Расчет стоимости в минуту<br>из потребления</button>
+    <p class="version_text">version 0.5 (JS) (debug) [/] - console</p>
+    <p class="version_text">Скачать на ПК <a href="https://github.com/hcpp20334/ElectricCalc">GITHUB</a></p>
+    <div class="logger">
+        <p class="log_buffer">[console_logs]</p>
+    <input type="comment" id="command_line"><button class="send_coomand">send</button>
     </div>
-
-    <script>
-        // Глобальные переменные
-        let currentPercentage = 1.13;
-        let capacitorType = 4800;
-        let convertSovietToRussian = true;
-
-        // Функции навигации
-        function showSection(sectionId) {
-            // Скрыть все разделы
-            document.querySelectorAll('.calculator-card').forEach(section => {
-                section.classList.add('hidden');
-            });
-            
-            // Показать выбранный раздел
-            document.getElementById(sectionId).classList.remove('hidden');
-        }
-
-        function showMainMenu() {
-            showSection('watt-amp');
-        }
-
-        function resetInputs(sectionId) {
-            const section = document.getElementById(sectionId);
-            const inputs = section.querySelectorAll('input[type="number"], input[type="text"]');
-            inputs.forEach(input => {
-                input.value = '';
-            });
-            
-            const results = section.querySelectorAll('.result');
-            results.forEach(result => {
-                if (result.id !== 'outData') { // Не очищаем экран калькулятора
-                    result.textContent = '0' + (result.textContent.match(/[^\d]/g) || ['']).pop();
-                }
-            });
-        }
-
-        // Функции расчетов
-        function calculateWatts() {
-            const amps = parseFloat(document.getElementById('a-value').value);
-            const volts = parseFloat(document.getElementById('v-value').value);
-            
-            if (!isNaN(amps) && !isNaN(volts)) {
-                const watts = amps * volts;
-                document.getElementById('out-value').textContent = watts.toFixed(2) + ' Вт';
-            }
-        }
-
-        function calculateAmps() {
-            const watts = parseFloat(document.getElementById('w-value2').value);
-            const volts = parseFloat(document.getElementById('v-value2').value);
-            
-            if (!isNaN(watts) && !isNaN(volts) && volts !== 0) {
-                const amps = watts / volts;
-                document.getElementById('out-value2').textContent = amps.toFixed(2) + ' А';
-            }
-        }
-
-        function calculateWireSection() {
-            const diameter = parseFloat(document.getElementById('dia-value2').value);
-            
-            if (!isNaN(diameter)) {
-                const section = Math.pow(diameter / 2, 2) * Math.PI;
-                document.getElementById('out-value3').textContent = section.toFixed(2) + ' мм²';
-            }
-        }
-
-        function calculateCurrentFromSection() {
-            const power = parseFloat(document.getElementById('inwatt').value);
-            const section = parseFloat(document.getElementById('insec').value);
-            const voltage = parseFloat(document.getElementById('involt').value);
-            
-            if (!isNaN(power) && !isNaN(section) && !isNaN(voltage) && voltage !== 0) {
-                const current = (power * section) / (voltage * 1);
-                document.getElementById('out-amp').textContent = current.toFixed(2) + ' А';
-            }
-        }
-
-        function toggleRublesConversion() {
-            convertSovietToRussian = !convertSovietToRussian;
-            const rubText = document.getElementById('rub-text');
-            rubText.textContent = convertSovietToRussian ? 
-                'Советские рубли в Российские рубли' : 'Российские рубли в Советские рубли';
-            
-            // Очищаем результат при переключении
-            document.getElementById('out-rub').textContent = '0';
-        }
-
-        function convertRubles() {
-            const amount = parseFloat(document.getElementById('data-rub').value);
-            
-            if (!isNaN(amount)) {
-                const converted = convertSovietToRussian ? amount * 275 : amount / 275;
-                document.getElementById('out-rub').textContent = converted.toFixed(2);
-            }
-        }
-
-        function calculateWireResistance() {
-            const resistivity = parseFloat(document.getElementById('p-val').value);
-            const length = parseFloat(document.getElementById('l-val').value);
-            const section = parseFloat(document.getElementById('S-val').value);
-            
-            if (!isNaN(resistivity) && !isNaN(length) && !isNaN(section) && section !== 0) {
-                const resistance = (resistivity * length) / section;
-                document.getElementById('Rvalue').textContent = resistance.toFixed(4) + ' Ом';
-            }
-        }
-
-        function setPercentage(percentage) {
-            currentPercentage = percentage;
-            
-            // Подсвечиваем выбранную кнопку
-            document.querySelectorAll('#circuit-breaker .button-group button').forEach(btn => {
-                btn.style.border = '1px solid var(--border)';
-            });
-            event.target.style.border = '2px solid var(--primary)';
-        }
-
-        function calculateBreakerRating() {
-            const nominal = parseFloat(document.getElementById('NomValue').value);
-            
-            if (!isNaN(nominal)) {
-                const rating = nominal + (nominal * (currentPercentage - 1));
-                document.getElementById('Nvalue').textContent = rating.toFixed(2);
-            }
-        }
-
-        function calculateBallastCapacitor() {
-            const current = parseFloat(document.getElementById('capI').value);
-            const inputVoltage = parseFloat(document.getElementById('capU1').value);
-            const loadVoltage = parseFloat(document.getElementById('capU2').value);
-            
-            if (!isNaN(current) && !isNaN(inputVoltage) && !isNaN(loadVoltage)) {
-                const totalVoltage = Math.sqrt(Math.pow(inputVoltage, 2) - Math.pow(loadVoltage, 2));
-                const capacitance = 3200 * current / totalVoltage;
-                document.getElementById('capbuf').textContent = capacitance.toFixed(2) + ' мкФ';
-            }
-        }
-
-        function calculateArea() {
-            const length = parseFloat(document.getElementById('A-val').value);
-            const width = parseFloat(document.getElementById('B-val').value);
-            
-            if (!isNaN(length) && !isNaN(width)) {
-                const area = length * width;
-                document.getElementById('Sbuf').textContent = area.toFixed(2) + ' м²';
-            }
-        }
-
-        function setCapacitorType(type) {
-            capacitorType = type;
-            
-            // Подсвечиваем выбранную кнопку
-            document.querySelectorAll('#phase-capacitor .button-group button').forEach(btn => {
-                btn.style.border = '1px solid var(--border)';
-            });
-            event.target.style.border = '2px solid var(--primary)';
-        }
-
-        function calculatePhaseCapacitor() {
-            const current = parseFloat(document.getElementById('IM-val').value);
-            const voltage = parseFloat(document.getElementById('VM-val').value);
-            
-            if (!isNaN(current) && !isNaN(voltage) && voltage !== 0) {
-                const capacitance = capacitorType * current / voltage;
-                document.getElementById('cmval').textContent = capacitance.toFixed(2) + ' мкФ';
-            }
-        }
-
-        function calculateHeaterPower() {
-            const resistance = parseFloat(document.getElementById('Pres').value);
-            const voltage = parseFloat(document.getElementById('Pvolt').value);
-            
-            if (!isNaN(resistance) && !isNaN(voltage) && resistance !== 0) {
-                const power = Math.pow(voltage, 2) / resistance;
-                document.getElementById('Pbuf').textContent = power.toFixed(2) + ' Вт';
-            }
-        }
-
-        // Функции обычного калькулятора
-        function addToInput(value) {
-            document.getElementById('outData').value += value;
-        }
-
-        function clearInput() {
-            document.getElementById('outData').value = '';
-        }
-
-        function calculateExpression() {
-            try {
-                const expression = document.getElementById('outData').value;
-                const result = eval(expression);
-                document.getElementById('outData').value = result;
-            } catch (e) {
-                document.getElementById('outData').value = 'Ошибка';
-            }
-        }
-
-        // Инициализация приложения
-        document.addEventListener('DOMContentLoaded', function() {
-            showMainMenu();
-        });
-    </script>
-</body>
+    </div>
+    </body>
+    <script src="js/main.js"></script>
+    <script src="js/math.js"></script>
 </html>
