@@ -1,25 +1,23 @@
 <html>
 <style>
-    html{
-        background: radial-gradient(#010101,#070709);
+    html {
+        background: radial-gradient(#010101, #070709);
     }
     @font-face {
         font-family: 'BOUNDED';
         src: url("Bounded-Regular.ttf");
     }
-    .vl_text{
+    .vl_text {
         color: #fff;
         font-family: 'BOUNDED';
-        text-transform: uppercase;
+        text-transform: capitalize;
         font-weight: 500;
-        text-transform:capitalize;
         font-style: italic;
         margin: 60px;
     }
-    #in0,#in2{
+    #in0, #in2 {
         color: #fff;
         font-family: 'BOUNDED';
-
         font-style: italic;
         margin: 60px;
         background: #070709;
@@ -29,23 +27,21 @@
         resize: none;
         outline: none;
     }
-    .vl_text2{
+    .vl_text2 {
         color: #fff;
         font-family: 'BOUNDED';
-        text-transform: uppercase;
+        text-transform: capitalize;
         font-weight: 500;
-        text-transform:capitalize;
         font-style: italic;
         margin-left: 60px;
         margin-top: 0px;
         margin-bottom: -40px;
     }
-    .gen{
+    .gen {
         color: #fff;
         font-family: 'BOUNDED';
-        text-transform: uppercase;
+        text-transform: capitalize;
         font-weight: 500;
-        text-transform:capitalize;
         font-style: italic;
         display: inline-block;
         margin-left: 60px;
@@ -55,16 +51,15 @@
         border: 1px solid #fff;
         width: 500px;
         height: 50px;
-        &:hover{
-            background: #353555;
-        }
     }
-    .dmode{
+    .gen:hover {
+        background: #353555;
+    }
+    .dmode {
         color: #fff;
         font-family: 'BOUNDED';
-        text-transform: uppercase;
+        text-transform: capitalize;
         font-weight: 500;
-        text-transform:capitalize;
         font-style: italic;
         margin-top: -50px;
         margin-bottom: -40px;
@@ -72,24 +67,22 @@
         border: 1px solid #fff;
         width: 50px;
         height: 50px;
-        &:hover{
-            background: #353555;
-        }
     }
-    .derr{
+    .dmode:hover {
+        background: #353555;
+    }
+    .derr {
         color: #ff0069;
         font-family: 'BOUNDED';
-
         font-weight: 500;
         font-style: italic;
         margin-left: 60px;
         margin-top: 0px;
         margin-bottom: -40px;
     }
-    .derr2{
+    .derr2 {
         color: #1234f5;
         font-family: 'BOUNDED';
-
         font-weight: 500;
         font-style: italic;
         margin-left: 60px;
@@ -97,85 +90,169 @@
         margin-bottom: -40px;
     }
 </style>
-<h1 class="vl_text">KEY CRYPTOR BY HCPP</h1>
-<h1 class="vl_text2" id="_tx">Текст для зашифровки</h1>
+<h1 class="vl_text">AES CRYPTOR BY HCPP</h1>
+<h1 class="vl_text2" id="_tx">Текст для шифрования</h1>
 <textarea id="in0"></textarea>
 <br>
-<button class="gen">Закодировать</button>
-<button class="dmode">dec</button>
+<button class="gen">Зашифровать</button>
+<button class="dmode">Dec</button>
 <br>
-<h1 class="vl_text2" id="_tx2">Вывод текста</h1>
+<h1 class="vl_text2" id="_tx2">Вывод</h1>
 <textarea id="in2"></textarea>
 <p class="derr2">GITHUB.COM/HCPP20334</p>
 <p class="derr"></p>
 <script>
-const str = [
-    "Текст для зашифровки",
-    "Текст для расшифровки"
-];
-const str1 = [
-    "Текст для зашифровки",
-    "Текст для расшифровки"
-];
-const strb = [
-    "Закодировать",
-    "Разкодировать"
-];
-let bc = 0;
-let _derror = document.querySelector(".derr")
-function api_log(D){
-    _derror.innerHTML = D;
-}
-window.addEventListener("error",function(api_error){
-    api_log(api_error.error + " line:"+ api_error.lineno);
-});
-const CRYPTOR ={
-    text:{
-        t0: document.querySelector("#_tx"),
-        t1: document.querySelector("#_tx2"),
-        tex0: document.querySelector("#in0"),
-        tex1: document.querySelector("#in2"),
+async function generateKey() {
+  return await crypto.subtle.generateKey(
+    {
+      name: "AES-GCM",
+      length: 256,
     },
-    button:{
-        gen: document.querySelector(".gen"),
-        mode: document.querySelector(".dmode"),
-    },
-    hash:{
-        dec:function(d){
-            return btoa(btoa(d));
-        },
-        enc:function(d){
-            return atob(atob(d));
-        }
-    }
-};
-let _hash_0x3f3q = "";
-let _hash_0x3f3a = "";
-let _dmode = 1;
-CRYPTOR.text.tex0.oninput = function(){
-    _hash_0x3f3q = this.value;
-}
-CRYPTOR.button.mode.onclick = function(){
-    _dmode++;
-    if(_dmode > 1){
-        _dmode = 0;
-    }
-    CRYPTOR.button.mode.innerHTML = (_dmode ? "Enc" : "Dec");
-    CRYPTOR.button.gen.innerHTML = (_dmode ? strb[0] : strb[1]);
-    CRYPTOR.text.t0.innerHTML = (_dmode ? str[0]: str[1]);
-}
-CRYPTOR.button.gen.onclick = function(){
-    CRYPTOR.text.tex1.value = 
-    (_dmode ? 
-    CRYPTOR.hash.dec(
-        _hash_0x3f3q
-    )
-    :
-    CRYPTOR.hash.enc(
-        _hash_0x3f3q
-    )
-    );
+    true,
+    ["encrypt", "decrypt"]
+  );
 }
 
+async function encryptMessage(message, key) {
+  try {
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const msgUint8 = new TextEncoder().encode(message);
+    const encrypted = await crypto.subtle.encrypt(
+      {
+        name: "AES-GCM",
+        iv: iv,
+      },
+      key,
+      msgUint8
+    );
+    const encryptedArray = new Uint8Array(encrypted);
+    // Объединяем IV и зашифрованные данные
+    const combined = new Uint8Array(iv.length + encryptedArray.length);
+    combined.set(iv);
+    combined.set(encryptedArray, iv.length);
+    // Кодируем в hex
+    const hex = Array.from(combined)
+      .map(b => b.toString(16).padStart(2, "0"))
+      .join("");
+    // Ограничиваем до 64 символов
+    const output = hex.slice(0, 64).padEnd(64, "0");
+    return { iv, encrypted: encryptedArray, output, fullHex: hex };
+  } catch (e) {
+    throw new Error("Ошибка шифрования: " + e.message);
+  }
+}
+
+async function decryptMessage(hexInput, key) {
+  try {
+    // Декодируем hex
+    const combined = new Uint8Array(
+      hexInput.match(/.{1,2}/g).map(byte => parseInt(byte, 16))
+    );
+    // Извлекаем IV (12 байт) и зашифрованные данные
+    const iv = combined.slice(0, 12);
+    const encrypted = combined.slice(12);
+    const decrypted = await crypto.subtle.decrypt(
+      {
+        name: "AES-GCM",
+        iv: iv,
+      },
+      key,
+      encrypted
+    );
+    return new TextDecoder().decode(decrypted);
+  } catch (e) {
+    throw new Error("Ошибка расшифровки: неверный формат или данные");
+  }
+}
+
+const AES = {
+  async enc(message, key) {
+    return await encryptMessage(message, key);
+  },
+  async dec(hexInput, key) {
+    return await decryptMessage(hexInput, key);
+  }
+};
+
+(async () => {
+  const str = ["Текст для шифрования", "Текст для расшифровки"];
+  const strb = ["Зашифровать", "Расшифровать"];
+  let _dmode = 1; // 1 - шифрование, 0 - расшифровка
+  const _derror = document.querySelector(".derr");
+  const key = await generateKey();
+  let lastFullHex = ""; // Храним полный hex для расшифровки
+
+  function api_log(D) {
+    _derror.innerHTML = D;
+  }
+
+  window.addEventListener("error", function(api_error) {
+    api_log(api_error.error + " line: " + api_error.lineno);
+  });
+
+  const CRYPTOR = {
+    text: {
+      t0: document.querySelector("#_tx"),
+      t1: document.querySelector("#_tx2"),
+      tex0: document.querySelector("#in0"),
+      tex1: document.querySelector("#in2"),
+    },
+    button: {
+      gen: document.querySelector(".gen"),
+      mode: document.querySelector(".dmode"),
+    },
+    hash: {
+      async enc(input) {
+        const result = await AES.enc(input, key);
+        lastFullHex = result.fullHex; // Сохраняем полный hex
+        if (result.fullHex.length > 64) {
+          api_log("Предупреждение: данные обрезаны до 64 символов, используйте полный hex для расшифровки");
+        }
+        return result;
+      },
+      async dec(input) {
+        return await AES.dec(input, key);
+      }
+    }
+  };
+
+  let _hash_0x3f3q = "";
+
+  CRYPTOR.text.tex0.oninput = function() {
+    _hash_0x3f3q = this.value;
+  };
+
+  CRYPTOR.button.mode.onclick = function() {
+    _dmode = !_dmode;
+    CRYPTOR.button.mode.innerHTML = _dmode ? "Dec" : "Enc";
+    CRYPTOR.button.gen.innerHTML = _dmode ? strb[0] : strb[1];
+    CRYPTOR.text.t0.innerHTML = _dmode ? str[0] : str[1];
+    CRYPTOR.text.t1.innerHTML = _dmode ? "Зашифрованный текст" : "Расшифрованный текст";
+    CRYPTOR.text.tex1.value = "";
+    api_log("");
+  };
+
+  CRYPTOR.button.gen.onclick = async function() {
+    try {
+      if (!_hash_0x3f3q) {
+        api_log("Введите текст для обработки");
+        return;
+      }
+      if (_dmode) {
+        // Режим шифрования
+        const result = await CRYPTOR.hash.enc(_hash_0x3f3q);
+        CRYPTOR.text.tex1.value = result.output;
+      } else {
+        // Режим расшифровки
+        const input = _hash_0x3f3q.length === 64 ? lastFullHex : _hash_0x3f3q;
+        const result = await CRYPTOR.hash.dec(input);
+        CRYPTOR.text.tex1.value = result;
+        api_log("");
+      }
+    } catch (e) {
+      api_log(e.message);
+    }
+  };
+})();
 </script>
 </html>
