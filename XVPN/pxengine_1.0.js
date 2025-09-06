@@ -55,7 +55,7 @@ let userDeviceArray = [
             wctx = window.innerWidth;
             wcty = window.innerHeight;
             PXENGINE_VERSION = "POWERED BY PWENGINEJS_1.0.4";
-            API_KEY = 'https://api.2ip.io/?token=scbl9m73lqki9cr5&lang=ru';
+            API_KEY = 'https://api.2ip.io?token=l1r6n6mmbddsfgw4';
             m_initLog = false;
             strmeta = [];
               
@@ -396,4 +396,5 @@ let userDeviceArray = [
                 logL("<br>_data: version "+ this._data.version,0);
             }
             };
+
           
