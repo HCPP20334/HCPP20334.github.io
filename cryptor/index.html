@@ -1,0 +1,182 @@
+<html>
+<style>
+    html{
+        background: radial-gradient(#010101,#070709);
+    }
+    @font-face {
+        font-family: 'BOUNDED';
+        src: url("Bounded-Regular.ttf");
+    }
+    .vl_text{
+        color: #fff;
+        font-family: 'BOUNDED';
+        text-transform: uppercase;
+        font-weight: 500;
+        text-transform:capitalize;
+        font-style: italic;
+        margin: 60px;
+    }
+    #in0,#in2{
+        color: #fff;
+        font-family: 'BOUNDED';
+
+        font-style: italic;
+        margin: 60px;
+        background: #070709;
+        border: 1px solid #fff;
+        width: 500px;
+        height: 200px;
+        resize: none;
+        outline: none;
+    }
+    .vl_text2{
+        color: #fff;
+        font-family: 'BOUNDED';
+        text-transform: uppercase;
+        font-weight: 500;
+        text-transform:capitalize;
+        font-style: italic;
+        margin-left: 60px;
+        margin-top: 0px;
+        margin-bottom: -40px;
+    }
+    .gen{
+        color: #fff;
+        font-family: 'BOUNDED';
+        text-transform: uppercase;
+        font-weight: 500;
+        text-transform:capitalize;
+        font-style: italic;
+        margin-left: 60px;
+        margin-top: -50px;
+        margin-bottom: -40px;
+        background: #070709;
+        border: 1px solid #fff;
+        width: 500px;
+        height: 50px;
+        &:hover{
+            background: #353555;
+        }
+    }
+    .dmode{
+        color: #fff;
+        font-family: 'BOUNDED';
+        text-transform: uppercase;
+        font-weight: 500;
+        text-transform:capitalize;
+        font-style: italic;
+        margin-left: 60px;
+        margin-top: -50px;
+        margin-bottom: -40px;
+        background: #070709;
+        border: 1px solid #fff;
+        width: 50px;
+        height: 50px;
+        &:hover{
+            background: #353555;
+        }
+    }
+    .derr{
+        color: #ff0069;
+        font-family: 'BOUNDED';
+
+        font-weight: 500;
+        font-style: italic;
+        margin-left: 60px;
+        margin-top: 0px;
+        margin-bottom: -40px;
+    }
+    .derr2{
+        color: #1234f5;
+        font-family: 'BOUNDED';
+
+        font-weight: 500;
+        font-style: italic;
+        margin-left: 60px;
+        margin-top: 0px;
+        margin-bottom: -40px;
+    }
+</style>
+<h1 class="vl_text">KEY CRYPTOR BY HCPP</h1>
+<h1 class="vl_text2" id="_tx">Текст для зашифровки</h1>
+<textarea id="in0"></textarea>
+<button class="gen">Закодировать</button>
+<br>
+<button class="dmode">dec</button>
+<br>
+<br>
+<h1 class="vl_text2" id="_tx2">Вывод текста</h1>
+<textarea id="in2"></textarea>
+<p class="derr2">GITHUB.COM/HCPP20334</p>
+<p class="derr"></p>
+<script>
+const str = [
+    "Текст для зашифровки",
+    "Текст для расшифровки"
+];
+const str1 = [
+    "Текст для зашифровки",
+    "Текст для расшифровки"
+];
+const strb = [
+    "Закодировать",
+    "Разкодировать"
+];
+let bc = 0;
+let _derror = document.querySelector(".derr")
+function api_log(D){
+    _derror.innerHTML = D;
+}
+window.addEventListener("error",function(api_error){
+    api_log(api_error.error + " line:"+ api_error.lineno);
+});
+const CRYPTOR ={
+    text:{
+        t0: document.querySelector("#_tx"),
+        t1: document.querySelector("#_tx2"),
+        tex0: document.querySelector("#in0"),
+        tex1: document.querySelector("#in2"),
+    },
+    button:{
+        gen: document.querySelector(".gen"),
+        mode: document.querySelector(".dmode"),
+    },
+    hash:{
+        dec:function(d){
+            return btoa(btoa(d));
+        },
+        enc:function(d){
+            return atob(atob(d));
+        }
+    }
+};
+let _hash_0x3f3q = "";
+let _hash_0x3f3a = "";
+let _dmode = 1;
+CRYPTOR.text.tex0.oninput = function(){
+    _hash_0x3f3q = this.value;
+}
+CRYPTOR.button.mode.onclick = function(){
+    _dmode++;
+    if(_dmode > 1){
+        _dmode = 0;
+    }
+    CRYPTOR.button.mode.innerHTML = (_dmode ? "Enc" : "Dec");
+    CRYPTOR.button.gen.innerHTML = (_dmode ? strb[0] : strb[1]);
+    CRYPTOR.text.t0.innerHTML = (_dmode ? str[0]: str[1]);
+}
+CRYPTOR.button.gen.onclick = function(){
+    CRYPTOR.text.tex1.value = 
+    (_dmode ? 
+    CRYPTOR.hash.dec(
+        _hash_0x3f3q
+    )
+    :
+    CRYPTOR.hash.enc(
+        _hash_0x3f3q
+    )
+    );
+}
+
+</script>
+</html>
