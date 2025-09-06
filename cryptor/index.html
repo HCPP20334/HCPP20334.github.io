@@ -103,13 +103,19 @@
 <p class="derr"></p>
 <script>
 async function generateKey() {
-  return await crypto.subtle.generateKey(
-    {
-      name: "AES-GCM",
-      length: 256,
-    },
+  // Фиксированный ключ в hex-формате
+  const hexKey = 'bcecedfa47eb363152239c10a3c8eaf821a768e29ceb2bc130af286e96842fc3';
+  // Преобразуем hex в массив байтов
+  const keyData = new Uint8Array(
+    hexKey.match(/.{1,2}/g).map(byte => parseInt(byte, 16))
+  );
+  // Импортируем ключ для AES-GCM
+  return await crypto.subtle.importKey(
+    'raw',
+    keyData,
+    { name: 'AES-GCM', length: 256 },
     true,
-    ["encrypt", "decrypt"]
+    ['encrypt', 'decrypt']
   );
 }
 
