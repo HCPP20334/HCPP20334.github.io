@@ -15,7 +15,7 @@
         font-style: italic;
         margin: 60px;
     }
-    #in0, #in2 {
+    #in0, #in2, #fullHex {
         color: #fff;
         font-family: 'BOUNDED';
         font-style: italic;
@@ -23,7 +23,7 @@
         background: #070709;
         border: 1px solid #fff;
         width: 500px;
-        height: 200px;
+        height: 100px;
         resize: none;
         outline: none;
     }
@@ -97,19 +97,18 @@
 <button class="gen">Зашифровать</button>
 <button class="dmode">Dec</button>
 <br>
-<h1 class="vl_text2" id="_tx2">Вывод</h1>
+<h1 class="vl_text2" id="_tx2">Вывод (64 символа)</h1>
 <textarea id="in2"></textarea>
+<h1 class="vl_text2">Полный hex для расшифровки</h1>
+<textarea id="fullHex"></textarea>
 <p class="derr2">GITHUB.COM/HCPP20334</p>
 <p class="derr"></p>
 <script>
 async function generateKey() {
-  // Фиксированный ключ в hex-формате
   const hexKey = 'bcecedfa47eb363152239c10a3c8eaf821a768e29ceb2bc130af286e96842fc3';
-  // Преобразуем hex в массив байтов
   const keyData = new Uint8Array(
     hexKey.match(/.{1,2}/g).map(byte => parseInt(byte, 16))
   );
-  // Импортируем ключ для AES-GCM
   return await crypto.subtle.importKey(
     'raw',
     keyData,
@@ -125,7 +124,7 @@ async function encryptMessage(message, key) {
     const msgUint8 = new TextEncoder().encode(message);
     const encrypted = await crypto.subtle.encrypt(
       {
-        name: "AES-GCM",
+        name: 'AES-GCM',
         iv: iv,
       },
       key,
@@ -137,12 +136,12 @@ async function encryptMessage(message, key) {
     combined.set(iv);
     combined.set(encryptedArray, iv.length);
     // Кодируем в hex
-    const hex = Array.from(combined)
+    const fullHex = Array.from(combined)
       .map(b => b.toString(16).padStart(2, "0"))
       .join("");
-    // Ограничиваем до 64 символов
-    const output = hex.slice(0, 64).padEnd(64, "0");
-    return { iv, encrypted: encryptedArray, output, fullHex: hex };
+    // Ограничиваем до 64 символов для отображения
+    const output = fullHex.slice(0, 64).padEnd(64, "0");
+    return { output, fullHex };
   } catch (e) {
     throw new Error("Ошибка шифрования: " + e.message);
   }
@@ -159,7 +158,7 @@ async function decryptMessage(hexInput, key) {
     const encrypted = combined.slice(12);
     const decrypted = await crypto.subtle.decrypt(
       {
-        name: "AES-GCM",
+        name: 'AES-GCM',
         iv: iv,
       },
       key,
@@ -186,7 +185,6 @@ const AES = {
   let _dmode = 1; // 1 - шифрование, 0 - расшифровка
   const _derror = document.querySelector(".derr");
   const key = await generateKey();
-  let lastFullHex = ""; // Храним полный hex для расшифровки
 
   function api_log(D) {
     _derror.innerHTML = D;
@@ -202,6 +200,7 @@ const AES = {
       t1: document.querySelector("#_tx2"),
       tex0: document.querySelector("#in0"),
       tex1: document.querySelector("#in2"),
+      fullHex: document.querySelector("#fullHex"),
     },
     button: {
       gen: document.querySelector(".gen"),
@@ -210,10 +209,6 @@ const AES = {
     hash: {
       async enc(input) {
         const result = await AES.enc(input, key);
-        lastFullHex = result.fullHex; // Сохраняем полный hex
-        if (result.fullHex.length > 64) {
-          api_log("Предупреждение: данные обрезаны до 64 символов, используйте полный hex для расшифровки");
-        }
         return result;
       },
       async dec(input) {
@@ -233,8 +228,9 @@ const AES = {
     CRYPTOR.button.mode.innerHTML = _dmode ? "Dec" : "Enc";
     CRYPTOR.button.gen.innerHTML = _dmode ? strb[0] : strb[1];
     CRYPTOR.text.t0.innerHTML = _dmode ? str[0] : str[1];
-    CRYPTOR.text.t1.innerHTML = _dmode ? "Зашифрованный текст" : "Расшифрованный текст";
+    CRYPTOR.text.t1.innerHTML = _dmode ? "Зашифрованный текст (64 символа)" : "Расшифрованный текст";
     CRYPTOR.text.tex1.value = "";
+    CRYPTOR.text.fullHex.value = "";
     api_log("");
   };
 
@@ -248,11 +244,17 @@ const AES = {
         // Режим шифрования
         const result = await CRYPTOR.hash.enc(_hash_0x3f3q);
         CRYPTOR.text.tex1.value = result.output;
+        CRYPTOR.text.fullHex.value = result.fullHex;
+        if (result.fullHex.length > 64) {
+          api_log("Для расшифровки используйте полный hex из поля ниже");
+        } else {
+          api_log("");
+        }
       } else {
         // Режим расшифровки
-        const input = _hash_0x3f3q.length === 64 ? lastFullHex : _hash_0x3f3q;
-        const result = await CRYPTOR.hash.dec(input);
+        const result = await CRYPTOR.hash.dec(_hash_0x3f3q);
         CRYPTOR.text.tex1.value = result;
+        CRYPTOR.text.fullHex.value = "";
         api_log("");
       }
     } catch (e) {
