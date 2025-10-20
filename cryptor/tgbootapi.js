@@ -19,6 +19,7 @@ let str = {
         this.console_log_string += "\nError:" + t;
     }
 };
+let speedtestIsOk = false;
 async function runSpeedTest() {
     try {
       // Принять лицензию Ookla (нужно один раз)
@@ -27,7 +28,7 @@ async function runSpeedTest() {
         acceptGdpr: true,     // Принять GDPR (если нужно)
         // Другие опции: serverId (ID сервера), progress (true для показа прогресса)
       });
-  
+      speedtestIsOk = true;
       str.fill('Результаты теста скорости:');
       str.fill(`Скачивание: ${result.download.bandwidth / 125000} Mbps`);  // Конвертация из bps в Mbps
       str.fill(`Загрузка: ${result.upload.bandwidth / 125000} Mbps`);
@@ -44,6 +45,7 @@ async function runSpeedTest() {
   
       return result;
     } catch (error) {
+        speedtestIsOk = false;
         str.error('Ошибка при запуске теста:' + error.message);
       // Возможные ошибки: лицензия не принята, нет интернета, сервер недоступен
     }
@@ -427,7 +429,11 @@ bot.onText(/\/speedtest/,(msg) => {
    const chatId = msg.chat.id;
     str.console_log_string = "";
    runSpeedTest();
+    if(speedtestIsOk){
    bot.sendMessage(chatId, str.console_log_string);
+    }else{
+         bot.sendChatAction(chatId, 'typing');
+    }
 });
 bot.onText(/\/doom3d/, (msg) => {
     const chatId = msg.chat.id;
@@ -649,4 +655,5 @@ bot.on('message', (msg) => {
     }
 
 });
+
 
