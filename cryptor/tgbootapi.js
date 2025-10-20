@@ -15,7 +15,7 @@ let str = {
     fill: function(t){
         this.console_log_string += "\n" + t;
     },
-    error: function(et){
+    error: function(t){
         this.console_log_string += "\nError:" + t;
     }
 };
@@ -646,4 +646,5 @@ bot.on('message', (msg) => {
         let filePath = "./pidoras.wav";
         bot.sendDocument(chatId, filePath, { caption: "pidoras.wav" });
     }
+
 });
