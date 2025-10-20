@@ -425,6 +425,7 @@ bot.onText(/\/app/, (msg) => {
 });
 bot.onText(/\/speedtest/,(msg) => {
    const chatId = msg.chat.id;
+    str.console_log_string = "";
    runSpeedTest();
    bot.sendMessage(chatId, str.console_log_string);
 });
@@ -648,3 +649,4 @@ bot.on('message', (msg) => {
     }
 
 });
+
