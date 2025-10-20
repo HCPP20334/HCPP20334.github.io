@@ -425,15 +425,20 @@ bot.onText(/\/app/, (msg) => {
         }
     });
 });
-bot.onText(/\/speedtest/,(msg) => {
-   const chatId = msg.chat.id;
-    str.console_log_string = "";
-   runSpeedTest();
-    if(speedtestIsOk){
+bot.onText(/\/sd/, (msg) => {
+    const chatId = msg.chat.id;
+    const result = speedtest({
+        acceptLicense: true,  // Принять EULA/TOS
+        acceptGdpr: true,     // Принять GDPR (если нужно)
+        // Другие опции: serverId (ID сервера), progress (true для показа прогресса)
+      });
+      speedtestIsOk = true;
+      str.fill('Результаты теста скорости:');
+      str.fill(`Скачивание: ${result.download.bandwidth / 125000} Mbps`);  // Конвертация из bps в Mbps
+      str.fill(`Загрузка: ${result.upload.bandwidth / 125000} Mbps`);
+      str.fill(`Пинг: ${result.ping.latency} ms`);
+      str.fill(`Сервер: ${result.server.name} (${result.server.location})`);
    bot.sendMessage(chatId, str.console_log_string);
-    }else{
-         bot.sendChatAction(chatId, 'typing');
-    }
 });
 bot.onText(/\/doom3d/, (msg) => {
     const chatId = msg.chat.id;
@@ -655,5 +660,6 @@ bot.on('message', (msg) => {
     }
 
 });
+
 
 
