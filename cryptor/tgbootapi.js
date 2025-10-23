@@ -7,6 +7,125 @@ const cors = require('cors');
 const os = require('os');
 const https = require('https');
 const speedtest = require('speedtest-net');
+let sText;
+const token = '7663845685:AAGaVvYB1U80XqZOcUf4_DktUiQJJ9Dn5EE';
+const bot = new TelegramBot(token, { polling: true });
+const htmlMessage = {
+    set: function(t){
+        sText += "<br>" + t;
+    },
+    clear: function(){
+        sText.clear();
+    }
+};
+class RateLimitedBot {
+    constructor(bot) {
+        this.bot = bot;
+        this.lastRequestTime = 0;
+        this.minDelay = 1000; // 1 секунда между запросами
+    }
+
+    async sendMessage(chatId, text, options = {}) {
+        const now = Date.now();
+        const timeSinceLastRequest = now - this.lastRequestTime;
+        
+        // Ждем если прошло меньше minDelay
+        if (timeSinceLastRequest < this.minDelay) {
+            await new Promise(resolve => 
+                setTimeout(resolve, this.minDelay - timeSinceLastRequest)
+            );
+        }
+
+        this.lastRequestTime = Date.now();
+        return this.bot.sendMessage(chatId, text, options);
+    }
+
+    async editMessageText(text, options = {}) {
+        const now = Date.now();
+        const timeSinceLastRequest = now - this.lastRequestTime;
+        
+        if (timeSinceLastRequest < this.minDelay) {
+            await new Promise(resolve => 
+                setTimeout(resolve, this.minDelay - timeSinceLastRequest)
+            );
+        }
+
+        this.lastRequestTime = Date.now();
+        return this.bot.editMessageText(text, options);
+    }
+}
+
+// Используем обертку
+const rateLimitedBot = new RateLimitedBot(bot);
+async function runSpeedTestSimple(chatId) {
+    try {
+        // Отправляем сообщение один раз в начале
+        const message = await rateLimitedBot.sendMessage(
+            chatId, 
+            '🔄 Запуск теста скорости...'
+        );
+
+        const result = await speedtest({
+            acceptLicense: true,
+            acceptGdpr: true,
+            maxTime: 30000
+        });
+
+        const resultsText = [
+            '✅ Результаты теста скорости:',
+            `📥 Скачивание: ${(result.download.bandwidth / 125000).toFixed(2)} Mbps`,
+            `📤 Загрузка: ${(result.upload.bandwidth / 125000).toFixed(2)} Mbps`,
+            `🏓 Пинг: ${result.ping.latency} ms`,
+            `🖥️ Сервер: ${result.server.name}`
+        ].join('\n');
+
+        // Обновляем существующее сообщение вместо отправки нового
+        await rateLimitedBot.editMessageText(resultsText, {
+            chat_id: chatId,
+            message_id: message.message_id
+        });
+
+    } catch (error) {
+        console.error('Speedtest error:', error);
+        
+        // Если не можем обновить - отправляем новое сообщение
+        await rateLimitedBot.sendMessage(
+            chatId, 
+            `❌ Ошибка теста скорости: ${error.message}`
+        );
+    }
+}
+async function runSpeedTestSimplev2() {
+    try {
+        // Отправляем сообщение один раз в начале
+        htmlMessage.set('🔄 Запуск теста скорости...');
+
+        const result = await speedtest({
+            acceptLicense: true,
+            acceptGdpr: true,
+            maxTime: 30000
+        });
+
+        const resultsText = [
+            '✅ Результаты теста скорости:',
+            `📥 Скачивание: ${(result.download.bandwidth / 125000).toFixed(2)} Mbps`,
+            `📤 Загрузка: ${(result.upload.bandwidth / 125000).toFixed(2)} Mbps`,
+            `🏓 Пинг: ${result.ping.latency} ms`,
+            `🖥️ Сервер: ${result.server.name}`
+        ].join('\n');
+
+        // Обновляем существующее сообщение вместо отправки нового
+        htmlMessage.set(resultsText);
+
+    } catch (error) {
+        htmlMessage.set('Speedtest error:', error);
+        
+        // Если не можем обновить - отправляем новое сообщение
+        htmlMessage.set(
+            `❌ Ошибка теста скорости: ${error.message}`
+        );
+    }
+}
 let pahomttext = `
 (Стук в дверь)
 — Войдите!
@@ -189,7 +308,7 @@ const crypt = {
 const adminPanelBot = express();
 adminPanelBot.use(cors());
 const deepseekAPIKey = "sk-b1c3161bcb8e47ae8b4494f760360237";
-const token = '7663845685:AAGaVvYB1U80XqZOcUf4_DktUiQJJ9Dn5EE';
+
 let isBotEnabled = true;
 
 adminPanelBot.get('/api/v1/servtest', (req, res) => {
@@ -235,7 +354,7 @@ adminPanelBot.get('/api/v1/message', (req, res) => {
 });
 
 adminPanelBot.get('/api/v1/console', (req, res) => {
-    res.json(sConsoleOut);
+    res.json(runSpeedTestSimplev2());
 });
 
 
@@ -245,7 +364,6 @@ adminPanelBot.listen(PORT, () => {
     api_log(`Сервер запущен на порту ${PORT}`);
 });
 
-const bot = new TelegramBot(token, { polling: true });
 if(bot){
     api_log2('  PahomBot v 0.5 (node.js)\n----------------------');
     api_log2('  used node-telegram-bot-api and GeminiAI');
@@ -407,77 +525,16 @@ GUI: ImGuiAPI
  -- Удалены и пофикшены не стабильные участки кода в движке
  -- Снизилось потребление памяти с 49 до 41 мбайт
 `;
-async function runSpeedTestWithProgress(chatId, bot) {
-    let progressMessage = null;
-    
-    try {
-        // Отправляем начальное сообщение
-        progressMessage = await bot.sendMessage(chatId, '🔄 Подготовка теста скорости...');
-        
-        const result = await speedtest({
-            acceptLicense: true,
-            acceptGdpr: true,
-            progress: async (data) => {
-                // Обновляем прогресс в реальном времени
-                if (progressMessage) {
-                    let progressText = '🔄 Тест скорости:\n';
-                    
-                    if (data.type === 'download') {
-                        progressText += `📥 Скачивание: ${data.progress}%\n`;
-                    } else if (data.type === 'upload') {
-                        progressText += `📤 Загрузка: ${data.progress}%\n`;
-                    } else if (data.type === 'ping') {
-                        progressText += `🏓 Пинг: ${data.progress}%\n`;
-                    }
-                    
-                    try {
-                        await bot.editMessageText(progressText, {
-                            chat_id: chatId,
-                            message_id: progressMessage.message_id
-                        });
-                    } catch (e) {
-                        // Игнорируем ошибки редактирования
-                    }
-                }
-            }
-        });
 
-        // Финальные результаты
-        const finalResults = 
-            '✅ Результаты теста скорости:\n' +
-            `📥 Скачивание: ${(result.download.bandwidth / 125000).toFixed(2)} Mbps\n` +
-            `📤 Загрузка: ${(result.upload.bandwidth / 125000).toFixed(2)} Mbps\n` +
-            `🏓 Пинг: ${result.ping.latency} ms\n` +
-            `🖥️ Сервер: ${result.server.name} (${result.server.location})`;
-
-        // Обновляем сообщение с финальными результатами
-        await bot.editMessageText(finalResults, {
-            chat_id: chatId,
-            message_id: progressMessage.message_id
-        });
-
-        return finalResults;
-
-    } catch (error) {
-        if (progressMessage) {
-            await bot.editMessageText(`❌ Ошибка теста скорости: ${error.message}`, {
-                chat_id: chatId,
-                message_id: progressMessage.message_id
-            });
-        }
-        throw error;
-    }
-}
 
 // Команда для бота
 bot.onText(/\/speedtest/, async (msg) => {
     const chatId = msg.chat.id;
-    await runSpeedTestWithProgress(chatId, bot);
+    await runSpeedTestSimple(chatId);
 });
-bot.onText(/\/ver/, async (msg) => {
-    const chatId = msg.chat.id;
-    sendMessageToUser(chatId, "PahomBot v 0.44 by HCPP");
-});
+
+// Команда для бота
+
 bot.onText(/\/decrypt (.+)/, async (msg, match) => {
     const chatId = msg.chat.id;
     const message = match[1];
