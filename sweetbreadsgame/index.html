@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWEET BREADS - Игра про Пахома</title>
+    <style>
+        @font-face {
+    font-family: 'BDF';
+    src: url("res/BOUNDED.ttf");
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'BDF';
+            background: linear-gradient(135deg, #090910, #070709);
+            color: white;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: rgba(75, 72, 69, 0.8);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #98f700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #98f700;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 2rem;
+
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #ccc;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #fff;
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background: #98f700;
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(16, 19, 24, 0.753);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card h3 {
+            color: #6562f7;
+            margin-bottom: 1rem;
+        }
+
+        .screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .screenshot {
+            border-radius: 10px;
+            overflow: hidden;width: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);display: inline-block;
+        }
+
+        .screenshot img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .screenshot:hover img {
+            transform: scale(1.05);
+        }
+
+        .download {
+            text-align: center;
+            background: rgb(5, 5, 5);
+            border-radius: 15px;
+            padding: 3rem;
+        }
+
+        .system-requirements {
+            background: rgb(7, 6, 6);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            border: 2px solid #6562f7;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+        .video {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Это ключевое свойство! */
+}
+.videoblur{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    backdrop-filter: blur(10px);
+}
+.controls{
+    width: 30px;
+    height: 60px;
+    background: #070709;
+    border: 1px solid #353545;
+    color: #ccc;display: inline-block;
+}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">SWEET BREADS</div>
+            <ul class="nav-links">
+                <li><a href="#about">Об игре</a></li>
+                <li><a href="#screenshots">Ассеты</a></li>
+                <li><a href="#download">Скачать</a></li>Поддержка
+                <li><a href="#Поддержка">Донат</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="videoblur"></div>
+        <video src="res/2025-10-23 05-21-11.mp4" class="video" muted autoplay></video>
+        <div class="hero-content">
+            <h1>SWEET BREADS</h1>
+            <p>Игра про Пахома, который собирает сладкий хлеб в мире безумия</p>
+            <a href="#download" class="btn">Скачать игру</a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2 style="text-align: center; margin-bottom: 3rem; color: #98f700;">Об игре</h2>
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">
+                Sweet Breads - это захватывающая аркада, созданная по мотивам культового фильма "Зеленый слоник". 
+                Играй за Пахома и помогай ему собирать сладкий хлеб. Погрузись в атмосферу Зеленого слоника.
+            </p>
+            <hr>
+            <p style="font-size: 1.2rem; color: #ccc">
+                Движок и игра написаны на С++20
+               <br>
+               Версия PahomEngine: 0.6.98
+               <br>
+               Версия игры: 0.6d
+            </p>
+        </div>
+    </section>
+    <section id="Поддержка" class="section">
+        <h2 style="text-align: center; margin-bottom: 3rem; color: #98f700;">Поддержка</h2>
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">
+                DALink
+                <a href="https://dalink.to/hcpp" style="font-size: 1.2rem; margin-bottom: 1.5rem;text-decoration: none;color: #000; background: #fff;padding: 10px 30px; border-radius: 20px;">
+                    Донат</a>
+                    <br><br>
+                    Крипта
+                <hr>
+                USDT (TRC20) : TXkT4jz7Niqx88QMWj2n4jaxD7SVjLebJR
+                <br>
+                USDT (BEP20) : 0x5a50d5b39a0c2Eba0119Ed2591174C51E0AF8083
+                <br>
+                USDT (TEP74) : EQDwacBggisEQ-h-HW63UiI9mtIA-lRAT1upXPioiyhCkIqa:BKX6QJA
+                <br>
+                ETH (ERC20) & (ARB): 0x23C66A3cf438f8c2ff3e0172339F9cc65AaA111d
+            </p>
+            <hr>
+        </div>
+    </section>
+    <section id="features" class="section">
+        <h2 style="text-align: center; margin-bottom: 3rem; color: #98f700;">Особенности</h2>
+        <div class="features">
+            <div class="feature-card">
+                <h3>🎮 Увлекательный геймплей</h3>
+                <p>Динамичная аркада с элементами платформера</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>⚡ Оптимизация</h3>
+                <p>Высокая производительность даже на слабых ПК</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="screenshots" class="section">
+        
+        <h2 style="text-align: center; margin-bottom: 3rem; color: #98f700;">Ассеты</h2>
+        <div class="screenshots">
+            <p class="info-asset">Это Пахом который смотрит влево</p>
+            <div class="screenshot">
+
+                <img src="res/pahom2.png" alt="Игровой процесс">
+            </div>
+            <p class="info-asset">Это Пахом который смотрит вправо</p>
+            <div class="screenshot">
+
+                <img src="res/pahom.png" alt="Игровой процесс">
+            </div>
+            <p class="info-asset">Это Сладкий Хлеб!! Главный предмет игры </p>
+            <div class="screenshot">
+
+                <img src="res/bread.png" alt="Игровой процесс">
+            </div>
+            <p class="info-asset">Это задний фон. Трубы.Сладкий Хлеб...</p>
+            <div class="screenshot">
+
+                <img src="res/back.jpg" alt="Игровой процесс">
+            </div>
+            <p class="info-asset">Чисти! Говно. Вилкой чисти</p>
+            <div class="screenshot">
+
+                <img src="res/vilka.png" alt="Игровой процесс">
+            </div>
+            <p class="info-asset">"777 c одной дурой выпил, а потом поебалися"</p>
+            <div class="screenshot">
+
+                <img src="res/777.png" alt="Игровой процесс">
+            </div>
+            <p class="info-asset">Просроченный кефир. Говорят если его выпить то можно обосратся или умереть.</p>
+            <div class="screenshot">
+
+                <img src="res/kefir.png" alt="Игровой процесс">
+            </div>
+            <p class="info-asset">Рассказ о том как 777 выпил</p>
+            <div class="screenshot">
+
+            <audio src="res/audio/a.wav" controls></audio>
+            </div>
+            <p class="info-asset">Музыка из интро</p>
+            <div class="screenshot">
+
+            <audio src="res/audio/mrrobot.wav" controls></audio>
+            </div>
+            <p class="info-asset">Пахом орет</p>
+            <div class="screenshot">
+
+            <audio src="res/audio/aaa.wav" controls></audio>
+            </div>
+            <p class="info-asset">Легендарное "Курлык"</p>
+            <div class="screenshot">
+
+            <audio src="res/audio/kurlik.wav" controls></audio>
+            </div>
+            <p class="info-asset">Легендарное "Начальник!! Этот пидорас обосрался"</p>
+            <div class="screenshot">
+
+            <audio src="res/audio/pidoras.wav" controls></audio>
+            </div>
+            <p class="info-asset">Смех Пахома</p>
+            <div class="screenshot">
+
+            <audio src="res/audio/smex.wav" controls></audio>
+            </div>
+            <p class="info-asset">Звук капающей воды</p>
+            <div class="screenshot">
+
+            <audio src="res/audio/voda.mp3" controls></audio>
+            </div>
+        </div>
+    </section>
+
+    <section id="download" class="section">
+        <div class="download">
+            <h2 style="margin-bottom: 2rem; color: #98f700;">Скачать SWEET BREADS</h2>
+            <p style="margin-bottom: 2rem; font-size: 1.2rem;">
+                Версия 0.6d | Размер: 15 МБ
+            </p>
+            <a href="PahomEngine.zip" class="btn" download>Скачать для Windows</a>
+            
+            <div class="system-requirements">
+                <h3 style="margin-bottom: 1rem; color: #ccc;">Системные требования</h3>
+                <ul style="list-style: none; text-align: left; max-width: 400px; margin: 0 auto;">
+                    <li>✅ ОС: Windows 8.1/10/11 x64</li>
+                    <li>✅ Процессор: 2 ядра (x64)</li>
+                    <li>✅ Память: 128 МБ RAM</li>
+                    <li>✅ Видеокарта: с полной поддержкой OpenGL 3.3, 64 МБ VRAM</li>
+                    <li>✅ Место на диске: ~15 МБ</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2024 SWEET BREADS by HCPP STUDIO</p>
+        <p>©MIT License</p>
+        <p style="margin-top: 1rem; opacity: 0.7;">"Завтрак испортится!" - Пахом</p>
+    </footer>
+
+    <script>
+        // Плавная прокрутка для навигации
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Изменение прозрачности хедера при скролле
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.8)';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+html{
+    background: #000000;
+}
+@font-face {
+    font-family: 'BDF';
+    src: url("res/BOUNDED.ttf");
+}
+.nav_bar{
+    width: 90%;
+    height: 70px;
+
+    box-shadow: 0px 0px 40px #ffffff;
+    border-radius: 70px;
+    display: block;
+    margin: auto;
+    margin-top: 40px;
+    background: #ccc;
+    backdrop-filter: blur(10px);
+}
+.backdrop{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    transform: translate(-10px,-209px);
+}
+.popular_videos{
+    width: 101%;
+    height: 100%;
+    background: #050505;
+    backdrop-filter: blur(10px);
+    transform: translate(-4px,1px);
+}
+.items{
+    display: inline-block;
+    color: #000000;
+    font-size: 18px;
+    font-family: 'BDF';
+    margin-left: 20px;
+    margin-top: 25px;
+    font-weight: 400;
+}
