@@ -1,0 +1,38 @@
+<html>
+<style>
+html{
+    background: #e8e9e9;
+}
+.texth1{
+    color: #070707;
+    font-size: 60px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+</style>
+<h1 class="texth1">HELLO WORLD</h1>
+<script>
+    function LoadStyle(){
+        let StyleText = `
+        color: #070707;
+    font-size: 60px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+        `;
+        document.querySelector(".texth1").style.cssText = StyleText;
+        document.documentElement.style = `background: #dee4e9;`;
+
+    }
+    let update = setInterval(function(){
+        LoadStyle();
+    },100);
+</script>
+</html>
