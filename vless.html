@@ -1,0 +1,144 @@
+<html>
+<style>
+html{
+    background : #121219;
+
+}
+.list_keys{
+    width: 99%;
+    max-width: 800px;
+    height: 100%;
+    background: #121219;
+    display: block;
+    margin: auto;border: 1px solid #ddd1ff;
+}
+.textsf40{
+    color: #ddd1ff;
+    font-size: 30px;
+    font-family: 'SF Mono';
+    font-weight: bold;
+    margin: 20px;
+}
+.line{
+    width: 98%;
+    height: 4px;
+    background: #ddd1ff;
+    display: block;
+    margin: auto;
+}
+.keys{
+    display: block;
+    margin: auto;
+    background : #181822;
+    width: 99%;
+    height: 700px;
+    overflow: scroll;
+    &::-webkit-scrollbar{
+        background: #16161a;
+    }
+    &::-webkit-scrollbar-thumb{
+        background: #ddd1ff;
+        width: 30px;
+    }
+}
+.key_val{
+    color: #ddd1ff;
+    font-size: 16px;
+    font-family: 'SF Mono';
+    font-weight: bold;
+    margin: 20px;
+    transform: translate(30px,20px);
+}
+.request_data_p{
+    color: #ddd1ff;
+    font-size: 16px;
+    font-family: 'SF Mono';
+    font-weight: bold;
+    text-align: center;
+    transform: translateY(-40px);
+}
+.buffer{
+    width: 97%;
+    height: 100px;
+    background: #070709;
+    border: 1px solid #353535;
+    resize: none;
+    color: #ddd1ff;
+    font-size: 12px;
+    font-family: 'SF Mono';
+    outline: none;
+    user-select: none;
+    display: block;
+    transform: translateX(-40px);
+    
+    margin-top: 20px;
+    &::-webkit-scrollbar{
+        background: #16161a;
+        width: 10px;
+        -webkit-appearance: none;
+        -appearance : none;
+    }
+    &::-webkit-scrollbar-thumb{
+        background: #ddd1ff;
+        width: 20px;
+        height: 30px;
+    }
+}
+</style>
+<div class="list_keys">
+    <h1 class="textsf40">ОБХОД БЕЛЫХ СПИСКОВ КЛЮЧИ (CIDR + SNI)</h1>
+    <div class="line"></div>
+    <div class="keys">
+        <p class="key_val">vless</p>
+        </div>
+</div>
+<p class="request_data_p">fffff</p>
+<script>
+    let error_text = document.querySelector(".request_data_p");
+    let key_display = document.querySelector(".key_val");
+    let url = "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/Vless-Reality-White-Lists-Rus-Mobile.txt";
+
+    // Отлавливаем глобальные ошибки
+    window.addEventListener("error", function(f) {
+        error_text.textContent = "Критическая ошибка: " + f.message;
+    });
+    let vless_key_array = [];let idx = 0;
+    async function loadDatabase() {
+        try {
+            error_text.textContent = "Загрузка базы...";
+            let response = await fetch(url);
+
+            if (response.ok) {
+                error_text.textContent = "База Свежая";
+                let content = await response.text();
+                let keysArray = content.split(/\r?\n/);
+
+// Очищаем контейнер перед добавлением (если нужно)
+          key_display.innerHTML = "";
+          
+// Теперь перебираем массив и создаем для каждой строки отдельный элемент
+          keysArray.forEach(key => {
+         if (key.trim() !== "") { // Пропускаем пустые строки
+          let p = document.createElement("textarea");
+           p.className = "buffer"; // Используем ваш стиль
+          p.textContent = key;
+          vless_key_array[idx++] = key;
+          p.onclick = navigator.clipboard.writeText(vless_key_array[idx])
+          p.readOnly = true;
+         key_display.appendChild(p);
+           }
+         });
+                
+            } else {
+                error_text.textContent = "Ошибка обращения к базе: " + response.status;
+            }
+        } catch (e) {
+            // Ошибка CORS или сети
+            error_text.textContent = "Ошибка сети (возможно CORS): " + e.message;
+        }
+    }
+
+    // Запускаем процесс
+    loadDatabase();
+</script>
+</html>
