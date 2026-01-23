@@ -8,6 +8,10 @@ html{
     width: 100%;
     height: 3px;
 }
+@font-face {
+    font-family: 'SF Mono';
+    src: url("SFMono-Bold.ttf");
+}
 *{
     color: #8eb0e6;
     font-family: 'SF Mono'
@@ -193,6 +197,7 @@ const projects_url = [
  "https://github.com/HCPP20334/CNotepad_0.1-x64-OpenGL3.3-/releases/download/0.2/CNotepadRelease.zip",
  "https://github.com/HCPP20334/Writter/releases/download/0.6/Release.zip"
 ];
+let id = 0;
 const projects_info = [
  "PCTool - Многофункциональный инструмент для настройки Windows<br>(batch)",
  "SYSTEM-Z - Системный мониторинг ПК и информация<br>(MSVC Написан на C++20 Visual Studio 2026)",
@@ -219,9 +224,13 @@ const buttons = {
      prj_10: document.querySelector("#_prj_10"),
      prj_11: document.querySelector("#_prj_11")
 };
-function openInfo(){
+function openInfo(i){
     var w_gWindowInfo = document.querySelector(".information-window");
     w_gWindowInfo.style.display = "block";
+   id = i;
+}
+_b_link.onclick = function(){
+    window.open(projects_url[id]);
 }
 function setInfoNameText(string){
     var p_gInfoProjects = document.querySelector(".text_info_name");
@@ -234,6 +243,7 @@ function setInfoText(string){
 function setInfoImage(url){
     var img_gInfoProjects =  document.querySelector(".img_file_screenshot");
     img_gInfoProjects.src = url;
+   
 }
 
 function loadButtonsName(){
@@ -255,73 +265,73 @@ buttons.prj_0.onclick = function(){
     setInfoNameText(projects_name[0]);
     setInfoText(projects_info[0]);
     setInfoImage(images[0]);
-    openInfo();
+    openInfo(0);
 }
 buttons.prj_1.onclick = function(){
     setInfoNameText(projects_name[1]);
     setInfoText(projects_info[1]);
     setInfoImage(images[1]);
-    openInfo();
+    openInfo(1);
 }
 buttons.prj_2.onclick = function(){
     setInfoNameText(projects_name[2]);
     setInfoText(projects_info[2]);
     setInfoImage(images[2]);
-    openInfo();
+    openInfo(2);
 }
 buttons.prj_3.onclick = function(){
     setInfoNameText(projects_name[3]);
     setInfoText(projects_info[3]);
     setInfoImage(images[3]);
-    openInfo();
+    openInfo(3);
 }
 buttons.prj_4.onclick = function(){
     setInfoNameText(projects_name[4]);
     setInfoText(projects_info[4]);
     setInfoImage(images[4]);
-    openInfo();
+    openInfo(4);
 }
 buttons.prj_5.onclick = function(){
     setInfoNameText(projects_name[5]);
     setInfoText(projects_info[5]);
     setInfoImage(images[5]);
-    openInfo();
+    openInfo(5);
 }
 buttons.prj_6.onclick = function(){
     setInfoNameText(projects_name[6]);
     setInfoText(projects_info[6]);
     setInfoImage(images[6]);
-    openInfo();
+    openInfo(6);
 }
 buttons.prj_7.onclick = function(){
     setInfoNameText(projects_name[7]);
     setInfoText(projects_info[7]);
     setInfoImage(images[7]);
-    openInfo();
+    openInfo(7);
 }
 buttons.prj_8.onclick = function(){
     setInfoNameText(projects_name[8]);
     setInfoText(projects_info[8]);
     setInfoImage(images[8]);
-    openInfo();
+    openInfo(8);
 }
 buttons.prj_9.onclick = function(){
     setInfoNameText(projects_name[9]);
     setInfoText(projects_info[9]);
     setInfoImage(images[9]);
-    openInfo();
+    openInfo(9);
 }
 buttons.prj_10.onclick = function(){
     setInfoNameText(projects_name[10]);
     setInfoText(projects_info[10]);
     setInfoImage(images[10]);
-    openInfo();
+    openInfo(10);
 }
 buttons.prj_11.onclick = function(){
     setInfoNameText(projects_name[11]);
     setInfoText(projects_info[11]);
     setInfoImage(images[11]);
-    openInfo();
+    openInfo(11);
 }
 function debug(str){
     document.querySelector('.debug_text').textContent = str;
