@@ -1,233 +1,343 @@
 <html>
 <style>
 html{
-    background: #010101;
+    background: #111422;
 }
-@font-face {
-      font-family: "BD";
-      src: url("Roboto_Mono.ttf");
-    }
-.windowMain{
-    background: transparent;
-    border: 1px solid #535353;
-    width: 900px;
-    height: 700px;
-    transform: translateY(40px);
-    overflow: hidden;
+.line_div{
+    background: #070707;
+    width: 100%;
+    height: 3px;
 }
-.itemContent{
-    background: transparent;
-    border: 1px solid #1b1b1b;
-    width: 330px;
-    height: 30px;
-    display: block;
-    margin: 10px;
-    font-size: 15px;
-    font-family: 'BD';
-    color: #ffffff;
-    text-align: left;
-    transform: translate(30px,20px);
-    &:hover{
-        background: #1b1b1b;
-    }
-}
-.download{
-    background: transparent;
-    border: 1px solid #1b1b1b;
-    width: 130px;
-    height: 30px;
-    display: block;
-    font-size: 15px;
-    font-family: 'BD';
-    color: #ffffff;
-    margin: auto;
+*{
+    color: #8eb0e6;
+    font-family: 'SF Mono'
 
-    transform: translateY(10px);
-    &:hover{
-        background: #1b1b1b;
+}
+.downloader-window{
+    width: auto;
+    height: auto;
+    min-width: 330px;
+    width: 1060px;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #0d101b;
+    border: 1px solid #8eb0e6;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    &::-webkit-scrollbar{
+        background: #111422;
+        border-radius: 30px;
+        height: 99%;
+    }
+    &::-webkit-scrollbar-thumb{
+        background: #8eb0e6;
+        border-radius: 30px;
     }
 }
-.itemText{
-    font-size: 15px;
-    font-family: 'BD';
-    color: #ffffff;
-    transform: translate(30px,-10px);
-}
-.previnfo{
-    float: right;
+.information-window{
+    width: auto;
+    height: auto;
     min-width: 330px;
-    width: 49%;
-    height: 100%;
-    background: #000000;
+    width: 1060px;
+    height: 600px;
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #0d101b;
+    border: 1px solid #070707;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    z-index: 3;
+    &::-webkit-scrollbar{
+        background: #111422;
+        border-radius: 30px;
+        height: 99%;
+    }
+    &::-webkit-scrollbar-thumb{
+        background: #8eb0e6;
+        border-radius: 30px;
+    }
+}
+._button{
+    background: none;
+    border: none;
     display: inline-block;
-    border-left: 1px solid #1b1b1b;
-}
-.imgPrev{
+    margin: 10px;
+    margin-top: 30px;
     width: 300px;
-    height: 300px;
-    border: 1px solid #1b1b1b;
-    transform: translate(15px,20px);
+    height: 60px;
+    border-radius: 30px;
+    color: #22ecdb;
+    font-size: 30px;
+    
 }
-.textInfo{
-    font-size: 15px;
-    font-family: 'BD';
-    color: #ffffff;
-    transform: translate(10px,10px);
+._button:hover{
+    background: #8eb0e6;
+    color: #0d101b;
 }
-.itemDownload{
-    font-size: 15px;
-    font-family: 'BD';
-    color: #ffffff;
-    text-align: center;
+p{
+    font-style: italic;
 }
-.itemText2{
-    font-size: 15px;
-    font-family: 'BD';
-    color: #ffffff;
-    transform: translate(40px,10px);
+.screen_info{
+    background: none;
+    width: 98%;
+    height: 128px;
+    margin: 20px;
+   
 }
-a{
-    font-size: 15px;
-    font-family: 'BD';
-    color: #ffffff;
-    outline: none;
+.close{
+    font-size: 30px;
+    float: right;;
+    background: none;
+    border: none;
 }
-#pxbuild{
-    font-size: 15px;
-    font-family: 'BD';
-    color: #ffffff;
-    transform: translate(40px,10px);
+.img_file_screenshot{
+    max-width: 640px;
+    max-height: 480px;
+    width: auto;
+    height: auto;
 }
-.projetcts_and_app{
-    font-size: 15px;
-    font-family: 'BD';
-    color: #ffffff;
-    font-size: 15px;
-    font-family: 'BD';
-    color: #ffffff;
-    transform: translate(40px,10px);
+._b_link{
+    border: 1px solid  #8eb0e6;
+    font-size: 20px;
+    background: #0d101b;
+    color: #fff;
+    margin: 25px;
+    border-radius: 20px;
+    width: 150px;
+    height: 30px;
 }
 </style>
-<div class="windowMain">
-<div class="previnfo">
-    <p class="itemDownload">NONE</p>
-<button class="download">СКАЧАТЬ</button>
-<p class="textInfo" id="desc">test text<br>test text<br>test text<br>test text<br>test text<br>test text<br>test text<br>test text<br>test text<br>test text<br>test text<br>test text<br></p>
+<p class="debug_text">debug:</p>
+<div class="line_div"></div>
+<div class="information-window">
+    
+    <div class="buttons_sel">
+        <p id="item_count" class="close">0</p>
+        <button class="close" onclick="selectItems(item++); if(item > 9){item = 0;}">></button>
+        <button class="close" onclick="selectItems(item--); if(item < 0){item = 9;}"><</button>
+        <button class="close" onclick="document.querySelector('.information-window').style.display = 'none';">X</button>
+    </div>
+    <p class="text_info_name" style="font-size: 40px;font-weight: bold;margin: 30px;color: #ccc;">
+            Здесь имя проекта
+    </p>
+    
+    <p class="text_info" style="margin: 30px;color: #fff;">
+    Здесь информация об проекте
+    </p>
+    <button class="_b_link">Скачать</button>
+    <div class="screen_info">
+    <img src="./" class="img_file_screenshot">
+    </div>
+ 
 </div>
-<p class="projetcts_and_app">СКАЧАЙ И ИДИ НАХУЙ))</p>
-<button class="itemContent" id="button_0">JoyStickTest</button>
-<button class="itemContent" id="button_1">Electrik Calc</button>
-<button class="itemContent" id="button_2">Calc to Electronik DIMA XP</button>
-<button class="itemContent" id="button_3">XHASH</button>
-<button class="itemContent" id="button_4">ImPicture</button>
-<button class="itemContent" id="button_5">SYSTEM-Z</button>
-<button class="itemContent" id="button_6">PCTOOL</button>
-<button class="itemContent" id="button_7">WINDOWS 10(x64) 21H2 LTSC</button>
-<button class="itemContent" id="button_8">CNOTEPAD++</button>
-<p class="itemText2">Это мой сайт для скачивания<br>
-Моих проектов и не только.
-<br>Мой гитхаб: <a href="https://github.com/hcpp20334">hcpp20334</a>
-<br>Мой сайт: <a href="https://hcpp20334.github.io">https://hcpp20334.github.io</a>
-<br>Сайт DIMA XP: <a href="https://dimaxp228.github.io/">https://dimaxp228.github.io</a>
-<br>-----------------------------------------
-<br>Купить подписку на мой VPN: <a href="https://hcpp20334.github.io/XVPN">XVPN</a>
-<br>САМЫЙ БЫСТРЫЙ И ЗАЩИЩЕНЫЙ VPN В СНГ!!
-<br>РАБОТАЕТ НА VLESS + REALITY  + TLS 
-<br>-----------------------------------------
-<p id="pxbuild"></p>
-</p>
+<div class="downloader-window">
+    <button class="_button" id="_prj_0">🛠 PCTool</button>
+    <button class="_button" id="_prj_1">🛠 PCTool</button>
+    <button class="_button" id="_prj_2">🛠 PCTool</button>
+    <button class="_button" id="_prj_3">🛠 PCTool</button>
+    <button class="_button" id="_prj_4">🛠 PCTool</button>
+    <button class="_button" id="_prj_5">🛠 PCTool</button>
+    <br>
+    <button class="_button" id="_prj_6">🛠 PCTool</button>
+    <button class="_button" id="_prj_7">🛠 PCTool</button>
+    <button class="_button" id="_prj_8">🛠 PCTool</button>
+    <button class="_button" id="_prj_9">🛠 PCTool</button>
+    <button class="_button" id="_prj_10">🛠 PCTool</button>
+    <button class="_button" id="_prj_11">🛠 PCTool</button>
 </div>
-
-<script src="pxengine_1.0.js"></script>
 <script>
-let pxbuildid = document.querySelector("#pxbuild");
-let strings = {
-  joysticktest:"JoyStickTest(amd64)<br>Написан на С++20 (GCC)<br> Работает на OpenGL3.3 и DirectX 12.0(DX12)<br>Описание:<br>Это Многофункциональное приложение для тестирование геймпадов с красивым и современнным GUI ",
-  Electrik_Calc: "Electrik Calc(x64_86)<br>Написан на С++20(amd64),C++14(x86)(GCC)<br>Работает на OpenGL3.3,DirectX9 (DX9),DirectX12.0(DX12)<br>Это мощный калькулятор для электрика и электроника с красивым и современным GUI",
-  Electrik_Calc_dima_xp: "Calc to Electronik DIMA XP(x86)<br>Написан на С#, WinAPI32<br>Это Урезанный Electrik Calc(x64_86)<br>с простым интерфейсом и для старых пк",
-  XHASH: "XHASH(amd64)<br>Написан на С++20 (GCC)<br> Работает на OpenGL3.3<br>Это многопроизводительный генератор хешей",
-  ImPicture: "ImPicture(amd64)<br>Написан на С++20 (GCC)<br> Работает на OpenGL3.3<br>Просмоторщик любых фото",
-  SYSTEM_Z: "SYSTEM_Z(amd64)<br>Написан на С++20 (GCC)<br> Работает на OpenGL3.3<br>Копия CPU-Z, Которая превосходит его)",
-  PCTOOL: "PCTOOL<br> Написан на batch<br>Это многофункциональный скрипт для настроики ПК",
-  WINDOWS_10: "WINDOWS 10(x64), Моя сборка Винды",
-  CNOTEPADPP: "CNOTEPAD++(amd64)<br>Написан на С++20 (GCC)<br> Работает на OpenGL3.3<br>Улудшенный блокнот с функциями для выполнение кода и кастомизацией"
+let item = 0;
+let _b_link = document.querySelector("._b_link");
+
+const images = [
+    "res/0.jpg",
+    "res/1.jpg",
+    "res/2.jpg",
+    "res/3.jpg",
+    "res/4.jpg",
+    "res/5.jpg",
+    "res/6.jpg",
+    "res/7.jpg",
+    "res/8.jpg",
+    "res/9.jpg",
+    "res/10.jpg",
+    "res/11.jpg",
+];
+const projects_name = [
+ "PCTool",
+ "SYSTEM-Z",
+ "JoystickTest",
+ "SWEET BREADS",
+ "XHASH",
+ "FakeDeepPayload",
+ "VlessChecker",
+ "Electrik Calc",
+ "CNotepadIDE",
+ "Writter"
+];
+const projects_url = [
+ "./PCTool.bat",
+ "https://github.com/HCPP20334/SYSTEM-Z/releases/download/1.3_Vulkan_cpp20/SYSTEM-Z.Vulkan_1.3.amd64.AMD_GPU.zip",
+ "https://github.com/HCPP20334/JoyStickTest/releases/download/JoyStickTest_x64_1.2.3/JoyStickTest.amd64._1.2.4_windows.zip",
+ "https://github.com/HCPP20334/SWEET-BREADS-PahomEngineGL-C-20/releases/download/0.8.7800/PahomEngine.zip",
+ "https://github.com/HCPP20334/XHASH/releases/download/1.0.5/XHASH.x64.7z",
+ "https://github.com/HCPP20334/FakeDeepPayload/releases/download/0.6/FakeDeepPayload.exe",
+ "https://github.com/HCPP20334/VlessChecker/releases/download/0.6/vlessChecker.exe",
+ "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/1.1.4.5/Release.zip",
+ "https://github.com/HCPP20334/CNotepad_0.1-x64-OpenGL3.3-/releases/download/0.2/CNotepadRelease.zip",
+ "https://github.com/HCPP20334/Writter/releases/download/0.6/Release.zip"
+];
+const projects_info = [
+ "PCTool - Многофункциональный инструмент для настройки Windows<br>(batch)",
+ "SYSTEM-Z - Системный мониторинг ПК и информация<br>(MSVC Написан на C++20 Visual Studio 2026)",
+ "JoystickTest - Тестер геймпадов XINPUT<br>(MSVC Написан на C++20 Visual Studio 2026)",
+ "SWEET BREADS - Моя игра по мотивам зеленого слоника где пахом собирает сладкий хлеб <br>Самый большой проект и демо моего движка <br>(PahomEngineGL,MSVC Написан на C++20 Visual Studio 2026)",
+ "XHASH - Генератор Хешей и паролей<br>(MSVC Написан на C++20 Visual Studio 2026)",
+ "FakeDeepPayload - Ддусер<br>(MSVC Написан на C++20 Visual Studio 2026)",
+ "VlessChecker - тест айпи и впн<br>(MSVC Написан на C++20 Visual Studio 2026)",
+ "Electrik Calc - Мощный калькулятор электроника<br>(MSVC Написан на C++20 Visual Studio 2026)",
+ "CNotepadIDE - Мини IDE редактор кода<br>(MSVC Написан на C++20 Visual Studio 2026)",
+ "Writter - Блокнот<br>(MSVC Написан на C++20 Visual Studio 2026)"
+];
+const buttons = {
+     prj_0: document.querySelector("#_prj_0"),
+     prj_1: document.querySelector("#_prj_1"),
+     prj_2: document.querySelector("#_prj_2"),
+     prj_3: document.querySelector("#_prj_3"),
+     prj_4: document.querySelector("#_prj_4"),
+     prj_5: document.querySelector("#_prj_5"),
+     prj_6: document.querySelector("#_prj_6"),
+     prj_7: document.querySelector("#_prj_7"),
+     prj_8: document.querySelector("#_prj_8"),
+     prj_9: document.querySelector("#_prj_9"),
+     prj_10: document.querySelector("#_prj_10"),
+     prj_11: document.querySelector("#_prj_11")
 };
-let strings_title = {
-    joysticktest: "JoyStickTest",
-    Electrik_Calc: "Electrik Calc",
-    Electrik_Calc_dima_xp: "Calc to Electronik DIMA XP",
-    XHASH: "XHASH",
-    ImPicture: " ImPicture",
-    SYSTEM_Z: "SYSTEM-Z",
-    PCTOOL: "PCTOOL",
-    WINDOWS_10: "WINDOWS 10(x64) LTSC",
-    CNOTEPADPP:" CNOTEPAD++:"
-};
-let strings_url = {
-    joysticktest: "https://github.com/HCPP20334/JoyStickTest/tree/main",
-    Electrik_Calc: "https://github.com/HCPP20334/Calc-for-Electronic/releases/tag/Electric_calc_release",
-    Electrik_Calc_dima_xp: "Calc to Electronik DIMA XP",
-    XHASH: "https://github.com/HCPP20334/XHASH",
-    ImPicture: " https://github.com/HCPP20334/ImPicture",
-    SYSTEM_Z: "https://github.com/HCPP20334/SYSTEM-Z",
-    PCTOOL: "PCTOOL.bat",
-    WINDOWS_10: "index.html",
-    CNOTEPADPP:" https://github.com/HCPP20334/CNotepad_0.1-x64-OpenGL3.3-"
-};
-let api = new PXEngine_1_0();
-api.init();
-api.metainfo();
-let windowMain = document.querySelector(".windowMain");
-let url_str = "";
-windowMain.style.transform = "translate("+(api.wctx - 900) / 2+"px,"+(api.wcty - 700) / 2+"px)";
-document.querySelector("#desc").innerHTML = "Нажмите на любой проект<br>Чтобы показать информацию" + window.innerWidth + " "+ window.innerHeight;
-document.querySelector("#button_0").onclick = function(){
-    document.querySelector("#desc").innerHTML = strings.joysticktest;
-    document.querySelector(".itemDownload").innerHTML = strings_title.joysticktest;
-    url_str = strings_url.joysticktest;
+function openInfo(){
+    var w_gWindowInfo = document.querySelector(".information-window");
+    w_gWindowInfo.style.display = "block";
 }
-document.querySelector("#button_1").onclick = function(){
-    document.querySelector("#desc").innerHTML = strings.Electrik_Calc;
-    document.querySelector(".itemDownload").innerHTML = strings_title.Electrik_Calc;
-    url_str = strings_url.Electrik_Calc;
+function setInfoNameText(string){
+    var p_gInfoProjects = document.querySelector(".text_info_name");
+    p_gInfoProjects.innerHTML = string;
 }
-document.querySelector("#button_2").onclick = function(){
-    document.querySelector("#desc").innerHTML = strings.Electrik_Calc_dima_xp;
-    document.querySelector(".itemDownload").innerHTML = strings_title.Electrik_Calc_dima_xp;
-    url_str = strings_url.Electrik_Calc_dima_xp;
+function setInfoText(string){
+    var p_gInfoProjects = document.querySelector(".text_info");
+    p_gInfoProjects.innerHTML = string;
 }
-document.querySelector("#button_3").onclick = function(){
-    document.querySelector("#desc").innerHTML = strings.XHASH;
-    document.querySelector(".itemDownload").innerHTML = strings_title.XHASH;
-    url_str = strings_url.XHASH;
+function setInfoImage(url){
+    var img_gInfoProjects =  document.querySelector(".img_file_screenshot");
+    img_gInfoProjects.src = url;
 }
-document.querySelector("#button_4").onclick = function(){
-    document.querySelector("#desc").innerHTML = strings.ImPicture;
-    document.querySelector(".itemDownload").innerHTML = strings_title.ImPicture;
-    url_str = strings_url.ImPicture;
+
+function loadButtonsName(){
+    buttons.prj_0.textContent = projects_name[0];
+    buttons.prj_1.textContent = projects_name[1];
+    buttons.prj_2.textContent = projects_name[2];
+    buttons.prj_3.textContent = projects_name[3];
+    buttons.prj_4.textContent = projects_name[4];
+    buttons.prj_5.textContent = projects_name[5];
+    buttons.prj_6.textContent = projects_name[6];
+    buttons.prj_7.textContent = projects_name[7];
+    buttons.prj_8.textContent = projects_name[8];
+    buttons.prj_9.textContent = projects_name[9];
+    buttons.prj_10.textContent = projects_name[10];
+    buttons.prj_11.textContent = projects_name[11];
 }
-document.querySelector("#button_5").onclick = function(){
-    document.querySelector("#desc").innerHTML = strings.SYSTEM_Z;
-    document.querySelector(".itemDownload").innerHTML = strings_title.SYSTEM_Z;
-    url_str = strings_url.SYSTEM_Z;
+loadButtonsName();
+buttons.prj_0.onclick = function(){
+    setInfoNameText(projects_name[0]);
+    setInfoText(projects_info[0]);
+    setInfoImage(images[0]);
+    openInfo();
 }
-document.querySelector("#button_6").onclick = function(){
-    document.querySelector("#desc").innerHTML = strings.PCTOOL;
-    document.querySelector(".itemDownload").innerHTML = strings_title.PCTOOL;
-    url_str = strings_url.PCTOOL;
+buttons.prj_1.onclick = function(){
+    setInfoNameText(projects_name[1]);
+    setInfoText(projects_info[1]);
+    setInfoImage(images[1]);
+    openInfo();
 }
-document.querySelector("#button_7").onclick = function(){
-    document.querySelector("#desc").innerHTML = strings.WINDOWS_10;
-    document.querySelector(".itemDownload").innerHTML = strings_title.WINDOWS_10;
-    url_str = strings_url.WINDOWS_10;
+buttons.prj_2.onclick = function(){
+    setInfoNameText(projects_name[2]);
+    setInfoText(projects_info[2]);
+    setInfoImage(images[2]);
+    openInfo();
 }
-document.querySelector("#button_8").onclick = function(){
-    document.querySelector("#desc").innerHTML = strings.CNOTEPADPP;
-    document.querySelector(".itemDownload").innerHTML = strings_title.CNOTEPADPP;
-    url_str = strings_url.CNOTEPADPP;
+buttons.prj_3.onclick = function(){
+    setInfoNameText(projects_name[3]);
+    setInfoText(projects_info[3]);
+    setInfoImage(images[3]);
+    openInfo();
 }
-document.querySelector(".download").onclick = function(){
-    window.open(url_str);
+buttons.prj_4.onclick = function(){
+    setInfoNameText(projects_name[4]);
+    setInfoText(projects_info[4]);
+    setInfoImage(images[4]);
+    openInfo();
+}
+buttons.prj_5.onclick = function(){
+    setInfoNameText(projects_name[5]);
+    setInfoText(projects_info[5]);
+    setInfoImage(images[5]);
+    openInfo();
+}
+buttons.prj_6.onclick = function(){
+    setInfoNameText(projects_name[6]);
+    setInfoText(projects_info[6]);
+    setInfoImage(images[6]);
+    openInfo();
+}
+buttons.prj_7.onclick = function(){
+    setInfoNameText(projects_name[7]);
+    setInfoText(projects_info[7]);
+    setInfoImage(images[7]);
+    openInfo();
+}
+buttons.prj_8.onclick = function(){
+    setInfoNameText(projects_name[8]);
+    setInfoText(projects_info[8]);
+    setInfoImage(images[8]);
+    openInfo();
+}
+buttons.prj_9.onclick = function(){
+    setInfoNameText(projects_name[9]);
+    setInfoText(projects_info[9]);
+    setInfoImage(images[9]);
+    openInfo();
+}
+buttons.prj_10.onclick = function(){
+    setInfoNameText(projects_name[10]);
+    setInfoText(projects_info[10]);
+    setInfoImage(images[10]);
+    openInfo();
+}
+buttons.prj_11.onclick = function(){
+    setInfoNameText(projects_name[11]);
+    setInfoText(projects_info[11]);
+    setInfoImage(images[11]);
+    openInfo();
+}
+function debug(str){
+    document.querySelector('.debug_text').textContent = str;
+}
+function selectItems(idx){
+    setInfoNameText(projects_name[idx]);
+    setInfoText(projects_info[idx]);
+    setInfoImage(images[idx]);
+    debug(`projects_info : ${projects_info[idx]}\n\rprojects_name: ${projects_name[idx]}\n\rindex: ${idx}`);
+    if(idx > 9){
+        idx = 1;
+    }
+    if(idx < 1){
+        idx = 9;
+    }
+    document.querySelector("#item_count").textContent = idx;
 }
 </script>
 </html>
