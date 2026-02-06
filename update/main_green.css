@@ -98,7 +98,7 @@ html{
     border: none;
     display: inline-block;
     margin: 10px;
-    margin-top: 30px;
+   
     width: 300px;
     height: 60px;
 
@@ -225,4 +225,11 @@ p{
     transform: translate(2px,1px);
     transition: .2s;
     border-radius: 28px;
+}
+.debug_text{
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    font-style: italic;
+    transform: translateX(40px);
 }
