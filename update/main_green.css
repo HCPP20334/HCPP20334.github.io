@@ -1,0 +1,228 @@
+html{
+    background: #111422;
+    background-image: url("photo_2026-02-06_20-57-29_waifu2x_noise2_scale2x.png");
+    transition: .5s all;
+    background-size: cover;
+}
+.line_div{
+    background: #070707;
+    width: 100%;
+    height: 3px;
+}
+@font-face {
+    font-family: 'SF Mono';
+    src: url("SFMono-Bold.ttf");
+}
+*{
+    color: #8eb0e6;
+    font-family: 'SF Mono'
+
+}
+@keyframes resize_w {
+    0%{
+        width: 106px;
+        height: 60px;
+    }
+    100%{
+        width: 800px;
+        height: 600px;
+    }
+}
+@keyframes oresize_w {
+    100%{
+        width: 106px;
+        height: 60px;
+    }
+    0%{
+        width: 800px;
+        height: 600px;
+    }
+}
+.downloader-window{
+    width: auto;
+    height: auto;
+    min-width: 330px;
+    width: 800px;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #0d101b90;
+    backdrop-filter: blur(10px);
+    border: 2px solid  #22ecdb;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    
+    &::-webkit-scrollbar{
+        background: #111422;
+        border-radius: 30px;
+        height: 99%;
+    }
+    &::-webkit-scrollbar-thumb{
+        background: #8eb0e6;
+        border-radius: 30px;
+    }
+}
+.information-window{
+    width: auto;
+    height: auto;
+    min-width: 330px;
+    width: 800px;
+    height: 600px;
+    position: absolute;
+    display: none;
+    animation: resize_w 500ms ease-in-out;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #0d101b90;
+    backdrop-filter: blur(10px);
+    border: 2px solid  #22ecdb;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    transition: .500ms;
+    z-index: 3;
+    &::-webkit-scrollbar{
+        background: #111422;
+        border-radius: 30px;
+        height: 99%;
+    }
+    &::-webkit-scrollbar-thumb{
+        background: #8eb0e6;
+        border-radius: 30px;
+    }
+}
+._button{
+    background: none;
+    border: none;
+    display: inline-block;
+    margin: 10px;
+    margin-top: 30px;
+    width: 300px;
+    height: 60px;
+
+    color: #22ecdb;
+    font-family: 'SF Mono';
+    font-style: italic;
+    font-size: 16px;
+    transition: .300ms;transform: rotate(0deg);
+    background-position-x: 0%;
+    
+}
+@keyframes pulse {
+    0%{
+        transform: scale(1);
+        
+    }
+    50%{
+        transform: scale(1.07);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+._button:hover{
+    background: #8eb0e630;
+    color: #22ecdb;
+    border: 2px solid #22ecdb;
+    background-position-x: 3%;
+}
+p{
+    font-style: italic;
+}
+.screen_info{
+    background: none;
+    width: 98%;
+    height: 128px;
+    margin: 20px;
+   
+}
+.close{
+    font-size: 30px;
+    float: right;
+    background: none;
+    border: none;
+}
+.img_file_screenshot{
+    max-width: 640px;
+    max-height: 480px;
+    width: auto;
+    height: auto;border: 2px solid  #22ecdb;
+}
+._b_link{
+    border: 1px solid  #8eb0e6;
+    font-size: 20px;
+    background: transparent;
+    color: #fff;
+    margin: 25px;
+    width: 250px;
+    height: 40px;
+    border: 2px solid  #363f3e;
+    
+    &:hover{
+        animation: shake 1s ease-in-out infinite;
+        color: #fff;
+        background: #22ecdb30;
+        border: 2px solid  #22ecdb;
+    }
+}
+@keyframes slide-right {
+    100%{
+        transform: translateX(1px);
+    }
+    0%{
+        transform: translateX(-230px);
+    }
+}
+.text_info_name,.text_info{
+    transition: .2s;
+    transform: translateX(-9930px);
+}
+.image-view{
+    width: 800px;
+    height: 600px;
+    background: #07070790;
+    backdrop-filter: blur(50px);
+    position: absolute;
+    overflow: hidden;
+    display: none;
+    animation: resize_w 500ms ease-in-out;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 5;
+    
+}
+.img_file_screenshot2{
+    max-width: 450px;
+    max-height: 450px;
+    transform: translateY(100px);
+    
+}
+.preview-info{
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+    color: #8eb0e6;
+    transform: translateY(104px);
+}
+.buttons_sel{
+    width: 800px;
+}
+.toogle{
+    width: 60px;
+    height: 30px;
+    border: 3px solid  #22ecdb;
+    background: #22ecdb5c;
+    border-radius: 30px;
+    
+}
+.toogle_ball{
+    width: 28px;
+    height: 28px;
+    background: #22ecdb;
+    transform: translate(2px,1px);
+    transition: .2s;
+    border-radius: 28px;
+}

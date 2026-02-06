@@ -1,132 +1,14 @@
 <html>
-<style>
-html{
-    background: #111422;
-}
-.line_div{
-    background: #070707;
-    width: 100%;
-    height: 3px;
-}
-@font-face {
-    font-family: 'SF Mono';
-    src: url("SFMono-Bold.ttf");
-}
-*{
-    color: #8eb0e6;
-    font-family: 'SF Mono'
-
-}
-.downloader-window{
-    width: auto;
-    height: auto;
-    min-width: 330px;
-    width: 1060px;
-    height: 600px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background: #0d101b;
-    border: 1px solid #8eb0e6;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    &::-webkit-scrollbar{
-        background: #111422;
-        border-radius: 30px;
-        height: 99%;
-    }
-    &::-webkit-scrollbar-thumb{
-        background: #8eb0e6;
-        border-radius: 30px;
-    }
-}
-.information-window{
-    width: auto;
-    height: auto;
-    min-width: 330px;
-    width: 1060px;
-    height: 600px;
-    position: absolute;
-    display: none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background: #0d101b;
-    border: 1px solid #070707;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    z-index: 3;
-    &::-webkit-scrollbar{
-        background: #111422;
-        border-radius: 30px;
-        height: 99%;
-    }
-    &::-webkit-scrollbar-thumb{
-        background: #8eb0e6;
-        border-radius: 30px;
-    }
-}
-._button{
-    background: none;
-    border: none;
-    display: inline-block;
-    margin: 10px;
-    margin-top: 30px;
-    width: 300px;
-    height: 60px;
-    border-radius: 30px;
-    color: #22ecdb;
-    font-size: 30px;
-    
-}
-._button:hover{
-    background: #8eb0e6;
-    color: #0d101b;
-}
-p{
-    font-style: italic;
-}
-.screen_info{
-    background: none;
-    width: 98%;
-    height: 128px;
-    margin: 20px;
-   
-}
-.close{
-    font-size: 30px;
-    float: right;;
-    background: none;
-    border: none;
-}
-.img_file_screenshot{
-    max-width: 640px;
-    max-height: 480px;
-    width: auto;
-    height: auto;
-}
-._b_link{
-    border: 1px solid  #8eb0e6;
-    font-size: 20px;
-    background: #0d101b;
-    color: #fff;
-    margin: 25px;
-    border-radius: 20px;
-    width: 150px;
-    height: 30px;
-}
-</style>
+<link rel="stylesheet" href="main_red.css" class="style_main">
 <p class="debug_text">debug:</p>
 <div class="line_div"></div>
 <div class="information-window">
-    
-    <div class="buttons_sel">
-        <p id="item_count" class="close">0</p>
-        <button class="close" onclick="selectItems(item++); if(item > 9){item = 0;}">></button>
-        <button class="close" onclick="selectItems(item--); if(item < 0){item = 9;}"><</button>
-        <button class="close" onclick="document.querySelector('.information-window').style.display = 'none';">X</button>
+    <div class="image-view" onclick="closeImageView()">
+       <center> <img src="./" class="img_file_screenshot2">
+    <h1 class="preview-info"></h1>
+    </center>
     </div>
+    
     <p class="text_info_name" style="font-size: 40px;font-weight: bold;margin: 30px;color: #ccc;">
             Здесь имя проекта
     </p>
@@ -135,8 +17,14 @@ p{
     Здесь информация об проекте
     </p>
     <button class="_b_link">Скачать</button>
+
+        <p style="display: inline-block;width: 40px;height: 40px;margin-right: -33px;float: none;transform: translateX(-30px);"id="item_count" class="close">0</p>
+        <button style="display: inline-block;width: 80px;height: 40px;margin-right: -8px;transform: translateX(-30px);"class="_b_link" onclick="selectItems(item--); if(item < 0){item = 9;}">ПРЕД</button>
+        <button style="display: inline-block;width: 80px;height: 40px;margin-left: -6px;transform: translateX(-24px);" class="_b_link" onclick="selectItems(item++); if(item > 9){item = 0;}">СЛЕД</button>
+        <button style="display: inline-block;width: 100px;height: 40px;margin-left: -22px;transform: translateX(-34px);"class="_b_link" onclick="closeInfo();">ЗАКРЫТЬ</button>
+
     <div class="screen_info">
-    <img src="./" class="img_file_screenshot">
+    <img src="./" class="img_file_screenshot" onclick="imageView();">
     </div>
  
 </div>
@@ -152,10 +40,28 @@ p{
     <button class="_button" id="_prj_7">🛠 PCTool</button>
     <button class="_button" id="_prj_8">🛠 PCTool</button>
     <button class="_button" id="_prj_9">🛠 PCTool</button>
-    <button class="_button" id="_prj_10">🛠 PCTool</button>
-    <button class="_button" id="_prj_11">🛠 PCTool</button>
+    <br>
+    <p class="toogle_text" style="display: inline-block;transform: translate(100px,-13px);">Тема</p>
+    <div class="toogle" id="red_back" style="display: inline-block;transform: translateX(100px);">
+        <div class="toogle_ball" id="red_back_ball"></div>
+    </div>
+    <br>
+    <center>
+    <p class="about">github.com/hcpp20334</p>
+    </center>
 </div>
 <script>
+let redBackgroundFlag = document.querySelector("#red_back");
+let red_back_ball = document.querySelector("#red_back_ball");
+let red_back_bool = false;
+
+
+redBackgroundFlag.onclick = function(){
+    red_back_bool = !red_back_bool;
+    red_back_ball.style.transform = !red_back_bool ? ` translate(2px,1px)` : `translate(30px,1px)`;
+    var styleMain = document.querySelector(".style_main");
+    styleMain.href = !red_back_bool ? "main_red.css" : "main_green.css";
+}
 let item = 0;
 let _b_link = document.querySelector("._b_link");
 
@@ -224,9 +130,57 @@ const buttons = {
      prj_10: document.querySelector("#_prj_10"),
      prj_11: document.querySelector("#_prj_11")
 };
+function closeInfo(){
+    var w_gWindowInfo = document.querySelector(".information-window");
+    
+    w_gWindowInfo.style.animation = "oresize_w 500ms ease-out";
+    var timeout = setTimeout(function(){
+        w_gWindowInfo.style.width = '106px';
+        w_gWindowInfo.style.height =  '60px';
+       w_gWindowInfo.style.display = 'none';
+        clearTimeout(timeout);
+    },450);
+}
+function closeImageView(){
+    var w_gImageViewFrame = document.querySelector('.image-view');
+    w_gImageViewFrame.style.animation = "oresize_w 500ms ease-out";
+    document.querySelector('.information-window').style.overflowY = 'scroll';
+    document.querySelector('.information-window').scrollTop = "0px";
+    var timer = setTimeout(function(){
+        w_gImageViewFrame.style.width = '106px';
+        w_gImageViewFrame.style.height =  '60px';
+        w_gImageViewFrame.style.display = "none";
+        clearTimeout(timer);
+    },450);
+}
+function imageView(){
+    document.querySelector('.information-window').scrollTop = "0px";
+    var g_pInfo = document.querySelector(".preview-info").innerHTML = projects_name[id];
+    var w_gImageViewFrame = document.querySelector('.image-view');
+    var w_gImage = document.querySelector(".img_file_screenshot2");
+    //
+    w_gImageViewFrame.style.animation = "resize_w 500ms ease-out";
+    w_gImageViewFrame.style.display = "block";
+    //
+    var timeout = setTimeout(function(){
+    w_gImageViewFrame.style.width = '800px';
+    w_gImageViewFrame.style.height =  '600px';
+        clearTimeout(timeout);
+    },450);
+    //
+    w_gImage.src = images[id];
+    document.querySelector(".information-window").style.overflow = "hidden";
+}
 function openInfo(i){
     var w_gWindowInfo = document.querySelector(".information-window");
     w_gWindowInfo.style.display = "block";
+    
+    w_gWindowInfo.style.animation = "resize_w 500ms ease-in-out";
+    var timeout = setTimeout(function(){
+        w_gWindowInfo.style.width = '800px';
+        w_gWindowInfo.style.height =  '600px';
+        clearTimeout(timeout);
+    },450);
    id = i;
 }
 _b_link.onclick = function(){
@@ -235,10 +189,20 @@ _b_link.onclick = function(){
 function setInfoNameText(string){
     var p_gInfoProjects = document.querySelector(".text_info_name");
     p_gInfoProjects.innerHTML = string;
+    p_gInfoProjects.style.transform = "translateX(-2340px)";
+    var timeout = setTimeout(function(){
+        p_gInfoProjects.style.transform = "translateX(1px)";
+        clearTimeout(timeout);
+    },50);
 }
 function setInfoText(string){
     var p_gInfoProjects = document.querySelector(".text_info");
     p_gInfoProjects.innerHTML = string;
+    p_gInfoProjects.style.transform = "translateX(-2340px)";
+    var timeout = setTimeout(function(){
+        p_gInfoProjects.style.transform = "translateX(1px)";
+        clearTimeout(timeout);
+    },450);
 }
 function setInfoImage(url){
     var img_gInfoProjects =  document.querySelector(".img_file_screenshot");
@@ -257,8 +221,8 @@ function loadButtonsName(){
     buttons.prj_7.textContent = projects_name[7];
     buttons.prj_8.textContent = projects_name[8];
     buttons.prj_9.textContent = projects_name[9];
-    buttons.prj_10.textContent = projects_name[10];
-    buttons.prj_11.textContent = projects_name[11];
+   // buttons.prj_10.textContent = projects_name[10];
+   // buttons.prj_11.textContent = projects_name[11];
 }
 loadButtonsName();
 buttons.prj_0.onclick = function(){
@@ -340,6 +304,7 @@ function selectItems(idx){
     setInfoNameText(projects_name[idx]);
     setInfoText(projects_info[idx]);
     setInfoImage(images[idx]);
+    id = idx;
     debug(`projects_info : ${projects_info[idx]}\n\rprojects_name: ${projects_name[idx]}\n\rindex: ${idx}`);
     if(idx > 9){
         idx = 1;
