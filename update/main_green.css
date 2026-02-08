@@ -24,8 +24,9 @@ html{
         height: 60px;
     }
     100%{
-        width: 800px;
-        height: 600px;
+        width: 99%;
+        max-width: 800px;
+        height: 650px;
     }
 }
 @keyframes oresize_w {
@@ -34,16 +35,48 @@ html{
         height: 60px;
     }
     0%{
-        width: 800px;
-        height: 600px;
+        width: 99%;
+        max-width: 800px;
+        height: 650px;
+    }
+}
+.speed_connection{
+
+    width: 300px;
+    height: 300px;
+    background: #111422;
+    transform: translateX(30px);
+    border: 2px solid #070707;
+    border-radius: 14px;
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.speed_info{
+    color: #fff;
+    transform: translate(20px,32px);
+
+}
+.test{
+    background: #111422;
+    transform: translate(20px,32px);
+    border: 2px solid #070707;
+    color: #fff;
+    width: 120px;
+    height: 30px;
+    display: block;
+    &:hover{
+        background: #363f3e;
     }
 }
 .downloader-window{
-    width: auto;
-    height: auto;
+   
     min-width: 330px;
-    width: 800px;
-    height: 600px;
+    width: 99%;
+    max-width: 800px;
+    height: 650px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -65,11 +98,11 @@ html{
     }
 }
 .information-window{
-    width: auto;
-    height: auto;
+   
     min-width: 330px;
-    width: 800px;
-    height: 600px;
+    width: 99%;
+    max-width: 800px;
+    height: 650px;
     position: absolute;
     display: none;
     animation: resize_w 500ms ease-in-out;
@@ -180,7 +213,8 @@ p{
     transform: translateX(-9930px);
 }
 .image-view{
-    width: 800px;
+    width: 99%;
+    max-width: 800px;
     height: 600px;
     background: #07070790;
     backdrop-filter: blur(50px);

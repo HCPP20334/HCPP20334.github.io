@@ -1,4 +1,7 @@
 <html>
+    <head>
+        <meta charset="utf-8">
+    </head>
 <link rel="stylesheet" href="main_red.css" class="style_main">
 
 <div class="information-window">
@@ -29,6 +32,7 @@
 </div>
 <div class="downloader-window">
     <p class="debug_text">HCPP DEV</p>
+
     <button class="_button" id="_prj_0">🛠 PCTool</button>
     <button class="_button" id="_prj_1">🛠 PCTool</button>
     <button class="_button" id="_prj_2">🛠 PCTool</button>
@@ -51,30 +55,98 @@
     </div>
     <br>
     <center>
-    <p class="about">github.com/hcpp20334</p>
+    <p class="about" onclick="speedTest.open();">github.com/hcpp20334</p>
+    <p class="ie_fun"></p>
     </center>
+    <div class="speed_connection" >
+        <p class="speed_info" id="sp_dwn">DWN:00</p>
+        <p class="speed_info" id="sp_upd">UPD:00</p>
+        <button class="test" id="sp_test" style="float: left;transform: translate(28px,62px);">TEST</button>
+        <button  onclick="speedTest.close();" class="test" style="float: right;transform: translate(-26px,62px);">CANCEL</button>
+    </div>
 </div>
 <script>
-let redBackgroundFlag = document.querySelector("#red_back");
-let red_back_ball = document.querySelector("#red_back_ball");
-let red_back_bool = false;
-let videoBackground = document.querySelector("#video_back");
-let video_back_ball = document.querySelector("#video_back_ball");
-let video_back_bool = false;
-let video = "grok-video-5c127801-8c09-4935-af08-742d7afaef55.mp4";
-let g_VideoObject = document.createElement("video");
-let g_HtmlObject = document.documentElement;
+//
+
+
+function IEMode(){
+    var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+    if(isIE11){
+        document.getElementsByClassName("information-window")[0].style.backgroundColor = "rgba(7,7,7,0.8)";
+        document.getElementsByClassName("downloader-window")[0].style.backgroundColor = "rgba(7,7,7,0.8)";
+        document.getElementsByClassName("image-view")[0].style.backgroundColor = "rgba(7,7,7,0.8)";
+        document.getElementsByClassName("ie_fun")[0].innerHTML = "Ого! Ты зашел с Internet Explorer.<br>Ну ладно я адаптировал сайт)";
+        return "func: IEMode() : enable IE 11 Support";
+    }
+}
+
+function setItemData(str){
+    IEMode();
+    var item_name = str.slice(1);
+    if(str.charAt(0) == "#"){
+        return document.getElementById(item_name);
+    }
+    if(str.charAt(0) == "."){
+        return document.getElementsByClassName(item_name)[0];
+    }
+}
+var f = [
+    ".  ",".. ","..."
+];
+var speedTest = {
+    down: setItemData("#sp_dwn"),
+    rtt: setItemData("#sp_upd"),
+    button_test: setItemData("#sp_test"),
+    iDwn: 0,
+    iUpd: 0,
+    open: function(){
+        setItemData(".speed_connection").style.display = "block";
+    },
+    close: function(){
+     setItemData(".speed_connection").style.display = "none";
+    },
+    test: function(){
+        this.down.innerHTML = "DWN: " + navigator.connection.downlink + " Mbps";
+        this.rtt.innerHTML = "RTT: " + navigator.connection.rtt;
+    }
+};
+speedTest.button_test.onclick = function(){
+    var ch = 0;
+    var t = setInterval(function(){
+        ch++;
+        if(ch > 2){
+            ch = 0;
+        }
+        speedTest.down.innerHTML ="DWN: " +  f[ch];
+        speedTest.rtt.innerHTML = "RTT: " + f[ch];
+    },100);
+    var t1 = setTimeout(function(){
+        clearInterval(t);
+        clearTimeout(t1)
+        speedTest.test();
+    },1000);
+}
+
+//
+var redBackgroundFlag = setItemData("#red_back");
+var red_back_ball = setItemData("#red_back_ball");
+var red_back_bool = false;
+var videoBackground = setItemData("#video_back");
+var video_back_ball = setItemData("#video_back_ball");
+var video_back_bool = false;
+var video = "grok-video-5c127801-8c09-4935-af08-742d7afaef55.mp4";
+var g_VideoObject = document.createElement("video");
+var g_HtmlObject = document.documentElement;
 function createVideo(){
   
-    let g_VideoStyle = `
-   position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    `;
+    var g_VideoStyle = 
+  " position: absolute;"+
+   " z-index: -1;"+
+   " top: 0;"+
+    "left: 0;"+
+    "width: 100%;"+
+    "height: 100%;"+
+    "object-fit: cover;";
     g_VideoObject.width = window.innerWidth;
     g_VideoObject.height = window.innerHeight;
     g_VideoObject.style.cssText = g_VideoStyle;
@@ -89,12 +161,12 @@ function createVideo(){
 }
 function deleteVideo(){
 g_HtmlObject.removeChild(g_VideoObject);
-g_HtmlObject.style.background = `url("photo_2026-02-06_20-57-29_waifu2x_noise2_scale2x.png")`;
+g_HtmlObject.style.background = 'url("photo_2026-02-06_20-57-29_waifu2x_noise2_scale2x.png")';
 g_HtmlObject.style.backgroundSize = "cover";
 }
 videoBackground.onclick = function(){
     video_back_bool = !video_back_bool;
-    video_back_ball.style.transform = !video_back_bool ? ` translate(2px,1px)` : `translate(30px,1px)`;
+    video_back_ball.style.transform = !video_back_bool ? 'translate(2px,1px)' : 'translate(30px,1px)';
     if(video_back_bool){
         createVideo();
     }else{
@@ -103,12 +175,12 @@ videoBackground.onclick = function(){
 }
 redBackgroundFlag.onclick = function(){
     red_back_bool = !red_back_bool;
-    red_back_ball.style.transform = !red_back_bool ? ` translate(2px,1px)` : `translate(30px,1px)`;
-    var styleMain = document.querySelector(".style_main");
+    red_back_ball.style.transform = !red_back_bool ? 'translate(2px,1px)': 'translate(30px,1px)';
+    var styleMain = setItemData(".style_main");
     styleMain.href = !red_back_bool ? "main_red.css" : "main_green.css";
 }
-let item = 0;
-let _b_link = document.querySelector("._b_link");
+var item = 0;
+var _b_link = setItemData("._b_link");
 
 const images = [
     "res/0.jpg",
@@ -148,7 +220,7 @@ const projects_url = [
  "https://github.com/HCPP20334/CNotepad_0.1-x64-OpenGL3.3-/releases/download/0.2/CNotepadRelease.zip",
  "https://github.com/HCPP20334/Writter/releases/download/0.6/Release.zip"
 ];
-let id = 0;
+var id = 0;
 const projects_info = [
  "PCTool - Многофункциональный инструмент для настройки Windows<br>(batch)",
  "SYSTEM-Z - Системный мониторинг ПК и информация<br>(MSVC Написан на C++20 Visual Studio 2026)",
@@ -162,21 +234,21 @@ const projects_info = [
  "Writter - Блокнот<br>(MSVC Написан на C++20 Visual Studio 2026)"
 ];
 const buttons = {
-     prj_0: document.querySelector("#_prj_0"),
-     prj_1: document.querySelector("#_prj_1"),
-     prj_2: document.querySelector("#_prj_2"),
-     prj_3: document.querySelector("#_prj_3"),
-     prj_4: document.querySelector("#_prj_4"),
-     prj_5: document.querySelector("#_prj_5"),
-     prj_6: document.querySelector("#_prj_6"),
-     prj_7: document.querySelector("#_prj_7"),
-     prj_8: document.querySelector("#_prj_8"),
-     prj_9: document.querySelector("#_prj_9"),
-     prj_10: document.querySelector("#_prj_10"),
-     prj_11: document.querySelector("#_prj_11")
+     prj_0: setItemData("#_prj_0"),
+     prj_1: setItemData("#_prj_1"),
+     prj_2: setItemData("#_prj_2"),
+     prj_3: setItemData("#_prj_3"),
+     prj_4: setItemData("#_prj_4"),
+     prj_5: setItemData("#_prj_5"),
+     prj_6: setItemData("#_prj_6"),
+     prj_7: setItemData("#_prj_7"),
+     prj_8: setItemData("#_prj_8"),
+     prj_9: setItemData("#_prj_9"),
+     prj_10: setItemData("#_prj_10"),
+     prj_11: setItemData("#_prj_11")
 };
 function closeInfo(){
-    var w_gWindowInfo = document.querySelector(".information-window");
+    var w_gWindowInfo = setItemData(".information-window");
     
     w_gWindowInfo.style.animation = "oresize_w 500ms ease-out";
     var timeout = setTimeout(function(){
@@ -187,10 +259,10 @@ function closeInfo(){
     },450);
 }
 function closeImageView(){
-    var w_gImageViewFrame = document.querySelector('.image-view');
+    var w_gImageViewFrame = setItemData('.image-view');
     w_gImageViewFrame.style.animation = "oresize_w 500ms ease-out";
-    document.querySelector('.information-window').style.overflowY = 'scroll';
-    document.querySelector('.information-window').scrollTop = "0px";
+    setItemData('.information-window').style.overflowY = 'scroll';
+    setItemData('.information-window').scrollTop = "0px";
     var timer = setTimeout(function(){
         w_gImageViewFrame.style.width = '106px';
         w_gImageViewFrame.style.height =  '60px';
@@ -199,31 +271,33 @@ function closeImageView(){
     },450);
 }
 function imageView(){
-    document.querySelector('.information-window').scrollTop = "0px";
-    var g_pInfo = document.querySelector(".preview-info").innerHTML = projects_name[id];
-    var w_gImageViewFrame = document.querySelector('.image-view');
-    var w_gImage = document.querySelector(".img_file_screenshot2");
+    setItemData('.information-window').scrollTop = "0px";
+    var g_pInfo = setItemData(".preview-info").innerHTML = projects_name[id];
+    var w_gImageViewFrame = setItemData('.image-view');
+    var w_gImage = setItemData(".img_file_screenshot2");
     //
     w_gImageViewFrame.style.animation = "resize_w 500ms ease-out";
     w_gImageViewFrame.style.display = "block";
     //
     var timeout = setTimeout(function(){
-    w_gImageViewFrame.style.width = '800px';
-    w_gImageViewFrame.style.height =  '600px';
+    w_gImageViewFrame.style.width = "99%";
+    w_gImageViewFrame.style.MaxWidth = '800px';
+    w_gImageViewFrame.style.height =  '650px';
         clearTimeout(timeout);
     },450);
     //
     w_gImage.src = images[id];
-    document.querySelector(".information-window").style.overflow = "hidden";
+    setItemData(".information-window").style.overflow = "hidden";
 }
 function openInfo(i){
-    var w_gWindowInfo = document.querySelector(".information-window");
+    var w_gWindowInfo = setItemData(".information-window");
     w_gWindowInfo.style.display = "block";
     
     w_gWindowInfo.style.animation = "resize_w 500ms ease-in-out";
     var timeout = setTimeout(function(){
-        w_gWindowInfo.style.width = '800px';
-        w_gWindowInfo.style.height =  '600px';
+        w_gWindowInfo.style.width = "99%";
+        w_gWindowInfo.style.MaxWidth = '800px';
+        w_gWindowInfo.style.height =  '650px';
         clearTimeout(timeout);
     },450);
    id = i;
@@ -232,7 +306,7 @@ _b_link.onclick = function(){
     window.open(projects_url[id]);
 }
 function setInfoNameText(string){
-    var p_gInfoProjects = document.querySelector(".text_info_name");
+    var p_gInfoProjects = setItemData(".text_info_name");
     p_gInfoProjects.innerHTML = string;
     p_gInfoProjects.style.transform = "translateX(-2340px)";
     var timeout = setTimeout(function(){
@@ -241,7 +315,7 @@ function setInfoNameText(string){
     },50);
 }
 function setInfoText(string){
-    var p_gInfoProjects = document.querySelector(".text_info");
+    var p_gInfoProjects = setItemData(".text_info");
     p_gInfoProjects.innerHTML = string;
     p_gInfoProjects.style.transform = "translateX(-2340px)";
     var timeout = setTimeout(function(){
@@ -250,24 +324,24 @@ function setInfoText(string){
     },450);
 }
 function setInfoImage(url){
-    var img_gInfoProjects =  document.querySelector(".img_file_screenshot");
+    var img_gInfoProjects =  setItemData(".img_file_screenshot");
     img_gInfoProjects.src = url;
    
 }
 
 function loadButtonsName(){
-    buttons.prj_0.textContent = projects_name[0];
-    buttons.prj_1.textContent = projects_name[1];
-    buttons.prj_2.textContent = projects_name[2];
-    buttons.prj_3.textContent = projects_name[3];
-    buttons.prj_4.textContent = projects_name[4];
-    buttons.prj_5.textContent = projects_name[5];
-    buttons.prj_6.textContent = projects_name[6];
-    buttons.prj_7.textContent = projects_name[7];
-    buttons.prj_8.textContent = projects_name[8];
-    buttons.prj_9.textContent = projects_name[9];
-   // buttons.prj_10.textContent = projects_name[10];
-   // buttons.prj_11.textContent = projects_name[11];
+    buttons.prj_0.innerHTML = projects_name[0];
+    buttons.prj_1.innerHTML = projects_name[1];
+    buttons.prj_2.innerHTML = projects_name[2];
+    buttons.prj_3.innerHTML = projects_name[3];
+    buttons.prj_4.innerHTML = projects_name[4];
+    buttons.prj_5.innerHTML = projects_name[5];
+    buttons.prj_6.innerHTML = projects_name[6];
+    buttons.prj_7.innerHTML = projects_name[7];
+    buttons.prj_8.innerHTML = projects_name[8];
+    buttons.prj_9.innerHTML = projects_name[9];
+   // buttons.prj_10.innerHTML = projects_name[10];
+   // buttons.prj_11.innerHTML = projects_name[11];
 }
 loadButtonsName();
 buttons.prj_0.onclick = function(){
@@ -343,21 +417,21 @@ buttons.prj_11.onclick = function(){
     openInfo(11);
 }
 function debug(str){
-    document.querySelector('.debug_text').textContent = str;
+    setItemData('.debug_text').innerHTML = str;
 }
 function selectItems(idx){
     setInfoNameText(projects_name[idx]);
     setInfoText(projects_info[idx]);
     setInfoImage(images[idx]);
     id = idx;
-  //  debug(`projects_info : ${projects_info[idx]}\n\rprojects_name: ${projects_name[idx]}\n\rindex: ${idx}`);
+  //  debug('projects_info : ${projects_info[idx]}\n\rprojects_name: ${projects_name[idx]}\n\rindex: ${idx}');
     if(idx > 9){
         idx = 1;
     }
     if(idx < 1){
         idx = 9;
     }
-    document.querySelector("#item_count").textContent = idx;
+    setItemData("#item_count").innerHTML = idx;
 }
 </script>
 </html>

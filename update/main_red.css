@@ -15,7 +15,7 @@ html{
 }
 *{
     color: #8eb0e6;
-    font-family: 'SF Mono'
+    font-family: 'SF Mono','Consolas';
 
 }
 @keyframes resize_w {
@@ -24,8 +24,9 @@ html{
         height: 60px;
     }
     100%{
-        width: 800px;
-        height: 600px;
+        width: 99%;
+        max-width: 800px;
+        height: 650px;
     }
 }
 @keyframes oresize_w {
@@ -34,16 +35,16 @@ html{
         height: 60px;
     }
     0%{
-        width: 800px;
-        height: 600px;
+        width: 99%;
+        max-width: 800px;
+        height: 650px;
     }
 }
 .downloader-window{
-    width: auto;
-    height: auto;
     min-width: 330px;
-    width: 800px;
-    height: 600px;
+    width: 99%;
+    max-width: 800px;
+    height: 650px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -64,12 +65,43 @@ html{
         border-radius: 30px;
     }
 }
+.speed_connection{
+
+    width: 300px;
+    height: 300px;
+    background: #111422;
+    transform: translateX(30px);
+    display: none;
+    border: 2px solid #070707;
+    border-radius: 14px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.speed_info{
+    color: #fff;
+    transform: translate(20px,32px);
+
+}
+.test{
+    background: #111422;
+    transform: translate(20px,32px);
+    border: 2px solid #070707;
+    color: #fff;
+    width: 120px;
+    height: 30px;
+    display: block;
+    &:hover{
+        background: #0d0f1b;
+    }
+}
 .information-window{
-    width: auto;
-    height: auto;
+   
     min-width: 330px;
-    width: 800px;
-    height: 600px;
+    width: 99%;
+    max-width: 800px;
+    height: 650px;
     position: absolute;
     display: none;
     animation: resize_w 500ms ease-in-out;
@@ -181,7 +213,7 @@ p{
 }
 .image-view{
     width: 800px;
-    height: 600px;
+    height: 650px;
     background: #07070790;
     backdrop-filter: blur(50px);
     position: absolute;
