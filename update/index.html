@@ -3,8 +3,39 @@
         <meta charset="utf-8">
     </head>
 <link rel="stylesheet" href="main_red.css" class="style_main">
-
+<div id="about_window" onclick="">
+<p class="about_text_data" style="font-size: 30px;">МОЙ СЕТАП</p>
+<p class="about_text_data" style="color: #fc5f5f;">AMD RYZEN 7 5700x3d 4.0ghz 8/16</p>
+<p class="about_text_data" style="color: #fc5f5f;">apacer nox 32 gb ddr4 3200 mhz</p>
+<p class="about_text_data" style="color: #fc5f5f;">SAPPHIRE RX 7600 OC GPU: 2600mhz MEM 2200 mhz</p>
+<p class="about_text_data" style="color: #fc5f5f;">моник 0: msi mp2412 pro 1080p100hz</p>
+<p class="about_text_data" style="color: #fc5f5f;">моник 1: aoc m2060sw 1080h60hz</p>
+<p class="about_text_data" style="color: #fc5f5f;">бп: msi an650 650w +80 bronse</p>
+<p class="about_text_data" style="color: #fc5f5f;">WD blue 1tb 7200 sata 3 </p>
+<p class="about_text_data" style="color: #fc5f5f;">adata su650 256gb sata 3</p>
+<p class="about_text_data" style="color: #fc5f5f;">msi a520m pro</p>
+<p class="about_text_data" style="color: #fc5f5f;">darkproject kd87a slient-keycap</p>
+<p class="about_text_data" style="color: #fc5f5f;">-------------------------------</p>
+<p class="about_text_data" style="color: #fc5f5f;">Я HCPP20334</p>
+<p class="about_text_data" style="color: #fc5f5f;">C++20 Разработчик (soft-dev,gamedev)</p>
+<p class="about_text_data" style="color: #fc5f5f;">js Разработчик (nodejs,web-dev,telegram-bot-dev)</p>
+<p class="about_text_data" style="color: #fc5f5f;">AMD BOY  СЛАВА АМД И СЛАВА С++</p>
+<p class="about_text_data" style="color: #ccf;">ПЕСНЯ</p>
+<div class="player">
+    <audio src="RX4D - AMD-FX REVENGE [TYtrfBLcjyI].mp3" class="audio_device"></audio>
+    <center>
+        <button class="cont" id="ae_prev"><</button>
+        <button class="cont" id="ae_play">▶</button>
+        <button class="cont" id="ae_next">></button>
+        <input class="cont" id="ae_volume" type="range" min="0.00" max="1.00" step="0.001" value="0.05">
+    </center>
+    </div>
+    <center>
+    <button class="about-close" onclick="openAbout(0)">Закрыть</button>
+</center>
+</div>
 <div class="information-window">
+  
     <div class="image-view" onclick="closeImageView()">
        <center> <img src="./" class="img_file_screenshot2">
     <h1 class="preview-info"></h1>
@@ -31,7 +62,13 @@
  
 </div>
 <div class="downloader-window">
-    <p class="debug_text">HCPP DEV</p>
+    <div class="navigator">
+        <button class="navigator_item2">HCPP DEV</button>
+    <button class="navigator_item2">ГАЙДЫ</button>
+    <button class="navigator_item2">СОФТ</button>
+    <button class="navigator_item2">СХЕМЫ</button>
+    </div>
+
 
     <button class="_button" id="_prj_0">🛠 PCTool</button>
     <button class="_button" id="_prj_1">🛠 PCTool</button>
@@ -55,20 +92,58 @@
     </div>
     <br>
     <center>
-    <p class="about" onclick="speedTest.open();">github.com/hcpp20334</p>
+    <button class="_button"onclick="openAbout(1);" style="background: #0d0f1b;border: 1px solid #353555;">ОБО МНE</button>
     <p class="ie_fun"></p>
     </center>
     <div class="speed_connection" >
         <p class="speed_info" id="sp_dwn">DWN:00</p>
+        <div class='line'></div>
         <p class="speed_info" id="sp_upd">UPD:00</p>
+        <div class='line'></div>
         <button class="test" id="sp_test" style="float: left;transform: translate(28px,62px);">TEST</button>
         <button  onclick="speedTest.close();" class="test" style="float: right;transform: translate(-26px,62px);">CANCEL</button>
     </div>
+   <div class="build">rev 0.23.00</div>
 </div>
 <script>
 //
+function ErrorStackTraceWindow(string_error){
+  var error_stack = document.createElement("div");
+  var error_stack_style = 
+  "position: absolute;"+
+  "z-index: 5;"+
+  "width: 300px;"+
+  "height: auto;"+
+  "min-height: 40px;"+
+  "top: 50%;"+
+  "left: 50%;"+
+  "color: #fff;"+
+  "font-size: 12px;"+
+  "border-radius: 0px;"+
+  "background: #07070790;"+
+  "border: 1px solid #353555;"+
+  "border: 1px solid #353555;"+
+  "animation: resize_w2 500ms ease;"+
+  "transform: translate(-50%,-50%);";
+  var error_stack_document = document.documentElement;
+  error_stack_document.appendChild(error_stack);
+  error_stack.style = error_stack_style;
+  let a = setTimeout(function(){
+    error_stack.innerHTML = "<center><p>"+string_error+"</p></center>";
+    clearTimeout(a);
+    },410);
+  let b = setTimeout(function(){
+   error_stack.style.display = "none";
+  },1400);
+  let c = setTimeout(function(){
+    error_stack.innerHTML = "";
+   error_stack.style.animation = "oresize_w2 500ms ease";
+  },1200);
 
-
+}
+window.addEventListener("error",function(e_stack){
+    ErrorStackTraceWindow("javascript error:<br><div class='line'></div>exception:<br>"+e_stack.message);
+});
 function IEMode(){
     var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
     if(isIE11){
@@ -90,6 +165,83 @@ function setItemData(str){
         return document.getElementsByClassName(item_name)[0];
     }
 }
+const ae = {
+    prev: setItemData("#ae_prev"),
+    next: setItemData("#ae_next"),
+    play: setItemData("#ae_play"),
+    volume: setItemData("#ae_volume"),
+    isPlayed: false
+};
+class AudioPlayer{
+    g_pAudio = "";
+    g_fVolume = 0.05;
+    PushVolume(){
+        this.g_pAudio.volume = this.g_fVolume;
+    }
+    init(audio_device){
+        this.g_pAudio = audio_device;
+        if(this.g_pAudio instanceof HTMLAudioElement){
+            this.PushVolume();
+        }
+    }
+    load(file){
+        if(this.g_pAudio instanceof HTMLAudioElement){
+            this.g_pAudio.src = file;
+        }else{
+            ErrorStackTraceWindow("audio: audio not init");
+        }
+    }
+    audioEvent(state){
+        if(this.g_pAudio instanceof HTMLAudioElement){
+            state ? this.g_pAudio.play() : this.g_pAudio.pause();
+        }else{
+            ErrorStackTraceWindow("audio: audio not init");
+        }
+    }
+    
+
+};
+//
+
+
+const AEPlayer =  new AudioPlayer();
+AEPlayer.init(setItemData(".audio_device"));
+
+ae.next.onclick = function(){
+
+}
+ae.prev.onclick = function(){
+    
+}
+ae.play.onclick = function(){
+    const str = ["▶","■"];
+    ae.isPlayed = !ae.isPlayed;
+    ae.play.innerHTML = str[ae.isPlayed ? 1 : 0];
+    AEPlayer.audioEvent(ae.isPlayed);
+}
+ae.volume.oninput = function(){
+    AEPlayer.PushVolume();
+    AEPlayer.g_fVolume = this.value;
+}
+//
+AEPlayer.g_pAudio.addEventListener("timeupdate",function(){
+  if(this.currentTime == this.duration){
+    ae.play.click();
+  }
+});
+
+function main_menu_state(state_bool){
+    var g_Main = setItemData(".downloader-window");
+    if(g_Main){
+        console.log("main page ok!");
+    }
+   
+    g_Main.style.animation = state_bool ? "resize_w 500ms ease-out" : "oresize_w 500ms ease-out";
+    let a = setTimeout(function(){
+        g_Main.style.display = state_bool ? "block" : "none";
+        clearTimeout(a);
+    },310);
+}
 var f = [
     ".  ",".. ","..."
 ];
@@ -110,6 +262,24 @@ var speedTest = {
         this.rtt.innerHTML = "RTT: " + navigator.connection.rtt;
     }
 };
+function openAbout(state){
+    var g_AboutWindow = setItemData("#about_window");
+    main_menu_state(state ? false : true);
+    if(state){
+        g_AboutWindow.style.animation = "resize_w3 500ms ease";
+        var inam = setTimeout(function(){
+            g_AboutWindow.style.display = "block";
+            clearTimeout(inam);
+        },300);
+    }else{
+        g_AboutWindow.style.animation = "oresize_w3 500ms ease";
+        var outam = setTimeout(function(){
+            g_AboutWindow.style.display = "none";
+            clearTimeout(outam);
+        },300);
+    }
+
+}
 speedTest.button_test.onclick = function(){
     var ch = 0;
     var t = setInterval(function(){
@@ -197,12 +367,12 @@ const images = [
     "res/11.jpg",
 ];
 const projects_name = [
- "PCTool",
+ "PCTOOL",
  "SYSTEM-Z",
  "JoystickTest",
  "SWEET BREADS",
  "XHASH",
- "FakeDeepPayload",
+ "Fake_Deep_Payload",
  "VlessChecker",
  "Electrik Calc",
  "CNotepadIDE",
@@ -247,14 +417,19 @@ const buttons = {
      prj_10: setItemData("#_prj_10"),
      prj_11: setItemData("#_prj_11")
 };
+
 function closeInfo(){
+
     var w_gWindowInfo = setItemData(".information-window");
-    
+    var w_gWindowMain = setItemData(".downloader-window");
     w_gWindowInfo.style.animation = "oresize_w 500ms ease-out";
+    main_menu_state(true);
     var timeout = setTimeout(function(){
+      
         w_gWindowInfo.style.width = '106px';
         w_gWindowInfo.style.height =  '60px';
        w_gWindowInfo.style.display = 'none';
+       w_gWindowMain.style.animation = "resize_w 500ms ease-out";
         clearTimeout(timeout);
     },450);
 }
@@ -290,14 +465,19 @@ function imageView(){
     setItemData(".information-window").style.overflow = "hidden";
 }
 function openInfo(i){
+   
     var w_gWindowInfo = setItemData(".information-window");
+    var w_gWindowMain = setItemData(".downloader-window");
     w_gWindowInfo.style.display = "block";
     
     w_gWindowInfo.style.animation = "resize_w 500ms ease-in-out";
     var timeout = setTimeout(function(){
+        
         w_gWindowInfo.style.width = "99%";
         w_gWindowInfo.style.MaxWidth = '800px';
         w_gWindowInfo.style.height =  '650px';
+       
+        main_menu_state(false);
         clearTimeout(timeout);
     },450);
    id = i;
@@ -404,18 +584,7 @@ buttons.prj_9.onclick = function(){
     setInfoImage(images[9]);
     openInfo(9);
 }
-buttons.prj_10.onclick = function(){
-    setInfoNameText(projects_name[10]);
-    setInfoText(projects_info[10]);
-    setInfoImage(images[10]);
-    openInfo(10);
-}
-buttons.prj_11.onclick = function(){
-    setInfoNameText(projects_name[11]);
-    setInfoText(projects_info[11]);
-    setInfoImage(images[11]);
-    openInfo(11);
-}
+
 function debug(str){
     setItemData('.debug_text').innerHTML = str;
 }
