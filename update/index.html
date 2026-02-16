@@ -1,5 +1,7 @@
 <html>
     <head>
+        <link rel="icon" href="PEngine.png">
+        <title >HCPP DEV UPDATE</title>
         <meta charset="utf-8">
     </head>
 <link rel="stylesheet" href="main_red.css" class="style_main">
@@ -15,12 +17,11 @@
 <p class="about_text_data" style="color: #fc5f5f;">adata su650 256gb sata 3</p>
 <p class="about_text_data" style="color: #fc5f5f;">msi a520m pro</p>
 <p class="about_text_data" style="color: #fc5f5f;">darkproject kd87a slient-keycap</p>
-<p class="about_text_data" style="color: #fc5f5f;">-------------------------------</p>
+<p class="about_text_data" style="font-size: 30px;">ОБО МНЕ XD</p>
 <p class="about_text_data" style="color: #fc5f5f;">Я HCPP20334</p>
 <p class="about_text_data" style="color: #fc5f5f;">C++20 Разработчик (soft-dev,gamedev)</p>
 <p class="about_text_data" style="color: #fc5f5f;">js Разработчик (nodejs,web-dev,telegram-bot-dev)</p>
 <p class="about_text_data" style="color: #fc5f5f;">AMD BOY  СЛАВА АМД И СЛАВА С++</p>
-<p class="about_text_data" style="color: #ccf;">ПЕСНЯ</p>
 <div class="player">
     <audio src="RX4D - AMD-FX REVENGE [TYtrfBLcjyI].mp3" class="audio_device"></audio>
     <center>
@@ -63,24 +64,26 @@
 </div>
 <div class="downloader-window">
     <div class="navigator">
-        <button class="navigator_item2">HCPP DEV</button>
-    <button class="navigator_item2">ГАЙДЫ</button>
-    <button class="navigator_item2">СОФТ</button>
-    <button class="navigator_item2">СХЕМЫ</button>
+        <center>
+        <button class="navigator_item2">🔧</button>
+    <button class="navigator_item2">🔧</button>
+    <button class="navigator_item2">🔧</button>
+    <button class="navigator_item2">🔧</button>
+</center>
     </div>
 
 
-    <button class="_button" id="_prj_0">🛠 PCTool</button>
-    <button class="_button" id="_prj_1">🛠 PCTool</button>
-    <button class="_button" id="_prj_2">🛠 PCTool</button>
-    <button class="_button" id="_prj_3">🛠 PCTool</button>
-    <button class="_button" id="_prj_4">🛠 PCTool</button>
-    <button class="_button" id="_prj_5">🛠 PCTool</button>
+    <button class="_button" id="_prj_0">Not Loaded</button>
+    <button class="_button" id="_prj_1">Not Loaded</button>
+    <button class="_button" id="_prj_2">Not Loaded</button>
+    <button class="_button" id="_prj_3">Not Loaded</button>
+    <button class="_button" id="_prj_4">Not Loaded</button>
+    <button class="_button" id="_prj_5">Not Loaded</button>
     <br>
-    <button class="_button" id="_prj_6">🛠 PCTool</button>
-    <button class="_button" id="_prj_7">🛠 PCTool</button>
-    <button class="_button" id="_prj_8">🛠 PCTool</button>
-    <button class="_button" id="_prj_9">🛠 PCTool</button>
+    <button class="_button" id="_prj_6">Not Loaded</button>
+    <button class="_button" id="_prj_7">Not Loaded</button>
+    <button class="_button" id="_prj_8">Not Loaded</button>
+    <button class="_button" id="_prj_9">Not Loaded</button>
     <br>
     <p class="toogle_text" style="display: inline-block;transform: translate(100px,-13px);">Тема</p>
     <div class="toogle" id="red_back" style="display: inline-block;transform: translateX(100px);">
@@ -103,7 +106,7 @@
         <button class="test" id="sp_test" style="float: left;transform: translate(28px,62px);">TEST</button>
         <button  onclick="speedTest.close();" class="test" style="float: right;transform: translate(-26px,62px);">CANCEL</button>
     </div>
-   <div class="build">rev 0.23.00</div>
+   <div class="build">rev 0.23.05 (17.02.26)</div>
 </div>
 <script>
 //
@@ -115,13 +118,12 @@ function ErrorStackTraceWindow(string_error){
   "width: 300px;"+
   "height: auto;"+
   "min-height: 40px;"+
-  "top: 50%;"+
+  "top: 5%;"+
   "left: 50%;"+
   "color: #fff;"+
   "font-size: 12px;"+
-  "border-radius: 0px;"+
+  "border-radius: 30px;"+
   "background: #07070790;"+
-  "border: 1px solid #353555;"+
   "border: 1px solid #353555;"+
   "animation: resize_w2 500ms ease;"+
   "transform: translate(-50%,-50%);";
@@ -141,9 +143,11 @@ function ErrorStackTraceWindow(string_error){
   },1200);
 
 }
+
 window.addEventListener("error",function(e_stack){
-    ErrorStackTraceWindow("javascript error:<br><div class='line'></div>exception:<br>"+e_stack.message);
+    ErrorStackTraceWindow(e_stack.message);
 });
+
 function IEMode(){
     var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
     if(isIE11){
@@ -152,6 +156,7 @@ function IEMode(){
         document.getElementsByClassName("image-view")[0].style.backgroundColor = "rgba(7,7,7,0.8)";
         document.getElementsByClassName("ie_fun")[0].innerHTML = "Ого! Ты зашел с Internet Explorer.<br>Ну ладно я адаптировал сайт)";
         return "func: IEMode() : enable IE 11 Support";
+        ErrorStackTraceWindow("IE11 не поддерживается. Извини друг.");
     }
 }
 
@@ -308,7 +313,7 @@ var video = "grok-video-5c127801-8c09-4935-af08-742d7afaef55.mp4";
 var g_VideoObject = document.createElement("video");
 var g_HtmlObject = document.documentElement;
 function createVideo(){
-  
+    ErrorStackTraceWindow("Видео создано в памяти");
     var g_VideoStyle = 
   " position: absolute;"+
    " z-index: -1;"+
@@ -321,6 +326,7 @@ function createVideo(){
     g_VideoObject.height = window.innerHeight;
     g_VideoObject.style.cssText = g_VideoStyle;
     g_VideoObject.src = video;
+    g_VideoObject.controls = false;
     g_HtmlObject.appendChild(g_VideoObject);
     g_HtmlObject.style.background = "#070707";
     if(g_VideoObject){
@@ -330,6 +336,7 @@ function createVideo(){
     }
 }
 function deleteVideo(){
+    ErrorStackTraceWindow("Видео Удалено из Памяти");
 g_HtmlObject.removeChild(g_VideoObject);
 g_HtmlObject.style.background = 'url("photo_2026-02-06_20-57-29_waifu2x_noise2_scale2x.png")';
 g_HtmlObject.style.backgroundSize = "cover";
@@ -344,6 +351,7 @@ videoBackground.onclick = function(){
     }
 }
 redBackgroundFlag.onclick = function(){
+    ErrorStackTraceWindow(red_back_bool ? "Переключена тема 0" : "Переключена тема 1");
     red_back_bool = !red_back_bool;
     red_back_ball.style.transform = !red_back_bool ? 'translate(2px,1px)': 'translate(30px,1px)';
     var styleMain = setItemData(".style_main");
