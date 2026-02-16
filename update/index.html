@@ -136,6 +136,7 @@ function ErrorStackTraceWindow(string_error){
     },410);
   let b = setTimeout(function(){
    error_stack.style.display = "none";
+   error_stack_document.removeChild(error_stack);
   },1400);
   let c = setTimeout(function(){
     error_stack.innerHTML = "";
