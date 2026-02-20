@@ -5,35 +5,35 @@
         <meta charset="utf-8">
     </head>
 <link rel="stylesheet" href="main_red.css" class="style_main">
+<h1 class="main_text" >МОИ ПРОЕКТЫ</h1>
 <div id="about_window" onclick="">
-<p class="about_text_data" style="font-size: 30px;">МОЙ СЕТАП</p>
-<p class="about_text_data" style="color: #fc5f5f;">AMD RYZEN 7 5700x3d 4.0ghz 8/16</p>
-<p class="about_text_data" style="color: #fc5f5f;">apacer nox 32 gb ddr4 3200 mhz</p>
-<p class="about_text_data" style="color: #fc5f5f;">SAPPHIRE RX 7600 OC GPU: 2600mhz MEM 2200 mhz</p>
-<p class="about_text_data" style="color: #fc5f5f;">моник 0: msi mp2412 pro 1080p100hz</p>
-<p class="about_text_data" style="color: #fc5f5f;">моник 1: aoc m2060sw 1080h60hz</p>
-<p class="about_text_data" style="color: #fc5f5f;">бп: msi an650 650w +80 bronse</p>
-<p class="about_text_data" style="color: #fc5f5f;">WD blue 1tb 7200 sata 3 </p>
-<p class="about_text_data" style="color: #fc5f5f;">adata su650 256gb sata 3</p>
-<p class="about_text_data" style="color: #fc5f5f;">msi a520m pro</p>
-<p class="about_text_data" style="color: #fc5f5f;">darkproject kd87a slient-keycap</p>
-<p class="about_text_data" style="font-size: 30px;">ОБО МНЕ XD</p>
-<p class="about_text_data" style="color: #fc5f5f;">Я HCPP20334</p>
-<p class="about_text_data" style="color: #fc5f5f;">C++20 Разработчик (soft-dev,gamedev)</p>
-<p class="about_text_data" style="color: #fc5f5f;">js Разработчик (nodejs,web-dev,telegram-bot-dev)</p>
-<p class="about_text_data" style="color: #fc5f5f;">AMD BOY  СЛАВА АМД И СЛАВА С++</p>
-<div class="player">
-    <audio src="RX4D - AMD-FX REVENGE [TYtrfBLcjyI].mp3" class="audio_device"></audio>
-    <center>
-        <button class="cont" id="ae_prev"><</button>
-        <button class="cont" id="ae_play">▶</button>
-        <button class="cont" id="ae_next">></button>
-        <input class="cont" id="ae_volume" type="range" min="0.00" max="1.00" step="0.001" value="0.05">
-    </center>
-    </div>
-    <center>
-    <button class="about-close" onclick="openAbout(0)">Закрыть</button>
-</center>
+  <div class="content-about">
+    <p class="about_text_data" style="font-size: 30px;">МОЙ СЕТАП</p>
+    <p class="about_text_data" style="color: #fc5f5f;">AMD RYZEN 7 5700x3d 4.0ghz 8/16</p>
+    <p class="about_text_data" style="color: #fc5f5f;">apacer nox 32 gb ddr4 3200 mhz</p>
+    <p class="about_text_data" style="color: #fc5f5f;">SAPPHIRE RX 7600 OC GPU: 2600mhz MEM 2200 mhz</p>
+    <p class="about_text_data" style="color: #fc5f5f;">моник 0: msi mp2412 pro 1080p100hz</p>
+    <p class="about_text_data" style="color: #fc5f5f;">моник 1: aoc m2060sw 1080h60hz</p>
+    <p class="about_text_data" style="color: #fc5f5f;">бп: msi an650 650w +80 bronse</p>
+    <p class="about_text_data" style="color: #fc5f5f;">WD blue 1tb 7200 sata 3 </p>
+    <p class="about_text_data" style="color: #fc5f5f;">adata su650 256gb sata 3</p>
+    <p class="about_text_data" style="color: #fc5f5f;">msi a520m pro</p>
+    <p class="about_text_data" style="color: #fc5f5f;">darkproject kd87a slient-keycap</p>
+    
+    <p class="about_text_data" style="font-size: 30px;">ОБО МНЕ XD</p>
+    <p class="about_text_data" style="color: #fc5f5f;">Я HCPP20334</p>
+    <p class="about_text_data" style="color: #fc5f5f;">C++20 Разработчик (soft-dev,gamedev)</p>
+    <p class="about_text_data" style="color: #fc5f5f;">js Разработчик (nodejs,web-dev,telegram-bot-dev)</p>
+    <p class="about_text_data" style="color: #fc5f5f;">AMD BOY  СЛАВА АМД И СЛАВА С++</p>
+    <div class="player">
+        <audio src="RX4D - AMD-FX REVENGE [TYtrfBLcjyI].mp3" class="audio_device"></audio>
+
+          
+            <button class="cont" id="ae_play">▶</button>
+            <input class="cont" id="ae_volume" type="range" min="0.00" max="1.00" step="0.001" value="0.05">
+        <button class="about-close" onclick="openAbout(0)">Закрыть</button>
+        </div>
+  </div>
 </div>
 <div class="information-window">
   
@@ -172,8 +172,8 @@ function setItemData(str){
     }
 }
 const ae = {
-    prev: setItemData("#ae_prev"),
-    next: setItemData("#ae_next"),
+   // prev: setItemData("#ae_prev"),
+   // next: setItemData("#ae_next"),
     play: setItemData("#ae_play"),
     volume: setItemData("#ae_volume"),
     isPlayed: false
@@ -213,12 +213,12 @@ class AudioPlayer{
 const AEPlayer =  new AudioPlayer();
 AEPlayer.init(setItemData(".audio_device"));
 
-ae.next.onclick = function(){
+// ae.next.onclick = function(){
 
-}
-ae.prev.onclick = function(){
+// }
+// ae.prev.onclick = function(){
     
-}
+// }
 ae.play.onclick = function(){
     const str = ["▶","■"];
     ae.isPlayed = !ae.isPlayed;
@@ -310,7 +310,7 @@ var red_back_bool = false;
 var videoBackground = setItemData("#video_back");
 var video_back_ball = setItemData("#video_back_ball");
 var video_back_bool = false;
-var video = "grok-video-5c127801-8c09-4935-af08-742d7afaef55.mp4";
+var video = "livevideo.mp4";
 var g_VideoObject = document.createElement("video");
 var g_HtmlObject = document.documentElement;
 function createVideo(){

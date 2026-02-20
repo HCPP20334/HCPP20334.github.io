@@ -32,7 +32,7 @@ html{
 @keyframes resize_w3 {
     100%{
         width: 400px;
-        height: 600px;
+        height: 460px;
     }
     0%{
         width: 106px;
@@ -42,7 +42,7 @@ html{
 @keyframes oresize_w3 {
     0%{
         width: 400px;
-        height: 600px;
+        height: 460px;
     }
     100%{
         width: 106px;
@@ -371,12 +371,12 @@ button,p{
 }
 .player{
     background: #070707cc;
-    width: 300px;
+    width: auto;
     height: 40px;
     border: 1px solid #ccf;
-    display: block;
-    margin: auto;
-    margin-top: -10px;
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-left: 20px;
 }
 .player_timeline{
  width: 90%;
@@ -407,8 +407,9 @@ button,p{
 #ae_volume{
     width: 100px;
     height: 3px;
- transform: translateY(1px);
+   margin-left: 0px;
  appearance: none;
+ transform: translateY(-2px);
 }
 #ae_volume::-webkit-slider-runnable-track{
     -webkit-appearance: none;
@@ -430,8 +431,8 @@ button,p{
     transform: translate(18px,-2px);
 }
 #about_window{
-    width: 460px;
-    height: 690px;
+    width: 860px;
+    height: 660px;
     background: #111422aa;
     border: 1px solid #ccf;
     position: absolute;
@@ -461,15 +462,17 @@ button,p{
     margin-left: 10px;
 }
 .about-close{
-    background: #0d0f1b;
-    width: 96%;
+    background: #070707cc;
+    width: 300px;
     height: 40px;
-    display: block;
-    margin-top: 10px;
-    border: 1px solid #ccf;
-    border-radius: 30px;
+    display: inline-block;
+    border-left: 1px solid #ccf;
+    border-right: 1px solid transparent;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
     color : #dcdcf7;
-    transform: translateX(0px);
 }
 .build{
     color: #ccf;
@@ -477,4 +480,35 @@ button,p{
     font-style: italic;
     margin-left: 40px;
     margin-top: 30px
+}
+div{
+    max-height: 600px;
+}
+.content-about{
+    height: 130%;
+    overflow: scroll;
+    &::-webkit-scrollbar{
+        background: #111422;
+        border-radius: 30px;
+        height: 99%;
+    }
+    &::-webkit-scrollbar-thumb{
+        background: #8eb0e6;
+        border-radius: 30px;
+    }
+}
+.main_text{
+    min-width: 800px;
+    width: 99%;
+    max-width: 800px;
+    text-align: center;
+    font-size: 40px;
+    font-style: italic;
+    font-family: 'Bounded';
+    color: #ef1b49;
+    background: #070707aa;
+    border-radius: 40px;
+    border: 1px solid #353555;
+    display: block;
+    margin: auto;
 }
