@@ -71,7 +71,7 @@ html{
         height: auto;
     }
 }
-@keyframes oresize_w2 {
+@keyframes oresize_w {
     100%{
         width: 0px;
         height: 0px;
@@ -79,7 +79,7 @@ html{
     0%{
         width: 300px;
         min-height: 40px;
-        height: auto;
+        height: 100%;
     }
 }
 .downloader-window{
@@ -363,16 +363,15 @@ button,p{
 }
 .player{
     background: #070707cc;
-    width: auto;
+    width: 400px;
     height: 40px;
     border: 1px solid #353555;
-    display: inline-block;
-    margin-bottom: 20px;
-    margin-left: 20px;
+    display: block;
+    margin: auto;
 
 }
 .player_timeline{
- width: 90%;
+ width: 300px;
  height: 3px;
  display: block;
  margin: auto;
@@ -428,7 +427,7 @@ button,p{
     min-width: 800px;
     width: 99%;
     max-width: 800px;
-    height: 80%;
+    height: 1000px;
     background: #111422aa;
     border: 1px solid #353555;
     position: absolute;
@@ -457,10 +456,11 @@ button,p{
     font-weight: bold;
     margin-left: 10px;
     display: block;
+    text-align: center;
 }
 .about-close{
     background: #070707cc;
-    width: 300px;
+    width: 230px;
     height: 40px;
     display: inline-block;
     border-left: 1px solid #353555;
@@ -513,4 +513,12 @@ div{
     border: 1px solid #353555;
     display: block;
     margin: auto;
+}
+.stk_img{
+    width: 128px;
+    height: 128px;
+    margin-top: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
