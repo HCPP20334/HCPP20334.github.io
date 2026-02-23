@@ -177,7 +177,7 @@ html{
     height: 60px;
     
     color: #9494a6;
-    font-family: 'SF Mono';
+    font-family: 'SF Mono','Consolas';
     font-style: italic;
     font-size: 16px;
     transition: .2s  ;transform: rotate(0deg);
@@ -326,14 +326,14 @@ p{
 .navigator_item{
     color: #fff;
     font-size: 20px;
-    font-family: 'SF Mono';
+    font-family: 'SF Mono','Consolas';
     margin-left: 40px;
     display: inline-block;
 }
 .navigator_item2{
     color: #fff;
     font-size: 16px;
-    font-family: 'SF Mono';
+    font-family: 'SF Mono','Consolas';
     background: transparent; 
     width: 64px;
     height: 64px;

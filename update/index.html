@@ -133,15 +133,15 @@ function ErrorStackTraceWindow(string_error){
   var error_stack_document = document.documentElement;
   error_stack_document.appendChild(error_stack);
   error_stack.style = error_stack_style;
-  let a = setTimeout(function(){
+  var a = setTimeout(function(){
     error_stack.innerHTML = "<center><p>"+string_error+"</p></center>";
     clearTimeout(a);
     },410);
-  let b = setTimeout(function(){
+  var b = setTimeout(function(){
    error_stack.style.display = "none";
    error_stack_document.removeChild(error_stack);
   },1400);
-  let c = setTimeout(function(){
+  var c = setTimeout(function(){
     error_stack.innerHTML = "";
    error_stack.style.animation = "oresize_w2 500ms ease";
   },1200);
@@ -151,16 +151,20 @@ function ErrorStackTraceWindow(string_error){
 window.addEventListener("error",function(e_stack){
     ErrorStackTraceWindow(e_stack.message);
 });
-
+var isIE11Enabled =  false;
 function IEMode(){
     var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
     if(isIE11){
         document.getElementsByClassName("information-window")[0].style.backgroundColor = "rgba(7,7,7,0.8)";
+        document.getElementsByClassName("information-window")[0].style.backgroundColor = "rgba(7,7,7,0.8)";
         document.getElementsByClassName("downloader-window")[0].style.backgroundColor = "rgba(7,7,7,0.8)";
+        document.getElementById("about_window").style.backgroundColor = "rgba(7,7,7,0.8)";
         document.getElementsByClassName("image-view")[0].style.backgroundColor = "rgba(7,7,7,0.8)";
         document.getElementsByClassName("ie_fun")[0].innerHTML = "Ого! Ты зашел с Internet Explorer.<br>Ну ладно я адаптировал сайт)";
+       // ErrorStackTraceWindow("IE11 XD");
+        isIE11Enabled = true;
         return "func: IEMode() : enable IE 11 Support";
-        ErrorStackTraceWindow("IE11 не поддерживается. Извини друг.");
+      
     }
 }
 
@@ -181,30 +185,30 @@ const ae = {
     volume: setItemData("#ae_volume"),
     isPlayed: false
 };
-class AudioPlayer{
-    g_pAudio = "";
-    g_fVolume = 0.05;
-    PushVolume(){
+var AEPlayer = {
+    g_pAudio:  "",
+    g_fVolume: 0.05,
+    PushVolume: function(){
         this.g_pAudio.volume = this.g_fVolume;
-    }
-    init(audio_device){
+    },
+    init: function(audio_device){
         this.g_pAudio = audio_device;
         if(this.g_pAudio instanceof HTMLAudioElement){
             this.PushVolume();
         }
-    }
-    load(file){
+    },
+    load: function(file){
         if(this.g_pAudio instanceof HTMLAudioElement){
             this.g_pAudio.src = file;
         }else{
-            ErrorStackTraceWindow("audio: audio not init");
+            isIE11Enabled ? ErrorStackTraceWindow("audio: audio not init") : alert("audio: audio not init");
         }
-    }
-    audioEvent(state){
+    },
+    audioEvent: function(state){
         if(this.g_pAudio instanceof HTMLAudioElement){
             state ? this.g_pAudio.play() : this.g_pAudio.pause();
         }else{
-            ErrorStackTraceWindow("audio: audio not init");
+            isIE11Enabled ? ErrorStackTraceWindow("audio: audio not init") : alert("audio: audio not init");
         }
     }
     
@@ -213,7 +217,6 @@ class AudioPlayer{
 //
 
 
-const AEPlayer =  new AudioPlayer();
 AEPlayer.init(setItemData(".audio_device"));
 
 // ae.next.onclick = function(){
@@ -246,7 +249,7 @@ function main_menu_state(state_bool){
     }
    
     g_Main.style.animation = state_bool ? "resize_w 500ms ease-out" : "oresize_w 500ms ease-out";
-    let a = setTimeout(function(){
+    var a = setTimeout(function(){
         g_Main.style.display = state_bool ? "block" : "none";
         clearTimeout(a);
     },310);
@@ -313,7 +316,7 @@ var red_back_bool = false;
 var videoBackground = setItemData("#video_back");
 var video_back_ball = setItemData("#video_back_ball");
 var video_back_bool = false;
-var video = "livevideo.mp4";
+var video = "./livevideo.mp4";
 var g_VideoObject = document.createElement("video");
 var g_HtmlObject = document.documentElement;
 function createVideo(){
@@ -339,7 +342,7 @@ function createVideo(){
         g_VideoObject.loop = true;
     }
 }
-function deleteVideo(){
+function devareVideo(){
     ErrorStackTraceWindow("Видео Удалено из Памяти");
 g_HtmlObject.removeChild(g_VideoObject);
 g_HtmlObject.style.background = 'url("photo_2026-02-06_20-57-29_waifu2x_noise2_scale2x.png")';
@@ -351,7 +354,7 @@ videoBackground.onclick = function(){
     if(video_back_bool){
         createVideo();
     }else{
-        deleteVideo();
+        devareVideo();
     }
 }
 redBackgroundFlag.onclick = function(){
