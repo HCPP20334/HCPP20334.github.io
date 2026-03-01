@@ -14,7 +14,7 @@ html{
     src: url("SFMono-Bold.ttf");
 }
 *{
-    color: #8eb0e6;
+    color: #ccc;
     font-family: 'SF Mono','Consolas';
 
 }
@@ -91,8 +91,8 @@ html{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    background: #0d101b90;
-    backdrop-filter: blur(10px);
+    background: #070707aa;
+    
     border: 2px solid  #353555;
     overflow-x: hidden;
     overflow-y: hidden;
@@ -150,8 +150,8 @@ html{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    background: #0d101b90;
-    backdrop-filter: blur(10px);
+    background: #070707aa;
+    
     border: 2px solid  #353555;
     overflow-x: hidden;
     overflow-y: hidden;
@@ -168,7 +168,7 @@ html{
     }
 }
 ._button{
-    background: none;
+    background: transparent;
     border: none;
     display: inline-block;
     margin: 10px;
@@ -176,7 +176,7 @@ html{
     width: 370px;
     height: 60px;
     
-    color: #9494a6;
+    color: #ccc;
     font-family: 'SF Mono','Consolas';
     font-style: italic;
     font-size: 16px;
@@ -286,22 +286,7 @@ p{
 .buttons_sel{
     width: 800px;
 }
-.toogle{
-    width: 60px;
-    height: 30px;
-    border: 3px solid  #353555;
-    background: #3535555c;
-    border-radius: 30px;
-    
-}
-.toogle_ball{
-    width: 28px;
-    height: 28px;
-    background: #353555;
-    transform: translate(2px,1px);
-    transition: .2s;
-    border-radius: 28px;
-}
+
 .debug_text{
     color: #fff;
     font-size: 30px;
@@ -521,4 +506,12 @@ div{
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }

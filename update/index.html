@@ -4,8 +4,80 @@
         <title >HCPP DEV UPDATE</title>
         <meta charset="utf-8">
     </head>
+    <style>
+        @keyframes resize_w400 {
+            0%{
+                width: 0px;
+                height: 0px;
+            }
+            100%{
+                width: 400px;
+                height: 400px;
+            }
+        }
+        @keyframes oresize_w400 {
+            100%{
+                width: 0px;
+                height: 0px;
+            }
+            0%{
+                width: 400px;
+                height: 400px;
+            }
+        }
+    .videosettings{
+        width: 400px;
+        height: 400px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background: #070707d4;
+        z-index: 5;
+        animation: resize_w400 1s;
+        overflow: hidden;
+        display: none;
+    }
+    .toogle{
+    width: 60px;
+    height: 30px;
+    border: 3px solid  #4040d7;
+    background: #111422a0;
+    border-radius: 30px;
+    display: block;
+    
+}
+.toogle_ball{
+    width: 28px;
+    height: 28px;
+    background: #928fa3;
+    transform: translate(2px,1px);
+    transition: .2s;
+    border-radius: 28px;
+}
+.input_vol_video{
+    width: 95%;
+    height: 6px;
+    display: block;
+    margin: auto;
+    appearance: none;
+    background: #0d0f1b;
+    &::-webkit-slider-thumb{
+        appearance: none;
+        width: 13px;
+        height: 13px;
+          
+        background: #353555;
+        &:hover{
+            width: 23px;
+            height: 23px;
+        }
+    }
+}
+    </style>
 <link rel="stylesheet" href="main_red.css" class="style_main">
-<h1 class="main_text" >МОИ ПРОЕКТЫ</h1>
+<canvas ></canvas>
+<h1 class="main_text" style="font-size: 18px;font-family: 'Bounded';font-style: normal;padding: 20px 10px; color: #ccc;font-weight: bold;">00:00</h1>
 <div id="about_window" onclick="">
   <div class="content-about">
     <img src="sticker.webp" class="stk_img">
@@ -86,19 +158,40 @@
     <button class="_button" id="_prj_6">Not Loaded</button>
     <button class="_button" id="_prj_7">Not Loaded</button>
     <button class="_button" id="_prj_8">Not Loaded</button>
-    <button class="_button" id="_prj_9">Not Loaded</button>
+    <button class="_button" id="_prj_9">Not Loaded</button> 
     <br>
-    <p class="toogle_text" style="display: inline-block;transform: translate(100px,-13px);">Тема</p>
-    <div class="toogle" id="red_back" style="display: inline-block;transform: translateX(100px);">
-        <div class="toogle_ball" id="red_back_ball"></div>
+    <div class="videosettings">
+        <br>
+        <br>
+        <br>
+        <br>
+        <p class="toogle_text" style="display: inline-block;transform: translate(10px,-13px);">Тема</p>
+        <div class="toogle" id="red_back" style="display: inline-block;float: right; margin-right: 10px;">
+            <div class="toogle_ball" id="red_back_ball"></div>
+        </div>
+        <br>
+        <p class="toogle_text" style="display: inline-block;transform: translate(10px,-13px);">Живой Фон</p>
+        <div class="toogle" id="video_back" style="display: inline-block;float: right; margin-right: 10px;">
+            <div class="toogle_ball" id="video_back_ball"></div>
+        </div>
+        <br>
+        <p class="toogle_text" style="display: inline-block;transform: translate(10px,-13px);">ПЕРЕКЛЮЧИТЬ ВИДЕО</p>
+        <div class="toogle" id="video_swap" style="display: inline-block;float: right; margin-right: 10px;">
+            <div class="toogle_ball" id="video_swap_ball"></div>
+        </div>
+        <br>
+        <p class="toogle_text" style="display: inline-block;transform: translate(10px,-13px);">ЗВУК</p>
+        <div class="toogle" id="video_swap_Sound" style="display: inline-block;float: right; margin-right: 10px;">
+            <div class="toogle_ball" id="video_swap_Sound_ball"></div>
+        </div>
+        <br>
+        <p class="input_vol_text" style="margin-left: 10px;margin-top: -20px;">🔉0%</p>
+        <input type="range" min="0" max="1" value="0.4" step="0.001" class="input_vol_video">
+        <button class="_button" onclick="VideoSettings(0)">Закрыть</button>
     </div>
-    <p class="toogle_text" style="display: inline-block;transform: translate(100px,-13px);">Живой Фон</p>
-    <div class="toogle" id="video_back" style="display: inline-block;transform: translateX(100px);">
-        <div class="toogle_ball" id="video_back_ball"></div>
-    </div>
-    <br>
     <center>
-    <button class="_button"onclick="openAbout(1);" style="background: #0d0f1b;border: 1px solid #353555;">ОБО МНE</button>
+    <button class="_button"onclick="openAbout(1);" style="background: #070707aa;border: 1px solid #353555;border-top-right-radius: 0px;border-bottom-right-radius: 0px;">ОБО МНE</button>
+    <button class="_button"onclick="VideoSettings(1);" style="background: #070707aa;border: 1px solid #353555;border-top-left-radius: 0px;border-bottom-left-radius: 0px;width: 64px;margin-top: 0;overflow: hidden; margin-left: 0;margin-bottom: 0;margin-right: 0;transform: translate(-20px,11px);border-left: none;"><img src="ge.png" style="width: 32px;height: 32px;"></button>
     <p class="ie_fun"></p>
     </center>
     <div class="speed_connection" >
@@ -109,10 +202,22 @@
         <button class="test" id="sp_test" style="float: left;transform: translate(28px,62px);">TEST</button>
         <button  onclick="speedTest.close();" class="test" style="float: right;transform: translate(-26px,62px);">CANCEL</button>
     </div>
-   <div class="build">rev 0.27.05 (21.02.26) (3:18 MSK)</div>
+   <div class="build">rev 0.30.00 (02.03.26) (2:34 MSK)<br>video:NBSPLV - The lost soul down X Lost soul | Edit: https://www.youtube.com/@taisynara Chainsaw Man Girls ART  </div>
 </div>
 <script>
 //
+var g_main_text = document.getElementsByClassName('main_text')[0];
+function updateTime(){
+    var time = {
+        min     : new Date().getMinutes(),
+        hour    : new Date().getHours(),
+        seconds : new Date().getSeconds()
+    };
+    g_main_text.innerHTML = (time.hour < 10 ? "0"+time.hour : time.hour)+":"+(time.min < 10 ? "0"+time.min : time.min)+":"+(time.seconds < 10 ? "0"+time.seconds : time.seconds);
+    requestAnimationFrame(updateTime);
+}
+updateTime();
+// <button class="_button"  style="background: #0d0f1b;border: 1px solid #353555;width: 100px;height: 40px;font-size: 12px;display: inline-block;margin-left: 130px;transform: translateY(-8px);" onclick="SwapVideo();">ПЕРЕКЛЮИТЬ ФОН</button>
 function ErrorStackTraceWindow(string_error){
   var error_stack = document.createElement("div");
   var error_stack_style = 
@@ -149,7 +254,7 @@ function ErrorStackTraceWindow(string_error){
 }
 
 window.addEventListener("error",function(e_stack){
-    ErrorStackTraceWindow(e_stack.message);
+    ErrorStackTraceWindow(`${e_stack.message} line:${e_stack.lineno}`);
 });
 var isIE11Enabled =  false;
 function IEMode(){
@@ -167,7 +272,9 @@ function IEMode(){
       
     }
 }
-
+for(let a=0;a<document.getElementsByTagName('div').length;a++){
+            document.getElementsByTagName('div')[a].style.border = "none";
+        }
 function setItemData(str){
     IEMode();
     var item_name = str.slice(1);
@@ -310,15 +417,47 @@ speedTest.button_test.onclick = function(){
 }
 
 //
+var volume_state = ['🔈','🔉','🔊'];
+//
+var ia = 0;
+function setVolumeState(val){
+    var volumeText = setItemData('.input_vol_text');
+   
+    volumeText.innerHTML = volume_state[ia] + val.toFixed(0) + " %";
+    if(val <= 100){
+        ia = 2
+    }
+    if(val <= 80){
+        ia = 1
+    }
+    if(val <= 30){
+        ia = 0
+    }
+}
+
 var redBackgroundFlag = setItemData("#red_back");
 var red_back_ball = setItemData("#red_back_ball");
 var red_back_bool = false;
 var videoBackground = setItemData("#video_back");
 var video_back_ball = setItemData("#video_back_ball");
 var video_back_bool = false;
+var videoSwap = setItemData("#video_swap");
+var video_swap_ball = setItemData("#video_swap_ball");
+var video_swap_bool = false;
+var videoSwapSound = setItemData("#video_swap_Sound");
+var video_swapSound_ball = setItemData("#video_swap_Sound_ball");
+var video_swapSound_bool = false;
 var video = "./livevideo.mp4";
 var g_VideoObject = document.createElement("video");
 var g_HtmlObject = document.documentElement;
+var file = false;
+function SwapVideo(){
+    file = !file;
+    video = file ? "./livevideo.mp4" : "https://github.com/HCPP20334/HCPP20334.github.io/releases/download/site/The_lost_soul_down_X_Lost_soul_NBSPLV_Chainsaw_Man_Girls_ART__Inoitoh.mp4";
+    devareVideo();
+    createVideo();
+}
+var g_VideoVolumeInput = setItemData(".input_vol_video");
 function createVideo(){
     ErrorStackTraceWindow("Видео создано в памяти");
     var g_VideoStyle = 
@@ -332,20 +471,72 @@ function createVideo(){
     g_VideoObject.width = window.innerWidth;
     g_VideoObject.height = window.innerHeight;
     g_VideoObject.style.cssText = g_VideoStyle;
-    g_VideoObject.src = video;
+    g_VideoObject.src = file ? "./livevideo.mp4" : "https://github.com/HCPP20334/HCPP20334.github.io/releases/download/site/The_lost_soul_down_X_Lost_soul_NBSPLV_Chainsaw_Man_Girls_ART__Inoitoh.mp4";
     g_VideoObject.controls = false;
     g_HtmlObject.appendChild(g_VideoObject);
     g_HtmlObject.style.background = "#070707";
     if(g_VideoObject){
         g_VideoObject.play();
-        g_VideoObject.muted = true;
+        g_VideoObject.muted = file ? true : false;
+        videoSwapSound.click();
         g_VideoObject.loop = true;
+        g_VideoObject.volume = 0.01;
+        g_VideoVolumeInput.value =  g_VideoObject.volume;
+        setVolumeState(g_VideoVolumeInput.value * 100);
+        if(!file){
+            document.documentElement.requestFullscreen();
+        }else{
+            document.documentElement.requestFullscreen(false);
+        }
     }
 }
+
+g_VideoVolumeInput.oninput = function(){
+    if(g_VideoObject){
+        setVolumeState(this.value * 100)
+        g_VideoObject.volume = this.value;
+    }
+}
+videoSwap.onclick = function(){
+   if(g_VideoObject instanceof HTMLVideoElement){
+    video_swap_bool = !video_swap_bool;
+    video_swap_ball.style.transform = !video_swap_bool ? 'translate(2px,1px)' : 'translate(30px,1px)';
+    if(video_swap_bool && video_back_bool){
+        SwapVideo();
+       
+    }if(!video_swap_bool  && video_back_bool){
+        SwapVideo();
+      
+    }
+   }
+}
+
+videoSwapSound.onclick = function(){
+
+    video_swapSound_bool = !video_swapSound_bool;
+    video_swapSound_ball.style.transform = !video_swapSound_bool ? 'translate(2px,1px)' : 'translate(30px,1px)';
+    g_VideoObject.muted = !video_swapSound_bool;
+   
+}
+function VideoSettings(i){
+    var g_VideoSettings = setItemData(".videosettings");
+    if(i)
+    {
+    g_VideoSettings.style.display = "block";
+    g_VideoSettings.style.animation = "resize_w400 1s";
+    }else{
+       
+        g_VideoSettings.style.animation = "oresize_w400 1s";
+        var a = setTimeout(function(){
+            g_VideoSettings.style.display = "none";
+        },800);
+    }
+}
+g_HtmlObject.style.background = 'url("0228.png")';
 function devareVideo(){
     ErrorStackTraceWindow("Видео Удалено из Памяти");
 g_HtmlObject.removeChild(g_VideoObject);
-g_HtmlObject.style.background = 'url("photo_2026-02-06_20-57-29_waifu2x_noise2_scale2x.png")';
+g_HtmlObject.style.background = 'url("0228.png")';
 g_HtmlObject.style.backgroundSize = "cover";
 }
 videoBackground.onclick = function(){
@@ -617,5 +808,6 @@ function selectItems(idx){
     }
     setItemData("#item_count").innerHTML = idx;
 }
+
 </script>
 </html>
