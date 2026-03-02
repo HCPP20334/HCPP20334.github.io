@@ -74,6 +74,14 @@
         }
     }
 }
+video::-webkit-media-controls {
+    display: none !important;
+}
+
+/* Для скрытия кнопок переключения в полноэкранный режим */
+video::-webkit-media-controls-enclosure {
+    display: none !important;
+}
     </style>
 <link rel="stylesheet" href="main_red.css" class="style_main">
 <canvas ></canvas>
@@ -468,6 +476,7 @@ function createVideo(){
     "width: 100%;"+
     "height: 100%;"+
     "object-fit: cover;";
+    
     g_VideoObject.width = window.innerWidth;
     g_VideoObject.height = window.innerHeight;
     g_VideoObject.style.cssText = g_VideoStyle;
@@ -481,6 +490,7 @@ function createVideo(){
         videoSwapSound.click();
         g_VideoObject.loop = true;
         g_VideoObject.volume = 0.01;
+        g_VideoObject.playsinline; 
         g_VideoVolumeInput.value =  g_VideoObject.volume;
         setVolumeState(g_VideoVolumeInput.value * 100);
         if(!file){
