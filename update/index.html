@@ -3,8 +3,11 @@
         <link rel="icon" href="PEngine.png">
         <title >HCPP DEV UPDATE</title>
         <meta charset="utf-8">
+
     </head>
     <style>
+     
+
         @keyframes resize_w400 {
             0%{
                 width: 0px;
@@ -12,7 +15,7 @@
             }
             100%{
                 width: 400px;
-                height: 400px;
+                height: 600px;
             }
         }
         @keyframes oresize_w400 {
@@ -22,12 +25,12 @@
             }
             0%{
                 width: 400px;
-                height: 400px;
+                height: 600px;
             }
         }
     .videosettings{
         width: 400px;
-        height: 400px;
+        height: 600px;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -193,9 +196,14 @@ video::-webkit-media-controls-enclosure {
             <div class="toogle_ball" id="video_swap_Sound_ball"></div>
         </div>
         <br>
+        <p class="toogle_text" style="display: inline-block;transform: translate(10px,-13px);">ФУЛЛСКРИН</p>
+        <div class="toogle" id="video_fullscreen" style="display: inline-block;float: right; margin-right: 10px;">
+            <div class="toogle_ball" id="video_fullscreen_ball"></div>
+        </div>
+        <br>
         <p class="input_vol_text" style="margin-left: 10px;margin-top: -20px;">🔉0%</p>
         <input type="range" min="0" max="1" value="0.4" step="0.001" class="input_vol_video">
-        <button class="_button" onclick="VideoSettings(0)">Закрыть</button>
+        <button class="_button" style="background-color: #070707aa;border-radius: 40px;border: 1px solid #353555;color: #ccf;background-position-x: 3%;" onclick="VideoSettings(0)">Закрыть</button>
     </div>
     <center>
     <button class="_button"onclick="openAbout(1);" style="background: #070707aa;border: 1px solid #353555;border-top-right-radius: 0px;border-bottom-right-radius: 0px;">ОБО МНE</button>
@@ -225,6 +233,39 @@ function updateTime(){
     requestAnimationFrame(updateTime);
 }
 updateTime();
+function checkDevice(device_name){
+var dv = navigator.userAgent;
+console.log(device_name,(dv.search(device_name) != -1 ? true : false));
+return (dv.search(device_name) != -1 ? true : false);
+}
+var isMobile = false;
+function AdaptiveUI(){
+    var dw_window  = document.getElementsByClassName('downloader-window')[0];
+    var inf_window = document.getElementsByClassName('information-window')[0];
+    var buttons = document.getElementsByClassName('_button');
+    if(checkDevice('iPhone') || checkDevice('Android')){
+        alert("Интерфейс не адптирован по Мобильные устроиства!");
+        isMobile = true;
+        inf_window.style.zoom = "130%";
+        inf_window.style.maxWidth = "90%";
+        dw_window.style.maxWidth = "90%";
+        inf_window.style.minWidth = "90%";
+        dw_window.style.minWidth = "90%";
+        dw_window.style.minHeight = "900px";
+        dw_window.style.zoom = "130%";
+        inf_window.style.overflowY = "scroll";
+        dw_window.style.overflowY = "scroll";
+        for(var bt = 0; bt < buttons.length -2 ; bt++){
+            buttons[bt].style.width = "99%";
+            buttons[bt].style.fontSize = "16px";
+            buttons[bt].style.height = "60px";
+            buttons[bt].style.display = "block";
+            buttons[bt].style.margin = "auto";
+        }
+        console.log("style loaded to Mobile ");
+    }
+}
+AdaptiveUI();
 // <button class="_button"  style="background: #0d0f1b;border: 1px solid #353555;width: 100px;height: 40px;font-size: 12px;display: inline-block;margin-left: 130px;transform: translateY(-8px);" onclick="SwapVideo();">ПЕРЕКЛЮИТЬ ФОН</button>
 function ErrorStackTraceWindow(string_error){
   var error_stack = document.createElement("div");
@@ -446,15 +487,32 @@ function setVolumeState(val){
 var redBackgroundFlag = setItemData("#red_back");
 var red_back_ball = setItemData("#red_back_ball");
 var red_back_bool = false;
+//
 var videoBackground = setItemData("#video_back");
 var video_back_ball = setItemData("#video_back_ball");
 var video_back_bool = false;
+//
 var videoSwap = setItemData("#video_swap");
 var video_swap_ball = setItemData("#video_swap_ball");
 var video_swap_bool = false;
+//
 var videoSwapSound = setItemData("#video_swap_Sound");
 var video_swapSound_ball = setItemData("#video_swap_Sound_ball");
 var video_swapSound_bool = false;
+//
+var videoFullscreen = setItemData("#video_fullscreen");
+var video_fullscreen_ball = setItemData("#video_fullscreen_ball");
+var video_fullscreen_bool = false;
+//
+videoFullscreen.onclick = function(){
+    video_fullscreen_bool = !video_fullscreen_bool;
+    video_fullscreen_ball.style.transform = !video_fullscreen_bool ? 'translate(2px,1px)' : 'translate(30px,1px)';
+    if(video_fullscreen_bool){
+        document.documentElement.webkitRequestFullscreen ?  document.documentElement.webkitRequestFullscreen() : document.documentElement.requestFullscreen();
+    }else{
+        document.webkitExitFullscreen ?  document.webkitExitFullscreen() :   document.exitFullscreen();;
+    }
+}
 var video = "./livevideo.mp4";
 var g_VideoObject = document.createElement("video");
 var g_HtmlObject = document.documentElement;
@@ -493,11 +551,7 @@ function createVideo(){
         g_VideoObject.playsinline; 
         g_VideoVolumeInput.value =  g_VideoObject.volume;
         setVolumeState(g_VideoVolumeInput.value * 100);
-        if(!file){
-            document.documentElement.requestFullscreen();
-        }else{
-            document.documentElement.requestFullscreen(false);
-        }
+        
     }
 }
 
