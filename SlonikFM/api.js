@@ -8,28 +8,33 @@ function debug_message(id,str,color = "#ff0090"){
 }
 var g_iID = 0;
 var color = {green: "#00ff30",red: "#ff0090"};
+var isLoadedToServer = false;
+var g_sFileDir = "";
 var player = {
     audio: "",
     play: "",
+    next: "",
+    prev: "",
     random:"",
     volume:"",
+    timeline: "",
     state: false,
     id_file: 0,
     playAudio: function(){
-        this.state = !this.state;
-    this.state ?  this.audio.play() : this.audio.pause();
+        this.audio.paused ? this.audio.play() : this.audio.pause();
+        this.play.innerHTML = this.audio.paused ? "▶" :"||";
     },
     setID: function(id_audio,src){
       this.id_file = id_audio;
-      this.audio.src = "audios/"+src[id_audio];
-      //2b2bcb
-     // debug_message(p_buffer,src[id_audio]);
+      this.play.innerHTML = this.audio.paused ? "▶" :"||";
+      this.audio.src = isLoadedToServer ? g_sFileDir + src[id_audio] : "audios/"+src[id_audio];
+      
       selected(g_iID);
       this.audio.play();
     },
     init: function(id)
     {
-        
+        this.play.innerHTML = this.audio.paused ? "▶" :"||";
         if(id instanceof HTMLAudioElement){
             this.audio = id;
             debug_message(p_buffer,id.id+" Успешно Инициализирован",color.green);
@@ -42,29 +47,40 @@ var player = {
 //
 function selected(id_audio){
  for(var d = 0; d < document.getElementsByClassName("audio_track").length; d++){
-    document.getElementsByClassName("audio_track")[d].style.background = (player.id_file ==  d) ? "#2b2bcb" : "#070709";
+    document.getElementsByClassName("audio_track")[d].style.background = (player.id_file ==  d) ? "#00ff80aa" : "#14192bca";//00ff80aa  abc4f0
+    document.getElementsByClassName("audio_track_name")[d].style.color = (player.id_file ==  d) ? "#121219" : "#ccf";
  }
 
 }
+
 var g_sAudioFilesArray = ["Boys in the guardhouse.mp3","E777 - Слоновые сказки.mp3","Green Money.mp3","One way ticket to Berdyansk.mp3","Если б не было говна.mp3","Зелёный Вагон.mp3","Малафья_Пыялася_OST_Слово_Братишки.mp3","Пахом с Болот.mp3","Ремейк слоновых частушек _ MMV.mp3","Слоник Гумми.mp3","Слоник нас связал.mp3","Слоновые музыканты 1ый выпуск _ MMV.mp3","Слоновый Альянс - На Гауптвахте.mp3","Ямамото Давай.mp3"];
 var g_iAudioFilesArraySize32 = 0;
 var g_bLoaded = {state: false, msg: ""};
-async function get_file_list() {
-    var apireqs = {files: "127.0.0.1:777/api/files"};
+var g_array_map = {"fefe" : "fefefe"};
+async function get_file_list(api_url) {
+
+    var apireqs = {files: api_url};
     var req = {
         api: await fetch(apireqs.files),
-        code: this.api.status, 
         status: {
             REQ_OK: 200,
             REQ_ERROR: 404,
             REQ_NET_ERROR: 503
         }
     };
-    if(req.code == req.status.REQ_OK){
+    if(req.api.status == req.status.REQ_OK){
         g_bLoaded.state = true;
         g_bLoaded.msg = "Загружено Успешно!!";
-       g_sAudioFilesArray = await req.api.arrayBuffer();
+        server.status.innerHTML = "СТАТУС: "+g_bLoaded.msg;
+        server.api.innerHTML = "API_URL: "+api_url;
+        server.code.innerHTML = "КОД: "+ await req.status;
+       g_sAudioFilesArray = await req.api.json();
+     //  g_sFileDir = api_url;
+       console.log(g_sAudioFilesArray);
+       loadPlayList(playlistdata);
        debug_message(p_buffer,g_bLoaded.msg,color.green);
+       g_connect_to_server_loading.style.display = "none";
+       isLoadedToServer = g_bLoaded.state;
        if(g_sAudioFilesArray.length == 0){
         g_iAudioFilesArraySize32 = 0;
        }else{
@@ -72,7 +88,11 @@ async function get_file_list() {
        }
     }
     else{
+        server.status.innerHTML = "СТАТУС: "+g_bLoaded.msg;
+        server.api.innerHTML = "API_URL: "+api_url;
+        server.code.innerHTML = "КОД: "+ await req.api.status;
         g_bLoaded.state = false;
+        
         g_bLoaded.msg = "Ошибка подключение к API!!";
         debug_message(p_buffer,g_bLoaded.msg,color.red);
     }
@@ -88,6 +108,7 @@ function lenArray(array){
 }
 function loadPlayList(playlist){
  //  get_file_list();
+ playlist.innerHTML = "";
     for(var i = 0; i < g_sAudioFilesArray.length; i++){
         var list = "<div class='audio_track' onclick='player.setID("+i+",g_sAudioFilesArray);g_iID="+i+"'>"+
         "<p class='audio_track_name'>"+g_sAudioFilesArray[i]+"</p>"+
