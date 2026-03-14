@@ -28,7 +28,7 @@ var player = {
       this.id_file = id_audio;
       this.play.innerHTML = this.audio.paused ? "▶" :"||";
       this.audio.src = isLoadedToServer ? g_sFileDir + src[id_audio] : "audios/"+src[id_audio];
-      
+
       selected(g_iID);
       this.audio.play();
     },
@@ -53,7 +53,28 @@ function selected(id_audio){
 
 }
 
-var g_sAudioFilesArray = ["Boys in the guardhouse.mp3","E777 - Слоновые сказки.mp3","Green Money.mp3","One way ticket to Berdyansk.mp3","Если б не было говна.mp3","Зелёный Вагон.mp3","Малафья_Пыялася_OST_Слово_Братишки.mp3","Пахом с Болот.mp3","Ремейк слоновых частушек _ MMV.mp3","Слоник Гумми.mp3","Слоник нас связал.mp3","Слоновые музыканты 1ый выпуск _ MMV.mp3","Слоновый Альянс - На Гауптвахте.mp3","Ямамото Давай.mp3"];
+var g_sAudioFilesArray =
+  [
+  "Зеленые_солдаты_REMIX_Юность_в_сапогах.mp3",
+  "ТУРБО СЛОНИК MMV.mp3",
+  "Bad fufel green - Ретро Слоник.mp3",
+  "Зеленый слоник - 18 мне уже _ MMV.mp3",
+  "Boys in the guardhouse.mp3",
+  "E777 - Слоновые сказки.mp3",
+  "Green Money.mp3",
+  "One way ticket to Berdyansk.mp3",
+  "Если б не было говна.mp3",
+  "Зелёный Вагон.mp3",
+  "Малафья_Пыялася_OST_Слово_Братишки.mp3",
+  "Пахом с Болот.mp3",
+  "Ремейк слоновых частушек _ MMV.mp3",
+  "Слоник Гумми.mp3",
+  "Слоник нас связал.mp3",
+  "Слоновые музыканты 1ый выпуск _ MMV.mp3",
+  "Слоновый Альянс - На Гауптвахте.mp3",
+  "Ямамото Давай.mp3",
+  "DJ Mалафим  Хочешь я на$ру.mp3"
+  ];
 var g_iAudioFilesArraySize32 = 0;
 var g_bLoaded = {state: false, msg: ""};
 var g_array_map = {"fefe" : "fefefe"};
@@ -92,7 +113,7 @@ async function get_file_list(api_url) {
         server.api.innerHTML = "API_URL: "+api_url;
         server.code.innerHTML = "КОД: "+ await req.api.status;
         g_bLoaded.state = false;
-        
+
         g_bLoaded.msg = "Ошибка подключение к API!!";
         debug_message(p_buffer,g_bLoaded.msg,color.red);
     }
