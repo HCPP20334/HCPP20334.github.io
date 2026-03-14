@@ -137,3 +137,35 @@ function loadPlayList(playlist){
         playlist.innerHTML += list;
     }
 }
+var downloads = document.createElement("div");
+function openPlaylistDownload(){
+   
+    downloads.style.cssText =
+    `
+    width: 400px;
+    height: 460px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background: #070707cc;
+    backdrop-filter: blur(10px);
+    transform: translate(-50%,-50%);
+    `;
+    downloads.innerHTML = " <br>";
+    for(var i = 0; i < g_sAudioFilesArray.length; i++){
+    var list = `
+     <a download href="audios/${g_sAudioFilesArray[i]}">${g_sAudioFilesArray[i]}</a>
+      <br>
+       <br>
+    `;
+    downloads.innerHTML += list;
+    
+  
+    }
+    list = "";
+    document.documentElement.appendChild(downloads);
+      downloads.innerHTML += `<button class="_button_close" onclick="document.documentElement.removeChild(downloads); downloads.innerHTML = '';">закрыть</button> <br>`;
+   
+}
