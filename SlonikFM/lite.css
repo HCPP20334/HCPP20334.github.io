@@ -68,6 +68,8 @@ html{
     height: 300px;
     overflow-y: scroll;
     overflow-x: hidden;
+    background-image: url("orig.jpeg");
+    background-size: cover;
     transform: translate(0px,-1px);
 }
 .audio_track:hover{
