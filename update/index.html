@@ -1,877 +1,408 @@
 <html>
     <head>
-        <link rel="icon" href="PEngine.png">
-        <title >HCPP DEV UPDATE</title>
         <meta charset="utf-8">
-
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link id="style" href="lite.css" rel="stylesheet">
     </head>
-    <style>
-     
+    <div class="connect_to_server_loading">
+        <style>
+        .connect_to_server_loading{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 20;
+            width: 300px;
+            height: 340px;
+            background: rgb(242, 242, 247);
+            border-radius: 10px;
+            transform: translate(-50%,-50%);
+            display: none;
+        }
+        @keyframes loading {
+            100%{
+                transform:  rotate(0deg);
+            }
+            0%{
+                transform:  rotate(360deg);
+            }
+        }
+        .loading{
+            background: transparent;
+            border-left: 3px solid #0d1018;
+            border-top: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            border-right: 3px solid transparent;
+            border-radius: 32px;
+            width: 32px;
+            height: 32px;
+            transform: rotate(180deg);
+            margin: 20px;
+            display: inline-block;
+            animation: loading 100ms infinite ease-in-out;
+        }
+        .loading_text{
+            display: inline-block;
+            transform: translateY(-30px)
+        }
+        ._text{
+            margin: 20px;
+            font-size: 12px;
+        }
+        .close{
+            display: block;
+            margin: auto;
+            width: 90%;
+            outline: none;
+            background: #f0f0f0;
+            
+            height: 24px;
+            border: 1px solid #070707;
+            cursor: pointer;
+        }
+        .close:hover{
+            background: #ebe8ff;
+        }
+        </style>
+        <div class="loading"></div>
+        <p class="loading_text">ПОДКЛЮЧЕНИЕ</p>
+        <p class="_text">СТАТУС: n/a</p>
+        <p class="_text">API_URL: n/a</p>
+        <p class="_text">КОД: n/a</p>
+        <button class="close" onclick="loadingToConnect(false);">ЗАКРЫТЬ</button>
+    </div>
+    <div class="connect_to_server">
+        <style>
+        .connect_to_server{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 20;
+            width: 300px;
+            height: 340px;
+            background: rgb(242, 242, 247);
+            border-radius: 10px;
+            transform: translate(-50%,-50%);
+            display: none;
+        }
+        
+        #server_url,#server_folder{
+            display: block;
+            margin: 20px;
+            width: 260px;
+            outline: none;
+            background: #f0f0f0;
 
-        @keyframes resize_w400 {
-            0%{
-                width: 0px;
-                height: 0px;
-            }
-            100%{
-                width: 400px;
-                height: 600px;
-            }
+            height: 24px;
+            border: 1px solid #070707;
         }
-        @keyframes oresize_w400 {
-            100%{
-                width: 0px;
-                height: 0px;
-            }
-            0%{
-                width: 400px;
-                height: 600px;
-            }
+        .connect_to_server_button{
+            display: inline-block;
+            margin-left: 20px;
+            width: auto;
+            outline: none;
+            background: #f0f0f0;
+
+            height: 24px;
+            border: 1px solid #070707;
         }
-    .videosettings{
-        width: 400px;
-        height: 600px;
+        .connect_to_server_button:hover{
+            background: #ebe8ff;
+        }
+        .connect_to_server_text{
+            margin: 20px;
+        }
+        </style>
+        
+        <p class="connect_to_server_text">Server API URL</p>
+    <input type="comment" id="server_url" placeholder="api_url для получения списка">
+    <p class="connect_to_server_text">Server Folder </p>
+    <input type="comment" id="server_folder" placeholder="Полный  путь к файлам">
+    <button class="connect_to_server_button" onclick="loadingToConnect(true);connectServer(false);">ПОДКЛЮЧИТЬСЯ</button>
+    <button class="connect_to_server_button" onclick="connectServer(false);closeLoadingToConnect();">ОТМЕНА</button>
+    <p class="connect_to_server_text" style="font-size: 10px;color: #717175;margin-left: 1px;padding: 10px 20px; border: 1px solid #070707;transform: translateX(10px);">Пример:<br>1 графа : https://178.99.3.3:445/api/music<br>2 графа: https://178.99.3.3:445/mymusic</p>
+</div>
+<div class="wellcome" >
+<p class="ptext">Нажми "продолжить"<br>Это нужно для запуска плеера</p>
+<p class="ptext"></p>
+<div class="toogle_">
+    <style>
+    
+    .continue_button{
         position: absolute;
         top: 50%;
         left: 50%;
+        border: 1px solid rgb(3, 3, 3);
         transform: translate(-50%,-50%);
-        background: #070707d4;
-        z-index: 5;
-        animation: resize_w400 1s;
-        overflow: hidden;
-        display: none;
-    }
-    .toogle{
-    width: 60px;
-    height: 30px;
-    border: 3px solid  #4040d7;
-    background: #111422a0;
-    border-radius: 30px;
-    display: block;
-    
-}
-.toogle_ball{
-    width: 28px;
-    height: 28px;
-    background: #928fa3;
-    transform: translate(2px,1px);
-    transition: .2s;
-    border-radius: 28px;
-}
-.input_vol_video{
-    width: 95%;
-    height: 6px;
-    display: block;
-    margin: auto;
-    appearance: none;
-    background: #0d0f1b;
-    &::-webkit-slider-thumb{
-        appearance: none;
-        width: 13px;
-        height: 13px;
-          
-        background: #353555;
+        background: #0d1018;
+        color: #fff;
+        height: 30px;
+        transition: .2s;
+        margin-top: 100px;
         &:hover{
-            width: 23px;
-            height: 23px;
+            background: #1d2437;
+            transform: translate(-50%,-50%) scale(1.1);
         }
     }
-}
-video::-webkit-media-controls {
-    display: none !important;
-}
-
-/* Для скрытия кнопок переключения в полноэкранный режим */
-video::-webkit-media-controls-enclosure {
-    display: none !important;
-}
     </style>
-<link rel="stylesheet" href="main_red.css" class="style_main">
-<canvas ></canvas>
-<h1 class="main_text" style="font-size: 18px;font-family: 'Bounded';font-style: normal;padding: 20px 10px; color: #ccc;font-weight: bold;">00:00</h1>
-<div id="about_window" onclick="">
-  <div class="content-about">
-    <img src="sticker.webp" class="stk_img">
-    
-    <p class="about_text_data" style="font-size: 30px;">МОЙ СЕТАП</p>
-    <p class="about_text_data" style="color: #fc5f5f;">AMD RYZEN 7 5700x3d 4.0ghz 8/16</p>
-    <p class="about_text_data" style="color: #ccc;">apacer nox 32 gb ddr4 3200 mhz</p>
-    <p class="about_text_data" style="color: #fc5f5f;">SAPPHIRE RX 7600 OC GPU: 2600mhz MEM 2200 mhz</p>
-    <p class="about_text_data" style="color: #1cc2f9;">моник 0: msi mp2412 pro 1080p100hz</p>
-    <p class="about_text_data" style="color: #1cc2f9;">моник 1: aoc m2060sw 1080h60hz</p>
-    <p class="about_text_data" style="color: #5ffcab;">бп: msi an650 650w +80 bronse</p>
-    <p class="about_text_data" style="color: #fc5f5f;">WD blue 1tb 7200 sata 3 </p>
-    <p class="about_text_data" style="color: #6857ff;">adata su650 256gb sata 3</p>
-    <p class="about_text_data" style="color: #fc8e5f;">msi a520m pro</p>
-    <p class="about_text_data" style="color: #fc5fc5;">darkproject kd87a slient-keycap</p>
-    
-    <p class="about_text_data" style="font-size: 30px;">ОБО МНЕ XD</p>
-    <img src="photo_2026-01-21_02-27-49.jpg" class="stk_img">
-    <p class="about_text_data" style="color: #ccc;">Я HCPP20334</p>
-    <p class="about_text_data" style="color: #ccc;">C++20 Разработчик (soft-dev,gamedev)</p>
-    <p class="about_text_data" style="color: #ccc;">js Разработчик (nodejs,web-dev,telegram-bot-dev)</p>
-    <p class="about_text_data" style="color: #fc5f5f;">AMD BOY  СЛАВА АМД И СЛАВА С++</p>
-    <div class="player">
-        <audio src="RX4D - AMD-FX REVENGE [TYtrfBLcjyI].mp3" class="audio_device"></audio>
-
-          
-            <button class="cont" id="ae_play">▶</button>
-            <input class="cont" id="ae_volume" type="range" min="0.00" max="1.00" step="0.001" value="0.05">
-        <button class="about-close" onclick="openAbout(0)">Закрыть</button>
-        </div>
-  </div>
+    <div class="toogle_ball"></div>
 </div>
-<div class="information-window">
-  
-    <div class="image-view" onclick="closeImageView()">
-       <center> <img src="./" class="img_file_screenshot2">
-    <h1 class="preview-info"></h1>
-    </center>
-    </div>
-    
-    <p class="text_info_name" style="font-size: 40px;font-weight: bold;margin: 30px;color: #ccc;">
-            Здесь имя проекта
-    </p>
-    
-    <p class="text_info" style="margin: 30px;color: #fff;">
-    Здесь информация об проекте
-    </p>
-    <button class="_b_link">Скачать</button>
+<button class="continue_button" onclick="document.getElementsByClassName('wellcome')[0].style.display='none';">Продолжить</button>
 
-        <p style="display: inline-block;width: 40px;height: 40px;margin-right: -33px;float: none;transform: translateX(-30px);"id="item_count" class="close">0</p>
-        <button style="display: inline-block;width: 80px;height: 40px;margin-right: -8px;transform: translateX(-30px);"class="_b_link" onclick="selectItems(item--); if(item < 0){item = 9;}">ПРЕД</button>
-        <button style="display: inline-block;width: 80px;height: 40px;margin-left: -6px;transform: translateX(-24px);" class="_b_link" onclick="selectItems(item++); if(item > 9){item = 0;}">СЛЕД</button>
-        <button style="display: inline-block;width: 100px;height: 40px;margin-left: -22px;transform: translateX(-34px);"class="_b_link" onclick="closeInfo();">ЗАКРЫТЬ</button>
-
-    <div class="screen_info">
-    <img src="./" class="img_file_screenshot" onclick="imageView();">
-    </div>
- 
 </div>
-<div class="downloader-window">
-    <div class="navigator">
-        <center>
-        <button class="navigator_item2">🔧</button>
-    <button class="navigator_item2">🔧</button>
-    <button class="navigator_item2">🔧</button>
-    <button class="navigator_item2">🔧</button>
-</center>
-    </div>
-
-
-    <button class="_button" id="_prj_0">Not Loaded</button>
-    <button class="_button" id="_prj_1">Not Loaded</button>
-    <button class="_button" id="_prj_2">Not Loaded</button>
-    <button class="_button" id="_prj_3">Not Loaded</button>
-    <button class="_button" id="_prj_4">Not Loaded</button>
-    <button class="_button" id="_prj_5">Not Loaded</button>
-    <br>
-    <button class="_button" id="_prj_6">Not Loaded</button>
-    <button class="_button" id="_prj_7">Not Loaded</button>
-    <button class="_button" id="_prj_8">Not Loaded</button>
-    <button class="_button" id="_prj_9">Not Loaded</button> 
-    <br>
-    <div class="videosettings">
-        <br>
-        <br>
-        <br>
-        <br>
-        <p class="toogle_text" style="display: inline-block;transform: translate(10px,-13px);">Тема</p>
-        <div class="toogle" id="red_back" style="display: inline-block;float: right; margin-right: 10px;">
-            <div class="toogle_ball" id="red_back_ball"></div>
-        </div>
-        <br>
-        <p class="toogle_text" style="display: inline-block;transform: translate(10px,-13px);">Живой Фон</p>
-        <div class="toogle" id="video_back" style="display: inline-block;float: right; margin-right: 10px;">
-            <div class="toogle_ball" id="video_back_ball"></div>
-        </div>
-        <br>
-        <p class="toogle_text" style="display: inline-block;transform: translate(10px,-13px);">ПЕРЕКЛЮЧИТЬ ВИДЕО</p>
-        <div class="toogle" id="video_swap" style="display: inline-block;float: right; margin-right: 10px;">
-            <div class="toogle_ball" id="video_swap_ball"></div>
-        </div>
-        <br>
-        <p class="toogle_text" style="display: inline-block;transform: translate(10px,-13px);">ЗВУК</p>
-        <div class="toogle" id="video_swap_Sound" style="display: inline-block;float: right; margin-right: 10px;">
-            <div class="toogle_ball" id="video_swap_Sound_ball"></div>
-        </div>
-        <br>
-        <p class="toogle_text" style="display: inline-block;transform: translate(10px,-13px);">ФУЛЛСКРИН</p>
-        <div class="toogle" id="video_fullscreen" style="display: inline-block;float: right; margin-right: 10px;">
-            <div class="toogle_ball" id="video_fullscreen_ball"></div>
-        </div>
-        <br>
-        <p class="input_vol_text" style="margin-left: 10px;margin-top: -20px;">🔉0%</p>
-        <input type="range" min="0" max="1" value="0.4" step="0.001" class="input_vol_video">
-        <button class="_button" style="background-color: #070707aa;border-radius: 40px;border: 1px solid #353555;color: #ccf;background-position-x: 3%;" onclick="VideoSettings(0)">Закрыть</button>
-    </div>
-    <center>
-    <button class="_button"onclick="openAbout(1);" style="background: #070707aa;border: 1px solid #353555;border-top-right-radius: 0px;border-bottom-right-radius: 0px;">ОБО МНE</button>
-    <button class="_button"onclick="VideoSettings(1);" style="background: #070707aa;border: 1px solid #353555;border-top-left-radius: 0px;border-bottom-left-radius: 0px;width: 64px;margin-top: 0;overflow: hidden; margin-left: 0;margin-bottom: 0;margin-right: 0;transform: translate(-20px,11px);border-left: none;"><img src="ge.png" style="width: 32px;height: 32px;"></button>
-    <p class="ie_fun"></p>
-    </center>
-    <div class="speed_connection" >
-        <p class="speed_info" id="sp_dwn">DWN:00</p>
-        <div class='line'></div>
-        <p class="speed_info" id="sp_upd">UPD:00</p>
-        <div class='line'></div>
-        <button class="test" id="sp_test" style="float: left;transform: translate(28px,62px);">TEST</button>
-        <button  onclick="speedTest.close();" class="test" style="float: right;transform: translate(-26px,62px);">CANCEL</button>
-    </div>
-   <div class="build">rev 0.30.00 (02.03.26) (2:34 MSK)<br>video:NBSPLV - The lost soul down X Lost soul | Edit: https://www.youtube.com/@taisynara Chainsaw Man Girls ART  </div>
+<p class="debugger" style="text-align:center;color: #ff0044;transform: translate(20px,-6px);">c</p>
+<div class="player_ui">
+    <audio id="audio_device" crossorigin="anonymous"></audio>
+<div class="player_audio_data">
+    <img src="./back.png" class="image_0">
 </div>
+   
+    <button class="player_controls_button" style="margin-left: 0px;transform: translate(20px,-5px);"><<</button>
+    <button class="player_controls_button" style="margin-left: 0px;transform: translate(20px,-5px);">▶</button>
+    <button class="player_controls_button" style="margin-left: 0px;transform: translate(20px,-5px);">>></button>
+    <button class="player_controls_button" style="margin-left: 0px;transform: translate(20px,-5px);">?</button>
+   
+    <button class="player_controls_button" style="margin-left: 10px;float: right;transform: translate(-20px,5px); " onclick="connectServer(true);">⇲</button>
+    <input class="player_controls_button" type="range" style="width: 50px;transform: translate(20px,5px);" id="input_slider" min="0" value="0.03" max="1" step="0.01">
+    <div class="volume_anim">
+        <canvas class="wgl_canvas"></canvas>
+    </div>
+    <input class="player_controls_button" type="range" style="transform: translateY(-5px);" id="timeline" min="0" value="0.03" max="1" step="0.01">
+    <p class="timeline_data">0:00</p>
+    <p class="timeline_data" style="float: right;transform: translate(-10px,4px);">0:00</p>
+<div class="audio_tracks">
+
+
+</div>
+</div>
+<script src="api.js"></script>
 <script>
-//
-var g_main_text = document.getElementsByClassName('main_text')[0];
-function updateTime(){
-    var time = {
-        min     : new Date().getMinutes(),
-        hour    : new Date().getHours(),
-        seconds : new Date().getSeconds()
+    var timeline_data = {
+        offset0:0,
+        offset1:0,
+        out0: document.getElementsByClassName("timeline_data")[0],
+        out1: document.getElementsByClassName("timeline_data")[1],
     };
-    g_main_text.innerHTML = (time.hour < 10 ? "0"+time.hour : time.hour)+":"+(time.min < 10 ? "0"+time.min : time.min)+":"+(time.seconds < 10 ? "0"+time.seconds : time.seconds);
-    requestAnimationFrame(updateTime);
-}
-updateTime();
-function checkDevice(device_name){
-var dv = navigator.userAgent;
-console.log(device_name,(dv.search(device_name) != -1 ? true : false));
-return (dv.search(device_name) != -1 ? true : false);
-}
-var isMobile = false;
-function AdaptiveUI(){
-    var dw_window  = document.getElementsByClassName('downloader-window')[0];
-    var inf_window = document.getElementsByClassName('information-window')[0];
-    var buttons = document.getElementsByClassName('_button');
-    if(checkDevice('iPhone') || checkDevice('Android')){
-        alert("Интерфейс не адптирован по Мобильные устроиства!");
-        isMobile = true;
-        inf_window.style.zoom = "130%";
-        inf_window.style.maxWidth = "90%";
-        dw_window.style.maxWidth = "90%";
-        inf_window.style.minWidth = "90%";
-        dw_window.style.minWidth = "90%";
-        dw_window.style.minHeight = "900px";
-        dw_window.style.zoom = "130%";
-        inf_window.style.overflowY = "scroll";
-        dw_window.style.overflowY = "scroll";
-        for(var bt = 0; bt < buttons.length -2 ; bt++){
-            buttons[bt].style.width = "99%";
-            buttons[bt].style.fontSize = "16px";
-            buttons[bt].style.height = "60px";
-            buttons[bt].style.display = "block";
-            buttons[bt].style.margin = "auto";
-        }
-        console.log("style loaded to Mobile ");
-    }
-}
-AdaptiveUI();
-// <button class="_button"  style="background: #0d0f1b;border: 1px solid #353555;width: 100px;height: 40px;font-size: 12px;display: inline-block;margin-left: 130px;transform: translateY(-8px);" onclick="SwapVideo();">ПЕРЕКЛЮИТЬ ФОН</button>
-function ErrorStackTraceWindow(string_error){
-  var error_stack = document.createElement("div");
-  var error_stack_style = 
-  "position: absolute;"+
-  "z-index: 5;"+
-  "width: 300px;"+
-  "height: auto;"+
-  "min-height: 40px;"+
-  "top: 5%;"+
-  "left: 50%;"+
-  "color: #fff;"+
-  "font-size: 12px;"+
-  "border-radius: 30px;"+
-  "background: #07070790;"+
-  "border: 1px solid #353555;"+
-  "animation: resize_w2 500ms ease;"+
-  "transform: translate(-50%,-50%);";
-  var error_stack_document = document.documentElement;
-  error_stack_document.appendChild(error_stack);
-  error_stack.style = error_stack_style;
-  var a = setTimeout(function(){
-    error_stack.innerHTML = "<center><p>"+string_error+"</p></center>";
-    clearTimeout(a);
-    },410);
-  var b = setTimeout(function(){
-   error_stack.style.display = "none";
-   error_stack_document.removeChild(error_stack);
-  },1400);
-  var c = setTimeout(function(){
-    error_stack.innerHTML = "";
-   error_stack.style.animation = "oresize_w2 500ms ease";
-  },1200);
+     var drw = document.querySelector(".wgl_canvas");
+     var ctx = drw.getContext('2d');
+    var g_server_url = document.getElementById("server_url");
+    var g_server_folder = document.getElementById("server_folder");
+    var g_sUrlToAPI = "";
+    var g_sFolderServer = "";
+    var g_connect_to_server = document.getElementsByClassName("connect_to_server")[0];
+    var g_connect_to_server_loading= document.getElementsByClassName("connect_to_server_loading")[0];
+    var g_link_style = document.getElementById("style");
+    var audio_tracks = document.getElementsByClassName("audio_tracks")[0];
+    var debugger_str = document.getElementsByClassName("debugger")[0];
+    window.addEventListener("error",function(slfm){
+        debugger_str.innerHTML = slfm.error + " ln:"+slfm.lineno;
+    });
+    var playlistdata = document.getElementsByClassName("audio_tracks")[0];
+    initDebugger(debugger_str);
+    var audio_device = document.getElementById("audio_device");
+    player.init(audio_device);
+    //
 
-}
-
-window.addEventListener("error",function(e_stack){
-    ErrorStackTraceWindow(`${e_stack.message} line:${e_stack.lineno}`);
-});
-var isIE11Enabled =  false;
-function IEMode(){
-    var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
-    if(isIE11){
-        document.getElementsByClassName("information-window")[0].style.backgroundColor = "rgba(7,7,7,0.8)";
-        document.getElementsByClassName("information-window")[0].style.backgroundColor = "rgba(7,7,7,0.8)";
-        document.getElementsByClassName("downloader-window")[0].style.backgroundColor = "rgba(7,7,7,0.8)";
-        document.getElementById("about_window").style.backgroundColor = "rgba(7,7,7,0.8)";
-        document.getElementsByClassName("image-view")[0].style.backgroundColor = "rgba(7,7,7,0.8)";
-        document.getElementsByClassName("ie_fun")[0].innerHTML = "Ого! Ты зашел с Internet Explorer.<br>Ну ладно я адаптировал сайт)";
-       // ErrorStackTraceWindow("IE11 XD");
-        isIE11Enabled = true;
-        return "func: IEMode() : enable IE 11 Support";
-      
-    }
-}
-for(let a=0;a<document.getElementsByTagName('div').length;a++){
-            document.getElementsByTagName('div')[a].style.border = "none";
-        }
-function setItemData(str){
-    IEMode();
-    var item_name = str.slice(1);
-    if(str.charAt(0) == "#"){
-        return document.getElementById(item_name);
-    }
-    if(str.charAt(0) == "."){
-        return document.getElementsByClassName(item_name)[0];
-    }
-}
-const ae = {
-   // prev: setItemData("#ae_prev"),
-   // next: setItemData("#ae_next"),
-    play: setItemData("#ae_play"),
-    volume: setItemData("#ae_volume"),
-    isPlayed: false
-};
-var AEPlayer = {
-    g_pAudio:  "",
-    g_fVolume: 0.05,
-    PushVolume: function(){
-        this.g_pAudio.volume = this.g_fVolume;
-    },
-    init: function(audio_device){
-        this.g_pAudio = audio_device;
-        if(this.g_pAudio instanceof HTMLAudioElement){
-            this.PushVolume();
-        }
-    },
-    load: function(file){
-        if(this.g_pAudio instanceof HTMLAudioElement){
-            this.g_pAudio.src = file;
-        }else{
-            isIE11Enabled ? ErrorStackTraceWindow("audio: audio not init") : alert("audio: audio not init");
-        }
-    },
-    audioEvent: function(state){
-        if(this.g_pAudio instanceof HTMLAudioElement){
-            state ? this.g_pAudio.play() : this.g_pAudio.pause();
-        }else{
-            isIE11Enabled ? ErrorStackTraceWindow("audio: audio not init") : alert("audio: audio not init");
-        }
-    }
+    drw.width = document.getElementsByClassName("volume_anim")[0].clientWidth;
+    drw.height = document.getElementsByClassName("volume_anim")[0].clientHeight-130;
+    let iFFTSize = 4096;
+    let audioCtx, analyser, source;
+    let isInitialized = false;
+    function initAudio() {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    analyser = audioCtx.createAnalyser();
+    source = audioCtx.createMediaElementSource(audio_device);
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
     
-
-};
-//
-
-
-AEPlayer.init(setItemData(".audio_device"));
-
-// ae.next.onclick = function(){
-
-// }
-// ae.prev.onclick = function(){
+    analyser.fftSize = iFFTSize; // Глубина детализации (от 32 до 32768)
+    isInitialized = true;
+}
+function fmt(a) {
+    const min = Math.floor(a / 60);
+    const sec = Math.floor(a % 60);
+    const m = min < 10 ? "0" + min : min;
+    const s = sec < 10 ? "0" + sec : sec;
     
-// }
-ae.play.onclick = function(){
-    const str = ["▶","■"];
-    ae.isPlayed = !ae.isPlayed;
-    ae.play.innerHTML = str[ae.isPlayed ? 1 : 0];
-    AEPlayer.audioEvent(ae.isPlayed);
+    return m + ":" + s;
 }
-ae.volume.oninput = function(){
-    AEPlayer.PushVolume();
-    AEPlayer.g_fVolume = this.value;
-}
-//
-AEPlayer.g_pAudio.addEventListener("timeupdate",function(){
-  if(this.currentTime == this.duration){
-    ae.play.click();
-  }
-});
-
-function main_menu_state(state_bool){
-    var g_Main = setItemData(".downloader-window");
-    if(g_Main){
-        console.log("main page ok!");
-    }
-   
-    g_Main.style.animation = state_bool ? "resize_w 500ms ease-out" : "oresize_w 500ms ease-out";
-    var a = setTimeout(function(){
-        g_Main.style.display = state_bool ? "block" : "none";
-        clearTimeout(a);
-    },310);
-}
-var f = [
-    ".  ",".. ","..."
-];
-var speedTest = {
-    down: setItemData("#sp_dwn"),
-    rtt: setItemData("#sp_upd"),
-    button_test: setItemData("#sp_test"),
-    iDwn: 0,
-    iUpd: 0,
-    open: function(){
-        setItemData(".speed_connection").style.display = "block";
-    },
-    close: function(){
-     setItemData(".speed_connection").style.display = "none";
-    },
-    test: function(){
-        this.down.innerHTML = "DWN: " + navigator.connection.downlink + " Mbps";
-        this.rtt.innerHTML = "RTT: " + navigator.connection.rtt;
-    }
-};
-function openAbout(state){
-    var g_AboutWindow = setItemData("#about_window");
-    main_menu_state(state ? false : true);
-    if(state){
-        g_AboutWindow.style.animation = "resize_w3 500ms ease";
-        var inam = setTimeout(function(){
-            g_AboutWindow.style.display = "block";
-            clearTimeout(inam);
-        },300);
-    }else{
-        g_AboutWindow.style.animation = "oresize_w3 500ms ease";
-        var outam = setTimeout(function(){
-            g_AboutWindow.style.display = "none";
-            clearTimeout(outam);
-        },300);
-    }
-
-}
-speedTest.button_test.onclick = function(){
-    var ch = 0;
-    var t = setInterval(function(){
-        ch++;
-        if(ch > 2){
-            ch = 0;
-        }
-        speedTest.down.innerHTML ="DWN: " +  f[ch];
-        speedTest.rtt.innerHTML = "RTT: " + f[ch];
-    },100);
-    var t1 = setTimeout(function(){
-        clearInterval(t);
-        clearTimeout(t1)
-        speedTest.test();
-    },1000);
-}
-
-//
-var volume_state = ['🔈','🔉','🔊'];
-//
-var ia = 0;
-function setVolumeState(val){
-    var volumeText = setItemData('.input_vol_text');
-   
-    volumeText.innerHTML = volume_state[ia] + val.toFixed(0) + " %";
-    if(val <= 100){
-        ia = 2
-    }
-    if(val <= 80){
-        ia = 1
-    }
-    if(val <= 30){
-        ia = 0
-    }
-}
-
-var redBackgroundFlag = setItemData("#red_back");
-var red_back_ball = setItemData("#red_back_ball");
-var red_back_bool = false;
-//
-var videoBackground = setItemData("#video_back");
-var video_back_ball = setItemData("#video_back_ball");
-var video_back_bool = false;
-//
-var videoSwap = setItemData("#video_swap");
-var video_swap_ball = setItemData("#video_swap_ball");
-var video_swap_bool = false;
-//
-var videoSwapSound = setItemData("#video_swap_Sound");
-var video_swapSound_ball = setItemData("#video_swap_Sound_ball");
-var video_swapSound_bool = false;
-//
-var videoFullscreen = setItemData("#video_fullscreen");
-var video_fullscreen_ball = setItemData("#video_fullscreen_ball");
-var video_fullscreen_bool = false;
-//
-videoFullscreen.onclick = function(){
-    video_fullscreen_bool = !video_fullscreen_bool;
-    video_fullscreen_ball.style.transform = !video_fullscreen_bool ? 'translate(2px,1px)' : 'translate(30px,1px)';
-    if(video_fullscreen_bool){
-        document.documentElement.webkitRequestFullscreen ?  document.documentElement.webkitRequestFullscreen() : document.documentElement.requestFullscreen();
-    }else{
-        document.webkitExitFullscreen ?  document.webkitExitFullscreen() :   document.exitFullscreen();;
-    }
-}
-var video = "./livevideo.mp4";
-var g_VideoObject = document.createElement("video");
-var g_HtmlObject = document.documentElement;
-var file = false;
-function SwapVideo(){
-    file = !file;
-    video = file ? "./livevideo.mp4" : "https://github.com/HCPP20334/HCPP20334.github.io/releases/download/site/The_lost_soul_down_X_Lost_soul_NBSPLV_Chainsaw_Man_Girls_ART__Inoitoh.mp4";
-    devareVideo();
-    createVideo();
-}
-var g_VideoVolumeInput = setItemData(".input_vol_video");
-function createVideo(){
-    ErrorStackTraceWindow("Видео создано в памяти");
-    var g_VideoStyle = 
-  " position: absolute;"+
-   " z-index: -1;"+
-   " top: 0;"+
-    "left: 0;"+
-    "width: 100%;"+
-    "height: 100%;"+
-    "object-fit: cover;";
+var isEdited = false;
+player.audio.addEventListener("timeupdate",function(){
+    if (!audioCtx) initAudio();
     
-    g_VideoObject.width = window.innerWidth;
-    g_VideoObject.height = window.innerHeight;
-    g_VideoObject.style.cssText = g_VideoStyle;
-    g_VideoObject.src = file ? "./livevideo.mp4" : "https://github.com/HCPP20334/HCPP20334.github.io/releases/download/site/The_lost_soul_down_X_Lost_soul_NBSPLV_Chainsaw_Man_Girls_ART__Inoitoh.mp4";
-    g_VideoObject.controls = false;
-    g_HtmlObject.appendChild(g_VideoObject);
-    g_HtmlObject.style.background = "#070707";
-    if(g_VideoObject){
-        g_VideoObject.play();
-        g_VideoObject.muted = file ? true : false;
-        videoSwapSound.click();
-        g_VideoObject.loop = true;
-        g_VideoObject.volume = 0.01;
-        g_VideoObject.playsinline; 
-        g_VideoVolumeInput.value =  g_VideoObject.volume;
-        setVolumeState(g_VideoVolumeInput.value * 100);
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+        
         
     }
-}
-
-g_VideoVolumeInput.oninput = function(){
-    if(g_VideoObject){
-        setVolumeState(this.value * 100)
-        g_VideoObject.volume = this.value;
+    player.timeline.max =  timeline_data.offset1;
+    player.timeline.min = 0;
+    player.timeline.value =  timeline_data.offset0;
+    timeline_data.out0.innerHTML = fmt(timeline_data.offset0);
+    timeline_data.out1.innerHTML = fmt(timeline_data.offset1);
+    if(!isEdited){
+        timeline_data.offset0 = this.currentTime;
+        timeline_data.offset1 = this.duration;
     }
-}
-videoSwap.onclick = function(){
-   if(g_VideoObject instanceof HTMLVideoElement){
-    video_swap_bool = !video_swap_bool;
-    video_swap_ball.style.transform = !video_swap_bool ? 'translate(2px,1px)' : 'translate(30px,1px)';
-    if(video_swap_bool && video_back_bool){
-        SwapVideo();
+    player.play.innerHTML = player.audio.paused ? "▶" :"||";
+});
+function randHex() {
+    var hex_values = "0123456789ABCDEF";
+    var out_hex = "#";
+    for (var i = 0; i < 6; i++) {
        
-    }if(!video_swap_bool  && video_back_bool){
-        SwapVideo();
-      
+        out_hex += hex_values[Math.floor(Math.random() * 16)];
     }
-   }
+    return out_hex;
 }
+const bufferLength = 1024; 
+const dataArray = new Uint8Array(bufferLength);
 
-videoSwapSound.onclick = function(){
-
-    video_swapSound_bool = !video_swapSound_bool;
-    video_swapSound_ball.style.transform = !video_swapSound_bool ? 'translate(2px,1px)' : 'translate(30px,1px)';
-    g_VideoObject.muted = !video_swapSound_bool;
-   
-}
-function VideoSettings(i){
-    var g_VideoSettings = setItemData(".videosettings");
-    if(i)
-    {
-    g_VideoSettings.style.display = "block";
-    g_VideoSettings.style.animation = "resize_w400 1s";
-    }else{
-       
-        g_VideoSettings.style.animation = "oresize_w400 1s";
-        var a = setTimeout(function(){
-            g_VideoSettings.style.display = "none";
-        },800);
-    }
-}
-g_HtmlObject.style.background = 'url("0228.png")';
-function devareVideo(){
-    ErrorStackTraceWindow("Видео Удалено из Памяти");
-g_HtmlObject.removeChild(g_VideoObject);
-g_HtmlObject.style.background = 'url("0228.png")';
-g_HtmlObject.style.backgroundSize = "cover";
-}
-videoBackground.onclick = function(){
-    video_back_bool = !video_back_bool;
-    video_back_ball.style.transform = !video_back_bool ? 'translate(2px,1px)' : 'translate(30px,1px)';
-    if(video_back_bool){
-        createVideo();
-    }else{
-        devareVideo();
-    }
-}
-redBackgroundFlag.onclick = function(){
-    ErrorStackTraceWindow(red_back_bool ? "Переключена тема 0" : "Переключена тема 1");
-    red_back_bool = !red_back_bool;
-    red_back_ball.style.transform = !red_back_bool ? 'translate(2px,1px)': 'translate(30px,1px)';
-    var styleMain = setItemData(".style_main");
-    styleMain.href = !red_back_bool ? "main_red.css" : "main_green.css";
-}
-var item = 0;
-var _b_link = setItemData("._b_link");
-
-const images = [
-    "res/0.jpg",
-    "res/1.jpg",
-    "res/2.jpg",
-    "res/3.jpg",
-    "res/4.jpg",
-    "res/5.jpg",
-    "res/6.jpg",
-    "res/7.jpg",
-    "res/8.jpg",
-    "res/9.jpg",
-    "res/10.jpg",
-    "res/11.jpg",
-];
-const projects_name = [
- "PCTOOL",
- "SYSTEM-Z",
- "JoystickTest",
- "SWEET BREADS",
- "XHASH",
- "Fake_Deep_Payload",
- "VlessChecker",
- "Electrik Calc",
- "CNotepadIDE",
- "Writter"
-];
-const projects_url = [
- "./PCTool.bat",
- "https://github.com/HCPP20334/SYSTEM-Z/releases/download/1.3_Vulkan_cpp20/SYSTEM-Z.Vulkan_1.3.amd64.AMD_GPU.zip",
- "https://github.com/HCPP20334/JoyStickTest/releases/download/JoyStickTest_x64_1.2.3/JoyStickTest.amd64._1.2.4_windows.zip",
- "https://github.com/HCPP20334/SWEET-BREADS-PahomEngineGL-C-20/releases/download/0.8.7800/PahomEngine.zip",
- "https://github.com/HCPP20334/XHASH/releases/download/1.0.5/XHASH.x64.7z",
- "https://github.com/HCPP20334/FakeDeepPayload/releases/download/0.6/FakeDeepPayload.exe",
- "https://github.com/HCPP20334/VlessChecker/releases/download/0.6/vlessChecker.exe",
- "https://github.com/HCPP20334/Calc-for-Electronic/releases/download/1.1.4.5/Release.zip",
- "https://github.com/HCPP20334/CNotepad_0.1-x64-OpenGL3.3-/releases/download/0.2/CNotepadRelease.zip",
- "https://github.com/HCPP20334/Writter/releases/download/0.6/Release.zip"
-];
-var id = 0;
-const projects_info = [
- "PCTool - Многофункциональный инструмент для настройки Windows<br>(batch)",
- "SYSTEM-Z - Системный мониторинг ПК и информация<br>(MSVC Написан на C++20 Visual Studio 2026)",
- "JoystickTest - Тестер геймпадов XINPUT<br>(MSVC Написан на C++20 Visual Studio 2026)",
- "SWEET BREADS - Моя игра по мотивам зеленого слоника где пахом собирает сладкий хлеб <br>Самый большой проект и демо моего движка <br>(PahomEngineGL,MSVC Написан на C++20 Visual Studio 2026)",
- "XHASH - Генератор Хешей и паролей<br>(MSVC Написан на C++20 Visual Studio 2026)",
- "FakeDeepPayload - Ддусер<br>(MSVC Написан на C++20 Visual Studio 2026)",
- "VlessChecker - тест айпи и впн<br>(MSVC Написан на C++20 Visual Studio 2026)",
- "Electrik Calc - Мощный калькулятор электроника<br>(MSVC Написан на C++20 Visual Studio 2026)",
- "CNotepadIDE - Мини IDE редактор кода<br>(MSVC Написан на C++20 Visual Studio 2026)",
- "Writter - Блокнот<br>(MSVC Написан на C++20 Visual Studio 2026)"
-];
-const buttons = {
-     prj_0: setItemData("#_prj_0"),
-     prj_1: setItemData("#_prj_1"),
-     prj_2: setItemData("#_prj_2"),
-     prj_3: setItemData("#_prj_3"),
-     prj_4: setItemData("#_prj_4"),
-     prj_5: setItemData("#_prj_5"),
-     prj_6: setItemData("#_prj_6"),
-     prj_7: setItemData("#_prj_7"),
-     prj_8: setItemData("#_prj_8"),
-     prj_9: setItemData("#_prj_9"),
-     prj_10: setItemData("#_prj_10"),
-     prj_11: setItemData("#_prj_11")
-};
-
-function closeInfo(){
-
-    var w_gWindowInfo = setItemData(".information-window");
-    var w_gWindowMain = setItemData(".downloader-window");
-    w_gWindowInfo.style.animation = "oresize_w 500ms ease-out";
-    main_menu_state(true);
-    var timeout = setTimeout(function(){
-      
-        w_gWindowInfo.style.width = '106px';
-        w_gWindowInfo.style.height =  '60px';
-       w_gWindowInfo.style.display = 'none';
-       w_gWindowMain.style.animation = "resize_w 500ms ease-out";
-        clearTimeout(timeout);
-    },450);
-}
-function closeImageView(){
-    var w_gImageViewFrame = setItemData('.image-view');
-    w_gImageViewFrame.style.animation = "oresize_w 500ms ease-out";
-    setItemData('.information-window').style.overflowY = 'scroll';
-    setItemData('.information-window').scrollTop = "0px";
-    var timer = setTimeout(function(){
-        w_gImageViewFrame.style.width = '106px';
-        w_gImageViewFrame.style.height =  '60px';
-        w_gImageViewFrame.style.display = "none";
-        clearTimeout(timer);
-    },450);
-}
-function imageView(){
-    setItemData('.information-window').scrollTop = "0px";
-    var g_pInfo = setItemData(".preview-info").innerHTML = projects_name[id];
-    var w_gImageViewFrame = setItemData('.image-view');
-    var w_gImage = setItemData(".img_file_screenshot2");
-    //
-    w_gImageViewFrame.style.animation = "resize_w 500ms ease-out";
-    w_gImageViewFrame.style.display = "block";
-    //
-    var timeout = setTimeout(function(){
-    w_gImageViewFrame.style.width = "99%";
-    w_gImageViewFrame.style.MaxWidth = '800px';
-    w_gImageViewFrame.style.height =  '650px';
-        clearTimeout(timeout);
-    },450);
-    //
-    w_gImage.src = images[id];
-    setItemData(".information-window").style.overflow = "hidden";
-}
-function openInfo(i){
-   
-    var w_gWindowInfo = setItemData(".information-window");
-    var w_gWindowMain = setItemData(".downloader-window");
-    w_gWindowInfo.style.display = "block";
+function render() {
+    requestAnimationFrame(render);
     
-    w_gWindowInfo.style.animation = "resize_w 500ms ease-in-out";
-    var timeout = setTimeout(function(){
+    if (!isInitialized) return;
+
+    analyser.getByteFrequencyData(dataArray);
+
+    ctx.clearRect(0, 0, drw.width, drw.height);
+    ctx.beginPath();
+    ctx.moveTo(0, drw.height / 2);
+
+    for (let i = 0; i < bufferLength - 1; i++) {
+        const x = (i / bufferLength) * drw.width;
+        const y = drw.height / 2 - (dataArray[i] / 2); 
+        const nextX = ((i + 1) / bufferLength) * drw.width;
+        const nextY = drw.height / 2 - (dataArray[i + 1] / 2);
+        const xc = (x + nextX) / 2;
+        const yc = (y + nextY) / 2;
+        ctx.quadraticCurveTo(x, y, xc, yc);
+        ctx.strokeStyle = "#ccf";
         
-        w_gWindowInfo.style.width = "99%";
-        w_gWindowInfo.style.MaxWidth = '800px';
-        w_gWindowInfo.style.height =  '650px';
+    }
+
+    
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+}
+render();
+
+    //await get_file_list();
+    player.play = document.getElementsByClassName("player_controls_button")[1];
+    player.next = document.getElementsByClassName("player_controls_button")[2];
+    player.prev = document.getElementsByClassName("player_controls_button")[0];
+    player.random = document.getElementsByClassName("player_controls_button")[3];
+    player.timeline = document.getElementsByClassName("player_controls_button")[6];
+    player.volume = document.getElementById("input_slider");
+    player.play.onclick = function(){
        
-        main_menu_state(false);
-        clearTimeout(timeout);
-    },450);
-   id = i;
-}
-_b_link.onclick = function(){
-    window.open(projects_url[id]);
-}
-function setInfoNameText(string){
-    var p_gInfoProjects = setItemData(".text_info_name");
-    p_gInfoProjects.innerHTML = string;
-    p_gInfoProjects.style.transform = "translateX(-2340px)";
-    var timeout = setTimeout(function(){
-        p_gInfoProjects.style.transform = "translateX(1px)";
-        clearTimeout(timeout);
-    },50);
-}
-function setInfoText(string){
-    var p_gInfoProjects = setItemData(".text_info");
-    p_gInfoProjects.innerHTML = string;
-    p_gInfoProjects.style.transform = "translateX(-2340px)";
-    var timeout = setTimeout(function(){
-        p_gInfoProjects.style.transform = "translateX(1px)";
-        clearTimeout(timeout);
-    },450);
-}
-function setInfoImage(url){
-    var img_gInfoProjects =  setItemData(".img_file_screenshot");
-    img_gInfoProjects.src = url;
-   
-}
-
-function loadButtonsName(){
-    buttons.prj_0.innerHTML = projects_name[0];
-    buttons.prj_1.innerHTML = projects_name[1];
-    buttons.prj_2.innerHTML = projects_name[2];
-    buttons.prj_3.innerHTML = projects_name[3];
-    buttons.prj_4.innerHTML = projects_name[4];
-    buttons.prj_5.innerHTML = projects_name[5];
-    buttons.prj_6.innerHTML = projects_name[6];
-    buttons.prj_7.innerHTML = projects_name[7];
-    buttons.prj_8.innerHTML = projects_name[8];
-    buttons.prj_9.innerHTML = projects_name[9];
-   // buttons.prj_10.innerHTML = projects_name[10];
-   // buttons.prj_11.innerHTML = projects_name[11];
-}
-loadButtonsName();
-buttons.prj_0.onclick = function(){
-    setInfoNameText(projects_name[0]);
-    setInfoText(projects_info[0]);
-    setInfoImage(images[0]);
-    openInfo(0);
-}
-buttons.prj_1.onclick = function(){
-    setInfoNameText(projects_name[1]);
-    setInfoText(projects_info[1]);
-    setInfoImage(images[1]);
-    openInfo(1);
-}
-buttons.prj_2.onclick = function(){
-    setInfoNameText(projects_name[2]);
-    setInfoText(projects_info[2]);
-    setInfoImage(images[2]);
-    openInfo(2);
-}
-buttons.prj_3.onclick = function(){
-    setInfoNameText(projects_name[3]);
-    setInfoText(projects_info[3]);
-    setInfoImage(images[3]);
-    openInfo(3);
-}
-buttons.prj_4.onclick = function(){
-    setInfoNameText(projects_name[4]);
-    setInfoText(projects_info[4]);
-    setInfoImage(images[4]);
-    openInfo(4);
-}
-buttons.prj_5.onclick = function(){
-    setInfoNameText(projects_name[5]);
-    setInfoText(projects_info[5]);
-    setInfoImage(images[5]);
-    openInfo(5);
-}
-buttons.prj_6.onclick = function(){
-    setInfoNameText(projects_name[6]);
-    setInfoText(projects_info[6]);
-    setInfoImage(images[6]);
-    openInfo(6);
-}
-buttons.prj_7.onclick = function(){
-    setInfoNameText(projects_name[7]);
-    setInfoText(projects_info[7]);
-    setInfoImage(images[7]);
-    openInfo(7);
-}
-buttons.prj_8.onclick = function(){
-    setInfoNameText(projects_name[8]);
-    setInfoText(projects_info[8]);
-    setInfoImage(images[8]);
-    openInfo(8);
-}
-buttons.prj_9.onclick = function(){
-    setInfoNameText(projects_name[9]);
-    setInfoText(projects_info[9]);
-    setInfoImage(images[9]);
-    openInfo(9);
-}
-
-function debug(str){
-    setItemData('.debug_text').innerHTML = str;
-}
-function selectItems(idx){
-    setInfoNameText(projects_name[idx]);
-    setInfoText(projects_info[idx]);
-    setInfoImage(images[idx]);
-    id = idx;
-  //  debug('projects_info : ${projects_info[idx]}\n\rprojects_name: ${projects_name[idx]}\n\rindex: ${idx}');
-    if(idx > 9){
-        idx = 1;
+        player.playAudio();
+        
     }
-    if(idx < 1){
-        idx = 9;
+    player.play.innerHTML = player.audio.paused ? "▶" :"||";
+    player.random.onclick = function(){
+        player.setID(Math.floor(Math.random() * (g_sAudioFilesArray.length - 1)),g_sAudioFilesArray);
+        playlistdata.scrollTo({
+            top: player.id_file * 40,
+            behavior: 'smooth'
+            });
     }
-    setItemData("#item_count").innerHTML = idx;
-}
+    var track_index = 0;
+    function scrollSet(){
+        playlistdata.scrollTo({
+            top: player.id_file * 20,
+            behavior: 'smooth'
+            });
+    }
+    player.next.onclick = function(){
+        track_index++;
+       
+        player.setID(track_index - 1,g_sAudioFilesArray);
+        if(track_index >= (g_sAudioFilesArray.length) - 1){
+            track_index = g_sAudioFilesArray.length - 1;
+        }
+        scrollSet();
+    }
+    
+    var g_fVolume = 0;
+    
+    window.addEventListener("keydown",function(key){
+       if(key.code == 'ArrowUp'){
+         player.audio.volume = g_fVolume;
+         g_fVolume += 0.1;
+         if(g_fVolume > 1){
+            g_fVolume = 1;
+         }
+         player.volume.value = g_fVolume;
+       }
+       if(key.code == 'ArrowDown'){
+         player.audio.volume = g_fVolume;
+         g_fVolume -= 0.1;
+         if(g_fVolume < 0){
+            g_fVolume = 0;
+         }
+         player.volume.value = g_fVolume;
+       }
+       if(key.code == 'ArrowLeft'){
+        player.prev.click();
+       }
+       if(key.code == 'ArrowRight'){
+        player.next.click();
+       }
+    });
+    player.prev.onclick = function(){
+        track_index--;
+        scrollSet();
+        player.setID(track_index ,g_sAudioFilesArray);
+        if(track_index < 1){
+            track_index = 1;
+        }
+        scrollSet();
+    }
+    player.audio.volume =   player.volume.value;
+    player.volume.oninput = function(){
+        player.audio.volume = this.value;
+    }
+    player.audio.currentTime = player.timeline.value;
+    player.timeline.oninput = function(){
+        player.audio.currentTime = this.value;
+        //isEdited = true;
+    }
+    loadPlayList(playlistdata);
 
+    function connectServer(state){
+       // g_connect_to_server_loading.style.display = "none";
+        g_connect_to_server.style.display = state ? "block" : "none";
+        
+    }
+    var connect_to_server_text = document.getElementsByClassName("connect_to_server_text")[2];
+    function editConnectText(str0,str1){
+        connect_to_server_text.innerHTML = `Пример:<br>1 графа: ${str0}<br>2 графа: ${str1}`
+    }
+    g_sFolderServer = g_server_folder.value;
+    g_server_folder.oninput = function(){
+        g_sFolderServer = this.value;
+        editConnectText(g_sServer_url,g_sFolderServer);
+    }
+    g_sServer_url = g_server_url.value;
+    g_server_url.oninput = function(){
+        g_sServer_url = this.value;
+        editConnectText(g_sServer_url,g_sFolderServer);
+    }
+
+    var server = {
+        status: document.getElementsByClassName("_text")[0],
+        code: document.getElementsByClassName("_text")[2],
+        api: document.getElementsByClassName("_text")[1],
+    };
+    //127.0.0.1:4443/api/files
+    function loadingToConnect(st){
+        g_connect_to_server_loading.style.display = st ? "block": "none";
+        get_file_list(g_sServer_url);
+        g_sFileDir = g_sFolderServer;
+    }
+    function closeLoadingToConnect(){
+        g_connect_to_server_loading.style.display = "none";
+    }
 </script>
 </html>
