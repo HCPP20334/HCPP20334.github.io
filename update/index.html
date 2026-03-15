@@ -6,7 +6,7 @@
 
     </head>
     <style>
-     
+
 
         @keyframes resize_w400 {
             0%{
@@ -48,7 +48,7 @@
     background: #111422a0;
     border-radius: 30px;
     display: block;
-    
+
 }
 .toogle_ball{
     width: 28px;
@@ -69,7 +69,7 @@
         appearance: none;
         width: 13px;
         height: 13px;
-          
+
         background: #353555;
         &:hover{
             width: 23px;
@@ -92,7 +92,7 @@ video::-webkit-media-controls-enclosure {
 <div id="about_window" onclick="">
   <div class="content-about">
     <img src="sticker.webp" class="stk_img">
-    
+
     <p class="about_text_data" style="font-size: 30px;">МОЙ СЕТАП</p>
     <p class="about_text_data" style="color: #fc5f5f;">AMD RYZEN 7 5700x3d 4.0ghz 8/16</p>
     <p class="about_text_data" style="color: #ccc;">apacer nox 32 gb ddr4 3200 mhz</p>
@@ -104,7 +104,7 @@ video::-webkit-media-controls-enclosure {
     <p class="about_text_data" style="color: #6857ff;">adata su650 256gb sata 3</p>
     <p class="about_text_data" style="color: #fc8e5f;">msi a520m pro</p>
     <p class="about_text_data" style="color: #fc5fc5;">darkproject kd87a slient-keycap</p>
-    
+
     <p class="about_text_data" style="font-size: 30px;">ОБО МНЕ XD</p>
     <img src="photo_2026-01-21_02-27-49.jpg" class="stk_img">
     <p class="about_text_data" style="color: #ccc;">Я HCPP20334</p>
@@ -114,7 +114,7 @@ video::-webkit-media-controls-enclosure {
     <div class="player">
         <audio src="RX4D - AMD-FX REVENGE [TYtrfBLcjyI].mp3" class="audio_device"></audio>
 
-          
+
             <button class="cont" id="ae_play">▶</button>
             <input class="cont" id="ae_volume" type="range" min="0.00" max="1.00" step="0.001" value="0.05">
         <button class="about-close" onclick="openAbout(0)">Закрыть</button>
@@ -122,17 +122,17 @@ video::-webkit-media-controls-enclosure {
   </div>
 </div>
 <div class="information-window">
-  
+
     <div class="image-view" onclick="closeImageView()">
        <center> <img src="./" class="img_file_screenshot2">
     <h1 class="preview-info"></h1>
     </center>
     </div>
-    
+
     <p class="text_info_name" style="font-size: 40px;font-weight: bold;margin: 30px;color: #ccc;">
             Здесь имя проекта
     </p>
-    
+
     <p class="text_info" style="margin: 30px;color: #fff;">
     Здесь информация об проекте
     </p>
@@ -146,7 +146,7 @@ video::-webkit-media-controls-enclosure {
     <div class="screen_info">
     <img src="./" class="img_file_screenshot" onclick="imageView();">
     </div>
- 
+
 </div>
 <div class="downloader-window">
     <div class="navigator">
@@ -169,7 +169,7 @@ video::-webkit-media-controls-enclosure {
     <button class="_button" id="_prj_6">Not Loaded</button>
     <button class="_button" id="_prj_7">Not Loaded</button>
     <button class="_button" id="_prj_8">Not Loaded</button>
-    <button class="_button" id="_prj_9">Not Loaded</button> 
+    <button class="_button" id="_prj_9">Not Loaded</button>
     <br>
     <div class="videosettings">
         <br>
@@ -269,7 +269,7 @@ AdaptiveUI();
 // <button class="_button"  style="background: #0d0f1b;border: 1px solid #353555;width: 100px;height: 40px;font-size: 12px;display: inline-block;margin-left: 130px;transform: translateY(-8px);" onclick="SwapVideo();">ПЕРЕКЛЮИТЬ ФОН</button>
 function ErrorStackTraceWindow(string_error){
   var error_stack = document.createElement("div");
-  var error_stack_style = 
+  var error_stack_style =
   "position: absolute;"+
   "z-index: 5;"+
   "width: 300px;"+
@@ -318,7 +318,7 @@ function IEMode(){
        // ErrorStackTraceWindow("IE11 XD");
         isIE11Enabled = true;
         return "func: IEMode() : enable IE 11 Support";
-      
+
     }
 }
 for(let a=0;a<document.getElementsByTagName('div').length;a++){
@@ -367,7 +367,7 @@ var AEPlayer = {
             isIE11Enabled ? ErrorStackTraceWindow("audio: audio not init") : alert("audio: audio not init");
         }
     }
-    
+
 
 };
 //
@@ -379,7 +379,7 @@ AEPlayer.init(setItemData(".audio_device"));
 
 // }
 // ae.prev.onclick = function(){
-    
+
 // }
 ae.play.onclick = function(){
     const str = ["▶","■"];
@@ -403,7 +403,7 @@ function main_menu_state(state_bool){
     if(g_Main){
         console.log("main page ok!");
     }
-   
+
     g_Main.style.animation = state_bool ? "resize_w 500ms ease-out" : "oresize_w 500ms ease-out";
     var a = setTimeout(function(){
         g_Main.style.display = state_bool ? "block" : "none";
@@ -471,7 +471,7 @@ var volume_state = ['🔈','🔉','🔊'];
 var ia = 0;
 function setVolumeState(val){
     var volumeText = setItemData('.input_vol_text');
-   
+
     volumeText.innerHTML = volume_state[ia] + val.toFixed(0) + " %";
     if(val <= 100){
         ia = 2
@@ -519,14 +519,14 @@ var g_HtmlObject = document.documentElement;
 var file = false;
 function SwapVideo(){
     file = !file;
-    video = file ? "./livevideo.mp4" : "https://github.com/HCPP20334/HCPP20334.github.io/releases/download/site/The_lost_soul_down_X_Lost_soul_NBSPLV_Chainsaw_Man_Girls_ART__Inoitoh.mp4";
+    video = file ? "./livevideo.mp4" : "https://release-assets.githubusercontent.com/github-production-release-asset/607647295/a8d8b947-4ab0-4d6e-9d5e-697b7335ca1f?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-03-15T18%3A22%3A36Z&rscd=attachment%3B+filename%3DThe_lost_soul_down_X_Lost_soul_NBSPLV_Chainsaw_Man_Girls_ART__Inoitoh.mp4&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-03-15T17%3A21%3A49Z&ske=2026-03-15T18%3A22%3A36Z&sks=b&skv=2018-11-09&sig=rQT8be7VWYTi9TJ%2F3nQXxR3cMjpEY0t8PNLwwkR107k%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc3MzU5ODIxMywibmJmIjoxNzczNTk2NDEzLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.PZ04QyFW9hX1w7z-c9AbCo7jhYwFDSh59JgGm8i9yj4&response-content-disposition=attachment%3B%20filename%3DThe_lost_soul_down_X_Lost_soul_NBSPLV_Chainsaw_Man_Girls_ART__Inoitoh.mp4&response-content-type=application%2Foctet-stream";
     devareVideo();
     createVideo();
 }
 var g_VideoVolumeInput = setItemData(".input_vol_video");
 function createVideo(){
     ErrorStackTraceWindow("Видео создано в памяти");
-    var g_VideoStyle = 
+    var g_VideoStyle =
   " position: absolute;"+
    " z-index: -1;"+
    " top: 0;"+
@@ -534,11 +534,11 @@ function createVideo(){
     "width: 100%;"+
     "height: 100%;"+
     "object-fit: cover;";
-    
+
     g_VideoObject.width = window.innerWidth;
     g_VideoObject.height = window.innerHeight;
     g_VideoObject.style.cssText = g_VideoStyle;
-    g_VideoObject.src = file ? "./livevideo.mp4" : "https://github.com/HCPP20334/HCPP20334.github.io/releases/download/site/The_lost_soul_down_X_Lost_soul_NBSPLV_Chainsaw_Man_Girls_ART__Inoitoh.mp4";
+    g_VideoObject.src = file ? "./livevideo.mp4" : "https://release-assets.githubusercontent.com/github-production-release-asset/607647295/a8d8b947-4ab0-4d6e-9d5e-697b7335ca1f?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-03-15T18%3A22%3A36Z&rscd=attachment%3B+filename%3DThe_lost_soul_down_X_Lost_soul_NBSPLV_Chainsaw_Man_Girls_ART__Inoitoh.mp4&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-03-15T17%3A21%3A49Z&ske=2026-03-15T18%3A22%3A36Z&sks=b&skv=2018-11-09&sig=rQT8be7VWYTi9TJ%2F3nQXxR3cMjpEY0t8PNLwwkR107k%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc3MzU5ODIxMywibmJmIjoxNzczNTk2NDEzLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.PZ04QyFW9hX1w7z-c9AbCo7jhYwFDSh59JgGm8i9yj4&response-content-disposition=attachment%3B%20filename%3DThe_lost_soul_down_X_Lost_soul_NBSPLV_Chainsaw_Man_Girls_ART__Inoitoh.mp4&response-content-type=application%2Foctet-stream";
     g_VideoObject.controls = false;
     g_HtmlObject.appendChild(g_VideoObject);
     g_HtmlObject.style.background = "#070707";
@@ -548,10 +548,10 @@ function createVideo(){
         videoSwapSound.click();
         g_VideoObject.loop = true;
         g_VideoObject.volume = 0.01;
-        g_VideoObject.playsinline; 
+        g_VideoObject.playsinline;
         g_VideoVolumeInput.value =  g_VideoObject.volume;
         setVolumeState(g_VideoVolumeInput.value * 100);
-        
+
     }
 }
 
@@ -567,10 +567,10 @@ videoSwap.onclick = function(){
     video_swap_ball.style.transform = !video_swap_bool ? 'translate(2px,1px)' : 'translate(30px,1px)';
     if(video_swap_bool && video_back_bool){
         SwapVideo();
-       
+
     }if(!video_swap_bool  && video_back_bool){
         SwapVideo();
-      
+
     }
    }
 }
@@ -580,7 +580,7 @@ videoSwapSound.onclick = function(){
     video_swapSound_bool = !video_swapSound_bool;
     video_swapSound_ball.style.transform = !video_swapSound_bool ? 'translate(2px,1px)' : 'translate(30px,1px)';
     g_VideoObject.muted = !video_swapSound_bool;
-   
+
 }
 function VideoSettings(i){
     var g_VideoSettings = setItemData(".videosettings");
@@ -589,7 +589,7 @@ function VideoSettings(i){
     g_VideoSettings.style.display = "block";
     g_VideoSettings.style.animation = "resize_w400 1s";
     }else{
-       
+
         g_VideoSettings.style.animation = "oresize_w400 1s";
         var a = setTimeout(function(){
             g_VideoSettings.style.display = "none";
@@ -695,7 +695,7 @@ function closeInfo(){
     w_gWindowInfo.style.animation = "oresize_w 500ms ease-out";
     main_menu_state(true);
     var timeout = setTimeout(function(){
-      
+
         w_gWindowInfo.style.width = '106px';
         w_gWindowInfo.style.height =  '60px';
        w_gWindowInfo.style.display = 'none';
@@ -735,18 +735,18 @@ function imageView(){
     setItemData(".information-window").style.overflow = "hidden";
 }
 function openInfo(i){
-   
+
     var w_gWindowInfo = setItemData(".information-window");
     var w_gWindowMain = setItemData(".downloader-window");
     w_gWindowInfo.style.display = "block";
-    
+
     w_gWindowInfo.style.animation = "resize_w 500ms ease-in-out";
     var timeout = setTimeout(function(){
-        
+
         w_gWindowInfo.style.width = "99%";
         w_gWindowInfo.style.MaxWidth = '800px';
         w_gWindowInfo.style.height =  '650px';
-       
+
         main_menu_state(false);
         clearTimeout(timeout);
     },450);
@@ -776,7 +776,7 @@ function setInfoText(string){
 function setInfoImage(url){
     var img_gInfoProjects =  setItemData(".img_file_screenshot");
     img_gInfoProjects.src = url;
-   
+
 }
 
 function loadButtonsName(){
