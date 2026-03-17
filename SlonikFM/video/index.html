@@ -1,0 +1,339 @@
+<html>
+    <style>
+        html{
+            background: #111422;
+        }
+        @font-face {
+            font-family: 'SF';
+            src: url("../SFMono-Bold.ttf");
+        }
+        *{
+            font-family: 'SF';
+        }
+        .video_app{
+            width: 90%;
+            max-width: 800px;
+            min-width: 330px;
+            height: 90%;
+            max-height: 600px;
+            border: 1px solid #353555;
+            background: #070709;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .video_app_placeholder{
+            background: #040407;
+            width: 100%;
+            min-width: 330px;
+            border-bottom: 1px solid #353555;
+            overflow: hidden;
+        }
+        #video_id{
+            display: block;
+            margin: auto;
+            min-width: 330px;
+            width: auto;
+            max-width: 100%;
+            min-height: 510px;
+        }
+        @keyframes open {
+            from{
+                transform: translate(-50%,10px);
+                opacity: 1;
+                z-index: 1;
+            }
+        }
+        @keyframes close {
+            from{
+                transform: translate(-50%,-50px);
+                opacity: 0;
+                z-index: -1;
+            }
+        }
+        .controls_vol{
+            display: block;
+            position: absolute;
+            left: 50%;
+            width: 90%;
+            height: 50px;
+            transform: translateX(-50%) translateY(-50px);
+            background: #070709aa;
+            border: 1px solid #9a9ab9;
+            border-radius: 50px;
+            transition: .1s;
+            z-index: -1;
+            opacity: 0;
+            
+        }
+        .video_app_placeholder:hover  .controls_vol{
+            transform: translate(-50%,10px);
+            opacity: 1;
+            z-index: 1;
+        }
+        .controls{
+            display: block;
+            margin: auto;
+            background: #090a11;
+            border-bottom: 1px solid #353555;
+            width: 100%;
+            height: 60px;
+        }
+        ._buttons_play{
+            width: 42px;
+            height: 42px;
+            font-size: 32px;
+            margin-top: 10px;
+            margin-left: 5px;
+            float: left;
+            background: #090a11;
+            border: 1px solid #353555;
+            color: #ccf;
+        }
+        ._buttons_play:hover{
+            background: #0e101b;
+        }
+        .volume{
+            width: 82px;
+            height: 42px;
+            background: #000000;
+            display: inline-block;
+            margin-left: 5px;
+            margin-top: 10px;
+        }
+        #video_timeline{
+            width: calc(100% - 152px);
+            display: inline-block;
+            height: 30px;
+            margin-top: 15px;
+            float: right;
+        }
+        #video_timeline::-webkit-slider-runnable-track{
+            -webkit-appearance: none;
+            height: 10px;
+           
+        }
+        input::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            transform: translateY(-5px);
+        }
+        #volume_timeline{
+            width: 20%;
+            height: 23px;
+            margin-left: 10px;
+            margin-top: 12px;
+        }
+        #volume_timeline::-webkit-slider-runnable-track{
+            -webkit-appearance: none;
+            height: 13px;
+            
+        }
+        #volume_timeline::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            height: 20px;
+            background: #353555;
+            width: 10px;
+        }
+        input{
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input::-webkit-slider-runnable-track{
+            -webkit-appearance: none;
+            background: #111422;
+            border-radius: 30px;
+            border: 1px solid #353555;
+        }
+        input::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            height: 20px;
+            background: #353555;
+            width: 20px;
+            border-radius: 30px;
+        }
+        .playlist{
+            width: 100%;
+            height: 220px;
+            background: #000000;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+        .video_file_playlist{
+            width: 100%;
+            height: 32px;
+            background: transparent;
+            border-bottom: 1px solid #fff;
+           
+        }
+        .video_file_playlist:hover{
+            background: #dbe9f8;
+        }
+        .video_file_playlist:hover .file_video{
+            color: #070709;
+        }
+        .file_video{
+            color: #ccc;
+            margin-top: 10px;
+            margin-left: 10px;
+          
+        }
+        .text_preview_title{
+            color: #ccc;
+            text-align: center;
+            margin-top: -32px;
+           
+        
+        }
+        .time{
+            color: #fff;
+            float: left;
+            margin-left: 2px;
+            margin-top: 1px;
+        }
+        .time2{
+            color: #fff;
+            float: right;
+            margin-right: 2px;
+            margin-top: 1px;
+        }
+        .log{
+            color: #ccc;
+            font-size: 12px;
+        }
+        .time3{
+            color: #fff;
+            text-align: center;
+            margin-top: 1px;
+        }
+        .volume_timeline_text{
+            display: inline-block;
+            color: #fff;
+            margin-left: 12px;
+            margin-bottom: 10px;
+            transform: translateY(-5px);
+        }
+    </style>
+    <p class="log">00</p>
+   <div class="video_app">
+    <div class="video_app_placeholder">
+        <div class="controls_vol" id="title_bar">
+            <p class="volume_timeline_text">VOL:100%</p>
+            <input type="range" id="volume_timeline" min="0" max="1" step="0.01" value="0.3">
+            <p class="text_preview_title">Test</p>
+        </div>
+        <video src="" id="video_id"></video>
+    </div>
+    <div class="controls">
+        <button class="_buttons_play" id="play_video">▶</button>
+        <button class="_buttons_play" id="prev_video"><</button>
+        <button class="_buttons_play" id="next_video">></button>
+        <input type="range" min="0" max="100" value="0.1" id="video_timeline">
+    </div>
+    <p class="time">00:00</p>
+    <p class="time2">00:00</p>
+   </div>
+<script>
+function log(t){
+  document.getElementsByClassName("log")[0].innerHTML = t;
+}
+window.addEventListener("error",function(e){
+ log("err:" + e.error + "ln:"+e.lineno);
+});
+var title_bar = document.getElementById("title_bar");
+function showTitleBar(){
+    title_bar.style.animation = "open 500ms";
+    var a = setTimeout(function(){
+        title_bar.style.animation = "close 500ms";
+    },1000);
+}
+var volume_timeline_text = document.getElementsByClassName("volume_timeline_text")[0];
+var volume_timeline = document.getElementById("volume_timeline");
+
+var videos=
+        [
+
+             "ZS.mp4",
+             "Rust.mp4",
+             "PHP.mp4",
+             "multithreading_async.mp4",
+             "HCPP.mp4",
+             "Python.mp4",
+             "Java.mp4",
+             "js.mp4",
+             "macos.mp4",
+             "111.mp4",
+             "Ruby.mp4",
+             "IT.mp4",
+             "Vulkan.mp4",
+             "AMD.mp4",
+             "01. Turtle Tracks.mkv",
+     ];
+var video_player = {
+    player: document.getElementById("video_id"),
+    next: document.getElementById("next_video"),
+    prev: document.getElementById("prev_video"),
+    play: document.getElementById("play_video"),
+    timeRange: document.getElementById("video_timeline"),
+    time_in: document.getElementsByClassName("time")[0],
+    time_out: document.getElementsByClassName("time2")[0],
+};
+video_player.player.volume = volume_timeline.value;
+volume_timeline_text.innerHTML = "VOL:"+((volume_timeline.value * 100).toFixed(0).length < 2 ? " "+(volume_timeline.value * 100).toFixed(0) : ""+(volume_timeline.value * 100).toFixed(0)) + "%";
+volume_timeline.oninput = function(){
+    video_player.player.volume = this.value;
+    volume_timeline_text.innerHTML = "VOL:"+((this.value * 100).toFixed(0).length < 2 ? " "+(this.value * 100).toFixed(0) : ""+(this.value * 100).toFixed(0)) + "%";
+}
+function fmt(a) {
+    const min = Math.floor(a / 60);
+    const sec = Math.floor(a % 60);
+    const m = min < 10 ? "0" + min : min;
+    const s = sec < 10 ? "0" + sec : sec;
+    
+    return m + ":" + s;
+}
+video_player.player.src = "https://dimaxp.sytes.net/Video/SlonikTV/"+videos[0];
+var text_preview_title = document.getElementsByClassName("text_preview_title")[0];
+text_preview_title.innerHTML = videos[0];
+function video_file_select(id){
+    video_player.player.src = "https://dimaxp.sytes.net/Video/SlonikTV/"+videos[id];
+    text_preview_title.innerHTML = videos[id];
+    showTitleBar();
+    video_player.play.click();
+}
+var video_paused = false;
+video_player.play.onclick = function(){
+    video_paused = video_player.player.paused;
+    video_player.play.innerHTML = !video_paused ? "▶" : "▮"
+    video_paused ? video_player.player.play() : video_player.player.pause()
+}
+var current_file_index = 0;
+var max_files = (videos.length - 1);
+video_player.next.onclick = function(){
+    current_file_index++;
+    video_file_select(current_file_index);
+    if(current_file_index > max_files)
+    {
+        current_file_index = max_files;
+    }
+}
+video_player.timeRange.oninput = function(){
+    video_player.player.currentTime = this.value;
+}
+video_player.player.addEventListener("timeupdate",function(v){
+    video_player.timeRange.value = this.currentTime;
+    video_player.timeRange.max = this.duration;
+    video_player.time_in.innerHTML  = fmt(this.currentTime);
+    video_player.time_out.innerHTML = fmt(this.duration);
+});
+video_player.prev.onclick = function(){
+    current_file_index--;
+    video_file_select(current_file_index);
+    if(current_file_index < 0)
+    {
+        current_file_index = 0;
+    }
+}
+
+</script>
+</html>
