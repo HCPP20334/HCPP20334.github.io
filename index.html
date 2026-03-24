@@ -1,1185 +1,443 @@
-﻿<html>
+<html>
     <head>
-        <link rel="icon" type="image/png" href="favicon.png">
-        <title>HCPP STUDIO 2025</title>
-        <meta name="viewport" content="width=device-width">
-        <style>
-            /* Хакерская тема с красными акцентами */
-            @font-face {
-                font-family: 'Hacker';
-                src: url('https://hcpp20334.github.io/fonts/Mono Regular.ttf');
-            }
-            
-            :root {
-                --color-bg-primary: #0a0a0a;
-                --color-bg-secondary: #111111;
-                --color-border-primary: #1a1a1a;
-                --color-text-primary: #00ff95;
-                --color-text-secondary: #00ff95;
-                --color-accent: #00ff95;
-                --color-btn-bg: #111111;
-                --color-btn-border: #00ff95;
-                --color-btn-hover: #00ff95;
-                --color-btn-active: #00ff95;
-                --color-header-bg: #0a0a0a;
-                --color-code-bg: #000000;
-                --color-code-text: #00ff95;
-                --glitch-intensity: 0;
-            }
-            
-            * {
-                font-family: 'Hacker', 'Hacker';
-                box-sizing: border-box;
-            }
-            
-            html, body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                height: 100%;
-                overflow-x: hidden;
-            }
-            
-            body {
-                background: var(--color-bg-primary);
-                color: var(--color-text-primary);
-                line-height: 1.5;
-                text-shadow: 0 0 5px #00ff95;
-                position: relative;
-            }
-            
-            .glitch-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: transparent;
-                z-index: 9999;
-                pointer-events: none;
-                opacity: var(--glitch-intensity);
-                mix-blend-mode: screen;
-            }
-            
-            canvas {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: -1;
-            }
-            
-            ::selection {
-                background: var(--color-accent);
-                color: black;
-            }
-            
-            @keyframes fadein {
-                0% { opacity: 0; }
-                100% { opacity: 1; }
-            }
-            
-            @keyframes blink {
-                0%, 100% { opacity: 1; }
-                50% { opacity: 0; }
-            }
-            
-            @keyframes glitch {
-                0% { transform: translate(0); }
-                20% { transform: translate(-2px, 2px); }
-                40% { transform: translate(-2px, -2px); }
-                60% { transform: translate(2px, 2px); }
-                80% { transform: translate(2px, -2px); }
-                100% { transform: translate(0); }
-            }
-            
-            .App {
-                display: flex;
-                flex-direction: column;
-                min-height: 100vh;
-                position: relative;
-            }
-            
-            .header {
-                background-color: var(--color-header-bg);
-                padding: 16px;
-                border-bottom: 1px solid var(--color-border-primary);
-                display: flex;
-                align-items: center;
-                box-shadow: 0 0 10px #00ff95;
-                position: relative;
-                z-index: 10;
-            }
-            
-            .header-logo {
-                font-size: 24px;
-                font-weight: bold;
-                color: var(--color-text-primary);
-                text-decoration: none;
-                margin-right: 24px;
-                letter-spacing: 1px;
-            }
-            
-            .nav {
-                display: flex;
-                gap: 16px;
-            }
-            
-            .nav-link {
-                color: var(--color-text-primary);
-                text-decoration: none;
-                font-size: 14px;
-                padding: 8px 12px;
-                border-radius: 4px;
-                border: 1px solid var(--color-btn-border);
-                transition: all 0.3s;
-            }
-            
-            .nav-link:hover {
-                background-color: var(--color-btn-hover);
-                box-shadow: 0 0 8px #00ff95;
-                animation: glitch 0.3s linear;
-                color: black;
-            }
-            
-            .nav-link.active {
-                background-color: var(--color-btn-active);
-                color: black;
-                font-weight: bold;
-                border-color: var(--color-accent);
-            }
-            
-            .container {
-                max-width: 1280px;
-                margin: 0 auto;
-                padding: 24px 16px;
-                width: 100%;
-                position: relative;
-                z-index: 5;
-            }
-            
-            .hero {
-                text-align: center;
-                padding: 80px 0;
-                border-bottom: 1px solid var(--color-border-primary);
-                position: relative;
-            }
-            
-            .hero-title {
-                font-size: 48px;
-                font-weight: bold;
-                margin-bottom: 16px;
-                letter-spacing: 2px;
-                text-shadow: 0 0 10px #00ff95;
-                position: relative;
-            }
-            
-            .hero-subtitle {
-                font-size: 20px;
-                color: var(--color-text-secondary);
-                max-width: 800px;
-                margin: 0 auto 32px;
-                position: relative;
-            }
-            
-            .btn {
-                display: inline-block;
-                padding: 10px 20px;
-                background-color: var(--color-btn-bg);
-                border: 1px solid var(--color-btn-border);
-                border-radius: 4px;
-                color: var(--color-text-primary);
-                text-decoration: none;
-                font-size: 14px;
-                cursor: pointer;
-                transition: all 0.3s;
-                margin: 5px;
-                letter-spacing: 1px;
-                position: relative;
-            }
-            
-            .btn:hover {
-                background-color: var(--color-btn-hover);
-                box-shadow: 0 0 8px #00ff95;
-                transform: translateY(-1px);
-                color: black;
-                animation: glitch 0.3s linear;
-            }
-            
-            .btn-primary {
-                background-color: var(--color-btn-active);
-                border-color: var(--color-btn-active);
-                color: black;
-                font-weight: bold;
-            }
-            
-            .btn-primary:hover {
-                background-color: #00ff95;
-                border-color: #00ff95;
-                box-shadow: 0 0 12px #00ff95;
-                color: black;
-            }
-            
-            .section {
-                margin-bottom: 48px;
-                position: relative;
-            }
-            
-            .section-title {
-                font-size: 24px;
-                font-weight: bold;
-                margin-bottom: 16px;
-                border-bottom: 1px solid var(--color-border-primary);
-                padding-bottom: 8px;
-                letter-spacing: 1px;
-                position: relative;
-            }
-            
-            .card {
-                background-color: var(--color-bg-secondary);
-                border: 1px solid var(--color-border-primary);
-                border-radius: 4px;
-                padding: 24px;
-                margin-bottom: 16px;
-                transition: all 0.3s;
-                box-shadow: 0 0 5px #00ff95;
-                position: relative;
-                overflow: hidden;
-            }
-            
-            .card:hover {
-                box-shadow: 0 0 15px #00ff95;
-                transform: translateY(-2px);
-            }
-            
-            .card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(90deg, transparent, #00ff95, transparent);
-                transition: 0.5s;
-            }
-            
-            .card:hover::before {
-                left: 100%;
-            }
-            
-            .card-title {
-                font-size: 20px;
-                font-weight: bold;
-                margin-bottom: 8px;
-                color: var(--color-accent);
-            }
-            
-            .card-meta {
-                font-size: 12px;
-                color: var(--color-text-secondary);
-                margin-bottom: 16px;
-            }
-            
-            .card-content {
-                margin-bottom: 16px;
-            }
-            
-            .card-footer {
-                display: flex;
-                gap: 8px;
-                flex-wrap: wrap;
-            }
-            
-            .repo-language {
-                display: flex;
-                align-items: center;
-                font-size: 12px;
-                color: var(--color-text-secondary);
-            }
-            
-            .repo-language-color {
-                width: 12px;
-                height: 12px;
-                border-radius: 50%;
-                margin-right: 4px;
-                box-shadow: 0 0 3px #00ff95;
-            }
-            
-            .repo-language-cpp { background-color: #00ff95; }
-            .repo-language-java { background-color: #00ff95; }
-            .repo-language-js { background-color: #00ff95; }
-            
-            .grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                gap: 16px;
-            }
-            
-            .loading {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                flex-direction: column;
-                background: var(--color-bg-primary);
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                z-index: 1000;
-            }
-            
-            .loading-spinner {
-                width: 48px;
-                height: 48px;
-                border: 5px solid var(--color-border-primary);
-                border-bottom-color: var(--color-accent);
-                border-radius: 50%;
-                animation: rotation 1s linear infinite;
-                box-shadow: 0 0 10px #00ff95;
-            }
-            
-            .loading h1 {
-                margin-top: 20px;
-                animation: blink 1.5s infinite;
-            }
-            
-            @keyframes rotation {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-            
-            .hidden {
-                display: none;
-            }
-            
-            pre, code {
-                background-color: var(--color-code-bg);
-                color: var(--color-code-text);
-                padding: 10px;
-                border-radius: 4px;
-                border: 1px solid var(--color-border-primary);
-                overflow-x: auto;
-                font-family: 'Hacker', 'Hacker';
-                font-size: 14px;
-            }
-            
-            pre {
-                margin: 15px 0;
-            }
-            
-            a {
-                color: var(--color-accent);
-                text-decoration: none;
-                transition: all 0.3s;
-            }
-            
-            a:hover {
-                text-shadow: 0 0 5px 00ff95;
-            }
-            
-            ul {
-                padding-left: 20px;
-            }
-            
-            li {
-                margin-bottom: 8px;
-            }
-            
-            /* Terminal-like cursor effect */
-            .cursor {
-                animation: blink 1s infinite;
-            }
-            
-            /* Scrollbar styling */
-            ::-webkit-scrollbar {
-                width: 10px;
-            }
-            
-            ::-webkit-scrollbar-track {
-                background: var(--color-bg-primary);
-            }
-            
-            ::-webkit-scrollbar-thumb {
-                background: var(--color-accent);
-                border-radius: 5px;
-            }
-            
-            ::-webkit-scrollbar-thumb:hover {
-                background: var(--color-text-primary);
-            }
-            
-            /* Glitch effect */
-            .glitch-effect {
-                position: relative;
-            }
-            
-            .glitch-effect::before,
-            .glitch-effect::after {
-                content: attr(data-text);
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: var(--color-bg-primary);
-            }
-            
-            .glitch-effect::before {
-                left: 2px;
-                text-shadow: -2px 0 #00ff00;
-                clip: rect(44px, 450px, 56px, 0);
-                animation: glitch-anim-1 2s infinite linear alternate-reverse;
-            }
-            
-            .glitch-effect::after {
-                left: -2px;
-                text-shadow: -2px 0 #0000ff;
-                clip: rect(44px, 450px, 56px, 0);
-                animation: glitch-anim-2 2s infinite linear alternate-reverse;
-            }
-            
-            @keyframes glitch-anim-1 {
-                0% { clip: rect(32px, 9999px, 76px, 0); }
-                20% { clip: rect(8px, 9999px, 14px, 0); }
-                40% { clip: rect(66px, 9999px, 71px, 0); }
-                60% { clip: rect(92px, 9999px, 58px, 0); }
-                80% { clip: rect(53px, 9999px, 99px, 0); }
-                100% { clip: rect(54px, 9999px, 98px, 0); }
-            }
-            
-            @keyframes glitch-anim-2 {
-                0% { clip: rect(54px, 9999px, 28px, 0); }
-                20% { clip: rect(18px, 9999px, 87px, 0); }
-                40% { clip: rect(29px, 9999px, 2px, 0); }
-                60% { clip: rect(90px, 9999px, 73px, 0); }
-                80% { clip: rect(70px, 9999px, 13px, 0); }
-                100% { clip: rect(44px, 9999px, 56px, 0); }
-            }
-            
-            /* Responsive adjustments */
-            @media (max-width: 768px) {
-                .hero-title {
-                    font-size: 32px;
-                }
-                
-                .hero-subtitle {
-                    font-size: 16px;
-                }
-                
-                .grid {
-                    grid-template-columns: 1fr;
-                }
-                
-                .header {
-                    flex-direction: column;
-                    align-items: flex-start;
-                }
-                
-                .nav {
-                    margin-top: 16px;
-                    flex-wrap: wrap;
-                }
-                
-                .btn {
-                    padding: 8px 16px;
-                    font-size: 12px;
-                }
-            }
-        </style>
-        <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link id="style" href="lite.css" rel="stylesheet">
     </head>
-    <body>
-        <!-- Canvas for WebGL effects -->
-        <canvas id="glitchCanvas"></canvas>
-        <div class="glitch-overlay"></div>
+    <div class="aboutwindow">
+        <h1 class="aboutwindow_text">SLOVIKFM</h1>
+        <h1 class="aboutwindow_text" style="color: #88889c;font-size: 30px; text-shadow: 0px 0px 10px #88889c;">Плеер со слоновыми треками</h1>
+        <h1 class="aboutwindow_text" style="color: #88889c;font-size: 30px; text-shadow: 0px 0px 10px #88889c;">Авторы песен: Aртем Иовин, E777</h1>
+        <h1 class="aboutwindow_text" style="color: #88889c;font-size: 30px; text-shadow: 0px 0px 10px #88889c;">Разработал плеер: HCPP20334</h1>
+        <h1 class="aboutwindow_text" style="color: #ff0044;font-size: 30px; text-shadow: 0px 0px 10px #ff0044;">Поддерживается на (chrome 100,firefox 80)</h1>
+        <h1 class="aboutwindow_text" style="color: #ff0044;font-size: 30px; text-shadow: 0px 0px 10px #ff0044;">rev 0.13 (HTML5+CSS+JS)</h1>
+        <button class="aboutwindow_close" onclick="document.getElementsByClassName('aboutwindow')[0].style.display='none';">ЗАКРЫТЬ</button>
+    </div>
+    <div class="connect_to_server_loading">
+        <style>
+        .connect_to_server_loading{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 20;
+            width: 300px;
+            height: 340px;
+            background: #070707;
+            border-radius: 10px;
+            transform: translate(-50%,-50%);
+            display: none;
+            border: 1px solid #ccf;
+        }
+        @keyframes loading {
+            100%{
+                transform:  rotate(0deg);
+            }
+            0%{
+                transform:  rotate(360deg);
+            }
+        }
+        .loading{
+            background: transparent;
+            border-left: 3px solid #fff;
+            border-top: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            border-right: 3px solid transparent;
+            border-radius: 32px;
+            width: 32px;
+            height: 32px;
+            transform: rotate(180deg);
+            margin: 20px;
+            display: inline-block;
+            animation: loading 400ms infinite ease-in-out;
+        }
+        .loading_text{
+            display: inline-block;
+            color: #fff;
+            transform: translateY(-30px)
+        }
+        ._text{
+            margin: 20px;
+            font-size: 12px;
+            color: #fff;
+        }
+        .close{
+            display: block;
+            margin: auto;
+            width: 90%;
+            outline: none;
+            background: #070707;
+            color: #fff;
+            height: 24px;
+            border: 1px solid #ccf;
+            cursor: pointer;
+        }
+        .close:hover{
+            background: #162128;
+        }
+        </style>
+        <div class="loading"></div>
+        <p class="loading_text">ПОДКЛЮЧЕНИЕ</p>
+        <p class="_text">СТАТУС: n/a</p>
+        <p class="_text">API_URL: n/a</p>
+        <p class="_text">КОД: n/a</p>
+        <button class="close" onclick="loadingToConnect(false);">ЗАКРЫТЬ</button>
+    </div>
+    <div class="connect_to_server">
+        <style>
+        .connect_to_server{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 20;
+            width: 300px;
+            height: 340px;
+            background: #070707;
+            border-radius: 10px;
+            transform: translate(-50%,-50%);
+            display: none;
+            border: 1px solid #ccf;
+        }
         
-        <div class="App">
-            <!-- Loading screen -->
-            <div class="loading" id="AppoaderID">
-                <div class="loading-spinner"></div>
-                <h1 class="glitch-effect" data-text="HCPP_STUDIO">HCPP_STUDIO<span class="cursor">_</span></h1>
-            </div>
-            
-            <!-- Main app content (initially hidden) -->
-            <div class="hidden" id="AppId">
-                <header class="header">
-                    <a href="#" class="header-logo glitch-effect" data-text="HCPP_STUDIO">HCPP::STUDIO<span class="cursor">_</span></a>
-                    <nav class="nav">
-                        <a href="#" class="nav-link active" id="btn00">HOME</a>
-                        <a href="#" class="nav-link" id="btn0">PROJECTS</a>
-                        <a href="#" class="nav-link" id="btn1">WEB_APPS</a>
-                        <a href="#" class="nav-link" id="btn2">SHOP</a>
-                        <a href="#" class="nav-link" id="btn4">GUIDES</a>
-                        <a href="#" class="nav-link" id="btn5" onclick="document.location.href = './game/index.html';">GAME</a>
-                        
-                    </nav>
-                </header>
-                
-                <!-- Main content sections -->
-                <div id="mainContent">
-                    <section class="hero">
-                        <h1 class="hero-title glitch-effect" data-text=">_HCPP_STUDIO">> HCPP_STUDIO<span class="cursor">_</span></h1>
-                        <p class="hero-subtitle glitch-effect" data-text=">_Application_development_studio_specializing_in_C++2020_and_JavaScript">> Application development studio specializing in C++2020 and JavaScript<span class="cursor">_</span></p>
-                        <div>
-                            <a href="#projects" class="btn btn-primary" id="exploreProjects">> EXPLORE_PROJECTS</a>
-                            <a href="#webapps" class="btn">> VIEW_WEB_APPS</a>
-                        </div>
-                    </section>
-                    
-                    <div class="container">
-                        <section class="section">
-                            <h2 class="section-title glitch-effect" data-text=">_ABOUT">> ABOUT<span class="cursor">_</span></h2>
-                            <div class="card">
-                                <p class="glitch-effect" data-text=">_HCPP_STUDIO_is_a_development_studio_focused_on_creating_high-performance_applications_using_modern_C++20_and_web_technologies._Our_projects_range_from_system_utilities_to_web_applications.">> HCPP_STUDIO is a development studio focused on creating high-performance applications using modern C++20 and web technologies. Our projects range from system utilities to web applications.<span class="cursor">_</span></p>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-                
-                <!-- Projects section -->
-                <div class="container hidden" id="projectHandleId">
-                    <section class="section">
-                        <h2 class="section-title glitch-effect" data-text=">_PROJECTS">> PROJECTS<span class="cursor">_</span></h2>
-                        
-                        <div class="grid">
-                            <div class="card">
-                                <h3 class="card-title glitch-effect" data-text=">_JOYSTICKTEST_1.1">> JOYSTICKTEST_1.2.4<span class="cursor">_</span></h3>
-                                <div class="card-meta">
-                                    <span class="repo-language">
-                                        <span class="repo-language-color repo-language-cpp"></span>
-                                        C++20
-                                    </span>
-                                </div>
-                                <div class="card-content">
-                                    <p class="glitch-effect" data-text=">_Application_for_testing_your_gamepad_with_OpenGL_3.3_backend.">> Application for testing your gamepad with OpenGL 3.3 backend.<span class="cursor">_</span></p>
-                                    <p class="glitch-effect" data-text=">_System_Requirements:_Intel_i3-550_or_equivalent,_GPU_with_OpenGL_3.3_support,_Windows_10_x64"><strong>> System_Requirements:</strong> Intel i3-550 or equivalent, GPU with OpenGL 3.3 support, Windows 10 x64<span class="cursor">_</span></p>
-                                </div>
-                                <div class="card-footer">
-                                    <button class="btn download-btn" data-url="https://github.com/HCPP20334/JoyStickTest/releases/download/JoyStickTest_x64_OpenGL_1.1/JoyStickTest_x64_OpenGL3SSE4.2.zip">> DOWNLOAD_ZIP</button>
-                                    <button class="btn">> SOURCE_CODE</button>
-                                </div>
-                            </div>
-                            
-                            <div class="card">
-                                <h3 class="card-title glitch-effect" data-text=">_JOYSTICKTEST_1.0">> JOYSTICKTEST_1.0<span class="cursor">_</span></h3>
-                                <div class="card-meta">
-                                    <span class="repo-language">
-                                        <span class="repo-language-color repo-language-java"></span>
-                                        Java
-                                    </span>
-                                </div>
-                                <div class="card-content">
-                                    <p class="glitch-effect" data-text=">_Gamepad_testing_application_(Java_version).">> Gamepad testing application (Java version).<span class="cursor">_</span></p>
-                                    <p class="glitch-effect" data-text=">_System_Requirements:_x64_processor,_any_GPU_with_128MB_VRAM,_Windows_10_x64"><strong>> System_Requirements:</strong> x64 processor, any GPU with 128MB VRAM, Windows 10 x64<span class="cursor">_</span></p>
-                                </div>
-                                <div class="card-footer">
-                                    <button class="btn download-btn" data-url="https://github.com/rpmaster2/JoyStickTest/releases/download/1.0/Archive.zip">> DOWNLOAD_ZIP</button>
-                                    <button class="btn">> SOURCE_CODE</button>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <h3 class="card-title glitch-effect" data-text=">_SYSTEM-Z_1.0">>SYSTEM-Z_1.0<span class="cursor">_</span></h3>
-                                <div class="card-meta">
-                                    <span class="repo-language">
-                                        <span class="repo-language-color repo-language-cpp"></span>
-                                        C++20
-                                    </span>
-                                </div>
-                                <div class="card-content">
-                                    <p class="glitch-effect" data-text=">_Functional_system_monitor.">> Functional system monitor tools.<span class="cursor">_</span></p>
-                                    <p class="glitch-effect" data-text=">_Versions:_x64_(OpenGL3.3)"><strong>> Versions:</strong> x64 (OpenGL3.3)<span class="cursor">_</span></p>
-                                </div>
-                                <div class="card-footer">
-                                    <button class="btn download-btn" data-url="https://github.com/HCPP20334/SYSTEM-Z/releases/download/System_Z_1.0.5/system-z.x64._amd_ags_windows_amd64.7z">> DOWNLOAD_ZIP</button>
-                                    <button class="btn" data-url="https://github.com/HCPP20334/SYSTEM-Z/archive/refs/tags/System_Z_1.0.5.zip">> SOURCE_CODE</button>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <h3 class="card-title glitch-effect" data-text=">_XHASH_0.5">>_XHASH_0.5<span class="cursor">_</span></h3>
-                                <div class="card-meta">
-                                    <span class="repo-language">
-                                        <span class="repo-language-color repo-language-cpp"></span>
-                                        C++20
-                                    </span>
-                                </div>
-                                <div class="card-content">
-                                    <p class="glitch-effect" data-text=">_Functional_hash_generator.">> Functional hash generator.<span class="cursor">_</span></p>
-                                    <p class="glitch-effect" data-text=">_Versions:_x64_(OpenGL3.3)"><strong>> Versions:</strong> x64 (OpenGL3.3)<span class="cursor">_</span></p>
-                                </div>
-                                <div class="card-footer">
-                                    <button class="btn download-btn" data-url="https://github.com/HCPP20334/XHASH/releases/download/0.5(x64)C%2B%2B20_windows/XHASH.x64.7z">> DOWNLOAD_ZIP</button>
-                                    <button class="btn" data-url="https://github.com/HCPP20334/XHASH/archive/refs/tags/0.5(x64)C++20_windows.zip">> SOURCE_CODE</button>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                
-                <!-- Web Apps section -->
-                <div class="container hidden" id="WebAppHandleId">
-                    <section class="section">
-                        <h2 class="section-title glitch-effect" data-text=">_WEB_APPLICATIONS">> WEB_APPLICATIONS<span class="cursor">_</span></h2>
-                        
-                        <div class="grid">
-                            <div class="card">
-                                <h3 class="card-title glitch-effect" data-text=">_PLAYER_JS">> PLAYER_JS<span class="cursor">_</span></h3>
-                                <div class="card-meta">
-                                    <span class="repo-language">
-                                        <span class="repo-language-color repo-language-js"></span>
-                                        JavaScript
-                                    </span>
-                                </div>
-                                <div class="card-content">
-                                    <p class="glitch-effect" data-text=">_A_web-based_media_player_built_with_JavaScript.">> A web-based media player built with JavaScript.<span class="cursor">_</span></p>
-                                </div>
-                                <div class="card-footer">
-                                    <button class="btn btn-primary webapp-btn" data-url="https://hcpp20334.github.io/playerJS.html">> OPEN_APP</button>
-                                </div>
-                            </div>
-                            
-                            <div class="card">
-                                <h3 class="card-title glitch-effect" data-text=">_ELECTRIK_CALC_JS">> ELECTRIK_CALC_JS<span class="cursor">_</span></h3>
-                                <div class="card-meta">
-                                    <span class="repo-language">
-                                        <span class="repo-language-color repo-language-js"></span>
-                                        JavaScript
-                                    </span>
-                                </div>
-                                <div class="card-content">
-                                    <p class="glitch-effect" data-text=">_Web_version_of_the_electrician's_calculator.">> Web version of the electrician's calculator.<span class="cursor">_</span></p>
-                                </div>
-                                <div class="card-footer">
-                                    <button class="btn btn-primary webapp-btn" data-url="https://hcpp20334.github.io/Calc">> OPEN_APP</button>
-                                </div>
-                            </div>
-                            
-                            <div class="card">
-                                <h3 class="card-title glitch-effect" data-text=">_VOICEAPI_JS">> VOICEAPI_JS<span class="cursor">_</span></h3>
-                                <div class="card-meta">
-                                    <span class="repo-language">
-                                        <span class="repo-language-color repo-language-js"></span>
-                                        JavaScript
-                                    </span>
-                                </div>
-                                <div class="card-content">
-                                    <p class="glitch-effect" data-text=">_Web_speech_API_demonstration_and_toolkit.">> Web speech API demonstration and toolkit.<span class="cursor">_</span></p>
-                                </div>
-                                <div class="card-footer">
-                                    <button class="btn btn-primary webapp-btn" data-url="https://hcpp20334.github.io/VoiceAPI">> OPEN_APP</button>
-                                </div>
-                            </div>
-                            
-                            <div class="card">
-                                <h3 class="card-title glitch-effect" data-text=">_NOTEPAD_JS">> NOTEPAD_JS<span class="cursor">_</span></h3>
-                                <div class="card-meta">
-                                    <span class="repo-language">
-                                        <span class="repo-language-color repo-language-js"></span>
-                                        JavaScript
-                                    </span>
-                                </div>
-                                <div class="card-content">
-                                    <p class="glitch-effect" data-text=">_A_simple_browser-based_notepad_application.">> A simple browser-based notepad application.<span class="cursor">_</span></p>
-                                </div>
-                                <div class="card-footer">
-                                    <button class="btn btn-primary webapp-btn" data-url="https://hcpp20334.github.io/Notepad">> OPEN_APP</button>
-                                </div>
-                            </div>
-                            
-                            <div class="card">
-                                <h3 class="card-title glitch-effect" data-text=">_CPUBENCH_JS">> CPUBENCH_JS<span class="cursor">_</span></h3>
-                                <div class="card-meta">
-                                    <span class="repo-language">
-                                        <span class="repo-language-color repo-language-js"></span>
-                                        JavaScript
-                                    </span>
-                                </div>
-                                <div class="card-content">
-                                    <p class="glitch-effect" data-text=">_JavaScript-based_CPU_benchmark_tool.">> JavaScript-based CPU benchmark tool.<span class="cursor">_</span></p>
-                                </div>
-                                <div class="card-footer">
-                                    <button class="btn btn-primary webapp-btn" data-url="https://hcpp20334.github.io/CPUBench">> OPEN_APP</button>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                
-                <!-- Shop section -->
-                <div class="container hidden" id="shopHandleId">
-                    <section class="section">
-                        <h2 class="section-title glitch-effect" data-text=">_VPN_SERVICES">> VPN_SERVICES<span class="cursor">_</span></h2>
-                        
-                        <div class="grid">
-                            <div class="card">
-                                <h3 class="card-title glitch-effect" data-text=">_XVPN_BASIC_SUBSCRIPTION">> XVPN_BASIC_SUBSCRIPTION<span class="cursor">_</span></h3>
-                                <div class="card-content">
-                                    <ul>
-                                        <li class="glitch-effect" data-text=">_Speed_up_to_10_Mbps">> Speed up to 10 Mbps<span class="cursor">_</span></li>
-                                        <li class="glitch-effect" data-text=">_Telegram_chat_support">> Telegram chat support<span class="cursor">_</span></li>
-                                        <li class="glitch-effect" data-text=">_Price:_350_RUB/month_or_4000_RUB/year">> Price: 350 RUB/month or 4000 RUB/year<span class="cursor">_</span></li>
-                                    </ul>
-                                </div>
-                                <div class="card-footer">
-                                    <a href="https://t.me/HCPPSTUDIO" class="btn btn-primary">> SUBSCRIBE</a>
-                                </div>
-                            </div>
-                            
-                            <div class="card">
-                                <h3 class="card-title glitch-effect" data-text=">_XVPN_PRO_SUBSCRIPTION">> XVPN_PRO_SUBSCRIPTION<span class="cursor">_</span></h3>
-                                <div class="card-content">
-                                    <ul>
-                                        <li class="glitch-effect" data-text=">_Speed_up_to_200_Mbps">> Speed up to 200 Mbps<span class="cursor">_</span></li>
-                                        <li class="glitch-effect" data-text=">_Telegram_chat_support">> Telegram chat support<span class="cursor">_</span></li>
-                                        <li class="glitch-effect" data-text=">_Price:_1000_RUB/month_or_9000_RUB/year">> Price: 1000 RUB/month or 9000 RUB/year<span class="cursor">_</span></li>
-                                    </ul>
-                                </div>
-                                <div class="card-footer">
-                                    <a href="https://t.me/HCPPSTUDIO" class="btn btn-primary">> SUBSCRIBE</a>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                
-                <!-- Guides section -->
-                <div class="container hidden" id="otherWindow">
-                    <section class="section">
-                        <h2 class="section-title glitch-effect" data-text=">_GUIDES_&_TUTORIALS">> GUIDES_&_TUTORIALS<span class="cursor">_</span></h2>
-                        
-                        <div class="card">
-                            <h3 class="card-title glitch-effect" data-text=">_WINDOWS_RESTRICTION_SETUP">> WINDOWS_RESTRICTION_SETUP<span class="cursor">_</span></h3>
-                            <div class="card-meta">
-                                <span class="glitch-effect" data-text=">_Posted:_18.03.25">> Posted: 18.03.25<span class="cursor">_</span></span>
-                                <span class="glitch-effect" data-text=">_|_ID:_203340"> | ID: 203340<span class="cursor">_</span></span>
-                            </div>
-                            <div class="card-content">
-                                <p class="glitch-effect" data-text=">_Download_from_repository:">> Download from repository:<span class="cursor">_</span></p>
-                                <p><a href="https://github.com/bol-van/zapret-win-bundle/tree/master" class="glitch-effect" data-text=">_https://github.com/bol-van/zapret-win-bundle/tree/master">> https://github.com/bol-van/zapret-win-bundle/tree/master<span class="cursor">_</span></a></p>
-                                <p class="glitch-effect" data-text=">_Unpack_and_run_preset_russia.cmd_as_administrator">> Unpack and run preset_russia.cmd as administrator<span class="cursor">_</span></p>
-                            </div>
-                        </div>
-                        
-                        <div class="card">
-                            <h3 class="card-title glitch-effect" data-text=">_3X-UI_SERVER_INSTALLATION">> 3X-UI_SERVER_INSTALLATION<span class="cursor">_</span></h3>
-                            <div class="card-meta">
-                                <span class="glitch-effect" data-text=">_Posted:_18.03.25">> Posted: 18.03.25<span class="cursor">_</span></span>
-                                <span class="glitch-effect" data-text=">_|_ID:_203341"> | ID: 203341<span class="cursor">_</span></span>
-                            </div>
-                            <div class="card-content">
-                                <h4 class="glitch-effect" data-text=">_1._Update_Ubuntu_packages:">> 1. Update Ubuntu packages:<span class="cursor">_</span></h4>
-                                <pre><code class="glitch-effect" data-text="apt_update_&&_apt_upgrade_-y">apt update && apt upgrade -y</code></pre>
-                                
-                                <h4 class="glitch-effect" data-text=">_2._Install_Curl:">> 2. Install Curl:<span class="cursor">_</span></h4>
-                                <pre><code class="glitch-effect" data-text="apt_install_curl_-y">apt install curl -y</code></pre>
-                                
-                                <h4 class="glitch-effect" data-text=">_3._Download_3X-UI:">> 3. Download 3X-UI:<span class="cursor">_</span></h4>
-                                <pre><code class="glitch-effect" data-text="bash_&lt;_(curl_-Ls_https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)">bash &lt;(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)</code></pre>
-                                
-                                <h4 class="glitch-effect" data-text=">_4._Start_service:">> 4. Start service:<span class="cursor">_</span></h4>
-                                <pre><code class="glitch-effect" data-text="x-ui_start">x-ui start</code></pre>
-                                
-                                <p class="glitch-effect" data-text=">_View_admin_panel_details_with_option_10,_then_access_at:">> View admin panel details with option 10, then access at:<span class="cursor">_</span></p>
-                                <p><code class="glitch-effect" data-text=">_https://your_server_ip:port/path">> https://your_server_ip:port/path<span class="cursor">_</span></code></p>
-                                
-                                <h4 class="glitch-effect" data-text=">_Connection_setup:">> Connection setup:<span class="cursor">_</span></h4>
-                                <p class="glitch-effect" data-text=">_Protocol:_vless">> Protocol: vless<span class="cursor">_</span><br>
-                                <span class="glitch-effect" data-text=">_Port:_443">> Port: 443<span class="cursor">_</span></span><br>
-                                <span class="glitch-effect" data-text=">_Transmission_protocol:_TCP(RAW)">> Transmission protocol: TCP(RAW)<span class="cursor">_</span></span><br>
-                                <span class="glitch-effect" data-text=">_Security:_REALITY">> Security: REALITY<span class="cursor">_</span></span><br>
-                                <span class="glitch-effect" data-text=">_uTLS:_chrome">> uTLS: chrome<span class="cursor">_</span></span><br>
-                                <span class="glitch-effect" data-text=">_Dest:_www.apple.com:443">> Dest: www.apple.com:443<span class="cursor">_</span></span><br>
-                                <span class="glitch-effect" data-text=">_SNI:_www.apple.com">> SNI: www.apple.com<span class="cursor">_</span></span></p>
-                                
-                                <p class="glitch-effect" data-text=">_Click_"Get_New_Cert"_to_auto-generate_keys.">> Click "Get New Cert" to auto-generate keys.<span class="cursor">_</span></p>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                
-            </div>
-        </div>
+        #server_url,#server_folder{
+            display: block;
+            margin: 20px;
+            width: 260px;
+            outline: none;
+            background: #070707;
+           color: rgb(247, 247, 254);
+            height: 24px;
+            border: 1px solid #ccf;
+        }
+        .connect_to_server_button{
+            display: inline-block;
+            margin-left: 20px;
+            width: auto;
+            outline: none;
+            background: rgb(12, 12, 19,0.3);
+            color: #ccc;
+            height: 24px;
+            border: 1px solid #ccf;
+        }
+        .connect_to_server_button:hover{
+            background: rgb(17, 24, 41);
+        }
+        .connect_to_server_text{
+            margin: 20px;
+            color: #fff;
+        }
+        </style>
+        
+        <p class="connect_to_server_text">server_api_method</p>
+    <input type="comment" id="server_url" placeholder="api_url для получения списка">
+    <p class="connect_to_server_text">server_folder</p>
+    <input type="comment" id="server_folder" placeholder="Полный  путь к файлам">
+    <button class="connect_to_server_button" onclick="loadingToConnect(true);connectServer(false);">ПОДКЛЮЧИТЬСЯ</button>
+    <button class="connect_to_server_button" onclick="connectServer(false);closeLoadingToConnect();">ОТМЕНА</button>
+    <p class="connect_to_server_text" style="font-size: 10px;color: #717175;margin-left: 1px;padding: 10px 20px; border: 1px solid #ccf;transform: translateX(10px);">Пример:<br>1 графа : https://178.99.3.3:445/api/music<br>2 графа: https://178.99.3.3:445/mymusic</p>
+</div>
+<div class="wellcome" >
+<p class="ptext">Нажми "продолжить"<br>Это нужно для запуска плеера</p>
+<p class="ptext"></p>
+<div class="toogle_">
+    <style>
+    
+    .continue_button{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border: 1px solid rgb(3, 3, 3);
+        transform: translate(-50%,-50%);
+        background: #0d1018;
+        color: #fff;
+        height: 30px;
+        transition: .2s;
+        margin-top: 100px;
+        &:hover{
+            background: #1d2437;
+            transform: translate(-50%,-50%) scale(1.1);
+        }
+    }
+    </style>
+    <div class="toogle_ball"></div>
+</div>
+<button class="continue_button" onclick="document.getElementsByClassName('wellcome')[0].style.display='none';">Продолжить</button>
 
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // App state
-            const state = {
-                soundEnabled: false,
-                soundMode: 0,
-                debugMode: false,
-                currentSection: 'mainContent',
-                cursorVisible: true,
-                glitchActive: false
-            };
+</div>
+<p class="debugger" style="text-align:center;color: #ff0044;transform: translate(20px,-6px);">c</p>
+<div class="player_ui">
+    
+    <div class="current_audio">
+        <p class="current_audio_text">Нажми на аудио</p>
+    </div>
+    <audio id="audio_device" crossorigin="anonymous"></audio>
+<div class="player_audio_data">
+    <img src="./back.png" class="image_0">
+</div>
+   
+    <button class="player_controls_button" style="margin-left: 0px;transform: translate(20px,-5px);"><<</button>
+    <button class="player_controls_button" style="margin-left: 0px;transform: translate(20px,-5px);">▶</button>
+    <button class="player_controls_button" style="margin-left: 0px;transform: translate(20px,-5px);">>></button>
+    <button class="player_controls_button" style="margin-left: 0px;transform: translate(20px,-5px);">?</button>
+    <button class="player_controls_button" style="margin-left: 10px;float: right;transform: translate(-20px,5px);font-size: 10px; " onclick="aboutwindow(true);">О SlonikFM</button>
+    <button class="player_controls_button" style="margin-left: 10px;float: right;transform: translate(-20px,5px); " onclick="fullsize(true);">◱</button>
+    <button class="player_controls_button" style="margin-left: 10px;float: right;transform: translate(-20px,5px); " onclick="connectServer(true);">⇲</button>
+    <input class="player_controls_button" type="range" style="width: 50px;transform: translate(20px,5px);" id="input_slider" min="0" value="0.03" max="1" step="0.01">
+    <div class="volume_anim">
+        <canvas class="wgl_canvas"></canvas>
+    </div>
+    <input class="player_controls_button" type="range" style="transform: translateY(-5px);" id="timeline" min="0" value="0.03" max="1" step="0.01">
+    <p class="timeline_data">0:00</p>
+    <p class="timeline_data" style="float: right;transform: translate(-10px,4px);">0:00</p>
+<div class="audio_tracks">
 
-            // DOM elements
-            const elements = {
-                loader: document.getElementById('AppoaderID'),
-                app: document.getElementById('AppId'),
-                navLinks: document.querySelectorAll('.nav-link'),
-                sections: {
-                    main: document.getElementById('mainContent'),
-                    projects: document.getElementById('projectHandleId'),
-                    webapps: document.getElementById('WebAppHandleId'),
-                    shop: document.getElementById('shopHandleId'),
-                    guides: document.getElementById('otherWindow')
-             
-                },
-                soundBtn: document.getElementById('btn3'),
-                exploreBtn: document.getElementById('exploreProjects'),
-                downloadBtns: document.querySelectorAll('.download-btn'),
-                webappBtns: document.querySelectorAll('.webapp-btn'),
-                cursors: document.querySelectorAll('.cursor'),
-                glitchOverlay: document.querySelector('.glitch-overlay'),
-                canvas: document.getElementById('glitchCanvas')
-            };
 
-            // WebGL Glitch Effect
-            function initGlitchEffect() {
-                const canvas = elements.canvas;
-                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-                
-                if (!gl) {
-                    console.error('WebGL not supported');
-                    return;
-                }
+</div>
+<button class="downloader" onclick="openPlaylistDownload();">СКАЧАТЬ ТРЕКИ</button>
+<p class="build_version">0.10 by HCPP DEV</p>
 
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
+</div>
+<script src="api.js"></script>
+<script>
+    var timeline_data = {
+        offset0:0,
+        offset1:0,
+        out0: document.getElementsByClassName("timeline_data")[0],
+        out1: document.getElementsByClassName("timeline_data")[1],
+    };
+     var drw = document.querySelector(".wgl_canvas");
+     var ctx = drw.getContext('2d');
+    var g_server_url = document.getElementById("server_url");
+    var g_server_folder = document.getElementById("server_folder");
+    var g_sUrlToAPI = "";
+    var g_sFolderServer = "";
+    var g_connect_to_server = document.getElementsByClassName("connect_to_server")[0];
+    var g_connect_to_server_loading= document.getElementsByClassName("connect_to_server_loading")[0];
+    var g_link_style = document.getElementById("style");
+    var audio_tracks = document.getElementsByClassName("audio_tracks")[0];
+    var debugger_str = document.getElementsByClassName("debugger")[0];
+    window.addEventListener("error",function(slfm){
+        debugger_str.innerHTML = slfm.error + " ln:"+slfm.lineno;
+    });
+    var playlistdata = document.getElementsByClassName("audio_tracks")[0];
+    initDebugger(debugger_str);
+    var audio_device = document.getElementById("audio_device");
+    player.init(audio_device);
+    //
 
-                // Vertex shader
-                const vs = `
-                    attribute vec2 position;
-                    void main() {
-                        gl_Position = vec4(position, 0.0, 1.0);
-                    }
-                `;
+    drw.width = document.getElementsByClassName("volume_anim")[0].clientWidth;
+    drw.height = document.getElementsByClassName("volume_anim")[0].clientHeight-130;
+    let iFFTSize = 4096;
+    let audioCtx, analyser, source;
+    let isInitialized = false;
+    function initAudio() {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    analyser = audioCtx.createAnalyser();
+    source = audioCtx.createMediaElementSource(audio_device);
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
+    
+    analyser.fftSize = iFFTSize; // Глубина детализации (от 32 до 32768)
+    isInitialized = true;
+}
+function fmt(a) {
+    const min = Math.floor(a / 60);
+    const sec = Math.floor(a % 60);
+    const m = min < 10 ? "0" + min : min;
+    const s = sec < 10 ? "0" + sec : sec;
+    
+    return m + ":" + s;
+}
+var isEdited = false;
+var isAboutWindowState = 0;
+function aboutwindow(a){
+  var g_aboutwindow = document.getElementsByClassName("aboutwindow")[0].style.display = "block";
+}
+var isWindowState = 0;
+function fullsize(a){
+    var g_player_ui = document.getElementsByClassName("player_ui")[0];
+    isWindowState = !isWindowState;
+    g_player_ui.style.maxWidth= isWindowState ? "100%" : "600px";
+    g_player_ui.style.height  = isWindowState ? "90%"  : "580px";
+    playlistdata.style.height = isWindowState ? "540px"  : "300px";
+}
+player.audio.addEventListener("timeupdate",function(){
+    if (!audioCtx) initAudio();
+    
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+        
+        
+    }
+    player.timeline.max =  timeline_data.offset1;
+    player.timeline.min = 0;
+    player.timeline.value =  timeline_data.offset0;
+    timeline_data.out0.innerHTML = fmt(timeline_data.offset0);
+    timeline_data.out1.innerHTML = fmt(timeline_data.offset1);
+    if(!isEdited){
+        timeline_data.offset0 = this.currentTime;
+        timeline_data.offset1 = this.duration;
+    }
+    player.play.innerHTML = player.audio.paused ? "▶" :"||";
+});
+function randHex() {
+    var hex_values = "0123456789ABCDEF";
+    var out_hex = "#";
+    for (var i = 0; i < 6; i++) {
+       
+        out_hex += hex_values[Math.floor(Math.random() * 16)];
+    }
+    return out_hex;
+}
+const bufferLength = 1024; 
+const dataArray = new Uint8Array(bufferLength);
 
-                // Fragment shader with glitch effect
-                const fs = `
-                    precision highp float;
-                    
-                    uniform float time;
-                    uniform vec2 resolution;
-                    uniform sampler2D texture;
-                    
-                    float rand(vec2 co) {
-                        return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
-                    }
-                    
-                    void main() {
-                        vec2 uv = gl_FragCoord.xy / resolution.xy;
-                        
-                        // Base glitch effect
-                        float glitchIntensity = 0.05 + 0.05 * sin(time * 2.0);
-                        float r = rand(vec2(time, uv.y));
-                        float g = rand(vec2(time + 1.0, uv.y));
-                        float b = rand(vec2(time + 2.0, uv.y));
-                        
-                        vec2 uvR = uv;
-                        vec2 uvG = uv;
-                        vec2 uvB = uv;
-                        
-                        if (r < glitchIntensity) {
-                            uvR.x += (r - 0.5) * 0.1;
-                            uvR.y += (rand(vec2(time, uv.x)) * 0.05;
-                        }
-                        
-                        if (g < glitchIntensity) {
-                            uvG.x += (g - 0.5) * 0.1;
-                            uvG.y += (rand(vec2(time + 1.0, uv.x)) * 0.05;
-                        }
-                        
-                        if (b < glitchIntensity) {
-                            uvB.x += (b - 0.5) * 0.1;
-                            uvB.y += (rand(vec2(time + 2.0, uv.x)) * 0.05;
-                        }
-                        
-                        float red = texture2D(texture, uvR).r;
-                        float green = texture2D(texture, uvG).g;
-                        float blue = texture2D(texture, uvB).b;
-                        
-                        // Add scanlines
-                        float scanline = sin(uv.y * resolution.y * 1.5 + time * 5.0) * 0.05;
-                        red += scanline;
-                        green += scanline;
-                        blue += scanline;
-                        
-                        // Add noise
-                        float noise = rand(uv + time) * 0.05;
-                        red += noise;
-                        green += noise;
-                        blue += noise;
-                        
-                        gl_FragColor = vec4(red, green, blue, 1.0);
-                    }
-                `;
+function render() {
+    requestAnimationFrame(render);
+    
+    if (!isInitialized) return;
 
-                // Compile shaders
-                const vertexShader = gl.createShader(gl.VERTEX_SHADER);
-                gl.shaderSource(vertexShader, vs);
-                gl.compileShader(vertexShader);
-                
-                const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
-                gl.shaderSource(fragmentShader, fs);
-                gl.compileShader(fragmentShader);
-                
-                // Create program
-                const program = gl.createProgram();
-                gl.attachShader(program, vertexShader);
-                gl.attachShader(program, fragmentShader);
-                gl.linkProgram(program);
-                gl.useProgram(program);
-                
-                // Create geometry
-                const vertices = new Float32Array([
-                    -1.0, -1.0,
-                    1.0, -1.0,
-                    -1.0, 1.0,
-                    1.0, 1.0
-                ]);
-                
-                const buffer = gl.createBuffer();
-                gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-                gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
-                
-                const positionLocation = gl.getAttribLocation(program, "position");
-                gl.enableVertexAttribArray(positionLocation);
-                gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
-                
-                // Set uniforms
-                const resolutionLocation = gl.getUniformLocation(program, "resolution");
-                gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
-                
-                const timeLocation = gl.getUniformLocation(program, "time");
-                
-                // Create texture
-                const texture = gl.createTexture();
-                gl.bindTexture(gl.TEXTURE_2D, texture);
-                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-                
-                // Render loop
-                let lastTime = 0;
-                function render(time) {
-                    if (!lastTime) lastTime = time;
-                    const deltaTime = (time - lastTime) / 1000;
-                    lastTime = time;
-                    
-                    // Update time uniform
-                    gl.uniform1f(timeLocation, time / 1000);
-                    
-                    // Update glitch intensity based on state
-                    const targetIntensity = state.glitchActive ? 0.8 : 0.1;
-                    document.documentElement.style.setProperty(
-                        '--glitch-intensity', 
-                        targetIntensity.toString()
-                    );
-                    
-                    // Render
-                    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-                    requestAnimationFrame(render);
-                }
-                
-                requestAnimationFrame(render);
-                
-                // Handle resize
-                window.addEventListener('resize', function() {
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
-                    gl.viewport(0, 0, canvas.width, canvas.height);
-                    gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
-                });
-            }
+    analyser.getByteFrequencyData(dataArray);
 
-            // Terminal typing effect
-            function typeWriter(element, text, speed = 50) {
-                let i = 0;
-                element.textContent = '';
-                function typing() {
-                    if (i < text.length) {
-                        element.textContent += text.charAt(i);
-                        i++;
-                        setTimeout(typing, speed);
-                    }
-                }
-                typing();
-            }
+    ctx.clearRect(0, 0, drw.width, drw.height);
+    ctx.beginPath();
+    ctx.moveTo(0, drw.height / 2);
 
-            // Initialize the app
-            function init() {
-                // Initialize WebGL glitch effect
-                initGlitchEffect();
-                
-                // Show loader first
-                elements.loader.classList.remove('hidden');
-                elements.app.classList.add('hidden');
-                
-                // Cursor blinking effect
-                setInterval(() => {
-                    state.cursorVisible = !state.cursorVisible;
-                    elements.cursors.forEach(cursor => {
-                        cursor.style.opacity = state.cursorVisible ? '1' : '0';
-                    });
-                }, 500);
-                
-                // Random glitch effect
-                setInterval(() => {
-                    state.glitchActive = Math.random() > 0.7;
-                }, 3000);
-                
-                // Simulate loading
-                setTimeout(() => {
-                    elements.loader.classList.add('hidden');
-                    elements.app.classList.remove('hidden');
-                    toggleSound(); // Initialize sound
-                    
-                    // Add typing effects to main headings
-                    const heroTitle = document.querySelector('.hero-title');
-                    const heroSubtitle = document.querySelector('.hero-subtitle');
-                    typeWriter(heroTitle, heroTitle.textContent.replace('>', '').replace('_', ' '));
-                    typeWriter(heroSubtitle, heroSubtitle.textContent.replace('>', '').replace('_', ' '));
-                }, 1500);
-                
-                // Setup event listeners
-                setupEventListeners();
-            }
+    for (let i = 0; i < bufferLength - 1; i++) {
+        const x = (i / bufferLength) * drw.width;
+        const y = drw.height / 2 - (dataArray[i] / 2); 
+        const nextX = ((i + 1) / bufferLength) * drw.width;
+        const nextY = drw.height / 2 - (dataArray[i + 1] / 2);
+        const xc = (x + nextX) / 2;
+        const yc = (y + nextY) / 2;
+        ctx.quadraticCurveTo(x, y, xc, yc);
+        ctx.strokeStyle = "#ccf";
+        
+    }
 
-            // Setup all event listeners
-            function setupEventListeners() {
-                // Navigation
-                elements.navLinks.forEach(link => {
-                    link.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const target = this.id.replace('btn', '');
-                        navigateTo(target);
-                    });
-                });
+    
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+}
+render();
 
-                // Explore projects button
-                elements.exploreBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    navigateTo('0');
-                });
+    //await get_file_list();
+    player.play = document.getElementsByClassName("player_controls_button")[1];
+    player.next = document.getElementsByClassName("player_controls_button")[2];
+    player.prev = document.getElementsByClassName("player_controls_button")[0];
+    player.random = document.getElementsByClassName("player_controls_button")[3];
+    player.timeline = document.getElementsByClassName("player_controls_button")[6];
+    player.volume = document.getElementById("input_slider");
+    player.play.onclick = function(){
+       
+        player.playAudio();
+        
+    }
+    player.play.innerHTML = player.audio.paused ? "▶" :"||";
+    player.random.onclick = function(){
+        player.setID(Math.floor(Math.random() * (g_sAudioFilesArray.length - 1)),g_sAudioFilesArray);
+        playlistdata.scrollTo({
+            top: player.id_file * 40,
+            behavior: 'smooth'
+            });
+    }
+    var track_index = 0;
+    function scrollSet(){
+        playlistdata.scrollTo({
+            top: player.id_file * 20,
+            behavior: 'smooth'
+            });
+    }
+    var g_CurrentAudioTrackStr = document.getElementsByClassName("current_audio_text")[0];
+    player.next.onclick = function(){
+        track_index++;
+       
+        player.setID(track_index - 1,g_sAudioFilesArray);
+        if(track_index >= (g_sAudioFilesArray.length) - 1){
+            track_index = g_sAudioFilesArray.length - 1;
+        }
+        scrollSet();
+    }
+    
+    var g_fVolume = 0;
+    
+    window.addEventListener("keydown",function(key){
+       if(key.code == 'ArrowUp'){
+         player.audio.volume = g_fVolume;
+         g_fVolume += 0.1;
+         if(g_fVolume > 1){
+            g_fVolume = 1;
+         }
+         player.volume.value = g_fVolume;
+       }
+       if(key.code == 'ArrowDown'){
+         player.audio.volume = g_fVolume;
+         g_fVolume -= 0.1;
+         if(g_fVolume < 0){
+            g_fVolume = 0;
+         }
+         player.volume.value = g_fVolume;
+       }
+       if(key.code == 'ArrowLeft'){
+        player.prev.click();
+       }
+       if(key.code == 'ArrowRight'){
+        player.next.click();
+       }
+    });
+    player.prev.onclick = function(){
+        track_index--;
+        scrollSet();
+        player.setID(track_index ,g_sAudioFilesArray);
+        if(track_index < 1){
+            track_index = 1;
+        }
+        scrollSet();
+    }
+    player.audio.volume =   player.volume.value;
+    player.volume.oninput = function(){
+        player.audio.volume = this.value;
+    }
+    player.audio.currentTime = player.timeline.value;
+    player.timeline.oninput = function(){
+        player.audio.currentTime = this.value;
+        //isEdited = true;
+    }
+    loadPlayList(playlistdata);
 
-                // Sound toggle
-                elements.soundBtn.addEventListener('click', toggleSound);
+    function connectServer(state){
+       // g_connect_to_server_loading.style.display = "none";
+        g_connect_to_server.style.display = state ? "block" : "none";
+        
+    }
+    var connect_to_server_text = document.getElementsByClassName("connect_to_server_text")[2];
+    function editConnectText(str0,str1){
+        connect_to_server_text.innerHTML = `Пример:<br>1 графа: ${str0}<br>2 графа: ${str1}`
+    }
+    g_sFolderServer = g_server_folder.value;
+    g_server_folder.oninput = function(){
+        g_sFolderServer = this.value;
+        editConnectText(g_sServer_url,g_sFolderServer);
+    }
+    g_sServer_url = g_server_url.value;
+    g_server_url.oninput = function(){
+        g_sServer_url = this.value;
+        editConnectText(g_sServer_url,g_sFolderServer);
+    }
 
-                // Download buttons
-                elements.downloadBtns.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const url = this.getAttribute('data-url');
-                        redirect(url);
-                    });
-                });
-
-                // Webapp buttons
-                elements.webappBtns.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const url = this.getAttribute('data-url');
-                        redirect(url);
-                    });
-                });
-
-                // Debug functionality (double click on subtitle)
-                const subtitle = document.querySelector('.hero-subtitle');
-                subtitle.addEventListener('dblclick', toggleDebugMode);
-            }
-
-            // Navigation function
-            function navigateTo(target) {
-                // Hide all sections
-                Object.values(elements.sections).forEach(section => {
-                    section.classList.add('hidden');
-                });
-
-                // Remove active class from all nav links
-                elements.navLinks.forEach(link => {
-                    link.classList.remove('active');
-                });
-
-                // Show target section and set active nav link
-                let sectionKey;
-                switch(target) {
-                    case '00':
-                        sectionKey = 'main';
-                        break;
-                    case '0':
-                        sectionKey = 'projects';
-                        break;
-                    case '1':
-                        sectionKey = 'webapps';
-                        break;
-                    case '2':
-                        sectionKey = 'shop';
-                        break;
-                    case '4':
-                        sectionKey = 'guides';
-                        alert("> This section may have some bugs and issues!\n> This is beta functionality.");
-                        break;
-                    default:
-                        sectionKey = 'main';
-                }
-
-                elements.sections[sectionKey].classList.remove('hidden');
-                document.getElementById(`btn${target}`).classList.add('active');
-                state.currentSection = sectionKey;
-
-                // Play sound if enabled
-                if (state.soundEnabled) {
-                    playSound();
-                }
-            }
-
-            // Sound control
-            function toggleSound() {
-                state.soundEnabled = !state.soundEnabled;
-                state.soundMode++;
-                
-                if (state.soundMode > 2) {
-                    state.soundMode = 0;
-                }
-
-                elements.soundBtn.textContent = state.soundEnabled ? '> SOUND_ON' : '> SOUND_OFF';
-                
-                // Here you would typically initialize your audio engine
-                console.log(`> Sound ${state.soundEnabled ? 'enabled' : 'disabled'}, mode: ${state.soundMode}`);
-            }
-
-            function playSound() {
-                // This would call your audio engine to play a sound
-                console.log('> Playing sound');
-            }
-
-            // Redirect function
-            function redirect(url) {
-                window.open(url, '_blank');
-                
-                // Play sound if enabled
-                if (state.soundEnabled) {
-                    playSound();
-                }
-            }
-
-            // Debug mode toggle
-            function toggleDebugMode() {
-                state.debugMode = !state.debugMode;
-                console.log(`> Debug mode ${state.debugMode ? 'enabled' : 'disabled'}`);
-                
-                if (state.debugMode) {
-                    elements.loader.classList.remove('hidden');
-                    elements.app.classList.add('hidden');
-                } else {
-                    elements.loader.classList.add('hidden');
-                    elements.app.classList.remove('hidden');
-                }
-            }
-
-            // Initialize the app
-            init();
-        });
-        </script>
-    </body>
+    var server = {
+        status: document.getElementsByClassName("_text")[0],
+        code: document.getElementsByClassName("_text")[2],
+        api: document.getElementsByClassName("_text")[1],
+    };
+    //127.0.0.1:4443/api/files
+    function loadingToConnect(st){
+        g_connect_to_server_loading.style.display = st ? "block": "none";
+        get_file_list(g_sServer_url);
+        g_sFileDir = g_sFolderServer;
+    }
+    function closeLoadingToConnect(){
+        g_connect_to_server_loading.style.display = "none";
+    }
+</script>
 </html>
