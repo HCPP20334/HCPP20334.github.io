@@ -4,6 +4,15 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link id="style" href="lite.css" rel="stylesheet">
     </head>
+    <div class="aboutwindow">
+        <h1 class="aboutwindow_text">SLOVIKFM</h1>
+        <h1 class="aboutwindow_text" style="color: #88889c;font-size: 30px; text-shadow: 0px 0px 10px #88889c;">Плеер со слоновыми треками</h1>
+        <h1 class="aboutwindow_text" style="color: #88889c;font-size: 30px; text-shadow: 0px 0px 10px #88889c;">Авторы песен: Aртем Иовин, E777</h1>
+        <h1 class="aboutwindow_text" style="color: #88889c;font-size: 30px; text-shadow: 0px 0px 10px #88889c;">Разработал плеер: HCPP20334</h1>
+        <h1 class="aboutwindow_text" style="color: #ff0044;font-size: 30px; text-shadow: 0px 0px 10px #ff0044;">Поддерживается на (chrome 100,firefox 80)</h1>
+        <h1 class="aboutwindow_text" style="color: #ff0044;font-size: 30px; text-shadow: 0px 0px 10px #ff0044;">rev 0.13 (HTML5+CSS+JS)</h1>
+        <button class="aboutwindow_close" onclick="document.getElementsByClassName('aboutwindow')[0].style.display='none';">ЗАКРЫТЬ</button>
+    </div>
     <div class="connect_to_server_loading">
         <style>
         .connect_to_server_loading{
@@ -11,12 +20,13 @@
             top: 50%;
             left: 50%;
             z-index: 20;
-            width: 300px;    
+            width: 300px;
             height: 340px;
-            background: rgb(242, 242, 247);
+            background: #070707;
             border-radius: 10px;
             transform: translate(-50%,-50%);
             display: none;
+            border: 1px solid #ccf;
         }
         @keyframes loading {
             100%{
@@ -28,7 +38,7 @@
         }
         .loading{
             background: transparent;
-            border-left: 3px solid #0d1018;
+            border-left: 3px solid #fff;
             border-top: 3px solid transparent;
             border-bottom: 3px solid transparent;
             border-right: 3px solid transparent;
@@ -38,29 +48,31 @@
             transform: rotate(180deg);
             margin: 20px;
             display: inline-block;
-            animation: loading 100ms infinite ease-in-out;
+            animation: loading 400ms infinite ease-in-out;
         }
         .loading_text{
             display: inline-block;
+            color: #fff;
             transform: translateY(-30px)
         }
         ._text{
             margin: 20px;
             font-size: 12px;
+            color: #fff;
         }
         .close{
             display: block;
             margin: auto;
             width: 90%;
             outline: none;
-            background: #f0f0f0;
-            
+            background: #070707;
+            color: #fff;
             height: 24px;
-            border: 1px solid #070707;
+            border: 1px solid #ccf;
             cursor: pointer;
         }
         .close:hover{
-            background: #ebe8ff;
+            background: #162128;
         }
         </style>
         <div class="loading"></div>
@@ -79,10 +91,11 @@
             z-index: 20;
             width: 300px;
             height: 340px;
-            background: rgb(242, 242, 247);
+            background: #070707;
             border-radius: 10px;
             transform: translate(-50%,-50%);
             display: none;
+            border: 1px solid #ccf;
         }
         
         #server_url,#server_folder{
@@ -90,36 +103,37 @@
             margin: 20px;
             width: 260px;
             outline: none;
-            background: #f0f0f0;
-
+            background: #070707;
+           color: rgb(247, 247, 254);
             height: 24px;
-            border: 1px solid #070707;
+            border: 1px solid #ccf;
         }
         .connect_to_server_button{
             display: inline-block;
             margin-left: 20px;
             width: auto;
             outline: none;
-            background: #f0f0f0;
-
+            background: rgb(12, 12, 19,0.3);
+            color: #ccc;
             height: 24px;
-            border: 1px solid #070707;
+            border: 1px solid #ccf;
         }
         .connect_to_server_button:hover{
-            background: #ebe8ff;
+            background: rgb(17, 24, 41);
         }
         .connect_to_server_text{
             margin: 20px;
+            color: #fff;
         }
         </style>
         
-        <p class="connect_to_server_text">Server API URL</p>
+        <p class="connect_to_server_text">server_api_method</p>
     <input type="comment" id="server_url" placeholder="api_url для получения списка">
-    <p class="connect_to_server_text">Server Folder </p>
+    <p class="connect_to_server_text">server_folder</p>
     <input type="comment" id="server_folder" placeholder="Полный  путь к файлам">
     <button class="connect_to_server_button" onclick="loadingToConnect(true);connectServer(false);">ПОДКЛЮЧИТЬСЯ</button>
     <button class="connect_to_server_button" onclick="connectServer(false);closeLoadingToConnect();">ОТМЕНА</button>
-    <p class="connect_to_server_text" style="font-size: 10px;color: #717175;margin-left: 1px;padding: 10px 20px; border: 1px solid #070707;transform: translateX(10px);">Пример:<br>1 графа : https://178.99.3.3:445/api/music<br>2 графа: https://178.99.3.3:445/mymusic</p>
+    <p class="connect_to_server_text" style="font-size: 10px;color: #717175;margin-left: 1px;padding: 10px 20px; border: 1px solid #ccf;transform: translateX(10px);">Пример:<br>1 графа : https://178.99.3.3:445/api/music<br>2 графа: https://178.99.3.3:445/mymusic</p>
 </div>
 <div class="wellcome" >
 <p class="ptext">Нажми "продолжить"<br>Это нужно для запуска плеера</p>
@@ -151,6 +165,10 @@
 </div>
 <p class="debugger" style="text-align:center;color: #ff0044;transform: translate(20px,-6px);">c</p>
 <div class="player_ui">
+    
+    <div class="current_audio">
+        <p class="current_audio_text">Нажми на аудио</p>
+    </div>
     <audio id="audio_device" crossorigin="anonymous"></audio>
 <div class="player_audio_data">
     <img src="./back.png" class="image_0">
@@ -160,7 +178,8 @@
     <button class="player_controls_button" style="margin-left: 0px;transform: translate(20px,-5px);">▶</button>
     <button class="player_controls_button" style="margin-left: 0px;transform: translate(20px,-5px);">>></button>
     <button class="player_controls_button" style="margin-left: 0px;transform: translate(20px,-5px);">?</button>
-   
+    <button class="player_controls_button" style="margin-left: 10px;float: right;transform: translate(-20px,5px);font-size: 10px; " onclick="aboutwindow(true);">О SlonikFM</button>
+    <button class="player_controls_button" style="margin-left: 10px;float: right;transform: translate(-20px,5px); " onclick="fullsize(true);">◱</button>
     <button class="player_controls_button" style="margin-left: 10px;float: right;transform: translate(-20px,5px); " onclick="connectServer(true);">⇲</button>
     <input class="player_controls_button" type="range" style="width: 50px;transform: translate(20px,5px);" id="input_slider" min="0" value="0.03" max="1" step="0.01">
     <div class="volume_anim">
@@ -175,6 +194,7 @@
 </div>
 <button class="downloader" onclick="openPlaylistDownload();">СКАЧАТЬ ТРЕКИ</button>
 <p class="build_version">0.10 by HCPP DEV</p>
+
 </div>
 <script src="api.js"></script>
 <script>
@@ -228,6 +248,18 @@ function fmt(a) {
     return m + ":" + s;
 }
 var isEdited = false;
+var isAboutWindowState = 0;
+function aboutwindow(a){
+  var g_aboutwindow = document.getElementsByClassName("aboutwindow")[0].style.display = "block";
+}
+var isWindowState = 0;
+function fullsize(a){
+    var g_player_ui = document.getElementsByClassName("player_ui")[0];
+    isWindowState = !isWindowState;
+    g_player_ui.style.maxWidth= isWindowState ? "100%" : "600px";
+    g_player_ui.style.height  = isWindowState ? "90%"  : "580px";
+    playlistdata.style.height = isWindowState ? "540px"  : "300px";
+}
 player.audio.addEventListener("timeupdate",function(){
     if (!audioCtx) initAudio();
     
@@ -316,6 +348,7 @@ render();
             behavior: 'smooth'
             });
     }
+    var g_CurrentAudioTrackStr = document.getElementsByClassName("current_audio_text")[0];
     player.next.onclick = function(){
         track_index++;
        

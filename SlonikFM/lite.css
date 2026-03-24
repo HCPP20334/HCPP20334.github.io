@@ -5,6 +5,15 @@ html{
     font-family: 'SF Mono';
     src: url("SFMono-Bold.ttf");
 }
+/* cyrillic */
+@font-face {
+    font-family: 'IBM Plex Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1isq131nj-otFQ.woff2) format('woff2');
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  }
 *{
     font-family: 'SF Mono';
 }
@@ -21,6 +30,7 @@ html{
     border: 1px solid #ccf;
     background-size: cover;
     overflow: hidden;
+    transition: 1s;
 
 }
 .player_audio{
@@ -69,6 +79,7 @@ html{
     overflow-x: hidden;
     background-image: url("orig.jpeg");
     background-size: cover;
+    transition: .1s;
     transform: translate(0px,-1px);
 }
 .audio_track:hover{
@@ -146,8 +157,26 @@ html{
     cursor: pointer;
     box-shadow: -9999px 0 0 9991px #ccf; 
 }
+#input_slider::-moz-range-progress {
+    background-color: #ccf;
+    height: 7px;
+    border: 1px solid #353555;
+    border-right-width: 0; /* Чтобы не двоилась рамка у ползунка */
+}
+
+/* Очистка тени у ползунка Firefox (она больше не нужна) */
+#input_slider::-moz-range-thumb {
+    -moz-appearance: none;
+    width: 11px;
+    height: 11px;
+    background: #ccf; 
+    cursor: pointer;
+    border: none; /* Убираем стандартную рамку Firefox */
+    box-shadow: none; /* Убираем тень, так как работает range-progress */
+}
 #timeline{
     -webkit-appearance: none;
+    -moz-appearance: none;
     width: 98%;
     display: block;
     font-size: auto;
@@ -177,6 +206,24 @@ html{
     cursor: pointer;
     box-shadow: -9999px 0 0 9991px #ccf; 
 
+}
+/* Специальный элемент Firefox для закрашивания прогресса */
+#timeline::-moz-range-progress {
+    background-color: #ccf;
+    height: 7px;
+    border: 1px solid #353555;
+    border-right-width: 0; /* Чтобы не двоилась рамка у ползунка */
+}
+
+/* Очистка тени у ползунка Firefox (она больше не нужна) */
+#timeline::-moz-range-thumb {
+    -moz-appearance: none;
+    width: 11px;
+    height: 11px;
+    background: #ccf; 
+    cursor: pointer;
+    border: none; /* Убираем стандартную рамку Firefox */
+    box-shadow: none; /* Убираем тень, так как работает range-progress */
 }
 .wellcome{
     width: 100vw;
@@ -258,10 +305,90 @@ a:hover{
     margin-left: 10px;
     margin-top: 10px;
     display: inline-block;
+    
 }
 .build_version{
     display: inline-block;
     margin-left: 10px;
     margin-top: 10px;
     color: #ff0080;
+}
+.about{
+    background: #12121990;
+    backdrop-filter: blur(100px);
+    color: #fff;
+    border: 1px solid #ccf;
+    position: absolute;
+    top: 121px;
+    z-index: 2;
+    font-size: 10px;
+    width: 75px;
+    height: 30px;
+
+}
+.current_audio{
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    top: 121px;
+    background: #070709cc;
+    backdrop-filter: blur(10px);
+    z-index: 3;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border: 1px solid #121219;
+}
+.current_audio_text{
+    color: #fff;
+    font-family: 'SF Mono';
+    font-size: 12px;
+    text-align: center;
+    transform: translateY(-4px);
+}
+.aboutwindow{
+    width: 100%;
+    height: 100%;
+    background: #070709aa;
+    backdrop-filter: blur(5px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 5;
+    animation: fade 1s ;
+    display: none;
+}
+.aboutwindow_text{
+    color: #fff;
+    font-size: 60px;
+    font-style: italic;
+    margin: 20px;
+    text-align: center;
+    transform: translateY(200px);
+    text-shadow: 0px 0px 10px #fff;
+}
+@keyframes fade {
+    from{
+      opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+.aboutwindow_close{
+    color: #fff;
+    margin: 20px;
+    transform: translateY(200px);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    height: 60px;
+    background: #2e4cd2;
+    border-radius: 60px;
+    transition: .1s;
+    border: none;
+   
 }

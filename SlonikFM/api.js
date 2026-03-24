@@ -27,6 +27,7 @@ var player = {
     setID: function(id_audio,src){
       this.id_file = id_audio;
       this.play.innerHTML = this.audio.paused ? "▶" :"||";
+      g_CurrentAudioTrackStr.innerHTML =  src[id_audio];
       this.audio.src = isLoadedToServer ? g_sFileDir + src[id_audio] : "audios/"+src[id_audio];
 
       selected(g_iID);
@@ -56,6 +57,7 @@ function selected(id_audio){
 var g_sAudioFilesArray =
   [
   "Зеленые_солдаты_REMIX_Юность_в_сапогах.mp3",
+  "Зелёное Cолнце.mp3",
   "ТУРБО СЛОНИК MMV.mp3",
   "Bad fufel green - Ретро Слоник.mp3",
   "Зеленый слоник - 18 мне уже _ MMV.mp3",
