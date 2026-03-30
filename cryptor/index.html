@@ -1,266 +1,329 @@
-<html>
+<!DOCTYPE html>
 <style>
     html {
-        background: radial-gradient(#010101, #070709);
+        background: #111422;
     }
-    @font-face {
-        font-family: 'BOUNDED';
-        src: url("Bounded-Regular.ttf");
+
+    .window {
+        background: rgb(41, 41, 56);
+        width: 400px;
+        height: 480px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 10px;
+        transform: translate(-50%, -50%);
+        border: 1px solid #777;
     }
-    .vl_text {
-        color: #fff;
-        font-family: 'BOUNDED';
-        text-transform: capitalize;
+
+    .text {
+        font-family: system-ui;
         font-weight: 500;
-        font-style: italic;
-        margin: 60px;
+        font-size: 34px;
+        margin-left: 10px;
+        text-align: center;
     }
-    #in0, #in2, #fullHex {
-        color: #fff;
-        font-family: 'BOUNDED';
-        font-style: italic;
-        margin: 60px;
-        background: #070709;
-        border: 1px solid #fff;
-        width: 500px;
-        height: 100px;
-        resize: none;
+
+    .text2 {
+
+        font-family: system-ui;
+        font-weight: 400;
+        margin-left: 10px;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    * {
+        color: #ccc;
+    }
+
+    .line {
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(120deg, #ff0000, #ff0040, #ff0060, #00ff00, #00ff40, #00ff90, #0000ff, #1234f5, #1234ff);
+    }
+
+    a,
+    .tool {
+        font-family: system-ui;
+        font-weight: 400;
+        margin-left: 10px;
+        text-align: center;
+        font-size: 18px;
         outline: none;
+        text-decoration: none;
+        display: block;
+        padding: 6px 3px;
+        border: 1px solid #777;
+        margin: auto;
+        margin-top: 5px;
+        color: #ff0030;
+        background: transparent;
+        width: 96%;
     }
-    .vl_text2 {
-        color: #fff;
-        font-family: 'BOUNDED';
-        text-transform: capitalize;
-        font-weight: 500;
-        font-style: italic;
-        margin-left: 60px;
-        margin-top: 0px;
-        margin-bottom: -40px;
+
+    a:hover,
+    .tool:hover {
+        color: #ff0030;
+        background: #0a0a0cb0;
+        border-style: dashed;
     }
-    .gen {
-        color: #fff;
-        font-family: 'BOUNDED';
-        text-transform: capitalize;
-        font-weight: 500;
-        font-style: italic;
+
+    @keyframes fade {
+        0% {
+            opacity: 1;
+            width: 408px;
+            height: 488px;
+        }
+
+        100% {
+            opacity: 0;
+            width: 404px;
+            height: 480px;
+        }
+    }
+
+    .fake_border {
+        width: 404px;
+        height: 484px;
+        border-radius: 10px;
+        background: linear-gradient(120deg, #ff0000, #ff0040, #ff0060, #00ff00, #00ff40, #00ff90, #0000ff, #1234f5, #1234ff);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transition: .1s;
+        opacity: 1;
+
+        transform: translate(-50%, -50%);
+    }
+
+    #_a {
+        width: 404px;
+        height: 484px;
+        border-radius: 10px;
+        background: linear-gradient(120deg, #070707, #121219, #111422, #070707, #121219, #111422);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transition: .1s;
+        opacity: 1;
+        border: 1p solid #121219;
+        transform: translate(-50%, -50%);
+        border: 1px solid rgb(117, 117, 141);
+        z-index: 5;
+        display: none;
+    }
+
+    #_ati {
+        width: 99%;
+        height: 300px;
+        background: #11142290;
+        border: none;
+        outline: none;
+        font-size: 20px;
+        border-bottom: 1px solid rgb(117, 117, 141);
+        border-top: 1px solid rgb(117, 117, 141);
+        color: #8a8aa3;
+        transform: translateY(20px);
+    }
+
+    ._ati {
+        width: 99%;
+        height: 200px;
+        background: #111422;
+        border: none;
+        outline: none;
+        font-size: 20px;
+        border-bottom: 1px solid rgb(117, 117, 141);
+        border-top: 1px solid rgb(117, 117, 141);
+        color: #8a8aa3;
+        transform: translateY(20px);
+    }
+
+    .mm {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #111422;
+        border: 1px solid rgb(117, 117, 141);
+        width: 90%;
+        height: 300px;
+        display: none;
+        z-index: 8;
+
+    }
+
+    ._g,
+    ._g1 {
+        background: transparent;
+        border: 1px solid rgb(117, 117, 141);
+        width: 90%;
+        height: 30px;
+        display: block;
+        margin: auto;
+        margin-top: 3px;
+        transition: .600ms;
+        transform: translateY(30px);
+    }
+
+    @keyframes push {
+        100% {
+            transform: scale(0.97);
+        }
+
+        50% {
+            transform: scale(1.1);
+        }
+
+        0% {
+            transform: scale(1.0);
+        }
+    }
+
+    ._g:hover,
+    ._g1:hover {
+        background: #1234f5;
+        border: 1px solid transparent;
+    }
+
+
+    ._bo {
+        width: 100px;
+        height: 30px;
+        display: block;
+        margin-left: 20px;
+        margin-top: 5px;
+        background: #111422;
         display: inline-block;
-        margin-left: 60px;
-        margin-top: -60px;
-        margin-bottom: 10px;
-        background: #070709;
-        border: 1px solid #fff;
-        width: 500px;
-        height: 50px;
+        border: 1px solid #00ff00;
+        transform: translateY(30px);
     }
-    .gen:hover {
-        background: #353555;
-    }
-    .dmode {
-        color: #fff;
-        font-family: 'BOUNDED';
-        text-transform: capitalize;
-        font-weight: 500;
-        font-style: italic;
-        margin-top: -50px;
-        margin-bottom: -40px;
-        background: #070709;
-        border: 1px solid #fff;
-        width: 50px;
-        height: 50px;
-    }
-    .dmode:hover {
-        background: #353555;
-    }
-    .derr {
-        color: #ff0069;
-        font-family: 'BOUNDED';
-        font-weight: 500;
-        font-style: italic;
-        margin-left: 60px;
-        margin-top: 0px;
-        margin-bottom: -40px;
-    }
-    .derr2 {
-        color: #1234f5;
-        font-family: 'BOUNDED';
-        font-weight: 500;
-        font-style: italic;
-        margin-left: 60px;
-        margin-top: 0px;
-        margin-bottom: -40px;
+
+    #ssk {
+        width: 200px;
+        height: 30px;
+        display: block;
+        margin-left: 20px;
+        margin-top: 5px;
+        background: #111422;
+        outline: none;
+        display: inline-block;
+        border: 1px solid #00ff00;
+        transform: translateY(30px);
     }
 </style>
-<h1 class="vl_text">AES CRYPTOR BY HCPP</h1>
-<h1 class="vl_text2" id="_tx">Текст для шифрования</h1>
-<textarea id="in0"></textarea>
-<br>
-<button class="gen">Зашифровать</button>
-<button class="dmode">Dec</button>
-<br>
-<h1 class="vl_text2" id="_tx2">Вывод (64 символа)</h1>
-<textarea id="in2"></textarea>
-<h1 class="vl_text2">Полный hex для расшифровки</h1>
-<textarea id="fullHex"></textarea>
-<p class="derr2">GITHUB.COM/HCPP20334</p>
-<p class="derr"></p>
-<script>
-async function generateKey() {
-  const hexKey = 'bcecedfa47eb363152239c10a3c8eaf821a768e29ceb2bc130af286e96842fc3';
-  const keyData = new Uint8Array(
-    hexKey.match(/.{1,2}/g).map(byte => parseInt(byte, 16))
-  );
-  return await crypto.subtle.importKey(
-    'raw',
-    keyData,
-    { name: 'AES-GCM', length: 256 },
-    true,
-    ['encrypt', 'decrypt']
-  );
-}
-
-async function encryptMessage(message, key) {
-  try {
-    const iv = crypto.getRandomValues(new Uint8Array(12));
-    const msgUint8 = new TextEncoder().encode(message);
-    const encrypted = await crypto.subtle.encrypt(
-      {
-        name: 'AES-GCM',
-        iv: iv,
-      },
-      key,
-      msgUint8
-    );
-    const encryptedArray = new Uint8Array(encrypted);
-    // Объединяем IV и зашифрованные данные
-    const combined = new Uint8Array(iv.length + encryptedArray.length);
-    combined.set(iv);
-    combined.set(encryptedArray, iv.length);
-    // Кодируем в hex
-    const fullHex = Array.from(combined)
-      .map(b => b.toString(16).padStart(2, "0"))
-      .join("");
-    // Ограничиваем до 64 символов для отображения
-    const output = fullHex.slice(0, 64).padEnd(64, "0");
-    return { output, fullHex };
-  } catch (e) {
-    throw new Error("Ошибка шифрования: " + e.message);
-  }
-}
-
-async function decryptMessage(hexInput, key) {
-  try {
-    // Декодируем hex
-    const combined = new Uint8Array(
-      hexInput.match(/.{1,2}/g).map(byte => parseInt(byte, 16))
-    );
-    // Извлекаем IV (12 байт) и зашифрованные данные
-    const iv = combined.slice(0, 12);
-    const encrypted = combined.slice(12);
-    const decrypted = await crypto.subtle.decrypt(
-      {
-        name: 'AES-GCM',
-        iv: iv,
-      },
-      key,
-      encrypted
-    );
-    return new TextDecoder().decode(decrypted);
-  } catch (e) {
-    throw new Error("Ошибка расшифровки: неверный формат или данные");
-  }
-}
-
-const AES = {
-  async enc(message, key) {
-    return await encryptMessage(message, key);
-  },
-  async dec(hexInput, key) {
-    return await decryptMessage(hexInput, key);
-  }
-};
-
-(async () => {
-  const str = ["Текст для шифрования", "Текст для расшифровки"];
-  const strb = ["Зашифровать", "Расшифровать"];
-  let _dmode = 1; // 1 - шифрование, 0 - расшифровка
-  const _derror = document.querySelector(".derr");
-  const key = await generateKey();
-
-  function api_log(D) {
-    _derror.innerHTML = D;
-  }
-
-  window.addEventListener("error", function(api_error) {
-    api_log(api_error.error + " line: " + api_error.lineno);
-  });
-
-  const CRYPTOR = {
-    text: {
-      t0: document.querySelector("#_tx"),
-      t1: document.querySelector("#_tx2"),
-      tex0: document.querySelector("#in0"),
-      tex1: document.querySelector("#in2"),
-      fullHex: document.querySelector("#fullHex"),
-    },
-    button: {
-      gen: document.querySelector(".gen"),
-      mode: document.querySelector(".dmode"),
-    },
-    hash: {
-      async enc(input) {
-        const result = await AES.enc(input, key);
-        return result;
-      },
-      async dec(input) {
-        return await AES.dec(input, key);
-      }
+<div id="_a">
+    <div class="mm">
+        <textarea class="_ati"></textarea>
+        <button class="_g1" onclick="_mm.style.display = 'none';">exit</button>
+    </div>
+    <textarea id="_ati"></textarea>
+    <button class="_g">Generate</button>
+    <button class="_g" onclick="_gp3fnc();">decode</button>
+    <br>
+    <button class="_bo">obfs: b364s2</button>
+    <input type="comment" id="ssk" placeholder="secret_key">
+</div>
+<div class="fake_border"></div>
+<div class="window">
+    <p class="text">HCPP DEV</p>
+    <p class="text2">Разаработчик из Европы
+        <br>
+        стек: <br>system dev, Gamedev: C++20/C++17/C
+        <br>
+        Web: (HTML,CSS,JS)
+        <br>
+        Server API, API, Bots
+    <div class="line"></div>
+    <a href="https://github.com/hcpp20334"> github</a>
+    <a href="https://github.com/hcpp20334"> Telegram</a>
+    <a href="https://github.com/hcpp20334"> YouTube</a>
+    <button class="tool">Tools</button>
+    </p>
+</div>
+<script id="scp">
+    function decode_obfc() {
+        var scrp = document.getElementById("scp").outerHTML;
+        document.getElementById("scp").innerHTML = "";
+        document.getElementById("scp").src = "data:text/javascript;base64," + btoa(scrp);
     }
-  };
+    decode_obfc();
+    var ss = 0;
+    var ssi = document.getElementById('ssk');
+    var _obfs = ["b364s2", "xrs20t"];
+    var _v = document.getElementsByClassName('fake_border')[0];
+    var _bo = document.getElementsByClassName('_bo')[0];
+    const tool = document.getElementsByClassName('tool')[0];
+    var _a0 = document.getElementById("_a");
+    var _gb = document.getElementsByClassName('_g')[0];
+    // var _gbd = document.getElementsByClassName('_g')[1];
+    var _atii = document.getElementById("_ati");
+    var _atio = document.getElementsByClassName("_ati")[0];
+    var _av = "";
+    var _mm = document.getElementsByClassName('mm')[0];
+    var _obfs_mode = false;
+    function _t() {
+        _v.remove();
+        _a0.style.display = "block";
+    }
+    tool.onclick = function () {
+        _t();
 
-  let _hash_0x3f3q = "";
-
-  CRYPTOR.text.tex0.oninput = function() {
-    _hash_0x3f3q = this.value;
-  };
-
-  CRYPTOR.button.mode.onclick = function() {
-    _dmode = !_dmode;
-    CRYPTOR.button.mode.innerHTML = _dmode ? "Dec" : "Enc";
-    CRYPTOR.button.gen.innerHTML = _dmode ? strb[0] : strb[1];
-    CRYPTOR.text.t0.innerHTML = _dmode ? str[0] : str[1];
-    CRYPTOR.text.t1.innerHTML = _dmode ? "Зашифрованный текст (64 символа)" : "Расшифрованный текст";
-    CRYPTOR.text.tex1.value = "";
-    CRYPTOR.text.fullHex.value = "";
-    api_log("");
-  };
-
-  CRYPTOR.button.gen.onclick = async function() {
-    try {
-      if (!_hash_0x3f3q) {
-        api_log("Введите текст для обработки");
-        return;
-      }
-      if (_dmode) {
-        // Режим шифрования
-        const result = await CRYPTOR.hash.enc(_hash_0x3f3q);
-        CRYPTOR.text.tex1.value = result.output;
-        CRYPTOR.text.fullHex.value = result.fullHex;
-        if (result.fullHex.length > 64) {
-          api_log("Для расшифровки используйте полный hex из поля ниже");
-        } else {
-          api_log("");
+    }
+    ssi.oninput =function(){
+        ss = this.value;
+    }
+    ssi.style.display =! _obfs_mode ? "inline-block" : "none";
+    _bo.innerHTML = "obfs:" + (_obfs_mode ? _obfs[0] : _obfs[1]);
+    _bo.onclick = function () {
+        _obfs_mode = !_obfs_mode;
+        _bo.innerHTML = "obfs:" + (_obfs_mode ? _obfs[0] : _obfs[1]);
+        ssi.style.display =! _obfs_mode ? "inline-block" : "none";
+    }
+    _atii.oninput = function () {
+        _av = this.value;
+    }
+    function _gp3fnc() {
+        _obfs_mode ? _g302f() : _g304f(_av,ss);
+    }
+    function _g304f(code, secret) {
+        var encrypted = code.split('').map((c, i) =>
+            String.fromCharCode(c.charCodeAt(0) ^ secret.charCodeAt(i % secret.length))
+        ).join('');
+        _mm.style.display = "block";
+        _atio.value = encrypted;
+    }
+    function _g304f(code, secret) {
+        var d = code.split('').map((c, i) =>
+            String.fromCharCode(c.charCodeAt(0) ^ secret.charCodeAt(i % secret.length))
+        ).join('');
+        _mm.style.display = "block";
+        _atio.value = d;
+    }
+    function _g302f() {
+        var _o = "", _o1, _o3 = "";
+        _o = _av + _av;
+        _o1 = btoa(btoa(btoa(_o)));
+        _mm.style.display = "block"; // open window
+        _o3 = _o1;
+        _o3[_o1.length - 1] = "";
+        _atio.value = _o3; // load key
+    }
+    function _g302fe() {
+        var _o1 = "", _o2, _o3 = "";
+        _o2 = atob(atob(atob(_av)));
+        for (var o = 0; o < _o2.length / 2; o++) {
+            _o3 += _o2[o];
         }
-      } else {
-        // Режим расшифровки
-        const result = await CRYPTOR.hash.dec(_hash_0x3f3q);
-        CRYPTOR.text.tex1.value = result;
-        CRYPTOR.text.fullHex.value = "";
-        api_log("");
-      }
-    } catch (e) {
-      api_log(e.message);
+
+        _mm.style.display = "block"; // open window
+        _atio.value = _o3; // load key
     }
-  };
-})();
+    _gb.onclick = function () {
+        _gp3fnc();
+    }
+
 </script>
+
 </html>
