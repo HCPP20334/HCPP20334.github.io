@@ -4,17 +4,7 @@
         background: #111422;
     }
 
-    .window {
-        background: rgb(41, 41, 56);
-        width: 400px;
-        height: 480px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        border-radius: 10px;
-        transform: translate(-50%, -50%);
-        border: 1px solid #777;
-    }
+
 
     .text {
         font-family: system-ui;
@@ -83,25 +73,11 @@
         }
     }
 
-    .fake_border {
-        width: 404px;
-        height: 484px;
-        border-radius: 10px;
-        background: linear-gradient(120deg, #ff0000, #ff0040, #ff0060, #00ff00, #00ff40, #00ff90, #0000ff, #1234f5, #1234ff);
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transition: .1s;
-        opacity: 1;
-
-        transform: translate(-50%, -50%);
-    }
-
     #_a {
         width: 404px;
-        height: 484px;
-        border-radius: 10px;
-        background: linear-gradient(120deg, #070707, #121219, #111422, #070707, #121219, #111422);
+        height: 444px;
+
+        background: #070707;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -111,7 +87,7 @@
         transform: translate(-50%, -50%);
         border: 1px solid rgb(117, 117, 141);
         z-index: 5;
-        display: none;
+        display: block;
     }
 
     #_ati {
@@ -121,10 +97,11 @@
         border: none;
         outline: none;
         font-size: 20px;
+        resize: none;
         border-bottom: 1px solid rgb(117, 117, 141);
         border-top: 1px solid rgb(117, 117, 141);
-        color: #8a8aa3;
-        transform: translateY(20px);
+        color: #7fe97f;
+        transform: translateY(0px);
     }
 
     ._ati {
@@ -134,10 +111,11 @@
         border: none;
         outline: none;
         font-size: 20px;
+        resize: none;
         border-bottom: 1px solid rgb(117, 117, 141);
         border-top: 1px solid rgb(117, 117, 141);
-        color: #8a8aa3;
-        transform: translateY(20px);
+        color: #35ae35;
+        transform: translateY(0px);
     }
 
     .mm {
@@ -145,7 +123,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background: #111422;
+        background: #070707;
         border: 1px solid rgb(117, 117, 141);
         width: 90%;
         height: 300px;
@@ -183,7 +161,7 @@
 
     ._g:hover,
     ._g1:hover {
-        background: #1234f5;
+        background: #35ae35;
         border: 1px solid transparent;
     }
 
@@ -196,12 +174,12 @@
         margin-top: 5px;
         background: #111422;
         display: inline-block;
-        border: 1px solid #00ff00;
+        border: 1px solid #35ae35;
         transform: translateY(30px);
     }
 
     #ssk {
-        width: 200px;
+        width: 360px;
         height: 30px;
         display: block;
         margin-left: 20px;
@@ -212,49 +190,73 @@
         border: 1px solid #00ff00;
         transform: translateY(30px);
     }
+
+    .error_and_messages {
+        width: auto;
+        min-width: 300px;
+        height: auto;
+        min-height: 60px;
+        border: 1px solid #00ff40;
+        background: #070707;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+        z-index: 126;
+    }
+
+    #out {
+        font-family: system-ui;
+        font-weight: 400;
+        margin-left: 10px;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    .close {
+        float: right;
+        background: none;
+        border: none;
+    }
+
+    .close:hover {
+        background: #00ff40;
+        color: #070707;
+    }
 </style>
+<div class="error_and_messages">
+    <button class="close"
+        onclick="document.getElementsByClassName('error_and_messages')[0].style.display = 'none';">X</button>
+    <p id="out">Привет. </p>
+</div>
 <div id="_a">
     <div class="mm">
         <textarea class="_ati"></textarea>
         <button class="_g1" onclick="_mm.style.display = 'none';">exit</button>
     </div>
     <textarea id="_ati"></textarea>
-    <button class="_g">Generate</button>
-    <button class="_g" onclick="_gp3fnc();">decode</button>
+    <button class="_g">Декодировать / закодировать</button>
+
     <br>
-    <button class="_bo">obfs: b364s2</button>
-    <input type="comment" id="ssk" placeholder="secret_key">
+
+    <input type="comment" id="ssk" placeholder="секретный ключ (число) пример: 742042">
 </div>
-<div class="fake_border"></div>
-<div class="window">
-    <p class="text">HCPP DEV</p>
-    <p class="text2">Разаработчик из Европы
-        <br>
-        стек: <br>system dev, Gamedev: C++20/C++17/C
-        <br>
-        Web: (HTML,CSS,JS)
-        <br>
-        Server API, API, Bots
-    <div class="line"></div>
-    <a href="https://github.com/hcpp20334"> github</a>
-    <a href="https://github.com/hcpp20334"> Telegram</a>
-    <a href="https://github.com/hcpp20334"> YouTube</a>
-    <button class="tool">Tools</button>
-    </p>
-</div>
+
 <script id="scp">
-    function decode_obfc() {
-        var scrp = document.getElementById("scp").outerHTML;
-        document.getElementById("scp").innerHTML = "";
-        document.getElementById("scp").src = "data:text/javascript;base64," + btoa(scrp);
-    }
-    decode_obfc();
+    // function decode_obfc() {
+    //     var scrp = document.getElementById("scp").outerHTML;
+    //     document.getElementById("scp").innerHTML = "";
+    //     document.getElementById("scp").src = "data:text/javascript;base64," + btoa(scrp);
+    // }
+    // decode_obfc();
+
     var ss = 0;
     var ssi = document.getElementById('ssk');
     var _obfs = ["b364s2", "xrs20t"];
     var _v = document.getElementsByClassName('fake_border')[0];
     var _bo = document.getElementsByClassName('_bo')[0];
-    const tool = document.getElementsByClassName('tool')[0];
+    // const tool = document.getElementsByClassName('tool')[0];
     var _a0 = document.getElementById("_a");
     var _gb = document.getElementsByClassName('_g')[0];
     // var _gbd = document.getElementsByClassName('_g')[1];
@@ -263,29 +265,29 @@
     var _av = "";
     var _mm = document.getElementsByClassName('mm')[0];
     var _obfs_mode = false;
-    function _t() {
-        _v.remove();
-        _a0.style.display = "block";
-    }
-    tool.onclick = function () {
-        _t();
+    //
 
+    function messagez(t) {
+        document.getElementsByClassName('error_and_messages')[0].style.display = "block";
+        document.getElementById("out").innerHTML = t;
     }
-    ssi.oninput =function(){
+
+    //
+    ssi.oninput = function () {
         ss = this.value;
-    }
-    ssi.style.display =! _obfs_mode ? "inline-block" : "none";
-    _bo.innerHTML = "obfs:" + (_obfs_mode ? _obfs[0] : _obfs[1]);
-    _bo.onclick = function () {
-        _obfs_mode = !_obfs_mode;
-        _bo.innerHTML = "obfs:" + (_obfs_mode ? _obfs[0] : _obfs[1]);
-        ssi.style.display =! _obfs_mode ? "inline-block" : "none";
     }
     _atii.oninput = function () {
         _av = this.value;
     }
+
     function _gp3fnc() {
-        _obfs_mode ? _g302f() : _g304f(_av,ss);
+     if(!ss.length){
+        messagez("Ошибка!. Введите секретный ключ. Без него нельзя");
+     }
+    else{
+          _obfs_mode ? _g302f() : _g304f(_av, ss);
+    }
+
     }
     function _g304f(code, secret) {
         var encrypted = code.split('').map((c, i) =>
@@ -295,11 +297,14 @@
         _atio.value = encrypted;
     }
     function _g304f(code, secret) {
-        var d = code.split('').map((c, i) =>
-            String.fromCharCode(c.charCodeAt(0) ^ secret.charCodeAt(i % secret.length))
-        ).join('');
-        _mm.style.display = "block";
-        _atio.value = d;
+        if(secret.length > 0 && code.length > 0)
+        {
+            var d = code.split('').map((c, i) =>
+                String.fromCharCode(c.charCodeAt(0) ^ secret.charCodeAt(i % secret.length))
+            ).join('');
+            _mm.style.display = "block";
+            _atio.value = d;
+        }
     }
     function _g302f() {
         var _o = "", _o1, _o3 = "";
