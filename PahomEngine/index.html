@@ -1,0 +1,649 @@
+<html>
+    <head>
+          <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    </head>
+<style>
+    html {
+        background: #37373f;
+        overflow: hidden;
+    }
+
+    .PahomEngine_window {
+        display: block;
+        margin: auto;
+        width: 100%;
+        height: 70%;
+        max-width: 640px;
+        max-height: 440px;
+        min-height: 100px;
+        background: #020209;
+        background-image: url(./assets/back.jpg);
+        background-size: cover;
+        position: relative;
+        border: 2px solid #cfc;
+    }
+
+    .PahomEngine_window_controls {
+        display: block;
+        margin: auto;
+        width: 100%;
+        height: auto;
+        max-width: 640px;
+        min-height: 100px;
+        background: rgb(44, 72, 51);
+        border: 2px solid #cfc;
+        border-top: none;
+    }
+
+    .score_count {
+        text-align: center;
+        color: #cfc;
+
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 50px;
+        position: absolute;
+        font-weight: bold;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .tag_object {
+        width: 64px;
+        height: 64px;
+        background: transparent;
+    }
+
+    .player_object {
+        width: 128px;
+        height: 128px;
+        background: transparent;
+
+    }
+
+    .log {
+        display: none;
+        margin: auto;
+        width: 100%;
+        height: 120px;
+        min-height: 100px;
+        background: #1c1c24;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        max-width: 640px;
+        position: relative;
+    }
+
+    .dt {
+        display: none;
+        margin: auto;
+        margin-bottom: 10px;
+        color: #e1d4d4;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 13px;
+        font-weight: bold;
+        max-width: 640px;
+    }
+
+    .game_over {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #42925f;
+        width: 400px;
+        height: 140px;
+        border: 2px solid #cfc;
+        display: none;
+    }
+
+    .game_over .text {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 33px;
+        font-weight: bold;
+        color: #cfc;
+        text-align: center;
+    }
+
+    .game_over .text2 {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        color: #cfc;
+        text-align: center;
+    }
+
+    .pause {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #42925f5b;
+        width: 400px;
+        height: 340px;
+        border: 2px solid #cfc;
+        display: block;
+        backdrop-filter: blur(10px);
+    }
+
+    .pause .text {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 33px;
+        font-weight: bold;
+        color: #cfc;
+        text-align: center;
+
+    }
+
+    .pause .text2 {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        color: #cfc;
+        text-align: center;
+        padding: 10px 4px;
+        border: 1px solid #cfc;
+        width: 150px;
+        display: block;
+        margin: auto;
+        margin-top: 10px;
+    }
+
+    .pause .text3 {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        color: #cfc;
+        margin-left: 20px;
+        padding: 10px 4px;
+        transform: translateY(80px);
+
+    }
+
+    .tag_object img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .player_object img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .error_ {
+        width: 100%;
+        height: 70%;
+        max-width: 640px;
+        min-height: 100px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #ca4f3f;
+        z-index: 10;
+        display: none;
+        margin-top: 17px;
+        border: 4px solid #fcc;
+    }
+
+    .error_ p {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 20px;
+        font-weight: bold;
+        color: #fcc;
+        margin: 30px;
+    }
+
+    .c_touch {
+        width: 128px;
+        height: 64px;
+        background: #42925f;
+        margin: 10px;
+        border: 2px solid #cfc;
+        border-radius: 64px;
+        text-align: center;
+        text-transform: capitalize;
+        position: relative;
+        display: inline-block;touch-action: manipulation;
+
+    }
+    .c_touch:active{
+        background: #6f8878;
+    }
+    .c_touch p {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 32px;
+        font-weight: bold;
+        color: #cfc;
+        transform: translate(-2px, -25px);
+    }
+</style>
+<div class="error_">
+    <p class="s">PahomEngine (0.4)---------------------</p>
+
+</div>
+<div class="log"></div>
+<p class="dt">00</p>
+<div class="PahomEngine_window">
+    <div class="game_over">
+        <p class="text">Пидорас Обосрался</p>
+        <p class="text2">нажми (space) что попробовать заново</p>
+        <p class="text2">Тапни на экран (только на Мобилках)</p>
+    </div>
+    <div class="pause">
+        <p class="text">SWEET BREADS</p>
+        <p class="text2">Играть</p>
+        <p class="text2">Настройки</p>
+        <p class="text3">PahomEngineJS(0.4)</p>
+    </div>
+    <p class="score_count">00</p>
+    <div class="tag_object">
+        <img src="./assets/bread.png">
+    </div>
+    <div class="player_object">
+        <img id="image" src="./assets/pahom.png">
+    </div>
+</div>
+<div class="PahomEngine_window_controls">
+    <div class="c_touch" style="float: left;">
+        <p>
+            < </p>
+    </div>
+    <div class="c_touch" style="float: right;">
+        <p>></p>
+    </div>
+</div>
+<script>
+    var isErrorEngine = false;
+    function fmt(s) {
+        return "-- error-- \n" + s.message + " line (" + s.lineno + ")";
+    }
+    window.addEventListener("error", function (PahomEngineError) {
+        isErrorEngine = true;
+        document.getElementsByClassName('error_')[0].style.display = "block";
+        document.getElementsByClassName('s')[0].innerText = fmt(PahomEngineError);
+
+    });
+    var isPresed = false;
+    var isPresedTouch = false;
+    var key_handle = "";
+    var game_over_frame = document.getElementsByClassName('game_over')[0];
+    var pause_frame = document.getElementsByClassName('pause')[0];
+    var PahomEngine = {
+        fPahomPos: { x: 0, y: 0 },
+        fBreadPos: { x: 0, y: 0 },
+        iSizePahom: { x: 0, y: 0 },
+        iSizeObject: { x: 0, y: 0 },
+        iMaxSizeWindow: { x: 0, y: 0 },
+        fBreadMaxYPos: 0.0,
+        iScoreCount: 0,
+        fDeltaTime: 0.014,
+        fStepMovePahom: 512,
+        fStepMoveBread: 212,
+        oPlayer: "",
+        oObject: "",
+        oLogs: "",
+        oGameFrame: "",
+        oLogBuffer: document.createElement("p"),
+        aabb_check: function () { },
+        move_left: function () {
+            this.fPahomPos.x -= this.fStepMovePahom * this.fDeltaTime;
+            if (this.fPahomPos.x < 10) {
+                this.fPahomPos.x = 10;
+            }
+            PahomEngine.log("(PahomEngine::draw) x: " + this.fPahomPos.x + " y:" + this.fPahomPos.y);
+            PahomEngine.move(this.oPlayer, parseInt(this.iMaxSizeWindow.y - this.iSizePahom.y)- 68);
+            document.getElementById("image").src = "./assets/pahom2.png";
+        },
+        move_right: function () {
+            this.fPahomPos.x += this.fStepMovePahom * this.fDeltaTime;
+            if (this.fPahomPos.x > (this.iMaxSizeWindow.x - this.iSizePahom.x)) {
+                this.fPahomPos.x = (this.iMaxSizeWindow.x - this.iSizePahom.x);
+            }
+            PahomEngine.log("(PahomEngine::draw) x: " + this.fPahomPos.x + " y:" + this.fPahomPos.y);
+            PahomEngine.move(this.oPlayer, parseInt(this.iMaxSizeWindow.y - this.iSizePahom.y)- 68);
+            document.getElementById("image").src = "./assets/pahom.png";
+        },
+        str_struct: function (st) {
+            if (st) {
+                return "x:" + st.x + ",y:" + st.y;
+            }
+        },
+        setLogFrame: function (id) {
+            if (id) {
+                this.oLogs = id;
+            }
+        },
+        setPlayer: function (id) {
+            this.oPlayer = id;
+            if (this.oPlayer) {
+                this.iSizePahom.x = this.oPlayer.offsetWidth;
+                this.iSizePahom.y = this.oPlayer.offsetHeight;
+            }
+        },
+        setObject: function (id) {
+            this.oObject = id;
+            if (this.oObject) {
+                this.iSizeObject.x = this.oObject.offsetWidth;
+                this.iSizeObject.y = this.oObject.offsetHeight;
+            }
+        },
+        ObjectSpawn: function () {
+
+        },
+        setGameWindow: function (id) {
+            this.oGameFrame = id;
+            if (this.oGameFrame) {
+                this.oLogBuffer.style.color = "#ccf";
+                this.oLogBuffer.style.position = "absolute";
+                this.oLogBuffer.style.zIndex = "5";
+                this.oLogBuffer.style.fontFamily = "'Monocraft'";
+                this.oLogs.appendChild(this.oLogBuffer);
+
+                this.iMaxSizeWindow.x = this.oGameFrame.offsetWidth;
+                this.iMaxSizeWindow.y = this.oGameFrame.offsetHeight;
+                this.log("(PahomEngine::Main) Window Size " + this.iMaxSizeWindow.x + "x" + this.iMaxSizeWindow.y);
+                this.log("(PahomEngine::Player) Size " + this.str_struct(this.iSizePahom));
+                this.log("(PahomEngine::Object) Size " + this.str_struct(this.iSizeObject));
+            }
+        },
+        randomFloat: function (float_max) {
+            return Math.random() * float_max;
+        },
+        randomInt: function (int_max) {
+            return Math.floor(Math.random() * int_max);
+        },
+        CheckColiision() {
+            return (
+                Math.floor(this.fPahomPos.x) < Math.floor(this.fBreadPos.x) + this.iSizeObject.x &&
+                Math.floor(this.fPahomPos.x) + this.iSizePahom.x > this.fBreadPos.x &&
+                Math.floor(this.fPahomPos.y) < Math.floor(this.fBreadPos.y) + this.iSizeObject.y &&
+                Math.floor(this.fPahomPos.y) + this.iSizePahom.y > Math.floor(this.fBreadPos.y)
+            );
+        },
+        iCallBackLogFunc: 0,
+        log: function (...data) {
+            this.iCallBackLogFunc++;
+            this.oLogBuffer.innerText += "\n" + data;
+            this.oLogs.scrollTo({
+                behavior: "smooth",
+                top: 300
+            });
+            if (this.iCallBackLogFunc >= 10) {
+                this.oLogBuffer.innerText = "";
+                this.iCallBackLogFunc = 0;
+            }
+        },
+        flags: {
+            bIsGameOver: false,
+            bIsRendered: false,
+            bIsAABB: false,
+            bIsResetGame: false,
+            bIsEnableTouchScreen: false,
+            bIsEnableKeyBoard: false
+        },
+        controls_map: {
+            left: 'KeyA',
+            right: 'KeyD',
+            pause: 'Space',
+            menu: 'Escape',
+            accept: 'Return',
+            LeftTouch: false,
+            RightTouch: false,
+            bools: {
+                l: false,
+                r: false,
+                m: false,
+                a: false,
+                pa: false
+            },
+            Controls(key_code, p) {
+                PahomEngine.log("(PahomEngine) key " + key_code);
+                l = (key_code == this.left ? (p ? true : false) : (!p ? true : false));
+                r = (key_code == this.right ? (p ? true : false) : (!p ? true : false));
+                pa = (key_code == this.pause ? (p ? true : false) : (!p ? true : false));
+                m = (key_code == this.menu ? (p ? true : false) : (!p ? true : false));
+                a = (key_code == this.accept ? (p ? true : false) : (!p ? true : false));
+                //PahomEngine.log("(PahomEngine) contols " + l, r, p, m, p);
+
+                if (l) {
+                    PahomEngine.move_left();
+                }
+                if (r) {
+                    PahomEngine.move_right();
+                }
+
+            },
+            ControlsTouch() {
+                if (this.LeftTouch && isPresedTouch) {
+                    PahomEngine.move_left();
+                }
+                if (this.RightTouch && isPresedTouch) {
+                    PahomEngine.move_right();
+                }
+            }
+
+        },
+        move: function (id, pos) {
+            if (id) {
+                id.style.transform = "translate(" + this.fPahomPos.x + "px," + pos + "px)";
+            }
+        },
+        init: function () {
+            if (this.oGameFrame) {
+                this.log("(PahomEngine::Init) init GameFrame");
+                if (this.oPlayer) {
+                    this.log("(PahomEngine::Init) init Player");
+                    if (this.oObject) {
+                        this.log("(PahomEngine::Init) init Object");
+                        PahomEngine.move(this.oPlayer, parseInt(this.iMaxSizeWindow.y - this.iSizePahom.y)- 68);
+                    }
+                    else {
+                        this.log("(PahomEngine::Init) error Object not Created!");
+                    }
+                }
+                else {
+                    this.log("(PahomEngine::Init) error Player not Created!");
+                }
+            } else {
+                this.log("(PahomEngine::Init) error GameFrame not Created!");
+            }
+        },
+        last_time: 0,
+        first: false,
+        Kurlik: {
+            AudioDevice: new Audio(),
+            ArrayFolder: [
+                "./assets/audio/pidoras.wav"
+            ],
+            source_set: function (idx) {
+                if (this.AudioDevice) {
+                    this.AudioDevice.src = this.ArrayFolder[idx];
+                }
+            },
+            play: function () {
+                if (this.AudioDevice) {
+                    this.AudioDevice.volume = 0.2;
+                }
+                if (this.AudioDevice) {
+                    if (this.AudioDevice.paused) {
+                        this.AudioDevice.play();
+                    }
+                }
+            }
+        },
+        GameOver: function () {
+
+            this.Kurlik.source_set(0);
+            this.Kurlik.play();
+            this.fBreadPos.y = -100;
+            game_over_frame.style.display = "block";
+
+        },
+        object_move_to: function () {
+            
+            if (this.CheckColiision()) {
+                this.flags.bIsAABB = true;
+                this.fBreadPos.x = this.randomFloat((this.iMaxSizeWindow.x - this.iSizeObject.x));
+                this.fBreadPos.y = 0;
+                this.flags.bIsAABB = false;
+                if (this.iScoreCount > 20) {
+                    this.iScoreCount += 10;
+                } else {
+                    this.iScoreCount++;
+                }
+                this.fStepMoveBread += 10;
+                this.fStepMovePahom += 10;
+                document.getElementsByClassName('score_count')[0].textContent = this.iScoreCount;
+            } else {
+                this.flags.bIsAABB = false;
+                if (this.flags.bIsRendered) {
+                    this.fBreadMaxYPos = parseFloat(this.iMaxSizeWindow.y - this.iSizeObject.y) - 68;
+                    this.fBreadPos.y += this.fStepMoveBread * this.fDeltaTime;
+                    if (this.fBreadPos.y >= this.fBreadMaxYPos) {
+                        this.fBreadPos.y = parseFloat(this.iMaxSizeWindow.y - this.iSizeObject.y) - 68;
+                        this.flags.bIsGameOver = true;
+                        this.fStepMoveBread = 30;
+                        this.fBreadPos.y = 0;
+                        // this.fStepMovePahom = 300;
+                    }
+                }
+                else {
+                    this.fBreadPos.y = 0;
+                }
+            }
+
+            this.oObject.style.transform = "translate(" + this.fBreadPos.x + "px," + this.fBreadPos.y + "px)";
+        },
+        draw: function () {
+            if (this.flags.bIsRendered) {
+                if (this.flags.bIsResetGame) {
+                    // this.flags.bIsRendered = false;
+                    this.flags.bIsResetGame = false;
+                    //this.flags.bIsGameOver = false;
+                    // pause_frame.style.display = "block";
+                    //  game_over_frame.style.display = "none";
+                    this.fBreadPos.y = 0;
+                }
+                this.object_move_to();
+                if (this.flags.bIsGameOver) {
+                    this.flags.bIsRendered = false;
+                    this.fBreadPos.x = this.randomFloat((this.iMaxSizeWindow.x - this.iSizeObject.x));
+                    this.fBreadPos.y = 0
+                     this.GameOver();
+
+                }
+                // 2. Берем текущий маркер
+                if (!this.first) {
+                    this.last_time = performance.now();
+                    this.first = true;
+                }
+                var Marker_1 = performance.now();
+                this.fDeltaTime = (Marker_1 - this.last_time) / 1000;
+                this.last_time = Marker_1;
+                if (isPresed) {
+                    PahomEngine.controls_map.Controls(key_handle.code, isPresed);
+                }
+                if (isPresedTouch) {
+                    PahomEngine.controls_map.ControlsTouch();
+                }
+                // PahomEngine.move(this.oPlayer, parseInt(this.iMaxSizeWindow.y - this.iSizePahom.y) - 137);
+                this.fPahomPos.y = parseInt(this.iMaxSizeWindow.y - this.iSizePahom.y);
+                this.iMaxSizeWindow.x = this.oGameFrame.offsetWidth;
+                this.iMaxSizeWindow.y = this.oGameFrame.offsetHeight;
+                document.getElementsByClassName('dt')[0].innerText = "delta_time=" + this.fDeltaTime.toFixed(4)
+                    + " | bIsAABB=" + PahomEngine.flags.bIsAABB
+                    + "| bIsRendered=" + PahomEngine.flags.bIsRendered
+                    + "| fBreadPos=" + (PahomEngine.fBreadPos.x).toFixed(1) + ", " + (PahomEngine.fBreadPos.y).toFixed(1)
+                    + "| iSizePlayer=" + (PahomEngine.iSizePahom.x) + " , " + (PahomEngine.iSizePahom.y)
+                    + "| iSizeObject=" + PahomEngine.iSizeObject.x + " , " + PahomEngine.iSizeObject.y;
+                requestAnimationFrame(() => this.draw());
+            }
+        },
+        start: function () {
+            this.iScoreCount = 0; // Сбрасываем счет
+            document.getElementsByClassName('score_count')[0].textContent = "00";
+
+            this.fBreadPos.y = -100; // Выносим хлеб за пределы экрана вверх
+            this.fBreadPos.x = this.randomFloat((this.iMaxSizeWindow.x - this.iSizeObject.x));
+
+            this.flags.bIsGameOver = false;
+            this.flags.bIsRendered = true; // Сначала обнуляем координаты, потом разрешаем рендер
+
+            game_over_frame.style.display = "none";
+            pause_frame.style.display = "none";
+            this.fStepMoveBread = 300;
+           if(!this.Kurlik.AudioDevice.paused) this.Kurlik.AudioDevice.pause();
+            requestAnimationFrame(() => this.draw());
+        },
+        pause: function () {
+            this.fBreadPos.y = -100;
+            this.flags.bIsRendered = false;
+            this.flags.bIsResetGame = false;
+            this.flags.bIsGameOver = false;
+            pause_frame.style.display = "block";
+            game_over_frame.style.display = "none";
+            this.fBreadPos.y = 0;
+        }
+    };
+    // init main frames
+    var MainFrame = document.getElementsByClassName('PahomEngine_window')[0];
+    var PlayerFrame = document.getElementsByClassName('player_object')[0];
+    var ObjectFrame = document.getElementsByClassName('tag_object')[0];
+    var LogsFrame = document.getElementsByClassName('log')[0];
+    //
+    var touchButtons = document.getElementsByClassName('c_touch');
+    var btnLeft = touchButtons[0];
+    var btnRight = touchButtons[1];
+    // set data to Engine
+    PahomEngine.setLogFrame(LogsFrame);
+    PahomEngine.setObject(ObjectFrame);
+    PahomEngine.setPlayer(PlayerFrame);
+    PahomEngine.setGameWindow(MainFrame);
+    PahomEngine.init();
+    PahomEngine.flags.bIsRendered = true;
+    PahomEngine.draw();
+    PahomEngine.pause();
+    pause_frame.onclick = function () {
+        PahomEngine.start();
+    }
+    window.addEventListener("keydown", function (key_code) {
+        key_handle = key_code;
+        isPresed = true;
+        if (key_code.code == PahomEngine.controls_map.pause) {
+            (PahomEngine.bIsGameOver ? PahomEngine.start() : PahomEngine.pause());
+        }
+    });
+    window.addEventListener("keyup", function (key_code) {
+        key_handle = key_code;
+        isPresed = false;
+    });
+    // Левая кнопка
+    btnLeft.addEventListener('touchstart', function (e) {
+        e.preventDefault();
+        isPresedTouch = true;
+        PahomEngine.controls_map.LeftTouch = true;
+
+    });
+    game_over_frame.addEventListener('touchstart', function (e) {
+        e.preventDefault();
+        isPresedTouch = true;
+        PahomEngine.start();
+
+    });
+    // Правая кнопка
+    btnRight.addEventListener('touchstart', function (e) {
+        e.preventDefault();
+        isPresedTouch = true;
+        PahomEngine.controls_map.RightTouch = true;
+
+    });
+
+    // Общий сброс при отпускании (вешаем на window для надежности)
+    window.addEventListener('touchend', function () {
+        isPresedTouch = false;
+        PahomEngine.controls_map.RightTouch = false;
+        PahomEngine.controls_map.LeftTouch = false;
+    });
+</script>
+
+</html>
