@@ -74,6 +74,31 @@
         .close:hover{
             background: #162128;
         }
+        .video_source{
+            width: 200px;
+            height: 140px;
+            border-radius: 20px;
+            position: absolute;
+            z-index: 4;
+            overflow: hidden;
+            background: #0d1018;
+            display: none;
+        }
+        .video_source iframe{
+            width: 180px;
+            height: 100px;
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            border-radius: 10px;
+            transform: translateX(-50%);
+        }
+        .link_original{
+            text-align: center;
+            font-size: 10px;
+            transform: translateY(-2px);
+            color: #ccc;
+        }
         </style>
         <div class="loading"></div>
         <p class="loading_text">ПОДКЛЮЧЕНИЕ</p>
@@ -81,6 +106,10 @@
         <p class="_text">API_URL: n/a</p>
         <p class="_text">КОД: n/a</p>
         <button class="close" onclick="loadingToConnect(false);">ЗАКРЫТЬ</button>
+    </div>
+    <div class="video_source">
+        <p class="link_original">None</p>
+        <iframe width="1349" height="759" src="https://www.youtube.com/embed/FsbbBr7oKq0?list=RDFsbbBr7oKq0" title="Кокаин" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     <div class="connect_to_server">
         <style>
@@ -193,11 +222,17 @@
 
 </div>
 <button class="downloader" onclick="openPlaylistDownload();">СКАЧАТЬ ТРЕКИ</button>
-<p class="build_version">0.10 by HCPP DEV</p>
+<p class="build_version">0.30 by HCPP DEV</p>
 
 </div>
 <script src="api.js"></script>
 <script>
+    var popup = {
+      x: 0,
+      y: 0,
+      moveToObject(){return `translate(${this.x}px,${this.y}px)`;},
+      show() { this.video_source.style.display = "block";this.video_source.style.transform = this.moveToObject();}
+    };
     var timeline_data = {
         offset0:0,
         offset1:0,
@@ -261,6 +296,15 @@ function fullsize(a){
     playlistdata.style.height = isWindowState ? "540px"  : "300px";
 }
 player.audio.addEventListener("timeupdate",function(){
+     if(this.currentTime == this.duration){
+         track_index++;
+       
+        player.setID(track_index - 1,g_sAudioFilesArray);
+        if(track_index >= (g_sAudioFilesArray.length) - 1){
+            track_index = g_sAudioFilesArray.length - 1;
+        }
+        scrollSet();
+      }
     if (!audioCtx) initAudio();
     
     if (audioCtx.state === 'suspended') {
@@ -360,7 +404,7 @@ render();
     }
     
     var g_fVolume = 0;
-    
+
     window.addEventListener("keydown",function(key){
        if(key.code == 'ArrowUp'){
          player.audio.volume = g_fVolume;
