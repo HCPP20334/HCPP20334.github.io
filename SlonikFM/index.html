@@ -222,7 +222,7 @@
 
 </div>
 <button class="downloader" onclick="openPlaylistDownload();">СКАЧАТЬ ТРЕКИ</button>
-<p class="build_version">0.30 by HCPP DEV</p>
+<p class="build_version">0.10 by HCPP DEV</p>
 
 </div>
 <script src="api.js"></script>
@@ -283,6 +283,7 @@ function fmt(a) {
     return m + ":" + s;
 }
 var isEdited = false;
+var update_id_audio = false;
 var isAboutWindowState = 0;
 function aboutwindow(a){
   var g_aboutwindow = document.getElementsByClassName("aboutwindow")[0].style.display = "block";
@@ -296,6 +297,10 @@ function fullsize(a){
     playlistdata.style.height = isWindowState ? "540px"  : "300px";
 }
 player.audio.addEventListener("timeupdate",function(){
+     if(!update_id_audio){
+       track_index=  player.id_file;
+       update_id_audio = true;
+     }
      if(this.currentTime == this.duration){
          track_index++;
        
@@ -379,6 +384,7 @@ render();
     }
     player.play.innerHTML = player.audio.paused ? "▶" :"||";
     player.random.onclick = function(){
+        
         player.setID(Math.floor(Math.random() * (g_sAudioFilesArray.length - 1)),g_sAudioFilesArray);
         playlistdata.scrollTo({
             top: player.id_file * 40,
