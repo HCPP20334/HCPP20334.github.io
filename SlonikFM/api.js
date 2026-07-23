@@ -56,6 +56,17 @@ function selected(id_audio){
 
 var g_sAudioFilesArray =
   [
+  "Violet Vira -Burn Me With A Bible.mp3",
+  "Violet Vira -Chasing Ghosts.mp3",
+  "Violet Vira -Common Decency.mp3",
+  "Violet Vira -S.E.X. Narcissist.mp3",
+  "Violet Vira -Trap Nest.mp3",
+  "Violet Vira -Wave In The Monitor.mp3",
+  "Violet Vira -You Promised.mp3",
+  "Взгляни на небо.mp3",
+  "I Don t Care - VIOLENT VIRA.mp3",
+  "Violet Vira - Saccharine.mp3",
+  "Слоновый Ералаш.mp3",
   "Пахом Скорбит.mp3",
   "Зеленые_солдаты_REMIX_Юность_в_сапогах.mp3",
   "Зелёное Cолнце.mp3",
