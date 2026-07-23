@@ -56,6 +56,7 @@ function selected(id_audio){
 
 var g_sAudioFilesArray =
   [
+  "Пахом Скорбит.mp3",
   "Зеленые_солдаты_REMIX_Юность_в_сапогах.mp3",
   "Зелёное Cолнце.mp3",
   "ТУРБО СЛОНИК MMV.mp3",
