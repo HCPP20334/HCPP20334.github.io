@@ -1,4 +1,1 @@
-MAIN FOLDER WEB SITE 
-by HCPP STUDIO
-build to VS2026
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/129ebcbf-ba3e-47a8-b432-06d4a2405aeb" />
+<img width="1898" height="972" alt="image" src="https://github.com/user-attachments/assets/1241e760-8e1c-4c9a-8785-468954093bc3" />
