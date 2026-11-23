@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ThroneConverter — HCPP20334</title>
+<style>
+:root{
+  --bg:#000000;
+  --fg:#ededed;
+  --dim:#6b6b6b;
+  --line:#222222;
+  --child:#080808;
+  --popup:#0b0b0b;
+  --shadow:#000000;
+  --frame:#0c0c0c;
+  --btn:#111111;
+  --ok:#14ff64;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0}
+html,body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:"JetBrains Mono","IBM Plex Mono",ui-monospace,Consolas,monospace;
+  min-height:100%;
+}
+body{overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+header,footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:28px 5vw;
+  font-size:12px;
+  letter-spacing:.12em;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.logo{display:flex;gap:18px;font-size:13px;align-items:center}
+nav{display:flex;gap:24px;flex-wrap:wrap}
+nav button{
+  background:none;
+  border:0;
+  color:var(--dim);
+  font:inherit;
+  cursor:pointer;
+  letter-spacing:.08em;
+  padding:4px 0;
+  transition:.15s;
+}
+nav button span{margin-right:8px;opacity:.5}
+nav button.on,nav button:hover{color:var(--fg)}
+
+main{min-height:calc(100vh - 136px);display:grid;position:relative}
+section{
+  display:none;
+  grid-template-columns:1fr 1fr;
+  gap:4vw;
+  padding:10px 5vw 40px;
+  align-items:start;
+  animation:in .45s;
+}
+section.on{display:grid}
+@keyframes in{from{opacity:0;transform:translateY(10px)}}
+
+.tag{
+  font-size:11px;
+  letter-spacing:.2em;
+  color:var(--dim);
+  margin-bottom:22px;
+  display:flex;
+  align-items:center;
+}
+.tag i{display:inline-block;width:7px;height:7px;background:var(--fg);margin-right:10px}
+
+h1{
+  font-family:Helvetica,Arial,sans-serif;
+  font-weight:800;
+  font-size:clamp(38px,5.6vw,78px);
+  letter-spacing:-.06em;
+  line-height:1;
+  position:relative;
+  margin-bottom:22px;
+}
+h1 em{color:#777;font-style:normal}
+h2{
+  font-family:Helvetica,Arial,sans-serif;
+  font-weight:800;
+  font-size:clamp(24px,3.2vw,42px);
+  letter-spacing:-.05em;
+  line-height:1.05;
+  margin-bottom:18px;
+}
+
+.c{position:relative}
+.c.off{opacity:0}
+h1.glitching{animation:gl .09s steps(2) infinite}
+h1.glitching::before,h1.glitching::after{
+  content:attr(data-t);
+  position:absolute;
+  left:0;
+  top:0;
+  pointer-events:none;
+  white-space:nowrap;
+}
+h1.glitching::before{color:#fff;clip-path:var(--c1,inset(0 0 100% 0));transform:translateX(var(--x1,0))}
+h1.glitching::after{color:#777;clip-path:var(--c2,inset(0 0 100% 0));transform:translateX(var(--x2,0))}
+@keyframes gl{
+  0%{transform:translateX(0)}
+  50%{transform:translateX(-4px) skewX(-6deg)}
+  100%{transform:translateX(4px) skewX(4deg)}
+}
+
+.panel{
+  background:var(--child);
+  border:1px solid var(--line);
+  box-shadow:0 0 0 1px var(--shadow);
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.row-start{justify-content:flex-start}
+.lbl{
+  font-size:11px;
+  letter-spacing:.14em;
+  color:var(--dim);
+  text-transform:uppercase;
+}
+.hint{
+  font-size:12px;
+  color:#8f8f8f;
+  line-height:1.65;
+}
+
+input[type="text"],input[type="number"],textarea{
+  width:100%;
+  background:var(--frame);
+  color:var(--fg);
+  border:1px solid var(--line);
+  font:inherit;
+  font-size:13px;
+  line-height:1.55;
+  padding:12px 14px;
+  outline:none;
+  transition:border-color .15s;
+}
+input:focus,textarea:focus{border-color:#777}
+textarea{
+  min-height:190px;
+  resize:vertical;
+  white-space:pre;
+  overflow-wrap:normal;
+  overflow-x:auto;
+}
+
+.btn{
+  background:var(--btn);
+  color:var(--fg);
+  border:1px solid #333;
+  font:inherit;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  padding:12px 18px;
+  cursor:pointer;
+  transition:.15s;
+}
+.btn:hover:not(:disabled){background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn:disabled{opacity:.45;cursor:wait}
+.btn-full{width:100%;padding:15px 18px}
+.btn-sm{padding:7px 12px;font-size:11px}
+.btn-primary{border-color:#777}
+
+.chk{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+  letter-spacing:.1em;
+  cursor:pointer;
+  user-select:none;
+}
+.chk input{
+  appearance:none;
+  width:16px;
+  height:16px;
+  border:1px solid #555;
+  background:var(--frame);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+}
+.chk input:checked{background:var(--fg);border-color:var(--fg)}
+.chk input:checked::after{content:"";width:6px;height:6px;background:var(--bg)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid-host{display:grid;grid-template-columns:1fr 120px;gap:10px}
+
+.hdr-list{
+  border-top:1px solid var(--line);
+  max-height:290px;
+  overflow-y:auto;
+}
+.hdr-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border-bottom:1px solid var(--line);
+  padding:8px 0;
+  font-size:12px;
+}
+.hdr-del{
+  background:none;
+  border:1px solid #333;
+  color:var(--dim);
+  width:26px;
+  height:26px;
+  flex:0 0 26px;
+  cursor:pointer;
+  font:inherit;
+}
+.hdr-del:hover{background:#fff;color:#000;border-color:#fff}
+.hdr-text{
+  cursor:pointer;
+  word-break:break-all;
+  flex:1;
+  transition:color .12s;
+}
+.hdr-text.sel{color:var(--ok)}
+
+.color-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+.color-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  border:1px solid var(--line);
+  padding:8px 10px;
+  background:var(--frame);
+  font-size:12px;
+}
+.color-row input[type="color"]{
+  width:28px;
+  height:24px;
+  border:1px solid #444;
+  background:none;
+  padding:0;
+  cursor:pointer;
+}
+
+.status-bar{
+  font-size:12px;
+  color:#aaa;
+  min-height:18px;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+}
+.status-ok{color:var(--ok)}
+.status-err{color:#ff5f5f}
+
+.meta-links{
+  margin-top:10px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.big-link{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+  font-size:15px;
+  transition:.2s;
+}
+.big-link:hover{padding-left:10px;color:#fff;border-color:#666}
+
+.build-btn{
+  background:none;
+  border:0;
+  color:var(--dim);
+  font:inherit;
+  font-size:11px;
+  letter-spacing:.08em;
+  cursor:pointer;
+  text-align:left;
+  padding:0;
+}
+.build-btn:hover{color:var(--fg)}
+
+footer{color:var(--dim);font-size:11px;border-top:1px solid var(--line)}
+.foot-right{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+
+.modal-bg{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.78);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:100;
+}
+.modal-bg.on{display:flex}
+.modal{
+  background:var(--popup);
+  border:1px solid var(--line);
+  box-shadow:0 0 28px var(--shadow);
+  width:min(520px,100%);
+  max-height:86vh;
+  overflow:auto;
+  padding:24px;
+}
+.modal pre{
+  font-size:12px;
+  line-height:1.65;
+  color:var(--fg);
+  white-space:pre-wrap;
+  margin:14px 0 18px;
+}
+
+@media(max-width:900px){
+  section{grid-template-columns:1fr}
+  header,footer{padding:20px 5vw}
+  nav{gap:14px}
+}
+@media(max-width:520px){
+  .grid2,.grid-host,.color-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><span>[+]</span><span>THRONECONVERTER.</span></div>
+  <nav>
+    <button class="on" data-go="0"><span>00</span>Конвертер</button>
+    <button data-go="1"><span>01</span>Парсер</button>
+    <button data-go="2"><span>02</span>Настройки</button>
+  </nav>
+</header>
+
+<main>
+  <!-- 00: MAIN CONVERTER -->
+  <section class="on" id="s0">
+    <div>
+      <div class="tag"><i></i>00 / THRONECONVERTER GUI</div>
+      <h1>ThroneConverter<em>.</em></h1>
+      <p class="hint">
+        Декодер ссылок <code>throne://add/</code> и сырых Xray/Hysteria2 JSON-конфигов в стандартные URI
+        <code>vless://</code> и <code>hysteria2://</code>. Работает полностью локально в браузере.
+      </p>
+      <div class="meta-links">
+        <a class="big-link" href="#" id="openParserLink">Парсер конфигов / подписок <span>→</span></a>
+        <a class="big-link" href="https://donationalerts.com/r/hcpp" target="_blank" rel="noopener">DONATE XD <span>↗</span></a>
+      </div>
+      <div style="margin-top:26px">
+        <button class="build-btn" id="openPmInfo">v0.5 (build 8fcca254e5ff0300f731b3152c157e39)</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="row">
+        <span class="lbl" id="inputModeLabel">Ссылка throne://add/</span>
+        <label class="chk">
+          <input type="checkbox" id="rawJsonChk">
+          <span>RAW JSON</span>
+        </label>
+      </div>
+      <textarea id="throneIn" placeholder="Вставьте throne://add/... (по одной на строку) или включите RAW JSON..."></textarea>
+
+      <div class="row">
+        <span class="lbl">Вывод</span>
+        <div class="row row-start">
+          <button class="btn btn-sm" id="clearMainBtn">Очистить</button>
+          <button class="btn btn-sm" id="copyMainBtn">copy</button>
+        </div>
+      </div>
+      <textarea id="throneOut" readonly placeholder="Результат конвертации появится здесь..."></textarea>
+
+      <button class="btn btn-full btn-primary" id="convertMainBtn">Конвертировать</button>
+    </div>
+  </section>
+
+  <!-- 01: SUBSCRIPTION PARSER (ConfigThief::getConfigsSub) -->
+  <section id="s1">
+    <div>
+      <div class="tag"><i></i>01 / ПАРСЕР ПОДПИСКИ</div>
+      <h2>ConfigThief<em>.</em></h2>
+      <p class="hint">
+        Загрузка подписок по HTTPS с кастомными заголовками, Base64-расшифровка и конвертация в VLESS / Hysteria2.
+        Если сервер подписки блокирует кросс-доменные запросы (CORS), укажите CORS-прокси в разделе <b>02 Настройки</b>.
+      </p>
+      <div class="panel" style="margin-top:24px">
+        <div class="row">
+          <span class="lbl">url: https:// или без https://</span>
+          <button class="btn btn-sm" data-go="2">Настройки</button>
+        </div>
+        <input type="text" id="subUrlInput" placeholder="example.com/sub/token">
+
+        <div class="grid2">
+          <button class="btn btn-primary" id="stealBtn">Своровать</button>
+          <button class="btn" id="decodeB64Btn">Расшифровать</button>
+        </div>
+        <div class="grid2">
+          <button class="btn" id="toVlessBtn">в Vless</button>
+          <button class="btn" data-go="0">Закрыть</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="row">
+        <span class="lbl">Вывод</span>
+        <div class="row row-start">
+          <button class="btn btn-sm" id="copySubBtn">copy</button>
+          <button class="btn btn-sm" id="saveSubBtn">Сохранить в sub.txt</button>
+        </div>
+      </div>
+      <div class="status-bar">
+        <span id="subSaveMsg"></span>
+        <span id="subTimer">0.0</span>
+      </div>
+      <textarea id="subDataOut" style="min-height:260px" placeholder="Тело подписки..."></textarea>
+      <p class="hint">Если данные не похожи на ключи — нажмите <b>Расшифровать</b>.</p>
+    </div>
+  </section>
+
+  <!-- 02: SETTINGS (ConfigThief::SettingsConfigSub + ColorEditor) -->
+  <section id="s2">
+    <div class="panel" id="settingsGeneralPanel">
+      <div class="tag" style="margin-bottom:4px"><i></i>02 / НАСТРОЙКИ ПРОКСИ И ПОРТА</div>
+
+      <div>
+        <div class="lbl" style="margin-bottom:6px">Прокси Host / Port (как в desktop)</div>
+        <div class="grid-host">
+          <input type="text" id="proxyHostInput" placeholder="127.0.0.1">
+          <input type="number" id="proxyPortInput" value="0" min="0" max="65535">
+        </div>
+      </div>
+
+      <div>
+        <div class="lbl" style="margin-bottom:6px">CORS-прокси URL (опционально для браузера)</div>
+        <input type="text" id="corsProxyInput" placeholder="https://corsproxy.io/?url=">
+      </div>
+
+      <div>
+        <div class="lbl" style="margin-bottom:6px">User-Agent и Порт подписки (по дефолту: 443)</div>
+        <div class="grid-host">
+          <input type="text" id="uaInput" value="v2rayN">
+          <input type="number" id="subPortInput" value="443" min="1" max="65535">
+        </div>
+      </div>
+
+      <button class="btn btn-full" id="toggleHeadersViewBtn">Редактировать заголовки</button>
+
+      <div class="tag" style="margin:10px 0 0"><i></i>РЕДАКТОР ТЕМЫ</div>
+      <div class="color-grid" id="colorGrid"></div>
+      <div class="grid2">
+        <button class="btn btn-primary" id="saveThemeBtn">Сохранить Тему</button>
+        <button class="btn" id="resetThemeBtn">Сбросить</button>
+      </div>
+      <button class="btn btn-full" data-go="1">ОК</button>
+    </div>
+
+    <div class="panel" id="headersPanel">
+      <div class="tag" style="margin-bottom:4px"><i></i>HTTP ЗАГОЛОВКИ И ПРЕСЕТЫ</div>
+
+      <div class="grid2">
+        <div>
+          <div class="lbl" style="margin-bottom:6px">Название</div>
+          <input type="text" id="hdrNameInput" placeholder="User-Agent">
+        </div>
+        <div>
+          <div class="lbl" style="margin-bottom:6px">Значение</div>
+          <input type="text" id="hdrValInput" placeholder="Throne/1.2.4">
+        </div>
+      </div>
+
+      <div class="grid2">
+        <button class="btn" id="addHdrBtn">Добавить</button>
+        <button class="btn" id="replaceHdrBtn">Заменить</button>
+      </div>
+
+      <div class="grid2">
+        <button class="btn btn-sm" data-preset="happ">Happ-Win</button>
+        <button class="btn btn-sm" data-preset="throne">Throne-Win</button>
+        <button class="btn btn-sm" data-preset="v2raytun">v2RayTun-Win</button>
+        <button class="btn btn-sm" data-preset="incy">Incy-Android</button>
+      </div>
+
+      <p class="hint">Если хотите заменить — нажмите на нужный пункт в списке:</p>
+      <div class="hdr-list" id="hdrList"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© 2026 HCPP20334 · ID:<span id="sessionId"></span></span>
+  <div class="foot-right">
+    <span id="pg">00 / 02</span>
+  </div>
+</footer>
+
+<!-- #pminfo POPUP -->
+<div class="modal-bg" id="pmModal">
+  <div class="modal">
+    <div class="row">
+      <div class="tag" style="margin:0"><i></i>RUNTIME / PMALLOC STATS</div>
+      <button class="btn btn-sm" id="closePmModal">X</button>
+    </div>
+    <pre id="pmStatsPre"></pre>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+/* ============================================================================
+   converter.hpp — 1:1 PORT TO NATIVE JS
+============================================================================ */
+
+const B64_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+const B64_MAP = new Int16Array(128).fill(-1);
+for (let i = 0; i < 64; i++) B64_MAP[B64_ALPHABET.charCodeAt(i)] = i;
+B64_MAP["-".charCodeAt(0)] = 62;
+B64_MAP["_".charCodeAt(0)] = 63;
+
+function b64ToBytes(strInput) {
+  const out = [];
+  let val = 0;
+  let bits = 0;
+  for (let i = 0; i < strInput.length; i++) {
+    const code = strInput.charCodeAt(i);
+    if (code === 61) break; // '='
+    if (code >= 128) continue;
+    const mapped = B64_MAP[code];
+    if (mapped === -1) continue;
+    val = (val << 6) | mapped;
+    bits += 6;
+    if (bits >= 8) {
+      bits -= 8;
+      out.push((val >> bits) & 0xFF);
+      val &= (1 << bits) - 1;
+    }
+  }
+  return new Uint8Array(out);
+}
+
+const utf8Decoder = new TextDecoder("utf-8", { fatal: false });
+const utf8Encoder = new TextEncoder();
+
+function utf8Decode(bytes) {
+  return utf8Decoder.decode(bytes);
+}
+
+function urlEncode(strInput) {
+  const bytes = utf8Encoder.encode(String(strInput));
+  let res = "";
+  for (let i = 0; i < bytes.length; i++) {
+    const b = bytes[i];
+    const isUnreserved =
+      (b >= 0x30 && b <= 0x39) || // 0-9
+      (b >= 0x41 && b <= 0x5A) || // A-Z
+      (b >= 0x61 && b <= 0x7A) || // a-z
+      b === 0x2D || b === 0x5F || b === 0x2E || b === 0x7E; // - _ . ~
+    if (isUnreserved) {
+      res += String.fromCharCode(b);
+    } else {
+      res += "%" + b.toString(16).toUpperCase().padStart(2, "0");
+    }
+  }
+  return res;
+}
+
+function num(val) {
+  if (val === null || val === undefined) return "";
+  const strVal = typeof val === "string" ? val : JSON.stringify(val);
+  const m = strVal.match(/[\d.]+/);
+  return m ? m[0] : "";
+}
+
+function first(val) {
+  if (val === null || val === undefined) return "";
+  if (Array.isArray(val)) {
+    return val.length > 0 && typeof val[0] === "string" ? val[0] : "";
+  }
+  return typeof val === "string" ? val : "";
+}
+
+function isPlainObject(v) {
+  return v !== null && typeof v === "object" && !Array.isArray(v);
+}
+
+class CQuery {
+  constructor() {
+    this.params = [];
+  }
+  add(key, val) {
+    if (val === null || val === undefined || val === "") return;
+    this.params.push(urlEncode(key) + "=" + urlEncode(String(val)));
+  }
+  toString() {
+    return this.params.join("&");
+  }
+}
+
+function portToStr(v) {
+  if (typeof v === "number") return String(Math.trunc(v));
+  if (typeof v === "string") return v;
+  return "";
+}
+
+function buildHysteria2(ob, strName) {
+  const s = isPlainObject(ob.settings) ? ob.settings : {};
+  const ss = isPlainObject(ob.streamSettings) ? ob.streamSettings : {};
+  const tls = isPlainObject(ss.tlsSettings) ? ss.tlsSettings : {};
+  const fm = isPlainObject(ss.finalmask) ? ss.finalmask : {};
+  const q = isPlainObject(fm.quicParams) ? fm.quicParams : {};
+  const hs = isPlainObject(ss.hysteriaSettings) ? ss.hysteriaSettings : {};
+
+  const query = new CQuery();
+
+  if (typeof tls.serverName === "string") query.add("sni", tls.serverName);
+  if (tls.allowInsecure === true) query.add("insecure", "1");
+  if (tls.pinnedPeerCertSha256 !== undefined) {
+    query.add("pinSHA256", first(tls.pinnedPeerCertSha256));
+  }
+  if (Array.isArray(tls.alpn) && tls.alpn.length > 0) {
+    query.add("alpn", tls.alpn.map(String).join(","));
+  }
+  if (typeof tls.fingerprint === "string") query.add("fp", tls.fingerprint);
+  if (q.brutalUp !== undefined) query.add("up", num(q.brutalUp));
+  if (q.brutalDown !== undefined) query.add("down", num(q.brutalDown));
+
+  if (Array.isArray(fm.udp)) {
+    for (const udp of fm.udp) {
+      if (isPlainObject(udp) && udp.type === "salamander") {
+        query.add("obfs", "salamander");
+        if (isPlainObject(udp.settings) && typeof udp.settings.password === "string") {
+          query.add("obfs-password", udp.settings.password);
+        }
+        break;
+      }
+    }
+  }
+
+  let auth = "";
+  if (typeof hs.auth === "string") auth = hs.auth;
+  else if (typeof s.auth === "string") auth = s.auth;
+
+  const address = typeof s.address === "string" ? s.address : "";
+  const port = portToStr(s.port);
+
+  return `hysteria2://${urlEncode(auth)}@${address}:${port}/?${query.toString()}#${urlEncode(strName)}`;
+}
+
+function buildVless(ob, strName) {
+  const s = isPlainObject(ob.settings) ? ob.settings : {};
+  const ss = isPlainObject(ob.streamSettings) ? ob.streamSettings : {};
+
+  let address = "", port = "", id = "", flow = "", enc = "";
+
+  if (Array.isArray(s.vnext) && s.vnext.length > 0 && isPlainObject(s.vnext[0])) {
+    const v = s.vnext[0];
+    const u = Array.isArray(v.users) && v.users.length > 0 && isPlainObject(v.users[0]) ? v.users[0] : {};
+    address = typeof v.address === "string" ? v.address : "";
+    port = portToStr(v.port);
+    id = typeof u.id === "string" ? u.id : "";
+    flow = typeof u.flow === "string" ? u.flow : "";
+    enc = typeof u.encryption === "string" ? u.encryption : "";
+  } else {
+    address = typeof s.address === "string" ? s.address : "";
+    port = portToStr(s.port);
+    id = typeof s.id === "string" ? s.id : "";
+    flow = typeof s.flow === "string" ? s.flow : "";
+    enc = typeof s.encryption === "string" ? s.encryption : "";
+  }
+
+  const net = typeof ss.network === "string" ? ss.network : "tcp";
+  const sec = typeof ss.security === "string" ? ss.security : "none";
+
+  const query = new CQuery();
+  query.add("encryption", enc === "" ? "none" : enc);
+  query.add("flow", flow);
+  query.add("type", net);
+  query.add("security", sec);
+
+  if (sec === "tls") {
+    const t = isPlainObject(ss.tlsSettings) ? ss.tlsSettings : {};
+    if (typeof t.serverName === "string") query.add("sni", t.serverName);
+    if (typeof t.fingerprint === "string") query.add("fp", t.fingerprint);
+    if (Array.isArray(t.alpn) && t.alpn.length > 0) {
+      query.add("alpn", t.alpn.map(String).join(","));
+    }
+    if (t.allowInsecure === true) query.add("allowInsecure", "1");
+  } else if (sec === "reality") {
+    const r = isPlainObject(ss.realitySettings) ? ss.realitySettings : {};
+    if (typeof r.serverName === "string") query.add("sni", r.serverName);
+    if (typeof r.fingerprint === "string") query.add("fp", r.fingerprint);
+    const pbk = typeof r.publicKey === "string" ? r.publicKey : (typeof r.password === "string" ? r.password : "");
+    query.add("pbk", pbk);
+    if (typeof r.shortId === "string") query.add("sid", r.shortId);
+    if (typeof r.spiderX === "string") query.add("spx", r.spiderX);
+    if (typeof r.mldsa65Verify === "string") query.add("pqv", r.mldsa65Verify);
+  }
+
+  const n = isPlainObject(ss[net + "Settings"]) ? ss[net + "Settings"] : {};
+
+  if (net === "ws" || net === "httpupgrade" || net === "xhttp" || net === "splithttp") {
+    if (typeof n.path === "string") query.add("path", n.path);
+    let host = typeof n.host === "string" ? n.host : "";
+    if (!host && isPlainObject(n.headers) && typeof n.headers.Host === "string") {
+      host = n.headers.Host;
+    }
+    query.add("host", host);
+    if (typeof n.mode === "string") query.add("mode", n.mode);
+    if (n.extra !== undefined && n.extra !== null) {
+      query.add("extra", typeof n.extra === "string" ? n.extra : JSON.stringify(n.extra));
+    }
+  } else if (net === "grpc") {
+    if (typeof n.serviceName === "string") query.add("serviceName", n.serviceName);
+    if (typeof n.authority === "string") query.add("authority", n.authority);
+    if (n.multiMode === true) query.add("mode", "multi");
+  } else if (net === "tcp") {
+    if (isPlainObject(n.header) && n.header.type === "http") {
+      query.add("headerType", "http");
+      const rq = isPlainObject(n.header.request) ? n.header.request : {};
+      if (rq.path !== undefined) query.add("path", first(rq.path));
+      if (isPlainObject(rq.headers) && rq.headers.Host !== undefined) {
+        query.add("host", first(rq.headers.Host));
+      }
+    }
+  } else if (net === "kcp" || net === "mkcp") {
+    if (isPlainObject(n.header) && typeof n.header.type === "string") {
+      query.add("headerType", n.header.type);
+    }
+    if (typeof n.seed === "string") query.add("seed", n.seed);
+  }
+
+  return `vless://${urlEncode(id)}@${address}:${port}?${query.toString()}#${urlEncode(strName)}`;
+}
+
+function outboundToLink(ob, strName) {
+  const proto = typeof ob.protocol === "string" ? ob.protocol : "";
+  if (proto === "hysteria" || proto === "hysteria2") return buildHysteria2(ob, strName);
+  if (proto === "vless") return buildVless(ob, strName);
+  throw new Error("protocol not supported: " + proto);
+}
+
+function findProxies(config) {
+  const results = [];
+  if (!isPlainObject(config)) return results;
+  let list = [];
+  if (Array.isArray(config.outbounds)) list = config.outbounds;
+  else if ("protocol" in config) list = [config];
+
+  for (const item of list) {
+    if (!isPlainObject(item)) continue;
+    const proto = typeof item.protocol === "string" ? item.protocol : "";
+    if (proto === "vless" || proto === "hysteria" || proto === "hysteria2") {
+      results.push(item);
+    }
+  }
+  return results;
+}
+
+function processConfig(config, defaultName) {
+  let name = defaultName;
+  if (isPlainObject(config)) {
+    if (typeof config.remarks === "string") name = config.remarks;
+    else if (typeof config.name === "string") name = config.name;
+  }
+
+  const proxies = findProxies(config);
+  if (proxies.length === 0) {
+    throw new Error("Proxy outbound not found in config: " + name);
+  }
+
+  const lines = [];
+  for (let i = 0; i < proxies.length; i++) {
+    const tag = typeof proxies[i].tag === "string" ? proxies[i].tag : "";
+    let finalName = name;
+    if (proxies.length > 1 && tag !== "" && tag !== "proxy") {
+      finalName += " - " + tag;
+    }
+    lines.push(outboundToLink(proxies[i], finalName));
+  }
+  return lines.join("\n");
+}
+
+function decodeLink(strText, isRawJson) {
+  strText = strText.trim();
+  if (
+    strText.startsWith("vless://") ||
+    strText.startsWith("hysteria2://") ||
+    strText.startsWith("hysteria://") ||
+    strText.startsWith("vmess://") ||
+    strText.startsWith("trojan://")
+  ) {
+    return strText;
+  }
+
+  const prefix = "throne://add/";
+  let jsonOuter;
+
+  if (isRawJson) {
+    jsonOuter = JSON.parse(strText);
+  } else if (strText.startsWith(prefix)) {
+    const b64 = strText.slice(prefix.length);
+    const decoded = utf8Decode(b64ToBytes(b64));
+    jsonOuter = JSON.parse(decoded);
+  } else {
+    jsonOuter = JSON.parse(strText);
+  }
+
+  let res = "";
+  if (Array.isArray(jsonOuter)) {
+    for (let i = 0; i < jsonOuter.length; i++) {
+      let cfg = jsonOuter[i];
+      if (isPlainObject(cfg) && "config" in cfg) {
+        cfg = typeof cfg.config === "string" ? JSON.parse(cfg.config) : cfg.config;
+      }
+      try {
+        res += processConfig(cfg, "proxy_" + i);
+      } catch (_) {}
+      if (i < jsonOuter.length - 1 && res.length > 0 && !res.endsWith("\n")) {
+        res += "\n";
+      }
+    }
+  } else {
+    let cfg = jsonOuter;
+    if (isPlainObject(jsonOuter) && "config" in jsonOuter) {
+      cfg = typeof jsonOuter.config === "string" ? JSON.parse(jsonOuter.config) : jsonOuter.config;
+    }
+    res = processConfig(cfg, "proxy");
+  }
+
+  return res.trim();
+}
+
+function convertAll(strText, isRawJson) {
+  strText = strText.trim();
+  if (!strText) return "";
+
+  const parts = !isRawJson ? strText.split(/\s+/).filter(Boolean) : [strText];
+  let out = "";
+  for (let i = 0; i < parts.length; i++) {
+    try {
+      out += decodeLink(parts[i], isRawJson);
+    } catch (e) {
+      out += "ERROR: " + (e && e.message ? e.message : String(e));
+    }
+    if (i < parts.length - 1 && out.length > 0 && !out.endsWith("\n")) {
+      out += "\n";
+    }
+  }
+  runtimeStats.conversions++;
+  runtimeStats.bytesProcessed += utf8Encoder.encode(out).length;
+  return out;
+}
+
+/* ============================================================================
+   throneConverter.cpp — ConfigThief, Presets, Theme Editor, Stats, UI
+============================================================================ */
+
+function getID() {
+  let u64Sa = 21102621233n + 21102621233n;
+  const mask64 = (1n << 64n) - 1n;
+  u64Sa = (u64Sa ^ (u64Sa >> 33n)) & mask64;
+  u64Sa = (u64Sa ^ (u64Sa >> 32n)) & mask64;
+  u64Sa = (u64Sa ^ (u64Sa << 8n)) & mask64;
+  const alphabet = "abcdef123456789";
+  const ch = alphabet[Number(u64Sa % 15n)];
+  return ch.repeat(8);
+}
+
+const PRESETS = {
+  throne: [
+    ["Host", "127.0.0.1:4443"],
+    ["User-Agent", "Throne/1.2.4"],
+    ["x-hwid", "22cbdeb1-cff2-4726-92ce-a0bae6104714"],
+    ["x-device-os", "Windows"],
+    ["x-ver-os", "10.0.19044"],
+    ["x-device-model", "MS-7C96/A520M-A PRO (MS-7C96)"],
+    ["Connection", "Keep-Alive"],
+    ["Accept-Encoding", "gzip, deflate"],
+    ["Accept-Language", "ru-RU,en,*"]
+  ],
+  v2raytun: [
+    ["user-agent", "v2raytun/windows"],
+    ["x-device-model", "21H2 | 2009"],
+    ["x-ver-os", "Windows 10 IoT Enterprise LTSC 2021"],
+    ["connection", "close"],
+    ["accept-encoding", "gzip"],
+    ["host", "127.0.0.1,4443"],
+    ["x-device-os", "Windows"],
+    ["x-app-version", "1.4.7"],
+    ["x-hwid", "8C9D15E1-73A2-480E-8B0C-F7DB6CFB20F3"]
+  ],
+  incy: [
+    ["user-agent", "INCY/3.9.9/android"],
+    ["x-device-model", "TECNO LJ6"],
+    ["x-ver-os", "Windows 10 IoT Enterprise LTSC 2021"],
+    ["x-device-os", "Android"],
+    ["x-app-version", "3.9.9"],
+    ["x-hwid", "3d91d6388b8893c3"]
+  ],
+  happ: [
+    ["host", "127.0.0.1:4443"],
+    ["user-agent", "Happ/1.2.0/Windows"],
+    ["x-app-version", "2.0.5"],
+    ["x-device-locale", "RU"],
+    ["x-device-os", "Windows"],
+    ["x-device-model", "DESKTOP-V77EE2H_x86_64"],
+    ["x-hwid", "22cbdeb1-cff2-4726-92ce-a0bae6104714"],
+    ["x-ver-os", "10_10.0.19044"],
+    ["connection", "Keep-Alive"],
+    ["accept-encoding", "gzip, deflate"],
+    ["accept-language", "ru-RU,en,*"]
+  ]
+};
+
+const FORBIDDEN_BROWSER_HEADERS = new Set([
+  "host", "connection", "accept-encoding", "user-agent", "content-length", "origin", "referer"
+]);
+
+const THEME_SLOTS = [
+  { name: "Текст",        css: "--fg",     def: "#ededed" },
+  { name: "Окно",         css: "--bg",     def: "#000000" },
+  { name: "Child",        css: "--child",  def: "#080808" },
+  { name: "Popup",        css: "--popup",  def: "#0b0b0b" },
+  { name: "Обводка",      css: "--line",   def: "#222222" },
+  { name: "Тень обводки", css: "--shadow", def: "#000000" },
+  { name: "Frame",        css: "--frame",  def: "#0c0c0c" },
+  { name: "Кнопка",       css: "--btn",    def: "#111111" }
+];
+
+const runtimeStats = {
+  startTime: Date.now(),
+  conversions: 0,
+  fetches: 0,
+  bytesProcessed: 0
+};
+
+let headers = [];
+let selectedHdr = -1;
+let isConnecting = false;
+
+/* --- URL helpers from ConfigThief --- */
+function sdUrl(url) {
+  let pos = url.indexOf("://");
+  if (pos !== -1) return url.slice(pos + 3);
+  pos = url.indexOf("//");
+  if (pos !== -1) return url.slice(pos + 2);
+  return url;
+}
+function sliceHost(url) {
+  const pos = url.indexOf("/");
+  return pos === -1 ? url : url.slice(0, pos);
+}
+function slicePath(url) {
+  const pos = url.indexOf("/");
+  return pos === -1 ? "/" : url.slice(pos);
+}
+
+/* --- Navigation --- */
+let page = 0;
+function go(n) {
+  page = n;
+  document.querySelectorAll("section").forEach((s, k) => s.classList.toggle("on", k === n));
+  document.querySelectorAll("nav button").forEach((b, k) => b.classList.toggle("on", k === n));
+  document.getElementById("pg").textContent = `0${n} / 02`;
+}
+document.querySelectorAll("[data-go]").forEach(el => {
+  el.addEventListener("click", () => go(Number(el.dataset.go)));
+});
+document.getElementById("openParserLink").addEventListener("click", e => {
+  e.preventDefault();
+  go(1);
+});
+
+/* --- Main converter bindings --- */
+const rawJsonChk = document.getElementById("rawJsonChk");
+const inputModeLabel = document.getElementById("inputModeLabel");
+const throneIn = document.getElementById("throneIn");
+const throneOut = document.getElementById("throneOut");
+
+rawJsonChk.addEventListener("change", () => {
+  inputModeLabel.textContent = rawJsonChk.checked ? "Сырой JSON" : "Ссылка throne://add/";
+});
+
+document.getElementById("convertMainBtn").addEventListener("click", () => {
+  throneOut.value = convertAll(throneIn.value, rawJsonChk.checked);
+});
+document.getElementById("clearMainBtn").addEventListener("click", () => {
+  throneIn.value = "";
+  throneOut.value = "";
+});
+
+async function copyText(text, btn) {
+  const prev = btn.textContent;
+  try {
+    await navigator.clipboard.writeText(text);
+    btn.textContent = "OK";
+  } catch (_) {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    ta.remove();
+    btn.textContent = "OK";
+  }
+  setTimeout(() => { btn.textContent = prev; }, 900);
+}
+
+document.getElementById("copyMainBtn").addEventListener("click", e => {
+  copyText(throneOut.value, e.currentTarget);
+});
+
+/* --- Subscription Parser bindings --- */
+const subUrlInput = document.getElementById("subUrlInput");
+const subDataOut = document.getElementById("subDataOut");
+const stealBtn = document.getElementById("stealBtn");
+const subSaveMsg = document.getElementById("subSaveMsg");
+const subTimer = document.getElementById("subTimer");
+
+document.getElementById("copySubBtn").addEventListener("click", e => {
+  copyText(subDataOut.value, e.currentTarget);
+});
+
+document.getElementById("decodeB64Btn").addEventListener("click", () => {
+  subDataOut.value = utf8Decode(b64ToBytes(subDataOut.value));
+});
+
+document.getElementById("toVlessBtn").addEventListener("click", () => {
+  subDataOut.value = convertAll(subDataOut.value, true);
+});
+
+let saveAnim = null;
+document.getElementById("saveSubBtn").addEventListener("click", () => {
+  const data = subDataOut.value;
+  let ok = false;
+  if (data.length > 0) {
+    try {
+      const blob = new Blob([data], { type: "text/plain;charset=utf-8" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "sub.txt";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+      ok = true;
+    } catch (_) {
+      ok = false;
+    }
+  }
+  subSaveMsg.textContent = ok ? "Файл сохранен в ./sub.txt" : "Ошибка сохранения файла";
+  subSaveMsg.className = ok ? "status-ok" : "status-err";
+
+  if (saveAnim) cancelAnimationFrame(saveAnim);
+  let tm = 0;
+  let last = performance.now();
+  function step(now) {
+    tm += 5 * ((now - last) / 1000);
+    last = now;
+    if (tm >= 5) {
+      subTimer.textContent = "0.0";
+      subSaveMsg.textContent = "";
+      saveAnim = null;
+      return;
+    }
+    subTimer.textContent = tm.toFixed(1);
+    saveAnim = requestAnimationFrame(step);
+  }
+  saveAnim = requestAnimationFrame(step);
+});
+
+async function getHttps() {
+  if (isConnecting) return;
+  const rawLink = subUrlInput.value.trim();
+  if (!rawLink) {
+    subDataOut.value = "Ошибка: пустой URL";
+    return;
+  }
+
+  isConnecting = true;
+  stealBtn.disabled = true;
+  stealBtn.textContent = "Ждем ответа...";
+  runtimeStats.fetches++;
+
+  try {
+    const clean = sdUrl(rawLink);
+    let host = sliceHost(clean);
+    const path = slicePath(clean);
+    const port = parseInt(document.getElementById("subPortInput").value, 10) || 443;
+
+    if (port !== 443 && !host.includes(":")) {
+      host = `${host}:${port}`;
+    }
+
+    let targetUrl = `https://${host}${path}`;
+    const corsProxy = document.getElementById("corsProxyInput").value.trim();
+    if (corsProxy) {
+      targetUrl = corsProxy.includes("{url}")
+        ? corsProxy.replace("{url}", encodeURIComponent(targetUrl))
+        : corsProxy + encodeURIComponent(targetUrl);
+    }
+
+    const fetchHeaders = new Headers();
+    const skipped = [];
+    for (const [k, v] of headers) {
+      if (!k || !v) continue;
+      if (FORBIDDEN_BROWSER_HEADERS.has(k.toLowerCase())) {
+        skipped.push(k);
+      } else {
+        try { fetchHeaders.append(k, v); } catch (_) {}
+      }
+    }
+
+    const ctrl = new AbortController();
+    const timeoutId = setTimeout(() => ctrl.abort(), 20000);
+    const res = await fetch(targetUrl, {
+      method: "GET",
+      headers: fetchHeaders,
+      redirect: "follow",
+      signal: ctrl.signal
+    });
+    clearTimeout(timeoutId);
+
+    if (res.status === 200) {
+      const text = await res.text();
+      subDataOut.value = text;
+      runtimeStats.bytesProcessed += utf8Encoder.encode(text).length;
+    } else {
+      subDataOut.value = `Ошибка подключения ${res.status}`;
+    }
+  } catch (err) {
+    const reason = err && err.name === "AbortError" ? "Timeout (20s)" : (err.message || String(err));
+    subDataOut.value =
+      `Ошибка: ${reason}\n\n` +
+      `Примечание браузера: если сервер подписки не отдает заголовок Access-Control-Allow-Origin,\n` +
+      `прямой fetch() блокируется политикой CORS. Укажите CORS-прокси в разделе "02 Настройки".`;
+  } finally {
+    isConnecting = false;
+    stealBtn.disabled = false;
+    stealBtn.textContent = "Своровать";
+  }
+}
+
+stealBtn.addEventListener("click", getHttps);
+
+/* --- Headers Editor --- */
+const hdrNameInput = document.getElementById("hdrNameInput");
+const hdrValInput = document.getElementById("hdrValInput");
+const hdrList = document.getElementById("hdrList");
+
+function renderHeaders() {
+  hdrList.innerHTML = "";
+  if (headers.length === 0) {
+    const empty = document.createElement("div");
+    empty.className = "hint";
+    empty.style.padding = "12px 0";
+    empty.textContent = "Список заголовков пуст. Выберите пресет или добавьте вручную.";
+    hdrList.appendChild(empty);
+    return;
+  }
+
+  headers.forEach(([k, v], idx) => {
+    const row = document.createElement("div");
+    row.className = "hdr-item";
+
+    const del = document.createElement("button");
+    del.className = "hdr-del";
+    del.textContent = "X";
+    del.addEventListener("click", () => {
+      headers.splice(idx, 1);
+      if (selectedHdr === idx) selectedHdr = -1;
+      else if (selectedHdr > idx) selectedHdr--;
+      renderHeaders();
+    });
+
+    const txt = document.createElement("div");
+    txt.className = "hdr-text" + (selectedHdr === idx ? " sel" : "");
+    txt.textContent = `${idx} | ${k}: ${v}`;
+    txt.addEventListener("click", () => {
+      selectedHdr = idx;
+      hdrNameInput.value = k;
+      hdrValInput.value = v;
+      renderHeaders();
+    });
+
+    row.append(del, txt);
+    hdrList.appendChild(row);
+  });
+}
+
+document.getElementById("addHdrBtn").addEventListener("click", () => {
+  const k = hdrNameInput.value.trim();
+  const v = hdrValInput.value.trim();
+  if (!k || !v) return;
+  headers.push([k, v]);
+  hdrNameInput.value = "";
+  hdrValInput.value = "";
+  renderHeaders();
+});
+
+document.getElementById("replaceHdrBtn").addEventListener("click", () => {
+  const k = hdrNameInput.value.trim();
+  const v = hdrValInput.value.trim();
+  if (selectedHdr >= 0 && selectedHdr < headers.length && k && v) {
+    headers[selectedHdr] = [k, v];
+    selectedHdr = -1;
+    hdrNameInput.value = "";
+    hdrValInput.value = "";
+    renderHeaders();
+  }
+});
+
+document.querySelectorAll("[data-preset]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const key = btn.dataset.preset;
+    headers = PRESETS[key].map(pair => [...pair]);
+    selectedHdr = -1;
+    renderHeaders();
+  });
+});
+
+document.getElementById("toggleHeadersViewBtn").addEventListener("click", () => {
+  document.getElementById("headersPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+  hdrNameInput.focus();
+});
+
+/* --- ColorEditor (colors.cfg -> localStorage) --- */
+const colorGrid = document.getElementById("colorGrid");
+const colorInputs = [];
+
+function applyTheme(map) {
+  THEME_SLOTS.forEach((slot, i) => {
+    const val = map[slot.name] || slot.def;
+    document.documentElement.style.setProperty(slot.css, val);
+    if (colorInputs[i]) colorInputs[i].value = val;
+  });
+}
+
+function loadTheme() {
+  try {
+    const raw = localStorage.getItem("throne_colors_cfg");
+    if (raw) {
+      applyTheme(JSON.parse(raw));
+      return;
+    }
+  } catch (_) {}
+  applyTheme({});
+}
+
+THEME_SLOTS.forEach(slot => {
+  const wrap = document.createElement("label");
+  wrap.className = "color-row";
+  const sp = document.createElement("span");
+  sp.textContent = slot.name;
+  const inp = document.createElement("input");
+  inp.type = "color";
+  inp.value = slot.def;
+  inp.addEventListener("input", () => {
+    document.documentElement.style.setProperty(slot.css, inp.value);
+  });
+  colorInputs.push(inp);
+  wrap.append(sp, inp);
+  colorGrid.appendChild(wrap);
+});
+
+document.getElementById("saveThemeBtn").addEventListener("click", e => {
+  const map = {};
+  THEME_SLOTS.forEach((slot, i) => { map[slot.name] = colorInputs[i].value; });
+  try { localStorage.setItem("throne_colors_cfg", JSON.stringify(map)); } catch (_) {}
+  const btn = e.currentTarget;
+  const prev = btn.textContent;
+  btn.textContent = "Сохранено";
+  setTimeout(() => { btn.textContent = prev; }, 900);
+});
+
+document.getElementById("resetThemeBtn").addEventListener("click", () => {
+  try { localStorage.removeItem("throne_colors_cfg"); } catch (_) {}
+  applyTheme({});
+});
+
+/* --- #pminfo Popup --- */
+const pmModal = document.getElementById("pmModal");
+const pmStatsPre = document.getElementById("pmStatsPre");
+
+function updatePmStats() {
+  const mem = performance && performance.memory ? performance.memory : null;
+  const uptime = ((Date.now() - runtimeStats.startTime) / 1000).toFixed(1);
+  pmStatsPre.textContent = [
+    " === pmalloc::stats (web runtime) ====",
+    `session_id         = ${getID()}`,
+    `uptime_sec         = ${uptime}`,
+    `conversions        = ${runtimeStats.conversions}`,
+    `http_fetches       = ${runtimeStats.fetches}`,
+    `bytes_processed    = ${runtimeStats.bytesProcessed}`,
+    `active_headers     = ${headers.length}`,
+    " === pmalloc::thread (js heap) ====",
+    `js_heap_used       = ${mem ? mem.usedJSHeapSize : "N/A"}`,
+    `js_heap_total      = ${mem ? mem.totalJSHeapSize : "N/A"}`,
+    `js_heap_limit      = ${mem ? mem.jsHeapSizeLimit : "N/A"}`,
+    `hardware_threads   = ${navigator.hardwareConcurrency || "N/A"}`
+  ].join("\n");
+}
+
+document.getElementById("openPmInfo").addEventListener("click", () => {
+  updatePmStats();
+  pmModal.classList.add("on");
+});
+document.getElementById("closePmModal").addEventListener("click", () => {
+  pmModal.classList.remove("on");
+});
+pmModal.addEventListener("click", e => {
+  if (e.target === pmModal) pmModal.classList.remove("on");
+});
+
+/* --- Glitch effect from HCPP20334 DEV.html --- */
+(function () {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  function prep(el) {
+    if (el.dataset.p) return;
+    el.dataset.p = 1;
+    const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), ns = [];
+    while (w.nextNode()) ns.push(w.currentNode);
+    ns.forEach(n => {
+      const f = document.createDocumentFragment();
+      for (const ch of n.textContent) {
+        if (!ch.trim()) f.append(ch);
+        else {
+          const s = document.createElement("span");
+          s.className = "c";
+          s.textContent = ch;
+          f.append(s);
+        }
+      }
+      n.replaceWith(f);
+    });
+  }
+  function glitch(el) {
+    el.dataset.t = el.textContent;
+    prep(el);
+    const cs = [...el.querySelectorAll(".c")];
+    if (!cs.length) return;
+    const SY = "01#$%@&<>/\\|[]{}=+*";
+    el.classList.add("glitching");
+    let f = 0;
+    const N = 16;
+    const band = () => {
+      const t = Math.random() * 85, h = 4 + Math.random() * 22;
+      return `inset(${t}% 0 ${Math.max(0, 100 - t - h)}% 0)`;
+    };
+    (function step() {
+      f++;
+      el.style.setProperty("--c1", band());
+      el.style.setProperty("--x1", (Math.random() * 70 - 35) + "px");
+      el.style.setProperty("--c2", band());
+      el.style.setProperty("--x2", (Math.random() * 70 - 35) + "px");
+      cs.forEach(c => {
+        if (!c.dataset.o) c.dataset.o = c.textContent;
+        if (Math.random() < .25) {
+          c.style.left = (Math.random() * 12 - 6) + "px";
+          c.style.top = (Math.random() * 6 - 3) + "px";
+        } else {
+          c.style.left = c.style.top = "0";
+        }
+        c.textContent = f < N - 3 && Math.random() < .2
+          ? SY[Math.floor(Math.random() * SY.length)]
+          : c.dataset.o;
+      });
+      if (f < N) setTimeout(step, 95);
+      else {
+        cs.forEach(c => {
+          c.textContent = c.dataset.o;
+          c.classList.remove("off");
+          c.style.left = c.style.top = "0";
+        });
+        el.classList.remove("glitching");
+        ["--c1", "--c2", "--x1", "--x2"].forEach(v => el.style.removeProperty(v));
+      }
+    })();
+  }
+  function tick() {
+    const v = [...document.querySelectorAll("h1")].filter(e => e.offsetParent);
+    if (v.length) glitch(v[Math.floor(Math.random() * v.length)]);
+    setTimeout(tick, 3000 + Math.random() * 3000);
+  }
+  setTimeout(tick, 1800);
+})();
+
+/* --- Init --- */
+document.getElementById("sessionId").textContent = getID();
+loadTheme();
+renderHeaders();
+</script>
+</body>
+</html>
